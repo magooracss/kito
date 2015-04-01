@@ -1,0 +1,23 @@
+object frmMain: TfrmMain
+  Left = 292
+  Height = 496
+  Top = 151
+  Width = 896
+  Caption = 'KITO'
+  ClientHeight = 496
+  ClientWidth = 896
+  Font.CharSet = ANSI_CHARSET
+  Font.Height = -13
+  Font.Name = 'Arial'
+  Font.Pitch = fpVariable
+  Font.Quality = fqDraft
+  Position = poScreenCenter
+  LCLVersion = '1.2.6.0'
+  object StatusBar1: TStatusBar
+    Left = 0
+    Height = 23
+    Top = 473
+    Width = 896
+    Panels = <>
+  end
+end
