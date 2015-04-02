@@ -1,0 +1,25 @@
+object frmProductoAE: TfrmProductoAE
+  Left = 269
+  Height = 488
+  Top = 139
+  Width = 698
+  Caption = 'Producto'
+  ClientHeight = 488
+  ClientWidth = 698
+  Font.CharSet = ANSI_CHARSET
+  Font.Height = -13
+  Font.Name = 'Arial'
+  Font.Pitch = fpVariable
+  Font.Quality = fqDraft
+  OnCreate = FormCreate
+  Position = poOwnerFormCenter
+  LCLVersion = '1.2.6.0'
+  object Panel1: TPanel
+    Left = 0
+    Height = 50
+    Top = 438
+    Width = 698
+    Align = alBottom
+    TabOrder = 0
+  end
+end

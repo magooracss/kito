@@ -6,6 +6,7 @@
     <General>
       <SessionStorage Value="InProjectDir"/>
       <MainUnit Value="0"/>
+      <AutoCreateForms Value="False"/>
       <Title Value="Kito"/>
       <ResourceType Value="res"/>
       <UseXPManifest Value="True"/>
@@ -17,8 +18,9 @@
     <VersionInfo>
       <UseVersionInfo Value="True"/>
       <AutoIncrementBuild Value="True"/>
-      <MajorVersionNr Value="2"/>
-      <BuildNr Value="1"/>
+      <MajorVersionNr Value="2015"/>
+      <MinorVersionNr Value="4"/>
+      <BuildNr Value="3"/>
       <Language Value="080A"/>
       <StringTable Comments="Carlos Enrique Rodriguez / Magoo" CompanyName="RACSS Programación" LegalCopyright="Carlos Enrique Rodriguez - RACSS Programacion" ProductName="KITO" ProductVersion=""/>
     </VersionInfo>
@@ -33,12 +35,24 @@
         <FormatVersion Value="1"/>
       </local>
     </RunParams>
-    <RequiredPackages Count="1">
+    <RequiredPackages Count="5">
       <Item1>
-        <PackageName Value="LCL"/>
+        <PackageName Value="FCL"/>
       </Item1>
+      <Item2>
+        <PackageName Value="zcomponent"/>
+      </Item2>
+      <Item3>
+        <PackageName Value="lazreport"/>
+      </Item3>
+      <Item4>
+        <PackageName Value="rxnew"/>
+      </Item4>
+      <Item5>
+        <PackageName Value="LCL"/>
+      </Item5>
     </RequiredPackages>
-    <Units Count="2">
+    <Units Count="7">
       <Unit0>
         <Filename Value="kito.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -52,6 +66,38 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="frm_main"/>
       </Unit1>
+      <Unit2>
+        <Filename Value="dmgeneral.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="DM_General"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="DataModule"/>
+        <UnitName Value="dmgeneral"/>
+      </Unit2>
+      <Unit3>
+        <Filename Value="SD_Configuracion.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="SD_Configuracion"/>
+      </Unit3>
+      <Unit4>
+        <Filename Value="versioninfo.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="versioninfo"/>
+      </Unit4>
+      <Unit5>
+        <Filename Value="frm_productoae.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmProductoAE"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="frm_productoae"/>
+      </Unit5>
+      <Unit6>
+        <Filename Value="dmproductos.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="DM_Productos"/>
+        <ResourceBaseClass Value="DataModule"/>
+        <UnitName Value="dmproductos"/>
+      </Unit6>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
