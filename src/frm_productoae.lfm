@@ -24,7 +24,7 @@ object frmProductoAE: TfrmProductoAE
     Align = alBottom
     ClientHeight = 50
     ClientWidth = 698
-    TabOrder = 6
+    TabOrder = 7
     object btnGrabar: TBitBtn
       Left = 42
       Height = 40
@@ -194,7 +194,7 @@ object frmProductoAE: TfrmProductoAE
     TabOrder = 1
     Text = 'cbCategorias'
   end
-  object DBEdit1: TDBEdit
+  object dbNombre: TDBEdit
     Left = 16
     Height = 24
     Top = 104
@@ -207,7 +207,7 @@ object frmProductoAE: TfrmProductoAE
     TabOrder = 2
   end
   object DBEdit2: TDBEdit
-    Left = 82
+    Left = 16
     Height = 24
     Top = 174
     Width = 152
@@ -226,7 +226,7 @@ object frmProductoAE: TfrmProductoAE
     Caption = 'Unidades'
     ClientHeight = 87
     ClientWidth = 525
-    TabOrder = 5
+    TabOrder = 6
     object cbUnidades: TComboBox
       Left = 16
       Height = 24
@@ -339,15 +339,15 @@ object frmProductoAE: TfrmProductoAE
     end
   end
   object DBEdit3: TDBEdit
-    Left = 352
+    Left = 480
     Height = 24
     Top = 174
-    Width = 264
+    Width = 192
     DataField = 'codBarras'
     DataSource = ds_productos
     CharCase = ecNormal
     MaxLength = 0
-    TabOrder = 4
+    TabOrder = 5
   end
   object btnTugMarca: TSpeedButton
     Left = 289
@@ -520,7 +520,7 @@ object frmProductoAE: TfrmProductoAE
     ParentColor = False
   end
   object Label4: TLabel
-    Left = 82
+    Left = 16
     Height = 16
     Top = 157
     Width = 113
@@ -528,12 +528,31 @@ object frmProductoAE: TfrmProductoAE
     ParentColor = False
   end
   object Label5: TLabel
-    Left = 352
+    Left = 480
     Height = 16
     Top = 157
     Width = 98
     Caption = 'Código de barras'
     ParentColor = False
+  end
+  object Label8: TLabel
+    Left = 242
+    Height = 16
+    Top = 157
+    Width = 115
+    Caption = 'Código del producto'
+    ParentColor = False
+  end
+  object DBEdit5: TDBEdit
+    Left = 240
+    Height = 24
+    Top = 174
+    Width = 192
+    DataField = 'codigo'
+    DataSource = ds_productos
+    CharCase = ecNormal
+    MaxLength = 0
+    TabOrder = 4
   end
   object ds_productos: TDataSource
     DataSet = DM_Productos.Productos

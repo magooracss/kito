@@ -10,6 +10,7 @@ const
   ERROR_CFG= 'ErrorLecturaCFG';
 
   SECCION_APP = 'APLICACION';
+  SECCCION_SCR = 'PANTALLAS';
 
   SERVIDOR_FB = 'RUTA_FB';  //Ruta al archivo de BD
   BASE_HOST='HOST';         //Dirección IP del HOST
@@ -19,6 +20,8 @@ const
 
   CFG_SEP_DECIMAL = 'SEP_DECIMAL';
   CFG_SEP_MILES='SEP_MILES';
+
+  PROD_BUS_CRIT = 'P_BUS_CRIT';
 
 
   function AbrirArchivo: TIniFile;

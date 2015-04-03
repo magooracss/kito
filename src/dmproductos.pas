@@ -9,6 +9,13 @@ uses
   ,dmgeneral, StdCtrls
   ;
 
+const
+  BUS_NOMBRE = 0;
+  BUS_CATEGORIA = 1;
+  BUS_MARCA = 2;
+  BUS_CODIGO = 3;
+  BUS_CODBARRAS = 4;
+
 type
 
   { TDM_Productos }
@@ -25,6 +32,18 @@ type
     Productosminimo: TFloatField;
     Productosnombre: TStringField;
     Productosunidad_id: TLongintField;
+    qBuscarProductosBVISIBLE: TSmallintField;
+    qBuscarProductosCANTTOTALIZAR: TFloatField;
+    qBuscarProductosCATEGORIA: TStringField;
+    qBuscarProductosCATEGORIA_ID: TLongintField;
+    qBuscarProductosCODBARRAS: TStringField;
+    qBuscarProductosCODIGO: TStringField;
+    qBuscarProductosID: TStringField;
+    qBuscarProductosMARCA: TStringField;
+    qBuscarProductosMARCA_ID: TLongintField;
+    qBuscarProductosMINIMO: TFloatField;
+    qBuscarProductosNOMBRE: TStringField;
+    qBuscarProductosUNIDAD_ID: TLongintField;
     qCategorias: TZQuery;
     qCategoriasBVISIBLE: TSmallintField;
     qCategoriasCATEGORIA: TStringField;
@@ -40,6 +59,7 @@ type
     qUnidadesUNIDAD: TStringField;
     SELProductos: TZQuery;
     qMarcas: TZQuery;
+    qBuscarProductos: TZQuery;
     SELProductosBVISIBLE: TSmallintField;
     SELProductosCANTTOTALIZAR: TFloatField;
     SELProductosCATEGORIA_ID: TLongintField;
@@ -52,6 +72,7 @@ type
     SELProductosUNIDAD_ID: TLongintField;
     INSProductos: TZQuery;
     UPDProductos: TZQuery;
+    DELProductos: TZQuery;
     procedure ProductosAfterInsert(DataSet: TDataSet);
   private
     _idProducto: GUID_ID;
@@ -62,6 +83,9 @@ type
     procedure Nuevo;
     procedure Editar (refProducto: GUID_ID);
     procedure Grabar;
+    procedure Borrar;
+
+    procedure BuscarProducto(dato: string; criterio: integer);
 
   end;
 
@@ -123,6 +147,78 @@ end;
 procedure TDM_Productos.Grabar;
 begin
   DM_General.GrabarDatos(SELProductos, INSProductos, UPDProductos, Productos, 'id');
+end;
+
+procedure TDM_Productos.Borrar;
+begin
+  With DELProductos do
+  begin
+    ParamByName('id').AsString:= _idProducto;
+    ExecSQL;
+  end;
+end;
+
+procedure TDM_Productos.BuscarProducto(dato: string; criterio: integer);
+var
+  qSEL, qFROM, qWHERE, qORDER: string;
+begin
+  qSEL:= '  SELECT P.*, M.Marca,C.Categoria ';
+  qFROM:= ' FROM Productos P '
+            + ' LEFT JOIN marcas M ON M.id = P.marca_id '
+            + ' LEFT JOIN categorias C ON C.id = P.categoria_id ';
+
+  qWHERE:= ' WHERE (P.bVisible = 1) ';
+
+  with qBuscarProductos do
+  begin
+    if active then close;
+    SQL.Clear;
+    SQL.Add(qSEL);
+    case criterio of
+      BUS_NOMBRE:
+        begin
+          qWHERE:= qWHERE + ' AND (UPPER(P.Nombre) LIKE ''%'+UpperCase(Trim(dato))+'%'')';
+          qORDER:= ' ORDER BY P.Nombre ';
+        end;
+      BUS_CATEGORIA:
+        begin
+          qFROM:= ' FROM Productos P '
+                 + ' LEFT JOIN marcas M ON M.id = P.marca_id '
+                 + ' INNER JOIN categorias C ON C.id = P.categoria_id ';
+          qWHERE:= qWHERE
+                  + ' AND (UPPER(C.categoria) LIKE ''%'+UpperCase(Trim(dato))+'%'')'
+                  + ' AND (C.bVisible = 1) '
+                  ;
+          qORDER:= ' ORDER BY C.Categoria, P.Nombre ';
+        end;
+       BUS_MARCA:
+         begin
+           qFROM:= ' FROM Productos P '
+                  + ' INNER JOIN marcas M ON M.id = P.marca_id '
+                  + ' LEFT JOIN categorias C ON C.id = P.categoria_id ';
+           qWHERE:= qWHERE
+                   + ' AND (UPPER(M.marca) LIKE ''%'+UpperCase(Trim(dato))+'%'')'
+                   + ' AND (M.bVisible = 1) ';
+           qORDER:= ' ORDER BY M.Marca, P.Nombre ';
+         end;
+       BUS_CODIGO:
+         begin
+           qWHERE:= qWHERE + ' AND (UPPER(P.Codigo) LIKE '''+UpperCase(Trim(dato))+'%'')';
+           qORDER:= ' ORDER BY P.Codigo, P.Nombre ';
+         end;
+       BUS_CODBARRAS:
+         begin
+           qWHERE:= qWHERE + ' AND (UPPER(P.CodBarras) LIKE '''+UpperCase(Trim(dato))+''')';
+           qORDER:= ' ORDER BY P.CodBarras, P.Nombre ';
+         end;
+    end;
+    sql.Add(qFROM);
+    sql.Add(qWHERE);
+    sql.Add(qORDER);
+    Open;
+  end;
+
+
 end;
 
 end.

@@ -80,12 +80,14 @@ object frmMain: TfrmMain
       Caption = 'Modificar producto'
       Hint = 'Modifica lo datos de un producto'
       ImageIndex = 2
+      OnExecute = prodEditarExecute
     end
     object prodBorrar: TAction
       Category = 'Productos'
       Caption = 'Borrar producto'
       Hint = 'Elimina el producto de la base'
       ImageIndex = 3
+      OnExecute = prodBorrarExecute
     end
   end
   object MainMenu1: TMainMenu

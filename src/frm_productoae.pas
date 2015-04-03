@@ -21,8 +21,9 @@ type
     cbUnidades: TComboBox;
     DBEdit3: TDBEdit;
     DBEdit4: TDBEdit;
+    DBEdit5: TDBEdit;
     ds_productos: TDataSource;
-    DBEdit1: TDBEdit;
+    dbNombre: TDBEdit;
     DBEdit2: TDBEdit;
     GroupBox1: TGroupBox;
     Label1: TLabel;
@@ -32,6 +33,7 @@ type
     Label5: TLabel;
     Label6: TLabel;
     Label7: TLabel;
+    Label8: TLabel;
     Panel1: TPanel;
     btnTugMarca: TSpeedButton;
     btnTugCategoria: TSpeedButton;
@@ -109,7 +111,7 @@ begin
     end;
     pantalla.laTUG:= datos;
     pantalla.ShowModal;
-    DM_General.CargarComboBox(cbMarcas, 'Categoria', 'id',DM_Productos.qCategorias);
+    DM_General.CargarComboBox(cbCategorias, 'Categoria', 'id',DM_Productos.qCategorias);
   finally
     datos.Free;
     pantalla.Free;
@@ -174,13 +176,21 @@ end;
 
 procedure TfrmProductoAE.btnGrabarClick(Sender: TObject);
 begin
-  DM_Productos.ActualizarRefsCb(
-             DM_General.obtenerIDIntComboBox(cbMarcas)
-            ,DM_General.obtenerIDIntComboBox(cbCategorias)
-            ,DM_General.obtenerIDIntComboBox(cbUnidades)
-                                );
-  DM_Productos.Grabar;
-  ModalResult:= mrOK;
+  if TRIM(DM_Productos.Productosnombre.AsString) <> EmptyStr then
+  begin
+    DM_Productos.ActualizarRefsCb(
+               DM_General.obtenerIDIntComboBox(cbMarcas)
+              ,DM_General.obtenerIDIntComboBox(cbCategorias)
+              ,DM_General.obtenerIDIntComboBox(cbUnidades)
+                                  );
+    DM_Productos.Grabar;
+    ModalResult:= mrOK;
+  end
+  else
+  begin
+   ShowMessage('No puede haber productos con el nombre en blanco');
+   dbNombre.SetFocus;
+  end;
 end;
 
 end.

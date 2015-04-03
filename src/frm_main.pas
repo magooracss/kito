@@ -35,6 +35,8 @@ type
     ToolButton2: TToolButton;
     procedure FormShow(Sender: TObject);
     procedure prgSalirExecute(Sender: TObject);
+    procedure prodBorrarExecute(Sender: TObject);
+    procedure prodEditarExecute(Sender: TObject);
     procedure prodNuevoExecute(Sender: TObject);
   private
      procedure Inicializar;
@@ -51,6 +53,8 @@ implementation
 uses
   versioninfo
   ,frm_productoae
+  ,frm_busquedaProductos
+  ,dmproductos
   ;
 
 { TfrmMain }
@@ -83,6 +87,7 @@ begin
   Application.Terminate;
 end;
 
+
 (*******************************************************************************
 *** PRODUCTOS
 *******************************************************************************)
@@ -103,6 +108,44 @@ end;
 procedure TfrmMain.prodNuevoExecute(Sender: TObject);
 begin
    pantallaProducto(GUIDNULO);
+end;
+
+procedure TfrmMain.prodEditarExecute(Sender: TObject);
+var
+ pantBus: TfrmBusquedaProducto;
+begin
+  pantBus:= TfrmBusquedaProducto.Create(self);
+  try
+    if (pantBus.ShowModal = mrOK)
+     and (pantBus.productoSeleccionado <> GUIDNULO) then
+    begin
+      pantallaProducto(pantBus.productoSeleccionado);
+    end;
+  finally
+    pantBus.Free;
+  end;
+end;
+
+procedure TfrmMain.prodBorrarExecute(Sender: TObject);
+var
+ pantBus: TfrmBusquedaProducto;
+begin
+  pantBus:= TfrmBusquedaProducto.Create(self);
+  try
+    if (pantBus.ShowModal = mrOK)
+     and (pantBus.productoSeleccionado <> GUIDNULO) then
+    begin
+      if (MessageDlg ('ATENCION'
+                     , 'Borro el producto: '+pantBus.productoNombre +'?'
+                     , mtConfirmation, [mbYes, mbNo],0 ) = mrYes) then
+      begin
+         DM_Productos.idProducto:= pantBus.productoSeleccionado;
+         DM_Productos.Borrar;
+      end;
+    end;
+  finally
+    pantBus.Free;
+  end;
 end;
 
 

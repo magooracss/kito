@@ -1,9 +1,9 @@
 object DM_Productos: TDM_Productos
   OldCreateOrder = False
-  Height = 450
-  HorizontalOffset = 368
-  VerticalOffset = 150
-  Width = 484
+  Height = 452
+  HorizontalOffset = 166
+  VerticalOffset = 153
+  Width = 950
   object Productos: TRxMemoryData
     FieldDefs = <    
       item
@@ -548,7 +548,6 @@ object DM_Productos: TDM_Productos
   end
   object qMarcas: TZQuery
     Connection = DM_General.cnxBase
-    Active = True
     SQL.Strings = (
       'SELECT *'
       'FROM Marcas'
@@ -591,7 +590,6 @@ object DM_Productos: TDM_Productos
   end
   object qCategorias: TZQuery
     Connection = DM_General.cnxBase
-    Active = True
     SQL.Strings = (
       'SELECT *'
       'FROM Categorias'
@@ -634,7 +632,6 @@ object DM_Productos: TDM_Productos
   end
   object qUnidades: TZQuery
     Connection = DM_General.cnxBase
-    Active = True
     SQL.Strings = (
       'SELECT *'
       'FROM Unidades'
@@ -698,5 +695,175 @@ object DM_Productos: TDM_Productos
       ReadOnly = False
       Required = False
     end
+  end
+  object qBuscarProductos: TZQuery
+    Connection = DM_General.cnxBase
+    Active = True
+    SQL.Strings = (
+      'SELECT P.*'
+      '             , M.Marca '
+      '             ,C.Categoria'
+      'FROM Productos P'
+      '           LEFT JOIN marcas M ON M.id = P.marca_id'
+      '           LEFT JOIN categorias C ON C.id = P.categoria_id'
+      'WHERE (P.bVisible = 1)'
+    )
+    Params = <>
+    left = 696
+    top = 32
+    object qBuscarProductosID: TStringField
+      DisplayWidth = 152
+      FieldKind = fkData
+      FieldName = 'ID'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      Size = 152
+    end
+    object qBuscarProductosMARCA_ID: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'MARCA_ID'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object qBuscarProductosCODIGO: TStringField
+      DisplayWidth = 80
+      FieldKind = fkData
+      FieldName = 'CODIGO'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 80
+    end
+    object qBuscarProductosCATEGORIA_ID: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'CATEGORIA_ID'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object qBuscarProductosNOMBRE: TStringField
+      DisplayWidth = 1200
+      FieldKind = fkData
+      FieldName = 'NOMBRE'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 1200
+    end
+    object qBuscarProductosMINIMO: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'MINIMO'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object qBuscarProductosUNIDAD_ID: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'UNIDAD_ID'
+      Index = 6
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object qBuscarProductosCANTTOTALIZAR: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'CANTTOTALIZAR'
+      Index = 7
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object qBuscarProductosCODBARRAS: TStringField
+      DisplayWidth = 200
+      FieldKind = fkData
+      FieldName = 'CODBARRAS'
+      Index = 8
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 200
+    end
+    object qBuscarProductosBVISIBLE: TSmallintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'BVISIBLE'
+      Index = 9
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object qBuscarProductosMARCA: TStringField
+      DisplayWidth = 600
+      FieldKind = fkData
+      FieldName = 'MARCA'
+      Index = 10
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 600
+    end
+    object qBuscarProductosCATEGORIA: TStringField
+      DisplayWidth = 400
+      FieldKind = fkData
+      FieldName = 'CATEGORIA'
+      Index = 11
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 400
+    end
+  end
+  object DELProductos: TZQuery
+    Connection = DM_General.cnxBase
+    SQL.Strings = (
+      'UPDATE Productos'
+      'SET bVisible = 0'
+      'WHERE id = :id'
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'id'
+        ParamType = ptUnknown
+      end>
+    left = 56
+    top = 320
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'id'
+        ParamType = ptUnknown
+      end>
   end
 end

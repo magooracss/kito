@@ -1282,6 +1282,7 @@ object DM_General: TDM_General
     Properties.Strings = (
       'codepage=UTF8'
     )
+    TransactIsolationLevel = tiReadCommitted
     Connected = True
     Port = 0
     Database = 'C:\Dropbox\bak\Trabajo\Trabajo\Windows\kito\db\KITO.FDB'
