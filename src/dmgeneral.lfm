@@ -1282,7 +1282,9 @@ object DM_General: TDM_General
     Properties.Strings = (
       'codepage=UTF8'
     )
+    Connected = True
     Port = 0
+    Database = 'C:\Dropbox\bak\Trabajo\Trabajo\Windows\kito\db\KITO.FDB'
     User = 'SYSDBA'
     Password = 'masterkey'
     Protocol = 'firebirdd-2.5'

@@ -546,4 +546,157 @@ object DM_Productos: TDM_Productos
         ParamType = ptUnknown
       end>
   end
+  object qMarcas: TZQuery
+    Connection = DM_General.cnxBase
+    Active = True
+    SQL.Strings = (
+      'SELECT *'
+      'FROM Marcas'
+      'WHERE (bVisible = 1)'
+    )
+    Params = <>
+    left = 392
+    top = 32
+    object qMarcasID: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'ID'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object qMarcasMARCA: TStringField
+      DisplayWidth = 600
+      FieldKind = fkData
+      FieldName = 'MARCA'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 600
+    end
+    object qMarcasBVISIBLE: TSmallintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'BVISIBLE'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+  end
+  object qCategorias: TZQuery
+    Connection = DM_General.cnxBase
+    Active = True
+    SQL.Strings = (
+      'SELECT *'
+      'FROM Categorias'
+      'WHERE (bVisible = 1)'
+    )
+    Params = <>
+    left = 392
+    top = 96
+    object qCategoriasID: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'ID'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object qCategoriasCATEGORIA: TStringField
+      DisplayWidth = 400
+      FieldKind = fkData
+      FieldName = 'CATEGORIA'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 400
+    end
+    object qCategoriasBVISIBLE: TSmallintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'BVISIBLE'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+  end
+  object qUnidades: TZQuery
+    Connection = DM_General.cnxBase
+    Active = True
+    SQL.Strings = (
+      'SELECT *'
+      'FROM Unidades'
+      'WHERE (bVisible = 1)'
+    )
+    Params = <>
+    left = 392
+    top = 160
+    object qUnidadesID: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'ID'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object qUnidadesUNIDAD: TStringField
+      DisplayWidth = 200
+      FieldKind = fkData
+      FieldName = 'UNIDAD'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 200
+    end
+    object qUnidadesTOTALIZA: TStringField
+      DisplayWidth = 200
+      FieldKind = fkData
+      FieldName = 'TOTALIZA'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 200
+    end
+    object qUnidadesFACTOR: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'FACTOR'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object qUnidadesBVISIBLE: TSmallintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'BVISIBLE'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+  end
 end

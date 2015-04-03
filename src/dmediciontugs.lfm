@@ -1,0 +1,153 @@
+object DM_EdicionTUGs: TDM_EdicionTUGs
+  OldCreateOrder = False
+  Height = 365
+  HorizontalOffset = 155
+  VerticalOffset = 89
+  Width = 890
+  object tbTabla: TZTable
+    CachedUpdates = True
+    TableName = 'TUGBANCOS'
+    left = 16
+    top = 32
+  end
+  object Marcas: TZTable
+    Connection = DM_General.cnxBase
+    AfterInsert = MarcasAfterInsert
+    TableName = 'MARCAS'
+    left = 72
+    top = 32
+    object MarcasID: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'ID'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object MarcasMARCA: TStringField
+      DisplayWidth = 600
+      FieldKind = fkData
+      FieldName = 'MARCA'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 600
+    end
+    object MarcasBVISIBLE: TSmallintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'BVISIBLE'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+  end
+  object Categorias: TZTable
+    Connection = DM_General.cnxBase
+    AfterInsert = MarcasAfterInsert
+    AfterEdit = MarcasAfterInsert
+    TableName = 'CATEGORIAS'
+    left = 128
+    top = 32
+    object CategoriasID: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'ID'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object CategoriasCATEGORIA: TStringField
+      DisplayWidth = 400
+      FieldKind = fkData
+      FieldName = 'CATEGORIA'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 400
+    end
+    object CategoriasBVISIBLE: TSmallintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'BVISIBLE'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+  end
+  object Unidades: TZTable
+    Connection = DM_General.cnxBase
+    AfterInsert = MarcasAfterInsert
+    Active = True
+    TableName = 'UNIDADES'
+    left = 184
+    top = 32
+    object UnidadesID: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'ID'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object UnidadesUNIDAD: TStringField
+      DisplayWidth = 200
+      FieldKind = fkData
+      FieldName = 'UNIDAD'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 200
+    end
+    object UnidadesTOTALIZA: TStringField
+      DisplayWidth = 200
+      FieldKind = fkData
+      FieldName = 'TOTALIZA'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 200
+    end
+    object UnidadesFACTOR: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'FACTOR'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object UnidadesBVISIBLE: TSmallintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'BVISIBLE'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+  end
+end

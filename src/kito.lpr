@@ -8,7 +8,7 @@ uses
   {$ENDIF}{$ENDIF}
   Interfaces, // this includes the LCL widgetset
   Forms, rxnew, zcomponent, frm_main, dmgeneral, SD_Configuracion, versioninfo,
-  frm_productoae, dmproductos
+  frm_productoae, dmproductos, dmediciontugs, frm_ediciontugs
   { you can add units after this };
 
 {$R *.res}
