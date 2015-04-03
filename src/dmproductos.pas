@@ -21,6 +21,16 @@ type
   { TDM_Productos }
 
   TDM_Productos = class(TDataModule)
+    DELPrecios: TZQuery;
+    INSPrecios: TZQuery;
+    Precios: TRxMemoryData;
+    PreciosbVisible: TLongintField;
+    Preciosid: TStringField;
+    Preciosiva: TFloatField;
+    PrecioslistaPrecio_id: TLongintField;
+    PrecioslxListaPrecio: TStringField;
+    Preciosmonto: TFloatField;
+    Preciosproducto_id: TStringField;
     Productos: TRxMemoryData;
     ProductosbVisible: TLongintField;
     ProductoscantTotalizar: TFloatField;
@@ -48,6 +58,18 @@ type
     qCategoriasBVISIBLE: TSmallintField;
     qCategoriasCATEGORIA: TStringField;
     qCategoriasID: TLongintField;
+    qListasPrecios: TZQuery;
+    qPreciosProducto: TZQuery;
+    qListasPreciosBVISIBLE: TSmallintField;
+    qListasPreciosID: TLongintField;
+    qListasPreciosLISTAPRECIO: TStringField;
+    qPreciosProductoBVISIBLE: TSmallintField;
+    qPreciosProductoID: TStringField;
+    qPreciosProductoIVA: TFloatField;
+    qPreciosProductoLISTAPRECIO_ID: TLongintField;
+    qPreciosProductoLXLISTAPRECIO: TStringField;
+    qPreciosProductoMONTO: TFloatField;
+    qPreciosProductoPRODUCTO_ID: TStringField;
     qUnidades: TZQuery;
     qMarcasBVISIBLE: TSmallintField;
     qMarcasID: TLongintField;
@@ -57,6 +79,19 @@ type
     qUnidadesID: TLongintField;
     qUnidadesTOTALIZA: TStringField;
     qUnidadesUNIDAD: TStringField;
+    SELPrecios: TZQuery;
+    SELPreciosBVISIBLE: TSmallintField;
+    SELPreciosBVISIBLE1: TSmallintField;
+    SELPreciosID: TStringField;
+    SELPreciosID1: TStringField;
+    SELPreciosIVA: TFloatField;
+    SELPreciosIVA1: TFloatField;
+    SELPreciosLISTAPRECIO_ID: TLongintField;
+    SELPreciosLISTAPRECIO_ID1: TLongintField;
+    SELPreciosMONTO: TFloatField;
+    SELPreciosMONTO1: TFloatField;
+    SELPreciosPRODUCTO_ID: TStringField;
+    SELPreciosPRODUCTO_ID1: TStringField;
     SELProductos: TZQuery;
     qMarcas: TZQuery;
     qBuscarProductos: TZQuery;
@@ -71,8 +106,10 @@ type
     SELProductosNOMBRE: TStringField;
     SELProductosUNIDAD_ID: TLongintField;
     INSProductos: TZQuery;
+    UPDPrecios: TZQuery;
     UPDProductos: TZQuery;
     DELProductos: TZQuery;
+    procedure PreciosAfterInsert(DataSet: TDataSet);
     procedure ProductosAfterInsert(DataSet: TDataSet);
   private
     _idProducto: GUID_ID;
@@ -86,6 +123,16 @@ type
     procedure Borrar;
 
     procedure BuscarProducto(dato: string; criterio: integer);
+
+    procedure LevantarPreciosProducto;
+
+    procedure ActualizarRefsCbPrecios (refListaPrecio: integer);
+    procedure NuevoPrecio (iva: Double);
+    procedure EditarPrecio (refPrecio: GUID_ID);
+    procedure BorrarPrecio (refPrecio: GUID_ID);
+    procedure GrabarPrecios;
+
+
 
   end;
 
@@ -112,6 +159,31 @@ begin
   ProductoscantTotalizar.AsFloat:= 0;
   ProductoscodBarras.asString:= EmptyStr;
   ProductosbVisible.asInteger:= 1;
+end;
+
+procedure TDM_Productos.LevantarPreciosProducto;
+begin
+  if Productos.Active then
+  begin
+    DM_General.ReiniciarTabla(Precios);
+    with qPreciosProducto do
+    begin
+      if active then close;
+      ParamByName('refProducto').asString:= Productosid.AsString;
+      Open;
+      Precios.LoadFromDataSet(qPreciosProducto, 0, lmAppend);
+      close;
+    end;
+  end;
+end;
+
+procedure TDM_Productos.PreciosAfterInsert(DataSet: TDataSet);
+begin
+  Preciosid.AsString:= DM_General.CrearGUID;
+  Preciosproducto_id.AsString:= Productosid.AsString;
+  Preciosmonto.AsFloat:= 0;
+  PrecioslistaPrecio_id.AsInteger:= 0;
+  PreciosbVisible.AsInteger:= 1;
 end;
 
 procedure TDM_Productos.ActualizarRefsCb(refMarca, refCategoria,
@@ -141,6 +213,8 @@ begin
   Productos.LoadFromDataSet(SELProductos, 0, lmAppend);
   SELProductos.Close;
 
+  LevantarPreciosProducto;
+
   Productos.Edit;
 end;
 
@@ -157,6 +231,7 @@ begin
     ExecSQL;
   end;
 end;
+
 
 procedure TDM_Productos.BuscarProducto(dato: string; criterio: integer);
 var
@@ -219,6 +294,50 @@ begin
   end;
 
 
+end;
+
+(*******************************************************************************
+*** PRECIOS
+********************************************************************************)
+procedure TDM_Productos.ActualizarRefsCbPrecios(refListaPrecio: integer);
+begin
+  Precios.Edit;
+  PrecioslistaPrecio_id.AsInteger:= refListaPrecio;
+  Precios.Post;
+end;
+
+
+procedure TDM_Productos.NuevoPrecio(iva: Double);
+begin
+  DM_General.ReiniciarTabla(Precios);
+  with Precios do
+  begin
+    Insert;
+    Preciosiva.asFloat:= iva;
+    Post;
+  end;
+end;
+
+procedure TDM_Productos.EditarPrecio(refPrecio: GUID_ID);
+begin
+  DM_General.ReiniciarTabla(Precios);
+
+  if SELPrecios.Active then SELPrecios.Close;
+  SELPrecios.ParamByName('id').asString:= refPrecio;
+  SELPrecios.Open;
+
+  Precios.LoadFromDataSet(SELPrecios, 0, lmAppend);
+end;
+
+procedure TDM_Productos.BorrarPrecio(refPrecio: GUID_ID);
+begin
+  DELPrecios.ParamByName('id').asString:= refPrecio;
+  DELPrecios.ExecSQL;
+end;
+
+procedure TDM_Productos.GrabarPrecios;
+begin
+   DM_General.GrabarDatos(SELPrecios, INSPrecios, UPDPrecios, Precios, 'id');
 end;
 
 end.

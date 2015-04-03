@@ -34,3 +34,15 @@ END^
 
 SET TERM ; ^  
 
+SET TERM ^ ;
+
+CREATE TRIGGER listapreciosID FOR listasprecios
+BEFORE INSERT POSITION 0
+AS 
+BEGIN 
+    If (New.id = -1) then
+   New.id = GEN_ID(listapreciosID,1);
+END^
+
+SET TERM ; ^  
+

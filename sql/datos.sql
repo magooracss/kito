@@ -13,4 +13,8 @@ INSERT INTO Unidades
 VALUES
 (0, 'Desconocida', 'Desconocida', 1, 1);
 
+INSERT INTO listasprecios
+(id, listaPrecio, bVisible)
+VALUES
+(0, 'Desconocida', 1);
 

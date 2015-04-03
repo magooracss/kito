@@ -90,7 +90,6 @@ object DM_EdicionTUGs: TDM_EdicionTUGs
   object Unidades: TZTable
     Connection = DM_General.cnxBase
     AfterInsert = MarcasAfterInsert
-    Active = True
     TableName = 'UNIDADES'
     left = 184
     top = 32
@@ -144,6 +143,44 @@ object DM_EdicionTUGs: TDM_EdicionTUGs
       FieldKind = fkData
       FieldName = 'BVISIBLE'
       Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+  end
+  object ListasPrecios: TZTable
+    Connection = DM_General.cnxBase
+    AfterInsert = MarcasAfterInsert
+    TableName = 'LISTASPRECIOS'
+    left = 240
+    top = 32
+    object ListasPreciosID: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'ID'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object ListasPreciosLISTAPRECIO: TStringField
+      DisplayWidth = 400
+      FieldKind = fkData
+      FieldName = 'LISTAPRECIO'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 400
+    end
+    object ListasPreciosBVISIBLE: TSmallintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'BVISIBLE'
+      Index = 2
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False

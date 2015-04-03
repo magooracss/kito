@@ -131,6 +131,7 @@ object DM_Productos: TDM_Productos
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
       Required = False
+      DisplayFormat = '############0.####'
       MaxValue = 0
       MinValue = 0
       Precision = 2
@@ -154,6 +155,7 @@ object DM_Productos: TDM_Productos
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
       Required = False
+      DisplayFormat = '############0.####'
       MaxValue = 0
       MinValue = 0
       Precision = 2
@@ -597,7 +599,7 @@ object DM_Productos: TDM_Productos
     )
     Params = <>
     left = 392
-    top = 96
+    top = 104
     object qCategoriasID: TLongintField
       DisplayWidth = 10
       FieldKind = fkData
@@ -639,7 +641,7 @@ object DM_Productos: TDM_Productos
     )
     Params = <>
     left = 392
-    top = 160
+    top = 168
     object qUnidadesID: TLongintField
       DisplayWidth = 10
       FieldKind = fkData
@@ -698,7 +700,6 @@ object DM_Productos: TDM_Productos
   end
   object qBuscarProductos: TZQuery
     Connection = DM_General.cnxBase
-    Active = True
     SQL.Strings = (
       'SELECT P.*'
       '             , M.Marca '
@@ -865,5 +866,544 @@ object DM_Productos: TDM_Productos
         Name = 'id'
         ParamType = ptUnknown
       end>
+  end
+  object Precios: TRxMemoryData
+    FieldDefs = <    
+      item
+        Name = 'id'
+        DataType = ftString
+        Precision = 0
+        Size = 38
+      end    
+      item
+        Name = 'monto'
+        DataType = ftFloat
+        Precision = 0
+        Size = 0
+      end    
+      item
+        Name = 'producto_id'
+        DataType = ftString
+        Precision = 0
+        Size = 38
+      end    
+      item
+        Name = 'listaPrecio_id'
+        DataType = ftInteger
+        Precision = 0
+        Size = 0
+      end    
+      item
+        Name = 'iva'
+        DataType = ftFloat
+        Precision = 0
+        Size = 0
+      end    
+      item
+        Name = 'bVisible'
+        DataType = ftInteger
+        Precision = 0
+        Size = 0
+      end    
+      item
+        Name = 'lxListaPrecio'
+        DataType = ftString
+        Precision = 0
+        Size = 100
+      end>
+    AfterInsert = PreciosAfterInsert
+    PacketRecords = 0
+    left = 176
+    top = 32
+    object Preciosid: TStringField
+      DisplayWidth = 38
+      FieldKind = fkData
+      FieldName = 'id'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 38
+    end
+    object Preciosmonto: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'monto'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Currency = True
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object PrecioslistaPrecio_id: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'listaPrecio_id'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object Preciosiva: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'iva'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      DisplayFormat = '#####0.00 '
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object PreciosbVisible: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'bVisible'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object PrecioslxListaPrecio: TStringField
+      DisplayWidth = 100
+      FieldKind = fkData
+      FieldName = 'lxListaPrecio'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 100
+    end
+    object Preciosproducto_id: TStringField
+      DisplayWidth = 38
+      FieldKind = fkData
+      FieldName = 'producto_id'
+      Index = 6
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 38
+    end
+  end
+  object SELPrecios: TZQuery
+    Connection = DM_General.cnxBase
+    SQL.Strings = (
+      'SELECT *'
+      'FROM Precios'
+      'WHERE (id = :id)'
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'id'
+        ParamType = ptUnknown
+      end>
+    left = 176
+    top = 104
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'id'
+        ParamType = ptUnknown
+      end>
+    object SELPreciosID: TStringField
+      DisplayWidth = 152
+      FieldKind = fkData
+      FieldName = 'ID'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      Size = 152
+    end
+    object SELPreciosMONTO: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'MONTO'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object SELPreciosPRODUCTO_ID: TStringField
+      DisplayWidth = 152
+      FieldKind = fkData
+      FieldName = 'PRODUCTO_ID'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 152
+    end
+    object SELPreciosLISTAPRECIO_ID: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'LISTAPRECIO_ID'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object SELPreciosIVA: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'IVA'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object SELPreciosBVISIBLE: TSmallintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'BVISIBLE'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+  end
+  object INSPrecios: TZQuery
+    Connection = DM_General.cnxBase
+    SQL.Strings = (
+      'INSERT INTO Precios'
+      '(  id,  monto, producto_id, listaPrecio_id, iva, bVisible)'
+      'VALUES'
+      '( :id,  :monto, :producto_id, :listaPrecio_id, :iva, :bVisible)'
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'id'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'monto'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'producto_id'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'listaPrecio_id'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'iva'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'bVisible'
+        ParamType = ptUnknown
+      end>
+    left = 176
+    top = 171
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'id'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'monto'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'producto_id'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'listaPrecio_id'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'iva'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'bVisible'
+        ParamType = ptUnknown
+      end>
+  end
+  object UPDPrecios: TZQuery
+    Connection = DM_General.cnxBase
+    SQL.Strings = (
+      'UPDATE Precios'
+      'SET'
+      ' monto = :monto '
+      ', producto_id = :producto_id'
+      ', listaPrecio_id = :listaPrecio_id'
+      ', iva = :iva'
+      ', bVisible = :bVisible'
+      'WHERE id = :id'
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'monto'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'producto_id'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'listaPrecio_id'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'iva'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'bVisible'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'id'
+        ParamType = ptUnknown
+      end>
+    left = 176
+    top = 243
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'monto'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'producto_id'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'listaPrecio_id'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'iva'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'bVisible'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'id'
+        ParamType = ptUnknown
+      end>
+  end
+  object DELPrecios: TZQuery
+    Connection = DM_General.cnxBase
+    SQL.Strings = (
+      'UPDATE Precios'
+      'SET bVisible = 0'
+      'WHERE id = :id'
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'id'
+        ParamType = ptUnknown
+      end>
+    left = 176
+    top = 323
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'id'
+        ParamType = ptUnknown
+      end>
+  end
+  object qListasPrecios: TZQuery
+    Connection = DM_General.cnxBase
+    SQL.Strings = (
+      'SELECT *'
+      'FROM ListasPrecios'
+      'WHERE (bVisible = 1)'
+    )
+    Params = <>
+    left = 392
+    top = 243
+    object qListasPreciosID: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'ID'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object qListasPreciosLISTAPRECIO: TStringField
+      DisplayWidth = 400
+      FieldKind = fkData
+      FieldName = 'LISTAPRECIO'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 400
+    end
+    object qListasPreciosBVISIBLE: TSmallintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'BVISIBLE'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+  end
+  object qPreciosProducto: TZQuery
+    Connection = DM_General.cnxBase
+    Active = True
+    SQL.Strings = (
+      'SELECT P.* '
+      '            ,L.ListaPrecio as lxListaPrecio'
+      'FROM Precios P'
+      '            LEFT JOIN ListasPrecios L ON P.listaPrecio_id = L.id'
+      'WHERE (P.bVisible = 1)'
+      '            and (P.producto_id = :refProducto)'
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'refProducto'
+        ParamType = ptUnknown
+      end>
+    left = 176
+    top = 400
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'refProducto'
+        ParamType = ptUnknown
+      end>
+    object qPreciosProductoID: TStringField
+      DisplayWidth = 152
+      FieldKind = fkData
+      FieldName = 'ID'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      Size = 152
+    end
+    object qPreciosProductoMONTO: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'MONTO'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object qPreciosProductoPRODUCTO_ID: TStringField
+      DisplayWidth = 152
+      FieldKind = fkData
+      FieldName = 'PRODUCTO_ID'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 152
+    end
+    object qPreciosProductoLISTAPRECIO_ID: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'LISTAPRECIO_ID'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object qPreciosProductoIVA: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'IVA'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object qPreciosProductoBVISIBLE: TSmallintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'BVISIBLE'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object qPreciosProductoLXLISTAPRECIO: TStringField
+      DisplayWidth = 400
+      FieldKind = fkData
+      FieldName = 'LXLISTAPRECIO'
+      Index = 6
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 400
+    end
   end
 end

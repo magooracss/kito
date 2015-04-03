@@ -20,8 +20,10 @@ const
 
   CFG_SEP_DECIMAL = 'SEP_DECIMAL';
   CFG_SEP_MILES='SEP_MILES';
+  CFGD_IVA_PROD='IVA_PROD';
 
   PROD_BUS_CRIT = 'P_BUS_CRIT';
+
 
 
   function AbrirArchivo: TIniFile;

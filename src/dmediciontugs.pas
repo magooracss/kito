@@ -46,6 +46,9 @@ type
 
   TDM_EdicionTUGs = class(TDataModule)
     Categorias: TZTable;
+    ListasPreciosBVISIBLE: TSmallintField;
+    ListasPreciosID: TLongintField;
+    ListasPreciosLISTAPRECIO: TStringField;
     Unidades: TZTable;
     CategoriasBVISIBLE: TSmallintField;
     CategoriasCATEGORIA: TStringField;
@@ -55,6 +58,7 @@ type
     MarcasMARCA: TStringField;
     tbTabla: TZTable;
     Marcas: TZTable;
+    ListasPrecios: TZTable;
     UnidadesBVISIBLE: TSmallintField;
     UnidadesFACTOR: TFloatField;
     UnidadesID: TLongintField;

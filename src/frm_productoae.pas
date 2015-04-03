@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, db, FileUtil, Forms, Controls, Graphics, Dialogs, ExtCtrls,
-  StdCtrls, DbCtrls, Buttons, dmgeneral
+  StdCtrls, DbCtrls, Buttons, DBGrids, dmgeneral
   ;
 
 type
@@ -14,14 +14,19 @@ type
   { TfrmProductoAE }
 
   TfrmProductoAE = class(TForm)
+    btnPrecioNuevo: TBitBtn;
+    btnModificar: TBitBtn;
+    btnBorrar: TBitBtn;
     btnGrabar: TBitBtn;
     btnCancelar: TBitBtn;
     cbMarcas: TComboBox;
     cbCategorias: TComboBox;
     cbUnidades: TComboBox;
+    ds_precios: TDataSource;
     DBEdit3: TDBEdit;
     DBEdit4: TDBEdit;
     DBEdit5: TDBEdit;
+    dbGrillaProductos: TDBGrid;
     ds_productos: TDataSource;
     dbNombre: TDBEdit;
     DBEdit2: TDBEdit;
@@ -34,12 +39,18 @@ type
     Label6: TLabel;
     Label7: TLabel;
     Label8: TLabel;
+    Label9: TLabel;
     Panel1: TPanel;
     btnTugMarca: TSpeedButton;
     btnTugCategoria: TSpeedButton;
     btnTugUnidad: TSpeedButton;
+    Panel2: TPanel;
+    Panel3: TPanel;
+    procedure btnBorrarClick(Sender: TObject);
     procedure btnCancelarClick(Sender: TObject);
     procedure btnGrabarClick(Sender: TObject);
+    procedure btnModificarClick(Sender: TObject);
+    procedure btnPrecioNuevoClick(Sender: TObject);
     procedure btnTugCategoriaClick(Sender: TObject);
     procedure btnTugUnidadClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -49,6 +60,8 @@ type
     _id: GUID_ID;
 
     procedure Inicializar;
+
+    procedure PantallaPrecios (refPrecio: GUID_ID);
   public
     property idProducto: GUID_ID read _id write _id;
   end;
@@ -62,6 +75,7 @@ uses
   dmediciontugs
   ,frm_ediciontugs
   ,dmproductos
+  ,frm_precioae
   ;
 
 { TfrmProductoAE }
@@ -192,6 +206,42 @@ begin
    dbNombre.SetFocus;
   end;
 end;
+
+procedure TfrmProductoAE.PantallaPrecios(refPrecio: GUID_ID);
+var
+ pant: TfrmPrecioAE;
+begin
+  pant:= TfrmPrecioAE.Create(self);
+  try
+    pant.idPrecio:= refPrecio;
+    pant.ShowModal;
+    DM_Productos.LevantarPreciosProducto;
+  finally
+    pant.Free;
+  end;
+end;
+
+procedure TfrmProductoAE.btnPrecioNuevoClick(Sender: TObject);
+begin
+  PantallaPrecios(GUIDNULO);
+end;
+
+procedure TfrmProductoAE.btnModificarClick(Sender: TObject);
+begin
+  PantallaPrecios(DM_Productos.Preciosid.AsString);
+end;
+
+
+procedure TfrmProductoAE.btnBorrarClick(Sender: TObject);
+begin
+  if (MessageDlg ('ATENCION', 'Borro el precio seleccinado?'
+                 , mtConfirmation, [mbYes, mbNo],0 ) = mrYes) then
+  begin
+    DM_Productos.BorrarPrecio(DM_Productos.Preciosid.AsString);
+    DM_Productos.LevantarPreciosProducto;
+  end;
+end;
+
 
 end.
 

@@ -35,3 +35,20 @@ CREATE TABLE Unidades
 , bVisible	smallint default 1
 );
 
+CREATE TABLE Precios
+(
+  id		"guid"  NOT NULL PRIMARY KEY
+, monto		float default 0
+, producto_id	"guid" default '{00000000-0000-0000-0000-000000000000}'
+, listaPrecio_id integer default 0
+, iva		float default 0
+, bVisible	smallint default 1
+);
+
+CREATE TABLE ListasPrecios
+(
+  id		integer  NOT NULL PRIMARY KEY
+, ListaPrecio	varchar(100)
+, bVisible	smallint default 1
+);
+
