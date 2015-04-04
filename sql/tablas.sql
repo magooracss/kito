@@ -52,3 +52,105 @@ CREATE TABLE ListasPrecios
 , bVisible	smallint default 1
 );
 
+CREATE TABLE Empresas
+(
+  id		"guid"  NOT NULL PRIMARY KEY
+, razonSocial	varchar(500)
+, cuit		varchar(15)
+, condicionFiscal_id	integer default 0
+, bvisible	smallint default 1
+);
+
+CREATE TABLE Domicilios
+(
+  id		"guid"  NOT NULL PRIMARY KEY
+, empresa_id	"guid"	default '{00000000-0000-0000-0000-000000000000}'	
+, domicilio	varchar (500)
+, localidad_id	integer default 0
+, bVisible 	smallint default 1
+);
+
+CREATE TABLE Localidades
+(
+  id		integer NOT NULL PRIMARY KEY
+, localidad	varchar(200)
+, codigoPostal	varchar(30)
+, provincia_id	integer default 0
+, bVisible	smallint default 1	
+);
+
+CREATE TABLE Provincias
+(
+  id		integer NOT NULL PRIMARY KEY
+, provincia	varchar(100)
+, pais_id	integer default 0
+, bVisible	smallint default 1		
+);
+
+CREATE TABLE Paises
+(
+  id		integer NOT NULL PRIMARY KEY
+, pais		varchar(150)
+, bVisible	smallint default 1		
+);
+
+CREATE TABLE Contactos
+(
+  id		"guid"  NOT NULL PRIMARY KEY
+, empresa_id	"guid"	default '{00000000-0000-0000-0000-000000000000}'	
+, contacto	varchar (200)
+, tipoContacto_id integer default 0
+, bVisible 	smallint default 1
+);
+
+CREATE TABLE TiposContactos
+(
+  id		integer NOT NULL PRIMARY KEY
+, TipoContacto	varchar(30)
+, bVisible	smallint default 1			
+);
+
+CREATE TABLE CondicionesFiscales
+(
+  id		integer NOT NULL PRIMARY KEY
+, condicionFiscal varchar(30)
+, tipoFactura	integer default 0
+, bVisible	smallint default 1	
+);
+
+CREATE TABLE Clientes
+(
+  id		"guid"  NOT NULL PRIMARY KEY
+, empresa_id	"guid"	default '{00000000-0000-0000-0000-000000000000}'
+, codigo	varchar(10)
+, emailFactura	varchar(50)
+, domicilioFactura varchar(500)
+, zona_id	integer default 0
+, listaPrecio_id integer default 0
+, bVisible	smallint default 1
+);
+
+CREATE TABLE Proveedores
+(
+  id		"guid"  NOT NULL PRIMARY KEY
+, empresa_id	"guid"	default '{00000000-0000-0000-0000-000000000000}'
+, codigo	varchar(10)
+, listraPrecio_id integer default 0
+, bVisible	smallint default 1
+);
+
+CREATE TABLE Transportistas
+(
+  id		"guid"  NOT NULL PRIMARY KEY
+, empresa_id	"guid"	default '{00000000-0000-0000-0000-000000000000}'
+, codigo	varchar(10)
+, zona_id	integer default 0
+, bVisible	smallint default 1
+);
+
+CREATE TABLE Zonas
+(
+  id		integer NOT NULL PRIMARY KEY
+, zona varchar(100)
+, bVisible	smallint default 1		
+);
