@@ -4,7 +4,7 @@
     <PathDelim Value="\"/>
     <Version Value="9"/>
     <BuildModes Active="Default"/>
-    <Units Count="18">
+    <Units Count="21">
       <Unit0>
         <Filename Value="kito.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -12,7 +12,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="51" Y="21"/>
-        <UsageCount Value="35"/>
+        <UsageCount Value="37"/>
       </Unit0>
       <Unit1>
         <Filename Value="frm_main.pas"/>
@@ -21,12 +21,11 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="frm_main"/>
-        <IsVisibleTab Value="True"/>
-        <EditorIndex Value="5"/>
+        <EditorIndex Value="0"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="117"/>
-        <CursorPos X="49" Y="131"/>
-        <UsageCount Value="35"/>
+        <TopLine Value="149"/>
+        <CursorPos X="10" Y="168"/>
+        <UsageCount Value="37"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit1>
@@ -37,30 +36,27 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="dmgeneral"/>
-        <EditorIndex Value="7"/>
+        <EditorIndex Value="4"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="121"/>
-        <CursorPos X="21" Y="140"/>
-        <UsageCount Value="35"/>
+        <TopLine Value="152"/>
+        <CursorPos X="30" Y="172"/>
+        <UsageCount Value="37"/>
         <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
       </Unit2>
       <Unit3>
         <Filename Value="SD_Configuracion.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="SD_Configuracion"/>
-        <EditorIndex Value="2"/>
         <WindowIndex Value="0"/>
         <TopLine Value="21"/>
         <CursorPos X="35" Y="27"/>
-        <UsageCount Value="35"/>
-        <Loaded Value="True"/>
+        <UsageCount Value="37"/>
       </Unit3>
       <Unit4>
         <Filename Value="versioninfo.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="versioninfo"/>
-        <UsageCount Value="35"/>
+        <UsageCount Value="37"/>
       </Unit4>
       <Unit5>
         <Filename Value="frm_productoae.pas"/>
@@ -69,11 +65,11 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="frm_productoae"/>
-        <EditorIndex Value="0"/>
+        <EditorIndex Value="5"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="167"/>
-        <CursorPos X="105" Y="173"/>
-        <UsageCount Value="31"/>
+        <TopLine Value="134"/>
+        <CursorPos X="1" Y="160"/>
+        <UsageCount Value="33"/>
         <Bookmarks Count="1">
           <Item0 X="1" Y="195" ID="1"/>
         </Bookmarks>
@@ -87,11 +83,11 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="dmproductos"/>
-        <EditorIndex Value="3"/>
+        <EditorIndex Value="7"/>
         <WindowIndex Value="0"/>
         <TopLine Value="311"/>
         <CursorPos X="48" Y="327"/>
-        <UsageCount Value="31"/>
+        <UsageCount Value="33"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit6>
@@ -102,11 +98,12 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="dmediciontugs"/>
-        <EditorIndex Value="4"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="3"/>
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="43" Y="17"/>
-        <UsageCount Value="29"/>
+        <UsageCount Value="31"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit7>
@@ -120,7 +117,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="1" Y="1"/>
-        <UsageCount Value="29"/>
+        <UsageCount Value="31"/>
       </Unit8>
       <Unit9>
         <Filename Value="frm_busquedaproductos.pas"/>
@@ -129,15 +126,36 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="frm_busquedaProductos"/>
-        <EditorIndex Value="6"/>
         <WindowIndex Value="0"/>
         <TopLine Value="88"/>
         <CursorPos X="1" Y="106"/>
-        <UsageCount Value="27"/>
-        <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
+        <UsageCount Value="29"/>
       </Unit9>
       <Unit10>
+        <Filename Value="frm_precioae.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmPrecioAE"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="frm_precioae"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="1"/>
+        <CursorPos X="7" Y="5"/>
+        <UsageCount Value="25"/>
+      </Unit10>
+      <Unit11>
+        <Filename Value="dmprecios.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="DM_Precios"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="DataModule"/>
+        <UnitName Value="dmprecios"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="23"/>
+        <CursorPos X="1" Y="52"/>
+        <UsageCount Value="25"/>
+      </Unit11>
+      <Unit12>
         <Filename Value="C:\magoo\lazarus\components\zeos\src\plain\ZPlainLoader.pas"/>
         <UnitName Value="ZPlainLoader"/>
         <WindowIndex Value="0"/>
@@ -145,8 +163,8 @@
         <CursorPos X="33" Y="236"/>
         <UsageCount Value="10"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
-      </Unit10>
-      <Unit11>
+      </Unit12>
+      <Unit13>
         <Filename Value="C:\magoo\lazarus\components\zeos\src\component\ZAbstractDataset.pas"/>
         <UnitName Value="ZAbstractDataset"/>
         <WindowIndex Value="0"/>
@@ -154,8 +172,8 @@
         <CursorPos X="1" Y="388"/>
         <UsageCount Value="10"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
-      </Unit11>
-      <Unit12>
+      </Unit13>
+      <Unit14>
         <Filename Value="C:\magoo\lazarus\components\zeos\src\dbc\ZDbcInterbase6Utils.pas"/>
         <UnitName Value="ZDbcInterbase6Utils"/>
         <WindowIndex Value="0"/>
@@ -163,8 +181,8 @@
         <CursorPos X="56" Y="834"/>
         <UsageCount Value="10"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
-      </Unit12>
-      <Unit13>
+      </Unit14>
+      <Unit15>
         <Filename Value="C:\magoo\lazarus\components\zeos\src\dbc\ZDbcUtils.pas"/>
         <UnitName Value="ZDbcUtils"/>
         <WindowIndex Value="0"/>
@@ -172,8 +190,8 @@
         <CursorPos X="52" Y="338"/>
         <UsageCount Value="10"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
-      </Unit13>
-      <Unit14>
+      </Unit15>
+      <Unit16>
         <Filename Value="C:\magoo\lazarus\components\zeos\src\dbc\ZDbcGenericResolver.pas"/>
         <UnitName Value="ZDbcGenericResolver"/>
         <WindowIndex Value="0"/>
@@ -181,8 +199,8 @@
         <CursorPos X="32" Y="861"/>
         <UsageCount Value="10"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
-      </Unit14>
-      <Unit15>
+      </Unit16>
+      <Unit17>
         <Filename Value="C:\magoo\lazarus\components\zeos\src\dbc\ZDbcInterbase6.pas"/>
         <UnitName Value="ZDbcInterbase6"/>
         <WindowIndex Value="0"/>
@@ -190,156 +208,174 @@
         <CursorPos X="51" Y="457"/>
         <UsageCount Value="10"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
-      </Unit15>
-      <Unit16>
-        <Filename Value="frm_precioae.pas"/>
+      </Unit17>
+      <Unit18>
+        <Filename Value="fra_empresa.pas"/>
         <IsPartOfProject Value="True"/>
-        <ComponentName Value="frmPrecioAE"/>
-        <ResourceBaseClass Value="Form"/>
-        <UnitName Value="frm_precioae"/>
+        <ComponentName Value="fraEmpresa"/>
+        <ResourceBaseClass Value="Frame"/>
+        <UnitName Value="fra_empresa"/>
         <EditorIndex Value="1"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="1"/>
-        <CursorPos X="7" Y="5"/>
-        <UsageCount Value="23"/>
+        <TopLine Value="46"/>
+        <CursorPos X="86" Y="71"/>
+        <UsageCount Value="22"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
-      </Unit16>
-      <Unit17>
-        <Filename Value="dmprecios.pas"/>
+      </Unit18>
+      <Unit19>
+        <Filename Value="dmempresa.pas"/>
         <IsPartOfProject Value="True"/>
-        <ComponentName Value="DM_Precios"/>
+        <ComponentName Value="DM_Empresa"/>
         <ResourceBaseClass Value="DataModule"/>
-        <UnitName Value="dmprecios"/>
+        <UnitName Value="dmempresa"/>
+        <EditorIndex Value="6"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="23"/>
-        <CursorPos X="1" Y="52"/>
-        <UsageCount Value="23"/>
-      </Unit17>
+        <TopLine Value="19"/>
+        <CursorPos X="1" Y="28"/>
+        <UsageCount Value="22"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
+      </Unit19>
+      <Unit20>
+        <Filename Value="frm_clientesae.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmClientesAE"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="frm_clientesae"/>
+        <EditorIndex Value="2"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="15"/>
+        <CursorPos X="22" Y="36"/>
+        <UsageCount Value="21"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
+      </Unit20>
     </Units>
     <General>
       <ActiveWindowIndexAtStart Value="0"/>
     </General>
     <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
-        <Filename Value="dmproductos.pas"/>
-        <Caret Line="33" Column="15" TopLine="5"/>
+        <Filename Value="frm_clientesae.pas"/>
+        <Caret Line="17" Column="33" TopLine="2"/>
       </Position1>
       <Position2>
-        <Filename Value="dmproductos.pas"/>
-        <Caret Line="62" Column="16" TopLine="35"/>
+        <Filename Value="frm_clientesae.pas"/>
+        <Caret Line="35" Column="1" TopLine="4"/>
       </Position2>
       <Position3>
-        <Filename Value="dmproductos.pas"/>
-        <Caret Line="66" Column="16" TopLine="39"/>
+        <Filename Value="frm_clientesae.pas"/>
+        <Caret Line="34" Column="1" TopLine="3"/>
       </Position3>
       <Position4>
-        <Filename Value="dmproductos.pas"/>
-        <Caret Line="67" Column="16" TopLine="40"/>
+        <Filename Value="frm_clientesae.pas"/>
+        <Caret Line="35" Column="1" TopLine="3"/>
       </Position4>
       <Position5>
-        <Filename Value="dmproductos.pas"/>
-        <Caret Line="68" Column="16" TopLine="41"/>
+        <Filename Value="frm_clientesae.pas"/>
+        <Caret Line="34" Column="1" TopLine="3"/>
       </Position5>
       <Position6>
-        <Filename Value="dmproductos.pas"/>
-        <Caret Line="69" Column="16" TopLine="42"/>
+        <Filename Value="fra_empresa.pas"/>
+        <Caret Line="34" Column="35" TopLine="13"/>
       </Position6>
       <Position7>
-        <Filename Value="dmproductos.pas"/>
-        <Caret Line="70" Column="16" TopLine="43"/>
+        <Filename Value="fra_empresa.pas"/>
+        <Caret Line="35" Column="35" TopLine="13"/>
       </Position7>
       <Position8>
-        <Filename Value="dmproductos.pas"/>
-        <Caret Line="71" Column="16" TopLine="44"/>
+        <Filename Value="fra_empresa.pas"/>
+        <Caret Line="36" Column="35" TopLine="13"/>
       </Position8>
       <Position9>
-        <Filename Value="dmproductos.pas"/>
-        <Caret Line="72" Column="16" TopLine="45"/>
+        <Filename Value="fra_empresa.pas"/>
+        <Caret Line="37" Column="35" TopLine="13"/>
       </Position9>
       <Position10>
-        <Filename Value="dmproductos.pas"/>
-        <Caret Line="93" Column="18" TopLine="66"/>
+        <Filename Value="fra_empresa.pas"/>
+        <Caret Line="42" Column="35" TopLine="13"/>
       </Position10>
       <Position11>
-        <Filename Value="dmproductos.pas"/>
-        <Caret Line="94" Column="18" TopLine="67"/>
+        <Filename Value="frm_clientesae.pas"/>
+        <Caret Line="35" Column="1" TopLine="3"/>
       </Position11>
       <Position12>
-        <Filename Value="dmproductos.pas"/>
-        <Caret Line="116" Column="33" TopLine="89"/>
+        <Filename Value="fra_empresa.pas"/>
+        <Caret Line="35" Column="42" TopLine="13"/>
       </Position12>
       <Position13>
         <Filename Value="frm_productoae.pas"/>
-        <Caret Line="66" Column="26" TopLine="52"/>
+        <Caret Line="173" Column="105" TopLine="167"/>
       </Position13>
       <Position14>
-        <Filename Value="dmproductos.pas"/>
-        <Caret Line="163" Column="43" TopLine="138"/>
+        <Filename Value="fra_empresa.pas"/>
+        <Caret Line="82" Column="1" TopLine="49"/>
       </Position14>
       <Position15>
-        <Filename Value="frm_precioae.pas"/>
-        <Caret Line="63" Column="1" TopLine="46"/>
+        <Filename Value="frm_clientesae.pas"/>
+        <Caret Line="6" Column="37" TopLine="2"/>
       </Position15>
       <Position16>
-        <Filename Value="frm_precioae.pas"/>
-        <Caret Line="73" Column="6" TopLine="52"/>
+        <Filename Value="frm_clientesae.pas"/>
+        <Caret Line="20" Column="37" TopLine="2"/>
       </Position16>
       <Position17>
-        <Filename Value="frm_precioae.pas"/>
-        <Caret Line="81" Column="17" TopLine="58"/>
+        <Filename Value="frm_clientesae.pas"/>
+        <Caret Line="22" Column="27" TopLine="9"/>
       </Position17>
       <Position18>
-        <Filename Value="dmproductos.pas"/>
-        <Caret Line="129" Column="48" TopLine="107"/>
+        <Filename Value="fra_empresa.pas"/>
+        <Caret Line="39" Column="1" TopLine="29"/>
       </Position18>
       <Position19>
-        <Filename Value="dmproductos.pas"/>
-        <Caret Line="179" Column="1" TopLine="172"/>
+        <Filename Value="fra_empresa.pas"/>
+        <Caret Line="49" Column="18" TopLine="26"/>
       </Position19>
       <Position20>
-        <Filename Value="dmproductos.pas"/>
-        <Caret Line="189" Column="1" TopLine="181"/>
+        <Filename Value="dmempresa.pas"/>
+        <Caret Line="20" Column="53" TopLine="13"/>
       </Position20>
       <Position21>
-        <Filename Value="frm_precioae.pas"/>
-        <Caret Line="82" Column="39" TopLine="59"/>
+        <Filename Value="dmempresa.pas"/>
+        <Caret Line="27" Column="1" TopLine="22"/>
       </Position21>
       <Position22>
-        <Filename Value="frm_productoae.pas"/>
-        <Caret Line="89" Column="1" TopLine="81"/>
+        <Filename Value="dmempresa.pas"/>
+        <Caret Line="26" Column="1" TopLine="21"/>
       </Position22>
       <Position23>
-        <Filename Value="frm_productoae.pas"/>
-        <Caret Line="228" Column="1" TopLine="205"/>
+        <Filename Value="dmempresa.pas"/>
+        <Caret Line="25" Column="1" TopLine="20"/>
       </Position23>
       <Position24>
-        <Filename Value="frm_productoae.pas"/>
-        <Caret Line="190" Column="1" TopLine="185"/>
+        <Filename Value="dmempresa.pas"/>
+        <Caret Line="24" Column="1" TopLine="19"/>
       </Position24>
       <Position25>
-        <Filename Value="dmproductos.pas"/>
-        <Caret Line="306" Column="16" TopLine="297"/>
+        <Filename Value="dmempresa.pas"/>
+        <Caret Line="25" Column="1" TopLine="19"/>
       </Position25>
       <Position26>
-        <Filename Value="dmproductos.pas"/>
-        <Caret Line="335" Column="21" TopLine="305"/>
+        <Filename Value="dmempresa.pas"/>
+        <Caret Line="26" Column="1" TopLine="19"/>
       </Position26>
       <Position27>
-        <Filename Value="dmproductos.pas"/>
-        <Caret Line="334" Column="21" TopLine="304"/>
+        <Filename Value="dmempresa.pas"/>
+        <Caret Line="27" Column="1" TopLine="19"/>
       </Position27>
       <Position28>
-        <Filename Value="dmediciontugs.pas"/>
-        <Caret Line="17" Column="43" TopLine="1"/>
+        <Filename Value="frm_clientesae.pas"/>
+        <Caret Line="7" Column="20" TopLine="1"/>
       </Position28>
       <Position29>
-        <Filename Value="frm_precioae.pas"/>
-        <Caret Line="118" Column="1" TopLine="43"/>
+        <Filename Value="frm_clientesae.pas"/>
+        <Caret Line="45" Column="118" TopLine="15"/>
       </Position29>
       <Position30>
-        <Filename Value="dmproductos.pas"/>
-        <Caret Line="133" Column="29" TopLine="118"/>
+        <Filename Value="dmediciontugs.pas"/>
+        <Caret Line="17" Column="43" TopLine="1"/>
       </Position30>
     </JumpHistory>
   </ProjectSession>

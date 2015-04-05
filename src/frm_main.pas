@@ -15,6 +15,10 @@ type
   { TfrmMain }
 
   TfrmMain = class(TForm)
+    cliNuevo: TAction;
+    cliEditar: TAction;
+    cliBorrar: TAction;
+    MenuItem9: TMenuItem;
     prodEditar: TAction;
     prodBorrar: TAction;
     MenuItem6: TMenuItem;
@@ -33,6 +37,7 @@ type
     ToolBar1: TToolBar;
     ToolButton1: TToolButton;
     ToolButton2: TToolButton;
+    procedure cliNuevoExecute(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure prgSalirExecute(Sender: TObject);
     procedure prodBorrarExecute(Sender: TObject);
@@ -41,6 +46,7 @@ type
   private
      procedure Inicializar;
      procedure pantallaProducto (ID: GUID_ID);
+     procedure pantallaCliente (ID: GUID_ID);
   public
     { public declarations }
   end;
@@ -55,6 +61,7 @@ uses
   ,frm_productoae
   ,frm_busquedaProductos
   ,dmproductos
+  ,frm_clientesae
   ;
 
 { TfrmMain }
@@ -146,6 +153,28 @@ begin
   finally
     pantBus.Free;
   end;
+end;
+
+
+(*******************************************************************************
+*** CLIENTES
+*******************************************************************************)
+procedure TfrmMain.pantallaCliente(ID: GUID_ID);
+var
+ pant: TfrmClientesAE;
+begin
+  pant:= TfrmClientesAE.Create(self);
+  try
+    pant.idCliente := ID;
+    pant.ShowModal;
+  finally
+    pant.Free;
+  end;
+end;
+
+procedure TfrmMain.cliNuevoExecute(Sender: TObject);
+begin
+  pantallaCliente(GUIDNULO);
 end;
 
 

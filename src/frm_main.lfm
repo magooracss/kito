@@ -89,6 +89,19 @@ object frmMain: TfrmMain
       ImageIndex = 3
       OnExecute = prodBorrarExecute
     end
+    object cliNuevo: TAction
+      Category = 'Clientes'
+      Caption = 'Nuevo cliente'
+      OnExecute = cliNuevoExecute
+    end
+    object cliEditar: TAction
+      Category = 'Clientes'
+      Caption = 'Editar cliente'
+    end
+    object cliBorrar: TAction
+      Category = 'Clientes'
+      Caption = 'Borrar cliente'
+    end
   end
   object MainMenu1: TMainMenu
     Images = DM_General.ImgAccionesMenu
@@ -116,6 +129,9 @@ object frmMain: TfrmMain
       end
       object MenuItem8: TMenuItem
         Caption = '-'
+      end
+      object MenuItem9: TMenuItem
+        Action = cliNuevo
       end
     end
   end

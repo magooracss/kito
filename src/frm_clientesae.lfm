@@ -1,0 +1,63 @@
+object frmClientesAE: TfrmClientesAE
+  Left = 368
+  Height = 508
+  Top = 114
+  Width = 711
+  Caption = 'Cliente'
+  ClientHeight = 508
+  ClientWidth = 711
+  Font.CharSet = ANSI_CHARSET
+  Font.Height = -13
+  Font.Name = 'Arial'
+  Font.Pitch = fpVariable
+  Font.Quality = fqDraft
+  OnShow = FormShow
+  Position = poOwnerFormCenter
+  LCLVersion = '1.2.6.0'
+  object Panel1: TPanel
+    Left = 0
+    Height = 50
+    Top = 458
+    Width = 711
+    Align = alBottom
+    TabOrder = 0
+  end
+  object Panel2: TPanel
+    Left = 0
+    Height = 195
+    Top = 263
+    Width = 711
+    Align = alClient
+    TabOrder = 1
+  end
+  inline fraEmpresa1: TfraEmpresa
+    Width = 711
+    Align = alTop
+    ClientWidth = 711
+    TabOrder = 2
+    inherited DBEdit1: TDBEdit
+      Width = 664
+    end
+    inherited btnTugCondicionFiscal: TSpeedButton
+      Left = 659
+    end
+    inherited Label3: TLabel
+      Left = 335
+    end
+    inherited PageControl1: TPageControl
+      Width = 711
+      inherited tabContacto: TTabSheet
+        ClientWidth = 703
+        inherited Panel1: TPanel
+          Left = 533
+        end
+        inherited DBGrid1: TDBGrid
+          Width = 533
+        end
+      end
+    end
+    inherited cbCondicionFiscal: TComboBox
+      Left = 335
+    end
+  end
+end

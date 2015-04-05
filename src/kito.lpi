@@ -20,7 +20,7 @@
       <AutoIncrementBuild Value="True"/>
       <MajorVersionNr Value="2015"/>
       <MinorVersionNr Value="4"/>
-      <BuildNr Value="13"/>
+      <BuildNr Value="14"/>
       <Language Value="080A"/>
       <StringTable Comments="Carlos Enrique Rodriguez / Magoo" CompanyName="RACSS Programación" LegalCopyright="Carlos Enrique Rodriguez - RACSS Programacion" ProductName="KITO" ProductVersion=""/>
     </VersionInfo>
@@ -55,7 +55,7 @@
         <PackageName Value="LCL"/>
       </Item6>
     </RequiredPackages>
-    <Units Count="12">
+    <Units Count="15">
       <Unit0>
         <Filename Value="kito.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -131,6 +131,7 @@
         <Filename Value="frm_precioae.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="frmPrecioAE"/>
+        <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="frm_precioae"/>
       </Unit10>
@@ -138,9 +139,32 @@
         <Filename Value="dmprecios.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="DM_Precios"/>
+        <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="dmprecios"/>
       </Unit11>
+      <Unit12>
+        <Filename Value="fra_empresa.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="fraEmpresa"/>
+        <ResourceBaseClass Value="Frame"/>
+        <UnitName Value="fra_empresa"/>
+      </Unit12>
+      <Unit13>
+        <Filename Value="dmempresa.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="DM_Empresa"/>
+        <ResourceBaseClass Value="DataModule"/>
+        <UnitName Value="dmempresa"/>
+      </Unit13>
+      <Unit14>
+        <Filename Value="frm_clientesae.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmClientesAE"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="frm_clientesae"/>
+      </Unit14>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

@@ -46,6 +46,11 @@ type
 
   TDM_EdicionTUGs = class(TDataModule)
     Categorias: TZTable;
+    CondicionesFiscales: TZTable;
+    CondicionesFiscalesBVISIBLE: TSmallintField;
+    CondicionesFiscalesCONDICIONFISCAL: TStringField;
+    CondicionesFiscalesID: TLongintField;
+    CondicionesFiscalesTIPOFACTURA: TLongintField;
     ListasPreciosBVISIBLE: TSmallintField;
     ListasPreciosID: TLongintField;
     ListasPreciosLISTAPRECIO: TStringField;
