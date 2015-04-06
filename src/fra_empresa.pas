@@ -37,11 +37,14 @@ type
     Panel2: TPanel;
     tabContacto: TTabSheet;
     tabDomicilios: TTabSheet;
+    procedure btnBorrarContactoClick(Sender: TObject);
     procedure btnEditarContactoClick(Sender: TObject);
     procedure btnNuevoContactoClick(Sender: TObject);
+    procedure btnNuevoDomicilioClick(Sender: TObject);
     procedure btnTugCondicionFiscalClick(Sender: TObject);
   private
     procedure pantallaContacto (refContacto: GUID_ID);
+    procedure pantallaDomicilio (refDomicilio: GUID_ID);
   public
     { public declarations }
   end;
@@ -52,6 +55,8 @@ uses
   frm_ediciontugs
   , dmediciontugs
   ,frm_contactoae
+  ,Dialogs
+  ,frm_domicilioae
   ;
 
 { TfraEmpresa }
@@ -103,6 +108,35 @@ end;
 procedure TfraEmpresa.btnEditarContactoClick(Sender: TObject);
 begin
   pantallaContacto(DM_Empresa.Contactosid.AsString);
+end;
+
+procedure TfraEmpresa.btnBorrarContactoClick(Sender: TObject);
+begin
+  if (MessageDlg ('ATENCION', 'Borro el contacto seleccionado?'
+                 , mtConfirmation, [mbYes, mbNo],0 ) = mrYes) then
+  begin
+    DM_Empresa.BorrarContacto(DM_Empresa.Contactosid.AsString);
+    DM_Empresa.LevantarContactos;
+  end;
+end;
+
+procedure TfraEmpresa.pantallaDomicilio(refDomicilio: GUID_ID);
+var
+  pant: TfrmDomicilioAE;
+begin
+  pant:= TfrmDomicilioAE.Create(self);
+  try
+    pant.idDomicilio:= refDomicilio;
+    pant.ShowModal;
+//    DM_Empresa.levantarDomicilios;
+  finally
+    pant.Free;
+  end;
+end;
+
+procedure TfraEmpresa.btnNuevoDomicilioClick(Sender: TObject);
+begin
+  pantallaDomicilio(GUIDNULO);
 end;
 
 end.

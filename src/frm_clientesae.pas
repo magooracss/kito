@@ -17,6 +17,7 @@ type
     btnGrabar: TBitBtn;
     fraEmpresaCliente: TfraEmpresa;
     Panel1: TPanel;
+    procedure btnCancelarClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
   private
     _idCliente: GUID_ID;
@@ -40,6 +41,11 @@ uses
 procedure TfrmClientesAE.FormShow(Sender: TObject);
 begin
   Inicializar;
+end;
+
+procedure TfrmClientesAE.btnCancelarClick(Sender: TObject);
+begin
+  ModalResult:= mrCancel;
 end;
 
 

@@ -234,7 +234,7 @@ end;
 
 procedure TfrmProductoAE.btnBorrarClick(Sender: TObject);
 begin
-  if (MessageDlg ('ATENCION', 'Borro el precio seleccinado?'
+  if (MessageDlg ('ATENCION', 'Borro el precio seleccionado?'
                  , mtConfirmation, [mbYes, mbNo],0 ) = mrYes) then
   begin
     DM_Productos.BorrarPrecio(DM_Productos.Preciosid.AsString);

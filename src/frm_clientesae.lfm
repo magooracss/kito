@@ -168,6 +168,7 @@ object frmClientesAE: TfrmClientesAE
         00000000000000000000000000004C4DC9000000680200008802000011000000
         00000000000000000000
       }
+      OnClick = btnCancelarClick
       TabOrder = 1
     end
   end

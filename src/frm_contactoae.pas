@@ -92,6 +92,7 @@ begin
   DM_General.CargarComboBox(cbTipoContacto, 'TipoContacto', 'id', DM_Empresa.qTiposContactos);
   if _idContacto = GUIDNULO then
   begin
+    DM_General.ReiniciarTabla(DM_Empresa.Contactos);
     DM_Empresa.Contactos.Insert;
   end
   else

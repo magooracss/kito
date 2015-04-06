@@ -10,7 +10,7 @@ uses
   Forms, rxnew, zcomponent, frm_main, dmgeneral, SD_Configuracion, versioninfo,
   frm_productoae, dmproductos, dmediciontugs, frm_ediciontugs,
 frm_busquedaProductos, frm_precioae, dmprecios, fra_empresa, dmempresa, 
-frm_clientesae, frm_contactoae, dmclientes
+frm_clientesae, frm_contactoae, dmclientes, frm_domicilioae, frm_localidadesae
   { you can add units after this };
 
 {$R *.res}

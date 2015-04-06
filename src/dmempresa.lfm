@@ -3,7 +3,7 @@ object DM_Empresa: TDM_Empresa
   Height = 509
   HorizontalOffset = 368
   VerticalOffset = 150
-  Width = 714
+  Width = 881
   object Empresas: TRxMemoryData
     FieldDefs = <    
       item
@@ -102,8 +102,8 @@ object DM_Empresa: TDM_Empresa
       'WHERE (bVisible = 1)'
     )
     Params = <>
-    left = 584
-    top = 32
+    left = 784
+    top = 40
     object qCondicionesFiscalesID: TLongintField
       DisplayWidth = 10
       FieldKind = fkData
@@ -1075,6 +1075,7 @@ object DM_Empresa: TDM_Empresa
       'FROM Domicilios D'
       '            LEFT JOIN Localidades L ON L.id = D.localidad_id'
       'WHERE (D.empresa_id = :refEmpresa)'
+      '           and (D.bVisible = 1)'
     )
     Params = <    
       item
@@ -1163,6 +1164,7 @@ object DM_Empresa: TDM_Empresa
       'FROM Contactos C'
       '            LEFT JOIN TiposContactos TC ON TC.id = C.tipoContacto_id'
       'WHERE (C.empresa_id = :refEmpresa)'
+      '       and (C.bVisible = 1)'
     )
     Params = <    
       item
@@ -1245,15 +1247,14 @@ object DM_Empresa: TDM_Empresa
   end
   object qTiposContactos: TZQuery
     Connection = DM_General.cnxBase
-    Active = True
     SQL.Strings = (
       'SELECT *'
       'FROM TiposContactos'
       'WHERE (bVisible = 1)'
     )
     Params = <>
-    left = 584
-    top = 104
+    left = 784
+    top = 112
     object qTiposContactosID: TLongintField
       DisplayWidth = 10
       FieldKind = fkData
@@ -1280,6 +1281,990 @@ object DM_Empresa: TDM_Empresa
       FieldKind = fkData
       FieldName = 'BVISIBLE'
       Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+  end
+  object Paises: TRxMemoryData
+    FieldDefs = <    
+      item
+        Name = 'id'
+        DataType = ftInteger
+        Precision = 0
+        Size = 0
+      end    
+      item
+        Name = 'Pais'
+        DataType = ftString
+        Precision = 0
+        Size = 150
+      end    
+      item
+        Name = 'bVisible'
+        DataType = ftInteger
+        Precision = 0
+        Size = 0
+      end>
+    AfterInsert = PaisesAfterInsert
+    PacketRecords = 0
+    left = 328
+    top = 32
+    object Paisesid: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'id'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object PaisesPais: TStringField
+      DisplayWidth = 150
+      FieldKind = fkData
+      FieldName = 'Pais'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 150
+    end
+    object PaisesbVisible: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'bVisible'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+  end
+  object SELPaises: TZQuery
+    Connection = DM_General.cnxBase
+    SQL.Strings = (
+      'SELECT *'
+      'FROM Paises'
+      'WHERE (id = :id)'
+    )
+    Params = <    
+      item
+        DataType = ftInteger
+        Name = 'id'
+        ParamType = ptUnknown
+      end>
+    left = 328
+    top = 104
+    ParamData = <    
+      item
+        DataType = ftInteger
+        Name = 'id'
+        ParamType = ptUnknown
+      end>
+    object SELPaisesID: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'ID'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object SELPaisesPAIS: TStringField
+      DisplayWidth = 600
+      FieldKind = fkData
+      FieldName = 'PAIS'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 600
+    end
+    object SELPaisesBVISIBLE: TSmallintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'BVISIBLE'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+  end
+  object INSPaises: TZQuery
+    Connection = DM_General.cnxBase
+    SQL.Strings = (
+      'INSERT INTO Paises'
+      '(  id, pais, bVisible)'
+      'VALUES'
+      '(  :id, :pais, :bVisible)'
+      ''
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'id'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'pais'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'bVisible'
+        ParamType = ptUnknown
+      end>
+    left = 328
+    top = 171
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'id'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'pais'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'bVisible'
+        ParamType = ptUnknown
+      end>
+  end
+  object UPDPaises: TZQuery
+    Connection = DM_General.cnxBase
+    SQL.Strings = (
+      'UPDATE Paises'
+      'SET'
+      'Pais = :Pais'
+      ', bVisible = :bVisible  '
+      'WHERE id = :id'
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'Pais'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'bVisible'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'id'
+        ParamType = ptUnknown
+      end>
+    left = 328
+    top = 238
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'Pais'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'bVisible'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'id'
+        ParamType = ptUnknown
+      end>
+  end
+  object DELPaises: TZQuery
+    Connection = DM_General.cnxBase
+    SQL.Strings = (
+      'UPDATE Paises'
+      'SET bVisible = 0'
+      'WHERE id = :id'
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'id'
+        ParamType = ptUnknown
+      end>
+    left = 328
+    top = 312
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'id'
+        ParamType = ptUnknown
+      end>
+  end
+  object qTodosLosPaises: TZQuery
+    Connection = DM_General.cnxBase
+    SQL.Strings = (
+      'SELECT *'
+      'FROM Paises'
+      'WHERE (bVisible = 1)'
+    )
+    Params = <>
+    left = 328
+    top = 376
+    object qTodosLosPaisesID: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'ID'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object qTodosLosPaisesPAIS: TStringField
+      DisplayWidth = 600
+      FieldKind = fkData
+      FieldName = 'PAIS'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 600
+    end
+    object qTodosLosPaisesBVISIBLE: TSmallintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'BVISIBLE'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+  end
+  object Provincias: TRxMemoryData
+    FieldDefs = <    
+      item
+        Name = 'id'
+        DataType = ftInteger
+        Precision = 0
+        Size = 0
+      end    
+      item
+        Name = 'provincia'
+        DataType = ftString
+        Precision = 0
+        Size = 100
+      end    
+      item
+        Name = 'pais_id'
+        DataType = ftInteger
+        Precision = 0
+        Size = 0
+      end    
+      item
+        Name = 'bVisible'
+        DataType = ftInteger
+        Precision = 0
+        Size = 0
+      end>
+    AfterInsert = ProvinciasAfterInsert
+    PacketRecords = 0
+    left = 424
+    top = 32
+    object Provinciasid: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'id'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object Provinciasprovincia: TStringField
+      DisplayWidth = 100
+      FieldKind = fkData
+      FieldName = 'provincia'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 100
+    end
+    object Provinciaspais_id: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'pais_id'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object ProvinciasbVisible: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'bVisible'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+  end
+  object SELProvincias: TZQuery
+    Connection = DM_General.cnxBase
+    SQL.Strings = (
+      'SELECT *'
+      'FROM Provincias'
+      'WHERE (id = :id)'
+    )
+    Params = <    
+      item
+        DataType = ftInteger
+        Name = 'id'
+        ParamType = ptInput
+      end>
+    left = 424
+    top = 104
+    ParamData = <    
+      item
+        DataType = ftInteger
+        Name = 'id'
+        ParamType = ptInput
+      end>
+    object SELProvinciasID: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'ID'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object SELProvinciasPROVINCIA: TStringField
+      DisplayWidth = 400
+      FieldKind = fkData
+      FieldName = 'PROVINCIA'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 400
+    end
+    object SELProvinciasPAIS_ID: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'PAIS_ID'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object SELProvinciasBVISIBLE: TSmallintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'BVISIBLE'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+  end
+  object INSProvincias: TZQuery
+    Connection = DM_General.cnxBase
+    SQL.Strings = (
+      'INSERT INTO Provincias'
+      '( id, provincia, pais_id, bVisible)'
+      'VALUES'
+      '( :id, :provincia, :pais_id, :bVisible)'
+      ''
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'id'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'provincia'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'pais_id'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'bVisible'
+        ParamType = ptUnknown
+      end>
+    left = 424
+    top = 171
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'id'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'provincia'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'pais_id'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'bVisible'
+        ParamType = ptUnknown
+      end>
+  end
+  object UPDProvincias: TZQuery
+    Connection = DM_General.cnxBase
+    SQL.Strings = (
+      'UPDATE Provincias'
+      'SET'
+      'provincia = :provincia'
+      ', pais_id = :pais_id'
+      ', bVisible = :bVisible  '
+      'WHERE id = :id'
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'provincia'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'pais_id'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'bVisible'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'id'
+        ParamType = ptUnknown
+      end>
+    left = 424
+    top = 238
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'provincia'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'pais_id'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'bVisible'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'id'
+        ParamType = ptUnknown
+      end>
+  end
+  object DELProvincias: TZQuery
+    Connection = DM_General.cnxBase
+    SQL.Strings = (
+      'UPDATE Provincias'
+      'SET bVisible = 0'
+      'WHERE id = :id'
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'id'
+        ParamType = ptUnknown
+      end>
+    left = 424
+    top = 312
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'id'
+        ParamType = ptUnknown
+      end>
+  end
+  object qProvinciasPais: TZQuery
+    Connection = DM_General.cnxBase
+    Active = True
+    SQL.Strings = (
+      'SELECT *'
+      'FROM Provincias'
+      'WHERE (bVisible = 1)'
+      '              and (pais_id = :refPais)'
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'refPais'
+        ParamType = ptUnknown
+      end>
+    left = 424
+    top = 376
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'refPais'
+        ParamType = ptUnknown
+      end>
+    object qProvinciasPaisID: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'ID'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object qProvinciasPaisPROVINCIA: TStringField
+      DisplayWidth = 400
+      FieldKind = fkData
+      FieldName = 'PROVINCIA'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 400
+    end
+    object qProvinciasPaisPAIS_ID: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'PAIS_ID'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object qProvinciasPaisBVISIBLE: TSmallintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'BVISIBLE'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+  end
+  object Localidades: TRxMemoryData
+    FieldDefs = <    
+      item
+        Name = 'id'
+        DataType = ftInteger
+        Precision = 0
+        Size = 0
+      end    
+      item
+        Name = 'localidad'
+        DataType = ftString
+        Precision = 0
+        Size = 200
+      end    
+      item
+        Name = 'codigoPostal'
+        DataType = ftString
+        Precision = 0
+        Size = 30
+      end    
+      item
+        Name = 'provincia_id'
+        DataType = ftInteger
+        Precision = 0
+        Size = 0
+      end    
+      item
+        Name = 'bVisible'
+        DataType = ftInteger
+        Precision = 0
+        Size = 0
+      end>
+    AfterInsert = LocalidadesAfterInsert
+    PacketRecords = 0
+    left = 528
+    top = 32
+    object Localidadesid: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'id'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object Localidadeslocalidad: TStringField
+      DisplayWidth = 200
+      FieldKind = fkData
+      FieldName = 'localidad'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 200
+    end
+    object LocalidadescodigoPostal: TStringField
+      DisplayWidth = 30
+      FieldKind = fkData
+      FieldName = 'codigoPostal'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 30
+    end
+    object Localidadesprovincia_id: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'provincia_id'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object LocalidadesbVisible: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'bVisible'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+  end
+  object SELLocalidades: TZQuery
+    Connection = DM_General.cnxBase
+    Active = True
+    SQL.Strings = (
+      'SELECT *'
+      'FROM Localidades'
+      'WHERE (id = :id)'
+    )
+    Params = <    
+      item
+        DataType = ftInteger
+        Name = 'id'
+        ParamType = ptInput
+      end>
+    left = 528
+    top = 104
+    ParamData = <    
+      item
+        DataType = ftInteger
+        Name = 'id'
+        ParamType = ptInput
+      end>
+    object SELLocalidadesID: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'ID'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object SELLocalidadesLOCALIDAD: TStringField
+      DisplayWidth = 800
+      FieldKind = fkData
+      FieldName = 'LOCALIDAD'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 800
+    end
+    object SELLocalidadesCODIGOPOSTAL: TStringField
+      DisplayWidth = 120
+      FieldKind = fkData
+      FieldName = 'CODIGOPOSTAL'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 120
+    end
+    object SELLocalidadesPROVINCIA_ID: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'PROVINCIA_ID'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object SELLocalidadesBVISIBLE: TSmallintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'BVISIBLE'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+  end
+  object INSLocalidades: TZQuery
+    Connection = DM_General.cnxBase
+    SQL.Strings = (
+      'INSERT INTO Localidades'
+      '( id, localidad, codigoPostal, provincia_id, bVisible)'
+      'VALUES'
+      '(:id, :localidad, :codigoPostal, :provincia_id, :bVisible)'
+      ''
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'id'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'localidad'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'codigoPostal'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'provincia_id'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'bVisible'
+        ParamType = ptUnknown
+      end>
+    left = 528
+    top = 171
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'id'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'localidad'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'codigoPostal'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'provincia_id'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'bVisible'
+        ParamType = ptUnknown
+      end>
+  end
+  object UPDLocalidades: TZQuery
+    Connection = DM_General.cnxBase
+    SQL.Strings = (
+      'UPDATE Localidades'
+      'SET'
+      ' localidad = :localidad'
+      ', codigoPostal = :codigoPostal'
+      ', provincia_id = :provincia_id'
+      ', bVisible = :bVisible'
+      'WHERE id = :id'
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'localidad'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'codigoPostal'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'provincia_id'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'bVisible'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'id'
+        ParamType = ptUnknown
+      end>
+    left = 528
+    top = 238
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'localidad'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'codigoPostal'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'provincia_id'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'bVisible'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'id'
+        ParamType = ptUnknown
+      end>
+  end
+  object DELLocalidades: TZQuery
+    Connection = DM_General.cnxBase
+    SQL.Strings = (
+      'UPDATE Localidades'
+      'SET bVisible = 0'
+      'WHERE id = :id'
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'id'
+        ParamType = ptUnknown
+      end>
+    left = 528
+    top = 312
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'id'
+        ParamType = ptUnknown
+      end>
+  end
+  object qLocalidadesProvincia: TZQuery
+    Connection = DM_General.cnxBase
+    Active = True
+    SQL.Strings = (
+      'SELECT *'
+      'FROM localidades'
+      'WHERE (bVisible = 1)'
+      '              and (provincia_id = :refProvincia)'
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'refProvincia'
+        ParamType = ptUnknown
+      end>
+    left = 528
+    top = 376
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'refProvincia'
+        ParamType = ptUnknown
+      end>
+    object qLocalidadesProvinciaID: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'ID'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object qLocalidadesProvinciaLOCALIDAD: TStringField
+      DisplayWidth = 800
+      FieldKind = fkData
+      FieldName = 'LOCALIDAD'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 800
+    end
+    object qLocalidadesProvinciaCODIGOPOSTAL: TStringField
+      DisplayWidth = 120
+      FieldKind = fkData
+      FieldName = 'CODIGOPOSTAL'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 120
+    end
+    object qLocalidadesProvinciaPROVINCIA_ID: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'PROVINCIA_ID'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object qLocalidadesProvinciaBVISIBLE: TSmallintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'BVISIBLE'
+      Index = 4
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False

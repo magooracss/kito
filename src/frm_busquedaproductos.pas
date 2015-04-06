@@ -110,12 +110,12 @@ begin
   DM_Productos.qBuscarProductos.Close;
   edBuscarDato.Clear;
   edBuscarDato.SetFocus;
-  rgCritero.ItemIndex:= StrToIntDef(LeerDato(SECCCION_SCR, PROD_BUS_CRIT),0);
+  rgCritero.ItemIndex:= StrToIntDef(LeerDato(SECCION_SCR, PROD_BUS_CRIT),0);
 end;
 
 procedure TfrmBusquedaProducto.Finalizar;
 begin
-  EscribirDato(SECCCION_SCR, PROD_BUS_CRIT, IntToStr(rgCritero.ItemIndex));
+  EscribirDato(SECCION_SCR, PROD_BUS_CRIT, IntToStr(rgCritero.ItemIndex));
 end;
 
 procedure TfrmBusquedaProducto.Buscar;

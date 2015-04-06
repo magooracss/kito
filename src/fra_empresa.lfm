@@ -40,7 +40,7 @@ object fraEmpresa: TfraEmpresa
   object btnTugCondicionFiscal: TSpeedButton
     Left = 639
     Height = 32
-    Top = 74
+    Top = 77
     Width = 34
     Anchors = [akTop, akRight]
     Glyph.Data = {
@@ -409,6 +409,7 @@ object fraEmpresa: TfraEmpresa
             4F00836546007A5B3C0083654600836546008B6D4D008C6E4F0087694A00A287
             69008A6C4D005A3B21002D160800000000000000000000000000
           }
+          OnClick = btnBorrarContactoClick
           TabOrder = 2
         end
       end
@@ -541,6 +542,7 @@ object fraEmpresa: TfraEmpresa
             32857C4F38A37A4C35A272432B93642F12715E1E0A3D4B170309000000000000
             0000000000000000000000000000000000000000000000000000
           }
+          OnClick = btnNuevoDomicilioClick
           TabOrder = 0
         end
         object btnEditarDomicilio: TBitBtn
@@ -764,12 +766,12 @@ object fraEmpresa: TfraEmpresa
   end
   object ds_Contactos: TDataSource
     DataSet = DM_Empresa.Contactos
-    left = 296
+    left = 328
     top = 19
   end
   object ds_Domicilios: TDataSource
     DataSet = DM_Empresa.Domicilios
-    left = 360
+    left = 424
     top = 19
   end
 end

@@ -10,7 +10,7 @@ const
   ERROR_CFG= 'ErrorLecturaCFG';
 
   SECCION_APP = 'APLICACION';
-  SECCCION_SCR = 'PANTALLAS';
+  SECCION_SCR = 'PANTALLAS';
 
   SERVIDOR_FB = 'RUTA_FB';  //Ruta al archivo de BD
   BASE_HOST='HOST';         //Dirección IP del HOST
@@ -23,6 +23,7 @@ const
   CFGD_IVA_PROD='IVA_PROD';
 
   PROD_BUS_CRIT = 'P_BUS_CRIT';
+  LOCALIDAD = 'LOCALIDAD'; //Localidad por defecto para los domicilios
 
 
 
