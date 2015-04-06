@@ -41,11 +41,15 @@ type
     INSContactos: TZQuery;
     INSEmpresas: TZQuery;
     qCondicionesFiscales: TZQuery;
+    qTiposContactos: TZQuery;
     qCondicionesFiscalesBVISIBLE: TSmallintField;
     qCondicionesFiscalesCONDICIONFISCAL: TStringField;
     qCondicionesFiscalesID: TLongintField;
     qCondicionesFiscalesTIPOFACTURA: TLongintField;
     qContPorEmpresa: TZQuery;
+    qTiposContactosBVISIBLE: TSmallintField;
+    qTiposContactosID: TLongintField;
+    qTiposContactosTIPOCONTACTO: TStringField;
     SELContactosBVISIBLE: TSmallintField;
     SELContactosBVISIBLE1: TSmallintField;
     SELContactosCONTACTO: TStringField;
@@ -86,10 +90,16 @@ type
     procedure DomiciliosAfterInsert(DataSet: TDataSet);
     procedure EmpresasAfterInsert(DataSet: TDataSet);
   private
-    { private declarations }
+    _idEmpresa: GUID_ID;
   public
+    function Nueva: GUID_ID;
+    procedure Editar (refEmpresa: GUID_ID);
     procedure Grabar;
     procedure LevantarEmpresa (refEmpresa: GUID_ID);
+
+    procedure ActualizarTipoContacto (refTC: Integer);
+    procedure GrabarContactos;
+    procedure LevantarContactos;
   end;
 
 var
@@ -108,7 +118,6 @@ procedure TDM_Empresa.Grabar;
 begin
   DM_General.GrabarDatos(SELEmpresas, INSEmpresas, UPDEmpresas, Empresas, 'id');
   DM_General.GrabarDatos(SELDomicilios, INSDomicilios, UPDDomicilios, Domicilios, 'id');
-  DM_General.GrabarDatos(SELContactos, INSContactos, UPDContactos, Contactos, 'id');
 end;
 
 procedure TDM_Empresa.LevantarEmpresa(refEmpresa: GUID_ID);
@@ -116,6 +125,8 @@ begin
   DM_General.ReiniciarTabla(Empresas);
   DM_General.ReiniciarTabla(Domicilios);
   DM_General.ReiniciarTabla(Contactos);
+
+  _idEmpresa:= refEmpresa;
 
   if SELEmpresas.Active then SELEmpresas.close;
   SELEmpresas.ParamByName('id').AsString:= refEmpresa;
@@ -129,24 +140,36 @@ begin
   Domicilios.LoadFromDataSet(qDomPorEmpresa, 0, lmAppend);
   qDomPorEmpresa.Close;
 
-  if qContPorEmpresa.Active then qContPorEmpresa.Close;
-  qContPorEmpresa.ParamByName('refEmpresa').asString:= refEmpresa;
-  qContPorEmpresa.Open;
-  Contactos.LoadFromDataSet(qContPorEmpresa, 0, lmAppend);
-  qContPorEmpresa.Close;
+  LevantarContactos;
 end;
-
 
 (*******************************************************************************
 *** Empresas
 *******************************************************************************)
 procedure TDM_Empresa.EmpresasAfterInsert(DataSet: TDataSet);
 begin
-  Empresasid.AsString:= DM_General.CrearGUID;
+  _idEmpresa:= DM_General.CrearGUID;
+  Empresasid.AsString:= _idEmpresa;
   EmpresasRazonSocial.AsString:= EmptyStr;
   EmpresasCUIT.AsString:= EmptyStr;
   Empresascondicionfiscal_id.AsInteger:= 0;
   EmpresasbVisible.AsInteger:=1;
+end;
+
+function TDM_Empresa.Nueva: GUID_ID;
+begin
+  DM_General.ReiniciarTabla(Empresas);
+  DM_General.ReiniciarTabla(Domicilios);
+  DM_General.ReiniciarTabla(Contactos);
+  Empresas.Insert;
+  Result:= _idEmpresa;
+end;
+
+procedure TDM_Empresa.Editar(refEmpresa: GUID_ID);
+begin
+  DM_General.ReiniciarTabla(Empresas);
+  LevantarEmpresa(refEmpresa);
+  Empresas.Edit;
 end;
 
 
@@ -163,8 +186,30 @@ begin
 end;
 
 (*******************************************************************************
-*** DOMICILIOS
+*** CONTACTOS
 *******************************************************************************)
+
+procedure TDM_Empresa.ActualizarTipoContacto(refTC: Integer);
+begin
+  Contactos.Edit;
+  ContactostipoContacto_id.AsInteger:= refTC;
+  Contactos.Post;
+end;
+
+procedure TDM_Empresa.GrabarContactos;
+begin
+  DM_General.GrabarDatos(SELContactos, INSContactos, UPDContactos, Contactos, 'id');
+end;
+
+procedure TDM_Empresa.LevantarContactos;
+begin
+  if qContPorEmpresa.Active then qContPorEmpresa.Close;
+  qContPorEmpresa.ParamByName('refEmpresa').asString:= _idEmpresa;
+  qContPorEmpresa.Open;
+  Contactos.LoadFromDataSet(qContPorEmpresa, 0, lmAppend);
+  qContPorEmpresa.Close;
+end;
+
 procedure TDM_Empresa.ContactosAfterInsert(DataSet: TDataSet);
 begin
   Contactosid.AsString:= DM_General.CrearGUID;

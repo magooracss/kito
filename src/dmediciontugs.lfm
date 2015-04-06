@@ -235,4 +235,42 @@ object DM_EdicionTUGs: TDM_EdicionTUGs
       Required = False
     end
   end
+  object TiposContactos: TZTable
+    Connection = DM_General.cnxBase
+    AfterInsert = MarcasAfterInsert
+    TableName = 'TIPOSCONTACTOS'
+    left = 376
+    top = 32
+    object TiposContactosID: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'ID'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object TiposContactosTIPOCONTACTO: TStringField
+      DisplayWidth = 120
+      FieldKind = fkData
+      FieldName = 'TIPOCONTACTO'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 120
+    end
+    object TiposContactosBVISIBLE: TSmallintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'BVISIBLE'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+  end
 end

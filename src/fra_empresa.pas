@@ -37,9 +37,11 @@ type
     Panel2: TPanel;
     tabContacto: TTabSheet;
     tabDomicilios: TTabSheet;
+    procedure btnEditarContactoClick(Sender: TObject);
+    procedure btnNuevoContactoClick(Sender: TObject);
     procedure btnTugCondicionFiscalClick(Sender: TObject);
   private
-    { private declarations }
+    procedure pantallaContacto (refContacto: GUID_ID);
   public
     { public declarations }
   end;
@@ -49,6 +51,7 @@ implementation
 uses
   frm_ediciontugs
   , dmediciontugs
+  ,frm_contactoae
   ;
 
 { TfraEmpresa }
@@ -75,6 +78,31 @@ begin
     datos.Free;
     pantalla.Free;
   end;
+end;
+
+procedure TfraEmpresa.pantallaContacto(refContacto: GUID_ID);
+var
+  pant: TfrmContactoAE;
+begin
+  pant:= TfrmContactoAE.Create(self);
+  try
+    pant.idContacto:= refContacto;
+    pant.ShowModal;
+    DM_Empresa.levantarContactos;
+  finally
+    pant.Free;
+  end;
+end;
+
+
+procedure TfraEmpresa.btnNuevoContactoClick(Sender: TObject);
+begin
+  pantallaContacto(GUIDNULO);
+end;
+
+procedure TfraEmpresa.btnEditarContactoClick(Sender: TObject);
+begin
+  pantallaContacto(DM_Empresa.Contactosid.AsString);
 end;
 
 end.

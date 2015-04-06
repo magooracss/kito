@@ -10,7 +10,7 @@ uses
   Forms, rxnew, zcomponent, frm_main, dmgeneral, SD_Configuracion, versioninfo,
   frm_productoae, dmproductos, dmediciontugs, frm_ediciontugs,
 frm_busquedaProductos, frm_precioae, dmprecios, fra_empresa, dmempresa, 
-frm_clientesae
+frm_clientesae, frm_contactoae, dmclientes
   { you can add units after this };
 
 {$R *.res}
@@ -23,6 +23,7 @@ begin
   Application.CreateForm(TDM_Precios, DM_Precios);
   Application.CreateForm(TDM_Productos, DM_Productos);
   Application.CreateForm(TDM_Empresa, DM_Empresa);
+  Application.CreateForm(TDM_Clientes, DM_Clientes);
   Application.CreateForm(TfrmMain, frmMain);
   Application.Run;
 end.

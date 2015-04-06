@@ -140,9 +140,9 @@ object fraEmpresa: TfraEmpresa
     Height = 151
     Top = 112
     Width = 691
-    ActivePage = tabDomicilios
+    ActivePage = tabContacto
     Align = alBottom
-    TabIndex = 1
+    TabIndex = 0
     TabOrder = 2
     object tabContacto: TTabSheet
       Caption = 'Contactos'
@@ -239,6 +239,7 @@ object fraEmpresa: TfraEmpresa
             32857C4F38A37A4C35A272432B93642F12715E1E0A3D4B170309000000000000
             0000000000000000000000000000000000000000000000000000
           }
+          OnClick = btnNuevoContactoClick
           TabOrder = 0
         end
         object btnEditarContacto: TBitBtn
@@ -323,6 +324,7 @@ object fraEmpresa: TfraEmpresa
             000000000000000000000000000000000000000000000000000000000000342F
             0000352B0000352E000032360000000000000000000000000000
           }
+          OnClick = btnEditarContactoClick
           TabOrder = 1
         end
         object btnBorrarContacto: TBitBtn

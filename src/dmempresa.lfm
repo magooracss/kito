@@ -495,7 +495,6 @@ object DM_Empresa: TDM_Empresa
   end
   object SELEmpresas: TZQuery
     Connection = DM_General.cnxBase
-    Active = True
     SQL.Strings = (
       'SELECT *'
       'FROM Empresas'
@@ -830,7 +829,6 @@ object DM_Empresa: TDM_Empresa
   end
   object SELContactos: TZQuery
     Connection = DM_General.cnxBase
-    Active = True
     SQL.Strings = (
       'SELECT C.*'
       '             , TC.tipoContacto as lxTipoContacto'
@@ -1243,6 +1241,49 @@ object DM_Empresa: TDM_Empresa
       ReadOnly = False
       Required = False
       Size = 120
+    end
+  end
+  object qTiposContactos: TZQuery
+    Connection = DM_General.cnxBase
+    Active = True
+    SQL.Strings = (
+      'SELECT *'
+      'FROM TiposContactos'
+      'WHERE (bVisible = 1)'
+    )
+    Params = <>
+    left = 584
+    top = 104
+    object qTiposContactosID: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'ID'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object qTiposContactosTIPOCONTACTO: TStringField
+      DisplayWidth = 120
+      FieldKind = fkData
+      FieldName = 'TIPOCONTACTO'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 120
+    end
+    object qTiposContactosBVISIBLE: TSmallintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'BVISIBLE'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
     end
   end
 end
