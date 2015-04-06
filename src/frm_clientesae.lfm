@@ -22,19 +22,11 @@ object frmClientesAE: TfrmClientesAE
     Align = alBottom
     TabOrder = 0
   end
-  object Panel2: TPanel
-    Left = 0
-    Height = 195
-    Top = 263
-    Width = 711
-    Align = alClient
-    TabOrder = 1
-  end
-  inline fraEmpresa1: TfraEmpresa
+  inline fraEmpresaCliente: TfraEmpresa
     Width = 711
     Align = alTop
     ClientWidth = 711
-    TabOrder = 2
+    TabOrder = 1
     inherited DBEdit1: TDBEdit
       Width = 664
     end
@@ -51,13 +43,60 @@ object frmClientesAE: TfrmClientesAE
         inherited Panel1: TPanel
           Left = 533
         end
-        inherited DBGrid1: TDBGrid
+        inherited GrillaContactos: TDBGrid
           Width = 533
+          Columns = <          
+            item
+              PickList.Strings = (              )
+              SizePriority = 0
+              Title.Alignment = taCenter
+              Title.Caption = 'Tipo Contacto'
+              Width = 150
+              FieldName = 'lxTipoContacto'
+            end          
+            item
+              PickList.Strings = (              )
+              Title.Alignment = taCenter
+              Title.Caption = 'Contacto'
+              Width = 379
+              FieldName = 'Contacto'
+            end>
+        end
+      end
+      inherited tabDomicilios: TTabSheet
+        ClientWidth = 703
+        inherited Panel2: TPanel
+          Left = 533
+        end
+        inherited GrillaDomicilios: TDBGrid
+          Width = 533
+          Columns = <          
+            item
+              PickList.Strings = (              )
+              Title.Alignment = taCenter
+              Title.Caption = 'Domicilio'
+              Width = 329
+              FieldName = 'domicilio'
+            end          
+            item
+              PickList.Strings = (              )
+              SizePriority = 0
+              Title.Alignment = taCenter
+              Title.Caption = 'Localidad'
+              Width = 200
+              FieldName = 'lxLocalidad'
+            end>
         end
       end
     end
     inherited cbCondicionFiscal: TComboBox
       Left = 335
+    end
+    inherited ds_Empresa: TDataSource
+      DataSet = nil
+    end
+    inherited ds_Contactos: TDataSource
+      DataSet = nil
     end
   end
 end

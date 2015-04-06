@@ -13,9 +13,8 @@ type
   { TfrmClientesAE }
 
   TfrmClientesAE = class(TForm)
-    fraEmpresa1: TfraEmpresa;
+    fraEmpresaCliente: TfraEmpresa;
     Panel1: TPanel;
-    Panel2: TPanel;
     procedure FormShow(Sender: TObject);
   private
     _idCliente: GUID_ID;
@@ -42,7 +41,7 @@ end;
 
 procedure TfrmClientesAE.Inicializar;
 begin
-  DM_General.CargarComboBox(fraEmpresa1.cbCondicionFiscal, 'CondicionFiscal', 'id', DM_Empresa.qCondicionesFiscales);
+  DM_General.CargarComboBox(fraEmpresaCliente.cbCondicionFiscal, 'CondicionFiscal', 'id', DM_Empresa.qCondicionesFiscales);
 end;
 
 end.

@@ -147,6 +147,7 @@
         <Filename Value="fra_empresa.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="fraEmpresa"/>
+        <HasResources Value="True"/>
         <ResourceBaseClass Value="Frame"/>
         <UnitName Value="fra_empresa"/>
       </Unit12>
@@ -154,6 +155,7 @@
         <Filename Value="dmempresa.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="DM_Empresa"/>
+        <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="dmempresa"/>
       </Unit13>

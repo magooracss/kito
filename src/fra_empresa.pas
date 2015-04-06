@@ -14,19 +14,21 @@ type
   { TfraEmpresa }
 
   TfraEmpresa = class(TFrame)
-    BitBtn1: TBitBtn;
-    BitBtn2: TBitBtn;
-    BitBtn3: TBitBtn;
-    BitBtn4: TBitBtn;
-    BitBtn5: TBitBtn;
-    BitBtn6: TBitBtn;
+    btnBorrarDomicilio: TBitBtn;
+    btnEditarDomicilio: TBitBtn;
+    btnNuevoContacto: TBitBtn;
+    btnEditarContacto: TBitBtn;
+    btnBorrarContacto: TBitBtn;
+    btnNuevoDomicilio: TBitBtn;
     btnTugCondicionFiscal: TSpeedButton;
     cbCondicionFiscal: TComboBox;
-    DBGrid1: TDBGrid;
-    DBGrid2: TDBGrid;
+    GrillaContactos: TDBGrid;
+    GrillaDomicilios: TDBGrid;
     ds_Empresa: TDataSource;
     DBEdit1: TDBEdit;
     DBEdit2: TDBEdit;
+    ds_Contactos: TDataSource;
+    ds_Domicilios: TDataSource;
     Label1: TLabel;
     Label2: TLabel;
     Label3: TLabel;
