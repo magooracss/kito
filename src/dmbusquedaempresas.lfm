@@ -1,0 +1,7 @@
+object DM_BusquedaEmpresas: TDM_BusquedaEmpresas
+  OldCreateOrder = False
+  Height = 383
+  HorizontalOffset = 368
+  VerticalOffset = 150
+  Width = 585
+end

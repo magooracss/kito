@@ -147,7 +147,6 @@ object DM_Clientes: TDM_Clientes
   end
   object SELClientes: TZQuery
     Connection = DM_General.cnxBase
-    Active = True
     SQL.Strings = (
       'SELECT *'
       'FROM Clientes'
@@ -512,7 +511,6 @@ object DM_Clientes: TDM_Clientes
   end
   object qListasPrecios: TZQuery
     Connection = DM_General.cnxBase
-    Active = True
     SQL.Strings = (
       'SELECT *'
       'FROM ListasPrecios'

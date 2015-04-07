@@ -275,7 +275,7 @@ object frmClientesAE: TfrmClientesAE
     object btnTugZonas: TSpeedButton
       Left = 256
       Height = 32
-      Top = 76
+      Top = 78
       Width = 34
       Anchors = [akTop, akRight]
       Glyph.Data = {
@@ -348,7 +348,7 @@ object frmClientesAE: TfrmClientesAE
     object btnTugListasPrecios: TSpeedButton
       Left = 256
       Height = 32
-      Top = 136
+      Top = 140
       Width = 34
       Anchors = [akTop, akRight]
       Glyph.Data = {
@@ -429,7 +429,7 @@ object frmClientesAE: TfrmClientesAE
     object Label4: TLabel
       Left = 24
       Height = 16
-      Top = 64
+      Top = 63
       Width = 28
       Caption = 'Zona'
       ParentColor = False

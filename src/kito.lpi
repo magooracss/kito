@@ -55,7 +55,7 @@
         <PackageName Value="LCL"/>
       </Item6>
     </RequiredPackages>
-    <Units Count="20">
+    <Units Count="22">
       <Unit0>
         <Filename Value="kito.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -206,6 +206,20 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="frm_buscarlocalidad"/>
       </Unit19>
+      <Unit20>
+        <Filename Value="frm_busquedaempresas.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmBusquedaEmpresas"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="frm_busquedaempresas"/>
+      </Unit20>
+      <Unit21>
+        <Filename Value="dmbusquedaempresas.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="DM_BusquedaEmpresas"/>
+        <ResourceBaseClass Value="DataModule"/>
+        <UnitName Value="dmbusquedaempresas"/>
+      </Unit21>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
