@@ -38,7 +38,9 @@ type
     tabContacto: TTabSheet;
     tabDomicilios: TTabSheet;
     procedure btnBorrarContactoClick(Sender: TObject);
+    procedure btnBorrarDomicilioClick(Sender: TObject);
     procedure btnEditarContactoClick(Sender: TObject);
+    procedure btnEditarDomicilioClick(Sender: TObject);
     procedure btnNuevoContactoClick(Sender: TObject);
     procedure btnNuevoDomicilioClick(Sender: TObject);
     procedure btnTugCondicionFiscalClick(Sender: TObject);
@@ -128,7 +130,7 @@ begin
   try
     pant.idDomicilio:= refDomicilio;
     pant.ShowModal;
-//    DM_Empresa.levantarDomicilios;
+    DM_Empresa.levantarDomicilios;
   finally
     pant.Free;
   end;
@@ -138,6 +140,23 @@ procedure TfraEmpresa.btnNuevoDomicilioClick(Sender: TObject);
 begin
   pantallaDomicilio(GUIDNULO);
 end;
+
+procedure TfraEmpresa.btnEditarDomicilioClick(Sender: TObject);
+begin
+  pantallaDomicilio(DM_Empresa.Domiciliosid.AsString);
+end;
+
+procedure TfraEmpresa.btnBorrarDomicilioClick(Sender: TObject);
+begin
+  if (MessageDlg ('ATENCION', 'Borro el domicilio seleccionado?'
+                 , mtConfirmation, [mbYes, mbNo],0 ) = mrYes) then
+  begin
+    DM_Empresa.BorrarDomicilio(DM_Empresa.Domiciliosid.AsString);
+    DM_Empresa.LevantarDomicilios;
+  end;
+
+end;
+
 
 end.
 

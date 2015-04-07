@@ -1,8 +1,8 @@
 object DM_Empresa: TDM_Empresa
   OldCreateOrder = False
-  Height = 509
-  HorizontalOffset = 368
-  VerticalOffset = 150
+  Height = 561
+  HorizontalOffset = 290
+  VerticalOffset = 126
   Width = 881
   object Empresas: TRxMemoryData
     FieldDefs = <    
@@ -1816,7 +1816,6 @@ object DM_Empresa: TDM_Empresa
   end
   object qProvinciasPais: TZQuery
     Connection = DM_General.cnxBase
-    Active = True
     SQL.Strings = (
       'SELECT *'
       'FROM Provincias'
@@ -1970,7 +1969,6 @@ object DM_Empresa: TDM_Empresa
   end
   object SELLocalidades: TZQuery
     Connection = DM_General.cnxBase
-    Active = True
     SQL.Strings = (
       'SELECT *'
       'FROM Localidades'
@@ -2197,7 +2195,6 @@ object DM_Empresa: TDM_Empresa
   end
   object qLocalidadesProvincia: TZQuery
     Connection = DM_General.cnxBase
-    Active = True
     SQL.Strings = (
       'SELECT *'
       'FROM localidades'
@@ -2269,6 +2266,90 @@ object DM_Empresa: TDM_Empresa
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
       Required = False
+    end
+  end
+  object qLocalidadPorNombre: TZQuery
+    Connection = DM_General.cnxBase
+    Active = True
+    SQL.Strings = (
+      'SELECT L.id'
+      '             ,L.localidad'
+      '             , L.CodigoPostal'
+      '            , P.Provincia'
+      '            , Pa.Pais'
+      'FROM localidades L'
+      '            LEFT JOIN Provincias P ON P.id = L.provincia_id'
+      '            LEFT JOIN Paises Pa ON Pa.id = P.pais_id'
+      'WHERE (L.bVisible = 1)'
+      '              and (UPPER(L.Localidad) Like ''%'' || :nombre ||''%'' )'
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'nombre'
+        ParamType = ptUnknown
+      end>
+    left = 528
+    top = 448
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'nombre'
+        ParamType = ptUnknown
+      end>
+    object qLocalidadPorNombreID: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'ID'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object qLocalidadPorNombreLOCALIDAD: TStringField
+      DisplayWidth = 800
+      FieldKind = fkData
+      FieldName = 'LOCALIDAD'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 800
+    end
+    object qLocalidadPorNombreCODIGOPOSTAL: TStringField
+      DisplayWidth = 120
+      FieldKind = fkData
+      FieldName = 'CODIGOPOSTAL'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 120
+    end
+    object qLocalidadPorNombrePROVINCIA: TStringField
+      DisplayWidth = 400
+      FieldKind = fkData
+      FieldName = 'PROVINCIA'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 400
+    end
+    object qLocalidadPorNombrePAIS: TStringField
+      DisplayWidth = 600
+      FieldKind = fkData
+      FieldName = 'PAIS'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 600
     end
   end
 end

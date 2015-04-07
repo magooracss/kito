@@ -16,7 +16,7 @@ type
   { TfrmDomicilioAE }
 
   TfrmDomicilioAE = class(TForm)
-    BitBtn1: TBitBtn;
+    btnBuscarLocalidad: TBitBtn;
     btnEditorLocalidades: TBitBtn;
     btnCancelar: TBitBtn;
     btnGrabar: TBitBtn;
@@ -26,7 +26,7 @@ type
     DBEdit5: TDBEdit;
     ds_Localidades: TDataSource;
     ds_domicilios: TDataSource;
-    DBEdit1: TDBEdit;
+    dbDomicilio: TDBEdit;
     ds_provincias: TDataSource;
     ds_paises: TDataSource;
     Label1: TLabel;
@@ -35,7 +35,10 @@ type
     Label4: TLabel;
     Label5: TLabel;
     Panel1: TPanel;
+    procedure btnBuscarLocalidadClick(Sender: TObject);
+    procedure btnCancelarClick(Sender: TObject);
     procedure btnEditorLocalidadesClick(Sender: TObject);
+    procedure btnGrabarClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormShow(Sender: TObject);
   private
@@ -55,6 +58,7 @@ implementation
 uses
   SD_Configuracion
   ,frm_localidadesae
+  ,frm_buscarlocalidad
   ;
 
 { TfrmDomicilioAE }
@@ -81,6 +85,36 @@ begin
   finally
     pant.Free;
   end;
+end;
+
+procedure TfrmDomicilioAE.btnGrabarClick(Sender: TObject);
+begin
+  DM_Empresa.Domicilios.Edit;
+  DM_Empresa.Domicilioslocalidad_id.AsInteger:= _idLocalidad;
+  DM_Empresa.Domicilios.Post;
+  DM_Empresa.GrabarDomicilios;
+  ModalResult:= mrOK;
+end;
+
+procedure TfrmDomicilioAE.btnBuscarLocalidadClick(Sender: TObject);
+var
+  pant: TfrmBuscarLocalidad;
+begin
+  pant:=  TfrmBuscarLocalidad.Create(self);
+  try
+    if pant.ShowModal = mrOK then
+    begin
+      _idLocalidad:= pant.idLocalidad;
+      DM_Empresa.LocalidadPorID(_idLocalidad);
+    end;
+  finally
+    pant.Free;
+  end;
+end;
+
+procedure TfrmDomicilioAE.btnCancelarClick(Sender: TObject);
+begin
+  ModalResult:= mrCancel;
 end;
 
 procedure TfrmDomicilioAE.Inicializar;

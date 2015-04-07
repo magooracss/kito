@@ -46,7 +46,6 @@ uses
   ;
 
 { TfrmContactoAE }
-{ TODO : Esta duplicando los contactos }
 procedure TfrmContactoAE.btnCancelarClick(Sender: TObject);
 begin
   ModalResult:= mrCancel;

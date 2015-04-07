@@ -3,6 +3,7 @@ object frmDomicilioAE: TfrmDomicilioAE
   Height = 320
   Top = 193
   Width = 583
+  ActiveControl = dbDomicilio
   Caption = 'Domicilio'
   ClientHeight = 320
   ClientWidth = 583
@@ -95,6 +96,7 @@ object frmDomicilioAE: TfrmDomicilioAE
         0000000000000000000000000000000000000000000000000000000000000000
         00000000000000000000
       }
+      OnClick = btnGrabarClick
       TabOrder = 0
     end
     object btnCancelar: TBitBtn
@@ -169,14 +171,17 @@ object frmDomicilioAE: TfrmDomicilioAE
         00000000000000000000000000004C4DC9000000680200008802000011000000
         00000000000000000000
       }
+      OnClick = btnCancelarClick
       TabOrder = 1
     end
   end
-  object DBEdit1: TDBEdit
+  object dbDomicilio: TDBEdit
     Left = 15
     Height = 24
     Top = 50
     Width = 552
+    DataField = 'domicilio'
+    DataSource = ds_domicilios
     Anchors = [akTop, akLeft, akRight]
     CharCase = ecNormal
     MaxLength = 0
@@ -190,7 +195,7 @@ object frmDomicilioAE: TfrmDomicilioAE
     Caption = 'Domicilio'
     ParentColor = False
   end
-  object BitBtn1: TBitBtn
+  object btnBuscarLocalidad: TBitBtn
     Left = 16
     Height = 30
     Top = 105
@@ -272,6 +277,7 @@ object frmDomicilioAE: TfrmDomicilioAE
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000
     }
+    OnClick = btnBuscarLocalidadClick
     TabOrder = 2
   end
   object DBEdit2: TDBEdit
