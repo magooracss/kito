@@ -5,7 +5,7 @@ unit dmclientes;
 interface
 
 uses
-  Classes, SysUtils, db, FileUtil, rxmemds
+  Classes, SysUtils, db, FileUtil, rxmemds, ZDataset
   ,dmgeneral
   ,dmempresa
   ;
@@ -24,12 +24,34 @@ type
     Clientesid: TStringField;
     ClienteslistaPrecio_id: TLongintField;
     Clienteszona_id: TLongintField;
+    DELClientes: TZQuery;
+    INSClientes: TZQuery;
+    qListasPrecios: TZQuery;
+    qListasPreciosBVISIBLE: TSmallintField;
+    qListasPreciosID: TLongintField;
+    qListasPreciosLISTAPRECIO: TStringField;
+    qZonasClientesBVISIBLE: TSmallintField;
+    qZonasClientesID: TLongintField;
+    qZonasClientesZONA: TStringField;
+    SELClientes: TZQuery;
+    qZonasClientes: TZQuery;
+    SELClientesBVISIBLE: TSmallintField;
+    SELClientesCODIGO: TStringField;
+    SELClientesDOMICILIOFACTURA: TStringField;
+    SELClientesEMAILFACTURA: TStringField;
+    SELClientesEMPRESA_ID: TStringField;
+    SELClientesID: TStringField;
+    SELClientesLISTAPRECIO_ID: TLongintField;
+    SELClientesZONA_ID: TLongintField;
+    UPDClientes: TZQuery;
     procedure ClientesAfterInsert(DataSet: TDataSet);
+    procedure DataModuleCreate(Sender: TObject);
   private
     _idEmpresa: GUID_ID;
   public
     procedure Nuevo;
     procedure Editar (refCliente: GUID_ID);
+    procedure Grabar;
   end;
 
 var
@@ -53,6 +75,12 @@ begin
   ClientesbVisible.AsInteger:=1;
 end;
 
+procedure TDM_Clientes.DataModuleCreate(Sender: TObject);
+begin
+  qZonasClientes.Open;
+  qListasPrecios.Open;
+end;
+
 procedure TDM_Clientes.Nuevo;
 begin
   _idEmpresa:= DM_Empresa.Nueva;
@@ -62,8 +90,20 @@ end;
 
 procedure TDM_Clientes.Editar(refCliente: GUID_ID);
 begin
-  { TODO : Levantar tabla Clientes }
-   DM_Empresa.Editar(Clientesempresa_id.AsString);
+  DM_General.ReiniciarTabla(Clientes);
+  if SELClientes.Active then SELClientes.close;
+  SELClientes.ParamByName('id').AsString:= refCliente;
+  SELClientes.Open;
+  Clientes.LoadFromDataSet(SELClientes, 0, lmAppend);
+  SELClientes.Close;
+
+  DM_Empresa.Editar(Clientesempresa_id.AsString);
+end;
+
+procedure TDM_Clientes.Grabar;
+begin
+  DM_Empresa.Grabar;
+  DM_General.GrabarDatos(SELClientes, INSClientes, UPDClientes, Clientes, 'id');
 end;
 
 end.

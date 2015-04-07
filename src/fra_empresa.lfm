@@ -140,10 +140,10 @@ object fraEmpresa: TfraEmpresa
     Height = 151
     Top = 112
     Width = 691
-    ActivePage = tabDomicilios
+    ActivePage = tabContacto
     Align = alBottom
-    TabIndex = 1
-    TabOrder = 2
+    TabIndex = 0
+    TabOrder = 3
     object tabContacto: TTabSheet
       Caption = 'Contactos'
       ClientHeight = 122
@@ -758,7 +758,7 @@ object fraEmpresa: TfraEmpresa
     Width = 317
     Anchors = [akTop, akRight]
     ItemHeight = 16
-    TabOrder = 3
+    TabOrder = 2
     Text = 'cbCondicionFiscal'
   end
   object ds_Empresa: TDataSource

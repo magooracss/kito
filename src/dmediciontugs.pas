@@ -55,6 +55,10 @@ type
     ListasPreciosBVISIBLE: TSmallintField;
     ListasPreciosID: TLongintField;
     ListasPreciosLISTAPRECIO: TStringField;
+    Zonas: TZTable;
+    ZonasBVISIBLE: TSmallintField;
+    ZonasID: TLongintField;
+    ZonasZONA: TStringField;
     TiposContactosBVISIBLE: TSmallintField;
     TiposContactosID: TLongintField;
     TiposContactosTIPOCONTACTO: TStringField;

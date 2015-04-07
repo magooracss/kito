@@ -24,7 +24,7 @@ object frmDomicilioAE: TfrmDomicilioAE
     Align = alBottom
     ClientHeight = 50
     ClientWidth = 583
-    TabOrder = 0
+    TabOrder = 7
     object btnGrabar: TBitBtn
       Left = 42
       Height = 40
@@ -185,7 +185,7 @@ object frmDomicilioAE: TfrmDomicilioAE
     Anchors = [akTop, akLeft, akRight]
     CharCase = ecNormal
     MaxLength = 0
-    TabOrder = 1
+    TabOrder = 0
   end
   object Label1: TLabel
     Left = 15
@@ -278,7 +278,7 @@ object frmDomicilioAE: TfrmDomicilioAE
       0000000000000000000000000000000000000000000000000000
     }
     OnClick = btnBuscarLocalidadClick
-    TabOrder = 2
+    TabOrder = 1
   end
   object DBEdit2: TDBEdit
     Left = 120
@@ -292,7 +292,8 @@ object frmDomicilioAE: TfrmDomicilioAE
     CharCase = ecNormal
     Color = clMoneyGreen
     MaxLength = 800
-    TabOrder = 3
+    TabOrder = 2
+    TabStop = False
   end
   object DBEdit3: TDBEdit
     Left = 120
@@ -307,6 +308,7 @@ object frmDomicilioAE: TfrmDomicilioAE
     Color = clMoneyGreen
     MaxLength = 400
     TabOrder = 4
+    TabStop = False
   end
   object DBEdit4: TDBEdit
     Left = 16
@@ -321,6 +323,7 @@ object frmDomicilioAE: TfrmDomicilioAE
     Color = clMoneyGreen
     MaxLength = 600
     TabOrder = 5
+    TabStop = False
   end
   object Label2: TLabel
     Left = 121
@@ -341,7 +344,8 @@ object frmDomicilioAE: TfrmDomicilioAE
     CharCase = ecNormal
     Color = clMoneyGreen
     MaxLength = 400
-    TabOrder = 6
+    TabOrder = 3
+    TabStop = False
   end
   object Label3: TLabel
     Left = 16
@@ -451,7 +455,7 @@ object frmDomicilioAE: TfrmDomicilioAE
       0000352B0000352E000032360000000000000000000000000000
     }
     OnClick = btnEditorLocalidadesClick
-    TabOrder = 7
+    TabOrder = 6
   end
   object ds_domicilios: TDataSource
     DataSet = DM_Empresa.Domicilios

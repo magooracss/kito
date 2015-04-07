@@ -273,4 +273,43 @@ object DM_EdicionTUGs: TDM_EdicionTUGs
       Required = False
     end
   end
+  object Zonas: TZTable
+    Connection = DM_General.cnxBase
+    AfterInsert = MarcasAfterInsert
+    Active = True
+    TableName = 'ZONAS'
+    left = 448
+    top = 32
+    object ZonasID: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'ID'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object ZonasZONA: TStringField
+      DisplayWidth = 400
+      FieldKind = fkData
+      FieldName = 'ZONA'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 400
+    end
+    object ZonasBVISIBLE: TSmallintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'BVISIBLE'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+  end
 end

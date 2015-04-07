@@ -22,7 +22,7 @@ object frmContactoAE: TfrmContactoAE
     Align = alBottom
     ClientHeight = 50
     ClientWidth = 699
-    TabOrder = 0
+    TabOrder = 2
     object btnGrabar: TBitBtn
       Left = 42
       Height = 40
@@ -179,7 +179,7 @@ object frmContactoAE: TfrmContactoAE
     Top = 49
     Width = 208
     ItemHeight = 16
-    TabOrder = 1
+    TabOrder = 0
     Text = 'cbTipoContacto'
   end
   object btnTugTipoContacto: TSpeedButton
@@ -264,7 +264,7 @@ object frmContactoAE: TfrmContactoAE
     DataSource = ds_contacto
     CharCase = ecNormal
     MaxLength = 0
-    TabOrder = 2
+    TabOrder = 1
   end
   object Label1: TLabel
     Left = 24

@@ -2270,7 +2270,6 @@ object DM_Empresa: TDM_Empresa
   end
   object qLocalidadPorNombre: TZQuery
     Connection = DM_General.cnxBase
-    Active = True
     SQL.Strings = (
       'SELECT L.id'
       '             ,L.localidad'
