@@ -210,6 +210,7 @@
         <Filename Value="frm_busquedaempresas.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="frmBusquedaEmpresas"/>
+        <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="frm_busquedaempresas"/>
       </Unit20>
@@ -217,6 +218,7 @@
         <Filename Value="dmbusquedaempresas.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="DM_BusquedaEmpresas"/>
+        <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="dmbusquedaempresas"/>
       </Unit21>

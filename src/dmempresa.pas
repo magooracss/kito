@@ -215,13 +215,13 @@ procedure TDM_Empresa.LevantarEmpresa(refEmpresa: GUID_ID);
 begin
   DM_General.ReiniciarTabla(Empresas);
 
-  _idEmpresa:= refEmpresa;
-
   if SELEmpresas.Active then SELEmpresas.close;
   SELEmpresas.ParamByName('id').AsString:= refEmpresa;
   SELEmpresas.Open;
   Empresas.LoadFromDataSet(SELEmpresas, 0, lmAppend);
   SELEmpresas.Close;
+
+  _idEmpresa:= refEmpresa;
 
   LevantarContactos;
   LevantarDomicilios;

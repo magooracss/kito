@@ -18,6 +18,8 @@ type
     cliNuevo: TAction;
     cliEditar: TAction;
     cliBorrar: TAction;
+    MenuItem10: TMenuItem;
+    MenuItem11: TMenuItem;
     MenuItem9: TMenuItem;
     prodEditar: TAction;
     prodBorrar: TAction;
@@ -37,6 +39,8 @@ type
     ToolBar1: TToolBar;
     ToolButton1: TToolButton;
     ToolButton2: TToolButton;
+    procedure cliBorrarExecute(Sender: TObject);
+    procedure cliEditarExecute(Sender: TObject);
     procedure cliNuevoExecute(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure prgSalirExecute(Sender: TObject);
@@ -62,6 +66,8 @@ uses
   ,frm_busquedaProductos
   ,dmproductos
   ,frm_clientesae
+  ,dmclientes
+  ,frm_busquedaempresas
   ;
 
 { TfrmMain }
@@ -175,6 +181,40 @@ end;
 procedure TfrmMain.cliNuevoExecute(Sender: TObject);
 begin
   pantallaCliente(GUIDNULO);
+end;
+
+procedure TfrmMain.cliEditarExecute(Sender: TObject);
+var
+  pantBus: TfrmBusquedaEmpresas;
+begin
+  pantBus:= TfrmBusquedaEmpresas.Create(self);
+  try
+    pantBus.restringirTipo:= IDX_CLIENTE;
+    if (pantBus.ShowModal = mrOK) and (pantBus.idCliente <> GUIDNULO)then
+     pantallaCliente(pantBus.idCliente);
+  finally
+    pantBus.Free;
+  end;
+end;
+
+procedure TfrmMain.cliBorrarExecute(Sender: TObject);
+var
+  pantBus: TfrmBusquedaEmpresas;
+begin
+  pantBus:= TfrmBusquedaEmpresas.Create(self);
+  try
+    pantBus.restringirTipo:= IDX_CLIENTE;
+    if (pantBus.ShowModal = mrOK) and (pantBus.idCliente <> GUIDNULO)then
+      if (MessageDlg ('ATENCION'
+                      , 'Borro el cliente: '+pantBus.RazonSocial +'?'
+                      , mtConfirmation, [mbYes, mbNo],0 ) = mrYes) then
+       begin
+         DM_Clientes.Borrar(pantBus.idCliente);
+       end;
+  finally
+    pantBus.Free;
+  end;
+
 end;
 
 

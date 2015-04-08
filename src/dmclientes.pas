@@ -52,6 +52,7 @@ type
     procedure Nuevo;
     procedure Editar (refCliente: GUID_ID);
     procedure Grabar;
+    procedure Borrar (refCliente: GUID_ID);
   end;
 
 var
@@ -104,6 +105,15 @@ procedure TDM_Clientes.Grabar;
 begin
   DM_Empresa.Grabar;
   DM_General.GrabarDatos(SELClientes, INSClientes, UPDClientes, Clientes, 'id');
+end;
+
+procedure TDM_Clientes.Borrar(refCliente: GUID_ID);
+begin
+  with DELClientes do
+  begin
+    ParamByName('id').asString:= refCliente;
+    ExecSQL;
+  end;
 end;
 
 end.

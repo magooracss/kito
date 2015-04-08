@@ -73,6 +73,12 @@ end;
 
 procedure TfrmClientesAE.btnGrabarClick(Sender: TObject);
 begin
+  with DM_Empresa, Empresas do
+  begin
+    Edit;
+    Empresascondicionfiscal_id.AsInteger:= DM_General.obtenerIDIntComboBox(fraEmpresaCliente.cbCondicionFiscal);
+    Post;
+  end;
   DM_Clientes.Grabar;
   ModalResult:= mrOK;
 end;
@@ -133,6 +139,12 @@ begin
   if idCliente = GUIDNULO then
   Begin
     DM_Clientes.Nuevo;
+  end
+  else
+  begin
+    DM_Clientes.Editar(idCliente);
+    fraEmpresaCliente.cbCondicionFiscal.ItemIndex:= DM_General.obtenerIdxCombo(fraEmpresaCliente.cbCondicionFiscal
+                                                                               , DM_Empresa.Empresascondicionfiscal_id.AsInteger );
   end;
 
 end;

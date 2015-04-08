@@ -92,15 +92,23 @@ object frmMain: TfrmMain
     object cliNuevo: TAction
       Category = 'Clientes'
       Caption = 'Nuevo cliente'
+      Hint = 'Agrega un nuevo cliente a la base'
+      ImageIndex = 4
       OnExecute = cliNuevoExecute
     end
     object cliEditar: TAction
       Category = 'Clientes'
       Caption = 'Editar cliente'
+      Hint = 'Modifica los datos de un cliente existente'
+      ImageIndex = 5
+      OnExecute = cliEditarExecute
     end
     object cliBorrar: TAction
       Category = 'Clientes'
       Caption = 'Borrar cliente'
+      Hint = 'Borra al cliente de la base'
+      ImageIndex = 6
+      OnExecute = cliBorrarExecute
     end
   end
   object MainMenu1: TMainMenu
@@ -132,6 +140,12 @@ object frmMain: TfrmMain
       end
       object MenuItem9: TMenuItem
         Action = cliNuevo
+      end
+      object MenuItem10: TMenuItem
+        Action = cliEditar
+      end
+      object MenuItem11: TMenuItem
+        Action = cliBorrar
       end
     end
   end

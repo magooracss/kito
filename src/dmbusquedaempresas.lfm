@@ -4,4 +4,193 @@ object DM_BusquedaEmpresas: TDM_BusquedaEmpresas
   HorizontalOffset = 368
   VerticalOffset = 150
   Width = 585
+  object Resultados: TRxMemoryData
+    FieldDefs = <    
+      item
+        Name = 'RazonSocial'
+        DataType = ftString
+        Precision = 0
+        Size = 500
+      end    
+      item
+        Name = 'Cuit'
+        DataType = ftString
+        Precision = 0
+        Size = 20
+      end    
+      item
+        Name = 'codigo'
+        DataType = ftString
+        Precision = 0
+        Size = 20
+      end    
+      item
+        Name = 'TIPO'
+        DataType = ftString
+        Precision = 0
+        Size = 30
+      end    
+      item
+        Name = 'idEmpresa'
+        DataType = ftString
+        Precision = 0
+        Size = 38
+      end    
+      item
+        Name = 'idTipo'
+        DataType = ftString
+        Precision = 0
+        Size = 38
+      end>
+    PacketRecords = 0
+    left = 104
+    top = 32
+    object ResultadosRazonSocial: TStringField
+      DisplayWidth = 500
+      FieldKind = fkData
+      FieldName = 'RazonSocial'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 500
+    end
+    object ResultadosCuit: TStringField
+      DisplayWidth = 20
+      FieldKind = fkData
+      FieldName = 'Cuit'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object Resultadoscodigo: TStringField
+      DisplayWidth = 20
+      FieldKind = fkData
+      FieldName = 'codigo'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object ResultadosTIPO: TStringField
+      DisplayWidth = 30
+      FieldKind = fkData
+      FieldName = 'TIPO'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 30
+    end
+    object ResultadosidEmpresa: TStringField
+      DisplayWidth = 38
+      FieldKind = fkData
+      FieldName = 'idEmpresa'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 38
+    end
+    object ResultadosidTipo: TStringField
+      DisplayWidth = 38
+      FieldKind = fkData
+      FieldName = 'idTipo'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 38
+    end
+  end
+  object qBusqueda: TZQuery
+    Connection = DM_General.cnxBase
+    Active = True
+    SQL.Strings = (
+      'SELECT E.RazonSocial'
+      '      ,E.Cuit'
+      '      ,Cli.Codigo'
+      '      ,''CLIENTE'' as Tipo'
+      '      ,E.id as idEmpresa'
+      '      ,Cli.id as idTipo'
+      'FROM Empresas E'
+      '     INNER JOIN Clientes Cli ON Cli.empresa_id = E.id'
+    )
+    Params = <>
+    left = 104
+    top = 104
+    object qBusquedaRAZONSOCIAL: TStringField
+      DisplayWidth = 2000
+      FieldKind = fkData
+      FieldName = 'RAZONSOCIAL'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 2000
+    end
+    object qBusquedaCUIT: TStringField
+      DisplayWidth = 60
+      FieldKind = fkData
+      FieldName = 'CUIT'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 60
+    end
+    object qBusquedaCODIGO: TStringField
+      DisplayWidth = 40
+      FieldKind = fkData
+      FieldName = 'CODIGO'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 40
+    end
+    object qBusquedaTIPO: TStringField
+      DisplayWidth = 28
+      FieldKind = fkData
+      FieldName = 'TIPO'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = True
+      Required = False
+      Size = 28
+    end
+    object qBusquedaIDEMPRESA: TStringField
+      DisplayWidth = 152
+      FieldKind = fkData
+      FieldName = 'IDEMPRESA'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      Size = 152
+    end
+    object qBusquedaIDTIPO: TStringField
+      DisplayWidth = 152
+      FieldKind = fkData
+      FieldName = 'IDTIPO'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      Size = 152
+    end
+  end
 end

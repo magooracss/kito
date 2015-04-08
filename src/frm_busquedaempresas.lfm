@@ -1,8 +1,9 @@
 object frmBusquedaEmpresas: TfrmBusquedaEmpresas
-  Left = 176
+  Left = 255
   Height = 473
-  Top = 125
+  Top = 206
   Width = 913
+  ActiveControl = edDatoBusqueda
   Caption = 'Búsqueda de empresas'
   ClientHeight = 473
   ClientWidth = 913
@@ -11,8 +12,8 @@ object frmBusquedaEmpresas: TfrmBusquedaEmpresas
   Font.Name = 'Arial'
   Font.Pitch = fpVariable
   Font.Quality = fqDraft
-  OnClose = FormClose
   OnCreate = FormCreate
+  OnDestroy = FormDestroy
   Position = poOwnerFormCenter
   LCLVersion = '1.2.6.0'
   object Panel1: TPanel
@@ -95,6 +96,7 @@ object frmBusquedaEmpresas: TfrmBusquedaEmpresas
         0000000000000000000000000000000000000000000000000000000000000000
         00000000000000000000
       }
+      OnClick = btnSeleccionarClick
       TabOrder = 0
     end
     object btnCancelar: TBitBtn
@@ -169,6 +171,7 @@ object frmBusquedaEmpresas: TfrmBusquedaEmpresas
         00000000000000000000000000004C4DC9000000680200008802000011000000
         00000000000000000000
       }
+      OnClick = btnCancelarClick
       TabOrder = 1
     end
   end
@@ -243,8 +246,8 @@ object frmBusquedaEmpresas: TfrmBusquedaEmpresas
       Top = 31
       Width = 312
       Anchors = [akTop, akLeft, akRight]
+      OnKeyPress = edDatoBusquedaKeyPress
       TabOrder = 2
-      Text = 'edDatoBusqueda'
     end
     object btnBuscar: TBitBtn
       Left = 338
@@ -329,6 +332,7 @@ object frmBusquedaEmpresas: TfrmBusquedaEmpresas
         0000000000000000000000000000000000000000000000000000000000000000
         0000000000000000000000000000000000000000000000000000
       }
+      OnClick = btnBuscarClick
       TabOrder = 3
     end
     object Label1: TLabel
@@ -340,8 +344,56 @@ object frmBusquedaEmpresas: TfrmBusquedaEmpresas
       ParentColor = False
     end
   end
-  object DataSource1: TDataSource
+  object DBGrid1: TDBGrid
+    Left = 0
+    Height = 349
+    Top = 74
+    Width = 913
+    Align = alClient
+    AutoFillColumns = True
+    Color = clWindow
+    Columns = <    
+      item
+        Title.Alignment = taCenter
+        Title.Caption = 'Razón social'
+        Width = 537
+        FieldName = 'RazonSocial'
+      end    
+      item
+        SizePriority = 0
+        Title.Alignment = taCenter
+        Title.Caption = 'Cuit'
+        Width = 120
+        FieldName = 'Cuit'
+      end    
+      item
+        SizePriority = 0
+        Title.Alignment = taCenter
+        Title.Caption = 'Código'
+        Width = 120
+        FieldName = 'codigo'
+      end    
+      item
+        SizePriority = 0
+        Title.Alignment = taCenter
+        Title.Caption = 'Tipo'
+        Width = 132
+        FieldName = 'TIPO'
+      end>
+    DataSource = ds_resultados
+    FixedCols = 0
+    Options = [dgTitles, dgColumnResize, dgColumnMove, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit]
+    Scrollbars = ssAutoVertical
+    TabOrder = 2
+    TitleFont.CharSet = ANSI_CHARSET
+    TitleFont.Height = -13
+    TitleFont.Name = 'Arial'
+    TitleFont.Pitch = fpVariable
+    TitleFont.Quality = fqDraft
+  end
+  object ds_resultados: TDataSource
+    DataSet = DM_BusquedaEmpresas.Resultados
     left = 225
-    top = 94
+    top = 96
   end
 end
