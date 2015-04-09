@@ -34,11 +34,17 @@ type
     qBusqueda: TZQuery;
   private
     procedure SQLBaseClientes;
+    procedure SQLBaseProveedores;
   public
     procedure BusquedaNueva;
     procedure BuscarClientesPorRazonSocial(dato: string);
     procedure BuscarClientesPorCodigo(dato: string);
     procedure BuscarClientesPorCUIT(dato: string);
+
+    procedure BuscarProvPorRazonSocial(dato: string);
+    procedure BuscarProvPorCodigo(dato: string);
+    procedure BuscarProvPorCUIT(dato: string);
+
   end;
 
 var
@@ -96,6 +102,53 @@ end;
 procedure TDM_BusquedaEmpresas.BuscarClientesPorCUIT(dato: string);
 begin
   SQLBaseClientes;
+  with qBusqueda do
+  begin
+    SQL.Add(' AND (UPPER(E.CUIT)  LIKE UPPER(''%'+dato+'%''))');
+    Open;
+    Resultados.LoadFromDataSet(qBusqueda, 0, lmAppend);
+  end;
+end;
+
+procedure TDM_BusquedaEmpresas.SQLBaseProveedores;
+begin
+  With qBusqueda do
+   begin
+     if active then close;
+     SQL.Clear;
+     SQL.Add('SELECT E.RazonSocial, E.Cuit, Prov.Codigo');
+     SQL.Add(' ,'''+ TIP_PROVEEDORES +''' as Tipo,E.id as idEmpresa, Prov.id as idTipo');
+     SQL.Add('FROM Empresas E ');
+     SQL.Add('INNER JOIN Proveedores Prov ON Prov.empresa_id = E.id');
+     SQL.Add('WHERE (E.bVisible = 1) AND (Prov.bVisible = 1)');
+   end;
+end;
+
+procedure TDM_BusquedaEmpresas.BuscarProvPorRazonSocial(dato: string);
+begin
+  SQLBaseProveedores;
+  with qBusqueda do
+  begin
+    SQL.Add(' AND (UPPER(E.RazonSocial) LIKE UPPER(''%'+dato+'%''))');
+    Open;
+    Resultados.LoadFromDataSet(qBusqueda, 0, lmAppend);
+  end;
+end;
+
+procedure TDM_BusquedaEmpresas.BuscarProvPorCodigo(dato: string);
+begin
+  SQLBaseProveedores;
+  with qBusqueda do
+  begin
+    SQL.Add(' AND (UPPER(Prov.Codigo)  LIKE UPPER(''%'+dato+'%''))');
+    Open;
+    Resultados.LoadFromDataSet(qBusqueda, 0, lmAppend);
+  end;
+end;
+
+procedure TDM_BusquedaEmpresas.BuscarProvPorCUIT(dato: string);
+begin
+  SQLBaseProveedores;
   with qBusqueda do
   begin
     SQL.Add(' AND (UPPER(E.CUIT)  LIKE UPPER(''%'+dato+'%''))');

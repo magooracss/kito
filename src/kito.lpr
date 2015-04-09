@@ -12,8 +12,7 @@ uses
   frm_busquedaProductos, frm_precioae, dmprecios, fra_empresa, dmempresa,
   frm_clientesae, frm_contactoae, dmclientes, frm_domicilioae,
   frm_localidadesae, frm_buscarlocalidad, frm_busquedaempresas, 
-dmbusquedaempresas
-  { you can add units after this };
+dmbusquedaempresas, frm_proveedoresae, dmproveedores;
 
 {$R *.res}
 
@@ -26,6 +25,7 @@ begin
   Application.CreateForm(TDM_Productos, DM_Productos);
   Application.CreateForm(TDM_Empresa, DM_Empresa);
   Application.CreateForm(TDM_Clientes, DM_Clientes);
+  Application.CreateForm(TDM_Proveedores, DM_Proveedores);
   Application.CreateForm(TfrmMain, frmMain);
   Application.Run;
 end.

@@ -110,6 +110,24 @@ object frmMain: TfrmMain
       ImageIndex = 6
       OnExecute = cliBorrarExecute
     end
+    object provNuevo: TAction
+      Category = 'Proveedores'
+      Caption = 'Nuevo proveedor'
+      Hint = 'Carga un nuevo proveedor en la base'
+      OnExecute = provNuevoExecute
+    end
+    object provEditar: TAction
+      Category = 'Proveedores'
+      Caption = 'Editar proveedor'
+      Hint = 'Modifica los datos de un proveedor existente'
+      OnExecute = provEditarExecute
+    end
+    object provBorrar: TAction
+      Category = 'Proveedores'
+      Caption = 'Borrar proveedor'
+      Hint = 'Borra de la base el proveedor seleccionado'
+      OnExecute = provBorrarExecute
+    end
   end
   object MainMenu1: TMainMenu
     Images = DM_General.ImgAccionesMenu
@@ -146,6 +164,18 @@ object frmMain: TfrmMain
       end
       object MenuItem11: TMenuItem
         Action = cliBorrar
+      end
+      object MenuItem12: TMenuItem
+        Caption = '-'
+      end
+      object MenuItem13: TMenuItem
+        Action = provNuevo
+      end
+      object MenuItem15: TMenuItem
+        Action = provEditar
+      end
+      object MenuItem14: TMenuItem
+        Action = provBorrar
       end
     end
   end

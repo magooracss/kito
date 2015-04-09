@@ -112,7 +112,6 @@ object DM_BusquedaEmpresas: TDM_BusquedaEmpresas
   end
   object qBusqueda: TZQuery
     Connection = DM_General.cnxBase
-    Active = True
     SQL.Strings = (
       'SELECT E.RazonSocial'
       '      ,E.Cuit'

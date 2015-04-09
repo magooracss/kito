@@ -15,6 +15,13 @@ type
   { TfrmMain }
 
   TfrmMain = class(TForm)
+    MenuItem12: TMenuItem;
+    MenuItem13: TMenuItem;
+    MenuItem14: TMenuItem;
+    MenuItem15: TMenuItem;
+    provBorrar: TAction;
+    provEditar: TAction;
+    provNuevo: TAction;
     cliNuevo: TAction;
     cliEditar: TAction;
     cliBorrar: TAction;
@@ -47,10 +54,14 @@ type
     procedure prodBorrarExecute(Sender: TObject);
     procedure prodEditarExecute(Sender: TObject);
     procedure prodNuevoExecute(Sender: TObject);
+    procedure provBorrarExecute(Sender: TObject);
+    procedure provEditarExecute(Sender: TObject);
+    procedure provNuevoExecute(Sender: TObject);
   private
      procedure Inicializar;
      procedure pantallaProducto (ID: GUID_ID);
      procedure pantallaCliente (ID: GUID_ID);
+     procedure pantallaProveedores(ID: GUID_ID);
   public
     { public declarations }
   end;
@@ -68,6 +79,8 @@ uses
   ,frm_clientesae
   ,dmclientes
   ,frm_busquedaempresas
+  ,dmproveedores
+  ,frm_proveedoresae
   ;
 
 { TfrmMain }
@@ -216,6 +229,61 @@ begin
   end;
 
 end;
+
+(*******************************************************************************
+*** PROVEEDORES
+*******************************************************************************)
+procedure TfrmMain.pantallaProveedores(ID: GUID_ID);
+var
+ pant: TfrmProveedoresAE;
+begin
+  pant:= TfrmProveedoresAE.Create(self);
+  try
+    pant.idProveedor := ID;
+    pant.ShowModal;
+  finally
+    pant.Free;
+  end;
+end;
+
+procedure TfrmMain.provNuevoExecute(Sender: TObject);
+begin
+  pantallaProveedores(GUIDNULO);
+end;
+
+procedure TfrmMain.provEditarExecute(Sender: TObject);
+var
+  pantBus: TfrmBusquedaEmpresas;
+begin
+  pantBus:= TfrmBusquedaEmpresas.Create(self);
+  try
+    pantBus.restringirTipo:= IDX_PROVEEDOR;
+    if (pantBus.ShowModal = mrOK) and (pantBus.idProveedor <> GUIDNULO)then
+     pantallaProveedores(pantBus.idProveedor);
+  finally
+    pantBus.Free;
+  end;
+end;
+
+procedure TfrmMain.provBorrarExecute(Sender: TObject);
+var
+  pantBus: TfrmBusquedaEmpresas;
+begin
+  pantBus:= TfrmBusquedaEmpresas.Create(self);
+  try
+    pantBus.restringirTipo:= IDX_PROVEEDOR;
+    if (pantBus.ShowModal = mrOK) and (pantBus.idProveedor <> GUIDNULO)then
+      if (MessageDlg ('ATENCION'
+                      , 'Borro el proveedor: '+pantBus.RazonSocial +'?'
+                      , mtConfirmation, [mbYes, mbNo],0 ) = mrYes) then
+       begin
+         DM_Proveedores.Borrar(pantBus.idProveedor);
+       end;
+  finally
+    pantBus.Free;
+  end;
+end;
+
 
 
 end.

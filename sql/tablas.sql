@@ -135,7 +135,7 @@ CREATE TABLE Proveedores
   id		"guid"  NOT NULL PRIMARY KEY
 , empresa_id	"guid"	default '{00000000-0000-0000-0000-000000000000}'
 , codigo	varchar(10)
-, listraPrecio_id integer default 0
+, listaPrecio_id integer default 0
 , bVisible	smallint default 1
 );
 

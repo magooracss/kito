@@ -45,11 +45,14 @@ type
     function getIdCliente: GUID_ID;
     function getIdEmpresa: GUID_ID;
     procedure Buscar;
+    function getIdProveedor: GUID_ID;
     function getRazonSocial: string;
     procedure SetrestringirTipo(AValue: integer);
+    function DevolverResultadoID (tipo: string): GUID_ID;
   public
     property idEmpresa: GUID_ID read getIdEmpresa;
     property idCliente: GUID_ID read getIdCliente;
+    property idProveedor: GUID_ID read getIdProveedor;
     property restringirTipo: integer write SetrestringirTipo;
     property RazonSocial: string read getRazonSocial;
 
@@ -78,12 +81,7 @@ end;
 
 function TfrmBusquedaEmpresas.getIdCliente: GUID_ID;
 begin
-  Result:= GUIDNULO;
-  if (DM_BusquedaEmpresas.Resultados.Active)
-      and (DM_BusquedaEmpresas.Resultados.RecordCount > 0)
-      and (Trim(DM_BusquedaEmpresas.ResultadosTIPO.AsString) = TIP_CLIENTES)
-      then
-    Result:= DM_BusquedaEmpresas.ResultadosidTipo.AsString;
+  Result:= DevolverResultadoID(TIP_CLIENTES);
 end;
 
 function TfrmBusquedaEmpresas.getIdEmpresa: GUID_ID;
@@ -102,9 +100,9 @@ begin
    begin
       if ckTipoEmpresa.Checked[IDX_CLIENTE] then
         DM_BusquedaEmpresas.BuscarClientesPorRazonSocial(Trim(edDatoBusqueda.Text));
-(*    if ckTipoEmpresa.Checked[IDX_PROVEEDOR] then
-        DM_BusquedaEmpresas.BuscarClientesPorRazonSocial(Trim(edDatoBusqueda.Text));
-      if ckTipoEmpresa.Checked[IDX_TRANSPORTISTA] then
+      if ckTipoEmpresa.Checked[IDX_PROVEEDOR] then
+        DM_BusquedaEmpresas.BuscarProvPorRazonSocial(Trim(edDatoBusqueda.Text));
+(*      if ckTipoEmpresa.Checked[IDX_TRANSPORTISTA] then
         DM_BusquedaEmpresas.BuscarClientesPorRazonSocial(Trim(edDatoBusqueda.Text));
       if ckTipoEmpresa.Checked[IDX_VENDEDOR] then
         DM_BusquedaEmpresas.BuscarClientesPorRazonSocial(Trim(edDatoBusqueda.Text));
@@ -114,13 +112,22 @@ begin
    begin
      if ckTipoEmpresa.Checked[IDX_CLIENTE] then
         DM_BusquedaEmpresas.BuscarClientesPorCUIT(Trim(edDatoBusqueda.Text));
+     if ckTipoEmpresa.Checked[IDX_PROVEEDOR] then
+       DM_BusquedaEmpresas.BuscarProvPorCuit(Trim(edDatoBusqueda.Text));
    end;
    CRI_CODIGO:
    begin
      if ckTipoEmpresa.Checked[IDX_CLIENTE] then
         DM_BusquedaEmpresas.BuscarClientesPorCodigo(Trim(edDatoBusqueda.Text));
+     if ckTipoEmpresa.Checked[IDX_PROVEEDOR] then
+       DM_BusquedaEmpresas.BuscarProvPorCodigo(Trim(edDatoBusqueda.Text));
    end;
   end;
+end;
+
+function TfrmBusquedaEmpresas.getIdProveedor: GUID_ID;
+begin
+  Result:= DevolverResultadoID(TIP_PROVEEDORES);
 end;
 
 function TfrmBusquedaEmpresas.getRazonSocial: string;
@@ -139,6 +146,16 @@ begin
    ckTipoEmpresa.Checked[idx]:= false;
   ckTipoEmpresa.Checked[AValue]:= true;
   ckTipoEmpresa.Enabled:= False;
+end;
+
+function TfrmBusquedaEmpresas.DevolverResultadoID(tipo: string): GUID_ID;
+begin
+  Result:= GUIDNULO;
+  if (DM_BusquedaEmpresas.Resultados.Active)
+      and (DM_BusquedaEmpresas.Resultados.RecordCount > 0)
+      and (Trim(DM_BusquedaEmpresas.ResultadosTIPO.AsString) = tipo)
+      then
+  Result:= DM_BusquedaEmpresas.ResultadosidTipo.AsString;
 end;
 
 procedure TfrmBusquedaEmpresas.btnBuscarClick(Sender: TObject);
