@@ -20,7 +20,7 @@
       <AutoIncrementBuild Value="True"/>
       <MajorVersionNr Value="2015"/>
       <MinorVersionNr Value="4"/>
-      <BuildNr Value="28"/>
+      <BuildNr Value="30"/>
       <Language Value="080A"/>
       <StringTable Comments="Carlos Enrique Rodriguez / Magoo" CompanyName="RACSS Programación" LegalCopyright="Carlos Enrique Rodriguez - RACSS Programacion" ProductName="KITO" ProductVersion=""/>
     </VersionInfo>
@@ -55,7 +55,7 @@
         <PackageName Value="LCL"/>
       </Item6>
     </RequiredPackages>
-    <Units Count="26">
+    <Units Count="28">
       <Unit0>
         <Filename Value="kito.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -242,6 +242,7 @@
         <Filename Value="frm_transportistasae.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="frmTransportistasAE"/>
+        <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="frm_transportistasae"/>
       </Unit24>
@@ -249,9 +250,26 @@
         <Filename Value="dmtransportistas.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="DM_Transportistas"/>
+        <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="dmtransportistas"/>
       </Unit25>
+      <Unit26>
+        <Filename Value="frm_vendedoresae.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmVendedoresAE"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="frm_vendedoresae"/>
+      </Unit26>
+      <Unit27>
+        <Filename Value="dmvendedores.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="DM_Vendedores"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="DataModule"/>
+        <UnitName Value="dmvendedores"/>
+      </Unit27>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

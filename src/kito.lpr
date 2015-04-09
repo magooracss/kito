@@ -13,7 +13,7 @@ uses
   frm_clientesae, frm_contactoae, dmclientes, frm_domicilioae,
   frm_localidadesae, frm_buscarlocalidad, frm_busquedaempresas,
   dmbusquedaempresas, frm_proveedoresae, dmproveedores, frm_transportistasae,
-  dmtransportistas;
+  dmtransportistas, frm_vendedoresae, dmvendedores;
 
 {$R *.res}
 
@@ -28,6 +28,7 @@ begin
   Application.CreateForm(TDM_Clientes, DM_Clientes);
   Application.CreateForm(TDM_Proveedores, DM_Proveedores);
   Application.CreateForm(TDM_Transportistas, DM_Transportistas);
+  Application.CreateForm(TDM_Vendedores, DM_Vendedores);
   Application.CreateForm(TfrmMain, frmMain);
   Application.Run;
 end.

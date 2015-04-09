@@ -36,6 +36,8 @@ type
     procedure SQLBaseClientes;
     procedure SQLBaseProveedores;
     procedure SQLBaseTransportistas;
+    procedure SQLBaseVendedores;
+
 
   public
     procedure BusquedaNueva;
@@ -51,6 +53,9 @@ type
     procedure BuscarTransportistaPorCodigo(dato: string);
     procedure BuscarTransportistaPorCUIT(dato: string);
 
+    procedure BuscarVendedorPorRazonSocial(dato: string);
+    procedure BuscarVendedorPorCodigo(dato: string);
+    procedure BuscarVendedorPorCUIT(dato: string);
 
   end;
 
@@ -179,6 +184,7 @@ begin
    end;
 end;
 
+
 procedure TDM_BusquedaEmpresas.BuscarTransportistaPorRazonSocial(dato: string);
 begin
   SQLBaseTransportistas;
@@ -204,6 +210,53 @@ end;
 procedure TDM_BusquedaEmpresas.BuscarTransportistaPorCUIT(dato: string);
 begin
   SQLBaseTransportistas;
+  with qBusqueda do
+  begin
+    SQL.Add(' AND (UPPER(E.CUIT)  LIKE UPPER(''%'+dato+'%''))');
+    Open;
+    Resultados.LoadFromDataSet(qBusqueda, 0, lmAppend);
+  end;
+end;
+
+procedure TDM_BusquedaEmpresas.SQLBaseVendedores;
+begin
+  With qBusqueda do
+   begin
+     if active then close;
+     SQL.Clear;
+     SQL.Add('SELECT E.RazonSocial, E.Cuit, Vend.Codigo');
+     SQL.Add(' ,'''+ TIP_VENDEDORES +''' as Tipo,E.id as idEmpresa, Vend.id as idTipo');
+     SQL.Add('FROM Empresas E ');
+     SQL.Add('INNER JOIN Vendedores Vend ON Vend.empresa_id = E.id');
+     SQL.Add('WHERE (E.bVisible = 1) AND (Vend.bVisible = 1)');
+   end;
+end;
+
+procedure TDM_BusquedaEmpresas.BuscarVendedorPorRazonSocial(dato: string);
+begin
+  SQLBaseVendedores;
+  with qBusqueda do
+  begin
+    SQL.Add(' AND (UPPER(E.RazonSocial) LIKE UPPER(''%'+dato+'%''))');
+    Open;
+    Resultados.LoadFromDataSet(qBusqueda, 0, lmAppend);
+  end;
+end;
+
+procedure TDM_BusquedaEmpresas.BuscarVendedorPorCodigo(dato: string);
+begin
+  SQLBaseVendedores;
+  with qBusqueda do
+  begin
+    SQL.Add(' AND (UPPER(Vend.Codigo)  LIKE UPPER(''%'+dato+'%''))');
+    Open;
+    Resultados.LoadFromDataSet(qBusqueda, 0, lmAppend);
+  end;
+end;
+
+procedure TDM_BusquedaEmpresas.BuscarVendedorPorCUIT(dato: string);
+begin
+  SQLBaseVendedores;
   with qBusqueda do
   begin
     SQL.Add(' AND (UPPER(E.CUIT)  LIKE UPPER(''%'+dato+'%''))');

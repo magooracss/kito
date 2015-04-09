@@ -15,6 +15,13 @@ type
   { TfrmMain }
 
   TfrmMain = class(TForm)
+    MenuItem21: TMenuItem;
+    MenuItem22: TMenuItem;
+    MenuItem23: TMenuItem;
+    MenuItem24: TMenuItem;
+    vendEditar: TAction;
+    vendBorrar: TAction;
+    vendNuevo: TAction;
     MenuItem13: TMenuItem;
     MenuItem14: TMenuItem;
     MenuItem15: TMenuItem;
@@ -68,12 +75,16 @@ type
     procedure tranBorrarExecute(Sender: TObject);
     procedure tranEditarExecute(Sender: TObject);
     procedure tranNuevoExecute(Sender: TObject);
+    procedure vendBorrarExecute(Sender: TObject);
+    procedure vendEditarExecute(Sender: TObject);
+    procedure vendNuevoExecute(Sender: TObject);
   private
      procedure Inicializar;
      procedure pantallaProducto (ID: GUID_ID);
      procedure pantallaCliente (ID: GUID_ID);
      procedure pantallaProveedores(ID: GUID_ID);
      procedure pantallaTransportistas(ID: GUID_ID);
+     procedure pantallaVendedores(ID: GUID_ID);
   public
     { public declarations }
   end;
@@ -95,7 +106,8 @@ uses
   ,frm_proveedoresae
   ,dmtransportistas
   ,frm_transportistasae
-
+  ,dmvendedores
+  ,frm_vendedoresae
   ;
 
 { TfrmMain }
@@ -322,6 +334,7 @@ begin
   pantallaTransportistas(GUIDNULO);
 end;
 
+
 procedure TfrmMain.tranEditarExecute(Sender: TObject);
 var
   pantBus: TfrmBusquedaEmpresas;
@@ -355,7 +368,60 @@ begin
   end;
 end;
 
+(*******************************************************************************
+*** VENDEDORES
+*******************************************************************************)
 
+procedure TfrmMain.pantallaVendedores(ID: GUID_ID);
+var
+ pant: TfrmVendedoresAE;
+begin
+  pant:= TfrmVendedoresAE.Create(self);
+  try
+    pant.idVendedor := ID;
+    pant.ShowModal;
+  finally
+    pant.Free;
+  end;
+end;
+
+procedure TfrmMain.vendNuevoExecute(Sender: TObject);
+begin
+  pantallaVendedores(GUIDNULO);
+end;
+
+procedure TfrmMain.vendEditarExecute(Sender: TObject);
+var
+  pantBus: TfrmBusquedaEmpresas;
+begin
+  pantBus:= TfrmBusquedaEmpresas.Create(self);
+  try
+    pantBus.restringirTipo:= IDX_VENDEDOR;
+    if (pantBus.ShowModal = mrOK) and (pantBus.idVendedor <> GUIDNULO)then
+     pantallaVendedores(pantBus.idVendedor);
+  finally
+    pantBus.Free;
+  end;
+end;
+
+procedure TfrmMain.vendBorrarExecute(Sender: TObject);
+var
+  pantBus: TfrmBusquedaEmpresas;
+begin
+  pantBus:= TfrmBusquedaEmpresas.Create(self);
+  try
+    pantBus.restringirTipo:= IDX_VENDEDOR;
+    if (pantBus.ShowModal = mrOK) and (pantBus.idVendedor <> GUIDNULO)then
+      if (MessageDlg ('ATENCION'
+                      , 'Borro el vendedor: '+pantBus.RazonSocial +'?'
+                      , mtConfirmation, [mbYes, mbNo],0 ) = mrYes) then
+       begin
+         DM_Vendedores.Borrar(pantBus.idVendedor);
+       end;
+  finally
+    pantBus.Free;
+  end;
+end;
 
 end.
 

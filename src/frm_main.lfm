@@ -1,7 +1,7 @@
 object frmMain: TfrmMain
-  Left = 175
+  Left = 111
   Height = 676
-  Top = 52
+  Top = 37
   Width = 1151
   Caption = 'KITO'
   ClientHeight = 656
@@ -146,6 +146,24 @@ object frmMain: TfrmMain
       Hint = 'Borra el transportista de la base'
       OnExecute = tranBorrarExecute
     end
+    object vendNuevo: TAction
+      Category = 'Vendedores'
+      Caption = 'Nuevo vendedor'
+      Hint = 'Agrega un nuevo vendedor a la base'
+      OnExecute = vendNuevoExecute
+    end
+    object vendEditar: TAction
+      Category = 'Vendedores'
+      Caption = 'Editar Vendedor'
+      Hint = 'Modifica los datos de un vendedor'
+      OnExecute = vendEditarExecute
+    end
+    object vendBorrar: TAction
+      Category = 'Vendedores'
+      Caption = 'Borrar vendedor'
+      Hint = 'Borra el vendedor de la base'
+      OnExecute = vendBorrarExecute
+    end
   end
   object MainMenu1: TMainMenu
     Images = DM_General.ImgAccionesMenu
@@ -208,6 +226,18 @@ object frmMain: TfrmMain
         end
         object MenuItem15: TMenuItem
           Action = tranBorrar
+        end
+      end
+      object MenuItem21: TMenuItem
+        Caption = 'Vendedores'
+        object MenuItem22: TMenuItem
+          Action = vendNuevo
+        end
+        object MenuItem23: TMenuItem
+          Action = vendEditar
+        end
+        object MenuItem24: TMenuItem
+          Action = vendBorrar
         end
       end
     end

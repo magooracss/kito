@@ -154,3 +154,14 @@ CREATE TABLE Zonas
 , zona varchar(100)
 , bVisible	smallint default 1		
 );
+
+CREATE TABLE Vendedores
+(
+  id		"guid"  NOT NULL PRIMARY KEY
+, empresa_id	"guid"	default '{00000000-0000-0000-0000-000000000000}'
+, codigo	varchar(10)
+, zona_id	integer default 0
+, listaPrecio_id integer default 0
+, bVisible	smallint default 1
+);
+

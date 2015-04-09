@@ -12,6 +12,7 @@ object frmTransportistasAE: TfrmTransportistasAE
   Font.Pitch = fpVariable
   Font.Quality = fqDraft
   OnShow = FormShow
+  Position = poOwnerFormCenter
   LCLVersion = '1.2.6.0'
   inline fraEmpresaTransportista: TfraEmpresa
     Width = 660
@@ -90,7 +91,7 @@ object frmTransportistasAE: TfrmTransportistasAE
     TabOrder = 1
     object DBLookupComboBox1: TDBLookupComboBox
       Left = 304
-      Height = 23
+      Height = 24
       Top = 30
       Width = 216
       DataField = 'zona_id'
