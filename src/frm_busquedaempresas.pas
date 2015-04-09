@@ -46,6 +46,7 @@ type
     function getIdEmpresa: GUID_ID;
     procedure Buscar;
     function getIdProveedor: GUID_ID;
+    function getIdTransportista: GUID_ID;
     function getRazonSocial: string;
     procedure SetrestringirTipo(AValue: integer);
     function DevolverResultadoID (tipo: string): GUID_ID;
@@ -53,6 +54,7 @@ type
     property idEmpresa: GUID_ID read getIdEmpresa;
     property idCliente: GUID_ID read getIdCliente;
     property idProveedor: GUID_ID read getIdProveedor;
+    property idTransportista: GUID_ID read getIdTransportista;
     property restringirTipo: integer write SetrestringirTipo;
     property RazonSocial: string read getRazonSocial;
 
@@ -102,9 +104,9 @@ begin
         DM_BusquedaEmpresas.BuscarClientesPorRazonSocial(Trim(edDatoBusqueda.Text));
       if ckTipoEmpresa.Checked[IDX_PROVEEDOR] then
         DM_BusquedaEmpresas.BuscarProvPorRazonSocial(Trim(edDatoBusqueda.Text));
-(*      if ckTipoEmpresa.Checked[IDX_TRANSPORTISTA] then
-        DM_BusquedaEmpresas.BuscarClientesPorRazonSocial(Trim(edDatoBusqueda.Text));
-      if ckTipoEmpresa.Checked[IDX_VENDEDOR] then
+      if ckTipoEmpresa.Checked[IDX_TRANSPORTISTA] then
+        DM_BusquedaEmpresas.BuscarTransportistaPorRazonSocial(Trim(edDatoBusqueda.Text));
+      (*      if ckTipoEmpresa.Checked[IDX_VENDEDOR] then
         DM_BusquedaEmpresas.BuscarClientesPorRazonSocial(Trim(edDatoBusqueda.Text));
 *)
    end;
@@ -114,6 +116,8 @@ begin
         DM_BusquedaEmpresas.BuscarClientesPorCUIT(Trim(edDatoBusqueda.Text));
      if ckTipoEmpresa.Checked[IDX_PROVEEDOR] then
        DM_BusquedaEmpresas.BuscarProvPorCuit(Trim(edDatoBusqueda.Text));
+     if ckTipoEmpresa.Checked[IDX_TRANSPORTISTA] then
+       DM_BusquedaEmpresas.BuscarTransportistaPorCuit(Trim(edDatoBusqueda.Text));
    end;
    CRI_CODIGO:
    begin
@@ -121,6 +125,8 @@ begin
         DM_BusquedaEmpresas.BuscarClientesPorCodigo(Trim(edDatoBusqueda.Text));
      if ckTipoEmpresa.Checked[IDX_PROVEEDOR] then
        DM_BusquedaEmpresas.BuscarProvPorCodigo(Trim(edDatoBusqueda.Text));
+     if ckTipoEmpresa.Checked[IDX_TRANSPORTISTA] then
+       DM_BusquedaEmpresas.BuscarTransportistaPorCodigo(Trim(edDatoBusqueda.Text));
    end;
   end;
 end;
@@ -128,6 +134,11 @@ end;
 function TfrmBusquedaEmpresas.getIdProveedor: GUID_ID;
 begin
   Result:= DevolverResultadoID(TIP_PROVEEDORES);
+end;
+
+function TfrmBusquedaEmpresas.getIdTransportista: GUID_ID;
+begin
+  Result:= DevolverResultadoID(TIP_TRANSPORTISTAS);
 end;
 
 function TfrmBusquedaEmpresas.getRazonSocial: string;

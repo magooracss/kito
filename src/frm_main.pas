@@ -15,28 +15,36 @@ type
   { TfrmMain }
 
   TfrmMain = class(TForm)
-    MenuItem12: TMenuItem;
     MenuItem13: TMenuItem;
     MenuItem14: TMenuItem;
     MenuItem15: TMenuItem;
+    MenuItem20: TMenuItem;
+    tranEditar: TAction;
+    tranBorrar: TAction;
+    tranNuevo: TAction;
+    MenuItem10: TMenuItem;
+    MenuItem11: TMenuItem;
+    MenuItem12: TMenuItem;
+    MenuItem16: TMenuItem;
+    MenuItem17: TMenuItem;
+    MenuItem18: TMenuItem;
+    MenuItem19: TMenuItem;
+    MenuItem5: TMenuItem;
+    MenuItem6: TMenuItem;
+    MenuItem7: TMenuItem;
+    MenuItem9: TMenuItem;
     provBorrar: TAction;
     provEditar: TAction;
     provNuevo: TAction;
     cliNuevo: TAction;
     cliEditar: TAction;
     cliBorrar: TAction;
-    MenuItem10: TMenuItem;
-    MenuItem11: TMenuItem;
-    MenuItem9: TMenuItem;
     prodEditar: TAction;
     prodBorrar: TAction;
-    MenuItem6: TMenuItem;
-    MenuItem7: TMenuItem;
     MenuItem8: TMenuItem;
     prodNuevo: TAction;
     MenuItem3: TMenuItem;
     MenuItem4: TMenuItem;
-    MenuItem5: TMenuItem;
     prgSalir: TAction;
     ActionList1: TActionList;
     MainMenu1: TMainMenu;
@@ -57,11 +65,15 @@ type
     procedure provBorrarExecute(Sender: TObject);
     procedure provEditarExecute(Sender: TObject);
     procedure provNuevoExecute(Sender: TObject);
+    procedure tranBorrarExecute(Sender: TObject);
+    procedure tranEditarExecute(Sender: TObject);
+    procedure tranNuevoExecute(Sender: TObject);
   private
      procedure Inicializar;
      procedure pantallaProducto (ID: GUID_ID);
      procedure pantallaCliente (ID: GUID_ID);
      procedure pantallaProveedores(ID: GUID_ID);
+     procedure pantallaTransportistas(ID: GUID_ID);
   public
     { public declarations }
   end;
@@ -81,6 +93,9 @@ uses
   ,frm_busquedaempresas
   ,dmproveedores
   ,frm_proveedoresae
+  ,dmtransportistas
+  ,frm_transportistasae
+
   ;
 
 { TfrmMain }
@@ -251,6 +266,7 @@ begin
   pantallaProveedores(GUIDNULO);
 end;
 
+
 procedure TfrmMain.provEditarExecute(Sender: TObject);
 var
   pantBus: TfrmBusquedaEmpresas;
@@ -278,6 +294,61 @@ begin
                       , mtConfirmation, [mbYes, mbNo],0 ) = mrYes) then
        begin
          DM_Proveedores.Borrar(pantBus.idProveedor);
+       end;
+  finally
+    pantBus.Free;
+  end;
+end;
+
+(*******************************************************************************
+*** TRANSPORTISTAS
+*******************************************************************************)
+
+procedure TfrmMain.pantallaTransportistas(ID: GUID_ID);
+var
+ pant: TfrmTransportistasAE;
+begin
+  pant:= TfrmTransportistasAE.Create(self);
+  try
+    pant.idTransportista := ID;
+    pant.ShowModal;
+  finally
+    pant.Free;
+  end;
+end;
+
+procedure TfrmMain.tranNuevoExecute(Sender: TObject);
+begin
+  pantallaTransportistas(GUIDNULO);
+end;
+
+procedure TfrmMain.tranEditarExecute(Sender: TObject);
+var
+  pantBus: TfrmBusquedaEmpresas;
+begin
+  pantBus:= TfrmBusquedaEmpresas.Create(self);
+  try
+    pantBus.restringirTipo:= IDX_TRANSPORTISTA;
+    if (pantBus.ShowModal = mrOK) and (pantBus.idTransportista <> GUIDNULO)then
+     pantallaTransportistas(pantBus.idTransportista);
+  finally
+    pantBus.Free;
+  end;
+end;
+
+procedure TfrmMain.tranBorrarExecute(Sender: TObject);
+var
+  pantBus: TfrmBusquedaEmpresas;
+begin
+  pantBus:= TfrmBusquedaEmpresas.Create(self);
+  try
+    pantBus.restringirTipo:= IDX_TRANSPORTISTA;
+    if (pantBus.ShowModal = mrOK) and (pantBus.idTransportista <> GUIDNULO)then
+      if (MessageDlg ('ATENCION'
+                      , 'Borro el transportista: '+pantBus.RazonSocial +'?'
+                      , mtConfirmation, [mbYes, mbNo],0 ) = mrYes) then
+       begin
+         DM_Transportistas.Borrar(pantBus.idTransportista);
        end;
   finally
     pantBus.Free;

@@ -11,8 +11,9 @@ uses
   frm_productoae, dmproductos, dmediciontugs, frm_ediciontugs,
   frm_busquedaProductos, frm_precioae, dmprecios, fra_empresa, dmempresa,
   frm_clientesae, frm_contactoae, dmclientes, frm_domicilioae,
-  frm_localidadesae, frm_buscarlocalidad, frm_busquedaempresas, 
-dmbusquedaempresas, frm_proveedoresae, dmproveedores;
+  frm_localidadesae, frm_buscarlocalidad, frm_busquedaempresas,
+  dmbusquedaempresas, frm_proveedoresae, dmproveedores, frm_transportistasae,
+  dmtransportistas;
 
 {$R *.res}
 
@@ -26,6 +27,7 @@ begin
   Application.CreateForm(TDM_Empresa, DM_Empresa);
   Application.CreateForm(TDM_Clientes, DM_Clientes);
   Application.CreateForm(TDM_Proveedores, DM_Proveedores);
+  Application.CreateForm(TDM_Transportistas, DM_Transportistas);
   Application.CreateForm(TfrmMain, frmMain);
   Application.Run;
 end.

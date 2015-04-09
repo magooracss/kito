@@ -1,7 +1,7 @@
 object frmMain: TfrmMain
-  Left = 123
+  Left = 175
   Height = 676
-  Top = 28
+  Top = 52
   Width = 1151
   Caption = 'KITO'
   ClientHeight = 656
@@ -128,6 +128,24 @@ object frmMain: TfrmMain
       Hint = 'Borra de la base el proveedor seleccionado'
       OnExecute = provBorrarExecute
     end
+    object tranNuevo: TAction
+      Category = 'Transportistas'
+      Caption = 'Nuevo transportista '
+      Hint = 'Agrega un nuevo transportista a la base'
+      OnExecute = tranNuevoExecute
+    end
+    object tranEditar: TAction
+      Category = 'Transportistas'
+      Caption = 'Editar transportista'
+      Hint = 'Modifica los datos de un transportista'
+      OnExecute = tranEditarExecute
+    end
+    object tranBorrar: TAction
+      Category = 'Transportistas'
+      Caption = 'Borrar transportista'
+      Hint = 'Borra el transportista de la base'
+      OnExecute = tranBorrarExecute
+    end
   end
   object MainMenu1: TMainMenu
     Images = DM_General.ImgAccionesMenu
@@ -144,38 +162,53 @@ object frmMain: TfrmMain
     end
     object MenuItem4: TMenuItem
       Caption = 'Listas'
-      object MenuItem5: TMenuItem
-        Action = prodNuevo
-      end
-      object MenuItem6: TMenuItem
-        Action = prodEditar
-      end
-      object MenuItem7: TMenuItem
-        Action = prodBorrar
+      object MenuItem16: TMenuItem
+        Caption = 'Productos'
+        object MenuItem17: TMenuItem
+          Action = prodNuevo
+        end
+        object MenuItem18: TMenuItem
+          Action = prodEditar
+        end
+        object MenuItem19: TMenuItem
+          Action = prodBorrar
+        end
       end
       object MenuItem8: TMenuItem
-        Caption = '-'
-      end
-      object MenuItem9: TMenuItem
-        Action = cliNuevo
-      end
-      object MenuItem10: TMenuItem
-        Action = cliEditar
-      end
-      object MenuItem11: TMenuItem
-        Action = cliBorrar
+        Caption = 'Clientes'
+        object MenuItem5: TMenuItem
+          Action = cliNuevo
+        end
+        object MenuItem6: TMenuItem
+          Action = cliEditar
+        end
+        object MenuItem7: TMenuItem
+          Action = cliBorrar
+        end
       end
       object MenuItem12: TMenuItem
-        Caption = '-'
+        Caption = 'Proveedores'
+        object MenuItem9: TMenuItem
+          Action = provNuevo
+        end
+        object MenuItem11: TMenuItem
+          Action = provEditar
+        end
+        object MenuItem10: TMenuItem
+          Action = provBorrar
+        end
       end
       object MenuItem13: TMenuItem
-        Action = provNuevo
-      end
-      object MenuItem15: TMenuItem
-        Action = provEditar
-      end
-      object MenuItem14: TMenuItem
-        Action = provBorrar
+        Caption = 'Transportistas'
+        object MenuItem14: TMenuItem
+          Action = tranNuevo
+        end
+        object MenuItem20: TMenuItem
+          Action = tranEditar
+        end
+        object MenuItem15: TMenuItem
+          Action = tranBorrar
+        end
       end
     end
   end

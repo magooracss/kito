@@ -35,6 +35,8 @@ type
   private
     procedure SQLBaseClientes;
     procedure SQLBaseProveedores;
+    procedure SQLBaseTransportistas;
+
   public
     procedure BusquedaNueva;
     procedure BuscarClientesPorRazonSocial(dato: string);
@@ -44,6 +46,11 @@ type
     procedure BuscarProvPorRazonSocial(dato: string);
     procedure BuscarProvPorCodigo(dato: string);
     procedure BuscarProvPorCUIT(dato: string);
+
+    procedure BuscarTransportistaPorRazonSocial(dato: string);
+    procedure BuscarTransportistaPorCodigo(dato: string);
+    procedure BuscarTransportistaPorCUIT(dato: string);
+
 
   end;
 
@@ -124,6 +131,7 @@ begin
    end;
 end;
 
+
 procedure TDM_BusquedaEmpresas.BuscarProvPorRazonSocial(dato: string);
 begin
   SQLBaseProveedores;
@@ -149,6 +157,53 @@ end;
 procedure TDM_BusquedaEmpresas.BuscarProvPorCUIT(dato: string);
 begin
   SQLBaseProveedores;
+  with qBusqueda do
+  begin
+    SQL.Add(' AND (UPPER(E.CUIT)  LIKE UPPER(''%'+dato+'%''))');
+    Open;
+    Resultados.LoadFromDataSet(qBusqueda, 0, lmAppend);
+  end;
+end;
+
+procedure TDM_BusquedaEmpresas.SQLBaseTransportistas;
+begin
+  With qBusqueda do
+   begin
+     if active then close;
+     SQL.Clear;
+     SQL.Add('SELECT E.RazonSocial, E.Cuit, Trans.Codigo');
+     SQL.Add(' ,'''+ TIP_TRANSPORTISTAS +''' as Tipo,E.id as idEmpresa, Trans.id as idTipo');
+     SQL.Add('FROM Empresas E ');
+     SQL.Add('INNER JOIN Transportistas Trans ON Trans.empresa_id = E.id');
+     SQL.Add('WHERE (E.bVisible = 1) AND (Trans.bVisible = 1)');
+   end;
+end;
+
+procedure TDM_BusquedaEmpresas.BuscarTransportistaPorRazonSocial(dato: string);
+begin
+  SQLBaseTransportistas;
+  with qBusqueda do
+  begin
+    SQL.Add(' AND (UPPER(E.RazonSocial) LIKE UPPER(''%'+dato+'%''))');
+    Open;
+    Resultados.LoadFromDataSet(qBusqueda, 0, lmAppend);
+  end;
+end;
+
+procedure TDM_BusquedaEmpresas.BuscarTransportistaPorCodigo(dato: string);
+begin
+  SQLBaseTransportistas;
+  with qBusqueda do
+  begin
+    SQL.Add(' AND (UPPER(Trans.Codigo)  LIKE UPPER(''%'+dato+'%''))');
+    Open;
+    Resultados.LoadFromDataSet(qBusqueda, 0, lmAppend);
+  end;
+end;
+
+procedure TDM_BusquedaEmpresas.BuscarTransportistaPorCUIT(dato: string);
+begin
+  SQLBaseTransportistas;
   with qBusqueda do
   begin
     SQL.Add(' AND (UPPER(E.CUIT)  LIKE UPPER(''%'+dato+'%''))');
