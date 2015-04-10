@@ -40,7 +40,9 @@ type
     procedure TransportistasAfterInsert(DataSet: TDataSet);
   private
      _idEmpresa: GUID_ID;
+     function getRazonSocial: String;
    public
+     property RazonSocial: String read getRazonSocial;
      procedure Nuevo;
      procedure Editar (refTransportista: GUID_ID);
      procedure Grabar;
@@ -68,6 +70,12 @@ begin
   Transportistascodigo.AsInteger:= 0;
   Transportistaszona_id.AsInteger:= 0;
   TransportistasbVisible.AsInteger:= 1;
+end;
+
+function TDM_Transportistas.getRazonSocial: String;
+begin
+  DM_Empresa.LevantarEmpresa(_idEmpresa);
+  Result:= DM_Empresa.RazonSocial;
 end;
 
 procedure TDM_Transportistas.Nuevo;

@@ -194,11 +194,13 @@ CREATE TABLE PedidosDetalles
   id		"guid"  NOT NULL PRIMARY KEY
 , pedido_id	"guid"	default '{00000000-0000-0000-0000-000000000000}'
 , producto_id	"guid"	default '{00000000-0000-0000-0000-000000000000}'
+, cantidad	float default 0
 , listaPrecio_id integer default 0
 , precioUnitario float default 0
 , porcentajeAplicar float default 0
 , bDescuento	smallint default 1
 , precioSubtotal float default 0
+, precioTotal	float default 0
 , bVisible	smallint default 0
 );
 

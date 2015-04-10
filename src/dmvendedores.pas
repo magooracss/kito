@@ -42,7 +42,9 @@ type
     procedure VendedoresAfterInsert(DataSet: TDataSet);
   private
     _idEmpresa: GUID_ID;
+    function getRazonSocial: String;
   public
+    property RazonSocial: String read getRazonSocial;
     procedure Nuevo;
     procedure Editar (refVendedor: GUID_ID);
     procedure Grabar;
@@ -73,6 +75,12 @@ begin
   VendedoreslistaPrecio_id.AsInteger:= 0;
   Vendedoreszona_id.AsInteger:= 0;
   VendedoresbVisible.AsInteger:= 1;
+end;
+
+function TDM_Vendedores.getRazonSocial: String;
+begin
+  DM_Empresa.LevantarEmpresa(_idEmpresa);
+  Result:= DM_Empresa.RazonSocial;
 end;
 
 procedure TDM_Vendedores.Nuevo;

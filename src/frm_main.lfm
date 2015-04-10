@@ -12,6 +12,7 @@ object frmMain: TfrmMain
   Font.Pitch = fpVariable
   Font.Quality = fqDraft
   Menu = MainMenu1
+  OnCreate = FormCreate
   OnShow = FormShow
   Position = poScreenCenter
   LCLVersion = '1.2.6.0'
@@ -55,6 +56,11 @@ object frmMain: TfrmMain
       Width = 10
       Caption = 'ToolButton2'
       Style = tbsSeparator
+    end
+    object ToolButton3: TToolButton
+      Left = 103
+      Top = 2
+      Action = pedNuevo
     end
   end
   object ActionList1: TActionList
@@ -164,6 +170,13 @@ object frmMain: TfrmMain
       Hint = 'Borra el vendedor de la base'
       OnExecute = vendBorrarExecute
     end
+    object pedNuevo: TAction
+      Category = 'Pedidos'
+      Caption = '&Nuevo pedido'
+      Hint = 'Crea un nuevo pedido en la base'
+      ImageIndex = 7
+      OnExecute = pedNuevoExecute
+    end
   end
   object MainMenu1: TMainMenu
     Images = DM_General.ImgAccionesMenu
@@ -239,6 +252,12 @@ object frmMain: TfrmMain
         object MenuItem24: TMenuItem
           Action = vendBorrar
         end
+      end
+    end
+    object MenuItem25: TMenuItem
+      Caption = 'Pedidos'
+      object MenuItem26: TMenuItem
+        Action = pedNuevo
       end
     end
   end

@@ -15,10 +15,14 @@ type
   { TfrmMain }
 
   TfrmMain = class(TForm)
+    MenuItem25: TMenuItem;
+    MenuItem26: TMenuItem;
+    pedNuevo: TAction;
     MenuItem21: TMenuItem;
     MenuItem22: TMenuItem;
     MenuItem23: TMenuItem;
     MenuItem24: TMenuItem;
+    ToolButton3: TToolButton;
     vendEditar: TAction;
     vendBorrar: TAction;
     vendNuevo: TAction;
@@ -64,7 +68,9 @@ type
     procedure cliBorrarExecute(Sender: TObject);
     procedure cliEditarExecute(Sender: TObject);
     procedure cliNuevoExecute(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
+    procedure pedNuevoExecute(Sender: TObject);
     procedure prgSalirExecute(Sender: TObject);
     procedure prodBorrarExecute(Sender: TObject);
     procedure prodEditarExecute(Sender: TObject);
@@ -85,6 +91,7 @@ type
      procedure pantallaProveedores(ID: GUID_ID);
      procedure pantallaTransportistas(ID: GUID_ID);
      procedure pantallaVendedores(ID: GUID_ID);
+     procedure pantallaPedidos(ID: GUID_ID);
   public
     { public declarations }
   end;
@@ -108,6 +115,7 @@ uses
   ,frm_transportistasae
   ,dmvendedores
   ,frm_vendedoresae
+  ,frm_pedidosae
   ;
 
 { TfrmMain }
@@ -221,6 +229,11 @@ end;
 procedure TfrmMain.cliNuevoExecute(Sender: TObject);
 begin
   pantallaCliente(GUIDNULO);
+end;
+
+procedure TfrmMain.FormCreate(Sender: TObject);
+begin
+
 end;
 
 procedure TfrmMain.cliEditarExecute(Sender: TObject);
@@ -422,6 +435,29 @@ begin
     pantBus.Free;
   end;
 end;
+
+(*******************************************************************************
+*** PEDIDOS
+*******************************************************************************)
+
+procedure TfrmMain.pantallaPedidos(ID: GUID_ID);
+var
+ pant: TfrmPedidoAE;
+begin
+  pant:= TfrmPedidoAE.Create(self);
+  try
+    pant.idPedido := ID;
+    pant.ShowModal;
+  finally
+    pant.Free;
+  end;
+end;
+
+procedure TfrmMain.pedNuevoExecute(Sender: TObject);
+begin
+  pantallaPedidos(GUIDNULO);
+end;
+
 
 end.
 

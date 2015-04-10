@@ -48,7 +48,9 @@ type
     procedure DataModuleCreate(Sender: TObject);
   private
     _idEmpresa: GUID_ID;
+    function getRazonSocial: String;
   public
+    property RazonSocial: String read getRazonSocial;
     procedure Nuevo;
     procedure Editar (refCliente: GUID_ID);
     procedure Grabar;
@@ -80,6 +82,12 @@ procedure TDM_Clientes.DataModuleCreate(Sender: TObject);
 begin
   qZonasClientes.Open;
   qListasPrecios.Open;
+end;
+
+function TDM_Clientes.getRazonSocial: String;
+begin
+  DM_Empresa.LevantarEmpresa(_idEmpresa);
+  Result:= DM_Empresa.RazonSocial;
 end;
 
 procedure TDM_Clientes.Nuevo;

@@ -174,7 +174,10 @@ type
     procedure ProvinciasAfterInsert(DataSet: TDataSet);
   private
     _idEmpresa: GUID_ID;
+    function GetRazonSocial: string;
   public
+    property RazonSocial: string read GetRazonSocial;
+
     function Nueva: GUID_ID;
     procedure Editar (refEmpresa: GUID_ID);
     procedure Grabar;
@@ -282,6 +285,18 @@ begin
   ProvinciasPROVINCIA.AsString:= EmptyStr;
   ProvinciasPAIS_ID.AsInteger:= PaisesID.AsInteger;
   ProvinciasBVISIBLE.AsInteger:= 1;
+end;
+
+function TDM_Empresa.GetRazonSocial: string;
+begin
+  with Empresas do
+  begin
+    if (active and
+      (RecordCount > 0)) then
+      Result:= EmpresasRazonSocial.AsString
+    else
+      Result:= EmptyStr;
+  end;
 end;
 
 procedure TDM_Empresa.LocalidadPorID(refLocalidad: Integer);
