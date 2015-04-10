@@ -165,3 +165,56 @@ CREATE TABLE Vendedores
 , bVisible	smallint default 1
 );
 
+
+CREATE TABLE Pedidos
+(
+  id		"guid"  NOT NULL PRIMARY KEY
+, numero	integer	default -1
+, cliente_id	"guid"	default '{00000000-0000-0000-0000-000000000000}'
+, txNotas	varchar(3000)
+, vendedor_id	"guid"	default '{00000000-0000-0000-0000-000000000000}'
+, fToma		date
+, fAEntregar	date
+, pagoAnticipado float default 0
+, transportista_id "guid"	default '{00000000-0000-0000-0000-000000000000}'
+, gastosEnvio	float default 0
+, estadoActual_id "guid"	default '{00000000-0000-0000-0000-000000000000}'
+, bFacturado	smallint default 0
+, fFacturacion	date
+, factura_id	"guid"	default '{00000000-0000-0000-0000-000000000000}'
+, porcentajeAplicar float default 0
+, montoAplicar	float default 0
+, bDescuento	smallint default 1
+, TotalPedido	float default 0
+, bVisible	smallint default 0
+);
+
+CREATE TABLE PedidosDetalles
+(
+  id		"guid"  NOT NULL PRIMARY KEY
+, pedido_id	"guid"	default '{00000000-0000-0000-0000-000000000000}'
+, producto_id	"guid"	default '{00000000-0000-0000-0000-000000000000}'
+, listaPrecio_id integer default 0
+, precioUnitario float default 0
+, porcentajeAplicar float default 0
+, bDescuento	smallint default 1
+, precioSubtotal float default 0
+, bVisible	smallint default 0
+);
+
+CREATE TABLE PedidosEstados
+(
+  id		"guid"  NOT NULL PRIMARY KEY
+, pedido_id	"guid"	default '{00000000-0000-0000-0000-000000000000}'
+, fecha		date
+, tipoEstado_id	integer default 0
+, notas		varchar(3000)
+, bVisible	smallint default 0
+);
+
+CREATE TABLE PedidosTiposEstados
+(
+  id		integer NOT NULL PRIMARY KEY
+, TipoEstado	varchar(30)
+, bVisible	smallint default 1			
+);

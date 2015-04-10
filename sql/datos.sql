@@ -48,3 +48,34 @@ INSERT INTO Zonas
 VALUES
 (0, 'Desconocida', 1);
 
+INSERT INTO PedidosTiposEstados
+(id, TipoEstado, bVisible)
+VALUES
+(0, 'Desconocido', 1);
+
+INSERT INTO PedidosTiposEstados
+(id, TipoEstado, bVisible)
+VALUES
+(1, 'Tomado', 1);
+
+INSERT INTO PedidosTiposEstados
+(id, TipoEstado, bVisible)
+VALUES
+(2, 'Armado', 1);
+
+INSERT INTO PedidosTiposEstados
+(id, TipoEstado, bVisible)
+VALUES
+(3, 'En transporte', 1);
+
+INSERT INTO PedidosTiposEstados
+(id, TipoEstado, bVisible)
+VALUES
+(4, 'Entregado', 1);
+
+INSERT INTO PedidosTiposEstados
+(id, TipoEstado, bVisible)
+VALUES
+(5, 'Rechazado', 1);
+
+

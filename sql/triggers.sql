@@ -118,3 +118,27 @@ END^
 
 SET TERM ; ^  
 
+SET TERM ^ ;
+
+CREATE TRIGGER nroPedido FOR Pedidos
+BEFORE INSERT POSITION 0
+AS 
+BEGIN 
+    If (New.numero = -1) then
+   New.numero = GEN_ID(NroPedido,1);
+END^
+
+SET TERM ; ^  
+
+SET TERM ^ ;
+
+CREATE TRIGGER TiposEstadosPedidosID FOR PedidosTiposEstados
+BEFORE INSERT POSITION 0
+AS 
+BEGIN 
+    If (New.id = -1) then
+   New.id = GEN_ID(TiposEstadosPedidoID,1);
+END^
+
+SET TERM ; ^  
+
