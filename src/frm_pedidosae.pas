@@ -16,16 +16,20 @@ type
 
   TfrmPedidoAE = class(TForm)
     BitBtn1: TBitBtn;
+    btnBuscarProducto: TBitBtn;
     btnBusquedaCliente: TBitBtn;
     btnBusquedaVendedor: TBitBtn;
     btnBusquedaTransportista: TBitBtn;
     btnCancelar: TBitBtn;
     btnGrabar: TBitBtn;
+    cbListaPrecio: TComboBox;
+    DBEdit1: TDBEdit;
     DBGrid1: TDBGrid;
+    DBText2: TDBText;
+    DBText3: TDBText;
     ds_PedidosDetalles: TDataSource;
     DBDateEdit1: TDBDateEdit;
     DBDateEdit2: TDBDateEdit;
-    DBLookupComboBox1: TDBLookupComboBox;
     DBMemo1: TDBMemo;
     DBRadioGroup1: TDBRadioGroup;
     DBText1: TDBText;
@@ -34,6 +38,8 @@ type
     ds_pedidosEstados: TDataSource;
     ds_PedidosTiposEstados: TDataSource;
     edClienteRazonSocial: TEdit;
+    edBusCodigo: TEdit;
+    edBusNombre: TEdit;
     edVendedorRazonSocial: TEdit;
     edTransportista: TEdit;
     GbCliente: TGroupBox;
@@ -42,7 +48,11 @@ type
     GroupBox1: TGroupBox;
     GroupBox2: TGroupBox;
     GroupBox3: TGroupBox;
+    GroupBox4: TGroupBox;
     Label1: TLabel;
+    Label10: TLabel;
+    Label11: TLabel;
+    Label12: TLabel;
     Label2: TLabel;
     Label3: TLabel;
     Label4: TLabel;
@@ -50,6 +60,7 @@ type
     Label6: TLabel;
     Label7: TLabel;
     Label8: TLabel;
+    Label9: TLabel;
     Panel1: TPanel;
     Panel2: TPanel;
     Panel3: TPanel;
@@ -58,17 +69,25 @@ type
     RxDBCurrEdit3: TRxDBCurrEdit;
     RxDBCurrEdit4: TRxDBCurrEdit;
     RxDBSpinEdit1: TRxDBSpinEdit;
+    procedure btnBuscarProductoClick(Sender: TObject);
     procedure btnBusquedaClienteClick(Sender: TObject);
     procedure btnBusquedaTransportistaClick(Sender: TObject);
     procedure btnBusquedaVendedorClick(Sender: TObject);
     procedure btnCancelarClick(Sender: TObject);
     procedure btnGrabarClick(Sender: TObject);
+    procedure edBusCodigoChange(Sender: TObject);
+    procedure edBusCodigoKeyPress(Sender: TObject; var Key: char);
+    procedure edBusNombreKeyPress(Sender: TObject; var Key: char);
     procedure FormShow(Sender: TObject);
+
   private
     _idPedido: GUID_ID;
     procedure Inicializar;
     function DatosValidos: boolean;
     procedure AvisoError (mensaje: string);
+    procedure PantallaBusProd(dato: string; Tipo: integer);
+    procedure BusquedaProducto (dato: string; tipo: integer);
+    procedure CargarProducto(productoID: GUID_ID);
   public
     property idPedido: GUID_ID read _idPedido write _idPedido;
   end;
@@ -82,8 +101,10 @@ uses
    dmpedidos
   ,dmclientes
   ,dmvendedores
+  ,dmproductos
   ,frm_busquedaempresas
   ,dmbusquedaempresas
+  ,frm_busquedaProductos
   ;
 
 { TfrmPedidoAE }
@@ -103,12 +124,17 @@ begin
         Pedidoscliente_id.AsString:= pantBus.idCliente;
         Post;
       end;
+    DM_Clientes.Editar(pantBus.idCliente);
     edClienteRazonSocial.Text:= pantBus.RazonSocial;
+    cbListaPrecio.ItemIndex:= DM_General.obtenerIdxCombo(cbListaPrecio
+                                                       ,DM_Clientes.ClienteslistaPrecio_id.AsInteger);
+
     end;
   finally
     pantBus.Free;
   end;
 end;
+
 
 procedure TfrmPedidoAE.btnBusquedaTransportistaClick(Sender: TObject);
 var
@@ -167,6 +193,11 @@ begin
   end;
 end;
 
+procedure TfrmPedidoAE.edBusCodigoChange(Sender: TObject);
+begin
+
+end;
+
 procedure TfrmPedidoAE.FormShow(Sender: TObject);
 begin
   Inicializar;
@@ -174,6 +205,7 @@ end;
 
 procedure TfrmPedidoAE.Inicializar;
 begin
+  DM_General.CargarComboBox(cbListaPrecio, 'ListaPrecio', 'id', DM_Productos.qListasPrecios);
   if _idPedido = GUIDNULO then
   begin
     DM_Pedidos.Nuevo;
@@ -183,6 +215,8 @@ begin
     DM_Pedidos.LevantarPedido (_idPedido);
     edClienteRazonSocial.Text:= DM_Clientes.RazonSocial;
     edVendedorRazonSocial.Text:= DM_Vendedores.RazonSocial;
+    cbListaPrecio.ItemIndex:= DM_General.obtenerIdxCombo(cbListaPrecio
+                                                        ,DM_Clientes.ClienteslistaPrecio_id.AsInteger);
   end;
 end;
 
@@ -203,6 +237,81 @@ procedure TfrmPedidoAE.AvisoError(mensaje: string);
 begin
   ShowMessage(mensaje);
 end;
+
+(*******************************************************************************
+*** CARGA DE PRODUCTO
+*******************************************************************************)
+
+procedure TfrmPedidoAE.CargarProducto(productoID: GUID_ID);
+begin
+  ShowMessage('Producto Cargado: ' +productoID);
+end;
+
+
+procedure TfrmPedidoAE.PantallaBusProd(dato: string; Tipo: integer);
+var
+  pant: TfrmBusquedaProducto;
+begin
+  pant:= TfrmBusquedaProducto.Create(self);
+  try
+    if (dato <> EmptyStr) then
+    begin
+      pant.DatoBuscar:= dato;
+      pant.CriterioBuscar:= Tipo;
+    end;
+    if pant.ShowModal = mrOK then
+    begin
+     CargarProducto (pant.productoSeleccionado);
+    end;
+  finally
+    pant.Free;
+  end;
+end;
+
+procedure TfrmPedidoAE.btnBuscarProductoClick(Sender: TObject);
+begin
+  PantallaBusProd(EmptyStr, MaxInt);
+end;
+
+procedure TfrmPedidoAE.BusquedaProducto(dato: string; tipo: integer);
+begin
+  with DM_Productos do
+  begin
+    BuscarProducto(TRIM(dato), tipo);
+    if ((qBuscarProductos.Active) and
+         (qBuscarProductos.RecordCount = 1)) then
+    begin
+      CargarProducto (qBuscarProductosID.AsString);
+    end
+    else
+    begin
+      PantallaBusProd(dato, tipo);
+    end;
+  end;
+end;
+
+procedure TfrmPedidoAE.edBusCodigoKeyPress(Sender: TObject; var Key: char);
+begin
+  if Key = #13 then
+  begin
+    BusquedaProducto(edBusCodigo.Text, BUS_CODIGO);
+    edBusCodigo.Clear;
+    edBusCodigo.SetFocus;
+  end;
+end;
+
+procedure TfrmPedidoAE.edBusNombreKeyPress(Sender: TObject; var Key: char);
+begin
+  if Key = #13 then
+  begin
+    BusquedaProducto(edBusNombre.Text, BUS_NOMBRE);
+    edBusNombre.Clear;
+    edBusNombre.SetFocus;
+  end;
+
+end;
+
+
 
 end.
 

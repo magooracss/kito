@@ -30,8 +30,11 @@ type
     procedure btnSeleccionarClick(Sender: TObject);
     procedure edBuscarDatoKeyPress(Sender: TObject; var Key: char);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
+    procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
   private
+    _criterioBuscar: integer;
+    _datoBuscar: string;
     function getIdProducto: GUID_ID;
     function getProductoNombre: string;
     procedure Inicializar;
@@ -40,6 +43,8 @@ type
   public
     property productoSeleccionado: GUID_ID read getIdProducto;
     property productoNombre: string read getProductoNombre;
+    property DatoBuscar: string write _datoBuscar;
+    property CriterioBuscar: integer write _criterioBuscar;
   end;
 
 var
@@ -57,6 +62,12 @@ procedure TfrmBusquedaProducto.FormClose(Sender: TObject;
   var CloseAction: TCloseAction);
 begin
   Finalizar;
+end;
+
+procedure TfrmBusquedaProducto.FormCreate(Sender: TObject);
+begin
+  _datoBuscar:= EmptyStr;
+  _criterioBuscar:= 0;
 end;
 
 procedure TfrmBusquedaProducto.btnCancelarClick(Sender: TObject);
@@ -111,6 +122,12 @@ begin
   edBuscarDato.Clear;
   edBuscarDato.SetFocus;
   rgCritero.ItemIndex:= StrToIntDef(LeerDato(SECCION_SCR, PROD_BUS_CRIT),0);
+  if (_datoBuscar <> EmptyStr) then
+  begin
+    edBuscarDato.Text:= _datoBuscar;
+    rgCritero.ItemIndex:= _criterioBuscar;
+    Buscar;
+  end;
 end;
 
 procedure TfrmBusquedaProducto.Finalizar;
@@ -125,7 +142,6 @@ begin
   else
     ShowMessage('No se puede buscar con el campo BUSCAR en blanco');
 end;
-
 
 end.
 

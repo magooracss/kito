@@ -1,11 +1,11 @@
 object frmPedidoAE: TfrmPedidoAE
-  Left = 148
+  Left = 167
   Height = 654
-  Top = 38
-  Width = 1015
+  Top = 22
+  Width = 1036
   Caption = 'Pedido'
   ClientHeight = 654
-  ClientWidth = 1015
+  ClientWidth = 1036
   Font.CharSet = ANSI_CHARSET
   Font.Height = -13
   Font.Name = 'Arial'
@@ -18,10 +18,10 @@ object frmPedidoAE: TfrmPedidoAE
     Left = 0
     Height = 50
     Top = 604
-    Width = 1015
+    Width = 1036
     Align = alBottom
     ClientHeight = 50
-    ClientWidth = 1015
+    ClientWidth = 1036
     TabOrder = 0
     object btnGrabar: TBitBtn
       Left = 42
@@ -98,7 +98,7 @@ object frmPedidoAE: TfrmPedidoAE
       TabOrder = 0
     end
     object btnCancelar: TBitBtn
-      Left = 836
+      Left = 857
       Height = 40
       Top = 3
       Width = 134
@@ -177,10 +177,10 @@ object frmPedidoAE: TfrmPedidoAE
     Left = 0
     Height = 290
     Top = 0
-    Width = 1015
+    Width = 1036
     Align = alTop
     ClientHeight = 290
-    ClientWidth = 1015
+    ClientWidth = 1036
     TabOrder = 1
     object DBText1: TDBText
       Left = 8
@@ -202,7 +202,7 @@ object frmPedidoAE: TfrmPedidoAE
       Left = 704
       Height = 147
       Top = 28
-      Width = 306
+      Width = 327
       Anchors = [akTop, akLeft, akRight]
       DataField = 'txNotas'
       DataSource = DS_Pedidos
@@ -444,6 +444,7 @@ object frmPedidoAE: TfrmPedidoAE
       ButtonWidth = 23
       CharCase = ecNormal
       DialogTitle = 'Seleccionar Fecha'
+      Enabled = False
       MaxLength = 10
       NumGlyphs = 2
       PopupColor = clWindow
@@ -461,6 +462,7 @@ object frmPedidoAE: TfrmPedidoAE
       ButtonWidth = 23
       CharCase = ecNormal
       DialogTitle = 'Seleccionar Fecha'
+      Enabled = False
       MaxLength = 10
       NumGlyphs = 2
       PopupColor = clWindow
@@ -486,14 +488,14 @@ object frmPedidoAE: TfrmPedidoAE
       ParentColor = False
     end
     object GroupBox1: TGroupBox
-      Left = 500
+      Left = 504
       Height = 89
       Top = 192
-      Width = 210
+      Width = 231
       Anchors = [akTop, akLeft, akRight]
       Caption = 'Montos'
       ClientHeight = 71
-      ClientWidth = 206
+      ClientWidth = 227
       TabOrder = 5
       object RxDBCurrEdit1: TRxDBCurrEdit
         Left = 88
@@ -647,7 +649,7 @@ object frmPedidoAE: TfrmPedidoAE
       end
     end
     object GroupBox2: TGroupBox
-      Left = 712
+      Left = 742
       Height = 89
       Top = 192
       Width = 289
@@ -722,23 +724,23 @@ object frmPedidoAE: TfrmPedidoAE
     Left = 0
     Height = 70
     Top = 290
-    Width = 1015
+    Width = 1036
     Align = alTop
     BevelInner = bvRaised
     BevelOuter = bvLowered
     ClientHeight = 70
-    ClientWidth = 1015
+    ClientWidth = 1036
     TabOrder = 2
     object RxDBCurrEdit4: TRxDBCurrEdit
-      Left = 584
-      Height = 27
-      Top = 32
+      Left = 600
+      Height = 30
+      Top = 33
       Width = 168
       Alignment = taRightJustify
       Color = clMoneyGreen
       Enabled = False
       Font.CharSet = ANSI_CHARSET
-      Font.Height = -16
+      Font.Height = -19
       Font.Name = 'Arial'
       Font.Pitch = fpVariable
       Font.Quality = fqDraft
@@ -753,16 +755,16 @@ object frmPedidoAE: TfrmPedidoAE
       DataSource = DS_Pedidos
     end
     object Label8: TLabel
-      Left = 584
+      Left = 603
       Height = 16
-      Top = 8
+      Top = 14
       Width = 99
       Anchors = [akTop, akRight]
       Caption = 'Monto del pedido'
       ParentColor = False
     end
     object GroupBox3: TGroupBox
-      Left = 760
+      Left = 781
       Height = 66
       Top = 2
       Width = 253
@@ -771,21 +773,6 @@ object frmPedidoAE: TfrmPedidoAE
       ClientHeight = 48
       ClientWidth = 249
       TabOrder = 1
-      object DBLookupComboBox1: TDBLookupComboBox
-        Left = 8
-        Height = 24
-        Top = 15
-        Width = 144
-        DataField = 'tipoEstado_id'
-        DataSource = ds_pedidosEstados
-        KeyField = 'ID'
-        ListField = 'TIPOESTADO'
-        ListFieldIndex = 0
-        ListSource = ds_PedidosTiposEstados
-        LookupCache = False
-        Style = csDropDownList
-        TabOrder = 0
-      end
       object BitBtn1: TBitBtn
         Left = 162
         Height = 54
@@ -829,7 +816,233 @@ object frmPedidoAE: TfrmPedidoAE
           FF0000F2FF0109F3FF190CF3FF480CF3FF4F0AF3FF2302F3FF03
         }
         Layout = blGlyphTop
+        TabOrder = 0
+      end
+      object DBText2: TDBText
+        Left = 8
+        Height = 18
+        Top = 5
+        Width = 61
+        DataField = 'lxEstado'
+        DataSource = ds_pedidosEstados
+        Font.CharSet = ANSI_CHARSET
+        Font.Color = clBlue
+        Font.Height = -15
+        Font.Name = 'Arial'
+        Font.Pitch = fpVariable
+        Font.Quality = fqDraft
+        Font.Style = [fsBold]
+        ParentColor = False
+        ParentFont = False
+      end
+      object DBText3: TDBText
+        Left = 8
+        Height = 15
+        Top = 30
+        Width = 47
+        DataField = 'fecha'
+        DataSource = ds_pedidosEstados
+        Font.CharSet = ANSI_CHARSET
+        Font.Height = -12
+        Font.Name = 'Arial'
+        Font.Pitch = fpVariable
+        Font.Quality = fqDraft
+        Font.Style = [fsBold]
+        ParentColor = False
+        ParentFont = False
+      end
+    end
+    object GroupBox4: TGroupBox
+      Left = 2
+      Height = 66
+      Top = 2
+      Width = 590
+      Align = alLeft
+      Caption = 'Producto'
+      ClientHeight = 48
+      ClientWidth = 586
+      TabOrder = 2
+      object cbListaPrecio: TComboBox
+        Left = 224
+        Height = 24
+        Top = 21
+        Width = 168
+        Font.CharSet = ANSI_CHARSET
+        Font.Height = -12
+        Font.Name = 'Arial'
+        Font.Pitch = fpVariable
+        Font.Quality = fqDraft
+        ItemHeight = 15
+        ParentFont = False
+        TabOrder = 0
+        Text = 'cbListaPrecio'
+      end
+      object Label12: TLabel
+        Left = 224
+        Height = 16
+        Top = 3
+        Width = 69
+        Caption = 'Lista Precio'
+        ParentColor = False
+      end
+      object edBusNombre: TEdit
+        Left = 96
+        Height = 23
+        Top = 21
+        Width = 120
+        Font.CharSet = ANSI_CHARSET
+        Font.Height = -12
+        Font.Name = 'Arial'
+        Font.Pitch = fpVariable
+        Font.Quality = fqDraft
+        OnKeyPress = edBusNombreKeyPress
+        ParentFont = False
         TabOrder = 1
+      end
+      object Label11: TLabel
+        Left = 96
+        Height = 16
+        Top = 6
+        Width = 45
+        Caption = 'Nombre'
+        ParentColor = False
+      end
+      object edBusCodigo: TEdit
+        Left = 8
+        Height = 24
+        Top = 21
+        Width = 80
+        OnChange = edBusCodigoChange
+        OnKeyPress = edBusCodigoKeyPress
+        TabOrder = 2
+      end
+      object Label9: TLabel
+        Left = 8
+        Height = 16
+        Top = 6
+        Width = 40
+        Caption = 'Código'
+        ParentColor = False
+      end
+      object btnBuscarProducto: TBitBtn
+        Left = 400
+        Height = 53
+        Top = -7
+        Width = 72
+        Anchors = [akTop, akRight]
+        Caption = 'Buscar'
+        Glyph.Data = {
+          36090000424D3609000000000000360000002800000018000000180000000100
+          2000000000000009000064000000640000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          000000000000000000000000000000000000000000071010101F130E0E35100C
+          0C410F0B0B451D1A1A46130E0E351010101F000000070000000810101020130E
+          0E36100C0C410F0B0B45100C0C41130E0E361010102000000000000000000000
+          0000000000000000000000000000000000010000000D36342EFF3A3832FF3937
+          31FF383630FF37352FFF36342EFF36342EFF3C3C3C26686C6C4036342EFF3A38
+          32FF393731FF383630FF37352FFF36342EFF36342EFF00000000000000000000
+          0000000000020000000E0000001900000024141414343C3C36FFBCBFBEFFBCC0
+          BFFF959896FF686B69FF535654FF36342EFD838888EB868A8AF83A3933F7BCBF
+          BEFFBCC0BFFF959896FF686B69FF535654FF37352FFC00000000000000000000
+          00020000000F0000001C575A575B4D4F4F641A1A1A4D3D3C37FFD9DBDAFFCBCF
+          CDFFA7ABA9FF808381FF6E7170FF383630FF9996ADFD8B8D95F43B3934FAD9DB
+          DAFFCBCFCDFFA7ABA9FF808381FF6E7170FF36342EFA00000000000000000000
+          0000000000084E534E2E868B8AF88A8F90F5848988F9535450FC9A9D9AFFB4BA
+          B7FF828785FF626664FF50514EFF58565CFFADA5CEFF8F909AF54C4C48EE9A9D
+          9AFFB4BAB7FF828785FF626664FF50514EFF393732B800000000000000000000
+          00000000000080808002898E8DE6B9B5CFFFB3AEC7FF9591A2FF585956FF8F92
+          91FF626664FF525452FF3E3D3AFFB3B1B2FFD2CEE4FFABA5C7FF7B7887FF5554
+          52FF8F9291FF626664FF525452FF343431F335352F5200000000000000000000
+          0000838B87428689894E878B8AACA8A6B5FFCFCAE2FF9E9C9CFF383631FF3E3E
+          38FF3B3B34FF393932FF373630FF393832FF8C8A8AFE9A989BFF3B3934FF3A3A
+          33FF3D3C36FF3A3933FF383832FF36352FFF39372F8100000000000000008288
+          882B858A88FD9FA2A9F09D9EA7F3C6C2D8FFF2F1F8FF3C3B35FFA4A9A7FFC4CA
+          C8FFA7ACA9FF858987FF6B6F6DFF51524EFF373630FF393832FF737471FFC4CA
+          C8FFA7ABA9FF858886FF6B6F6DFF656766FF37352FF900000000000000009999
+          9905898E8ED8ADACB6F8D1CCE3FFE3E0EEFFCDCDD7FE36342EFFADB2B0FFB4BB
+          B8FF929895FF6C716FFF535755FF36342EFF60625EFF565753FF36342EFFB5BC
+          B9FF929795FF6C706EFF535755FF6B6F6DFF36342EFF00000000000000000000
+          00008989891A878B8AF7D2D0E1FFECEAF4FF909494F136342EFFB0B5B3FFB4BB
+          B8FF929895FF6C716FFF535755FF36342EFF858A88FF727674FF36342EFFB5BC
+          B9FF929795FF6C706EFF535755FF707372FF36342EFF00000000000000008B90
+          9095898E8CF6A9ABB1F4E1DEEDFFE0DEE9FF8A8E8DE7383631F4A7ACAAFFC9CE
+          CCFFA4A9A6FF6D7270FF535755FF36342EFF858A88FF727674FF36342EFFB5BC
+          B9FF929795FF818482FF777A78FF707471FF37352EF70000000000000000878C
+          8BF7BFBFC5FEE1DFEAFFE4E2EFFFD9D7E1FF8C9090D33939326B383630F93F3D
+          36F8979A97FF7C817FFF535755FF36342EFF5B5C58FF52534FFF36342EFFB5BC
+          B9FF9DA2A0FF818481FF3D3C36FF393731FF3735306F00000000000000008489
+          89348A8F8DAF939796F5E8E6F0FFE1E0EAFF898E8DEA00000000000000003636
+          2C344F4E49FF989B9AFF828483FF60615DFF36342EFB37352FF9787A76FFCACF
+          CDFFB2B5B4FF4D4D48FF737674F4898D8D7D0000000000000000000000000000
+          0000878C8A59939796F3EDEBF3FFECE9F3FF969999F1858B8B2E000000000000
+          00003A3933FF37352FFF36342EFF36342EFF37352F784A4C448A383630FF3634
+          2EFF36342EFF393731FF85858517000000000000000000000000000000008489
+          8934959999F5EAE9EFFFF1F0F7FFEFEEF6FFD7D7DDFE8B8F8ED68080800C0000
+          000036342EFF7C807FFF555957FF36342EFF8989890D898D8CDC36342EFF7C80
+          7FFF555957FF36342EFF888D8CDD80808006000000000000000000000000858B
+          8B2E8C908FED8C9190EF959A99F5EDECF1FFF3F2F8FFC2C4C9F8898E8DDD868A
+          8A3D3C3A34BA36342EFF36342EFF3E3D37D1898D8DE0C1C1C8F96B6968FF3634
+          2EFF36342EFF53524FFB8E9291F6838B8B210000000000000000000000000000
+          000000000000000000008C9190CCEDECF0FFF4F3F8FFF6F5FAFFDEDEE2FE9CA1
+          A1F3878D8CF18A8F8FDC898C8BF29CA0A1F3DBDAE1FEF2F1F7FFEFEDF5FFCDCD
+          D4FE858B88A1868A8A3D858A8A30000000000000000000000000000000000000
+          0000000000008288882D9DA1A1F2F1F1F4FFD5D5D9FEF3F2F6FFF4F3F9FFF8F8
+          FBFFF3F3F7FFECECF0FFF3F2F6FFF5F4F9FFF5F4F9FFF0EFF4FFECEBEFFFEFEE
+          F3FF8A8D8EE78080800200000000000000000000000000000000000000000000
+          000000000000848989348D9291F9898D8CEB868B89ABC0C2C4F5FBFAFDFFF5F5
+          F8FFFBFAFCFFF7F6FAFFFAFAFCFFF9F8FBFFFAFAFCFF969A9AF68A8F8ECB969A
+          9AF68B908EFF8686861500000000000000000000000000000000000000000000
+          000000000000000000008080800CAAAAAA03848A8753BEC1C2F5D4D5D9FB858A
+          88FFC3C4C7F6FDFDFEFF9BA09FF6929796F7FAF9FBFF878C8AFC80808006868C
+          862A858B852C0000000000000000000000000000000000000000000000000000
+          00000000000000000000000000000000000084898936909494F9898E8DD9808C
+          8C148B908FF2DDDDE0FF8B918FAB888B8B4F9B9F9FF58C918FF0999999050000
+          0000000000000000000000000000000000000000000000000000000000000000
+          00000000000000000000000000000000000000000000838A8A238E8E8E090000
+          00008D908F888C908FF48888882F00000000878C8735868C862A000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000
+        }
+        Layout = blGlyphTop
+        OnClick = btnBuscarProductoClick
+        TabOrder = 3
+      end
+      object Label10: TLabel
+        Left = 480
+        Height = 16
+        Top = -2
+        Width = 51
+        Anchors = [akTop, akRight]
+        Caption = 'Cantidad'
+        Font.CharSet = ANSI_CHARSET
+        Font.Height = -13
+        Font.Name = 'Arial'
+        Font.Pitch = fpVariable
+        Font.Quality = fqDraft
+        ParentColor = False
+        ParentFont = False
+      end
+      object DBEdit1: TDBEdit
+        Left = 480
+        Height = 30
+        Top = 15
+        Width = 104
+        DataField = 'cantidad'
+        DataSource = ds_PedidosDetalles
+        CharCase = ecNormal
+        Font.CharSet = ANSI_CHARSET
+        Font.Height = -15
+        Font.Name = 'Arial Black'
+        Font.Pitch = fpVariable
+        Font.Quality = fqDraft
+        Font.Style = [fsBold]
+        MaxLength = 0
+        ParentFont = False
+        TabOrder = 4
       end
     end
   end
@@ -837,7 +1050,7 @@ object frmPedidoAE: TfrmPedidoAE
     Left = 0
     Height = 244
     Top = 360
-    Width = 1015
+    Width = 1036
     Align = alClient
     AutoFillColumns = True
     Color = clWindow

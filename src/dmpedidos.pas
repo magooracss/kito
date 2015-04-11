@@ -9,6 +9,12 @@ uses
   ,dmgeneral
   ;
 
+const
+  EST_TOMADO = 1; //Estado Tomado
+  EST_ARMADO = 2; //Estado Armado
+  EST_TRANSP = 3; //Estado En Transporte
+  EST_ENTREGADO = 4; // Estado Entregado
+  EST_RECHAZADO = 5; // Estado Rechazado
 
 type
 
@@ -42,6 +48,7 @@ type
     PedidosEstadosbVisible: TLongintField;
     PedidosEstadosfecha: TDateTimeField;
     PedidosEstadosid: TStringField;
+    PedidosEstadoslxEstado: TStringField;
     PedidosEstadosNotas: TStringField;
     PedidosEstadospedido_id: TStringField;
     PedidosEstadostipoEstado_id: TLongintField;
@@ -59,6 +66,10 @@ type
     Pedidostransportista_id: TStringField;
     PedidostxNotas: TStringField;
     Pedidosvendedor_id: TStringField;
+    qEstadoPorID: TZQuery;
+    qEstadoPorIDBVISIBLE: TSmallintField;
+    qEstadoPorIDID: TLongintField;
+    qEstadoPorIDTIPOESTADO: TStringField;
     qEstadosBVISIBLE: TSmallintField;
     qEstadosID: TLongintField;
     qEstadosTIPOESTADO: TStringField;
@@ -85,6 +96,7 @@ type
     SELPedidosEstadosBVISIBLE: TSmallintField;
     SELPedidosEstadosFECHA: TDateField;
     SELPedidosEstadosID: TStringField;
+    SELPedidosEstadosLXESTADO: TStringField;
     SELPedidosEstadosNOTAS: TStringField;
     SELPedidosEstadosPEDIDO_ID: TStringField;
     SELPedidosEstadosTIPOESTADO_ID: TLongintField;
@@ -110,11 +122,12 @@ type
     procedure PedidosDetallesAfterInsert(DataSet: TDataSet);
     procedure PedidosEstadosAfterInsert(DataSet: TDataSet);
   private
-    { private declarations }
+    procedure CambiarEstado (estadoID: integer; fecha: TDateTime; obs: String);
   public
     procedure Grabar;
     procedure Nuevo;
     procedure LevantarPedido(refPedido: GUID_ID);
+
   end;
 
 var
@@ -191,6 +204,7 @@ begin
   DM_General.ReiniciarTabla(PedidosDetalles);
   DM_General.ReiniciarTabla(PedidosEstados);
   Pedidos.Insert;
+  CambiarEstado(EST_TOMADO, Now, EmptyStr);
 end;
 
 procedure TDM_Pedidos.LevantarPedido(refPedido: GUID_ID);
@@ -209,6 +223,31 @@ begin
   end;
   { TODO : Falta levantar detalles y estados}
 end;
+
+(*******************************************************************************
+*** ESTADOS DE LOS PEDIDOS
+*******************************************************************************)
+procedure TDM_Pedidos.CambiarEstado(estadoID: integer; fecha: TDateTime;
+  obs: String);
+begin
+  with qEstadoPorID do
+  begin
+    if active then close;
+    ParamByName('id').asInteger:= estadoID;
+    Open;
+  end;
+
+  with PedidosEstados do
+  begin
+    Insert;
+    PedidosEstadostipoEstado_id.AsInteger:= estadoID;
+    PedidosEstadosfecha.AsDateTime:= fecha;
+    PedidosEstadosNotas.AsString:= obs;
+    PedidosEstadoslxEstado.asString:= qEstadoPorIDTIPOESTADO.AsString;
+    Post;
+  End;
+end;
+
 
 end.
 

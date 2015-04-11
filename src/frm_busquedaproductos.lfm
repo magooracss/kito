@@ -12,6 +12,7 @@ object frmBusquedaProducto: TfrmBusquedaProducto
   Font.Pitch = fpVariable
   Font.Quality = fqDraft
   OnClose = FormClose
+  OnCreate = FormCreate
   OnShow = FormShow
   Position = poOwnerFormCenter
   LCLVersion = '1.2.6.0'
