@@ -5,9 +5,9 @@ unit frm_pedidosae;
 interface
 
 uses
-  Classes, SysUtils, db, FileUtil, dbdateedit, dbcurredit, RxDBSpinEdit, Forms,
-  Controls, Graphics, Dialogs, ExtCtrls, Buttons, DbCtrls, StdCtrls, DBGrids,
-  dmgeneral
+  Classes, SysUtils, db, FileUtil, dbdateedit, dbcurredit, RxDBSpinEdit, rxspin,
+  Forms, Controls, Graphics, Dialogs, ExtCtrls, Buttons, DbCtrls, StdCtrls,
+  DBGrids, dmgeneral
   ;
 
 type
@@ -23,7 +23,6 @@ type
     btnCancelar: TBitBtn;
     btnGrabar: TBitBtn;
     cbListaPrecio: TComboBox;
-    DBEdit1: TDBEdit;
     DBGrid1: TDBGrid;
     DBText2: TDBText;
     DBText3: TDBText;
@@ -37,6 +36,7 @@ type
     DS_Clientes: TDataSource;
     ds_pedidosEstados: TDataSource;
     ds_PedidosTiposEstados: TDataSource;
+    edCantidad: TRxSpinEdit;
     edClienteRazonSocial: TEdit;
     edBusCodigo: TEdit;
     edBusNombre: TEdit;
@@ -75,7 +75,6 @@ type
     procedure btnBusquedaVendedorClick(Sender: TObject);
     procedure btnCancelarClick(Sender: TObject);
     procedure btnGrabarClick(Sender: TObject);
-    procedure edBusCodigoChange(Sender: TObject);
     procedure edBusCodigoKeyPress(Sender: TObject; var Key: char);
     procedure edBusNombreKeyPress(Sender: TObject; var Key: char);
     procedure FormShow(Sender: TObject);
@@ -193,11 +192,6 @@ begin
   end;
 end;
 
-procedure TfrmPedidoAE.edBusCodigoChange(Sender: TObject);
-begin
-
-end;
-
 procedure TfrmPedidoAE.FormShow(Sender: TObject);
 begin
   Inicializar;
@@ -244,7 +238,10 @@ end;
 
 procedure TfrmPedidoAE.CargarProducto(productoID: GUID_ID);
 begin
-  ShowMessage('Producto Cargado: ' +productoID);
+  DM_Pedidos.NuevoProducto (productoID
+                            , DM_General.obtenerIDIntComboBox(cbListaPrecio)
+                            ,edCantidad.Value);
+
 end;
 
 

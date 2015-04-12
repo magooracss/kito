@@ -23,6 +23,10 @@ type
   TDM_Pedidos = class(TDataModule)
     Pedidos: TRxMemoryData;
     PedidosDetalles: TRxMemoryData;
+    PedidosDetalleslxCodigo: TStringField;
+    PedidosDetalleslxListaPrecio: TStringField;
+    PedidosDetalleslxProducto: TStringField;
+    PedidosDetallesproducto_id: TStringField;
     PedidosEstados: TRxMemoryData;
     DELPedidos: TZQuery;
     DELPedidosDetalles: TZQuery;
@@ -73,8 +77,24 @@ type
     qEstadosBVISIBLE: TSmallintField;
     qEstadosID: TLongintField;
     qEstadosTIPOESTADO: TStringField;
+    qPrecio: TZQuery;
+    qPrecioBVISIBLE: TSmallintField;
+    qPrecioBVISIBLE1: TSmallintField;
+    qPrecioID: TStringField;
+    qPrecioID1: TStringField;
+    qPrecioIVA: TFloatField;
+    qPrecioIVA1: TFloatField;
+    qPrecioLISTAPRECIO_ID: TLongintField;
+    qPrecioLISTAPRECIO_ID1: TLongintField;
+    qPrecioMONTO: TFloatField;
+    qPrecioMONTO1: TFloatField;
+    qPrecioPRODUCTO_ID: TStringField;
+    qPrecioPRODUCTO_ID1: TStringField;
     SELPedidos: TZQuery;
     SELPedidosDetalles: TZQuery;
+    SELPedidosDetallesLXCODIGO: TStringField;
+    SELPedidosDetallesLXLISTAPRECIO: TStringField;
+    SELPedidosDetallesLXPRODUCTO: TStringField;
     SELPedidosEstados: TZQuery;
     SELPedidosBDESCUENTO: TSmallintField;
     SELPedidosBFACTURADO: TSmallintField;
@@ -123,10 +143,19 @@ type
     procedure PedidosEstadosAfterInsert(DataSet: TDataSet);
   private
     procedure CambiarEstado (estadoID: integer; fecha: TDateTime; obs: String);
+
+    procedure AjustarPreciosProducto;
+    procedure AjustarMontoPedido;
   public
     procedure Grabar;
     procedure Nuevo;
     procedure LevantarPedido(refPedido: GUID_ID);
+
+
+    procedure NuevoProducto (productoID: GUID_ID; listaPrecioID: integer
+                             ; cantidad: Double);
+
+
 
   end;
 
@@ -134,8 +163,10 @@ var
   DM_Pedidos: TDM_Pedidos;
 
 implementation
-
 {$R *.lfm}
+uses
+  dmproductos
+  ;
 
 { TDM_Pedidos }
 
@@ -171,6 +202,7 @@ procedure TDM_Pedidos.PedidosDetallesAfterInsert(DataSet: TDataSet);
 begin
   PedidosDetallesid.AsString:= DM_General.CrearGUID;
   PedidosDetallespedido_id.AsString:= Pedidosid.AsString;
+  PedidosDetallesproducto_id.AsString:= GUIDNULO;
   PedidosDetalleslistaPrecio_id.AsInteger:= 0;
   PedidosDetallesprecioUnitario.AsFloat:= 0;
   PedidosDetallesporcentajeAplicar.AsFloat:= 0;
@@ -224,6 +256,16 @@ begin
   { TODO : Falta levantar detalles y estados}
 end;
 
+procedure TDM_Pedidos.AjustarMontoPedido;
+begin
+  with Pedidos do
+  begin
+    Edit;
+    { TODO : Ajustar monto del pedido al agregar productos }
+    Post;
+  end;
+end;
+
 (*******************************************************************************
 *** ESTADOS DE LOS PEDIDOS
 *******************************************************************************)
@@ -246,6 +288,64 @@ begin
     PedidosEstadoslxEstado.asString:= qEstadoPorIDTIPOESTADO.AsString;
     Post;
   End;
+end;
+
+(*******************************************************************************
+*** PRODUCTOS PEDIDOS
+*******************************************************************************)
+
+procedure TDM_Pedidos.NuevoProducto(productoID: GUID_ID;
+  listaPrecioID: integer; cantidad: Double);
+begin
+
+  with PedidosDetalles do
+  begin
+    Insert;
+    PedidosDetallesproducto_id.AsString:= productoID;
+    PedidosDetalleslistaPrecio_id.AsInteger:= listaPrecioID;
+    PedidosDetallescantidad.AsFloat:= cantidad;
+    DM_Productos.Editar(productoID);
+    PedidosDetalleslxCodigo.AsString:= DM_Productos.Productoscodigo.AsString;
+    PedidosDetalleslxProducto.AsString:= DM_Productos.Productosnombre.AsString;
+    PedidosDetalleslxListaPrecio.AsString:= DM_Productos.NombreListaPrecios(listaPrecioID);
+    Post;
+    AjustarPreciosProducto;
+  end;
+end;
+
+procedure TDM_Pedidos.AjustarPreciosProducto;
+var
+  MontoAplicar: Double;
+begin
+  PedidosDetalles.Edit;
+  with qPrecio do
+  begin
+    if active then close;
+    ParamByName('producto_id').asString:= PedidosDetallesproducto_id.AsString;
+    ParamByName('listaprecio_id').asInteger:= PedidosDetalleslistaPrecio_id.AsInteger;
+    Open;
+    if RecordCount > 0 then
+      PedidosDetallesprecioUnitario.AsFloat:= qPrecioMONTO.AsFloat
+    else
+    PedidosDetallesprecioUnitario.AsFloat:= 0;
+  end;
+
+  PedidosDetallesporcentajeAplicar.AsFloat:= 0;
+  PedidosDetallesbDescuento.AsInteger:= 1;
+  MontoAplicar:= (( PedidosDetallesprecioUnitario.asFloat
+                  * PedidosDetallesporcentajeAplicar.AsFloat) /100);
+
+  if PedidosDetallesbDescuento.AsInteger = 1 then
+    PedidosDetallespreciosSubtotal.AsFloat:= ( PedidosDetallesprecioUnitario.AsFloat
+                                               - MontoAplicar)
+  else
+    PedidosDetallespreciosSubtotal.AsFloat:= ( PedidosDetallesprecioUnitario.AsFloat
+                                             + MontoAplicar) ;
+
+  PedidosDetallesprecioTotal.AsFloat:= ( PedidosDetallespreciosSubtotal.AsFloat
+                                     * PedidosDetallescantidad.AsFloat);
+  PedidosDetalles.Post;
+  AjustarMontoPedido;
 end;
 
 

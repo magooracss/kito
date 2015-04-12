@@ -3,6 +3,7 @@ object frmPedidoAE: TfrmPedidoAE
   Height = 654
   Top = 22
   Width = 1036
+  ActiveControl = btnBusquedaCliente
   Caption = 'Pedido'
   ClientHeight = 654
   ClientWidth = 1036
@@ -22,7 +23,7 @@ object frmPedidoAE: TfrmPedidoAE
     Align = alBottom
     ClientHeight = 50
     ClientWidth = 1036
-    TabOrder = 0
+    TabOrder = 3
     object btnGrabar: TBitBtn
       Left = 42
       Height = 40
@@ -181,7 +182,7 @@ object frmPedidoAE: TfrmPedidoAE
     Align = alTop
     ClientHeight = 290
     ClientWidth = 1036
-    TabOrder = 1
+    TabOrder = 0
     object DBText1: TDBText
       Left = 8
       Height = 19
@@ -544,17 +545,17 @@ object frmPedidoAE: TfrmPedidoAE
     end
     object GbTransportista: TGroupBox
       Left = 8
-      Height = 74
-      Top = 200
+      Height = 87
+      Top = 193
       Width = 488
       Caption = 'Transportista'
-      ClientHeight = 56
+      ClientHeight = 69
       ClientWidth = 484
       TabOrder = 6
       object btnBusquedaTransportista: TBitBtn
         Left = 8
         Height = 38
-        Top = 8
+        Top = 14
         Width = 104
         Caption = 'Bu&scar'
         Glyph.Data = {
@@ -639,7 +640,7 @@ object frmPedidoAE: TfrmPedidoAE
       object edTransportista: TEdit
         Left = 120
         Height = 24
-        Top = 16
+        Top = 22
         Width = 352
         Anchors = [akTop, akLeft, akRight]
         Color = clMoneyGreen
@@ -730,7 +731,7 @@ object frmPedidoAE: TfrmPedidoAE
     BevelOuter = bvLowered
     ClientHeight = 70
     ClientWidth = 1036
-    TabOrder = 2
+    TabOrder = 1
     object RxDBCurrEdit4: TRxDBCurrEdit
       Left = 600
       Height = 30
@@ -750,6 +751,7 @@ object frmPedidoAE: TfrmPedidoAE
       MinValue = 0
       ParentFont = False
       TabOrder = 0
+      TabStop = False
       Value = 0
       DataField = 'TotalPedido'
       DataSource = DS_Pedidos
@@ -863,9 +865,9 @@ object frmPedidoAE: TfrmPedidoAE
       ClientWidth = 586
       TabOrder = 2
       object cbListaPrecio: TComboBox
-        Left = 224
-        Height = 24
-        Top = 21
+        Left = 337
+        Height = 23
+        Top = 20
         Width = 168
         Font.CharSet = ANSI_CHARSET
         Font.Height = -12
@@ -874,11 +876,11 @@ object frmPedidoAE: TfrmPedidoAE
         Font.Quality = fqDraft
         ItemHeight = 15
         ParentFont = False
-        TabOrder = 0
+        TabOrder = 3
         Text = 'cbListaPrecio'
       end
       object Label12: TLabel
-        Left = 224
+        Left = 337
         Height = 16
         Top = 3
         Width = 69
@@ -886,9 +888,9 @@ object frmPedidoAE: TfrmPedidoAE
         ParentColor = False
       end
       object edBusNombre: TEdit
-        Left = 96
+        Left = 213
         Height = 23
-        Top = 21
+        Top = 20
         Width = 120
         Font.CharSet = ANSI_CHARSET
         Font.Height = -12
@@ -897,35 +899,34 @@ object frmPedidoAE: TfrmPedidoAE
         Font.Quality = fqDraft
         OnKeyPress = edBusNombreKeyPress
         ParentFont = False
-        TabOrder = 1
+        TabOrder = 2
       end
       object Label11: TLabel
-        Left = 96
+        Left = 213
         Height = 16
-        Top = 6
+        Top = 3
         Width = 45
         Caption = 'Nombre'
         ParentColor = False
       end
       object edBusCodigo: TEdit
-        Left = 8
+        Left = 125
         Height = 24
-        Top = 21
+        Top = 20
         Width = 80
-        OnChange = edBusCodigoChange
         OnKeyPress = edBusCodigoKeyPress
-        TabOrder = 2
+        TabOrder = 1
       end
       object Label9: TLabel
-        Left = 8
+        Left = 125
         Height = 16
-        Top = 6
+        Top = 3
         Width = 40
         Caption = 'Código'
         ParentColor = False
       end
       object btnBuscarProducto: TBitBtn
-        Left = 400
+        Left = 509
         Height = 53
         Top = -7
         Width = 72
@@ -1009,12 +1010,12 @@ object frmPedidoAE: TfrmPedidoAE
         }
         Layout = blGlyphTop
         OnClick = btnBuscarProductoClick
-        TabOrder = 3
+        TabOrder = 4
       end
       object Label10: TLabel
-        Left = 480
+        Left = 4
         Height = 16
-        Top = -2
+        Top = -1
         Width = 51
         Anchors = [akTop, akRight]
         Caption = 'Cantidad'
@@ -1026,23 +1027,21 @@ object frmPedidoAE: TfrmPedidoAE
         ParentColor = False
         ParentFont = False
       end
-      object DBEdit1: TDBEdit
-        Left = 480
-        Height = 30
+      object edCantidad: TRxSpinEdit
+        Left = 4
+        Height = 31
         Top = 15
-        Width = 104
-        DataField = 'cantidad'
-        DataSource = ds_PedidosDetalles
-        CharCase = ecNormal
+        Width = 80
+        Alignment = taRightJustify
+        ValueType = vtFloat
         Font.CharSet = ANSI_CHARSET
-        Font.Height = -15
+        Font.Height = -16
         Font.Name = 'Arial Black'
         Font.Pitch = fpVariable
         Font.Quality = fqDraft
         Font.Style = [fsBold]
-        MaxLength = 0
         ParentFont = False
-        TabOrder = 4
+        TabOrder = 0
       end
     end
   end
@@ -1054,10 +1053,73 @@ object frmPedidoAE: TfrmPedidoAE
     Align = alClient
     AutoFillColumns = True
     Color = clWindow
-    Columns = <>
+    Columns = <    
+      item
+        SizePriority = 0
+        Title.Alignment = taCenter
+        Title.Caption = 'Código'
+        Width = 72
+        FieldName = 'lxCodigo'
+      end    
+      item
+        Title.Alignment = taCenter
+        Title.Caption = 'Producto'
+        Width = 399
+        FieldName = 'lxProducto'
+      end    
+      item
+        Alignment = taLeftJustify
+        SizePriority = 0
+        Title.Alignment = taCenter
+        Title.Caption = 'Lista de precios'
+        Width = 120
+        FieldName = 'lxListaPrecio'
+      end    
+      item
+        Alignment = taRightJustify
+        SizePriority = 0
+        Title.Alignment = taCenter
+        Title.Caption = 'Cantidad'
+        Width = 81
+        FieldName = 'cantidad'
+      end    
+      item
+        Alignment = taRightJustify
+        SizePriority = 0
+        Title.Alignment = taCenter
+        Title.Caption = 'Precio Unitario'
+        Width = 90
+        FieldName = 'precioUnitario'
+      end    
+      item
+        Alignment = taRightJustify
+        SizePriority = 0
+        Title.Alignment = taCenter
+        Title.Caption = 'Porcentaje'
+        Width = 72
+        FieldName = 'porcentajeAplicar'
+      end    
+      item
+        Alignment = taRightJustify
+        SizePriority = 0
+        Title.Alignment = taCenter
+        Title.Caption = 'Subtotal'
+        Width = 96
+        FieldName = 'preciosSubtotal'
+      end    
+      item
+        Alignment = taRightJustify
+        SizePriority = 0
+        Title.Alignment = taCenter
+        Title.Caption = 'Total'
+        Width = 102
+        FieldName = 'precioTotal'
+      end>
     DataSource = ds_PedidosDetalles
+    FixedCols = 0
+    Options = [dgTitles, dgColumnResize, dgColumnMove, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit]
     Scrollbars = ssAutoVertical
-    TabOrder = 3
+    TabOrder = 2
     TitleFont.CharSet = ANSI_CHARSET
     TitleFont.Height = -13
     TitleFont.Name = 'Arial'

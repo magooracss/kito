@@ -58,7 +58,11 @@ type
     qCategoriasBVISIBLE: TSmallintField;
     qCategoriasCATEGORIA: TStringField;
     qCategoriasID: TLongintField;
+    qListaPreciosIDBVISIBLE: TSmallintField;
+    qListaPreciosIDID: TLongintField;
+    qListaPreciosIDLISTAPRECIO: TStringField;
     qListasPrecios: TZQuery;
+    qListaPreciosID: TZQuery;
     qPreciosProducto: TZQuery;
     qListasPreciosBVISIBLE: TSmallintField;
     qListasPreciosID: TLongintField;
@@ -132,8 +136,7 @@ type
     procedure BorrarPrecio (refPrecio: GUID_ID);
     procedure GrabarPrecios;
 
-
-
+    function NombreListaPrecios (idLista: integer): string;
   end;
 
 var
@@ -185,6 +188,7 @@ begin
   PrecioslistaPrecio_id.AsInteger:= 0;
   PreciosbVisible.AsInteger:= 1;
 end;
+
 
 procedure TDM_Productos.ActualizarRefsCb(refMarca, refCategoria,
   refUnidad: integer);
@@ -338,6 +342,20 @@ end;
 procedure TDM_Productos.GrabarPrecios;
 begin
    DM_General.GrabarDatos(SELPrecios, INSPrecios, UPDPrecios, Precios, 'id');
+end;
+
+function TDM_Productos.NombreListaPrecios(idLista: integer): string;
+begin
+  with qListaPreciosID do
+  begin
+    if active then close;
+    ParamByName('id').AsInteger:= idLista;
+    Open;
+    if RecordCount > 0 then
+     Result := qListaPreciosIDLISTAPRECIO.AsString
+    else
+     Result:= EmptyStr;
+  end;
 end;
 
 end.
