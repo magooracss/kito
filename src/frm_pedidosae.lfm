@@ -509,6 +509,7 @@ object frmPedidoAE: TfrmPedidoAE
         MinValue = 0
         TabOrder = 0
         Value = 0
+        OnExit = RxDBCurrEdit1Exit
         DataField = 'pagoAnticipado'
         DataSource = DS_Pedidos
       end
@@ -523,6 +524,7 @@ object frmPedidoAE: TfrmPedidoAE
         MinValue = 0
         TabOrder = 1
         Value = 0
+        OnExit = RxDBCurrEdit1Exit
         DataField = 'gastosEnvio'
         DataSource = DS_Pedidos
       end
@@ -669,6 +671,7 @@ object frmPedidoAE: TfrmPedidoAE
         MinValue = 0
         TabOrder = 0
         Value = 0
+        OnExit = RxDBCurrEdit1Exit
         DataField = 'montoAplicar'
         DataSource = DS_Pedidos
       end
@@ -682,6 +685,7 @@ object frmPedidoAE: TfrmPedidoAE
         Increment = 1
         MaxValue = 100
         MinValue = 0
+        OnExit = RxDBCurrEdit1Exit
         TabOrder = 1
         Value = 0
       end
@@ -1055,6 +1059,14 @@ object frmPedidoAE: TfrmPedidoAE
     Color = clWindow
     Columns = <    
       item
+        Alignment = taRightJustify
+        SizePriority = 0
+        Title.Alignment = taCenter
+        Title.Caption = 'Cantidad'
+        Width = 81
+        FieldName = 'cantidad'
+      end    
+      item
         SizePriority = 0
         Title.Alignment = taCenter
         Title.Caption = 'Código'
@@ -1068,20 +1080,11 @@ object frmPedidoAE: TfrmPedidoAE
         FieldName = 'lxProducto'
       end    
       item
-        Alignment = taLeftJustify
         SizePriority = 0
         Title.Alignment = taCenter
         Title.Caption = 'Lista de precios'
         Width = 120
         FieldName = 'lxListaPrecio'
-      end    
-      item
-        Alignment = taRightJustify
-        SizePriority = 0
-        Title.Alignment = taCenter
-        Title.Caption = 'Cantidad'
-        Width = 81
-        FieldName = 'cantidad'
       end    
       item
         Alignment = taRightJustify

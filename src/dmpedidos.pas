@@ -145,12 +145,14 @@ type
     procedure CambiarEstado (estadoID: integer; fecha: TDateTime; obs: String);
 
     procedure AjustarPreciosProducto;
-    procedure AjustarMontoPedido;
+
+
+    function TotalProductosPedidos: Double;
   public
     procedure Grabar;
     procedure Nuevo;
     procedure LevantarPedido(refPedido: GUID_ID);
-
+    procedure AjustarMontoPedido;
 
     procedure NuevoProducto (productoID: GUID_ID; listaPrecioID: integer
                              ; cantidad: Double);
@@ -257,11 +259,31 @@ begin
 end;
 
 procedure TDM_Pedidos.AjustarMontoPedido;
+var
+  TotalProductos, TotalPedido: Double;
+  MontoAplicar: Double;
 begin
+  TotalProductos:= TotalProductosPedidos;
+  MontoAplicar:= 0;
+  TotalPedido:= 0;
   with Pedidos do
   begin
+    if (PedidosmontoAplicar.AsFloat <> 0)then
+      MontoAplicar:= PedidosMontoAplicar.AsFloat
+    else
+      if (PedidosporcentajeAplicar.AsFloat <> 0) then
+        MontoAplicar:= (PedidosporcentajeAplicar.asFloat * totalProductos) /100;
+
+    if PedidosbDescuento.AsInteger = 1 then
+      TotalPedido:= totalProductos - MontoAplicar
+    else
+      TotalPedido:= totalProductos + MontoAplicar;
+
+    TotalPedido:= TotalPedido - PedidospagoAnticipado.AsFloat
+                +  PedidosgastosEnvio.AsFloat  ;
+
     Edit;
-    { TODO : Ajustar monto del pedido al agregar productos }
+    PedidosTotalPedido.AsFloat:= TotalPedido;
     Post;
   end;
 end;
@@ -293,6 +315,22 @@ end;
 (*******************************************************************************
 *** PRODUCTOS PEDIDOS
 *******************************************************************************)
+function TDM_Pedidos.TotalProductosPedidos: Double;
+var
+  elTotal: Double;
+begin
+  elTotal:= 0;
+  with PedidosDetalles do
+  begin
+    First;
+    While Not EOF do
+    begin
+      elTotal:= elTotal + PedidosDetallesprecioTotal.AsFloat;
+      Next;
+    end;
+  end;
+  Result:= elTotal;
+end;
 
 procedure TDM_Pedidos.NuevoProducto(productoID: GUID_ID;
   listaPrecioID: integer; cantidad: Double);

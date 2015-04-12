@@ -78,6 +78,7 @@ type
     procedure edBusCodigoKeyPress(Sender: TObject; var Key: char);
     procedure edBusNombreKeyPress(Sender: TObject; var Key: char);
     procedure FormShow(Sender: TObject);
+    procedure RxDBCurrEdit1Exit(Sender: TObject);
 
   private
     _idPedido: GUID_ID;
@@ -196,6 +197,12 @@ procedure TfrmPedidoAE.FormShow(Sender: TObject);
 begin
   Inicializar;
 end;
+
+procedure TfrmPedidoAE.RxDBCurrEdit1Exit(Sender: TObject);
+begin
+ DM_Pedidos.AjustarMontoPedido;
+end;
+
 
 procedure TfrmPedidoAE.Inicializar;
 begin
