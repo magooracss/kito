@@ -158,6 +158,7 @@ type
     procedure NuevoProducto (productoID: GUID_ID; listaPrecioID: integer
                              ; cantidad: Double);
 
+    procedure EliminarProducto;
 
 
   end;
@@ -373,9 +374,6 @@ begin
     end;
   end;
 
-//  PedidosDetallesporcentajeAplicar.AsFloat:= 0;
-//  PedidosDetallesbDescuento.AsInteger:= 1;
-
   MontoAplicar:= (( PedidosDetallesprecioUnitario.asFloat
                   * PedidosDetallesporcentajeAplicar.AsFloat) /100);
 
@@ -390,6 +388,18 @@ begin
                                      * PedidosDetallescantidad.AsFloat);
   PedidosDetalles.Post;
   AjustarMontoPedido;
+end;
+
+procedure TDM_Pedidos.EliminarProducto;
+begin
+  if ((PedidosDetalles.Active)
+      and (PedidosDetalles.RecordCount > 0) )then
+  With DELPedidosDetalles do
+  begin
+    ParamByName('id').AsString:= PedidosDetallesid.AsString;
+    ExecSQL;
+    PedidosDetalles.Delete;
+  end;
 end;
 
 

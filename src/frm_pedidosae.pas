@@ -341,7 +341,12 @@ end;
 
 procedure TfrmPedidoAE.MnBorrarProductoClick(Sender: TObject);
 begin
-  ShowMessage('Borra');
+  if (MessageDlg ('ATENCION'
+                  , 'Borro el Producto: '+ DM_Pedidos.PedidosDetalleslxProducto.AsString +'?'
+                  , mtConfirmation, [mbYes, mbNo],0 ) = mrYes) then
+  begin
+    DM_Pedidos.eliminarProducto;
+  end;
 end;
 
 
