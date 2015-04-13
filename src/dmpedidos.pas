@@ -77,6 +77,13 @@ type
     qEstadosBVISIBLE: TSmallintField;
     qEstadosID: TLongintField;
     qEstadosTIPOESTADO: TStringField;
+    qPedidosEstadosHistorialBVISIBLE: TSmallintField;
+    qPedidosEstadosHistorialFECHA: TDateField;
+    qPedidosEstadosHistorialID: TStringField;
+    qPedidosEstadosHistorialLXESTADO: TStringField;
+    qPedidosEstadosHistorialNOTAS: TStringField;
+    qPedidosEstadosHistorialPEDIDO_ID: TStringField;
+    qPedidosEstadosHistorialTIPOESTADO_ID: TLongintField;
     qPrecio: TZQuery;
     qPrecioBVISIBLE: TSmallintField;
     qPrecioBVISIBLE1: TSmallintField;
@@ -113,13 +120,21 @@ type
     SELPedidosDetallesPRODUCTO_ID: TStringField;
     SELPedidosESTADOACTUAL_ID: TStringField;
     qEstados: TZQuery;
+    qPedidosEstadosHistorial: TZQuery;
     SELPedidosEstadosBVISIBLE: TSmallintField;
+    SELPedidosEstadosBVISIBLE2: TSmallintField;
     SELPedidosEstadosFECHA: TDateField;
+    SELPedidosEstadosFECHA2: TDateField;
     SELPedidosEstadosID: TStringField;
+    SELPedidosEstadosID2: TStringField;
     SELPedidosEstadosLXESTADO: TStringField;
+    SELPedidosEstadosLXESTADO2: TStringField;
     SELPedidosEstadosNOTAS: TStringField;
+    SELPedidosEstadosNOTAS2: TStringField;
     SELPedidosEstadosPEDIDO_ID: TStringField;
+    SELPedidosEstadosPEDIDO_ID2: TStringField;
     SELPedidosEstadosTIPOESTADO_ID: TLongintField;
+    SELPedidosEstadosTIPOESTADO_ID2: TLongintField;
     SELPedidosFACTURA_ID: TStringField;
     SELPedidosFAENTREGAR: TDateField;
     SELPedidosFFACTURACION: TDateField;
@@ -142,9 +157,6 @@ type
     procedure PedidosDetallesAfterInsert(DataSet: TDataSet);
     procedure PedidosEstadosAfterInsert(DataSet: TDataSet);
   private
-    procedure CambiarEstado (estadoID: integer; fecha: TDateTime; obs: String);
-
-
 
     function TotalProductosPedidos: Double;
   public
@@ -160,6 +172,11 @@ type
 
     procedure EliminarProducto;
 
+    procedure LevantarPedidoHistorialEstados;
+    procedure GrabarEstados;
+    procedure LevantarEstadoActual;
+    procedure CambiarEstado (estadoID: integer; fecha: TDateTime; obs: String);
+    procedure BorrarEstado (idEstado: GUID_ID);
 
   end;
 
@@ -223,7 +240,7 @@ begin
   PedidosEstadospedido_id.AsString:= Pedidosid.AsString;
   PedidosEstadosfecha.AsDateTime:= Now;
   PedidosEstadostipoEstado_id.AsInteger:= 0;
-  PedidosEstadosNotas.AsString:= EmptyStr;
+  PedidosEstadosNotas.AsString:= '-';
   PedidosEstadosbVisible.AsInteger:= 1;
 end;
 
@@ -232,7 +249,7 @@ begin
 
   DM_General.GrabarDatos(SELPedidos, INSPedidos, UPDPedidos, Pedidos, 'id');
   DM_General.GrabarDatos(SELPedidosDetalles, INSPedidosDetalles, UPDPedidosDetalles, PedidosDetalles, 'id');
-  DM_General.GrabarDatos(SELPedidosEstados, INSPedidosEstados, UPDPedidosEstados, PedidosEstados, 'id');
+  GrabarEstados;
 end;
 
 procedure TDM_Pedidos.Nuevo;
@@ -241,7 +258,7 @@ begin
   DM_General.ReiniciarTabla(PedidosDetalles);
   DM_General.ReiniciarTabla(PedidosEstados);
   Pedidos.Insert;
-  CambiarEstado(EST_TOMADO, Now, EmptyStr);
+  CambiarEstado(EST_TOMADO, Now, ' ');
 end;
 
 procedure TDM_Pedidos.LevantarPedido(refPedido: GUID_ID);
@@ -321,6 +338,59 @@ begin
     Post;
   end;
 end;
+
+
+procedure TDM_Pedidos.LevantarPedidoHistorialEstados;
+begin
+  With qPedidosEstadosHistorial do
+  begin
+    if active then close;
+    ParamByName('pedido_id').asString:= Pedidosid.AsString;
+    Open;
+  end;
+end;
+
+procedure TDM_Pedidos.GrabarEstados;
+begin
+   DM_General.GrabarDatos(SELPedidosEstados, INSPedidosEstados, UPDPedidosEstados, PedidosEstados, 'id');
+end;
+
+procedure TDM_Pedidos.LevantarEstadoActual;
+begin
+  DM_General.ReiniciarTabla(PedidosEstados);
+  with SELPedidosEstados do
+  begin
+    if Active then Close;
+    ParamByName('id').asString:= PedidosestadoActual_id.AsString;
+    Open;
+    PedidosEstados.LoadFromDataSet(SELPedidosEstados, 0, lmAppend);
+    Close;
+  end;
+end;
+
+procedure TDM_Pedidos.BorrarEstado(idEstado: GUID_ID);
+begin
+  with DELPedidosEstados do
+  begin
+    ParamByName('id').AsString:= idEstado;
+    ExecSQL;
+  end;
+  if PedidosestadoActual_id.AsString = idEstado then
+  begin
+    LevantarPedidoHistorialEstados;
+    if qPedidosEstadosHistorial.RecordCount > 0 then
+    begin
+      with Pedidos do
+      begin
+        Edit;
+        PedidosestadoActual_id.AsString:= qPedidosEstadosHistorialID.AsString;
+        Post;
+      end;
+    end;
+  end;
+
+end;
+
 
 (*******************************************************************************
 *** PRODUCTOS PEDIDOS
@@ -409,6 +479,8 @@ begin
     PedidosDetalles.Delete;
   end;
 end;
+
+
 
 
 end.

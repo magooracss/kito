@@ -15,7 +15,7 @@ type
   { TfrmPedidoAE }
 
   TfrmPedidoAE = class(TForm)
-    BitBtn1: TBitBtn;
+    btnDetallesEstados: TBitBtn;
     btnBuscarProducto: TBitBtn;
     btnBusquedaCliente: TBitBtn;
     btnBusquedaVendedor: TBitBtn;
@@ -78,6 +78,7 @@ type
     procedure btnBusquedaTransportistaClick(Sender: TObject);
     procedure btnBusquedaVendedorClick(Sender: TObject);
     procedure btnCancelarClick(Sender: TObject);
+    procedure btnDetallesEstadosClick(Sender: TObject);
     procedure btnGrabarClick(Sender: TObject);
     procedure edBusCodigoKeyPress(Sender: TObject; var Key: char);
     procedure edBusNombreKeyPress(Sender: TObject; var Key: char);
@@ -112,6 +113,8 @@ uses
   ,dmbusquedaempresas
   ,frm_busquedaProductos
   ,frm_pedidoeditarproducto
+  ,frm_pedidosEstados
+  ,frm_pedidoestadosae
   ;
 
 { TfrmPedidoAE }
@@ -188,6 +191,8 @@ begin
 end;
 
 procedure TfrmPedidoAE.btnCancelarClick(Sender: TObject);
+var
+  pant: TfrmPedEstadosAE;
 begin
   ModalResult:= mrCancel;
 end;
@@ -347,6 +352,20 @@ begin
                   , mtConfirmation, [mbYes, mbNo],0 ) = mrYes) then
   begin
     DM_Pedidos.eliminarProducto;
+  end;
+end;
+
+procedure TfrmPedidoAE.btnDetallesEstadosClick(Sender: TObject);
+var
+  pant: TfrmPedidosEstados;
+begin
+  DM_Pedidos.GrabarEstados;
+  pant:= TfrmPedidosEstados.Create(self);
+  try
+    pant.ShowModal;
+    DM_Pedidos.LevantarEstadoActual;
+  finally
+    pant.Free;
   end;
 end;
 

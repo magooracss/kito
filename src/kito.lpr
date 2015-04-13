@@ -14,7 +14,7 @@ uses
   frm_localidadesae, frm_buscarlocalidad, frm_busquedaempresas,
   dmbusquedaempresas, frm_proveedoresae, dmproveedores, frm_transportistasae,
   dmtransportistas, frm_vendedoresae, dmvendedores, frm_pedidosae, dmpedidos
-  ,sysutils, frm_pedidoeditarproducto;
+  ,sysutils, frm_pedidoeditarproducto, frm_pedidosEstados, frm_pedidoestadosae;
 
 {$R *.res}
 

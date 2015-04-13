@@ -349,7 +349,11 @@ begin
   begin
     laConsulta.Params[indice].DataType:= laTabla.fieldByName(laConsulta.Params[indice].Name).DataType;
 //    if NOT laTabla.fieldByName(laConsulta.Params[indice].Name).IsNull then
-      laConsulta.Params[indice].Value:= laTabla.fieldByName(laConsulta.Params[indice].Name).value;
+    if ((laTabla.fieldByName(laConsulta.Params[indice].Name).DataType = ftString) and
+      (laTabla.fieldByName(laConsulta.Params[indice].Name).IsNull)) then
+      laConsulta.Params[indice].Value:= '-'
+    else
+     laConsulta.Params[indice].Value:= laTabla.fieldByName(laConsulta.Params[indice].Name).value;
   end;
 end;
 

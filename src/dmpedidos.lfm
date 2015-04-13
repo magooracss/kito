@@ -1761,13 +1761,13 @@ object DM_Pedidos: TDM_Pedidos
       item
         Name = 'fecha'
         DataType = ftDateTime
-        Precision = 0
+        Precision = -1
         Size = 0
       end    
       item
         Name = 'tipoEstado_id'
         DataType = ftInteger
-        Precision = 0
+        Precision = -1
         Size = 0
       end    
       item
@@ -1779,13 +1779,13 @@ object DM_Pedidos: TDM_Pedidos
       item
         Name = 'bVisible'
         DataType = ftInteger
-        Precision = 0
+        Precision = -1
         Size = 0
       end    
       item
         Name = 'lxEstado'
         DataType = ftString
-        Precision = 0
+        Precision = -1
         Size = 30
       end>
     AfterInsert = PedidosEstadosAfterInsert
@@ -1823,6 +1823,7 @@ object DM_Pedidos: TDM_Pedidos
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
       Required = False
+      DisplayFormat = 'dd/mm/yyyy'
     end
     object PedidosEstadostipoEstado_id: TLongintField
       DisplayWidth = 10
@@ -1932,22 +1933,11 @@ object DM_Pedidos: TDM_Pedidos
       ReadOnly = False
       Required = False
     end
-    object SELPedidosEstadosNOTAS: TStringField
-      DisplayWidth = 12000
-      FieldKind = fkData
-      FieldName = 'NOTAS'
-      Index = 4
-      LookupCache = False
-      ProviderFlags = [pfInUpdate, pfInWhere]
-      ReadOnly = False
-      Required = False
-      Size = 12000
-    end
     object SELPedidosEstadosBVISIBLE: TSmallintField
       DisplayWidth = 10
       FieldKind = fkData
       FieldName = 'BVISIBLE'
-      Index = 5
+      Index = 4
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
@@ -1957,12 +1947,23 @@ object DM_Pedidos: TDM_Pedidos
       DisplayWidth = 120
       FieldKind = fkData
       FieldName = 'LXESTADO'
-      Index = 6
+      Index = 5
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
       Required = False
       Size = 120
+    end
+    object SELPedidosEstadosNOTAS: TStringField
+      DisplayWidth = 12000
+      FieldKind = fkData
+      FieldName = 'NOTAS'
+      Index = 6
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 12000
     end
   end
   object INSPedidosEstados: TZQuery
@@ -2333,6 +2334,107 @@ object DM_Pedidos: TDM_Pedidos
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
       Required = False
+    end
+  end
+  object qPedidosEstadosHistorial: TZQuery
+    Connection = DM_General.cnxBase
+    SQL.Strings = (
+      'SELECT PE.*'
+      '             ,PET.TipoEstado as lxEstado'
+      'FROM PedidosEstados PE'
+      '            LEFT JOIN PedidosTiposEstados PET ON PET.id = PE.tipoEstado_id'
+      'WHERE (PE.pedido_id = :pedido_id) '
+      '         and (Pe.bVisible = 1)'
+      'ORDER BY fecha DESC'
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'pedido_id'
+        ParamType = ptUnknown
+      end>
+    left = 248
+    top = 400
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'pedido_id'
+        ParamType = ptUnknown
+      end>
+    object qPedidosEstadosHistorialID: TStringField
+      DisplayWidth = 152
+      FieldKind = fkData
+      FieldName = 'ID'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      Size = 152
+    end
+    object qPedidosEstadosHistorialPEDIDO_ID: TStringField
+      DisplayWidth = 152
+      FieldKind = fkData
+      FieldName = 'PEDIDO_ID'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 152
+    end
+    object qPedidosEstadosHistorialFECHA: TDateField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'FECHA'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      DisplayFormat = 'dd/mm/yyyy'
+    end
+    object qPedidosEstadosHistorialTIPOESTADO_ID: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'TIPOESTADO_ID'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object qPedidosEstadosHistorialNOTAS: TStringField
+      DisplayWidth = 12000
+      FieldKind = fkData
+      FieldName = 'NOTAS'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 12000
+    end
+    object qPedidosEstadosHistorialBVISIBLE: TSmallintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'BVISIBLE'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object qPedidosEstadosHistorialLXESTADO: TStringField
+      DisplayWidth = 120
+      FieldKind = fkData
+      FieldName = 'LXESTADO'
+      Index = 6
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 120
     end
   end
 end
