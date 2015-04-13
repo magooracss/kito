@@ -334,7 +334,7 @@ object frmPedidoEditarProducto: TfrmPedidoEditarProducto
     TabOrder = 4
     Value = 0
     OnExit = DBEdit1Exit
-    DataField = 'preciosSubtotal'
+    DataField = 'precioSubtotal'
     DataSource = ds_pedidosDetalles
   end
   object RxDBCurrEdit3: TRxDBCurrEdit

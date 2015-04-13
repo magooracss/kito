@@ -1,7 +1,7 @@
 object frmPedidoAE: TfrmPedidoAE
-  Left = 171
+  Left = 132
   Height = 654
-  Top = 130
+  Top = 8
   Width = 1036
   ActiveControl = btnBusquedaCliente
   Caption = 'Pedido'
@@ -1108,7 +1108,7 @@ object frmPedidoAE: TfrmPedidoAE
         Title.Alignment = taCenter
         Title.Caption = 'Subtotal'
         Width = 96
-        FieldName = 'preciosSubtotal'
+        FieldName = 'precioSubtotal'
       end    
       item
         Alignment = taRightJustify

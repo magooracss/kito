@@ -71,7 +71,7 @@ object DM_Pedidos: TDM_Pedidos
         Name = 'estadoActual_id'
         DataType = ftString
         Precision = 0
-        Size = 0
+        Size = 38
       end    
       item
         Name = 'bFacturado'
@@ -239,7 +239,7 @@ object DM_Pedidos: TDM_Pedidos
       Precision = 2
     end
     object PedidosestadoActual_id: TStringField
-      DisplayWidth = 0
+      DisplayWidth = 38
       FieldKind = fkData
       FieldName = 'estadoActual_id'
       Index = 10
@@ -247,7 +247,7 @@ object DM_Pedidos: TDM_Pedidos
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
       Required = False
-      Size = 0
+      Size = 38
     end
     object PedidosbFacturado: TLongintField
       DisplayWidth = 10
@@ -1062,7 +1062,7 @@ object DM_Pedidos: TDM_Pedidos
         Size = 0
       end    
       item
-        Name = 'preciosSubtotal'
+        Name = 'precioSubtotal'
         DataType = ftFloat
         Precision = 0
         Size = 0
@@ -1135,22 +1135,11 @@ object DM_Pedidos: TDM_Pedidos
       Required = False
       Size = 38
     end
-    object PedidosDetallesproducto_id: TStringField
-      DisplayWidth = 38
-      FieldKind = fkData
-      FieldName = 'producto_id'
-      Index = 2
-      LookupCache = False
-      ProviderFlags = [pfInUpdate, pfInWhere]
-      ReadOnly = False
-      Required = False
-      Size = 38
-    end
     object PedidosDetalleslistaPrecio_id: TLongintField
       DisplayWidth = 10
       FieldKind = fkData
       FieldName = 'listaPrecio_id'
-      Index = 3
+      Index = 2
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
@@ -1160,7 +1149,7 @@ object DM_Pedidos: TDM_Pedidos
       DisplayWidth = 10
       FieldKind = fkData
       FieldName = 'precioUnitario'
-      Index = 4
+      Index = 3
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
@@ -1174,12 +1163,11 @@ object DM_Pedidos: TDM_Pedidos
       DisplayWidth = 10
       FieldKind = fkData
       FieldName = 'porcentajeAplicar'
-      Index = 5
+      Index = 4
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
       Required = False
-      DisplayFormat = '##########0.###'
       MaxValue = 0
       MinValue = 0
       Precision = 2
@@ -1188,17 +1176,17 @@ object DM_Pedidos: TDM_Pedidos
       DisplayWidth = 10
       FieldKind = fkData
       FieldName = 'bDescuento'
-      Index = 6
+      Index = 5
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
       Required = False
     end
-    object PedidosDetallespreciosSubtotal: TFloatField
+    object PedidosDetallesprecioSubtotal: TFloatField
       DisplayWidth = 10
       FieldKind = fkData
-      FieldName = 'preciosSubtotal'
-      Index = 7
+      FieldName = 'precioSubtotal'
+      Index = 6
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
@@ -1212,7 +1200,7 @@ object DM_Pedidos: TDM_Pedidos
       DisplayWidth = 10
       FieldKind = fkData
       FieldName = 'precioTotal'
-      Index = 8
+      Index = 7
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
@@ -1226,7 +1214,7 @@ object DM_Pedidos: TDM_Pedidos
       DisplayWidth = 10
       FieldKind = fkData
       FieldName = 'cantidad'
-      Index = 9
+      Index = 8
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
@@ -1239,11 +1227,22 @@ object DM_Pedidos: TDM_Pedidos
       DisplayWidth = 10
       FieldKind = fkData
       FieldName = 'bVisible'
+      Index = 9
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object PedidosDetallesproducto_id: TStringField
+      DisplayWidth = 38
+      FieldKind = fkData
+      FieldName = 'producto_id'
       Index = 10
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
       Required = False
+      Size = 38
     end
     object PedidosDetalleslxProducto: TStringField
       DisplayWidth = 500

@@ -290,6 +290,7 @@
         <Filename Value="frm_pedidoeditarproducto.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="frmPedidoEditarProducto"/>
+        <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="frm_pedidoeditarproducto"/>
       </Unit30>

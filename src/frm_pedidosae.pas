@@ -196,6 +196,7 @@ procedure TfrmPedidoAE.btnGrabarClick(Sender: TObject);
 begin
   if DatosValidos then
   begin
+   DM_Pedidos.Grabar;
    ModalResult:= mrOK;
   end;
 end;

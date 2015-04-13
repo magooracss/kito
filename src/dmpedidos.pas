@@ -22,11 +22,26 @@ type
 
   TDM_Pedidos = class(TDataModule)
     Pedidos: TRxMemoryData;
+    PedidosbDescuento: TLongintField;
+    PedidosbFacturado: TLongintField;
+    PedidosbVisible: TLongintField;
+    Pedidoscliente_id: TStringField;
     PedidosDetalles: TRxMemoryData;
+    PedidosDetallesbDescuento: TLongintField;
+    PedidosDetallesbVisible: TLongintField;
+    PedidosDetallescantidad: TFloatField;
+    PedidosDetallesid: TStringField;
+    PedidosDetalleslistaPrecio_id: TLongintField;
     PedidosDetalleslxCodigo: TStringField;
     PedidosDetalleslxListaPrecio: TStringField;
     PedidosDetalleslxProducto: TStringField;
+    PedidosDetallespedido_id: TStringField;
+    PedidosDetallesporcentajeAplicar: TFloatField;
+    PedidosDetallesprecioSubtotal: TFloatField;
+    PedidosDetallesprecioTotal: TFloatField;
+    PedidosDetallesprecioUnitario: TFloatField;
     PedidosDetallesproducto_id: TStringField;
+    PedidosestadoActual_id: TStringField;
     PedidosEstados: TRxMemoryData;
     DELPedidos: TZQuery;
     DELPedidosDetalles: TZQuery;
@@ -34,21 +49,6 @@ type
     INSPedidos: TZQuery;
     INSPedidosDetalles: TZQuery;
     INSPedidosEstados: TZQuery;
-    PedidosbDescuento: TLongintField;
-    PedidosbFacturado: TLongintField;
-    PedidosbVisible: TLongintField;
-    Pedidoscliente_id: TStringField;
-    PedidosDetallesbDescuento: TLongintField;
-    PedidosDetallesbVisible: TLongintField;
-    PedidosDetallescantidad: TFloatField;
-    PedidosDetallesid: TStringField;
-    PedidosDetalleslistaPrecio_id: TLongintField;
-    PedidosDetallespedido_id: TStringField;
-    PedidosDetallesporcentajeAplicar: TFloatField;
-    PedidosDetallespreciosSubtotal: TFloatField;
-    PedidosDetallesprecioTotal: TFloatField;
-    PedidosDetallesprecioUnitario: TFloatField;
-    PedidosestadoActual_id: TStringField;
     PedidosEstadosbVisible: TLongintField;
     PedidosEstadosfecha: TDateTimeField;
     PedidosEstadosid: TStringField;
@@ -211,7 +211,7 @@ begin
   PedidosDetallesprecioUnitario.AsFloat:= 0;
   PedidosDetallesporcentajeAplicar.AsFloat:= 0;
   PedidosDetallesbDescuento.AsInteger:= 1;
-  PedidosDetallespreciosSubtotal.AsFloat:= 0;
+  PedidosDetallesprecioSubtotal.AsFloat:= 0;
   PedidosDetallesprecioTotal.AsFloat:=0;
   PedidosDetallescantidad.AsFloat:=0;
   PedidosDetallesbVisible.AsInteger:= 1;
@@ -229,6 +229,7 @@ end;
 
 procedure TDM_Pedidos.Grabar;
 begin
+
   DM_General.GrabarDatos(SELPedidos, INSPedidos, UPDPedidos, Pedidos, 'id');
   DM_General.GrabarDatos(SELPedidosDetalles, INSPedidosDetalles, UPDPedidosDetalles, PedidosDetalles, 'id');
   DM_General.GrabarDatos(SELPedidosEstados, INSPedidosEstados, UPDPedidosEstados, PedidosEstados, 'id');
@@ -312,6 +313,13 @@ begin
     PedidosEstadoslxEstado.asString:= qEstadoPorIDTIPOESTADO.AsString;
     Post;
   End;
+
+  With Pedidos do
+  begin
+    Edit;
+    PedidosestadoActual_id.asString:= PedidosEstadosid.AsString;
+    Post;
+  end;
 end;
 
 (*******************************************************************************
@@ -378,13 +386,13 @@ begin
                   * PedidosDetallesporcentajeAplicar.AsFloat) /100);
 
   if PedidosDetallesbDescuento.AsInteger = 1 then
-    PedidosDetallespreciosSubtotal.AsFloat:= ( PedidosDetallesprecioUnitario.AsFloat
+    PedidosDetallesprecioSubtotal.AsFloat:= ( PedidosDetallesprecioUnitario.AsFloat
                                                - MontoAplicar)
   else
-    PedidosDetallespreciosSubtotal.AsFloat:= ( PedidosDetallesprecioUnitario.AsFloat
+    PedidosDetallesprecioSubtotal.AsFloat:= ( PedidosDetallesprecioUnitario.AsFloat
                                              + MontoAplicar) ;
 
-  PedidosDetallesprecioTotal.AsFloat:= ( PedidosDetallespreciosSubtotal.AsFloat
+  PedidosDetallesprecioTotal.AsFloat:= ( PedidosDetallesprecioSubtotal.AsFloat
                                      * PedidosDetallescantidad.AsFloat);
   PedidosDetalles.Post;
   AjustarMontoPedido;
