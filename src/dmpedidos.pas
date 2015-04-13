@@ -70,6 +70,20 @@ type
     Pedidostransportista_id: TStringField;
     PedidostxNotas: TStringField;
     Pedidosvendedor_id: TStringField;
+    qDetallesPedidoBDESCUENTO: TSmallintField;
+    qDetallesPedidoBVISIBLE: TSmallintField;
+    qDetallesPedidoCANTIDAD: TFloatField;
+    qDetallesPedidoID: TStringField;
+    qDetallesPedidoLISTAPRECIO_ID: TLongintField;
+    qDetallesPedidoLXCODIGO: TStringField;
+    qDetallesPedidoLXLISTAPRECIO: TStringField;
+    qDetallesPedidoLXPRODUCTO: TStringField;
+    qDetallesPedidoPEDIDO_ID: TStringField;
+    qDetallesPedidoPORCENTAJEAPLICAR: TFloatField;
+    qDetallesPedidoPRECIOSUBTOTAL: TFloatField;
+    qDetallesPedidoPRECIOTOTAL: TFloatField;
+    qDetallesPedidoPRECIOUNITARIO: TFloatField;
+    qDetallesPedidoPRODUCTO_ID: TStringField;
     qEstadoPorID: TZQuery;
     qEstadoPorIDBVISIBLE: TSmallintField;
     qEstadoPorIDID: TLongintField;
@@ -99,6 +113,7 @@ type
     qPrecioPRODUCTO_ID1: TStringField;
     SELPedidos: TZQuery;
     SELPedidosDetalles: TZQuery;
+    qDetallesPedido: TZQuery;
     SELPedidosDetallesLXCODIGO: TStringField;
     SELPedidosDetallesLXLISTAPRECIO: TStringField;
     SELPedidosDetallesLXPRODUCTO: TStringField;
@@ -169,6 +184,7 @@ type
 
     procedure NuevoProducto (productoID: GUID_ID; listaPrecioID: integer
                              ; cantidad: Double);
+    procedure LevantarDetallePedido;
 
     procedure EliminarProducto;
 
@@ -270,12 +286,14 @@ begin
   With SELPedidos do
   begin
     if active then close;
-    ParamByName('refPedido').asString:= refPedido;
+    ParamByName('id').asString:= refPedido;
     Open;
     Pedidos.LoadFromDataSet(SELPedidos, 0, lmAppend);
     Close;
   end;
-  { TODO : Falta levantar detalles y estados}
+
+  LevantarDetallePedido;
+  LevantarEstadoActual;
 end;
 
 procedure TDM_Pedidos.AjustarMontoPedido;
@@ -398,8 +416,11 @@ end;
 function TDM_Pedidos.TotalProductosPedidos: Double;
 var
   elTotal: Double;
+  marca: TBookmark;
 begin
   elTotal:= 0;
+  marca:= PedidosDetalles.GetBookmark;
+
   with PedidosDetalles do
   begin
     First;
@@ -410,6 +431,8 @@ begin
     end;
   end;
   Result:= elTotal;
+  PedidosDetalles.GotoBookmark(marca);
+  PedidosDetalles.FreeBookmark(marca);
 end;
 
 procedure TDM_Pedidos.NuevoProducto(productoID: GUID_ID;
@@ -428,6 +451,19 @@ begin
     PedidosDetalleslxListaPrecio.AsString:= DM_Productos.NombreListaPrecios(listaPrecioID);
     Post;
     AjustarPreciosProducto;
+  end;
+end;
+
+procedure TDM_Pedidos.LevantarDetallePedido;
+begin
+  DM_General.ReiniciarTabla(PedidosDetalles);
+  With qDetallesPedido do
+  begin
+    if active then close;
+    ParamByName('pedido_id').AsString:= Pedidosid.AsString;
+    Open;
+    PedidosDetalles.LoadFromDataSet(qDetallesPedido, 0, lmAppend);
+    close;
   end;
 end;
 

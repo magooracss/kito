@@ -1,0 +1,418 @@
+object DM_BusquedaPedidos: TDM_BusquedaPedidos
+  OldCreateOrder = False
+  Height = 428
+  HorizontalOffset = 546
+  VerticalOffset = 180
+  Width = 547
+  object Resultados: TRxMemoryData
+    Active = True
+    FieldDefs = <    
+      item
+        Name = 'id'
+        DataType = ftString
+        Precision = -1
+        Size = 38
+      end    
+      item
+        Name = 'Numero'
+        DataType = ftInteger
+        Precision = -1
+        Size = 0
+      end    
+      item
+        Name = 'fToma'
+        DataType = ftDateTime
+        Precision = -1
+        Size = 0
+      end    
+      item
+        Name = 'Cliente'
+        DataType = ftString
+        Precision = -1
+        Size = 500
+      end    
+      item
+        Name = 'TotalPedido'
+        DataType = ftFloat
+        Precision = 2
+        Size = 0
+      end    
+      item
+        Name = 'Estado'
+        DataType = ftString
+        Precision = -1
+        Size = 50
+      end>
+    PacketRecords = 0
+    left = 88
+    top = 56
+    object Resultadosid: TStringField
+      DisplayWidth = 38
+      FieldKind = fkData
+      FieldName = 'id'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 38
+    end
+    object ResultadosNumero: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'Numero'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object ResultadosfToma: TDateTimeField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'fToma'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      DisplayFormat = 'DD/MM/YYYY'
+    end
+    object ResultadosCliente: TStringField
+      DisplayWidth = 500
+      FieldKind = fkData
+      FieldName = 'Cliente'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 500
+    end
+    object ResultadosTotalPedido: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'TotalPedido'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Currency = True
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object ResultadosEstado: TStringField
+      DisplayWidth = 50
+      FieldKind = fkData
+      FieldName = 'Estado'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 50
+    end
+  end
+  object qBusNro: TZQuery
+    Connection = DM_General.cnxBase
+    Active = True
+    SQL.Strings = (
+      'SELECT P.id'
+      '            , P.Numero'
+      '             , P.FToma'
+      '             , P.TotalPedido'
+      '             , E.RazonSocial as Cliente'
+      '             , TPE.TipoEstado as Estado'
+      'FROM Pedidos P'
+      '            LEFT JOIN Clientes C ON P.cliente_id = C.id'
+      '            LEFT JOIN Empresas E ON C.empresa_id = E.id'
+      '            LEFT JOIN PedidosEstados  PE  ON PE.id = P.estadoactual_id'
+      '            LEFT JOIN PedidosTiposEstados TPE ON PE.tipoestado_id = TPE.id'
+      'WHERE (P.numero = :parametro)'
+      '           and (P.bVisible = 1)'
+      'ORDER BY P.Numero'
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'parametro'
+        ParamType = ptUnknown
+      end>
+    left = 88
+    top = 152
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'parametro'
+        ParamType = ptUnknown
+      end>
+    object qBusNroID: TStringField
+      DisplayWidth = 152
+      FieldKind = fkData
+      FieldName = 'ID'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      Size = 152
+    end
+    object qBusNroFTOMA: TDateField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'FTOMA'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object qBusNroTOTALPEDIDO: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'TOTALPEDIDO'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object qBusNroCLIENTE: TStringField
+      DisplayWidth = 2000
+      FieldKind = fkData
+      FieldName = 'CLIENTE'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 2000
+    end
+    object qBusNroESTADO: TStringField
+      DisplayWidth = 120
+      FieldKind = fkData
+      FieldName = 'ESTADO'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 120
+    end
+    object qBusNroNUMERO: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'NUMERO'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+  end
+  object qBusCliente: TZQuery
+    Connection = DM_General.cnxBase
+    Active = True
+    SQL.Strings = (
+      'SELECT P.id'
+      '             , P.Numero'
+      '             , P.FToma'
+      '             , P.TotalPedido'
+      '             , E.RazonSocial as Cliente'
+      '             , TPE.TipoEstado as Estado'
+      'FROM Pedidos P'
+      '            LEFT JOIN Clientes C ON P.cliente_id = C.id'
+      '            LEFT JOIN Empresas E ON C.empresa_id = E.id'
+      '            LEFT JOIN PedidosEstados  PE  ON PE.id = P.estadoactual_id'
+      '            LEFT JOIN PedidosTiposEstados TPE ON PE.tipoestado_id = TPE.id'
+      'WHERE (P.cliente_id = :parametro)'
+      '           and (P.bVisible = 1)'
+      'ORDER BY P.Numero'
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'parametro'
+        ParamType = ptUnknown
+      end>
+    left = 88
+    top = 232
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'parametro'
+        ParamType = ptUnknown
+      end>
+    object qBusClienteID: TStringField
+      DisplayWidth = 152
+      FieldKind = fkData
+      FieldName = 'ID'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      Size = 152
+    end
+    object qBusClienteFTOMA: TDateField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'FTOMA'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object qBusClienteTOTALPEDIDO: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'TOTALPEDIDO'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object qBusClienteCLIENTE: TStringField
+      DisplayWidth = 2000
+      FieldKind = fkData
+      FieldName = 'CLIENTE'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 2000
+    end
+    object qBusClienteESTADO: TStringField
+      DisplayWidth = 120
+      FieldKind = fkData
+      FieldName = 'ESTADO'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 120
+    end
+    object qBusClienteNUMERO: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'NUMERO'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+  end
+  object qBusFechaToma: TZQuery
+    Connection = DM_General.cnxBase
+    Active = True
+    SQL.Strings = (
+      'SELECT P.id'
+      '             ,P.Numero'
+      '             , P.FToma'
+      '             , P.TotalPedido'
+      '             , E.RazonSocial as Cliente'
+      '             , TPE.TipoEstado as Estado'
+      'FROM Pedidos P'
+      '            LEFT JOIN Clientes C ON P.cliente_id = C.id'
+      '            LEFT JOIN Empresas E ON C.empresa_id = E.id'
+      '            LEFT JOIN PedidosEstados  PE  ON PE.id = P.estadoactual_id'
+      '            LEFT JOIN PedidosTiposEstados TPE ON PE.tipoestado_id = TPE.id'
+      'WHERE (P.fToma = :parametro)'
+      '           and (P.bVisible = 1)'
+      'ORDER BY P.Numero'
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'parametro'
+        ParamType = ptUnknown
+      end>
+    left = 88
+    top = 304
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'parametro'
+        ParamType = ptUnknown
+      end>
+    object qBusFechaTomaID: TStringField
+      DisplayWidth = 152
+      FieldKind = fkData
+      FieldName = 'ID'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      Size = 152
+    end
+    object qBusFechaTomaNUMERO: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'NUMERO'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object qBusFechaTomaFTOMA: TDateField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'FTOMA'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object qBusFechaTomaTOTALPEDIDO: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'TOTALPEDIDO'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object qBusFechaTomaCLIENTE: TStringField
+      DisplayWidth = 2000
+      FieldKind = fkData
+      FieldName = 'CLIENTE'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 2000
+    end
+    object qBusFechaTomaESTADO: TStringField
+      DisplayWidth = 120
+      FieldKind = fkData
+      FieldName = 'ESTADO'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 120
+    end
+  end
+end

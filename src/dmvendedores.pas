@@ -102,6 +102,7 @@ begin
   SELVendedores.Close;
 
   DM_Empresa.Editar(Vendedoresempresa_id.AsString);
+  _idEmpresa:= Vendedoresempresa_id.AsString;
 end;
 
 procedure TDM_Vendedores.Grabar;

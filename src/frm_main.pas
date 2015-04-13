@@ -15,6 +15,8 @@ type
   { TfrmMain }
 
   TfrmMain = class(TForm)
+    MenuItem27: TMenuItem;
+    pedModificar: TAction;
     MenuItem25: TMenuItem;
     MenuItem26: TMenuItem;
     pedNuevo: TAction;
@@ -70,6 +72,7 @@ type
     procedure cliNuevoExecute(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
+    procedure pedModificarExecute(Sender: TObject);
     procedure pedNuevoExecute(Sender: TObject);
     procedure prgSalirExecute(Sender: TObject);
     procedure prodBorrarExecute(Sender: TObject);
@@ -116,6 +119,7 @@ uses
   ,dmvendedores
   ,frm_vendedoresae
   ,frm_pedidosae
+  ,frm_pedidosbusqueda
   ;
 
 { TfrmMain }
@@ -456,6 +460,21 @@ end;
 procedure TfrmMain.pedNuevoExecute(Sender: TObject);
 begin
   pantallaPedidos(GUIDNULO);
+end;
+
+procedure TfrmMain.pedModificarExecute(Sender: TObject);
+var
+ pant: TfrmPedidosBusqueda;
+begin
+  pant:= TfrmPedidosBusqueda.Create(self);
+  try
+    if pant.ShowModal = mrOK then
+    begin
+      pantallaPedidos(pant.idPedidoSeleccionado);
+    end;
+  finally
+    pant.Free;
+  end;
 end;
 
 

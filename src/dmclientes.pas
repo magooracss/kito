@@ -105,7 +105,7 @@ begin
   SELClientes.Open;
   Clientes.LoadFromDataSet(SELClientes, 0, lmAppend);
   SELClientes.Close;
-
+  _idEmpresa:= Clientesempresa_id.AsString;
   DM_Empresa.Editar(Clientesempresa_id.AsString);
 end;
 

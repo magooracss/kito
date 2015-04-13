@@ -96,6 +96,7 @@ begin
   SELTransportistas.Close;
 
   DM_Empresa.Editar(Transportistasempresa_id.AsString);
+  _idEmpresa:= Transportistasempresa_id.AsString;
 end;
 
 procedure TDM_Transportistas.Grabar;

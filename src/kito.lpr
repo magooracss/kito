@@ -13,8 +13,9 @@ uses
   frm_clientesae, frm_contactoae, dmclientes, frm_domicilioae,
   frm_localidadesae, frm_buscarlocalidad, frm_busquedaempresas,
   dmbusquedaempresas, frm_proveedoresae, dmproveedores, frm_transportistasae,
-  dmtransportistas, frm_vendedoresae, dmvendedores, frm_pedidosae, dmpedidos
-  ,sysutils, frm_pedidoeditarproducto, frm_pedidosEstados, frm_pedidoestadosae;
+  dmtransportistas, frm_vendedoresae, dmvendedores, frm_pedidosae, dmpedidos,
+  sysutils, frm_pedidoeditarproducto, frm_pedidosEstados, frm_pedidoestadosae,
+  frm_pedidosbusqueda, dmbusquedapedidos;
 
 {$R *.res}
 

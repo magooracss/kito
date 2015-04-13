@@ -109,6 +109,7 @@ uses
   ,dmclientes
   ,dmvendedores
   ,dmproductos
+  ,dmtransportistas
   ,frm_busquedaempresas
   ,dmbusquedaempresas
   ,frm_busquedaProductos
@@ -229,8 +230,14 @@ begin
   Else
   begin
     DM_Pedidos.LevantarPedido (_idPedido);
+    DM_Clientes.Editar(DM_Pedidos.Pedidoscliente_id.AsString);
+    DM_Vendedores.Editar(DM_Pedidos.Pedidosvendedor_id.AsString);
+    DM_Transportistas.Editar(DM_Pedidos.Pedidostransportista_id.AsString);
+
     edClienteRazonSocial.Text:= DM_Clientes.RazonSocial;
     edVendedorRazonSocial.Text:= DM_Vendedores.RazonSocial;
+    edTransportista.Text:= DM_Transportistas.RazonSocial;
+
     cbListaPrecio.ItemIndex:= DM_General.obtenerIdxCombo(cbListaPrecio
                                                         ,DM_Clientes.ClienteslistaPrecio_id.AsInteger);
   end;

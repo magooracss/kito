@@ -177,6 +177,13 @@ object frmMain: TfrmMain
       ImageIndex = 7
       OnExecute = pedNuevoExecute
     end
+    object pedModificar: TAction
+      Category = 'Pedidos'
+      Caption = 'Modificar Pedido'
+      Hint = 'Modifica los datos de un pedido cargado'
+      ImageIndex = 8
+      OnExecute = pedModificarExecute
+    end
   end
   object MainMenu1: TMainMenu
     Images = DM_General.ImgAccionesMenu
@@ -258,6 +265,9 @@ object frmMain: TfrmMain
       Caption = 'Pedidos'
       object MenuItem26: TMenuItem
         Action = pedNuevo
+      end
+      object MenuItem27: TMenuItem
+        Action = pedModificar
       end
     end
   end
