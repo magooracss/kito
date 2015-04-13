@@ -144,7 +144,6 @@ type
   private
     procedure CambiarEstado (estadoID: integer; fecha: TDateTime; obs: String);
 
-    procedure AjustarPreciosProducto;
 
 
     function TotalProductosPedidos: Double;
@@ -153,6 +152,8 @@ type
     procedure Nuevo;
     procedure LevantarPedido(refPedido: GUID_ID);
     procedure AjustarMontoPedido;
+    procedure AjustarPreciosProducto;
+
 
     procedure NuevoProducto (productoID: GUID_ID; listaPrecioID: integer
                              ; cantidad: Double);
@@ -356,20 +357,25 @@ var
   MontoAplicar: Double;
 begin
   PedidosDetalles.Edit;
-  with qPrecio do
+
+  if PedidosDetalleslistaPrecio_id.AsInteger <> 0 then //Si hay una lista de precios, no se carga manual
   begin
-    if active then close;
-    ParamByName('producto_id').asString:= PedidosDetallesproducto_id.AsString;
-    ParamByName('listaprecio_id').asInteger:= PedidosDetalleslistaPrecio_id.AsInteger;
-    Open;
-    if RecordCount > 0 then
-      PedidosDetallesprecioUnitario.AsFloat:= qPrecioMONTO.AsFloat
-    else
-    PedidosDetallesprecioUnitario.AsFloat:= 0;
+    with qPrecio do
+    begin
+      if active then close;
+      ParamByName('producto_id').asString:= PedidosDetallesproducto_id.AsString;
+      ParamByName('listaprecio_id').asInteger:= PedidosDetalleslistaPrecio_id.AsInteger;
+      Open;
+      if RecordCount > 0 then
+        PedidosDetallesprecioUnitario.AsFloat:= qPrecioMONTO.AsFloat
+      else
+        PedidosDetallesprecioUnitario.AsFloat:= 0;
+    end;
   end;
 
-  PedidosDetallesporcentajeAplicar.AsFloat:= 0;
-  PedidosDetallesbDescuento.AsInteger:= 1;
+//  PedidosDetallesporcentajeAplicar.AsFloat:= 0;
+//  PedidosDetallesbDescuento.AsInteger:= 1;
+
   MontoAplicar:= (( PedidosDetallesprecioUnitario.asFloat
                   * PedidosDetallesporcentajeAplicar.AsFloat) /100);
 

@@ -7,7 +7,7 @@ interface
 uses
   Classes, SysUtils, db, FileUtil, dbdateedit, dbcurredit, RxDBSpinEdit, rxspin,
   Forms, Controls, Graphics, Dialogs, ExtCtrls, Buttons, DbCtrls, StdCtrls,
-  DBGrids, dmgeneral
+  DBGrids, Menus, dmgeneral
   ;
 
 type
@@ -49,6 +49,7 @@ type
     GroupBox2: TGroupBox;
     GroupBox3: TGroupBox;
     GroupBox4: TGroupBox;
+    ImgListaMenuPopUp: TImageList;
     Label1: TLabel;
     Label10: TLabel;
     Label11: TLabel;
@@ -61,9 +62,12 @@ type
     Label7: TLabel;
     Label8: TLabel;
     Label9: TLabel;
+    MnModificar: TMenuItem;
+    MnBorrarProducto: TMenuItem;
     Panel1: TPanel;
     Panel2: TPanel;
     Panel3: TPanel;
+    pMenuProductos: TPopupMenu;
     RxDBCurrEdit1: TRxDBCurrEdit;
     RxDBCurrEdit2: TRxDBCurrEdit;
     RxDBCurrEdit3: TRxDBCurrEdit;
@@ -78,6 +82,8 @@ type
     procedure edBusCodigoKeyPress(Sender: TObject; var Key: char);
     procedure edBusNombreKeyPress(Sender: TObject; var Key: char);
     procedure FormShow(Sender: TObject);
+    procedure MnBorrarProductoClick(Sender: TObject);
+    procedure MnModificarClick(Sender: TObject);
     procedure RxDBCurrEdit1Exit(Sender: TObject);
 
   private
@@ -105,6 +111,7 @@ uses
   ,frm_busquedaempresas
   ,dmbusquedaempresas
   ,frm_busquedaProductos
+  ,frm_pedidoeditarproducto
   ;
 
 { TfrmPedidoAE }
@@ -197,6 +204,8 @@ procedure TfrmPedidoAE.FormShow(Sender: TObject);
 begin
   Inicializar;
 end;
+
+
 
 procedure TfrmPedidoAE.RxDBCurrEdit1Exit(Sender: TObject);
 begin
@@ -315,6 +324,25 @@ begin
 
 end;
 
+procedure TfrmPedidoAE.MnModificarClick(Sender: TObject);
+var
+  pant: TfrmPedidoEditarProducto;
+begin
+  pant:= TfrmPedidoEditarProducto.Create(self);
+  try
+    if pant.ShowModal = mrOK then
+    begin
+      DM_Pedidos.AjustarMontoPedido;
+    end;
+  finally
+    pant.Free;
+  end;
+end;
+
+procedure TfrmPedidoAE.MnBorrarProductoClick(Sender: TObject);
+begin
+  ShowMessage('Borra');
+end;
 
 
 end.

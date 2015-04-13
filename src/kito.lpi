@@ -55,7 +55,7 @@
         <PackageName Value="LCL"/>
       </Item6>
     </RequiredPackages>
-    <Units Count="30">
+    <Units Count="31">
       <Unit0>
         <Filename Value="kito.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -286,6 +286,13 @@
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="dmpedidos"/>
       </Unit29>
+      <Unit30>
+        <Filename Value="frm_pedidoeditarproducto.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmPedidoEditarProducto"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="frm_pedidoeditarproducto"/>
+      </Unit30>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
