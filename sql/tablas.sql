@@ -220,3 +220,12 @@ CREATE TABLE PedidosTiposEstados
 , TipoEstado	varchar(30)
 , bVisible	smallint default 1			
 );
+
+CREATE TABLE Stock
+(
+  id		"guid"  NOT NULL PRIMARY KEY
+, producto_id	"guid"	default '{00000000-0000-0000-0000-000000000000}'
+, disponible	float default 0
+, pedidos	float default 0
+, armado	float default 0
+);

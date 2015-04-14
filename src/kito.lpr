@@ -15,7 +15,7 @@ uses
   dmbusquedaempresas, frm_proveedoresae, dmproveedores, frm_transportistasae,
   dmtransportistas, frm_vendedoresae, dmvendedores, frm_pedidosae, dmpedidos,
   sysutils, frm_pedidoeditarproducto, frm_pedidosEstados, frm_pedidoestadosae,
-  frm_pedidosbusqueda, dmbusquedapedidos;
+  frm_pedidosbusqueda, dmbusquedapedidos, dmstock;
 
 {$R *.res}
 
@@ -31,6 +31,7 @@ begin
   Application.CreateForm(TDM_General, DM_General);
   Application.CreateForm(TDM_Precios, DM_Precios);
   Application.CreateForm(TDM_Productos, DM_Productos);
+  Application.CreateForm(TDM_Stock, DM_Stock);
   Application.CreateForm(TDM_Empresa, DM_Empresa);
   Application.CreateForm(TDM_Clientes, DM_Clientes);
   Application.CreateForm(TDM_Proveedores, DM_Proveedores);

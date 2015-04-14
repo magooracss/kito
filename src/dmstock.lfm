@@ -1,0 +1,403 @@
+object DM_Stock: TDM_Stock
+  OldCreateOrder = False
+  Height = 414
+  HorizontalOffset = 405
+  VerticalOffset = 174
+  Width = 654
+  object stock: TRxMemoryData
+    Filtered = True
+    FieldDefs = <    
+      item
+        Name = 'id'
+        DataType = ftString
+        Precision = 0
+        Size = 38
+      end    
+      item
+        Name = 'producto_id'
+        DataType = ftString
+        Precision = 0
+        Size = 38
+      end    
+      item
+        Name = 'disponible'
+        DataType = ftFloat
+        Precision = 0
+        Size = 0
+      end    
+      item
+        Name = 'pedidos'
+        DataType = ftFloat
+        Precision = 0
+        Size = 0
+      end    
+      item
+        Name = 'armado'
+        DataType = ftFloat
+        Precision = 0
+        Size = 0
+      end>
+    AfterInsert = stockAfterInsert
+    PacketRecords = 0
+    left = 88
+    top = 48
+    object stockid: TStringField
+      DisplayWidth = 38
+      FieldKind = fkData
+      FieldName = 'id'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 38
+    end
+    object stockproducto_id: TStringField
+      DisplayWidth = 38
+      FieldKind = fkData
+      FieldName = 'producto_id'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 38
+    end
+    object stockdisponible: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'disponible'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      DisplayFormat = '#############0.###'
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object stockpedidos: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'pedidos'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object stockarmado: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'armado'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+  end
+  object qStockProducto: TZQuery
+    Connection = DM_General.cnxBase
+    Active = True
+    SQL.Strings = (
+      'SELECT *'
+      'FROM stock'
+      'WHERE (producto_id = :producto_id)'
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'producto_id'
+        ParamType = ptUnknown
+      end>
+    left = 88
+    top = 320
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'producto_id'
+        ParamType = ptUnknown
+      end>
+    object qStockProductoID: TStringField
+      DisplayWidth = 152
+      FieldKind = fkData
+      FieldName = 'ID'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      Size = 152
+    end
+    object qStockProductoPRODUCTO_ID: TStringField
+      DisplayWidth = 152
+      FieldKind = fkData
+      FieldName = 'PRODUCTO_ID'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 152
+    end
+    object qStockProductoDISPONIBLE: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'DISPONIBLE'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object qStockProductoPEDIDOS: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'PEDIDOS'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object qStockProductoARMADO: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'ARMADO'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+  end
+  object SELStock: TZQuery
+    Connection = DM_General.cnxBase
+    SQL.Strings = (
+      'SELECT *'
+      'FROM Stock'
+      'WHERE (id = :id)'
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'id'
+        ParamType = ptUnknown
+      end>
+    left = 88
+    top = 112
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'id'
+        ParamType = ptUnknown
+      end>
+    object SELStockID: TStringField
+      DisplayWidth = 152
+      FieldKind = fkData
+      FieldName = 'ID'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      Size = 152
+    end
+    object SELStockPRODUCTO_ID: TStringField
+      DisplayWidth = 152
+      FieldKind = fkData
+      FieldName = 'PRODUCTO_ID'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 152
+    end
+    object SELStockDISPONIBLE: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'DISPONIBLE'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object SELStockPEDIDOS: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'PEDIDOS'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object SELStockARMADO: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'ARMADO'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+  end
+  object INSStock: TZQuery
+    Connection = DM_General.cnxBase
+    SQL.Strings = (
+      'INSERT INTO Stock'
+      '(id, producto_id, disponible, pedidos, armado)'
+      'VALUES'
+      '(:id, :producto_id, :disponible, :pedidos, :armado)'
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'id'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'producto_id'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'disponible'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'pedidos'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'armado'
+        ParamType = ptUnknown
+      end>
+    left = 88
+    top = 176
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'id'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'producto_id'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'disponible'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'pedidos'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'armado'
+        ParamType = ptUnknown
+      end>
+  end
+  object UPDStock: TZQuery
+    Connection = DM_General.cnxBase
+    SQL.Strings = (
+      'UPDATE Stock'
+      'SET'
+      ' producto_id = :producto_id'
+      ', disponible = :disponible'
+      ', pedidos = :pedidos'
+      ', armado = :armado'
+      'WHERE (id = :id)'
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'producto_id'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'disponible'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'pedidos'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'armado'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'id'
+        ParamType = ptUnknown
+      end>
+    left = 88
+    top = 240
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'producto_id'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'disponible'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'pedidos'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'armado'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'id'
+        ParamType = ptUnknown
+      end>
+  end
+end
