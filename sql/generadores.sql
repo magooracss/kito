@@ -10,6 +10,7 @@ CREATE GENERATOR CondicionesFiscalesID;
 CREATE GENERATOR ZonasID;
 CREATE GENERATOR NroPedido;
 CREATE GENERATOR TiposEstadoPedidoID;
+CREATE GENERATOR NroMovimientoStock;
 
 SET GENERATOR marcasID TO 0;
 SET GENERATOR categoriasID TO 0;
@@ -23,5 +24,5 @@ SET GENERATOR CondicionesFiscalesID TO 0;
 SET GENERATOR ZonasID TO 0;
 SET GENERATOR NroPedido TO 0;
 SET GENERATOR TiposEstadoPedidoID TO 6;
-
+SET GENERATOR NroMovimientoStock TO 0;
 

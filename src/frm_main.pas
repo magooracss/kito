@@ -15,7 +15,10 @@ type
   { TfrmMain }
 
   TfrmMain = class(TForm)
+    stkNuevo: TAction;
     MenuItem27: TMenuItem;
+    MenuItem28: TMenuItem;
+    MenuItem29: TMenuItem;
     pedModificar: TAction;
     MenuItem25: TMenuItem;
     MenuItem26: TMenuItem;
@@ -70,7 +73,6 @@ type
     procedure cliBorrarExecute(Sender: TObject);
     procedure cliEditarExecute(Sender: TObject);
     procedure cliNuevoExecute(Sender: TObject);
-    procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure pedModificarExecute(Sender: TObject);
     procedure pedNuevoExecute(Sender: TObject);
@@ -81,6 +83,7 @@ type
     procedure provBorrarExecute(Sender: TObject);
     procedure provEditarExecute(Sender: TObject);
     procedure provNuevoExecute(Sender: TObject);
+    procedure stkNuevoExecute(Sender: TObject);
     procedure tranBorrarExecute(Sender: TObject);
     procedure tranEditarExecute(Sender: TObject);
     procedure tranNuevoExecute(Sender: TObject);
@@ -95,6 +98,7 @@ type
      procedure pantallaTransportistas(ID: GUID_ID);
      procedure pantallaVendedores(ID: GUID_ID);
      procedure pantallaPedidos(ID: GUID_ID);
+     procedure pantallaMovimientosStock (ID: GUID_ID);
   public
     { public declarations }
   end;
@@ -120,6 +124,7 @@ uses
   ,frm_vendedoresae
   ,frm_pedidosae
   ,frm_pedidosbusqueda
+  ,frm_movimientosstockae
   ;
 
 { TfrmMain }
@@ -235,10 +240,6 @@ begin
   pantallaCliente(GUIDNULO);
 end;
 
-procedure TfrmMain.FormCreate(Sender: TObject);
-begin
-
-end;
 
 procedure TfrmMain.cliEditarExecute(Sender: TObject);
 var
@@ -294,7 +295,6 @@ procedure TfrmMain.provNuevoExecute(Sender: TObject);
 begin
   pantallaProveedores(GUIDNULO);
 end;
-
 
 procedure TfrmMain.provEditarExecute(Sender: TObject);
 var
@@ -475,6 +475,30 @@ begin
   finally
     pant.Free;
   end;
+end;
+
+(*******************************************************************************
+*** MOVIMIENTOS DE STOCK
+*******************************************************************************)
+procedure TfrmMain.pantallaMovimientosStock(ID: GUID_ID);
+var
+  pant: TfrmMovimientosStockAE;
+begin
+  pant:= TfrmMovimientosStockAE.Create(self);
+  try
+    if pant.ShowModal = mrOK then
+    begin
+
+    end;
+  finally
+    pant.Free;
+  end;
+
+end;
+
+procedure TfrmMain.stkNuevoExecute(Sender: TObject);
+begin
+  pantallaMovimientosStock (GUIDNULO);
 end;
 
 

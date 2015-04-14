@@ -142,3 +142,16 @@ END^
 
 SET TERM ; ^  
 
+SET TERM ^ ;
+
+CREATE TRIGGER nroMovimientoStock FOR MovimientosStock
+BEFORE INSERT POSITION 0
+AS 
+BEGIN 
+    If (New.numero = -1) then
+   New.numero = GEN_ID(NroMovimientoStock,1);
+END^
+
+SET TERM ; ^  
+
+SET TERM ^ 

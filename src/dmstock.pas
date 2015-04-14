@@ -15,17 +15,53 @@ type
   { TDM_Stock }
 
   TDM_Stock = class(TDataModule)
+    INSMovimientosStock: TZQuery;
+    INSMovimientosStockDetalles: TZQuery;
+    MovimientosStockbVisible: TLongintField;
+    MovimientosStockDetallesbVisible: TLongintField;
+    MovimientosStockDetallescantidad: TFloatField;
+    MovimientosStockDetallesid: TStringField;
+    MovimientosStockDetallesmovimientosStock_id: TStringField;
+    MovimientosStockDetallesprecioTotal: TFloatField;
+    MovimientosStockDetallesprecioUnitario: TFloatField;
+    MovimientosStockDetallesproducto_id: TStringField;
+    MovimientosStockfecha: TDateTimeField;
+    MovimientosStockid: TStringField;
+    MovimientosStocklistaprecio_id: TLongintField;
+    MovimientosStocknotas: TStringField;
+    MovimientosStocknumero: TLongintField;
+    MovimientosStockproveedor_id: TStringField;
+    MovimientosStockremito: TStringField;
     qStockProductoARMADO: TFloatField;
     qStockProductoDISPONIBLE: TFloatField;
     qStockProductoID: TStringField;
     qStockProductoPEDIDOS: TFloatField;
     qStockProductoPRODUCTO_ID: TStringField;
+    SELMovimientosStock: TZQuery;
+    SELMovimientosStockBVISIBLE: TSmallintField;
+    SELMovimientosStockDetallesBVISIBLE: TSmallintField;
+    SELMovimientosStockDetallesCANTIDAD: TFloatField;
+    SELMovimientosStockDetallesID: TStringField;
+    SELMovimientosStockDetallesMOVIMIENTOSSTOCK_ID: TStringField;
+    SELMovimientosStockDetallesPRECIOTOTAL: TFloatField;
+    SELMovimientosStockDetallesPRECIOUNITARIO: TFloatField;
+    SELMovimientosStockDetallesPRODUCTO_ID: TStringField;
+    SELMovimientosStockFECHA: TDateField;
+    SELMovimientosStockID: TStringField;
+    SELMovimientosStockLISTAPRECIO_ID: TLongintField;
+    SELMovimientosStockNOTAS: TStringField;
+    SELMovimientosStockNUMERO: TLongintField;
+    SELMovimientosStockPROVEEDOR_ID: TStringField;
+    SELMovimientosStockREMITO: TStringField;
+    SELMovimientosStockDetalles: TZQuery;
     SELStockARMADO: TFloatField;
     SELStockDISPONIBLE: TFloatField;
     SELStockID: TStringField;
     SELStockPEDIDOS: TFloatField;
     SELStockPRODUCTO_ID: TStringField;
     stock: TRxMemoryData;
+    MovimientosStock: TRxMemoryData;
+    MovimientosStockDetalles: TRxMemoryData;
     stockarmado: TFloatField;
     stockdisponible: TFloatField;
     stockid: TStringField;
@@ -35,6 +71,10 @@ type
     SELStock: TZQuery;
     INSStock: TZQuery;
     UPDStock: TZQuery;
+    UPDMovimientosStock: TZQuery;
+    UPDMovimientosStockDetalles: TZQuery;
+    procedure MovimientosStockAfterInsert(DataSet: TDataSet);
+    procedure MovimientosStockDetallesAfterInsert(DataSet: TDataSet);
     procedure stockAfterInsert(DataSet: TDataSet);
   private
     function Getarmado: double;
@@ -48,13 +88,16 @@ type
     property pedidos: double read Getpedidos;
     property armado: double read Getarmado;
 
-
     procedure productoDisponible (cantidad: double); //carga los productos a pedir
     procedure productoPedido (cantidad: double); //Baja de Disponible, incrementa Pedidos
     procedure productoArmado (cantidad: double); //Baja de pedidos, incrementa Armados
     procedure productoEntregado (cantidad: Double); //Baja de Stock Armados
 
     procedure Grabar;
+
+
+
+    procedure GrabarMovimientoStock;
   end;
 
 var
@@ -73,6 +116,29 @@ begin
   stockdisponible.AsFloat:= 0;
   stockpedidos.AsFloat:= 0;
   stockarmado.AsFloat:= 0;
+end;
+
+procedure TDM_Stock.MovimientosStockAfterInsert(DataSet: TDataSet);
+begin
+  MovimientosStockid.AsString:= DM_General.CrearGUID;
+  MovimientosStockproveedor_id.AsString:= GUIDNULO;
+  MovimientosStocknumero.AsInteger:= -1;
+  MovimientosStockfecha.AsDateTime:= Now;
+  MovimientosStocklistaprecio_id.AsInteger:= 0;
+  MovimientosStockremito.AsString:='0';
+  MovimientosStocknotas.AsString:= ' ';
+  MovimientosStockbVisible.AsInteger:=1;
+end;
+
+procedure TDM_Stock.MovimientosStockDetallesAfterInsert(DataSet: TDataSet);
+begin
+  MovimientosStockDetallesid.AsString:= DM_General.CrearGUID;
+  MovimientosStockDetallesmovimientosStock_id.AsString:= MovimientosStockid.AsString;
+  MovimientosStockDetallesproducto_id.AsString:= GUIDNULO;
+  MovimientosStockDetallescantidad.AsFloat:= 0;
+  MovimientosStockDetallesprecioUnitario.AsFloat:= 0;
+  MovimientosStockDetallesprecioTotal.asFloat:= 0;
+  MovimientosStockDetallesbVisible.AsInteger:= 1;
 end;
 
 function TDM_Stock.Getarmado: double;
@@ -166,6 +232,12 @@ end;
 procedure TDM_Stock.Grabar;
 begin
   DM_General.GrabarDatos(SELStock, INSStock, UPDStock, stock, 'id');
+end;
+
+procedure TDM_Stock.GrabarMovimientoStock;
+begin
+  DM_General.GrabarDatos(SELMovimientosStock, INSMovimientosStock, UPDMovimientosStock, MovimientosStock, 'id');
+  DM_General.GrabarDatos(SELMovimientosStockDetalles, INSMovimientosStockDetalles, UPDMovimientosStockDetalles, MovimientosStockDetalles, 'id');
 end;
 
 end.

@@ -12,7 +12,6 @@ object frmMain: TfrmMain
   Font.Pitch = fpVariable
   Font.Quality = fqDraft
   Menu = MainMenu1
-  OnCreate = FormCreate
   OnShow = FormShow
   Position = poScreenCenter
   LCLVersion = '1.2.6.0'
@@ -184,6 +183,13 @@ object frmMain: TfrmMain
       ImageIndex = 8
       OnExecute = pedModificarExecute
     end
+    object stkNuevo: TAction
+      Category = 'Stock'
+      Caption = 'Nuevo movimiento stock'
+      Hint = 'Crea un nuevo ingreso/egreso de mercadería del stock'
+      ImageIndex = 11
+      OnExecute = stkNuevoExecute
+    end
   end
   object MainMenu1: TMainMenu
     Images = DM_General.ImgAccionesMenu
@@ -268,6 +274,12 @@ object frmMain: TfrmMain
       end
       object MenuItem27: TMenuItem
         Action = pedModificar
+      end
+      object MenuItem28: TMenuItem
+        Caption = '-'
+      end
+      object MenuItem29: TMenuItem
+        Action = stkNuevo
       end
     end
   end

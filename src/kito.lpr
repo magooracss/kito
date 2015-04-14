@@ -15,7 +15,7 @@ uses
   dmbusquedaempresas, frm_proveedoresae, dmproveedores, frm_transportistasae,
   dmtransportistas, frm_vendedoresae, dmvendedores, frm_pedidosae, dmpedidos,
   sysutils, frm_pedidoeditarproducto, frm_pedidosEstados, frm_pedidoestadosae,
-  frm_pedidosbusqueda, dmbusquedapedidos, dmstock;
+  frm_pedidosbusqueda, dmbusquedapedidos, dmstock, frm_movimientosstockae;
 
 {$R *.res}
 

@@ -55,7 +55,7 @@
         <PackageName Value="LCL"/>
       </Item6>
     </RequiredPackages>
-    <Units Count="36">
+    <Units Count="37">
       <Unit0>
         <Filename Value="kito.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -332,6 +332,13 @@
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="dmstock"/>
       </Unit35>
+      <Unit36>
+        <Filename Value="frm_movimientosstockae.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmMovimientosStockAE"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="frm_movimientosstockae"/>
+      </Unit36>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

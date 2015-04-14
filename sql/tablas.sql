@@ -229,3 +229,26 @@ CREATE TABLE Stock
 , pedidos	float default 0
 , armado	float default 0
 );
+
+CREATE TABLE MovimientosStock
+(
+  id		"guid"  NOT NULL PRIMARY KEY
+, proveedor_id	"guid"	default '{00000000-0000-0000-0000-000000000000}'
+, fecha		date
+, numero	integer default -1
+, listaPrecio_id integer default 0
+, remito	varchar(20)
+, notas		varchar(3000)
+, bVisible	smallint default 1
+);
+
+CREATE TABLE MovimientosStockDetalles
+(
+  id		"guid"  NOT NULL PRIMARY KEY
+, movimientosstock_id	"guid"	default '{00000000-0000-0000-0000-000000000000}'
+, producto_id	"guid"	default '{00000000-0000-0000-0000-000000000000}'
+, cantidad	float default 0
+, precioUnitario float default 0
+, precioTotal	float default 0
+, bVisible	smallint default 1
+);
