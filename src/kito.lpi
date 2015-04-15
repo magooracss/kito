@@ -329,6 +329,7 @@
         <Filename Value="dmstock.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="DM_Stock"/>
+        <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="dmstock"/>
       </Unit35>
@@ -336,6 +337,7 @@
         <Filename Value="frm_movimientosstockae.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="frmMovimientosStockAE"/>
+        <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="frm_movimientosstockae"/>
       </Unit36>

@@ -95,9 +95,8 @@ type
 
     procedure Grabar;
 
-
-
     procedure GrabarMovimientoStock;
+    procedure NuevoMovimientoStock;
   end;
 
 var
@@ -232,6 +231,14 @@ end;
 procedure TDM_Stock.Grabar;
 begin
   DM_General.GrabarDatos(SELStock, INSStock, UPDStock, stock, 'id');
+end;
+
+procedure TDM_Stock.NuevoMovimientoStock;
+begin
+  DM_General.ReiniciarTabla(MovimientosStock);
+  DM_General.ReiniciarTabla(MovimientosStockDetalles);
+
+  MovimientosStock.Insert;
 end;
 
 procedure TDM_Stock.GrabarMovimientoStock;

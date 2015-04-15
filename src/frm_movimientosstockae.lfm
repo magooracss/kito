@@ -1,27 +1,29 @@
 object frmMovimientosStockAE: TfrmMovimientosStockAE
-  Left = 317
+  Left = 305
   Height = 559
-  Top = 95
-  Width = 731
+  Top = 112
+  Width = 690
   Caption = 'Movimientos de Stock'
   ClientHeight = 559
-  ClientWidth = 731
+  ClientWidth = 690
   Font.CharSet = ANSI_CHARSET
   Font.Height = -13
   Font.Name = 'Arial'
   Font.Pitch = fpVariable
   Font.Quality = fqDraft
+  OnCreate = FormCreate
+  OnShow = FormShow
   Position = poOwnerFormCenter
   LCLVersion = '1.2.6.0'
   object Panel1: TPanel
     Left = 0
     Height = 50
     Top = 509
-    Width = 731
+    Width = 690
     Align = alBottom
     ClientHeight = 50
-    ClientWidth = 731
-    TabOrder = 0
+    ClientWidth = 690
+    TabOrder = 3
     object btnGrabar: TBitBtn
       Left = 42
       Height = 40
@@ -96,7 +98,7 @@ object frmMovimientosStockAE: TfrmMovimientosStockAE
       TabOrder = 0
     end
     object btnCancelar: TBitBtn
-      Left = 552
+      Left = 511
       Height = 40
       Top = 3
       Width = 134
@@ -172,13 +174,13 @@ object frmMovimientosStockAE: TfrmMovimientosStockAE
   end
   object Panel2: TPanel
     Left = 0
-    Height = 186
+    Height = 190
     Top = 0
-    Width = 731
+    Width = 690
     Align = alTop
-    ClientHeight = 186
-    ClientWidth = 731
-    TabOrder = 1
+    ClientHeight = 190
+    ClientWidth = 690
+    TabOrder = 0
     object DBText1: TDBText
       Left = 8
       Height = 22
@@ -224,11 +226,11 @@ object frmMovimientosStockAE: TfrmMovimientosStockAE
       Left = 160
       Height = 56
       Top = 22
-      Width = 561
+      Width = 520
       Anchors = [akTop, akLeft, akRight]
       Caption = 'Proveedor'
       ClientHeight = 38
-      ClientWidth = 557
+      ClientWidth = 516
       TabOrder = 1
       object BitBtn1: TBitBtn
         Left = 8
@@ -312,13 +314,15 @@ object frmMovimientosStockAE: TfrmMovimientosStockAE
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000
         }
+        OnClick = BitBtn1Click
         TabOrder = 0
       end
       object edProveedor: TEdit
         Left = 120
         Height = 24
         Top = 11
-        Width = 432
+        Width = 392
+        Anchors = [akTop, akLeft, akRight]
         Color = clMoneyGreen
         ReadOnly = True
         TabStop = False
@@ -326,41 +330,31 @@ object frmMovimientosStockAE: TfrmMovimientosStockAE
         Text = 'Sin un proveedor asignado'
       end
     end
-    object DBLookupComboBox1: TDBLookupComboBox
-      Left = 8
-      Height = 24
-      Top = 96
-      Width = 288
-      DataField = 'listaprecio_id'
-      DataSource = ds_MovStock
-      ListFieldIndex = 0
-      LookupCache = False
-      TabOrder = 2
-    end
     object DBEdit1: TDBEdit
       Left = 8
       Height = 24
-      Top = 150
+      Top = 157
       Width = 288
       DataField = 'remito'
       DataSource = ds_MovStock
       CharCase = ecNormal
       MaxLength = 0
-      TabOrder = 3
+      TabOrder = 2
     end
     object DBMemo1: TDBMemo
-      Left = 360
-      Height = 82
+      Left = 448
+      Height = 85
       Top = 96
-      Width = 360
+      Width = 230
+      Anchors = [akTop, akLeft, akRight]
       DataField = 'notas'
       DataSource = ds_MovStock
-      TabOrder = 4
+      TabOrder = 3
     end
     object Label2: TLabel
       Left = 8
       Height = 16
-      Top = 80
+      Top = 87
       Width = 92
       Caption = 'Lista de precios'
       ParentColor = False
@@ -368,37 +362,306 @@ object frmMovimientosStockAE: TfrmMovimientosStockAE
     object Label3: TLabel
       Left = 8
       Height = 16
-      Top = 134
+      Top = 141
       Width = 147
       Caption = 'Remito/Orden de Entrega'
       ParentColor = False
     end
     object Label4: TLabel
-      Left = 360
+      Left = 448
       Height = 16
       Top = 80
       Width = 34
       Caption = 'Notas'
       ParentColor = False
     end
+    object GroupBox2: TGroupBox
+      Left = 312
+      Height = 105
+      Top = 80
+      Width = 113
+      Caption = 'Totales'
+      ClientHeight = 87
+      ClientWidth = 109
+      TabOrder = 4
+      object Label5: TLabel
+        Left = 8
+        Height = 16
+        Top = 0
+        Width = 76
+        Caption = 'Lista Precios'
+        ParentColor = False
+      end
+      object edTotalCargado: TCurrencyEdit
+        Left = 8
+        Height = 24
+        Top = 60
+        Width = 88
+        Alignment = taRightJustify
+        Color = clMoneyGreen
+        MaxValue = 0
+        MinValue = 0
+        ReadOnly = True
+        TabOrder = 1
+        TabStop = False
+        Value = 0
+      end
+      object Label6: TLabel
+        Left = 8
+        Height = 16
+        Top = 44
+        Width = 48
+        Caption = 'Cargado'
+        ParentColor = False
+      end
+      object edTotalListaPrecio: TCurrencyEdit
+        Left = 8
+        Height = 24
+        Top = 16
+        Width = 88
+        Alignment = taRightJustify
+        Color = clMoneyGreen
+        MaxValue = 0
+        MinValue = 0
+        ReadOnly = True
+        TabOrder = 0
+        TabStop = False
+        Value = 0
+      end
+    end
+    object cbListaPrecio: TComboBox
+      Left = 8
+      Height = 24
+      Top = 107
+      Width = 288
+      ItemHeight = 16
+      TabOrder = 5
+      Text = 'cbListaPrecio'
+    end
   end
   object Panel3: TPanel
     Left = 0
-    Height = 94
-    Top = 186
-    Width = 731
+    Height = 70
+    Top = 190
+    Width = 690
     Align = alTop
-    TabOrder = 2
+    ClientHeight = 70
+    ClientWidth = 690
+    TabOrder = 1
+    object GroupBox4: TGroupBox
+      Left = 1
+      Height = 68
+      Top = 1
+      Width = 677
+      Align = alLeft
+      Caption = 'Producto'
+      ClientHeight = 50
+      ClientWidth = 673
+      TabOrder = 0
+      object edBusNombre: TEdit
+        Left = 213
+        Height = 23
+        Top = 21
+        Width = 154
+        Font.CharSet = ANSI_CHARSET
+        Font.Height = -12
+        Font.Name = 'Arial'
+        Font.Pitch = fpVariable
+        Font.Quality = fqDraft
+        ParentFont = False
+        TabOrder = 2
+      end
+      object Label11: TLabel
+        Left = 213
+        Height = 16
+        Top = 2
+        Width = 45
+        Caption = 'Nombre'
+        ParentColor = False
+      end
+      object edBusCodigo: TEdit
+        Left = 125
+        Height = 24
+        Top = 20
+        Width = 80
+        OnKeyPress = edBusCodigoKeyPress
+        TabOrder = 1
+      end
+      object Label9: TLabel
+        Left = 125
+        Height = 16
+        Top = 2
+        Width = 40
+        Caption = 'Código'
+        ParentColor = False
+      end
+      object btnBuscarProducto: TBitBtn
+        Left = 376
+        Height = 53
+        Top = -5
+        Width = 72
+        Caption = 'Buscar'
+        Glyph.Data = {
+          36090000424D3609000000000000360000002800000018000000180000000100
+          2000000000000009000064000000640000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          000000000000000000000000000000000000000000071010101F130E0E35100C
+          0C410F0B0B451D1A1A46130E0E351010101F000000070000000810101020130E
+          0E36100C0C410F0B0B45100C0C41130E0E361010102000000000000000000000
+          0000000000000000000000000000000000010000000D36342EFF3A3832FF3937
+          31FF383630FF37352FFF36342EFF36342EFF3C3C3C26686C6C4036342EFF3A38
+          32FF393731FF383630FF37352FFF36342EFF36342EFF00000000000000000000
+          0000000000020000000E0000001900000024141414343C3C36FFBCBFBEFFBCC0
+          BFFF959896FF686B69FF535654FF36342EFD838888EB868A8AF83A3933F7BCBF
+          BEFFBCC0BFFF959896FF686B69FF535654FF37352FFC00000000000000000000
+          00020000000F0000001C575A575B4D4F4F641A1A1A4D3D3C37FFD9DBDAFFCBCF
+          CDFFA7ABA9FF808381FF6E7170FF383630FF9996ADFD8B8D95F43B3934FAD9DB
+          DAFFCBCFCDFFA7ABA9FF808381FF6E7170FF36342EFA00000000000000000000
+          0000000000084E534E2E868B8AF88A8F90F5848988F9535450FC9A9D9AFFB4BA
+          B7FF828785FF626664FF50514EFF58565CFFADA5CEFF8F909AF54C4C48EE9A9D
+          9AFFB4BAB7FF828785FF626664FF50514EFF393732B800000000000000000000
+          00000000000080808002898E8DE6B9B5CFFFB3AEC7FF9591A2FF585956FF8F92
+          91FF626664FF525452FF3E3D3AFFB3B1B2FFD2CEE4FFABA5C7FF7B7887FF5554
+          52FF8F9291FF626664FF525452FF343431F335352F5200000000000000000000
+          0000838B87428689894E878B8AACA8A6B5FFCFCAE2FF9E9C9CFF383631FF3E3E
+          38FF3B3B34FF393932FF373630FF393832FF8C8A8AFE9A989BFF3B3934FF3A3A
+          33FF3D3C36FF3A3933FF383832FF36352FFF39372F8100000000000000008288
+          882B858A88FD9FA2A9F09D9EA7F3C6C2D8FFF2F1F8FF3C3B35FFA4A9A7FFC4CA
+          C8FFA7ACA9FF858987FF6B6F6DFF51524EFF373630FF393832FF737471FFC4CA
+          C8FFA7ABA9FF858886FF6B6F6DFF656766FF37352FF900000000000000009999
+          9905898E8ED8ADACB6F8D1CCE3FFE3E0EEFFCDCDD7FE36342EFFADB2B0FFB4BB
+          B8FF929895FF6C716FFF535755FF36342EFF60625EFF565753FF36342EFFB5BC
+          B9FF929795FF6C706EFF535755FF6B6F6DFF36342EFF00000000000000000000
+          00008989891A878B8AF7D2D0E1FFECEAF4FF909494F136342EFFB0B5B3FFB4BB
+          B8FF929895FF6C716FFF535755FF36342EFF858A88FF727674FF36342EFFB5BC
+          B9FF929795FF6C706EFF535755FF707372FF36342EFF00000000000000008B90
+          9095898E8CF6A9ABB1F4E1DEEDFFE0DEE9FF8A8E8DE7383631F4A7ACAAFFC9CE
+          CCFFA4A9A6FF6D7270FF535755FF36342EFF858A88FF727674FF36342EFFB5BC
+          B9FF929795FF818482FF777A78FF707471FF37352EF70000000000000000878C
+          8BF7BFBFC5FEE1DFEAFFE4E2EFFFD9D7E1FF8C9090D33939326B383630F93F3D
+          36F8979A97FF7C817FFF535755FF36342EFF5B5C58FF52534FFF36342EFFB5BC
+          B9FF9DA2A0FF818481FF3D3C36FF393731FF3735306F00000000000000008489
+          89348A8F8DAF939796F5E8E6F0FFE1E0EAFF898E8DEA00000000000000003636
+          2C344F4E49FF989B9AFF828483FF60615DFF36342EFB37352FF9787A76FFCACF
+          CDFFB2B5B4FF4D4D48FF737674F4898D8D7D0000000000000000000000000000
+          0000878C8A59939796F3EDEBF3FFECE9F3FF969999F1858B8B2E000000000000
+          00003A3933FF37352FFF36342EFF36342EFF37352F784A4C448A383630FF3634
+          2EFF36342EFF393731FF85858517000000000000000000000000000000008489
+          8934959999F5EAE9EFFFF1F0F7FFEFEEF6FFD7D7DDFE8B8F8ED68080800C0000
+          000036342EFF7C807FFF555957FF36342EFF8989890D898D8CDC36342EFF7C80
+          7FFF555957FF36342EFF888D8CDD80808006000000000000000000000000858B
+          8B2E8C908FED8C9190EF959A99F5EDECF1FFF3F2F8FFC2C4C9F8898E8DDD868A
+          8A3D3C3A34BA36342EFF36342EFF3E3D37D1898D8DE0C1C1C8F96B6968FF3634
+          2EFF36342EFF53524FFB8E9291F6838B8B210000000000000000000000000000
+          000000000000000000008C9190CCEDECF0FFF4F3F8FFF6F5FAFFDEDEE2FE9CA1
+          A1F3878D8CF18A8F8FDC898C8BF29CA0A1F3DBDAE1FEF2F1F7FFEFEDF5FFCDCD
+          D4FE858B88A1868A8A3D858A8A30000000000000000000000000000000000000
+          0000000000008288882D9DA1A1F2F1F1F4FFD5D5D9FEF3F2F6FFF4F3F9FFF8F8
+          FBFFF3F3F7FFECECF0FFF3F2F6FFF5F4F9FFF5F4F9FFF0EFF4FFECEBEFFFEFEE
+          F3FF8A8D8EE78080800200000000000000000000000000000000000000000000
+          000000000000848989348D9291F9898D8CEB868B89ABC0C2C4F5FBFAFDFFF5F5
+          F8FFFBFAFCFFF7F6FAFFFAFAFCFFF9F8FBFFFAFAFCFF969A9AF68A8F8ECB969A
+          9AF68B908EFF8686861500000000000000000000000000000000000000000000
+          000000000000000000008080800CAAAAAA03848A8753BEC1C2F5D4D5D9FB858A
+          88FFC3C4C7F6FDFDFEFF9BA09FF6929796F7FAF9FBFF878C8AFC80808006868C
+          862A858B852C0000000000000000000000000000000000000000000000000000
+          00000000000000000000000000000000000084898936909494F9898E8DD9808C
+          8C148B908FF2DDDDE0FF8B918FAB888B8B4F9B9F9FF58C918FF0999999050000
+          0000000000000000000000000000000000000000000000000000000000000000
+          00000000000000000000000000000000000000000000838A8A238E8E8E090000
+          00008D908F888C908FF48888882F00000000878C8735868C862A000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000
+        }
+        Layout = blGlyphTop
+        TabOrder = 3
+      end
+      object Label10: TLabel
+        Left = 4
+        Height = 16
+        Top = 2
+        Width = 51
+        Caption = 'Cantidad'
+        Font.CharSet = ANSI_CHARSET
+        Font.Height = -13
+        Font.Name = 'Arial'
+        Font.Pitch = fpVariable
+        Font.Quality = fqDraft
+        ParentColor = False
+        ParentFont = False
+      end
+      object edCantidad: TRxSpinEdit
+        Left = 4
+        Height = 31
+        Top = 17
+        Width = 80
+        Alignment = taRightJustify
+        ValueType = vtFloat
+        Font.CharSet = ANSI_CHARSET
+        Font.Height = -16
+        Font.Name = 'Arial Black'
+        Font.Pitch = fpVariable
+        Font.Quality = fqDraft
+        Font.Style = [fsBold]
+        ParentFont = False
+        TabOrder = 0
+        OnKeyPress = edCantidadKeyPress
+      end
+      object edPrecioUnitario: TCurrencyEdit
+        Left = 464
+        Height = 24
+        Top = 20
+        Width = 88
+        Alignment = taRightJustify
+        MaxValue = 0
+        MinValue = 0
+        TabOrder = 5
+        Value = 0
+        OnKeyPress = edPrecioUnitarioKeyPress
+      end
+      object edPrecioTotal: TCurrencyEdit
+        Left = 568
+        Height = 24
+        Top = 20
+        Width = 96
+        Alignment = taRightJustify
+        MaxValue = 0
+        MinValue = 0
+        TabOrder = 6
+        Value = 0
+      end
+      object Label12: TLabel
+        Left = 464
+        Height = 16
+        Top = 2
+        Width = 85
+        Caption = 'Precio Unitario'
+        ParentColor = False
+      end
+      object Label13: TLabel
+        Left = 568
+        Height = 16
+        Top = 2
+        Width = 68
+        Caption = 'Precio Total'
+        ParentColor = False
+      end
+    end
   end
   object DBGrid1: TDBGrid
     Left = 0
-    Height = 229
-    Top = 280
-    Width = 731
+    Height = 249
+    Top = 260
+    Width = 690
     Align = alClient
     Color = clWindow
     Columns = <>
-    TabOrder = 3
+    DataSource = ds_MovStockDet
+    TabOrder = 2
     TitleFont.CharSet = ANSI_CHARSET
     TitleFont.Height = -13
     TitleFont.Name = 'Arial'

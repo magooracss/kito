@@ -106,7 +106,6 @@ object DM_Stock: TDM_Stock
   end
   object qStockProducto: TZQuery
     Connection = DM_General.cnxBase
-    Active = True
     SQL.Strings = (
       'SELECT *'
       'FROM stock'
@@ -541,7 +540,6 @@ object DM_Stock: TDM_Stock
   end
   object SELMovimientosStock: TZQuery
     Connection = DM_General.cnxBase
-    Active = True
     SQL.Strings = (
       'SELECT *'
       'FROM MovimientosStock'
@@ -976,7 +974,6 @@ object DM_Stock: TDM_Stock
   end
   object SELMovimientosStockDetalles: TZQuery
     Connection = DM_General.cnxBase
-    Active = True
     SQL.Strings = (
       'SELECT *'
       'FROM MovimientosStockDetalles'

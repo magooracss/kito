@@ -1,6 +1,6 @@
 object DM_Productos: TDM_Productos
   OldCreateOrder = False
-  Height = 452
+  Height = 519
   HorizontalOffset = 166
   VerticalOffset = 153
   Width = 950
@@ -1407,7 +1407,6 @@ object DM_Productos: TDM_Productos
   end
   object qListaPreciosID: TZQuery
     Connection = DM_General.cnxBase
-    Active = True
     SQL.Strings = (
       'SELECT *'
       'FROM ListasPrecios'
@@ -1457,6 +1456,121 @@ object DM_Productos: TDM_Productos
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
       Required = False
+    end
+  end
+  object qPrecioProducto: TZQuery
+    Connection = DM_General.cnxBase
+    SQL.Strings = (
+      'SELECT P.* '
+      '            ,L.ListaPrecio as lxListaPrecio'
+      'FROM Precios P'
+      '            LEFT JOIN ListasPrecios L ON P.listaPrecio_id = L.id'
+      'WHERE (P.bVisible = 1)'
+      '            and (P.producto_id = :refProducto)'
+      '            and (P.listaPrecio_id = :refListaPrecio)'
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'refProducto'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'refListaPrecio'
+        ParamType = ptUnknown
+      end>
+    left = 176
+    top = 464
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'refProducto'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'refListaPrecio'
+        ParamType = ptUnknown
+      end>
+    object qPrecioProductoID: TStringField
+      DisplayWidth = 152
+      FieldKind = fkData
+      FieldName = 'ID'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      Size = 152
+    end
+    object qPrecioProductoMONTO: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'MONTO'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object qPrecioProductoPRODUCTO_ID: TStringField
+      DisplayWidth = 152
+      FieldKind = fkData
+      FieldName = 'PRODUCTO_ID'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 152
+    end
+    object qPrecioProductoLISTAPRECIO_ID: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'LISTAPRECIO_ID'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object qPrecioProductoIVA: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'IVA'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object qPrecioProductoBVISIBLE: TSmallintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'BVISIBLE'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object qPrecioProductoLXLISTAPRECIO: TStringField
+      DisplayWidth = 400
+      FieldKind = fkData
+      FieldName = 'LXLISTAPRECIO'
+      Index = 6
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 400
     end
   end
 end

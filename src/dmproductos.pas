@@ -63,10 +63,18 @@ type
     qListaPreciosIDLISTAPRECIO: TStringField;
     qListasPrecios: TZQuery;
     qListaPreciosID: TZQuery;
+    qPrecioProductoBVISIBLE: TSmallintField;
+    qPrecioProductoID: TStringField;
+    qPrecioProductoIVA: TFloatField;
+    qPrecioProductoLISTAPRECIO_ID: TLongintField;
+    qPrecioProductoLXLISTAPRECIO: TStringField;
+    qPrecioProductoMONTO: TFloatField;
+    qPrecioProductoPRODUCTO_ID: TStringField;
     qPreciosProducto: TZQuery;
     qListasPreciosBVISIBLE: TSmallintField;
     qListasPreciosID: TLongintField;
     qListasPreciosLISTAPRECIO: TStringField;
+    qPrecioProducto: TZQuery;
     qPreciosProductoBVISIBLE: TSmallintField;
     qPreciosProductoID: TStringField;
     qPreciosProductoIVA: TFloatField;
@@ -137,6 +145,8 @@ type
     procedure GrabarPrecios;
 
     function NombreListaPrecios (idLista: integer): string;
+    function precioProducto (refProducto: GUID_ID; refListaPrecio: integer): Double;
+
   end;
 
 var
@@ -355,6 +365,23 @@ begin
      Result := qListaPreciosIDLISTAPRECIO.AsString
     else
      Result:= EmptyStr;
+  end;
+end;
+
+function TDM_Productos.precioProducto(refProducto: GUID_ID;
+  refListaPrecio: integer): Double;
+begin
+  with qPrecioProducto do
+  begin
+    if active then close;
+    ParamByName('refProducto').AsString:= refProducto;
+    ParamByName('refListaPrecio').AsInteger:= refListaPrecio;
+    Open;
+    if (RecordCount > 0) then
+     Result:= qPrecioProductoMONTO.AsFloat
+    else
+     Result:= 0;
+    Close;
   end;
 end;
 

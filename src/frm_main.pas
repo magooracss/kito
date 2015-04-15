@@ -486,6 +486,7 @@ var
 begin
   pant:= TfrmMovimientosStockAE.Create(self);
   try
+    pant.idMovimientoStock:= ID;
     if pant.ShowModal = mrOK then
     begin
 
