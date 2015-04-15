@@ -15,6 +15,8 @@ type
   { TfrmMain }
 
   TfrmMain = class(TForm)
+    MenuItem30: TMenuItem;
+    stkEditar: TAction;
     stkNuevo: TAction;
     MenuItem27: TMenuItem;
     MenuItem28: TMenuItem;
@@ -83,6 +85,7 @@ type
     procedure provBorrarExecute(Sender: TObject);
     procedure provEditarExecute(Sender: TObject);
     procedure provNuevoExecute(Sender: TObject);
+    procedure stkEditarExecute(Sender: TObject);
     procedure stkNuevoExecute(Sender: TObject);
     procedure tranBorrarExecute(Sender: TObject);
     procedure tranEditarExecute(Sender: TObject);
@@ -502,6 +505,10 @@ begin
   pantallaMovimientosStock (GUIDNULO);
 end;
 
+procedure TfrmMain.stkEditarExecute(Sender: TObject);
+begin
+
+end;
 
 end.
 

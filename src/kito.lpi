@@ -20,7 +20,7 @@
       <AutoIncrementBuild Value="True"/>
       <MajorVersionNr Value="2015"/>
       <MinorVersionNr Value="4"/>
-      <BuildNr Value="39"/>
+      <BuildNr Value="40"/>
       <Language Value="080A"/>
       <StringTable Comments="Carlos Enrique Rodriguez / Magoo" CompanyName="RACSS Programación" LegalCopyright="Carlos Enrique Rodriguez - RACSS Programacion" ProductName="KITO" ProductVersion=""/>
     </VersionInfo>
@@ -55,7 +55,7 @@
         <PackageName Value="LCL"/>
       </Item6>
     </RequiredPackages>
-    <Units Count="37">
+    <Units Count="38">
       <Unit0>
         <Filename Value="kito.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -341,6 +341,13 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="frm_movimientosstockae"/>
       </Unit36>
+      <Unit37>
+        <Filename Value="frm_editarproductomovimientostock.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmEditarProductoMovimientoStock"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="frm_EditarProductoMovimientoStock"/>
+      </Unit37>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

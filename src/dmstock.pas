@@ -9,6 +9,9 @@ uses
   ,dmgeneral
   ;
 
+const
+  MOV_INGRESO = 'I';
+  MOV_EGRESO = 'E';
 
 type
 
@@ -21,6 +24,9 @@ type
     MovimientosStockDetallesbVisible: TLongintField;
     MovimientosStockDetallescantidad: TFloatField;
     MovimientosStockDetallesid: TStringField;
+    MovimientosStockDetalleslxCodigo: TStringField;
+    MovimientosStockDetalleslxNombre: TStringField;
+    MovimientosStockDetallesmovimiento: TStringField;
     MovimientosStockDetallesmovimientosStock_id: TStringField;
     MovimientosStockDetallesprecioTotal: TFloatField;
     MovimientosStockDetallesprecioUnitario: TFloatField;
@@ -32,6 +38,15 @@ type
     MovimientosStocknumero: TLongintField;
     MovimientosStockproveedor_id: TStringField;
     MovimientosStockremito: TStringField;
+    qMovimientosProducto: TZQuery;
+    qMovimientosProductoBVISIBLE: TSmallintField;
+    qMovimientosProductoCANTIDAD: TFloatField;
+    qMovimientosProductoID: TStringField;
+    qMovimientosProductoMOVIMIENTO: TStringField;
+    qMovimientosProductoMOVIMIENTOSSTOCK_ID: TStringField;
+    qMovimientosProductoPRECIOTOTAL: TFloatField;
+    qMovimientosProductoPRECIOUNITARIO: TFloatField;
+    qMovimientosProductoPRODUCTO_ID: TStringField;
     qStockProductoARMADO: TFloatField;
     qStockProductoDISPONIBLE: TFloatField;
     qStockProductoID: TStringField;
@@ -42,6 +57,7 @@ type
     SELMovimientosStockDetallesBVISIBLE: TSmallintField;
     SELMovimientosStockDetallesCANTIDAD: TFloatField;
     SELMovimientosStockDetallesID: TStringField;
+    SELMovimientosStockDetallesMOVIMIENTO: TStringField;
     SELMovimientosStockDetallesMOVIMIENTOSSTOCK_ID: TStringField;
     SELMovimientosStockDetallesPRECIOTOTAL: TFloatField;
     SELMovimientosStockDetallesPRECIOUNITARIO: TFloatField;
@@ -70,6 +86,7 @@ type
     qStockProducto: TZQuery;
     SELStock: TZQuery;
     INSStock: TZQuery;
+    DELMovimientosStockDetalles: TZQuery;
     UPDStock: TZQuery;
     UPDMovimientosStock: TZQuery;
     UPDMovimientosStockDetalles: TZQuery;
@@ -93,18 +110,30 @@ type
     procedure productoArmado (cantidad: double); //Baja de pedidos, incrementa Armados
     procedure productoEntregado (cantidad: Double); //Baja de Stock Armados
 
+    procedure EditarStock (refProducto: GUID_ID; stkDisponible: double );
     procedure Grabar;
+    procedure RecalcularStockProducto (refProducto: GUID_ID);
 
     procedure GrabarMovimientoStock;
     procedure NuevoMovimientoStock;
+    procedure eliminarProductoMovimientoStock;
+    procedure CargarMovimiento (refProducto: GUID_ID; cantidad, preciounitario
+                               ,precioTotal: Double; elMovimiento: string; accion: TOperacion);
+    procedure TotalMovimiento (refListaPrecios: integer; var TotalCargado, TotalListaPrecio: double);
+
+    procedure RecalcularStockPorMovimiento;
+
   end;
 
 var
   DM_Stock: TDM_Stock;
 
 implementation
-
 {$R *.lfm}
+uses
+  dmproductos
+  ,dmpedidos
+  ;
 
 { TDM_Stock }
 
@@ -137,6 +166,8 @@ begin
   MovimientosStockDetallescantidad.AsFloat:= 0;
   MovimientosStockDetallesprecioUnitario.AsFloat:= 0;
   MovimientosStockDetallesprecioTotal.asFloat:= 0;
+  MovimientosStockDetallesmovimiento.AsString:= MOV_INGRESO;
+
   MovimientosStockDetallesbVisible.AsInteger:= 1;
 end;
 
@@ -228,9 +259,63 @@ begin
   end;
 end;
 
+procedure TDM_Stock.EditarStock(refProducto: GUID_ID; stkDisponible: double );
+begin
+  DM_General.ReiniciarTabla(stock);
+  if qStockProducto.Active then qStockProducto.Close;
+  qStockProducto.ParamByName('producto_id').asString := refProducto;
+  qStockProducto.Open;
+  if qStockProducto.RecordCount > 0 then
+  begin
+    stock.LoadFromDataSet(qStockProducto, 0, lmAppend);
+    stock.Edit;
+  end
+  else
+  begin
+    stock.Insert;
+    stockproducto_id.AsString:= refProducto;
+  end;
+  stockdisponible.asFloat:= StkDisponible;
+  stock.Post;
+  Grabar;
+
+end;
+
 procedure TDM_Stock.Grabar;
 begin
   DM_General.GrabarDatos(SELStock, INSStock, UPDStock, stock, 'id');
+end;
+
+procedure TDM_Stock.RecalcularStockProducto(refProducto: GUID_ID);
+var
+  stkDisponible: double;
+begin
+  stkDisponible:= 0;
+
+  qMovimientosProducto.Close;
+  qMovimientosProducto.ParamByName('producto_id').AsString:= refProducto;
+  qMovimientosProducto.Open;
+  qMovimientosProducto.First;
+  While NOT qMovimientosProducto.EOF do
+  begin
+    if qMovimientosProductoMOVIMIENTO.AsString = MOV_INGRESO then
+       stkDisponible:= stkDisponible + qMovimientosProductoCANTIDAD.AsFloat
+    else
+       stkDisponible:= stkDisponible - qMovimientosProductoCANTIDAD.AsFloat;
+    qMovimientosProducto.Next;
+  end;
+
+  DM_Pedidos.qPedidosDetalleProducto.Close;
+  DM_Pedidos.qPedidosDetalleProducto.ParamByName('producto_id').AsString:= refProducto;
+  DM_Pedidos.qPedidosDetalleProducto.Open;
+  DM_Pedidos.qPedidosDetalleProducto.First;
+  While NOT DM_Pedidos.qPedidosDetalleProducto.EOF do
+  begin
+    stkDisponible:= stkDisponible - DM_Pedidos.qPedidosDetalleProductoCANTIDAD.AsFloat;
+    DM_Pedidos.qPedidosDetalleProducto.Next;
+  end;
+
+  EditarStock(refProducto, stkDisponible);
 end;
 
 procedure TDM_Stock.NuevoMovimientoStock;
@@ -239,6 +324,88 @@ begin
   DM_General.ReiniciarTabla(MovimientosStockDetalles);
 
   MovimientosStock.Insert;
+end;
+
+procedure TDM_Stock.eliminarProductoMovimientoStock;
+begin
+  with DELMovimientosStockDetalles do
+  begin
+    ParamByName('id').AsString:= MovimientosStockDetallesid.AsString;
+    ExecSQL;
+    MovimientosStockDetalles.Delete;
+  end;
+end;
+
+procedure TDM_Stock.CargarMovimiento(refProducto: GUID_ID; cantidad,
+  preciounitario, precioTotal: Double; elMovimiento: string; accion: TOperacion);
+begin
+  with MovimientosStockDetalles do
+  begin
+    if accion = nuevo then
+      Insert
+    else
+      Edit;
+    MovimientosStockDetallesproducto_id.AsString:= refProducto;
+    MovimientosStockDetallescantidad.AsFloat:= cantidad;
+    MovimientosStockDetallesprecioUnitario.AsFloat:= preciounitario;
+    MovimientosStockDetallesprecioTotal.AsFloat:= precioTotal;
+    MovimientosStockDetallesmovimiento.AsString:= elMovimiento;
+    DM_Productos.Editar(refProducto);
+    MovimientosStockDetalleslxCodigo.AsString:= DM_Productos.Productoscodigo.AsString;
+    MovimientosStockDetalleslxNombre.AsString:= DM_Productos.Productosnombre.AsString;
+    Post;
+  end;
+end;
+
+procedure TDM_Stock.TotalMovimiento(refListaPrecios: integer; var TotalCargado,
+  TotalListaPrecio: double);
+var
+  marca: TBookmark;
+  valorLista, valorFinal: double;
+begin
+  TotalCargado:= 0;
+  TotalListaPrecio:= 0;
+  With MovimientosStockDetalles do
+  begin
+    marca:= GetBookmark;
+    First;
+    While Not EOF do
+    begin
+      valorLista:= ((DM_Productos.precioProducto(MovimientosStockDetallesproducto_id.AsString
+                                 ,refListaPrecios)) * MovimientosStockDetallescantidad.AsFloat );
+      valorFinal:= MovimientosStockDetallesprecioTotal.AsFloat;
+
+
+      if MovimientosStockDetallesmovimiento.AsString = MOV_EGRESO then
+      begin
+        TotalListaPrecio:= TotalListaPrecio - valorLista;
+        TotalCargado:= TotalCargado - valorFinal;
+      end
+      else
+      begin
+        TotalListaPrecio:= TotalListaPrecio + valorLista;
+        TotalCargado:= TotalCargado + valorFinal;
+      end;
+
+      Next;
+    end;
+    GotoBookmark(marca);
+    FreeBookmark(marca);
+  end;
+
+end;
+
+procedure TDM_Stock.RecalcularStockPorMovimiento;
+begin
+  with MovimientosStockDetalles do
+  begin
+    First;
+    While Not Eof do
+    begin
+      RecalcularStockProducto (MovimientosStockDetallesproducto_id.AsString);
+      Next;
+    end;
+  end;
 end;
 
 procedure TDM_Stock.GrabarMovimientoStock;

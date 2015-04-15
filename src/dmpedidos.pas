@@ -70,6 +70,7 @@ type
     Pedidostransportista_id: TStringField;
     PedidostxNotas: TStringField;
     Pedidosvendedor_id: TStringField;
+    qPedidosDetalleProducto: TZQuery;
     qDetallesPedidoBDESCUENTO: TSmallintField;
     qDetallesPedidoBVISIBLE: TSmallintField;
     qDetallesPedidoCANTIDAD: TFloatField;
@@ -91,6 +92,17 @@ type
     qEstadosBVISIBLE: TSmallintField;
     qEstadosID: TLongintField;
     qEstadosTIPOESTADO: TStringField;
+    qPedidosDetalleProductoBDESCUENTO: TSmallintField;
+    qPedidosDetalleProductoBVISIBLE: TSmallintField;
+    qPedidosDetalleProductoCANTIDAD: TFloatField;
+    qPedidosDetalleProductoID: TStringField;
+    qPedidosDetalleProductoLISTAPRECIO_ID: TLongintField;
+    qPedidosDetalleProductoPEDIDO_ID: TStringField;
+    qPedidosDetalleProductoPORCENTAJEAPLICAR: TFloatField;
+    qPedidosDetalleProductoPRECIOSUBTOTAL: TFloatField;
+    qPedidosDetalleProductoPRECIOTOTAL: TFloatField;
+    qPedidosDetalleProductoPRECIOUNITARIO: TFloatField;
+    qPedidosDetalleProductoPRODUCTO_ID: TStringField;
     qPedidosEstadosHistorialBVISIBLE: TSmallintField;
     qPedidosEstadosHistorialFECHA: TDateField;
     qPedidosEstadosHistorialID: TStringField;

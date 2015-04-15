@@ -1,7 +1,7 @@
 object frmPedidoAE: TfrmPedidoAE
-  Left = 132
+  Left = 176
   Height = 654
-  Top = 8
+  Top = 25
   Width = 1036
   ActiveControl = btnBusquedaCliente
   Caption = 'Pedido'

@@ -1,7 +1,7 @@
 object DM_Pedidos: TDM_Pedidos
   OnCreate = DataModuleCreate
   OldCreateOrder = False
-  Height = 463
+  Height = 559
   HorizontalOffset = 368
   VerticalOffset = 150
   Width = 628
@@ -2439,7 +2439,6 @@ object DM_Pedidos: TDM_Pedidos
   end
   object qDetallesPedido: TZQuery
     Connection = DM_General.cnxBase
-    Active = True
     SQL.Strings = (
       'SELECT PD.*'
       '            , P.codigo as lxCodigo'
@@ -2625,6 +2624,157 @@ object DM_Pedidos: TDM_Pedidos
       ReadOnly = False
       Required = False
       Size = 400
+    end
+  end
+  object qPedidosDetalleProducto: TZQuery
+    Connection = DM_General.cnxBase
+    SQL.Strings = (
+      'SELECT PD.*'
+      'FROM PedidosDetalles PD'
+      'WHERE (PD.bVisible = 1)'
+      '            and (PD.producto_id = :producto_id)'
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'producto_id'
+        ParamType = ptUnknown
+      end>
+    left = 136
+    top = 464
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'producto_id'
+        ParamType = ptUnknown
+      end>
+    object qPedidosDetalleProductoID: TStringField
+      DisplayWidth = 152
+      FieldKind = fkData
+      FieldName = 'ID'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      Size = 152
+    end
+    object qPedidosDetalleProductoPEDIDO_ID: TStringField
+      DisplayWidth = 152
+      FieldKind = fkData
+      FieldName = 'PEDIDO_ID'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 152
+    end
+    object qPedidosDetalleProductoPRODUCTO_ID: TStringField
+      DisplayWidth = 152
+      FieldKind = fkData
+      FieldName = 'PRODUCTO_ID'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 152
+    end
+    object qPedidosDetalleProductoCANTIDAD: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'CANTIDAD'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object qPedidosDetalleProductoLISTAPRECIO_ID: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'LISTAPRECIO_ID'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object qPedidosDetalleProductoPRECIOUNITARIO: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'PRECIOUNITARIO'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object qPedidosDetalleProductoPORCENTAJEAPLICAR: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'PORCENTAJEAPLICAR'
+      Index = 6
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object qPedidosDetalleProductoBDESCUENTO: TSmallintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'BDESCUENTO'
+      Index = 7
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object qPedidosDetalleProductoPRECIOSUBTOTAL: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'PRECIOSUBTOTAL'
+      Index = 8
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object qPedidosDetalleProductoPRECIOTOTAL: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'PRECIOTOTAL'
+      Index = 9
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object qPedidosDetalleProductoBVISIBLE: TSmallintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'BVISIBLE'
+      Index = 10
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
     end
   end
 end

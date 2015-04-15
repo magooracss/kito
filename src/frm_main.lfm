@@ -190,6 +190,13 @@ object frmMain: TfrmMain
       ImageIndex = 11
       OnExecute = stkNuevoExecute
     end
+    object stkEditar: TAction
+      Category = 'Stock'
+      Caption = 'Editar movimiento stock'
+      Hint = 'Modifica el movimiento de un stock'
+      ImageIndex = 12
+      OnExecute = stkEditarExecute
+    end
   end
   object MainMenu1: TMainMenu
     Images = DM_General.ImgAccionesMenu
@@ -280,6 +287,9 @@ object frmMain: TfrmMain
       end
       object MenuItem29: TMenuItem
         Action = stkNuevo
+      end
+      object MenuItem30: TMenuItem
+        Action = stkEditar
       end
     end
   end

@@ -250,5 +250,6 @@ CREATE TABLE MovimientosStockDetalles
 , cantidad	float default 0
 , precioUnitario float default 0
 , precioTotal	float default 0
+, movimiento char default 'I'
 , bVisible	smallint default 1
 );

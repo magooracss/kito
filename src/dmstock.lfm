@@ -1,6 +1,6 @@
 object DM_Stock: TDM_Stock
   OldCreateOrder = False
-  Height = 414
+  Height = 504
   HorizontalOffset = 405
   VerticalOffset = 174
   Width = 654
@@ -881,6 +881,24 @@ object DM_Stock: TDM_Stock
         DataType = ftInteger
         Precision = 0
         Size = 0
+      end    
+      item
+        Name = 'lxCodigo'
+        DataType = ftString
+        Precision = 0
+        Size = 30
+      end    
+      item
+        Name = 'lxNombre'
+        DataType = ftString
+        Precision = 0
+        Size = 100
+      end    
+      item
+        Name = 'movimiento'
+        DataType = ftString
+        Precision = 0
+        Size = 1
       end>
     AfterInsert = MovimientosStockDetallesAfterInsert
     PacketRecords = 0
@@ -970,6 +988,39 @@ object DM_Stock: TDM_Stock
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
       Required = False
+    end
+    object MovimientosStockDetalleslxCodigo: TStringField
+      DisplayWidth = 30
+      FieldKind = fkData
+      FieldName = 'lxCodigo'
+      Index = 7
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 30
+    end
+    object MovimientosStockDetalleslxNombre: TStringField
+      DisplayWidth = 100
+      FieldKind = fkData
+      FieldName = 'lxNombre'
+      Index = 8
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 100
+    end
+    object MovimientosStockDetallesmovimiento: TStringField
+      DisplayWidth = 1
+      FieldKind = fkData
+      FieldName = 'movimiento'
+      Index = 9
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 1
     end
   end
   object SELMovimientosStockDetalles: TZQuery
@@ -1075,14 +1126,25 @@ object DM_Stock: TDM_Stock
       ReadOnly = False
       Required = False
     end
+    object SELMovimientosStockDetallesMOVIMIENTO: TStringField
+      DisplayWidth = 4
+      FieldKind = fkData
+      FieldName = 'MOVIMIENTO'
+      Index = 7
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 4
+    end
   end
   object INSMovimientosStockDetalles: TZQuery
     Connection = DM_General.cnxBase
     SQL.Strings = (
       'INSERT INTO MovimientosStockDetalles'
-      '(id, movimientosStock_id,producto_id, cantidad, precioUnitario, precioTotal, bVisible)'
+      '(id, movimientosStock_id,producto_id, cantidad, precioUnitario, precioTotal, bVisible, movimiento)'
       'VALUES'
-      '(:id, :movimientosStock_id, :producto_id, :cantidad, :precioUnitario, :precioTotal, :bVisible)'
+      '(:id, :movimientosStock_id, :producto_id, :cantidad, :precioUnitario, :precioTotal, :bVisible, :movimiento)'
     )
     Params = <    
       item
@@ -1118,6 +1180,11 @@ object DM_Stock: TDM_Stock
       item
         DataType = ftUnknown
         Name = 'bVisible'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'movimiento'
         ParamType = ptUnknown
       end>
     left = 432
@@ -1157,6 +1224,11 @@ object DM_Stock: TDM_Stock
         DataType = ftUnknown
         Name = 'bVisible'
         ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'movimiento'
+        ParamType = ptUnknown
       end>
   end
   object UPDMovimientosStockDetalles: TZQuery
@@ -1170,6 +1242,7 @@ object DM_Stock: TDM_Stock
       ', precioUnitario = :precioUnitario'
       ', precioTotal = :precioTotal'
       ', bVisible = :bVisible'
+      ', movimiento = :movimiento'
       'WHERE (id = :id)'
     )
     Params = <    
@@ -1201,6 +1274,11 @@ object DM_Stock: TDM_Stock
       item
         DataType = ftUnknown
         Name = 'bVisible'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'movimiento'
         ParamType = ptUnknown
       end    
       item
@@ -1241,6 +1319,149 @@ object DM_Stock: TDM_Stock
         Name = 'bVisible'
         ParamType = ptUnknown
       end    
+      item
+        DataType = ftUnknown
+        Name = 'movimiento'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'id'
+        ParamType = ptUnknown
+      end>
+  end
+  object qMovimientosProducto: TZQuery
+    Connection = DM_General.cnxBase
+    SQL.Strings = (
+      'SELECT *'
+      'FROM MovimientosStockDetalles'
+      'WHERE (producto_id = :producto_id)'
+      '        and (bVisible = 1)'
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'producto_id'
+        ParamType = ptUnknown
+      end>
+    left = 432
+    top = 376
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'producto_id'
+        ParamType = ptUnknown
+      end>
+    object qMovimientosProductoID: TStringField
+      DisplayWidth = 152
+      FieldKind = fkData
+      FieldName = 'ID'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      Size = 152
+    end
+    object qMovimientosProductoMOVIMIENTOSSTOCK_ID: TStringField
+      DisplayWidth = 152
+      FieldKind = fkData
+      FieldName = 'MOVIMIENTOSSTOCK_ID'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 152
+    end
+    object qMovimientosProductoPRODUCTO_ID: TStringField
+      DisplayWidth = 152
+      FieldKind = fkData
+      FieldName = 'PRODUCTO_ID'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 152
+    end
+    object qMovimientosProductoCANTIDAD: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'CANTIDAD'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object qMovimientosProductoPRECIOUNITARIO: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'PRECIOUNITARIO'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object qMovimientosProductoPRECIOTOTAL: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'PRECIOTOTAL'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object qMovimientosProductoMOVIMIENTO: TStringField
+      DisplayWidth = 4
+      FieldKind = fkData
+      FieldName = 'MOVIMIENTO'
+      Index = 6
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 4
+    end
+    object qMovimientosProductoBVISIBLE: TSmallintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'BVISIBLE'
+      Index = 7
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+  end
+  object DELMovimientosStockDetalles: TZQuery
+    Connection = DM_General.cnxBase
+    SQL.Strings = (
+      'UPDATE MovimientosStockDetalles'
+      'SET bVisible = 0'
+      'WHERE (id = :id)'
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'id'
+        ParamType = ptUnknown
+      end>
+    left = 432
+    top = 304
+    ParamData = <    
       item
         DataType = ftUnknown
         Name = 'id'

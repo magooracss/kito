@@ -7,8 +7,7 @@ interface
 uses
   Classes, SysUtils, db, FileUtil, dbdateedit, rxspin, curredit, Forms,
   Controls, Graphics, Dialogs, ExtCtrls, Buttons, DbCtrls, StdCtrls, DBGrids,
-  dmstock
-  ,dmgeneral
+  Menus, dmstock, dmgeneral
   ;
 
 type
@@ -16,7 +15,7 @@ type
   { TfrmMovimientosStockAE }
 
   TfrmMovimientosStockAE = class(TForm)
-    BitBtn1: TBitBtn;
+    btnBuscarProveedor: TBitBtn;
     btnBuscarProducto: TBitBtn;
     btnCancelar: TBitBtn;
     btnGrabar: TBitBtn;
@@ -39,6 +38,7 @@ type
     GroupBox1: TGroupBox;
     GroupBox2: TGroupBox;
     GroupBox4: TGroupBox;
+    ImgListaMenuPopUp: TImageList;
     Label1: TLabel;
     Label10: TLabel;
     Label11: TLabel;
@@ -50,22 +50,35 @@ type
     Label5: TLabel;
     Label6: TLabel;
     Label9: TLabel;
+    MnBorrarProducto: TMenuItem;
+    MnModificar: TMenuItem;
     Panel1: TPanel;
     Panel2: TPanel;
     Panel3: TPanel;
-    procedure BitBtn1Click(Sender: TObject);
+    pMenuProductos: TPopupMenu;
+    rgMovimiento: TRadioGroup;
+    procedure btnBuscarProveedorClick(Sender: TObject);
+    procedure btnCancelarClick(Sender: TObject);
+    procedure btnGrabarClick(Sender: TObject);
     procedure edBusCodigoKeyPress(Sender: TObject; var Key: char);
+    procedure edBusNombreKeyPress(Sender: TObject; var Key: char);
     procedure edCantidadKeyPress(Sender: TObject; var Key: char);
+    procedure edPrecioTotalKeyPress(Sender: TObject; var Key: char);
     procedure edPrecioUnitarioKeyPress(Sender: TObject; var Key: char);
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
+    procedure MnBorrarProductoClick(Sender: TObject);
+    procedure MnModificarClick(Sender: TObject);
   private
     _idMovimientoStock: GUID_ID;
     _idProducto: GUID_ID;
+    laOperacion: TOperacion;
 
     function BusquedaProducto(dato: string; criterio: integer): boolean;
     procedure pantallaBusquedaProducto (dato: string; criterio:integer);
     procedure AjustarPantallaProducto (refProducto: GUID_ID);
+    procedure CargarMovimiento;
+    procedure AjustarTotales;
 
     procedure Inicializar;
   public
@@ -82,6 +95,7 @@ uses
   ,frm_busquedaProductos
   ,frm_busquedaempresas
   ,dmproveedores
+  ,frm_EditarProductoMovimientoStock
   ;
 
 { TfrmMovimientosStockAE }
@@ -95,13 +109,22 @@ begin
   end;
 end;
 
+procedure TfrmMovimientosStockAE.edPrecioTotalKeyPress(Sender: TObject;
+  var Key: char);
+begin
+  if key = #13 then
+  begin
+    cargarMovimiento;
+  end;
+end;
+
 procedure TfrmMovimientosStockAE.edPrecioUnitarioKeyPress(Sender: TObject;
   var Key: char);
 begin
   if key = #13 then
   begin
     AjustarPantallaProducto(_idProducto);
-    edTotalCargado.SetFocus;
+    edPrecioTotal.SetFocus;
   end;
 end;
 
@@ -114,6 +137,36 @@ end;
 procedure TfrmMovimientosStockAE.FormShow(Sender: TObject);
 begin
   Inicializar;
+end;
+
+procedure TfrmMovimientosStockAE.MnBorrarProductoClick(Sender: TObject);
+begin
+  if (MessageDlg ('ATENCION'
+                  , 'Borro el Producto: '
+                   + DM_Stock.MovimientosStockDetalleslxNombre.AsString
+                   +'?'
+                  , mtConfirmation, [mbYes, mbNo],0 ) = mrYes) then
+  begin
+    DM_Stock.eliminarProductoMovimientoStock;
+    AjustarTotales;
+  end;
+end;
+
+procedure TfrmMovimientosStockAE.MnModificarClick(Sender: TObject);
+var
+  pant: TfrmEditarProductoMovimientoStock;
+
+begin
+  pant:= TfrmEditarProductoMovimientoStock.Create(self);
+  try
+    if pant.ShowModal = mrOK then
+    begin
+      AjustarTotales;
+    end;
+  finally
+    pant.Free;
+  end;
+
 end;
 
 function TfrmMovimientosStockAE.BusquedaProducto(dato: string; criterio: integer
@@ -162,11 +215,61 @@ begin
   DM_Productos.Editar(refProducto);
   edBusCodigo.Text:= DM_Productos.Productoscodigo.AsString;
   edBusNombre.Text:= DM_Productos.Productosnombre.AsString;
-  edPrecioUnitario.Value:= DM_Productos.precioProducto(refProducto
-                          ,DM_General.obtenerIDIntComboBox(cbListaPrecio)
-                          );
+  if edPrecioUnitario.Value = 0 then
+    edPrecioUnitario.Value:= DM_Productos.precioProducto(refProducto
+                            ,DM_General.obtenerIDIntComboBox(cbListaPrecio)
+                            );
   edPrecioTotal.Value:= edPrecioUnitario.Value * edCantidad.Value;
   edPrecioUnitario.SetFocus;
+end;
+
+procedure TfrmMovimientosStockAE.CargarMovimiento;
+var
+  elMovimiento: string;
+begin
+  if rgMovimiento.ItemIndex = 0 then
+    elMovimiento:= MOV_INGRESO
+  else
+    elMovimiento:= MOV_EGRESO;
+
+  if _idProducto <> GUIDNULO then
+  begin
+    DM_Stock.cargarMovimiento (_idProducto
+                              , edCantidad.Value
+                              , edPrecioUnitario.Value
+                              , edPrecioTotal.Value
+                              , elMovimiento
+                              , nuevo);
+
+    AjustarTotales;
+    (*
+    ( edPrecioTotal.Value
+                     ,(( DM_Productos.precioProducto(_idProducto
+                          ,DM_General.obtenerIDIntComboBox(cbListaPrecio)) ) * edCantidad.Value
+                      )
+                    );
+    *)
+
+    edCantidad.SetFocus;
+    _idProducto:= GUIDNULO;
+    edBusNombre.Clear;
+    edBusCodigo.Clear;
+    edPrecioUnitario.Value:= 0;
+    edPrecioTotal.Value:= 0;
+  end
+  else
+    ShowMessage('Error buscando el producto seleccionado');
+end;
+
+procedure TfrmMovimientosStockAE.AjustarTotales;
+var
+  totalCargado, TotalLista: double;
+begin
+  DM_Stock.TotalMovimiento (DM_General.obtenerIDIntComboBox(cbListaPrecio)
+                            , totalCargado
+                            , totalLista);
+  edTotalCargado.Value:= totalCargado;
+  edTotalListaPrecio.Value:= totalLista;
 end;
 
 procedure TfrmMovimientosStockAE.Inicializar;
@@ -176,6 +279,11 @@ begin
   if _idMovimientoStock = GUIDNULO then
   Begin
     DM_Stock.NuevoMovimientoStock;
+    laOperacion:= nuevo;
+  end
+  else
+  begin
+    laOperacion:= modificar;
   end;
 
 
@@ -194,7 +302,19 @@ begin
   end;
 end;
 
-procedure TfrmMovimientosStockAE.BitBtn1Click(Sender: TObject);
+procedure TfrmMovimientosStockAE.edBusNombreKeyPress(Sender: TObject;
+  var Key: char);
+begin
+   if Key = #13 then
+  begin
+    if BusquedaProducto(edBusNombre.Text, BUS_NOMBRE) then
+    begin
+      edPrecioUnitario.SetFocus;
+    end;
+  end;
+end;
+
+procedure TfrmMovimientosStockAE.btnBuscarProveedorClick(Sender: TObject);
 var
   pantBus: TfrmBusquedaEmpresas;
 begin
@@ -218,6 +338,24 @@ begin
   finally
     pantBus.Free;
   end;
+end;
+
+procedure TfrmMovimientosStockAE.btnCancelarClick(Sender: TObject);
+begin
+  ModalResult:= mrCancel;
+end;
+
+procedure TfrmMovimientosStockAE.btnGrabarClick(Sender: TObject);
+begin
+  With DM_Stock, MovimientosStock do
+  begin
+    Edit;
+    MovimientosStocklistaprecio_id.AsInteger:= DM_General.obtenerIDIntComboBox(cbListaPrecio);
+    Post;
+  end;
+  DM_Stock.GrabarMovimientoStock;
+  DM_Stock.RecalcularStockPorMovimiento;
+  ModalResult:= mrOK;
 end;
 
 end.
