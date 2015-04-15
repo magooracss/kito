@@ -16,7 +16,8 @@ uses
   dmtransportistas, frm_vendedoresae, dmvendedores, frm_pedidosae, dmpedidos,
   sysutils, frm_pedidoeditarproducto, frm_pedidosEstados, frm_pedidoestadosae,
   frm_pedidosbusqueda, dmbusquedapedidos, dmstock, frm_movimientosstockae,
-  frm_EditarProductoMovimientoStock;
+  frm_EditarProductoMovimientoStock, frm_movimientosstockbusqueda, 
+dmbusquedamovstock;
 
 {$R *.res}
 

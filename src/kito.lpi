@@ -20,7 +20,7 @@
       <AutoIncrementBuild Value="True"/>
       <MajorVersionNr Value="2015"/>
       <MinorVersionNr Value="4"/>
-      <BuildNr Value="40"/>
+      <BuildNr Value="41"/>
       <Language Value="080A"/>
       <StringTable Comments="Carlos Enrique Rodriguez / Magoo" CompanyName="RACSS Programación" LegalCopyright="Carlos Enrique Rodriguez - RACSS Programacion" ProductName="KITO" ProductVersion=""/>
     </VersionInfo>
@@ -55,7 +55,7 @@
         <PackageName Value="LCL"/>
       </Item6>
     </RequiredPackages>
-    <Units Count="38">
+    <Units Count="40">
       <Unit0>
         <Filename Value="kito.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -345,9 +345,24 @@
         <Filename Value="frm_editarproductomovimientostock.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="frmEditarProductoMovimientoStock"/>
+        <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="frm_EditarProductoMovimientoStock"/>
       </Unit37>
+      <Unit38>
+        <Filename Value="frm_movimientosstockbusqueda.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmBusquedaMovimientosStock"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="frm_movimientosstockbusqueda"/>
+      </Unit38>
+      <Unit39>
+        <Filename Value="dmbusquedamovstock.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="DM_BusquedaMovStock"/>
+        <ResourceBaseClass Value="DataModule"/>
+        <UnitName Value="dmbusquedamovstock"/>
+      </Unit39>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

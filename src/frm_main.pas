@@ -128,6 +128,7 @@ uses
   ,frm_pedidosae
   ,frm_pedidosbusqueda
   ,frm_movimientosstockae
+  ,frm_movimientosstockbusqueda
   ;
 
 { TfrmMain }
@@ -506,8 +507,18 @@ begin
 end;
 
 procedure TfrmMain.stkEditarExecute(Sender: TObject);
+var
+ pant: TfrmBusquedaMovimientosStock;
 begin
-
+  pant:= TfrmBusquedaMovimientosStock.Create(self);
+  try
+    if pant.ShowModal = mrOK then
+    begin
+      pantallaMovimientosStock(pant.idMovStockSeleccionado);
+    end;
+  finally
+    pant.Free;
+  end;
 end;
 
 end.
