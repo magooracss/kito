@@ -1468,4 +1468,145 @@ object DM_Stock: TDM_Stock
         ParamType = ptUnknown
       end>
   end
+  object qMovStockDetallesPorIdMov: TZQuery
+    Connection = DM_General.cnxBase
+    Active = True
+    SQL.Strings = (
+      'SELECT MSD.*'
+      '            , P.Nombre as lxNombre'
+      '            , P.codigo as lxCodigo'
+      'FROM MovimientosStockDetalles MSD'
+      '          LEFT JOIN Productos P ON P.id = MSD.producto_id'
+      'WHERE (movimientosstock_id = :movimientosstock_id)'
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'movimientosstock_id'
+        ParamType = ptUnknown
+      end>
+    left = 432
+    top = 448
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'movimientosstock_id'
+        ParamType = ptUnknown
+      end>
+    object SELMovimientosStockDetallesID1: TStringField
+      DisplayWidth = 152
+      FieldKind = fkData
+      FieldName = 'ID'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      Size = 152
+    end
+    object SELMovimientosStockDetallesMOVIMIENTOSSTOCK_ID1: TStringField
+      DisplayWidth = 152
+      FieldKind = fkData
+      FieldName = 'MOVIMIENTOSSTOCK_ID'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 152
+    end
+    object SELMovimientosStockDetallesPRODUCTO_ID1: TStringField
+      DisplayWidth = 152
+      FieldKind = fkData
+      FieldName = 'PRODUCTO_ID'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 152
+    end
+    object SELMovimientosStockDetallesCANTIDAD1: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'CANTIDAD'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object SELMovimientosStockDetallesPRECIOUNITARIO1: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'PRECIOUNITARIO'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object SELMovimientosStockDetallesPRECIOTOTAL1: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'PRECIOTOTAL'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object SELMovimientosStockDetallesBVISIBLE1: TSmallintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'BVISIBLE'
+      Index = 6
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object SELMovimientosStockDetallesMOVIMIENTO1: TStringField
+      DisplayWidth = 4
+      FieldKind = fkData
+      FieldName = 'MOVIMIENTO'
+      Index = 7
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 4
+    end
+    object qMovStockDetallesPorIdMovLXNOMBRE: TStringField
+      DisplayWidth = 1200
+      FieldKind = fkData
+      FieldName = 'LXNOMBRE'
+      Index = 8
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 1200
+    end
+    object qMovStockDetallesPorIdMovLXCODIGO: TStringField
+      DisplayWidth = 80
+      FieldKind = fkData
+      FieldName = 'LXCODIGO'
+      Index = 9
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 80
+    end
+  end
 end

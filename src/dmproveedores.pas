@@ -38,7 +38,9 @@ type
     procedure ProveedoresAfterInsert(DataSet: TDataSet);
   private
    _idEmpresa: GUID_ID;
+   function getRazonSocial: String;
   public
+    property RazonSocial: String read getRazonSocial;
     procedure Nuevo;
     procedure Editar (refProveedor: GUID_ID);
     procedure Borrar (refProveedor: GUID_ID);
@@ -66,6 +68,12 @@ begin
   Proveedorescodigo.AsString:= EmptyStr;
   ProveedoreslistaPrecio_id.AsInteger:= 0;
   ProveedoresbVisible.AsInteger:= 1;
+end;
+
+function TDM_Proveedores.getRazonSocial: String;
+begin
+  DM_Empresa.LevantarEmpresa(_idEmpresa);
+  Result:= DM_Empresa.RazonSocial;
 end;
 
 procedure TDM_Proveedores.Nuevo;

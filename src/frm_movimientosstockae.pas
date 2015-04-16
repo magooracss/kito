@@ -284,9 +284,12 @@ begin
   else
   begin
     laOperacion:= modificar;
+    DM_Stock.EditarMovimiento(_idMovimientoStock);
+    cbListaPrecio.ItemIndex:=  DM_General.obtenerIdxCombo(cbListaPrecio
+                                            ,DM_Stock.MovimientosStocklistaprecio_id.AsInteger);
+    edProveedor.Text:= DM_Proveedores.RazonSocial;
+    AjustarTotales;
   end;
-
-
 end;
 
 

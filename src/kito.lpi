@@ -353,6 +353,7 @@
         <Filename Value="frm_movimientosstockbusqueda.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="frmBusquedaMovimientosStock"/>
+        <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="frm_movimientosstockbusqueda"/>
       </Unit38>
@@ -360,6 +361,7 @@
         <Filename Value="dmbusquedamovstock.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="DM_BusquedaMovStock"/>
+        <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="dmbusquedamovstock"/>
       </Unit39>

@@ -275,7 +275,7 @@ object frmMain: TfrmMain
       end
     end
     object MenuItem25: TMenuItem
-      Caption = 'Pedidos'
+      Caption = 'Mercadería'
       object MenuItem26: TMenuItem
         Action = pedNuevo
       end

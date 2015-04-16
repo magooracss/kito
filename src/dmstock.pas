@@ -47,6 +47,8 @@ type
     qMovimientosProductoPRECIOTOTAL: TFloatField;
     qMovimientosProductoPRECIOUNITARIO: TFloatField;
     qMovimientosProductoPRODUCTO_ID: TStringField;
+    qMovStockDetallesPorIdMovLXCODIGO: TStringField;
+    qMovStockDetallesPorIdMovLXNOMBRE: TStringField;
     qStockProductoARMADO: TFloatField;
     qStockProductoDISPONIBLE: TFloatField;
     qStockProductoID: TStringField;
@@ -54,14 +56,23 @@ type
     qStockProductoPRODUCTO_ID: TStringField;
     SELMovimientosStock: TZQuery;
     SELMovimientosStockBVISIBLE: TSmallintField;
+    qMovStockDetallesPorIdMov: TZQuery;
     SELMovimientosStockDetallesBVISIBLE: TSmallintField;
+    SELMovimientosStockDetallesBVISIBLE1: TSmallintField;
     SELMovimientosStockDetallesCANTIDAD: TFloatField;
+    SELMovimientosStockDetallesCANTIDAD1: TFloatField;
     SELMovimientosStockDetallesID: TStringField;
+    SELMovimientosStockDetallesID1: TStringField;
     SELMovimientosStockDetallesMOVIMIENTO: TStringField;
+    SELMovimientosStockDetallesMOVIMIENTO1: TStringField;
     SELMovimientosStockDetallesMOVIMIENTOSSTOCK_ID: TStringField;
+    SELMovimientosStockDetallesMOVIMIENTOSSTOCK_ID1: TStringField;
     SELMovimientosStockDetallesPRECIOTOTAL: TFloatField;
+    SELMovimientosStockDetallesPRECIOTOTAL1: TFloatField;
     SELMovimientosStockDetallesPRECIOUNITARIO: TFloatField;
+    SELMovimientosStockDetallesPRECIOUNITARIO1: TFloatField;
     SELMovimientosStockDetallesPRODUCTO_ID: TStringField;
+    SELMovimientosStockDetallesPRODUCTO_ID1: TStringField;
     SELMovimientosStockFECHA: TDateField;
     SELMovimientosStockID: TStringField;
     SELMovimientosStockLISTAPRECIO_ID: TLongintField;
@@ -116,6 +127,7 @@ type
 
     procedure GrabarMovimientoStock;
     procedure NuevoMovimientoStock;
+    procedure EditarMovimiento (refMovimiento: GUID_ID);
     procedure eliminarProductoMovimientoStock;
     procedure CargarMovimiento (refProducto: GUID_ID; cantidad, preciounitario
                                ,precioTotal: Double; elMovimiento: string; accion: TOperacion);
@@ -324,6 +336,30 @@ begin
   DM_General.ReiniciarTabla(MovimientosStockDetalles);
 
   MovimientosStock.Insert;
+end;
+
+procedure TDM_Stock.EditarMovimiento(refMovimiento: GUID_ID);
+begin
+  DM_General.ReiniciarTabla(MovimientosStock);
+  DM_General.ReiniciarTabla(MovimientosStockDetalles);
+
+  with SELMovimientosStock do
+  begin
+    if active then close;
+    ParamByName('id').AsString:= refMovimiento;
+    Open;
+    MovimientosStock.LoadFromDataSet(SELMovimientosStock, 0, lmAppend);
+    Close;
+  end;
+
+  With qMovStockDetallesPorIdMov do
+  begin
+    if active then close;
+    ParamByName('movimientosStock_id').asString:= refMovimiento;
+    Open;
+    MovimientosStockDetalles.LoadFromDataSet(qMovStockDetallesPorIdMov, 0, lmAppend);
+    Close;
+  end;
 end;
 
 procedure TDM_Stock.eliminarProductoMovimientoStock;
