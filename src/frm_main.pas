@@ -15,6 +15,9 @@ type
   { TfrmMain }
 
   TfrmMain = class(TForm)
+    MenuItem31: TMenuItem;
+    Precios: TMenuItem;
+    prodPreciosModificar: TAction;
     MenuItem30: TMenuItem;
     stkEditar: TAction;
     stkNuevo: TAction;
@@ -82,6 +85,7 @@ type
     procedure prodBorrarExecute(Sender: TObject);
     procedure prodEditarExecute(Sender: TObject);
     procedure prodNuevoExecute(Sender: TObject);
+    procedure prodPreciosModificarExecute(Sender: TObject);
     procedure provBorrarExecute(Sender: TObject);
     procedure provEditarExecute(Sender: TObject);
     procedure provNuevoExecute(Sender: TObject);
@@ -129,6 +133,7 @@ uses
   ,frm_pedidosbusqueda
   ,frm_movimientosstockae
   ,frm_movimientosstockbusqueda
+  ,frm_modificarprecios
   ;
 
 { TfrmMain }
@@ -520,6 +525,23 @@ begin
     pant.Free;
   end;
 end;
+
+(*******************************************************************************
+*** PRECIOS
+*******************************************************************************)
+
+procedure TfrmMain.prodPreciosModificarExecute(Sender: TObject);
+var
+ pant: TfrmModificarPrecios;
+begin
+  pant:= TfrmModificarPrecios.Create(self);
+  try
+    pant.ShowModal;
+  finally
+    pant.Free;
+  end;
+end;
+
 
 end.
 

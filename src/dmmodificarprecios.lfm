@@ -36,6 +36,7 @@ object DM_ModificarPrecios: TDM_ModificarPrecios
         Precision = 0
         Size = 0
       end>
+    AfterInsert = ModificarListaPrecioAfterInsert
     PacketRecords = 0
     left = 128
     top = 56
@@ -46,7 +47,7 @@ object DM_ModificarPrecios: TDM_ModificarPrecios
       Index = 0
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
-      ReadOnly = True
+      ReadOnly = False
       Required = False
       Size = 38
     end
@@ -57,7 +58,7 @@ object DM_ModificarPrecios: TDM_ModificarPrecios
       Index = 1
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
-      ReadOnly = True
+      ReadOnly = False
       Required = False
       Size = 30
     end
@@ -68,7 +69,7 @@ object DM_ModificarPrecios: TDM_ModificarPrecios
       Index = 2
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
-      ReadOnly = True
+      ReadOnly = False
       Required = False
       Size = 300
     end
@@ -79,7 +80,7 @@ object DM_ModificarPrecios: TDM_ModificarPrecios
       Index = 3
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
-      ReadOnly = True
+      ReadOnly = False
       Required = False
       Currency = True
       MaxValue = 0
@@ -102,9 +103,10 @@ object DM_ModificarPrecios: TDM_ModificarPrecios
     end
   end
   object qPreciosPorLista: TZQuery
+    Connection = DM_General.cnxBase
     SQL.Strings = (
-      'SELECT P.id'
-      '              ,Pr.Codigo = LxCodigo '
+      'SELECT P.id as idPrecio'
+      '              ,Pr.Codigo as LxCodigo '
       '              , Pr.Nombre as LxProducto'
       '              , P.Monto as PrecioActual'
       'FROM Precios P'
@@ -127,5 +129,51 @@ object DM_ModificarPrecios: TDM_ModificarPrecios
         Name = 'listaprecio_id'
         ParamType = ptUnknown
       end>
+    object qPreciosPorListaLXCODIGO: TStringField
+      DisplayWidth = 80
+      FieldKind = fkData
+      FieldName = 'LXCODIGO'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 80
+    end
+    object qPreciosPorListaLXPRODUCTO: TStringField
+      DisplayWidth = 1200
+      FieldKind = fkData
+      FieldName = 'LXPRODUCTO'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 1200
+    end
+    object qPreciosPorListaPRECIOACTUAL: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'PRECIOACTUAL'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object qPreciosPorListaIDPRECIO: TStringField
+      DisplayWidth = 152
+      FieldKind = fkData
+      FieldName = 'IDPRECIO'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      Size = 152
+    end
   end
 end

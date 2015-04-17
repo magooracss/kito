@@ -377,6 +377,7 @@
         <Filename Value="dmmodificarprecios.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="DM_ModificarPrecios"/>
+        <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="dmmodificarprecios"/>
       </Unit41>

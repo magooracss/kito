@@ -197,6 +197,13 @@ object frmMain: TfrmMain
       ImageIndex = 12
       OnExecute = stkEditarExecute
     end
+    object prodPreciosModificar: TAction
+      Category = 'Productos'
+      Caption = 'Modificar lista de precios'
+      Hint = 'Modifica los precios de una lista'
+      ImageIndex = 14
+      OnExecute = prodPreciosModificarExecute
+    end
   end
   object MainMenu1: TMainMenu
     Images = DM_General.ImgAccionesMenu
@@ -223,6 +230,12 @@ object frmMain: TfrmMain
         end
         object MenuItem19: TMenuItem
           Action = prodBorrar
+        end
+      end
+      object Precios: TMenuItem
+        Caption = 'Precios'
+        object MenuItem31: TMenuItem
+          Action = prodPreciosModificar
         end
       end
       object MenuItem8: TMenuItem
