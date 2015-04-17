@@ -141,6 +141,7 @@ type
     procedure ActualizarRefsCbPrecios (refListaPrecio: integer);
     procedure NuevoPrecio (iva: Double);
     procedure EditarPrecio (refPrecio: GUID_ID);
+    procedure modificarValorPrecio (refPrecio: GUID_ID; valor: double);
     procedure BorrarPrecio (refPrecio: GUID_ID);
     procedure GrabarPrecios;
 
@@ -341,6 +342,16 @@ begin
   SELPrecios.Open;
 
   Precios.LoadFromDataSet(SELPrecios, 0, lmAppend);
+end;
+
+procedure TDM_Productos.modificarValorPrecio(refPrecio: GUID_ID; valor: double);
+begin
+  DM_General.ReiniciarTabla(Precios);
+  EditarPrecio(refPrecio);
+  Precios.Edit;
+  Preciosmonto.AsFloat:=valor;
+  Precios.Post;
+  GrabarPrecios;
 end;
 
 procedure TDM_Productos.BorrarPrecio(refPrecio: GUID_ID);

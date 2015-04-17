@@ -19,7 +19,6 @@ type
     btnCancelar: TBitBtn;
     btnGrabar: TBitBtn;
     cbListaPrecio: TComboBox;
-    DBGrid1: TDBGrid;
     ds_ModificarPrecios: TDataSource;
     GrillaPrecios: TDBGrid;
     edMonto: TCurrencyEdit;

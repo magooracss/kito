@@ -642,21 +642,6 @@ object frmModificarPrecios: TfrmModificarPrecios
     TitleFont.Pitch = fpVariable
     TitleFont.Quality = fqDraft
   end
-  object DBGrid1: TDBGrid
-    Left = 42
-    Height = 100
-    Top = 283
-    Width = 640
-    Color = clWindow
-    Columns = <>
-    DataSource = ds_ModificarPrecios
-    TabOrder = 3
-    TitleFont.CharSet = ANSI_CHARSET
-    TitleFont.Height = -13
-    TitleFont.Name = 'Arial'
-    TitleFont.Pitch = fpVariable
-    TitleFont.Quality = fqDraft
-  end
   object ds_ModificarPrecios: TDataSource
     DataSet = DM_ModificarPrecios.ModificarListaPrecio
     left = 408

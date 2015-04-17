@@ -127,22 +127,11 @@ begin
     ModificarListaPrecio.DisableControls;
     ModificarListaPrecio.First;
 
-
-    if DM_Productos.SELPrecios.Active then
-      DM_Productos.SELPrecios.Close;
-
     While NOT ModificarListaPrecio.EOF do
     begin
-      DM_General.ReiniciarTabla(DM_Productos.Precios);
-      DM_Productos.SELPrecios.ParamByName('id').AsString:= ModificarListaPrecioidPrecio.AsString;
-      DM_Productos.SELPrecios.Open;
-      DM_Productos.Precios.LoadFromDataSet(DM_Productos.SELPrecios, 0, lmAppend);
-      DM_Productos.SELPrecios.Close;
-      DM_Productos.Precios.Edit;
-      DM_Productos.Preciosmonto.AsFloat:= ModificarListaPrecioPrecioNuevo.AsFloat;
-      DM_Productos.Precios.Post;
-      DM_Productos.GrabarPrecios;
-
+      if (ModificarListaPrecioPrecioNuevo.AsFloat <> 0) then //Los precios en cero no se Modifican
+        DM_Productos.modificarValorPrecio(ModificarListaPrecioidPrecio.AsString
+                                         ,ModificarListaPrecioPrecioNuevo.AsFloat);
       ModificarListaPrecio.Next;
     end;
     ModificarListaPrecio.EnableControls;
