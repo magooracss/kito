@@ -1573,4 +1573,91 @@ object DM_Productos: TDM_Productos
       Size = 400
     end
   end
+  object qGrillaPrincipal: TZQuery
+    Connection = DM_General.cnxBase
+    SQL.Strings = (
+      'SELECT P.id as idProducto'
+      '            ,C.CATEGORIA'
+      '            ,M.MARCA'
+      '            ,P.Codigo'
+      '            ,P.Nombre'
+      '            ,S.DISPONIBLE'
+      'FROM Productos P'
+      '     LEFT JOIN CATEGORIAS C ON C.ID = P.CATEGORIA_ID'
+      '     LEFT JOIN MARCAS M on M.ID = P.MARCA_ID'
+      '     LEFT JOIN STOCK S on S.PRODUCTO_ID = P.ID '
+      'WHERE (P.bVisible = 1)'
+    )
+    Params = <>
+    left = 696
+    top = 128
+    object qGrillaPrincipalIDPRODUCTO: TStringField
+      DisplayWidth = 152
+      FieldKind = fkData
+      FieldName = 'IDPRODUCTO'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      Size = 152
+    end
+    object qGrillaPrincipalCATEGORIA: TStringField
+      DisplayWidth = 400
+      FieldKind = fkData
+      FieldName = 'CATEGORIA'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 400
+    end
+    object qGrillaPrincipalMARCA: TStringField
+      DisplayWidth = 600
+      FieldKind = fkData
+      FieldName = 'MARCA'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 600
+    end
+    object qGrillaPrincipalCODIGO: TStringField
+      DisplayWidth = 80
+      FieldKind = fkData
+      FieldName = 'CODIGO'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 80
+    end
+    object qGrillaPrincipalNOMBRE: TStringField
+      DisplayWidth = 1200
+      FieldKind = fkData
+      FieldName = 'NOMBRE'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 1200
+    end
+    object qGrillaPrincipalDISPONIBLE: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'DISPONIBLE'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+  end
 end

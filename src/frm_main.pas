@@ -6,16 +6,24 @@ interface
 
 uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, ComCtrls,
-  ActnList, Menus
+  ActnList, Menus, ExtCtrls, StdCtrls, Buttons
   ,dmgeneral
   ;
 
 type
-
+   TipoFiltro = (nulo, codigo, nombre);
   { TfrmMain }
 
   TfrmMain = class(TForm)
+    btnFiltradoQuitar: TBitBtn;
+    ckRefrescarGrilla: TCheckBox;
+    edFiltroCodigo: TEdit;
+    edFiltroNombre: TEdit;
+    GroupBox1: TGroupBox;
+    Label1: TLabel;
+    Label2: TLabel;
     MenuItem31: TMenuItem;
+    Panel1: TPanel;
     Precios: TMenuItem;
     prodPreciosModificar: TAction;
     MenuItem30: TMenuItem;
@@ -32,6 +40,7 @@ type
     MenuItem22: TMenuItem;
     MenuItem23: TMenuItem;
     MenuItem24: TMenuItem;
+    tRefrescarGrilla: TTimer;
     ToolButton3: TToolButton;
     vendEditar: TAction;
     vendBorrar: TAction;
@@ -75,9 +84,12 @@ type
     ToolBar1: TToolBar;
     ToolButton1: TToolButton;
     ToolButton2: TToolButton;
+    procedure btnFiltradoQuitarClick(Sender: TObject);
     procedure cliBorrarExecute(Sender: TObject);
     procedure cliEditarExecute(Sender: TObject);
     procedure cliNuevoExecute(Sender: TObject);
+    procedure edFiltroCodigoKeyPress(Sender: TObject; var Key: char);
+    procedure edFiltroNombreKeyPress(Sender: TObject; var Key: char);
     procedure FormShow(Sender: TObject);
     procedure pedModificarExecute(Sender: TObject);
     procedure pedNuevoExecute(Sender: TObject);
@@ -94,11 +106,15 @@ type
     procedure tranBorrarExecute(Sender: TObject);
     procedure tranEditarExecute(Sender: TObject);
     procedure tranNuevoExecute(Sender: TObject);
+    procedure tRefrescarGrillaTimer(Sender: TObject);
     procedure vendBorrarExecute(Sender: TObject);
     procedure vendEditarExecute(Sender: TObject);
     procedure vendNuevoExecute(Sender: TObject);
   private
+    Filtrado: TipoFiltro;
+
      procedure Inicializar;
+     procedure RefrescarGrilla;
      procedure pantallaProducto (ID: GUID_ID);
      procedure pantallaCliente (ID: GUID_ID);
      procedure pantallaProveedores(ID: GUID_ID);
@@ -153,6 +169,16 @@ begin
 
   st.Panels[0].Text:= 'v:' + NroVersion;
   st.Panels[1].Text:= FormatDateTime('dd/mm/yyyy', now)+ '        ';
+  Filtrado:= nulo;
+end;
+
+procedure TfrmMain.RefrescarGrilla;
+begin
+  case Filtrado of
+   nulo: DM_Productos.FiltradoGrillaNulo;
+   codigo: DM_Productos.FiltradoGrillaCodigo(TRIM(edFiltroCodigo.Text));
+   nombre: DM_Productos.FiltradoGrillaNombre(TRIM(edFiltroNombre.Text));
+  end;
 end;
 
 
@@ -250,6 +276,7 @@ begin
 end;
 
 
+
 procedure TfrmMain.cliEditarExecute(Sender: TObject);
 var
   pantBus: TfrmBusquedaEmpresas;
@@ -283,6 +310,7 @@ begin
   end;
 
 end;
+
 
 (*******************************************************************************
 *** PROVEEDORES
@@ -540,6 +568,39 @@ begin
   finally
     pant.Free;
   end;
+end;
+
+(*******************************************************************************
+*** FILTRADO DE GRILLA
+*******************************************************************************)
+
+procedure TfrmMain.edFiltroCodigoKeyPress(Sender: TObject; var Key: char);
+begin
+  if Key = #13 then
+  begin
+    Filtrado:= codigo;
+    RefrescarGrilla;
+  end;
+end;
+
+procedure TfrmMain.edFiltroNombreKeyPress(Sender: TObject; var Key: char);
+begin
+  if Key = #13 then
+  begin
+    Filtrado:= nombre;
+    RefrescarGrilla;
+  end;
+end;
+
+procedure TfrmMain.btnFiltradoQuitarClick(Sender: TObject);
+begin
+  Filtrado:= nulo;
+  RefrescarGrilla;
+end;
+
+procedure TfrmMain.tRefrescarGrillaTimer(Sender: TObject);
+begin
+  RefrescarGrilla;
 end;
 
 

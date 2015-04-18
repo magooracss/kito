@@ -58,6 +58,13 @@ type
     qCategoriasBVISIBLE: TSmallintField;
     qCategoriasCATEGORIA: TStringField;
     qCategoriasID: TLongintField;
+    qGrillaPrincipal: TZQuery;
+    qGrillaPrincipalCATEGORIA: TStringField;
+    qGrillaPrincipalCODIGO: TStringField;
+    qGrillaPrincipalDISPONIBLE: TFloatField;
+    qGrillaPrincipalIDPRODUCTO: TStringField;
+    qGrillaPrincipalMARCA: TStringField;
+    qGrillaPrincipalNOMBRE: TStringField;
     qListaPreciosIDBVISIBLE: TSmallintField;
     qListaPreciosIDID: TLongintField;
     qListaPreciosIDLISTAPRECIO: TStringField;
@@ -125,6 +132,7 @@ type
     procedure ProductosAfterInsert(DataSet: TDataSet);
   private
     _idProducto: GUID_ID;
+    procedure prepararSQLFiltro;
   public
     property idProducto: GUID_ID read _idProducto write _idProducto;
 
@@ -147,6 +155,10 @@ type
 
     function NombreListaPrecios (idLista: integer): string;
     function precioProducto (refProducto: GUID_ID; refListaPrecio: integer): Double;
+
+    procedure FiltradoGrillaCodigo (codigoProducto: string);
+    procedure FiltradoGrillaNombre (nombreProducto: string);
+    procedure FiltradoGrillaNulo;
 
   end;
 
@@ -394,6 +406,55 @@ begin
      Result:= 0;
     Close;
   end;
+end;
+
+(*******************************************************************************
+*** FILTRADO PARA GRILLA PRINCIPAL
+*******************************************************************************)
+
+procedure TDM_Productos.prepararSQLFiltro;
+var
+  elSELECT
+  ,elFROM
+  ,elWHERE:string;
+begin
+  elSELECT:= ' SELECT P.id as idProducto,C.CATEGORIA,M.MARCA,P.Codigo '
+           + ' ,P.Nombre,S.DISPONIBLE ';
+  elFROM:= ' FROM Productos P '
+         + ' LEFT JOIN CATEGORIAS C ON C.ID = P.CATEGORIA_ID '
+         + ' LEFT JOIN MARCAS M on M.ID = P.MARCA_ID '
+         + ' LEFT JOIN STOCK S on S.PRODUCTO_ID = P.ID ';
+  elWHERE:=' WHERE (P.bVisible = 1) ';
+
+  with qGrillaPrincipal do
+  begin
+    if active then close;
+    sql.Clear;
+    sql.Add(elSELECT);
+    sql.Add(elFROM);
+    sql.Add(elWHERE);
+  end;
+end;
+
+
+procedure TDM_Productos.FiltradoGrillaCodigo(codigoProducto: string);
+begin
+  prepararSQLFiltro;
+  qGrillaPrincipal.SQL.Add(' AND (UPPER(P.Codigo) LIKE ''%'+UpperCase(codigoProducto)+'%'')');
+  qGrillaPrincipal.Open;
+end;
+
+procedure TDM_Productos.FiltradoGrillaNombre(nombreProducto: string);
+begin
+  prepararSQLFiltro;
+  qGrillaPrincipal.SQL.Add(' AND (UPPER(P.Nombre) LIKE ''%'+UpperCase(nombreProducto)+'%'')');
+  qGrillaPrincipal.Open;
+end;
+
+procedure TDM_Productos.FiltradoGrillaNulo;
+begin
+  prepararSQLFiltro;
+  qGrillaPrincipal.Open;
 end;
 
 end.
