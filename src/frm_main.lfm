@@ -80,6 +80,7 @@ object frmMain: TfrmMain
       Width = 210
       Anchors = [akTop, akLeft, akRight]
       Caption = 'Refrescar grilla automáticamente'
+      OnChange = ckRefrescarGrillaChange
       TabOrder = 0
     end
     object GroupBox1: TGroupBox
@@ -198,6 +199,64 @@ object frmMain: TfrmMain
         TabOrder = 2
       end
     end
+  end
+  object Grilla: TDBGrid
+    Left = 0
+    Height = 501
+    Top = 82
+    Width = 1151
+    Align = alClient
+    AutoFillColumns = True
+    Color = clWindow
+    Columns = <    
+      item
+        SizePriority = 0
+        Title.Alignment = taCenter
+        Title.Caption = 'Categoría'
+        Width = 120
+        FieldName = 'CATEGORIA'
+      end    
+      item
+        SizePriority = 0
+        Title.Alignment = taCenter
+        Title.Caption = 'Marca'
+        Width = 120
+        FieldName = 'MARCA'
+      end    
+      item
+        Alignment = taRightJustify
+        SizePriority = 0
+        Title.Alignment = taCenter
+        Title.Caption = 'Código'
+        Width = 90
+        FieldName = 'CODIGO'
+      end    
+      item
+        Title.Alignment = taCenter
+        Title.Caption = 'Producto'
+        Width = 727
+        FieldName = 'NOMBRE'
+      end    
+      item
+        SizePriority = 0
+        Title.Alignment = taCenter
+        Title.Caption = 'Disponible'
+        Width = 90
+        FieldName = 'DISPONIBLE'
+      end>
+    DataSource = ds_GrillaPrincipal
+    FixedCols = 0
+    Options = [dgTitles, dgColumnResize, dgColumnMove, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit]
+    PopupMenu = PopupMenu1
+    Scrollbars = ssAutoVertical
+    TabAdvance = aaDown
+    TabOrder = 3
+    TitleFont.CharSet = ANSI_CHARSET
+    TitleFont.Height = -13
+    TitleFont.Name = 'Arial'
+    TitleFont.Pitch = fpVariable
+    TitleFont.Quality = fqDraft
+    OnDrawColumnCell = GrillaDrawColumnCell
   end
   object ActionList1: TActionList
     Images = DM_General.ImgAcciones
@@ -341,6 +400,13 @@ object frmMain: TfrmMain
       ImageIndex = 14
       OnExecute = prodPreciosModificarExecute
     end
+    object prgEditarProducto: TAction
+      Category = 'programa'
+      Caption = 'Modificar producto'
+      Hint = 'Modifica el producto seleccionado en la grilla'
+      ImageIndex = 2
+      OnExecute = prgEditarProductoExecute
+    end
   end
   object MainMenu1: TMainMenu
     Images = DM_General.ImgAccionesMenu
@@ -448,5 +514,18 @@ object frmMain: TfrmMain
     OnTimer = tRefrescarGrillaTimer
     left = 365
     top = 173
+  end
+  object ds_GrillaPrincipal: TDataSource
+    DataSet = DM_Productos.qGrillaPrincipal
+    left = 781
+    top = 247
+  end
+  object PopupMenu1: TPopupMenu
+    Images = DM_General.ImgAccionesMenu
+    left = 293
+    top = 300
+    object MenuItem32: TMenuItem
+      Action = prgEditarProducto
+    end
   end
 end

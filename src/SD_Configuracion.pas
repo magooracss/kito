@@ -24,6 +24,7 @@ const
 
   PROD_BUS_CRIT = 'P_BUS_CRIT';
   LOCALIDAD = 'LOCALIDAD'; //Localidad por defecto para los domicilios
+  CHK_REF_GRID = 'REFRESCAR_GRILLA';
 
 
 

@@ -5,18 +5,22 @@ unit frm_main;
 interface
 
 uses
-  Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, ComCtrls,
-  ActnList, Menus, ExtCtrls, StdCtrls, Buttons
+  Classes, SysUtils, db, FileUtil, Forms, Controls, Graphics, Dialogs, ComCtrls,
+  ActnList, Menus, ExtCtrls, StdCtrls, Buttons, DBGrids
   ,dmgeneral
-  ;
+  , Grids;
 
 type
    TipoFiltro = (nulo, codigo, nombre);
   { TfrmMain }
 
   TfrmMain = class(TForm)
+    MenuItem32: TMenuItem;
+    prgEditarProducto: TAction;
     btnFiltradoQuitar: TBitBtn;
     ckRefrescarGrilla: TCheckBox;
+    Grilla: TDBGrid;
+    ds_GrillaPrincipal: TDataSource;
     edFiltroCodigo: TEdit;
     edFiltroNombre: TEdit;
     GroupBox1: TGroupBox;
@@ -24,6 +28,7 @@ type
     Label2: TLabel;
     MenuItem31: TMenuItem;
     Panel1: TPanel;
+    PopupMenu1: TPopupMenu;
     Precios: TMenuItem;
     prodPreciosModificar: TAction;
     MenuItem30: TMenuItem;
@@ -85,14 +90,18 @@ type
     ToolButton1: TToolButton;
     ToolButton2: TToolButton;
     procedure btnFiltradoQuitarClick(Sender: TObject);
+    procedure ckRefrescarGrillaChange(Sender: TObject);
     procedure cliBorrarExecute(Sender: TObject);
     procedure cliEditarExecute(Sender: TObject);
     procedure cliNuevoExecute(Sender: TObject);
+    procedure GrillaDrawColumnCell(Sender: TObject; const Rect: TRect;
+      DataCol: Integer; Column: TColumn; State: TGridDrawState);
     procedure edFiltroCodigoKeyPress(Sender: TObject; var Key: char);
     procedure edFiltroNombreKeyPress(Sender: TObject; var Key: char);
     procedure FormShow(Sender: TObject);
     procedure pedModificarExecute(Sender: TObject);
     procedure pedNuevoExecute(Sender: TObject);
+    procedure prgEditarProductoExecute(Sender: TObject);
     procedure prgSalirExecute(Sender: TObject);
     procedure prodBorrarExecute(Sender: TObject);
     procedure prodEditarExecute(Sender: TObject);
@@ -150,6 +159,7 @@ uses
   ,frm_movimientosstockae
   ,frm_movimientosstockbusqueda
   ,frm_modificarprecios
+  ,SD_Configuracion
   ;
 
 { TfrmMain }
@@ -169,7 +179,9 @@ begin
 
   st.Panels[0].Text:= 'v:' + NroVersion;
   st.Panels[1].Text:= FormatDateTime('dd/mm/yyyy', now)+ '        ';
+  ckRefrescarGrilla.Checked:= StrToBoolDef(LeerDato(SECCION_SCR, CHK_REF_GRID), true);
   Filtrado:= nulo;
+  RefrescarGrilla;
 end;
 
 procedure TfrmMain.RefrescarGrilla;
@@ -189,6 +201,7 @@ end;
 
 procedure TfrmMain.prgSalirExecute(Sender: TObject);
 begin
+  EscribirDato(SECCION_SCR, CHK_REF_GRID, BoolToStr(ckRefrescarGrilla.Checked));
   Application.Terminate;
 end;
 
@@ -253,6 +266,10 @@ begin
   end;
 end;
 
+procedure TfrmMain.prgEditarProductoExecute(Sender: TObject);
+begin
+  pantallaProducto(DM_Productos.qGrillaPrincipalIDPRODUCTO.AsString);
+end;
 
 (*******************************************************************************
 *** CLIENTES
@@ -274,6 +291,7 @@ procedure TfrmMain.cliNuevoExecute(Sender: TObject);
 begin
   pantallaCliente(GUIDNULO);
 end;
+
 
 
 
@@ -598,9 +616,30 @@ begin
   RefrescarGrilla;
 end;
 
+procedure TfrmMain.ckRefrescarGrillaChange(Sender: TObject);
+begin
+  tRefrescarGrilla.Enabled:= ckRefrescarGrilla.Checked;
+end;
+
 procedure TfrmMain.tRefrescarGrillaTimer(Sender: TObject);
 begin
   RefrescarGrilla;
+end;
+
+procedure TfrmMain.GrillaDrawColumnCell(Sender: TObject; const Rect: TRect;
+  DataCol: Integer; Column: TColumn; State: TGridDrawState);
+const
+  clPaleRoja =   TColor($0000FF);
+begin
+ with DM_Productos do
+  begin
+   if (DM_Productos.qGrillaPrincipalDISPONIBLE.AsFloat <
+       DM_Productos.qGrillaPrincipalMINIMO.AsFloat) then
+       Grilla.canvas.brush.color := clPaleRoja;
+
+   Grilla.Canvas.FillRect(Rect);
+   Grilla.DefaultDrawColumnCell(rect,DataCol,Column,State)
+  end;
 end;
 
 

@@ -64,6 +64,7 @@ type
     qGrillaPrincipalDISPONIBLE: TFloatField;
     qGrillaPrincipalIDPRODUCTO: TStringField;
     qGrillaPrincipalMARCA: TStringField;
+    qGrillaPrincipalMINIMO: TFloatField;
     qGrillaPrincipalNOMBRE: TStringField;
     qListaPreciosIDBVISIBLE: TSmallintField;
     qListaPreciosIDID: TLongintField;
@@ -419,7 +420,7 @@ var
   ,elWHERE:string;
 begin
   elSELECT:= ' SELECT P.id as idProducto,C.CATEGORIA,M.MARCA,P.Codigo '
-           + ' ,P.Nombre,S.DISPONIBLE ';
+           + ' , P.Nombre, S.DISPONIBLE, P.Minimo ';
   elFROM:= ' FROM Productos P '
          + ' LEFT JOIN CATEGORIAS C ON C.ID = P.CATEGORIA_ID '
          + ' LEFT JOIN MARCAS M on M.ID = P.MARCA_ID '

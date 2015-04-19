@@ -1581,6 +1581,7 @@ object DM_Productos: TDM_Productos
       '            ,M.MARCA'
       '            ,P.Codigo'
       '            ,P.Nombre'
+      '            ,P.Minimo'
       '            ,S.DISPONIBLE'
       'FROM Productos P'
       '     LEFT JOIN CATEGORIAS C ON C.ID = P.CATEGORIA_ID'
@@ -1651,6 +1652,19 @@ object DM_Productos: TDM_Productos
       FieldKind = fkData
       FieldName = 'DISPONIBLE'
       Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object qGrillaPrincipalMINIMO: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'MINIMO'
+      Index = 6
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
