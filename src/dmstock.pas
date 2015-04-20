@@ -38,6 +38,10 @@ type
     MovimientosStocknumero: TLongintField;
     MovimientosStockproveedor_id: TStringField;
     MovimientosStockremito: TStringField;
+    qLstStockMinimoCODIGO: TStringField;
+    qLstStockMinimoDISPONIBLE: TFloatField;
+    qLstStockMinimoMINIMO: TFloatField;
+    qLstStockMinimoNOMBRE: TStringField;
     qMovimientosProducto: TZQuery;
     qMovimientosProductoBVISIBLE: TSmallintField;
     qMovimientosProductoCANTIDAD: TFloatField;

@@ -1,9 +1,9 @@
 object DM_Stock: TDM_Stock
   OldCreateOrder = False
   Height = 504
-  HorizontalOffset = 405
-  VerticalOffset = 174
-  Width = 654
+  HorizontalOffset = 303
+  VerticalOffset = 161
+  Width = 859
   object stock: TRxMemoryData
     Filtered = True
     FieldDefs = <    
@@ -1610,7 +1610,6 @@ object DM_Stock: TDM_Stock
   end
   object qProductosParaStock: TZQuery
     Connection = DM_General.cnxBase
-    Active = True
     SQL.Strings = (
       'SELECT id'
       'FROM Productos'

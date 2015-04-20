@@ -15,6 +15,11 @@ type
   { TfrmMain }
 
   TfrmMain = class(TForm)
+    MenuItem38: TMenuItem;
+    prgListados: TAction;
+    MenuItem37: TMenuItem;
+    OD: TOpenDialog;
+    prgEditarReporte: TAction;
     MenuItem35: TMenuItem;
     MenuItem36: TMenuItem;
     stkRecalcularTodo: TAction;
@@ -56,6 +61,7 @@ type
     MenuItem24: TMenuItem;
     ToolButton4: TToolButton;
     ToolButton5: TToolButton;
+    ToolButton6: TToolButton;
     tRefrescarGrilla: TTimer;
     ToolButton3: TToolButton;
     vendEditar: TAction;
@@ -114,6 +120,8 @@ type
     procedure pedModificarExecute(Sender: TObject);
     procedure pedNuevoExecute(Sender: TObject);
     procedure prgEditarProductoExecute(Sender: TObject);
+    procedure prgEditarReporteExecute(Sender: TObject);
+    procedure prgListadosExecute(Sender: TObject);
     procedure prgSalirExecute(Sender: TObject);
     procedure prodBorrarExecute(Sender: TObject);
     procedure prodEditarExecute(Sender: TObject);
@@ -175,6 +183,7 @@ uses
   ,SD_Configuracion
   ,frm_devolucionesae
   ,dmstock
+  ,frm_listados
   ;
 
 { TfrmMain }
@@ -218,6 +227,24 @@ procedure TfrmMain.prgSalirExecute(Sender: TObject);
 begin
   EscribirDato(SECCION_SCR, CHK_REF_GRID, BoolToStr(ckRefrescarGrilla.Checked));
   Application.Terminate;
+end;
+
+
+procedure TfrmMain.prgEditarReporteExecute(Sender: TObject);
+begin
+  DM_General.EditarReporte;
+end;
+
+procedure TfrmMain.prgListadosExecute(Sender: TObject);
+var
+  pant: TfrmListados;
+begin
+  pant:= TfrmListados.Create(self);
+  try
+    pant.ShowModal;
+  finally
+    pant.Free;
+  end;
 end;
 
 

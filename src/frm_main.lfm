@@ -73,6 +73,11 @@ object frmMain: TfrmMain
       Caption = 'ToolButton5'
       Style = tbsSeparator
     end
+    object ToolButton6: TToolButton
+      Left = 315
+      Top = 2
+      Action = prgListados
+    end
   end
   object Panel1: TPanel
     Left = 0
@@ -465,6 +470,20 @@ object frmMain: TfrmMain
       ImageIndex = 16
       OnExecute = stkRecalcularTodoExecute
     end
+    object prgEditarReporte: TAction
+      Category = 'programa'
+      Caption = 'Modificar Plantilla Impresión'
+      Hint = 'Modifica la plantilla para un listado o formulario impreso'
+      ImageIndex = 17
+      OnExecute = prgEditarReporteExecute
+    end
+    object prgListados: TAction
+      Category = 'programa'
+      Caption = 'Listados'
+      Hint = 'Muestra la pantalla para seleccionar un listado'
+      ImageIndex = 18
+      OnExecute = prgListadosExecute
+    end
   end
   object MainMenu1: TMainMenu
     Images = DM_General.ImgAccionesMenu
@@ -472,6 +491,12 @@ object frmMain: TfrmMain
     top = 112
     object MenuItem1: TMenuItem
       Caption = 'Programa'
+      object MenuItem38: TMenuItem
+        Action = prgListados
+      end
+      object MenuItem37: TMenuItem
+        Action = prgEditarReporte
+      end
       object MenuItem2: TMenuItem
         Caption = '-'
       end
@@ -633,5 +658,12 @@ object frmMain: TfrmMain
         003B0000003B0000003B02334643484FD4DC3838D0BA4444D018
       }
     end
+  end
+  object OD: TOpenDialog
+    DefaultExt = '.lrf'
+    Filter = 'Archivos de reporte|*.lrf|Todos los archivos|*.*'
+    Options = [ofNoChangeDir, ofPathMustExist, ofFileMustExist, ofEnableSizing, ofViewDetail]
+    left = 61
+    top = 175
   end
 end

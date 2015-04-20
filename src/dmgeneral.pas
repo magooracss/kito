@@ -7,7 +7,7 @@ interface
 uses
   Classes, SysUtils, FileUtil, LResources, Forms, Controls, Dialogs, StdCtrls,
   ZConnection, ZDataset, rxmemds, StrHolder, LR_Class, LR_DBSet, LR_Shape,
-  LR_E_HTM
+  LR_E_HTM, LR_Desgn
   //,lr_e_pdf
   , db
   //, LR_Class
@@ -35,6 +35,7 @@ type
   TDM_General = class(TDataModule)
     elReporte: TfrReport;
     frDataset: TfrDBDataSet;
+    frDesigner1: TfrDesigner;
     frShapeObject1: TfrShapeObject;
     ImgAcciones: TImageList;
     ImgAccionesMenu: TImageList;
