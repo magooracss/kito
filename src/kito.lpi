@@ -55,7 +55,7 @@
         <PackageName Value="LCL"/>
       </Item6>
     </RequiredPackages>
-    <Units Count="42">
+    <Units Count="44">
       <Unit0>
         <Filename Value="kito.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -381,6 +381,22 @@
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="dmmodificarprecios"/>
       </Unit41>
+      <Unit42>
+        <Filename Value="frm_devolucionesae.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmDevolucionesae"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="frm_devolucionesae"/>
+      </Unit42>
+      <Unit43>
+        <Filename Value="dmdevoluciones.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="DM_Devoluciones"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="DataModule"/>
+        <UnitName Value="dmdevoluciones"/>
+      </Unit43>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

@@ -335,7 +335,7 @@ object frmPedidosBusqueda: TfrmPedidosBusqueda
       Height = 40
       Top = 3
       Width = 134
-      Caption = 'Seleccionar'
+      Caption = '&Seleccionar'
       Glyph.Data = {
         C6070000424DC607000000000000360000002800000016000000160000000100
         2000000000009007000064000000640000000000000000000000000000000000

@@ -1470,7 +1470,6 @@ object DM_Stock: TDM_Stock
   end
   object qMovStockDetallesPorIdMov: TZQuery
     Connection = DM_General.cnxBase
-    Active = True
     SQL.Strings = (
       'SELECT MSD.*'
       '            , P.Nombre as lxNombre'
@@ -1607,6 +1606,29 @@ object DM_Stock: TDM_Stock
       ReadOnly = False
       Required = False
       Size = 80
+    end
+  end
+  object qProductosParaStock: TZQuery
+    Connection = DM_General.cnxBase
+    Active = True
+    SQL.Strings = (
+      'SELECT id'
+      'FROM Productos'
+      'WHERE (bVisible = 1)'
+    )
+    Params = <>
+    left = 88
+    top = 392
+    object qProductosParaStockID: TStringField
+      DisplayWidth = 152
+      FieldKind = fkData
+      FieldName = 'ID'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      Size = 152
     end
   end
 end

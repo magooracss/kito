@@ -15,7 +15,15 @@ type
   { TfrmMain }
 
   TfrmMain = class(TForm)
+    MenuItem35: TMenuItem;
+    MenuItem36: TMenuItem;
+    stkRecalcularTodo: TAction;
+    MenuItem33: TMenuItem;
+    MenuItem34: TMenuItem;
+    pedDevolucion: TAction;
+    Label3: TLabel;
     MenuItem32: TMenuItem;
+    Panel2: TPanel;
     prgEditarProducto: TAction;
     btnFiltradoQuitar: TBitBtn;
     ckRefrescarGrilla: TCheckBox;
@@ -32,6 +40,7 @@ type
     Precios: TMenuItem;
     prodPreciosModificar: TAction;
     MenuItem30: TMenuItem;
+    Shape1: TShape;
     stkEditar: TAction;
     stkNuevo: TAction;
     MenuItem27: TMenuItem;
@@ -45,6 +54,8 @@ type
     MenuItem22: TMenuItem;
     MenuItem23: TMenuItem;
     MenuItem24: TMenuItem;
+    ToolButton4: TToolButton;
+    ToolButton5: TToolButton;
     tRefrescarGrilla: TTimer;
     ToolButton3: TToolButton;
     vendEditar: TAction;
@@ -99,6 +110,7 @@ type
     procedure edFiltroCodigoKeyPress(Sender: TObject; var Key: char);
     procedure edFiltroNombreKeyPress(Sender: TObject; var Key: char);
     procedure FormShow(Sender: TObject);
+    procedure pedDevolucionExecute(Sender: TObject);
     procedure pedModificarExecute(Sender: TObject);
     procedure pedNuevoExecute(Sender: TObject);
     procedure prgEditarProductoExecute(Sender: TObject);
@@ -112,6 +124,7 @@ type
     procedure provNuevoExecute(Sender: TObject);
     procedure stkEditarExecute(Sender: TObject);
     procedure stkNuevoExecute(Sender: TObject);
+    procedure stkRecalcularTodoExecute(Sender: TObject);
     procedure tranBorrarExecute(Sender: TObject);
     procedure tranEditarExecute(Sender: TObject);
     procedure tranNuevoExecute(Sender: TObject);
@@ -160,6 +173,8 @@ uses
   ,frm_movimientosstockbusqueda
   ,frm_modificarprecios
   ,SD_Configuracion
+  ,frm_devolucionesae
+  ,dmstock
   ;
 
 { TfrmMain }
@@ -532,6 +547,22 @@ begin
   end;
 end;
 
+
+
+procedure TfrmMain.pedDevolucionExecute(Sender: TObject);
+var
+ pant: TfrmDevolucionesae;
+begin
+  pant:= TfrmDevolucionesae.Create(self);
+  try
+    if pant.ShowModal = mrOK  then
+     RefrescarGrilla;
+  finally
+    pant.Free;
+  end;
+end;
+
+
 (*******************************************************************************
 *** MOVIMIENTOS DE STOCK
 *******************************************************************************)
@@ -544,7 +575,7 @@ begin
     pant.idMovimientoStock:= ID;
     if pant.ShowModal = mrOK then
     begin
-
+      RefrescarGrilla;
     end;
   finally
     pant.Free;
@@ -571,6 +602,19 @@ begin
     pant.Free;
   end;
 end;
+
+procedure TfrmMain.stkRecalcularTodoExecute(Sender: TObject);
+begin
+  if (MessageDlg ('AVISO'
+                  , 'Está por ejecutar un proceso que puede demorar varios minutos. Desea continuar?'
+                  , mtConfirmation, [mbYes, mbNo],0 ) = mrYes) then
+  begin
+     DM_Stock.RecalcularStockCompleto;
+     ShowMessage('Proceso de recálculo del Stock completo');
+     RefrescarGrilla;
+  end;
+end;
+
 
 (*******************************************************************************
 *** PRECIOS

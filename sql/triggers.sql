@@ -154,4 +154,19 @@ END^
 
 SET TERM ; ^  
 
-SET TERM ^ 
+SET TERM ^
+
+
+SET TERM ^ ;
+
+CREATE TRIGGER nroDevolucion FOR Devoluciones
+BEFORE INSERT POSITION 0
+AS 
+BEGIN 
+    If (New.numero = -1) then
+   New.numero = GEN_ID(NroDevolucion,1);
+END^
+
+SET TERM ; ^  
+
+SET TERM ^

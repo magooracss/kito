@@ -17,7 +17,8 @@ uses
   sysutils, frm_pedidoeditarproducto, frm_pedidosEstados, frm_pedidoestadosae,
   frm_pedidosbusqueda, dmbusquedapedidos, dmstock, frm_movimientosstockae,
   frm_EditarProductoMovimientoStock, frm_movimientosstockbusqueda, 
-dmbusquedamovstock, frm_modificarprecios, dmmodificarprecios;
+dmbusquedamovstock, frm_modificarprecios, dmmodificarprecios, 
+frm_devolucionesae, dmdevoluciones;
 
 {$R *.res}
 

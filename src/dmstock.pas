@@ -49,6 +49,8 @@ type
     qMovimientosProductoPRODUCTO_ID: TStringField;
     qMovStockDetallesPorIdMovLXCODIGO: TStringField;
     qMovStockDetallesPorIdMovLXNOMBRE: TStringField;
+    qProductosParaStock: TZQuery;
+    qProductosParaStockID: TStringField;
     qStockProductoARMADO: TFloatField;
     qStockProductoDISPONIBLE: TFloatField;
     qStockProductoID: TStringField;
@@ -134,6 +136,7 @@ type
     procedure TotalMovimiento (refListaPrecios: integer; var TotalCargado, TotalListaPrecio: double);
 
     procedure RecalcularStockPorMovimiento;
+    procedure RecalcularStockCompleto;
 
   end;
 
@@ -439,6 +442,21 @@ begin
     While Not Eof do
     begin
       RecalcularStockProducto (MovimientosStockDetallesproducto_id.AsString);
+      Next;
+    end;
+  end;
+end;
+
+procedure TDM_Stock.RecalcularStockCompleto;
+begin
+  with qProductosParaStock do
+  begin
+    if active then close;
+    Open;
+    First;
+    While Not Eof do
+    begin
+      RecalcularStockProducto(qProductosParaStockID.AsString);
       Next;
     end;
   end;

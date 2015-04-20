@@ -253,3 +253,25 @@ CREATE TABLE MovimientosStockDetalles
 , movimiento char default 'I'
 , bVisible	smallint default 1
 );
+
+CREATE TABLE Devoluciones
+(
+  id		"guid"  NOT NULL PRIMARY KEY
+, numero	integer default -1
+, fecha		date
+, cliente_id	"guid"	default '{00000000-0000-0000-0000-000000000000}'
+, pedido_id	"guid"	default '{00000000-0000-0000-0000-000000000000}'
+, notas		varchar(3000)
+, bVisible 	smallint default 1
+);
+
+CREATE TABLE DevolucionesDetalles
+(
+  id		"guid"  NOT NULL PRIMARY KEY
+, devolucion_id	"guid"	default '{00000000-0000-0000-0000-000000000000}'
+, producto_id	"guid"	default '{00000000-0000-0000-0000-000000000000}'
+, devuelto	float default 0
+, descartado	float default 0
+, nota		varchar(3000)
+, bVisible	smallint default 1
+);
