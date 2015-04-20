@@ -13,6 +13,7 @@ object frmListados: TfrmListados
   Font.Quality = fqDraft
   OnCreate = FormCreate
   OnDestroy = FormDestroy
+  OnShow = FormShow
   Position = poOwnerFormCenter
   LCLVersion = '1.2.6.0'
   object Panel1: TPanel
@@ -30,8 +31,18 @@ object frmListados: TfrmListados
       Top = 1
       Width = 272
       Align = alLeft
+      AutoFillColumns = True
       Color = clWindow
-      Columns = <>
+      Columns = <      
+        item
+          Title.Caption = 'GRUPOLISTADO'
+          Width = 268
+          FieldName = 'GRUPOLISTADO'
+        end>
+      DataSource = ds_GrupoListado
+      FixedCols = 0
+      Options = [dgColumnResize, dgColumnMove, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit]
+      Scrollbars = ssAutoVertical
       TabOrder = 0
       TitleFont.CharSet = ANSI_CHARSET
       TitleFont.Height = -13
@@ -51,8 +62,18 @@ object frmListados: TfrmListados
       Top = 1
       Width = 438
       Align = alClient
+      AutoFillColumns = True
       Color = clWindow
-      Columns = <>
+      Columns = <      
+        item
+          Title.Caption = 'LISTADO'
+          Width = 434
+          FieldName = 'LISTADO'
+        end>
+      DataSource = ds_Listados
+      FixedCols = 0
+      Options = [dgColumnResize, dgColumnMove, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit]
+      Scrollbars = ssAutoVertical
       TabOrder = 2
       TitleFont.CharSet = ANSI_CHARSET
       TitleFont.Height = -13
@@ -66,13 +87,88 @@ object frmListados: TfrmListados
     Height = 176
     Top = 200
     Width = 717
-    ActivePage = TabNada
+    ActivePage = TabListaPrecio
     Align = alClient
     ShowTabs = False
-    TabIndex = 0
+    TabIndex = 2
     TabOrder = 1
+    object TabFechas: TTabSheet
+      Caption = 'TabFechas'
+      ClientHeight = 168
+      ClientWidth = 709
+      OnShow = TabFechasShow
+      object edFechaIniTabFechas: TDateEdit
+        Left = 154
+        Height = 24
+        Top = 56
+        Width = 104
+        CalendarDisplaySettings = [dsShowHeadings, dsShowDayNames]
+        OKCaption = 'OK'
+        CancelCaption = 'Cancel'
+        DateOrder = doNone
+        ButtonWidth = 23
+        CharCase = ecNormal
+        NumGlyphs = 1
+        MaxLength = 0
+        TabOrder = 0
+      end
+      object edFechaFinTabFechas: TDateEdit
+        Left = 355
+        Height = 24
+        Top = 56
+        Width = 104
+        CalendarDisplaySettings = [dsShowHeadings, dsShowDayNames]
+        OKCaption = 'OK'
+        CancelCaption = 'Cancel'
+        DateOrder = doNone
+        ButtonWidth = 23
+        CharCase = ecNormal
+        NumGlyphs = 1
+        MaxLength = 0
+        TabOrder = 1
+      end
+      object Label1: TLabel
+        Left = 154
+        Height = 16
+        Top = 38
+        Width = 70
+        Caption = 'Fecha Inicio'
+        ParentColor = False
+      end
+      object Label2: TLabel
+        Left = 355
+        Height = 16
+        Top = 38
+        Width = 68
+        Caption = 'Fecha Final'
+        ParentColor = False
+      end
+    end
     object TabNada: TTabSheet
       Caption = 'TabNada'
+    end
+    object TabListaPrecio: TTabSheet
+      Caption = 'TabListaPrecio'
+      ClientHeight = 168
+      ClientWidth = 709
+      OnShow = TabListaPrecioShow
+      object cbTabListaPrecio: TComboBox
+        Left = 121
+        Height = 24
+        Top = 67
+        Width = 420
+        ItemHeight = 16
+        Style = csDropDownList
+        TabOrder = 0
+      end
+      object Label3: TLabel
+        Left = 121
+        Height = 16
+        Top = 49
+        Width = 92
+        Caption = 'Lista de precios'
+        ParentColor = False
+      end
     end
   end
   object Panel2: TPanel
@@ -174,5 +270,17 @@ object frmListados: TfrmListados
       OnClick = btnMostrarClick
       TabOrder = 1
     end
+  end
+  object ds_GrupoListado: TDataSource
+    DataSet = DM_Listados.qGruposListados
+    OnDataChange = ds_GrupoListadoDataChange
+    left = 204
+    top = 21
+  end
+  object ds_Listados: TDataSource
+    DataSet = DM_Listados.qListados
+    OnDataChange = ds_ListadosDataChange
+    left = 295
+    top = 21
   end
 end

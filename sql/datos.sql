@@ -78,4 +78,38 @@ INSERT INTO PedidosTiposEstados
 VALUES
 (5, 'Rechazado', 1);
 
+INSERT INTO GruposListados
+(id, GrupoListado, bVisible)
+VALUES
+(1, 'Mercadería', 1);
+
+INSERT INTO Listado
+(id, grupoListado_id, listado, idx, bVisible)
+VALUES
+(1, 1, 'Productos por debajo del stock mínimo', 0, 1);
+
+INSERT INTO Listado
+(id, grupoListado_id, listado, idx, bVisible)
+VALUES
+(2, 1, 'Productos devueltos entre fechas (Detallado)', 1, 1);
+
+INSERT INTO Listado
+(id, grupoListado_id, listado, idx, bVisible)
+VALUES
+(3, 1, 'Productos devueltos entre fechas (Totalizado por producto)', 2, 1);
+
+INSERT INTO Listado
+(id, grupoListado_id, listado, idx, bVisible)
+VALUES
+(4, 1, 'Productos consumidos entre fechas', 3, 1);
+
+INSERT INTO GruposListados
+(id, GrupoListado, bVisible)
+VALUES
+(2, 'Listas', 1);
+
+INSERT INTO Listado
+(id, grupoListado_id, listado, idx, bVisible)
+VALUES
+(5, 2, 'Lista de precios', 4, 1);
 

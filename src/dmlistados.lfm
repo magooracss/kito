@@ -1,4 +1,5 @@
 object DM_Listados: TDM_Listados
+  OnCreate = DataModuleCreate
   OldCreateOrder = False
   Height = 435
   HorizontalOffset = 400
@@ -59,6 +60,507 @@ object DM_Listados: TDM_Listados
       DisplayWidth = 10
       FieldKind = fkData
       FieldName = 'DISPONIBLE'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+  end
+  object qGruposListados: TZQuery
+    Connection = DM_General.cnxBase
+    Active = True
+    SQL.Strings = (
+      'SELECT *'
+      'FROM GruposListados'
+      'WHERE (bVisible = 1)'
+      'ORDER BY GrupoListado'
+    )
+    Params = <>
+    left = 48
+    top = 40
+    object qGruposListadosID: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'ID'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object qGruposListadosGRUPOLISTADO: TStringField
+      DisplayWidth = 200
+      FieldKind = fkData
+      FieldName = 'GRUPOLISTADO'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 200
+    end
+    object qGruposListadosBVISIBLE: TSmallintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'BVISIBLE'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+  end
+  object qListados: TZQuery
+    Connection = DM_General.cnxBase
+    SQL.Strings = (
+      'SELECT *'
+      'FROM Listado'
+      'WHERE (bVisible = 1) '
+      '             and (grupoListado_id = :grupoListado_id)'
+      'ORDER BY Listado'
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'grupoListado_id'
+        ParamType = ptUnknown
+      end>
+    left = 48
+    top = 104
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'grupoListado_id'
+        ParamType = ptUnknown
+      end>
+    object qListadosID: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'ID'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object qListadosGRUPOLISTADO_ID: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'GRUPOLISTADO_ID'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object qListadosLISTADO: TStringField
+      DisplayWidth = 400
+      FieldKind = fkData
+      FieldName = 'LISTADO'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 400
+    end
+    object qListadosIDX: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'IDX'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object qListadosBVISIBLE: TSmallintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'BVISIBLE'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+  end
+  object qLstProductosDevueltos: TZQuery
+    Connection = DM_General.cnxBase
+    SQL.Strings = (
+      'SELECT D.FECHA'
+      '      , P.Codigo'
+      '      , P.Nombre'
+      '      , DD.DEVUELTO'
+      '      , DD.DESCARTADO'
+      'FROM Devoluciones D'
+      '       inner join DEVOLUCIONESDETALLES DD ON DD.DEVOLUCION_ID = D.ID'
+      '       left join PRODUCTOS P on P.ID = DD.PRODUCTO_ID'
+      'WHERE (D.bVisible = 1)'
+      '      and (D.FECHA  >= :fechaIni)'
+      '      and (D.FECHA <= :fechafin)'
+      'ORDER BY D.Fecha, P.Codigo, P.Nombre'
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'fechaIni'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'fechafin'
+        ParamType = ptUnknown
+      end>
+    left = 248
+    top = 104
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'fechaIni'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'fechafin'
+        ParamType = ptUnknown
+      end>
+    object qLstProductosDevueltosFECHA: TDateField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'FECHA'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object qLstProductosDevueltosCODIGO: TStringField
+      DisplayWidth = 80
+      FieldKind = fkData
+      FieldName = 'CODIGO'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 80
+    end
+    object qLstProductosDevueltosNOMBRE: TStringField
+      DisplayWidth = 1200
+      FieldKind = fkData
+      FieldName = 'NOMBRE'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 1200
+    end
+    object qLstProductosDevueltosDEVUELTO: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'DEVUELTO'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object qLstProductosDevueltosDESCARTADO: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'DESCARTADO'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+  end
+  object qLstProductosDevTotalizados: TZQuery
+    Connection = DM_General.cnxBase
+    Active = True
+    SQL.Strings = (
+      'SELECT  P.Codigo'
+      '      , P.Nombre'
+      '      , SUM(DD.DEVUELTO) as TotalDevuelto'
+      '      , SUM (DD.DESCARTADO) as TotalDescartado'
+      'FROM Devoluciones D'
+      '       inner join DEVOLUCIONESDETALLES DD ON DD.DEVOLUCION_ID = D.ID'
+      '       left join PRODUCTOS P on P.ID = DD.PRODUCTO_ID'
+      'WHERE (D.bVisible = 1)'
+      '      and (D.FECHA  >= :fechaIni)'
+      '      and (D.FECHA <= :fechafin)'
+      'group by DD.PRODUCTO_ID, P.CODIGO, P.NOMBRE'
+      'ORDER BY P.Codigo, P.Nombre'
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'fechaIni'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'fechafin'
+        ParamType = ptUnknown
+      end>
+    left = 248
+    top = 168
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'fechaIni'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'fechafin'
+        ParamType = ptUnknown
+      end>
+    object qLstProductosDevTotalizadosCODIGO: TStringField
+      DisplayWidth = 80
+      FieldKind = fkData
+      FieldName = 'CODIGO'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 80
+    end
+    object qLstProductosDevTotalizadosNOMBRE: TStringField
+      DisplayWidth = 1200
+      FieldKind = fkData
+      FieldName = 'NOMBRE'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 1200
+    end
+    object qLstProductosDevTotalizadosTOTALDEVUELTO: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'TOTALDEVUELTO'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = True
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object qLstProductosDevTotalizadosTOTALDESCARTADO: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'TOTALDESCARTADO'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = True
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+  end
+  object qLstProdConsTiempo: TZQuery
+    Connection = DM_General.cnxBase
+    SQL.Strings = (
+      'SELECT  Pr.Codigo'
+      '      , Pr.Nombre'
+      '      , SUM (PD.CANTIDAD) as TotalProducto'
+      'FROM PEDIDOS P'
+      '       inner join PEDIDOSDETALLES PD on PD.PEDIDO_ID = P.ID'
+      '       left join PRODUCTOS Pr on Pr.ID = PD.PRODUCTO_ID'
+      'WHERE (P.bVisible = 1)'
+      '      and (P.FToma  >= :fechaIni)'
+      '      and (P.FToma <= :fechafin)'
+      'group by PD.PRODUCTO_ID, Pr.CODIGO, pr.NOMBRE'
+      'order by Pr.CODIGO, pr.NOMBRE'
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'fechaIni'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'fechafin'
+        ParamType = ptUnknown
+      end>
+    left = 248
+    top = 232
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'fechaIni'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'fechafin'
+        ParamType = ptUnknown
+      end>
+    object qLstProdConsTiempoCODIGO: TStringField
+      DisplayWidth = 80
+      FieldKind = fkData
+      FieldName = 'CODIGO'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 80
+    end
+    object qLstProdConsTiempoNOMBRE: TStringField
+      DisplayWidth = 1200
+      FieldKind = fkData
+      FieldName = 'NOMBRE'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 1200
+    end
+    object qLstProdConsTiempoTOTALPRODUCTO: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'TOTALPRODUCTO'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = True
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+  end
+  object qListaPrecio: TZQuery
+    Connection = DM_General.cnxBase
+    Active = True
+    SQL.Strings = (
+      'SELECT *'
+      'FROM ListasPrecios'
+      'WHERE (bVisible = 1)'
+    )
+    Params = <>
+    left = 48
+    top = 216
+    object qListaPrecioID: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'ID'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object qListaPrecioLISTAPRECIO: TStringField
+      DisplayWidth = 400
+      FieldKind = fkData
+      FieldName = 'LISTAPRECIO'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 400
+    end
+    object qListaPrecioBVISIBLE: TSmallintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'BVISIBLE'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+  end
+  object qLstListaPrecios: TZQuery
+    Connection = DM_General.cnxBase
+    SQL.Strings = (
+      'SELECT  Pr.Codigo'
+      '      , Pr.Nombre'
+      '      , LP.LISTAPRECIO '
+      '      , P.MONTO      '
+      'FROM PRECIOS P'
+      '       left join PRODUCTOS Pr on Pr.ID = P.PRODUCTO_ID'
+      '       left join LISTASPRECIOS LP on LP.ID = P.LISTAPRECIO_ID'
+      'WHERE (P.bVisible = 1) and (Pr.BVISIBLE = 1) '
+      '      and (P.LISTAPRECIO_ID = :listaPrecio_id)'
+      'order by Pr.CODIGO, pr.NOMBRE'
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'listaPrecio_id'
+        ParamType = ptUnknown
+      end>
+    left = 248
+    top = 296
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'listaPrecio_id'
+        ParamType = ptUnknown
+      end>
+    object qLstListaPreciosCODIGO: TStringField
+      DisplayWidth = 80
+      FieldKind = fkData
+      FieldName = 'CODIGO'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 80
+    end
+    object qLstListaPreciosNOMBRE: TStringField
+      DisplayWidth = 1200
+      FieldKind = fkData
+      FieldName = 'NOMBRE'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 1200
+    end
+    object qLstListaPreciosLISTAPRECIO: TStringField
+      DisplayWidth = 400
+      FieldKind = fkData
+      FieldName = 'LISTAPRECIO'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 400
+    end
+    object qLstListaPreciosMONTO: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'MONTO'
       Index = 3
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]

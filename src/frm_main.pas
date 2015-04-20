@@ -184,6 +184,7 @@ uses
   ,frm_devolucionesae
   ,dmstock
   ,frm_listados
+  ,dmlistados
   ;
 
 { TfrmMain }
@@ -232,7 +233,13 @@ end;
 
 procedure TfrmMain.prgEditarReporteExecute(Sender: TObject);
 begin
-  DM_General.EditarReporte;
+  try
+    Application.CreateForm(TDM_Listados, DM_Listados);
+    DM_General.EditarReporte;
+  finally
+    DM_Listados.Free;
+  end;
+
 end;
 
 procedure TfrmMain.prgListadosExecute(Sender: TObject);

@@ -458,7 +458,7 @@ object frmMain: TfrmMain
     end
     object pedDevolucion: TAction
       Category = 'Pedidos'
-      Caption = 'Cargar devolución'
+      Caption = 'Cargar &devolución'
       Hint = 'Carga una devolución de mercadería sobre un pedido existente'
       ImageIndex = 15
       OnExecute = pedDevolucionExecute
@@ -479,7 +479,7 @@ object frmMain: TfrmMain
     end
     object prgListados: TAction
       Category = 'programa'
-      Caption = 'Listados'
+      Caption = '&Listados'
       Hint = 'Muestra la pantalla para seleccionar un listado'
       ImageIndex = 18
       OnExecute = prgListadosExecute

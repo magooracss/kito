@@ -275,3 +275,20 @@ CREATE TABLE DevolucionesDetalles
 , nota		varchar(3000)
 , bVisible	smallint default 1
 );
+
+CREATE TABLE GruposListados
+(
+  id		integer NOT NULL PRIMARY KEY
+, GrupoListado	varchar(50)
+, bVisible	smallint default 1			
+);
+
+CREATE TABLE Listado
+(
+  id		integer NOT NULL PRIMARY KEY
+, grupoListado_id integer default 0
+, listado	varchar(100)
+, idx		integer default 0
+, bVisible	smallint default 1			
+);
+

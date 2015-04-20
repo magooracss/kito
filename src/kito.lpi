@@ -401,6 +401,7 @@
         <Filename Value="dmlistados.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="DM_Listados"/>
+        <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="dmlistados"/>
       </Unit44>
@@ -408,6 +409,7 @@
         <Filename Value="frm_listados.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="frmListados"/>
+        <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="frm_listados"/>
       </Unit45>
