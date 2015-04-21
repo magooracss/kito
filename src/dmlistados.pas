@@ -15,6 +15,14 @@ const
   LST_ProductosDevueltosTotalizado = 2; //Productos devueltos en un intervalo de tiempo Totalizados
   LST_ProductosConsumidos = 3; //Productos vendidos en un intervalo de tiempo
   LST_ListaDePrecios = 4; // Lista de precios
+  LST_ListaClientesZona = 5; //Lista de clientes por zona
+  LST_ListaClientesVendedor = 6; //Lista de clientes por Vendedor
+  LST_ListaClientesCompleta = 7; //Todos los clientes
+  LST_PedidosVendedor = 8; //Pedidos por vendedor entre fechas de tomado
+  LST_PedidosCliente = 9; //Pedidos por cliente entre fechas de tomado
+  LST_PedidosFechasTomado = 10; //Pedidos entre fechas de tomado
+  LST_PedidosTransportista = 11; //Pedidos por transportista entre fechas de tomado
+  LST_PedidosEstado = 12; //Pedidos por estado entre fechas de estado
 
 
 type
@@ -31,6 +39,100 @@ type
     qListadosID: TLongintField;
     qListadosIDX: TLongintField;
     qListadosLISTADO: TStringField;
+    qLstListaClientesZonas: TZQuery;
+    qLstListaTodosClientes: TZQuery;
+    qLstListaClientesZonasCODIGO: TStringField;
+    qLstListaClientesZonasCONDICIONFISCAL: TStringField;
+    qLstListaClientesZonasCONTACTO: TStringField;
+    qLstListaClientesZonasCUIT: TStringField;
+    qLstListaClientesZonasDOMICILIO: TStringField;
+    qLstListaClientesZonasLISTAPRECIO: TStringField;
+    qLstListaClientesZonasLOCALIDAD: TStringField;
+    qLstListaClientesZonasRAZONSOCIAL: TStringField;
+    qLstListaClientesZonasTIPOCONTACTO: TStringField;
+    qLstListaClientesZonasZONA: TStringField;
+    qLstPedidosPorEstadoCLIENTE_CODIGO: TStringField;
+    qLstPedidosPorEstadoCLIENTE_RAZONSOCIAL: TStringField;
+    qLstPedidosPorEstadoFECHAESTADO: TDateField;
+    qLstPedidosPorEstadoFTOMA: TDateField;
+    qLstPedidosPorEstadoNUMERO: TLongintField;
+    qLstPedidosPorEstadoTIPOESTADO: TStringField;
+    qLstPedidosPorEstadoTOTALPEDIDO: TFloatField;
+    qLstPedidosPorEstadoTRANSPORTISTA_CODIGO: TStringField;
+    qLstPedidosPorEstadoTRANSPORTISTA_RAZONSOCIAL: TStringField;
+    qLstPedidosPorEstadoVENDEDOR_CODIGO: TStringField;
+    qLstPedidosPorEstadoVENDEDOR_RAZONSOCIAL: TStringField;
+    qLstPedidosPorTransportista: TZQuery;
+    qLstPedidosPorTransportistaCLIENTE_CODIGO: TStringField;
+    qLstPedidosPorTransportistaCLIENTE_RAZONSOCIAL: TStringField;
+    qLstPedidosPorTransportistaFECHAESTADO: TDateField;
+    qLstPedidosPorTransportistaFTOMA: TDateField;
+    qLstPedidosPorTransportistaNUMERO: TLongintField;
+    qLstPedidosPorTransportistaTIPOESTADO: TStringField;
+    qLstPedidosPorTransportistaTOTALPEDIDO: TFloatField;
+    qLstPedidosPorTransportistaTRANSPORTISTA_CODIGO: TStringField;
+    qLstPedidosPorTransportistaTRANSPORTISTA_RAZONSOCIAL: TStringField;
+    qLstPedidosPorTransportistaVENDEDOR_CODIGO: TStringField;
+    qLstPedidosPorTransportistaVENDEDOR_RAZONSOCIAL: TStringField;
+    qLstPedidosTomados: TZQuery;
+    qLstPedidosPorClienteCLIENTE_CODIGO: TStringField;
+    qLstPedidosPorClienteCLIENTE_RAZONSOCIAL: TStringField;
+    qLstPedidosPorClienteFECHAESTADO: TDateField;
+    qLstPedidosPorClienteFTOMA: TDateField;
+    qLstPedidosPorClienteNUMERO: TLongintField;
+    qLstPedidosPorClienteTIPOESTADO: TStringField;
+    qLstPedidosPorClienteTOTALPEDIDO: TFloatField;
+    qLstPedidosPorClienteTRANSPORTISTA_CODIGO: TStringField;
+    qLstPedidosPorClienteTRANSPORTISTA_RAZONSOCIAL: TStringField;
+    qLstPedidosPorClienteVENDEDOR_CODIGO: TStringField;
+    qLstPedidosPorClienteVENDEDOR_RAZONSOCIAL: TStringField;
+    qLstPedidosPorVendedor: TZQuery;
+    qLstListaTodosClientesCODIGO: TStringField;
+    qLstListaTodosClientesCONDICIONFISCAL: TStringField;
+    qLstListaTodosClientesCONTACTO: TStringField;
+    qLstListaTodosClientesCUIT: TStringField;
+    qLstListaTodosClientesDOMICILIO: TStringField;
+    qLstListaTodosClientesLISTAPRECIO: TStringField;
+    qLstListaTodosClientesLOCALIDAD: TStringField;
+    qLstListaTodosClientesRAZONSOCIAL: TStringField;
+    qLstListaTodosClientesTIPOCONTACTO: TStringField;
+    qLstListaTodosClientesZONA: TStringField;
+    qLstPedidosPorCliente: TZQuery;
+    qLstPedidosPorVendedorCLIENTE_CODIGO: TStringField;
+    qLstPedidosPorVendedorCLIENTE_RAZONSOCIAL: TStringField;
+    qLstPedidosPorVendedorFECHAESTADO: TDateField;
+    qLstPedidosPorVendedorFTOMA: TDateField;
+    qLstPedidosPorVendedorNUMERO: TLongintField;
+    qLstPedidosPorVendedorTIPOESTADO: TStringField;
+    qLstPedidosPorVendedorTOTALPEDIDO: TFloatField;
+    qLstPedidosPorVendedorTRANSPORTISTA_CODIGO: TStringField;
+    qLstPedidosPorVendedorTRANSPORTISTA_RAZONSOCIAL: TStringField;
+    qLstPedidosPorVendedorVENDEDOR_CODIGO: TStringField;
+    qLstPedidosPorVendedorVENDEDOR_RAZONSOCIAL: TStringField;
+    qLstPedidosPorEstado: TZQuery;
+    qLstPedidosTomadosCLIENTE_CODIGO: TStringField;
+    qLstPedidosTomadosCLIENTE_CODIGO1: TStringField;
+    qLstPedidosTomadosCLIENTE_RAZONSOCIAL: TStringField;
+    qLstPedidosTomadosCLIENTE_RAZONSOCIAL1: TStringField;
+    qLstPedidosTomadosFECHAESTADO: TDateField;
+    qLstPedidosTomadosFECHAESTADO1: TDateField;
+    qLstPedidosTomadosFTOMA: TDateField;
+    qLstPedidosTomadosFTOMA1: TDateField;
+    qLstPedidosTomadosNUMERO: TLongintField;
+    qLstPedidosTomadosNUMERO1: TLongintField;
+    qLstPedidosTomadosTIPOESTADO: TStringField;
+    qLstPedidosTomadosTIPOESTADO1: TStringField;
+    qLstPedidosTomadosTOTALPEDIDO: TFloatField;
+    qLstPedidosTomadosTOTALPEDIDO1: TFloatField;
+    qLstPedidosTomadosTRANSPORTISTA_CODIGO: TStringField;
+    qLstPedidosTomadosTRANSPORTISTA_CODIGO1: TStringField;
+    qLstPedidosTomadosTRANSPORTISTA_RAZONSOCIAL: TStringField;
+    qLstPedidosTomadosTRANSPORTISTA_RAZONSOCIAL1: TStringField;
+    qLstPedidosTomadosVENDEDOR_CODIGO: TStringField;
+    qLstPedidosTomadosVENDEDOR_CODIGO1: TStringField;
+    qLstPedidosTomadosVENDEDOR_RAZONSOCIAL: TStringField;
+    qLstPedidosTomadosVENDEDOR_RAZONSOCIAL1: TStringField;
+    qZonas: TZQuery;
     qListaPrecioBVISIBLE: TSmallintField;
     qListaPrecioID: TLongintField;
     qListaPrecioLISTAPRECIO: TStringField;
@@ -61,9 +163,13 @@ type
     qLstStockMinimoDISPONIBLE: TFloatField;
     qLstStockMinimoMINIMO: TFloatField;
     qLstStockMinimoNOMBRE: TStringField;
+    qZonasBVISIBLE: TSmallintField;
+    qZonasID: TLongintField;
+    qZonasZONA: TStringField;
     procedure DataModuleCreate(Sender: TObject);
   private
     procedure LevantarReporte (elReporte: string; var consulta: TZQuery);
+    procedure LevantarReporteFechas (elReporte: string; Fini, FFin: TDate; var consulta: TZQuery);
   public
     procedure ListadoPorGrupo (refGrupo: integer);
 
@@ -72,6 +178,9 @@ type
     procedure ProductosDevueltosTotalizado (fechaIni, fechaFin: TDate);
     procedure ProductosConsumidos (fechaIni, fechaFin: TDate);
     procedure ListaDePrecios (refLista: integer);
+    procedure ListaClientesZonas (refZona: integer);
+    procedure ListaClientesTodos;
+    procedure PedidosVendedor(refVendedor: GUID_ID; fechaIni, fechaFin: TDate);
 
   end;
 
@@ -92,6 +201,15 @@ procedure TDM_Listados.LevantarReporte(elReporte: string; var consulta: TZQuery
   );
 begin
   DM_General.LevantarReporte(elReporte, consulta);
+  DM_General.EjecutarReporte;
+end;
+
+procedure TDM_Listados.LevantarReporteFechas(elReporte: string; Fini,
+  FFin: TDate; var consulta: TZQuery);
+begin
+  DM_General.LevantarReporte(elReporte, consulta);
+  DM_General.AgregarVariableReporte('fechaIni', DateToStr(Fini));
+  DM_General.AgregarVariableReporte('fechaFin', DateToStr(FFin));
   DM_General.EjecutarReporte;
 end;
 
@@ -141,10 +259,7 @@ begin
     ParamByName('fechaIni').AsDate:= fechaIni;
     ParamByName('fechaFin').AsDate:= fechaFin;
     Open;
-    DM_General.LevantarReporte(reporte, qLstProductosDevTotalizados);
-    DM_General.AgregarVariableReporte('fechaIni', DateToStr(fechaIni));
-    DM_General.AgregarVariableReporte('fechaFin', DateToStr(fechaFin));
-    DM_General.EjecutarReporte;
+    LevantarReporteFechas(reporte, fechaIni, fechaFin, qLstProductosDevTotalizados);
   end;
 end;
 
@@ -175,6 +290,47 @@ begin
     ParamByName('listaprecio_id').AsInteger:= refLista;
     Open;
     LevantarReporte(reporte, qLstListaPrecios);
+  end;
+end;
+
+procedure TDM_Listados.ListaClientesZonas(refZona: integer);
+const
+  reporte = 'listaCliZonas.lrf';
+begin
+  with qLstListaClientesZonas do
+  begin
+    if active then close;
+    ParamByName('zona_id').AsInteger:= refZona;
+    Open;
+    LevantarReporte(reporte, qLstListaClientesZonas);
+  end;
+end;
+
+procedure TDM_Listados.ListaClientesTodos;
+const
+  reporte = 'listaClientes.lrf';
+begin
+  with qLstListaTodosClientes do
+  begin
+    if active then close;
+    Open;
+    LevantarReporte(reporte, qLstListaTodosClientes);
+  end;
+end;
+
+procedure TDM_Listados.PedidosVendedor(refVendedor: GUID_ID; fechaIni,
+  fechaFin: TDate);
+const
+  reporte = 'pedidosVendFToma.lrf';
+begin
+  with qLstPedidosPorVendedor do
+  begin
+    if active then close;
+    ParamByName('vendedor_id').asString:= refVendedor;
+    ParamByName('Fini').AsDate:= fechaIni ;
+    ParamByName('FFin').AsDate:= fechaFin;
+    Open;
+    LevantarReporteFechas(reporte,fechaIni, fechaFin, qLstPedidosPorVendedor);
   end;
 end;
 

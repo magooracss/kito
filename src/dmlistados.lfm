@@ -1,10 +1,10 @@
 object DM_Listados: TDM_Listados
   OnCreate = DataModuleCreate
   OldCreateOrder = False
-  Height = 435
-  HorizontalOffset = 400
-  VerticalOffset = 177
-  Width = 575
+  Height = 511
+  HorizontalOffset = 210
+  VerticalOffset = 152
+  Width = 892
   object qLstStockMinimo: TZQuery
     Connection = DM_General.cnxBase
     SQL.Strings = (
@@ -72,7 +72,6 @@ object DM_Listados: TDM_Listados
   end
   object qGruposListados: TZQuery
     Connection = DM_General.cnxBase
-    Active = True
     SQL.Strings = (
       'SELECT *'
       'FROM GruposListados'
@@ -290,7 +289,6 @@ object DM_Listados: TDM_Listados
   end
   object qLstProductosDevTotalizados: TZQuery
     Connection = DM_General.cnxBase
-    Active = True
     SQL.Strings = (
       'SELECT  P.Codigo'
       '      , P.Nombre'
@@ -455,7 +453,6 @@ object DM_Listados: TDM_Listados
   end
   object qListaPrecio: TZQuery
     Connection = DM_General.cnxBase
-    Active = True
     SQL.Strings = (
       'SELECT *'
       'FROM ListasPrecios'
@@ -569,6 +566,1254 @@ object DM_Listados: TDM_Listados
       MaxValue = 0
       MinValue = 0
       Precision = 2
+    end
+  end
+  object qZonas: TZQuery
+    Connection = DM_General.cnxBase
+    Active = True
+    SQL.Strings = (
+      'SELECT *'
+      'FROM Zonas'
+      'WHERE (bVisible = 1)'
+    )
+    Params = <>
+    left = 48
+    top = 288
+    object qZonasID: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'ID'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object qZonasZONA: TStringField
+      DisplayWidth = 400
+      FieldKind = fkData
+      FieldName = 'ZONA'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 400
+    end
+    object qZonasBVISIBLE: TSmallintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'BVISIBLE'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+  end
+  object qLstListaClientesZonas: TZQuery
+    Connection = DM_General.cnxBase
+    SQL.Strings = (
+      'select '
+      '     E.RAZONSOCIAL'
+      '      ,E.CUIT'
+      '      ,CF.CONDICIONFISCAL'
+      '      ,C.CODIGO'
+      '      ,LP.LISTAPRECIO'
+      '      ,Z.ZONA '
+      '      ,TCO.TIPOCONTACTO'
+      '      ,CO. Contacto'
+      '      ,Dir.DOMICILIO'
+      '      ,CIT.LOCALIDAD '
+      'from CLIENTES C'
+      '      left join ZONAS Z on Z.ID = C.ZONA_ID'
+      '      left join LISTASPRECIOS LP ON LP.ID = C.LISTAPRECIO_ID      '
+      '      inner join EMPRESAS E on E.ID = C.EMPRESA_ID'
+      '      left join CONDICIONESFISCALES CF ON CF.ID = E.CONDICIONFISCAL_ID'
+      '      left join CONTACTOS CO on CO.EMPRESA_ID = E.ID'
+      '      left join TIPOSCONTACTOS TCO on TCO.ID = CO.TIPOCONTACTO_ID'
+      '      left join DOMICILIOS DIR ON DIR.EMPRESA_ID = E.ID'
+      '      left join LOCALIDADES CIT ON CIT.ID = DIR.LOCALIDAD_ID'
+      'where (C.BVISIBLE = 1)'
+      '      and (CO.BVISIBLE = 1)'
+      '      and (DIR.BVISIBLE = 1)'
+      '      and(C.Zona_ID = :zona_id)'
+      'order by Z.Zona, E.RAZONSOCIAL, CO.id, DIR.id '
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'zona_id'
+        ParamType = ptUnknown
+      end>
+    left = 416
+    top = 40
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'zona_id'
+        ParamType = ptUnknown
+      end>
+    object qLstListaClientesZonasRAZONSOCIAL: TStringField
+      DisplayWidth = 2000
+      FieldKind = fkData
+      FieldName = 'RAZONSOCIAL'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 2000
+    end
+    object qLstListaClientesZonasCUIT: TStringField
+      DisplayWidth = 60
+      FieldKind = fkData
+      FieldName = 'CUIT'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 60
+    end
+    object qLstListaClientesZonasCONDICIONFISCAL: TStringField
+      DisplayWidth = 120
+      FieldKind = fkData
+      FieldName = 'CONDICIONFISCAL'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 120
+    end
+    object qLstListaClientesZonasCODIGO: TStringField
+      DisplayWidth = 40
+      FieldKind = fkData
+      FieldName = 'CODIGO'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 40
+    end
+    object qLstListaClientesZonasLISTAPRECIO: TStringField
+      DisplayWidth = 400
+      FieldKind = fkData
+      FieldName = 'LISTAPRECIO'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 400
+    end
+    object qLstListaClientesZonasZONA: TStringField
+      DisplayWidth = 400
+      FieldKind = fkData
+      FieldName = 'ZONA'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 400
+    end
+    object qLstListaClientesZonasTIPOCONTACTO: TStringField
+      DisplayWidth = 120
+      FieldKind = fkData
+      FieldName = 'TIPOCONTACTO'
+      Index = 6
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 120
+    end
+    object qLstListaClientesZonasDOMICILIO: TStringField
+      DisplayWidth = 2000
+      FieldKind = fkData
+      FieldName = 'DOMICILIO'
+      Index = 7
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 2000
+    end
+    object qLstListaClientesZonasLOCALIDAD: TStringField
+      DisplayWidth = 800
+      FieldKind = fkData
+      FieldName = 'LOCALIDAD'
+      Index = 8
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 800
+    end
+    object qLstListaClientesZonasCONTACTO: TStringField
+      DisplayWidth = 800
+      FieldKind = fkData
+      FieldName = 'CONTACTO'
+      Index = 9
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = True
+      Required = False
+      Size = 800
+    end
+  end
+  object qLstListaTodosClientes: TZQuery
+    Connection = DM_General.cnxBase
+    SQL.Strings = (
+      'select '
+      '     E.RAZONSOCIAL'
+      '      ,E.CUIT'
+      '      ,CF.CONDICIONFISCAL'
+      '      ,C.CODIGO'
+      '      ,LP.LISTAPRECIO'
+      '      ,Z.ZONA '
+      '      ,TCO.TIPOCONTACTO'
+      '      ,CO. Contacto'
+      '      ,Dir.DOMICILIO'
+      '      ,CIT.LOCALIDAD '
+      'from CLIENTES C'
+      '      left join ZONAS Z on Z.ID = C.ZONA_ID'
+      '      left join LISTASPRECIOS LP ON LP.ID = C.LISTAPRECIO_ID      '
+      '      inner join EMPRESAS E on E.ID = C.EMPRESA_ID'
+      '      left join CONDICIONESFISCALES CF ON CF.ID = E.CONDICIONFISCAL_ID'
+      '      left join CONTACTOS CO on CO.EMPRESA_ID = E.ID'
+      '      left join TIPOSCONTACTOS TCO on TCO.ID = CO.TIPOCONTACTO_ID'
+      '      left join DOMICILIOS DIR ON DIR.EMPRESA_ID = E.ID'
+      '      left join LOCALIDADES CIT ON CIT.ID = DIR.LOCALIDAD_ID'
+      'where (C.BVISIBLE = 1)'
+      '      and (CO.BVISIBLE = 1)'
+      '      and (DIR.BVISIBLE = 1)'
+      'order by Z.Zona, E.RAZONSOCIAL, CO.id, DIR.id '
+    )
+    Params = <>
+    left = 416
+    top = 104
+    object qLstListaTodosClientesRAZONSOCIAL: TStringField
+      DisplayWidth = 2000
+      FieldKind = fkData
+      FieldName = 'RAZONSOCIAL'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 2000
+    end
+    object qLstListaTodosClientesCUIT: TStringField
+      DisplayWidth = 60
+      FieldKind = fkData
+      FieldName = 'CUIT'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 60
+    end
+    object qLstListaTodosClientesCONDICIONFISCAL: TStringField
+      DisplayWidth = 120
+      FieldKind = fkData
+      FieldName = 'CONDICIONFISCAL'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 120
+    end
+    object qLstListaTodosClientesCODIGO: TStringField
+      DisplayWidth = 40
+      FieldKind = fkData
+      FieldName = 'CODIGO'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 40
+    end
+    object qLstListaTodosClientesLISTAPRECIO: TStringField
+      DisplayWidth = 400
+      FieldKind = fkData
+      FieldName = 'LISTAPRECIO'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 400
+    end
+    object qLstListaTodosClientesZONA: TStringField
+      DisplayWidth = 400
+      FieldKind = fkData
+      FieldName = 'ZONA'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 400
+    end
+    object qLstListaTodosClientesTIPOCONTACTO: TStringField
+      DisplayWidth = 120
+      FieldKind = fkData
+      FieldName = 'TIPOCONTACTO'
+      Index = 6
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 120
+    end
+    object qLstListaTodosClientesCONTACTO: TStringField
+      DisplayWidth = 800
+      FieldKind = fkData
+      FieldName = 'CONTACTO'
+      Index = 7
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = True
+      Required = False
+      Size = 800
+    end
+    object qLstListaTodosClientesDOMICILIO: TStringField
+      DisplayWidth = 2000
+      FieldKind = fkData
+      FieldName = 'DOMICILIO'
+      Index = 8
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 2000
+    end
+    object qLstListaTodosClientesLOCALIDAD: TStringField
+      DisplayWidth = 800
+      FieldKind = fkData
+      FieldName = 'LOCALIDAD'
+      Index = 9
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 800
+    end
+  end
+  object qLstPedidosPorVendedor: TZQuery
+    Connection = DM_General.cnxBase
+    SQL.Strings = (
+      'select P.NUMERO'
+      '       ,P.FTOMA'
+      '       ,P.TOTALPEDIDO'
+      '       ,Cl.CODIGO as CLIENTE_CODIGO'
+      '       ,CLE.RAZONSOCIAL as CLIENTE_RAZONSOCIAL'
+      '       ,V.CODIGO as VENDEDOR_CODIGO'
+      '       ,VE.RAZONSOCIAL as VENDEDOR_RAZONSOCIAL'
+      '       ,T.CODIGO as TRANSPORTISTA_CODIGO'
+      '       ,TE.RAZONSOCIAL as TRANSPORTISTA_RAZONSOCIAL'
+      '       ,PE.FECHA as FECHAESTADO'
+      '       ,PTE.TIPOESTADO'
+      'from PEDIDOS P'
+      '     left join CLIENTES Cl on Cl.ID = P.CLIENTE_ID'
+      '     left join EMPRESAS CLE on CLE.ID = Cl.EMPRESA_ID'
+      '     left join VENDEDORES V on V.id = P.VENDEDOR_ID'
+      '     left join EMPRESAS VE on VE.ID = V.EMPRESA_ID'
+      '     left join TRANSPORTISTAS T on T.ID = P.TRANSPORTISTA_ID'
+      '     left join EMPRESAS TE on TE.ID = T.EMPRESA_ID'
+      '     left join PEDIDOSESTADOS PE on PE.ID = P.ESTADOACTUAL_ID'
+      '     left join PEDIDOSTIPOSESTADOS PTE ON PTE.ID = PE.TIPOESTADO_ID'
+      'where (P.BVISIBLE = 1)'
+      '        and (P.vendedor_id = :vendedor_id)'
+      '        and (P.fToma >= :fIni)'
+      '       and (P.FToma <= :fFin)'
+      'ORDER BY P.Numero'
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'vendedor_id'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'fIni'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'fFin'
+        ParamType = ptUnknown
+      end>
+    left = 568
+    top = 40
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'vendedor_id'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'fIni'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'fFin'
+        ParamType = ptUnknown
+      end>
+    object qLstPedidosPorVendedorNUMERO: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'NUMERO'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object qLstPedidosPorVendedorFTOMA: TDateField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'FTOMA'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object qLstPedidosPorVendedorTOTALPEDIDO: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'TOTALPEDIDO'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object qLstPedidosPorVendedorCLIENTE_CODIGO: TStringField
+      DisplayWidth = 40
+      FieldKind = fkData
+      FieldName = 'CLIENTE_CODIGO'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 40
+    end
+    object qLstPedidosPorVendedorCLIENTE_RAZONSOCIAL: TStringField
+      DisplayWidth = 2000
+      FieldKind = fkData
+      FieldName = 'CLIENTE_RAZONSOCIAL'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 2000
+    end
+    object qLstPedidosPorVendedorVENDEDOR_CODIGO: TStringField
+      DisplayWidth = 40
+      FieldKind = fkData
+      FieldName = 'VENDEDOR_CODIGO'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 40
+    end
+    object qLstPedidosPorVendedorVENDEDOR_RAZONSOCIAL: TStringField
+      DisplayWidth = 2000
+      FieldKind = fkData
+      FieldName = 'VENDEDOR_RAZONSOCIAL'
+      Index = 6
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 2000
+    end
+    object qLstPedidosPorVendedorTRANSPORTISTA_CODIGO: TStringField
+      DisplayWidth = 40
+      FieldKind = fkData
+      FieldName = 'TRANSPORTISTA_CODIGO'
+      Index = 7
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 40
+    end
+    object qLstPedidosPorVendedorTRANSPORTISTA_RAZONSOCIAL: TStringField
+      DisplayWidth = 2000
+      FieldKind = fkData
+      FieldName = 'TRANSPORTISTA_RAZONSOCIAL'
+      Index = 8
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 2000
+    end
+    object qLstPedidosPorVendedorFECHAESTADO: TDateField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'FECHAESTADO'
+      Index = 9
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object qLstPedidosPorVendedorTIPOESTADO: TStringField
+      DisplayWidth = 120
+      FieldKind = fkData
+      FieldName = 'TIPOESTADO'
+      Index = 10
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 120
+    end
+  end
+  object qLstPedidosPorCliente: TZQuery
+    Connection = DM_General.cnxBase
+    SQL.Strings = (
+      'select P.NUMERO'
+      '       ,P.FTOMA'
+      '       ,P.TOTALPEDIDO'
+      '       ,Cl.CODIGO as CLIENTE_CODIGO'
+      '       ,CLE.RAZONSOCIAL as CLIENTE_RAZONSOCIAL'
+      '       ,V.CODIGO as VENDEDOR_CODIGO'
+      '       ,VE.RAZONSOCIAL as VENDEDOR_RAZONSOCIAL'
+      '       ,T.CODIGO as TRANSPORTISTA_CODIGO'
+      '       ,TE.RAZONSOCIAL as TRANSPORTISTA_RAZONSOCIAL'
+      '       ,PE.FECHA as FECHAESTADO'
+      '       ,PTE.TIPOESTADO'
+      'from PEDIDOS P'
+      '     left join CLIENTES Cl on Cl.ID = P.CLIENTE_ID'
+      '     left join EMPRESAS CLE on CLE.ID = Cl.EMPRESA_ID'
+      '     left join VENDEDORES V on V.id = P.VENDEDOR_ID'
+      '     left join EMPRESAS VE on VE.ID = V.EMPRESA_ID'
+      '     left join TRANSPORTISTAS T on T.ID = P.TRANSPORTISTA_ID'
+      '     left join EMPRESAS TE on TE.ID = T.EMPRESA_ID'
+      '     left join PEDIDOSESTADOS PE on PE.ID = P.ESTADOACTUAL_ID'
+      '     left join PEDIDOSTIPOSESTADOS PTE ON PTE.ID = PE.TIPOESTADO_ID'
+      'where (P.BVISIBLE = 1)'
+      '        and (P.cliente_id = :cliente_id)'
+      '        and (P.fToma >= :fIni)'
+      '       and (P.FToma <= :fFin)'
+      'ORDER BY P.Numero'
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'cliente_id'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'fIni'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'fFin'
+        ParamType = ptUnknown
+      end>
+    left = 568
+    top = 104
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'cliente_id'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'fIni'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'fFin'
+        ParamType = ptUnknown
+      end>
+    object qLstPedidosPorClienteNUMERO: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'NUMERO'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object qLstPedidosPorClienteFTOMA: TDateField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'FTOMA'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object qLstPedidosPorClienteTOTALPEDIDO: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'TOTALPEDIDO'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object qLstPedidosPorClienteCLIENTE_CODIGO: TStringField
+      DisplayWidth = 40
+      FieldKind = fkData
+      FieldName = 'CLIENTE_CODIGO'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 40
+    end
+    object qLstPedidosPorClienteCLIENTE_RAZONSOCIAL: TStringField
+      DisplayWidth = 2000
+      FieldKind = fkData
+      FieldName = 'CLIENTE_RAZONSOCIAL'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 2000
+    end
+    object qLstPedidosPorClienteVENDEDOR_CODIGO: TStringField
+      DisplayWidth = 40
+      FieldKind = fkData
+      FieldName = 'VENDEDOR_CODIGO'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 40
+    end
+    object qLstPedidosPorClienteVENDEDOR_RAZONSOCIAL: TStringField
+      DisplayWidth = 2000
+      FieldKind = fkData
+      FieldName = 'VENDEDOR_RAZONSOCIAL'
+      Index = 6
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 2000
+    end
+    object qLstPedidosPorClienteTRANSPORTISTA_CODIGO: TStringField
+      DisplayWidth = 40
+      FieldKind = fkData
+      FieldName = 'TRANSPORTISTA_CODIGO'
+      Index = 7
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 40
+    end
+    object qLstPedidosPorClienteTRANSPORTISTA_RAZONSOCIAL: TStringField
+      DisplayWidth = 2000
+      FieldKind = fkData
+      FieldName = 'TRANSPORTISTA_RAZONSOCIAL'
+      Index = 8
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 2000
+    end
+    object qLstPedidosPorClienteFECHAESTADO: TDateField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'FECHAESTADO'
+      Index = 9
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object qLstPedidosPorClienteTIPOESTADO: TStringField
+      DisplayWidth = 120
+      FieldKind = fkData
+      FieldName = 'TIPOESTADO'
+      Index = 10
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 120
+    end
+  end
+  object qLstPedidosTomados: TZQuery
+    Connection = DM_General.cnxBase
+    SQL.Strings = (
+      'select P.NUMERO'
+      '       ,P.FTOMA'
+      '       ,P.TOTALPEDIDO'
+      '       ,Cl.CODIGO as CLIENTE_CODIGO'
+      '       ,CLE.RAZONSOCIAL as CLIENTE_RAZONSOCIAL'
+      '       ,V.CODIGO as VENDEDOR_CODIGO'
+      '       ,VE.RAZONSOCIAL as VENDEDOR_RAZONSOCIAL'
+      '       ,T.CODIGO as TRANSPORTISTA_CODIGO'
+      '       ,TE.RAZONSOCIAL as TRANSPORTISTA_RAZONSOCIAL'
+      '       ,PE.FECHA as FECHAESTADO'
+      '       ,PTE.TIPOESTADO'
+      'from PEDIDOS P'
+      '     left join CLIENTES Cl on Cl.ID = P.CLIENTE_ID'
+      '     left join EMPRESAS CLE on CLE.ID = Cl.EMPRESA_ID'
+      '     left join VENDEDORES V on V.id = P.VENDEDOR_ID'
+      '     left join EMPRESAS VE on VE.ID = V.EMPRESA_ID'
+      '     left join TRANSPORTISTAS T on T.ID = P.TRANSPORTISTA_ID'
+      '     left join EMPRESAS TE on TE.ID = T.EMPRESA_ID'
+      '     left join PEDIDOSESTADOS PE on PE.ID = P.ESTADOACTUAL_ID'
+      '     left join PEDIDOSTIPOSESTADOS PTE ON PTE.ID = PE.TIPOESTADO_ID'
+      'where (P.BVISIBLE = 1)'
+      '        and (P.fToma >= :fIni)'
+      '       and (P.FToma <= :fFin)'
+      'ORDER BY P.Numero'
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'fIni'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'fFin'
+        ParamType = ptUnknown
+      end>
+    left = 568
+    top = 168
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'fIni'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'fFin'
+        ParamType = ptUnknown
+      end>
+    object qLstPedidosTomadosNUMERO: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'NUMERO'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object qLstPedidosTomadosFTOMA: TDateField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'FTOMA'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object qLstPedidosTomadosTOTALPEDIDO: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'TOTALPEDIDO'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object qLstPedidosTomadosCLIENTE_CODIGO: TStringField
+      DisplayWidth = 40
+      FieldKind = fkData
+      FieldName = 'CLIENTE_CODIGO'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 40
+    end
+    object qLstPedidosTomadosCLIENTE_RAZONSOCIAL: TStringField
+      DisplayWidth = 2000
+      FieldKind = fkData
+      FieldName = 'CLIENTE_RAZONSOCIAL'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 2000
+    end
+    object qLstPedidosTomadosVENDEDOR_CODIGO: TStringField
+      DisplayWidth = 40
+      FieldKind = fkData
+      FieldName = 'VENDEDOR_CODIGO'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 40
+    end
+    object qLstPedidosTomadosVENDEDOR_RAZONSOCIAL: TStringField
+      DisplayWidth = 2000
+      FieldKind = fkData
+      FieldName = 'VENDEDOR_RAZONSOCIAL'
+      Index = 6
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 2000
+    end
+    object qLstPedidosTomadosTRANSPORTISTA_CODIGO: TStringField
+      DisplayWidth = 40
+      FieldKind = fkData
+      FieldName = 'TRANSPORTISTA_CODIGO'
+      Index = 7
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 40
+    end
+    object qLstPedidosTomadosTRANSPORTISTA_RAZONSOCIAL: TStringField
+      DisplayWidth = 2000
+      FieldKind = fkData
+      FieldName = 'TRANSPORTISTA_RAZONSOCIAL'
+      Index = 8
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 2000
+    end
+    object qLstPedidosTomadosFECHAESTADO: TDateField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'FECHAESTADO'
+      Index = 9
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object qLstPedidosTomadosTIPOESTADO: TStringField
+      DisplayWidth = 120
+      FieldKind = fkData
+      FieldName = 'TIPOESTADO'
+      Index = 10
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 120
+    end
+  end
+  object qLstPedidosPorEstado: TZQuery
+    Connection = DM_General.cnxBase
+    SQL.Strings = (
+      'select P.NUMERO'
+      '       ,P.FTOMA'
+      '       ,P.TOTALPEDIDO'
+      '       ,Cl.CODIGO as CLIENTE_CODIGO'
+      '       ,CLE.RAZONSOCIAL as CLIENTE_RAZONSOCIAL'
+      '       ,V.CODIGO as VENDEDOR_CODIGO'
+      '       ,VE.RAZONSOCIAL as VENDEDOR_RAZONSOCIAL'
+      '       ,T.CODIGO as TRANSPORTISTA_CODIGO'
+      '       ,TE.RAZONSOCIAL as TRANSPORTISTA_RAZONSOCIAL'
+      '       ,PE.FECHA as FECHAESTADO'
+      '       ,PTE.TIPOESTADO'
+      'from PEDIDOS P'
+      '     left join CLIENTES Cl on Cl.ID = P.CLIENTE_ID'
+      '     left join EMPRESAS CLE on CLE.ID = Cl.EMPRESA_ID'
+      '     left join VENDEDORES V on V.id = P.VENDEDOR_ID'
+      '     left join EMPRESAS VE on VE.ID = V.EMPRESA_ID'
+      '     left join TRANSPORTISTAS T on T.ID = P.TRANSPORTISTA_ID'
+      '     left join EMPRESAS TE on TE.ID = T.EMPRESA_ID'
+      '     left join PEDIDOSESTADOS PE on PE.ID = P.ESTADOACTUAL_ID'
+      '     left join PEDIDOSTIPOSESTADOS PTE ON PTE.ID = PE.TIPOESTADO_ID'
+      'where (P.BVISIBLE = 1)'
+      '        and (PE.Fecha >= :fIni)'
+      '       and (PE.Fecha <= :fFin)'
+      '      and (PE.TipoEstado_id = :tipoEstado_id)'
+      'ORDER BY P.Numero'
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'fIni'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'fFin'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'tipoEstado_id'
+        ParamType = ptUnknown
+      end>
+    left = 568
+    top = 312
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'fIni'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'fFin'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'tipoEstado_id'
+        ParamType = ptUnknown
+      end>
+    object qLstPedidosPorEstadoNUMERO: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'NUMERO'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object qLstPedidosPorEstadoFTOMA: TDateField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'FTOMA'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object qLstPedidosPorEstadoTOTALPEDIDO: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'TOTALPEDIDO'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object qLstPedidosPorEstadoCLIENTE_CODIGO: TStringField
+      DisplayWidth = 40
+      FieldKind = fkData
+      FieldName = 'CLIENTE_CODIGO'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 40
+    end
+    object qLstPedidosPorEstadoCLIENTE_RAZONSOCIAL: TStringField
+      DisplayWidth = 2000
+      FieldKind = fkData
+      FieldName = 'CLIENTE_RAZONSOCIAL'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 2000
+    end
+    object qLstPedidosPorEstadoVENDEDOR_CODIGO: TStringField
+      DisplayWidth = 40
+      FieldKind = fkData
+      FieldName = 'VENDEDOR_CODIGO'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 40
+    end
+    object qLstPedidosPorEstadoVENDEDOR_RAZONSOCIAL: TStringField
+      DisplayWidth = 2000
+      FieldKind = fkData
+      FieldName = 'VENDEDOR_RAZONSOCIAL'
+      Index = 6
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 2000
+    end
+    object qLstPedidosPorEstadoTRANSPORTISTA_CODIGO: TStringField
+      DisplayWidth = 40
+      FieldKind = fkData
+      FieldName = 'TRANSPORTISTA_CODIGO'
+      Index = 7
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 40
+    end
+    object qLstPedidosPorEstadoTRANSPORTISTA_RAZONSOCIAL: TStringField
+      DisplayWidth = 2000
+      FieldKind = fkData
+      FieldName = 'TRANSPORTISTA_RAZONSOCIAL'
+      Index = 8
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 2000
+    end
+    object qLstPedidosPorEstadoFECHAESTADO: TDateField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'FECHAESTADO'
+      Index = 9
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object qLstPedidosPorEstadoTIPOESTADO: TStringField
+      DisplayWidth = 120
+      FieldKind = fkData
+      FieldName = 'TIPOESTADO'
+      Index = 10
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 120
+    end
+  end
+  object qLstPedidosPorTransportista: TZQuery
+    Connection = DM_General.cnxBase
+    SQL.Strings = (
+      'select P.NUMERO'
+      '       ,P.FTOMA'
+      '       ,P.TOTALPEDIDO'
+      '       ,Cl.CODIGO as CLIENTE_CODIGO'
+      '       ,CLE.RAZONSOCIAL as CLIENTE_RAZONSOCIAL'
+      '       ,V.CODIGO as VENDEDOR_CODIGO'
+      '       ,VE.RAZONSOCIAL as VENDEDOR_RAZONSOCIAL'
+      '       ,T.CODIGO as TRANSPORTISTA_CODIGO'
+      '       ,TE.RAZONSOCIAL as TRANSPORTISTA_RAZONSOCIAL'
+      '       ,PE.FECHA as FECHAESTADO'
+      '       ,PTE.TIPOESTADO'
+      'from PEDIDOS P'
+      '     left join CLIENTES Cl on Cl.ID = P.CLIENTE_ID'
+      '     left join EMPRESAS CLE on CLE.ID = Cl.EMPRESA_ID'
+      '     left join VENDEDORES V on V.id = P.VENDEDOR_ID'
+      '     left join EMPRESAS VE on VE.ID = V.EMPRESA_ID'
+      '     left join TRANSPORTISTAS T on T.ID = P.TRANSPORTISTA_ID'
+      '     left join EMPRESAS TE on TE.ID = T.EMPRESA_ID'
+      '     left join PEDIDOSESTADOS PE on PE.ID = P.ESTADOACTUAL_ID'
+      '     left join PEDIDOSTIPOSESTADOS PTE ON PTE.ID = PE.TIPOESTADO_ID'
+      'where (P.BVISIBLE = 1)'
+      '        and (P.transportista_id = :transportista_id)'
+      '        and (P.fToma >= :fIni)'
+      '       and (P.FToma <= :fFin)'
+      'ORDER BY P.Numero'
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'transportista_id'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'fIni'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'fFin'
+        ParamType = ptUnknown
+      end>
+    left = 568
+    top = 240
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'transportista_id'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'fIni'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'fFin'
+        ParamType = ptUnknown
+      end>
+    object qLstPedidosPorTransportistaNUMERO: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'NUMERO'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object qLstPedidosPorTransportistaFTOMA: TDateField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'FTOMA'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object qLstPedidosPorTransportistaTOTALPEDIDO: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'TOTALPEDIDO'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object qLstPedidosPorTransportistaCLIENTE_CODIGO: TStringField
+      DisplayWidth = 40
+      FieldKind = fkData
+      FieldName = 'CLIENTE_CODIGO'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 40
+    end
+    object qLstPedidosPorTransportistaCLIENTE_RAZONSOCIAL: TStringField
+      DisplayWidth = 2000
+      FieldKind = fkData
+      FieldName = 'CLIENTE_RAZONSOCIAL'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 2000
+    end
+    object qLstPedidosPorTransportistaVENDEDOR_CODIGO: TStringField
+      DisplayWidth = 40
+      FieldKind = fkData
+      FieldName = 'VENDEDOR_CODIGO'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 40
+    end
+    object qLstPedidosPorTransportistaVENDEDOR_RAZONSOCIAL: TStringField
+      DisplayWidth = 2000
+      FieldKind = fkData
+      FieldName = 'VENDEDOR_RAZONSOCIAL'
+      Index = 6
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 2000
+    end
+    object qLstPedidosPorTransportistaTRANSPORTISTA_CODIGO: TStringField
+      DisplayWidth = 40
+      FieldKind = fkData
+      FieldName = 'TRANSPORTISTA_CODIGO'
+      Index = 7
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 40
+    end
+    object qLstPedidosPorTransportistaTRANSPORTISTA_RAZONSOCIAL: TStringField
+      DisplayWidth = 2000
+      FieldKind = fkData
+      FieldName = 'TRANSPORTISTA_RAZONSOCIAL'
+      Index = 8
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 2000
+    end
+    object qLstPedidosPorTransportistaFECHAESTADO: TDateField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'FECHAESTADO'
+      Index = 9
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object qLstPedidosPorTransportistaTIPOESTADO: TStringField
+      DisplayWidth = 120
+      FieldKind = fkData
+      FieldName = 'TIPOESTADO'
+      Index = 10
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 120
     end
   end
 end

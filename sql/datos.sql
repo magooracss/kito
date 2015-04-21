@@ -101,7 +101,7 @@ VALUES
 INSERT INTO Listado
 (id, grupoListado_id, listado, idx, bVisible)
 VALUES
-(4, 1, 'Productos consumidos entre fechas', 3, 1);
+(4, 1, 'Productos pedidos entre fechas', 3, 1);
 
 INSERT INTO GruposListados
 (id, GrupoListado, bVisible)
@@ -112,4 +112,51 @@ INSERT INTO Listado
 (id, grupoListado_id, listado, idx, bVisible)
 VALUES
 (5, 2, 'Lista de precios', 4, 1);
+
+INSERT INTO Listado
+(id, grupoListado_id, listado, idx, bVisible)
+VALUES
+(6, 2, 'Lista de clientes por zona', 5, 1);
+
+INSERT INTO Listado
+(id, grupoListado_id, listado, idx, bVisible)
+VALUES
+(7, 2, 'Lista de clientes por vendedor', 6, 0);
+
+INSERT INTO Listado
+(id, grupoListado_id, listado, idx, bVisible)
+VALUES
+(8, 2, 'Lista de todos los clientes', 7, 1);
+
+INSERT INTO GruposListados
+(id, GrupoListado, bVisible)
+VALUES
+(3, 'Pedidos', 1);
+
+INSERT INTO Listado
+(id, grupoListado_id, listado, idx, bVisible)
+VALUES
+(9, 3, 'Pedidos por vendedor', 8, 1);
+
+INSERT INTO Listado
+(id, grupoListado_id, listado, idx, bVisible)
+VALUES
+(10, 3, 'Pedidos por cliente', 9, 1);
+
+INSERT INTO Listado
+(id, grupoListado_id, listado, idx, bVisible)
+VALUES
+(11, 3, 'Pedidos tomados entre dos fechas', 10, 1);
+
+INSERT INTO Listado
+(id, grupoListado_id, listado, idx, bVisible)
+VALUES
+(12, 3, 'Pedidos por Transportista', 11, 1);
+
+INSERT INTO Listado
+(id, grupoListado_id, listado, idx, bVisible)
+VALUES
+(13, 3, 'Pedidos por Estado', 12, 1);
+
+
 
