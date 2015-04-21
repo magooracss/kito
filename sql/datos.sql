@@ -151,12 +151,12 @@ VALUES
 INSERT INTO Listado
 (id, grupoListado_id, listado, idx, bVisible)
 VALUES
-(12, 3, 'Pedidos por Transportista', 11, 1);
+(12, 3, 'Pedidos por transportista', 11, 1);
 
 INSERT INTO Listado
 (id, grupoListado_id, listado, idx, bVisible)
 VALUES
-(13, 3, 'Pedidos por Estado', 12, 1);
+(13, 3, 'Pedidos por estado', 12, 1);
 
 
 

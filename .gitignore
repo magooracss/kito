@@ -1,4 +1,7 @@
-**/exe
+!/exe
+/exe/*
+!/exe/lst
+
 **/old
 **/db
 **/doc

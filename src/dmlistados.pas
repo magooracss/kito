@@ -132,6 +132,9 @@ type
     qLstPedidosTomadosVENDEDOR_CODIGO1: TStringField;
     qLstPedidosTomadosVENDEDOR_RAZONSOCIAL: TStringField;
     qLstPedidosTomadosVENDEDOR_RAZONSOCIAL1: TStringField;
+    qPedidosTiposEstadosBVISIBLE: TSmallintField;
+    qPedidosTiposEstadosID: TLongintField;
+    qPedidosTiposEstadosTIPOESTADO: TStringField;
     qZonas: TZQuery;
     qListaPrecioBVISIBLE: TSmallintField;
     qListaPrecioID: TLongintField;
@@ -163,6 +166,7 @@ type
     qLstStockMinimoDISPONIBLE: TFloatField;
     qLstStockMinimoMINIMO: TFloatField;
     qLstStockMinimoNOMBRE: TStringField;
+    qPedidosTiposEstados: TZQuery;
     qZonasBVISIBLE: TSmallintField;
     qZonasID: TLongintField;
     qZonasZONA: TStringField;
@@ -181,6 +185,10 @@ type
     procedure ListaClientesZonas (refZona: integer);
     procedure ListaClientesTodos;
     procedure PedidosVendedor(refVendedor: GUID_ID; fechaIni, fechaFin: TDate);
+    procedure PedidosCliente(refCliente: GUID_ID; fechaIni, fechaFin: TDate);
+    procedure PedidosFechaTomado (fechaIni, fechaFin: TDate);
+    procedure PedidosTransportista(refTransportista: GUID_ID; fechaIni, fechaFin: TDate);
+    procedure PedidosPorEstado (refEstado: integer; fechaIni, fechaFin: TDate );
 
   end;
 
@@ -331,6 +339,68 @@ begin
     ParamByName('FFin').AsDate:= fechaFin;
     Open;
     LevantarReporteFechas(reporte,fechaIni, fechaFin, qLstPedidosPorVendedor);
+  end;
+end;
+
+procedure TDM_Listados.PedidosCliente(refCliente: GUID_ID; fechaIni,
+  fechaFin: TDate);
+const
+  reporte = 'pedidosClienteFToma.lrf';
+begin
+  with qLstPedidosPorCliente do
+  begin
+    if active then close;
+    ParamByName('cliente_id').asString:= refCliente;
+    ParamByName('Fini').AsDate:= fechaIni ;
+    ParamByName('FFin').AsDate:= fechaFin;
+    Open;
+    LevantarReporteFechas(reporte,fechaIni, fechaFin, qLstPedidosPorCliente);
+  end;
+end;
+
+procedure TDM_Listados.PedidosFechaTomado(fechaIni, fechaFin: TDate);
+const
+  reporte = 'pedidosFToma.lrf';
+begin
+  with qLstPedidosTomados do
+  begin
+    if active then close;
+    ParamByName('Fini').AsDate:= fechaIni;
+    ParamByName('FFin').AsDate:= fechaFin;
+    Open;
+    LevantarReporteFechas(reporte,fechaIni, fechaFin, qLstPedidosTomados);
+  end;
+end;
+
+procedure TDM_Listados.PedidosTransportista(refTransportista: GUID_ID;
+  fechaIni, fechaFin: TDate);
+const
+  reporte = 'pedidosTransportistaFToma.lrf';
+begin
+  with qLstPedidosPorTransportista do
+  begin
+    if active then close;
+    ParamByName('transportista_id').asString:= refTransportista;
+    ParamByName('Fini').AsDate:= fechaIni ;
+    ParamByName('FFin').AsDate:= fechaFin;
+    Open;
+    LevantarReporteFechas(reporte,fechaIni, fechaFin, qLstPedidosPorTransportista);
+  end;
+end;
+
+procedure TDM_Listados.PedidosPorEstado(refEstado: integer; fechaIni,
+  fechaFin: TDate);
+const
+  reporte = 'pedidosEstadosFecha.lrf';
+begin
+  with qLstPedidosPorEstado do
+  begin
+    if active then close;
+    ParamByName('tipoEstado_id').AsInteger:= refEstado;
+    ParamByName('Fini').AsDate:= fechaIni ;
+    ParamByName('FFin').AsDate:= fechaFin;
+    Open;
+    LevantarReporteFechas(reporte,fechaIni, fechaFin, qLstPedidosPorEstado);
   end;
 end;
 
