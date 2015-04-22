@@ -203,6 +203,10 @@ begin
   if DatosValidos then
   begin
    DM_Pedidos.Grabar;
+   if (MessageDlg ('Información'
+                  , 'Desea imprimir el comprobante del pedido?'
+                  , mtConfirmation, [mbYes, mbNo],0 ) = mrYes) then
+         DM_Pedidos.ImprimirFrmPedido(DM_Pedidos.Pedidosid.AsString);
    ModalResult:= mrOK;
   end;
 end;

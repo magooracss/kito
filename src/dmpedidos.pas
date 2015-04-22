@@ -10,6 +10,8 @@ uses
   ;
 
 const
+  FORMULARIO_PEDIDO = 'frmPedido.lrf';
+
   EST_TOMADO = 1; //Estado Tomado
   EST_ARMADO = 2; //Estado Armado
   EST_TRANSP = 3; //Estado En Transporte
@@ -206,6 +208,8 @@ type
     procedure CambiarEstado (estadoID: integer; fecha: TDateTime; obs: String);
     procedure BorrarEstado (idEstado: GUID_ID);
 
+    procedure ImprimirFrmPedido (refPedido: GUID_ID);
+
   end;
 
 var
@@ -215,6 +219,9 @@ implementation
 {$R *.lfm}
 uses
   dmproductos
+  ,dmvendedores
+  ,dmtransportistas
+  ,dmclientes
   ;
 
 { TDM_Pedidos }
@@ -529,6 +536,18 @@ begin
 end;
 
 
+procedure TDM_Pedidos.ImprimirFrmPedido(refPedido: GUID_ID);
+begin
+  LevantarPedido(refPedido);
+  DM_General.LevantarReporte(FORMULARIO_PEDIDO, PedidosDetalles);
+  DM_Clientes.Editar(Pedidoscliente_id.AsString);
+  DM_General.AgregarVariableReporte('Cliente', DM_Clientes.RazonSocial);
+  DM_Vendedores.Editar(Pedidosvendedor_id.AsString);
+  DM_General.AgregarVariableReporte('Vendedor', DM_Vendedores.RazonSocial);
+  DM_Transportistas.Editar(Pedidostransportista_id.AsString);
+  DM_General.AgregarVariableReporte('Transportista',DM_Transportistas.RazonSocial);
+  DM_General.EjecutarReporte;
+end;
 
 
 end.

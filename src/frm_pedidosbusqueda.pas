@@ -14,6 +14,7 @@ type
   { TfrmPedidosBusqueda }
 
   TfrmPedidosBusqueda = class(TForm)
+    btnImprimir: TBitBtn;
     btnBuscarCliente: TBitBtn;
     btnBuscar: TBitBtn;
     btnCancelar: TBitBtn;
@@ -37,6 +38,7 @@ type
     procedure btnBuscarClick(Sender: TObject);
     procedure btnCancelarClick(Sender: TObject);
     procedure btnGrabarClick(Sender: TObject);
+    procedure btnImprimirClick(Sender: TObject);
     procedure edFechaTomaChange(Sender: TObject);
     procedure edNroPedidoKeyPress(Sender: TObject; var Key: char);
     procedure FormCreate(Sender: TObject);
@@ -59,6 +61,7 @@ implementation
 uses
   dmbusquedapedidos
   ,frm_busquedaempresas
+  ,dmpedidos
   ;
 
 { TfrmPedidosBusqueda }
@@ -82,6 +85,11 @@ end;
 procedure TfrmPedidosBusqueda.btnGrabarClick(Sender: TObject);
 begin
   ModalResult:= mrOK;
+end;
+
+procedure TfrmPedidosBusqueda.btnImprimirClick(Sender: TObject);
+begin
+  DM_Pedidos.ImprimirFrmPedido(getPedidoID);
 end;
 
 procedure TfrmPedidosBusqueda.edFechaTomaChange(Sender: TObject);
