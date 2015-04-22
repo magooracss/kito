@@ -158,5 +158,18 @@ INSERT INTO Listado
 VALUES
 (13, 3, 'Pedidos por estado', 12, 1);
 
+INSERT INTO Listado
+(id, grupoListado_id, listado, idx, bVisible)
+VALUES
+(14, 1, 'Movimientos de stock realizados entre dos fechas', 13, 1);
 
+INSERT INTO Listado
+(id, grupoListado_id, listado, idx, bVisible)
+VALUES
+(15, 1, 'Movimientos de stock de un producto realizados entre dos fechas', 14, 1);
+
+INSERT INTO Listado
+(id, grupoListado_id, listado, idx, bVisible)
+VALUES
+(16, 1, 'Movimientos de stock de un proveedor realizados entre dos fechas', 15, 1);
 

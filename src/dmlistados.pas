@@ -23,6 +23,9 @@ const
   LST_PedidosFechasTomado = 10; //Pedidos entre fechas de tomado
   LST_PedidosTransportista = 11; //Pedidos por transportista entre fechas de tomado
   LST_PedidosEstado = 12; //Pedidos por estado entre fechas de estado
+  LST_MovimientosStkPorFecha = 13; //Movimientos entre fechas de del movimiento
+  LST_MovimientosStkProducto = 14; //Movimientos que involucren al producto entre dos fechas
+  LST_MovimientosStkProvFecha = 15;//Movimientos del proveedor entre dos fechas
 
 
 type
@@ -51,6 +54,44 @@ type
     qLstListaClientesZonasRAZONSOCIAL: TStringField;
     qLstListaClientesZonasTIPOCONTACTO: TStringField;
     qLstListaClientesZonasZONA: TStringField;
+    qLstMovimientosStkProvFechas: TZQuery;
+    qLstMovimientosStkProdFechas: TZQuery;
+    qLstMovimientosStkFechasCANTIDAD: TFloatField;
+    qLstMovimientosStkFechasFECHA: TDateField;
+    qLstMovimientosStkFechasMOVIMIENTO: TStringField;
+    qLstMovimientosStkFechasNOTAS: TStringField;
+    qLstMovimientosStkFechasNUMERO: TLongintField;
+    qLstMovimientosStkFechasPRECIOTOTAL: TFloatField;
+    qLstMovimientosStkFechasPRECIOUNITARIO: TFloatField;
+    qLstMovimientosStkFechasPRODUCTO_CODIGO: TStringField;
+    qLstMovimientosStkFechasPRODUCTO_NOMBRE: TStringField;
+    qLstMovimientosStkFechasPROVEEDOR_CODIGO: TStringField;
+    qLstMovimientosStkFechasPROVEEDOR_RAZONSOCIAL: TStringField;
+    qLstMovimientosStkFechasREMITO: TStringField;
+    qLstMovimientosStkProdFechasCANTIDAD: TFloatField;
+    qLstMovimientosStkProdFechasFECHA: TDateField;
+    qLstMovimientosStkProdFechasMOVIMIENTO: TStringField;
+    qLstMovimientosStkProdFechasNOTAS: TStringField;
+    qLstMovimientosStkProdFechasNUMERO: TLongintField;
+    qLstMovimientosStkProdFechasPRECIOTOTAL: TFloatField;
+    qLstMovimientosStkProdFechasPRECIOUNITARIO: TFloatField;
+    qLstMovimientosStkProdFechasPRODUCTO_CODIGO: TStringField;
+    qLstMovimientosStkProdFechasPRODUCTO_NOMBRE: TStringField;
+    qLstMovimientosStkProdFechasPROVEEDOR_CODIGO: TStringField;
+    qLstMovimientosStkProdFechasPROVEEDOR_RAZONSOCIAL: TStringField;
+    qLstMovimientosStkProdFechasREMITO: TStringField;
+    qLstMovimientosStkProvFechasCANTIDAD: TFloatField;
+    qLstMovimientosStkProvFechasFECHA: TDateField;
+    qLstMovimientosStkProvFechasMOVIMIENTO: TStringField;
+    qLstMovimientosStkProvFechasNOTAS: TStringField;
+    qLstMovimientosStkProvFechasNUMERO: TLongintField;
+    qLstMovimientosStkProvFechasPRECIOTOTAL: TFloatField;
+    qLstMovimientosStkProvFechasPRECIOUNITARIO: TFloatField;
+    qLstMovimientosStkProvFechasPRODUCTO_CODIGO: TStringField;
+    qLstMovimientosStkProvFechasPRODUCTO_NOMBRE: TStringField;
+    qLstMovimientosStkProvFechasPROVEEDOR_CODIGO: TStringField;
+    qLstMovimientosStkProvFechasPROVEEDOR_RAZONSOCIAL: TStringField;
+    qLstMovimientosStkProvFechasREMITO: TStringField;
     qLstPedidosPorEstadoCLIENTE_CODIGO: TStringField;
     qLstPedidosPorEstadoCLIENTE_RAZONSOCIAL: TStringField;
     qLstPedidosPorEstadoFECHAESTADO: TDateField;
@@ -74,6 +115,7 @@ type
     qLstPedidosPorTransportistaTRANSPORTISTA_RAZONSOCIAL: TStringField;
     qLstPedidosPorTransportistaVENDEDOR_CODIGO: TStringField;
     qLstPedidosPorTransportistaVENDEDOR_RAZONSOCIAL: TStringField;
+    qLstMovimientosStkFechas: TZQuery;
     qLstPedidosTomados: TZQuery;
     qLstPedidosPorClienteCLIENTE_CODIGO: TStringField;
     qLstPedidosPorClienteCLIENTE_RAZONSOCIAL: TStringField;
@@ -189,6 +231,10 @@ type
     procedure PedidosFechaTomado (fechaIni, fechaFin: TDate);
     procedure PedidosTransportista(refTransportista: GUID_ID; fechaIni, fechaFin: TDate);
     procedure PedidosPorEstado (refEstado: integer; fechaIni, fechaFin: TDate );
+    procedure MovimientosEntreFechas (fechaIni, fechaFin: TDate);
+    procedure MovimientosStkProducto(refProducto: GUID_ID; fechaIni, fechaFin: TDate);
+    procedure MovimientosStkProveedor (refProveedor: GUID_ID; fechaIni, fechaFin: TDate);
+
 
   end;
 
@@ -401,6 +447,52 @@ begin
     ParamByName('FFin').AsDate:= fechaFin;
     Open;
     LevantarReporteFechas(reporte,fechaIni, fechaFin, qLstPedidosPorEstado);
+  end;
+end;
+
+procedure TDM_Listados.MovimientosEntreFechas(fechaIni, fechaFin: TDate);
+const
+  reporte = 'movStkFecha.lrf';
+begin
+  with qLstMovimientosStkFechas do
+  begin
+    if active then close;
+    ParamByName('fechaIni').AsDate:= fechaIni;
+    ParamByName('fechaFin').AsDate:= fechaFin;
+    Open;
+    LevantarReporteFechas(reporte,fechaIni, fechaFin, qLstMovimientosStkFechas);
+  end;
+end;
+
+procedure TDM_Listados.MovimientosStkProducto(refProducto: GUID_ID; fechaIni,
+  fechaFin: TDate);
+const
+  reporte = 'movStkProdFecha.lrf';
+begin
+  with qLstMovimientosStkProdFechas do
+  begin
+    if active then close;
+    ParamByName('producto_id').AsString:= refProducto;
+    ParamByName('fechaIni').AsDate:= fechaIni;
+    ParamByName('fechaFin').AsDate:= fechaFin;
+    Open;
+    LevantarReporteFechas(reporte,fechaIni, fechaFin, qLstMovimientosStkProdFechas);
+  end;
+end;
+
+procedure TDM_Listados.MovimientosStkProveedor(refProveedor: GUID_ID; fechaIni,
+  fechaFin: TDate);
+const
+  reporte = 'movStkProvFecha.lrf';
+begin
+  with qLstMovimientosStkProvFechas do
+  begin
+    if active then close;
+    ParamByName('proveedor_id').AsString:= refProveedor;
+    ParamByName('fechaIni').AsDate:= fechaIni;
+    ParamByName('fechaFin').AsDate:= fechaFin;
+    Open;
+    LevantarReporteFechas(reporte,fechaIni, fechaFin, qLstMovimientosStkProvFechas);
   end;
 end;
 

@@ -2,8 +2,8 @@ object DM_Listados: TDM_Listados
   OnCreate = DataModuleCreate
   OldCreateOrder = False
   Height = 511
-  HorizontalOffset = 210
-  VerticalOffset = 152
+  HorizontalOffset = 211
+  VerticalOffset = 61
   Width = 892
   object qLstStockMinimo: TZQuery
     Connection = DM_General.cnxBase
@@ -1817,7 +1817,6 @@ object DM_Listados: TDM_Listados
   end
   object qPedidosTiposEstados: TZQuery
     Connection = DM_General.cnxBase
-    Active = True
     SQL.Strings = (
       'SELECT *'
       'FROM PedidosTiposEstados'
@@ -1856,6 +1855,586 @@ object DM_Listados: TDM_Listados
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
       Required = False
+    end
+  end
+  object qLstMovimientosStkFechas: TZQuery
+    Connection = DM_General.cnxBase
+    SQL.Strings = (
+      'select   MS.NUMERO'
+      '       , MS.FECHA'
+      '       , MS.REMITO'
+      '       , MS.NOTAS'
+      '       , Pr.CODIGO as PROVEEDOR_CODIGO'
+      '       , Em.RAZONSOCIAL as PROVEEDOR_RAZONSOCIAL'
+      '       , P.CODIGO as PRODUCTO_CODIGO'
+      '       , P.NOMBRE as PRODUCTO_NOMBRE'
+      '       , MSD.CANTIDAD'
+      '       , MSD.PRECIOUNITARIO'
+      '       , MSD.PRECIOTOTAL'
+      '       , MSD.MOVIMIENTO'
+      'from MOVIMIENTOSSTOCK MS'
+      '      left join PROVEEDORES Pr on MS.PROVEEDOR_ID = Pr.id'
+      '      left join EMPRESAS Em on Pr.EMPRESA_ID = Em.ID  '
+      '      left join MOVIMIENTOSSTOCKDETALLES MSD on MSD.MOVIMIENTOSSTOCK_ID = MS.ID'
+      '      left join PRODUCTOS P on MSD.PRODUCTO_ID = P.ID'
+      'where (MS.BVISIBLE = 1)'
+      '         and (MS.Fecha >= :fechaIni)'
+      '         and (MS.Fecha <= :fechaFin)'
+      'ORDER BY MS.Fecha, MS.Numero'
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'fechaIni'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'fechaFin'
+        ParamType = ptUnknown
+      end>
+    left = 744
+    top = 40
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'fechaIni'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'fechaFin'
+        ParamType = ptUnknown
+      end>
+    object qLstMovimientosStkFechasNUMERO: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'NUMERO'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object qLstMovimientosStkFechasFECHA: TDateField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'FECHA'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object qLstMovimientosStkFechasREMITO: TStringField
+      DisplayWidth = 80
+      FieldKind = fkData
+      FieldName = 'REMITO'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 80
+    end
+    object qLstMovimientosStkFechasNOTAS: TStringField
+      DisplayWidth = 12000
+      FieldKind = fkData
+      FieldName = 'NOTAS'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 12000
+    end
+    object qLstMovimientosStkFechasPROVEEDOR_CODIGO: TStringField
+      DisplayWidth = 40
+      FieldKind = fkData
+      FieldName = 'PROVEEDOR_CODIGO'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 40
+    end
+    object qLstMovimientosStkFechasPROVEEDOR_RAZONSOCIAL: TStringField
+      DisplayWidth = 2000
+      FieldKind = fkData
+      FieldName = 'PROVEEDOR_RAZONSOCIAL'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 2000
+    end
+    object qLstMovimientosStkFechasPRODUCTO_CODIGO: TStringField
+      DisplayWidth = 80
+      FieldKind = fkData
+      FieldName = 'PRODUCTO_CODIGO'
+      Index = 6
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 80
+    end
+    object qLstMovimientosStkFechasPRODUCTO_NOMBRE: TStringField
+      DisplayWidth = 1200
+      FieldKind = fkData
+      FieldName = 'PRODUCTO_NOMBRE'
+      Index = 7
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 1200
+    end
+    object qLstMovimientosStkFechasCANTIDAD: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'CANTIDAD'
+      Index = 8
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object qLstMovimientosStkFechasPRECIOUNITARIO: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'PRECIOUNITARIO'
+      Index = 9
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object qLstMovimientosStkFechasPRECIOTOTAL: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'PRECIOTOTAL'
+      Index = 10
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object qLstMovimientosStkFechasMOVIMIENTO: TStringField
+      DisplayWidth = 4
+      FieldKind = fkData
+      FieldName = 'MOVIMIENTO'
+      Index = 11
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 4
+    end
+  end
+  object qLstMovimientosStkProdFechas: TZQuery
+    Connection = DM_General.cnxBase
+    SQL.Strings = (
+      'select   MS.NUMERO'
+      '       , MS.FECHA'
+      '       , MS.REMITO'
+      '       , MS.NOTAS'
+      '       , Pr.CODIGO as PROVEEDOR_CODIGO'
+      '       , Em.RAZONSOCIAL as PROVEEDOR_RAZONSOCIAL'
+      '       , P.CODIGO as PRODUCTO_CODIGO'
+      '       , P.NOMBRE as PRODUCTO_NOMBRE'
+      '       , MSD.CANTIDAD'
+      '       , MSD.PRECIOUNITARIO'
+      '       , MSD.PRECIOTOTAL'
+      '       , MSD.MOVIMIENTO'
+      'from MOVIMIENTOSSTOCK MS'
+      '      left join PROVEEDORES Pr on MS.PROVEEDOR_ID = Pr.id'
+      '      left join EMPRESAS Em on Pr.EMPRESA_ID = Em.ID  '
+      '      INNER join MOVIMIENTOSSTOCKDETALLES MSD on MSD.MOVIMIENTOSSTOCK_ID = MS.ID'
+      '      INNER join PRODUCTOS P on MSD.PRODUCTO_ID = P.ID'
+      'where (MS.BVISIBLE = 1)'
+      '         and (MS.Fecha >= :fechaIni)'
+      '         and (MS.Fecha <= :fechaFin)'
+      '         and (P.id = :producto_id)'
+      'ORDER BY MS.Fecha, MS.Numero'
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'fechaIni'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'fechaFin'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'producto_id'
+        ParamType = ptUnknown
+      end>
+    left = 744
+    top = 112
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'fechaIni'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'fechaFin'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'producto_id'
+        ParamType = ptUnknown
+      end>
+    object qLstMovimientosStkProdFechasNUMERO: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'NUMERO'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object qLstMovimientosStkProdFechasFECHA: TDateField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'FECHA'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object qLstMovimientosStkProdFechasREMITO: TStringField
+      DisplayWidth = 80
+      FieldKind = fkData
+      FieldName = 'REMITO'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 80
+    end
+    object qLstMovimientosStkProdFechasNOTAS: TStringField
+      DisplayWidth = 12000
+      FieldKind = fkData
+      FieldName = 'NOTAS'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 12000
+    end
+    object qLstMovimientosStkProdFechasPROVEEDOR_CODIGO: TStringField
+      DisplayWidth = 40
+      FieldKind = fkData
+      FieldName = 'PROVEEDOR_CODIGO'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 40
+    end
+    object qLstMovimientosStkProdFechasPROVEEDOR_RAZONSOCIAL: TStringField
+      DisplayWidth = 2000
+      FieldKind = fkData
+      FieldName = 'PROVEEDOR_RAZONSOCIAL'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 2000
+    end
+    object qLstMovimientosStkProdFechasPRODUCTO_CODIGO: TStringField
+      DisplayWidth = 80
+      FieldKind = fkData
+      FieldName = 'PRODUCTO_CODIGO'
+      Index = 6
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 80
+    end
+    object qLstMovimientosStkProdFechasPRODUCTO_NOMBRE: TStringField
+      DisplayWidth = 1200
+      FieldKind = fkData
+      FieldName = 'PRODUCTO_NOMBRE'
+      Index = 7
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 1200
+    end
+    object qLstMovimientosStkProdFechasCANTIDAD: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'CANTIDAD'
+      Index = 8
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object qLstMovimientosStkProdFechasPRECIOUNITARIO: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'PRECIOUNITARIO'
+      Index = 9
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object qLstMovimientosStkProdFechasPRECIOTOTAL: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'PRECIOTOTAL'
+      Index = 10
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object qLstMovimientosStkProdFechasMOVIMIENTO: TStringField
+      DisplayWidth = 4
+      FieldKind = fkData
+      FieldName = 'MOVIMIENTO'
+      Index = 11
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 4
+    end
+  end
+  object qLstMovimientosStkProvFechas: TZQuery
+    Connection = DM_General.cnxBase
+    SQL.Strings = (
+      'select   MS.NUMERO'
+      '       , MS.FECHA'
+      '       , MS.REMITO'
+      '       , MS.NOTAS'
+      '       , Pr.CODIGO as PROVEEDOR_CODIGO'
+      '       , Em.RAZONSOCIAL as PROVEEDOR_RAZONSOCIAL'
+      '       , P.CODIGO as PRODUCTO_CODIGO'
+      '       , P.NOMBRE as PRODUCTO_NOMBRE'
+      '       , MSD.CANTIDAD'
+      '       , MSD.PRECIOUNITARIO'
+      '       , MSD.PRECIOTOTAL'
+      '       , MSD.MOVIMIENTO'
+      'from MOVIMIENTOSSTOCK MS'
+      '      left join PROVEEDORES Pr on MS.PROVEEDOR_ID = Pr.id'
+      '      left join EMPRESAS Em on Pr.EMPRESA_ID = Em.ID  '
+      '      left join MOVIMIENTOSSTOCKDETALLES MSD on MSD.MOVIMIENTOSSTOCK_ID = MS.ID'
+      '      left join PRODUCTOS P on MSD.PRODUCTO_ID = P.ID'
+      'where (MS.BVISIBLE = 1)'
+      '         and (MS.Fecha >= :fechaIni)'
+      '         and (MS.Fecha <= :fechaFin)'
+      '         and (MS.proveedor_id = :proveedor_id)'
+      'ORDER BY MS.Fecha, MS.Numero'
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'fechaIni'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'fechaFin'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'proveedor_id'
+        ParamType = ptUnknown
+      end>
+    left = 744
+    top = 168
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'fechaIni'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'fechaFin'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'proveedor_id'
+        ParamType = ptUnknown
+      end>
+    object qLstMovimientosStkProvFechasNUMERO: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'NUMERO'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object qLstMovimientosStkProvFechasFECHA: TDateField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'FECHA'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object qLstMovimientosStkProvFechasREMITO: TStringField
+      DisplayWidth = 80
+      FieldKind = fkData
+      FieldName = 'REMITO'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 80
+    end
+    object qLstMovimientosStkProvFechasNOTAS: TStringField
+      DisplayWidth = 12000
+      FieldKind = fkData
+      FieldName = 'NOTAS'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 12000
+    end
+    object qLstMovimientosStkProvFechasPROVEEDOR_CODIGO: TStringField
+      DisplayWidth = 40
+      FieldKind = fkData
+      FieldName = 'PROVEEDOR_CODIGO'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 40
+    end
+    object qLstMovimientosStkProvFechasPROVEEDOR_RAZONSOCIAL: TStringField
+      DisplayWidth = 2000
+      FieldKind = fkData
+      FieldName = 'PROVEEDOR_RAZONSOCIAL'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 2000
+    end
+    object qLstMovimientosStkProvFechasPRODUCTO_CODIGO: TStringField
+      DisplayWidth = 80
+      FieldKind = fkData
+      FieldName = 'PRODUCTO_CODIGO'
+      Index = 6
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 80
+    end
+    object qLstMovimientosStkProvFechasPRODUCTO_NOMBRE: TStringField
+      DisplayWidth = 1200
+      FieldKind = fkData
+      FieldName = 'PRODUCTO_NOMBRE'
+      Index = 7
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 1200
+    end
+    object qLstMovimientosStkProvFechasCANTIDAD: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'CANTIDAD'
+      Index = 8
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object qLstMovimientosStkProvFechasPRECIOUNITARIO: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'PRECIOUNITARIO'
+      Index = 9
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object qLstMovimientosStkProvFechasPRECIOTOTAL: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'PRECIOTOTAL'
+      Index = 10
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object qLstMovimientosStkProvFechasMOVIMIENTO: TStringField
+      DisplayWidth = 4
+      FieldKind = fkData
+      FieldName = 'MOVIMIENTO'
+      Index = 11
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 4
     end
   end
 end
