@@ -9,6 +9,9 @@ uses
   ,dmgeneral
   ;
 
+const
+  FORMULARIO_DEVOLUCION = 'frmDevolucion.lrf';
+
 type
 
   { TDM_Devoluciones }
@@ -72,8 +75,12 @@ type
     function ValidarCantidades: boolean;
     function PedidoConDevolucionCargada (refPedido: GUID_ID): boolean;
 
+    procedure LevantarDevolucion (refDevolucion: GUID_ID);
+
     procedure Grabar;
     procedure AjustarStock;
+
+    procedure ImprimirDevolucion (refDevolucion: GUID_ID);
   end;
 
 var
@@ -207,6 +214,32 @@ begin
     EnableControls;
   end;
 end;
+
+procedure TDM_Devoluciones.LevantarDevolucion(refDevolucion: GUID_ID);
+begin
+  DM_General.ReiniciarTabla(Devoluciones);
+  DM_General.ReiniciarTabla(DevolucionesDetalles);
+
+  With SELDevoluciones do
+  begin
+    if active then close;
+    ParamByName('id').asString:= refDevolucion;
+    Open;
+    Devoluciones.LoadFromDataSet(SELDevoluciones, 0, lmAppend);
+    Close;
+  end;
+  { TODO : Falta terminar de levantar los detalles de la devolucion }
+end;
+
+
+procedure TDM_Devoluciones.ImprimirDevolucion(refDevolucion: GUID_ID);
+begin
+  LevantarDevolucion(refDevolucion);
+  DM_General.LevantarReporte(FORMULARIO_DEVOLUCION, Devoluciones);
+  DM_General.EjecutarReporte;
+end;
+
+
 
 end.
 

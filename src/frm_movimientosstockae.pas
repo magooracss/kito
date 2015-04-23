@@ -288,6 +288,8 @@ begin
     DM_Stock.EditarMovimiento(_idMovimientoStock);
     cbListaPrecio.ItemIndex:=  DM_General.obtenerIdxCombo(cbListaPrecio
                                             ,DM_Stock.MovimientosStocklistaprecio_id.AsInteger);
+
+    DM_Proveedores.Editar(DM_Stock.MovimientosStockproveedor_id.AsString);
     edProveedor.Text:= DM_Proveedores.RazonSocial;
     AjustarTotales;
   end;
@@ -359,6 +361,12 @@ begin
   end;
   DM_Stock.GrabarMovimientoStock;
   DM_Stock.RecalcularStockPorMovimiento;
+
+   if (MessageDlg ('Información'
+                  , 'Desea imprimir el comprobante del movimiento?'
+                  , mtConfirmation, [mbYes, mbNo],0 ) = mrYes) then
+        DM_Stock.ImprimirComprobante(DM_Stock.MovimientosStockid.AsString);
+
   ModalResult:= mrOK;
 end;
 

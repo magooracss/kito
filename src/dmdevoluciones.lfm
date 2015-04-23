@@ -314,7 +314,6 @@ object DM_Devoluciones: TDM_Devoluciones
   end
   object SELDevoluciones: TZQuery
     Connection = DM_General.cnxBase
-    Active = True
     SQL.Strings = (
       'SELECT *'
       'FROM Devoluciones'
@@ -605,7 +604,6 @@ object DM_Devoluciones: TDM_Devoluciones
   end
   object SELDevDetalles: TZQuery
     Connection = DM_General.cnxBase
-    Active = True
     SQL.Strings = (
       'SELECT *'
       'FROM DevolucionesDetalles'
@@ -901,7 +899,6 @@ object DM_Devoluciones: TDM_Devoluciones
   end
   object qDevolucionPorPedido: TZQuery
     Connection = DM_General.cnxBase
-    Active = True
     SQL.Strings = (
       'SELECT *'
       'FROM Devoluciones'

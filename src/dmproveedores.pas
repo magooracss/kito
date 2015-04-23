@@ -92,7 +92,7 @@ begin
   SELProveedores.Open;
   Proveedores.LoadFromDataSet(SELProveedores, 0, lmAppend);
   SELProveedores.Close;
-
+  _idEmpresa:= Proveedoresempresa_id.AsString;
   DM_Empresa.Editar(Proveedoresempresa_id.AsString);
 end;
 

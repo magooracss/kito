@@ -10,6 +10,8 @@ uses
   ;
 
 const
+  FORMULARIO_MOV_STOCK = 'frmMovimientoStock.lrf';
+
   MOV_INGRESO = 'I';
   MOV_EGRESO = 'E';
 
@@ -142,6 +144,8 @@ type
     procedure RecalcularStockPorMovimiento;
     procedure RecalcularStockCompleto;
 
+    procedure ImprimirComprobante (refMovimiento: GUID_ID);
+
   end;
 
 var
@@ -152,6 +156,7 @@ implementation
 uses
   dmproductos
   ,dmpedidos
+  ,dmproveedores
   ;
 
 { TDM_Stock }
@@ -471,6 +476,18 @@ begin
   DM_General.GrabarDatos(SELMovimientosStock, INSMovimientosStock, UPDMovimientosStock, MovimientosStock, 'id');
   DM_General.GrabarDatos(SELMovimientosStockDetalles, INSMovimientosStockDetalles, UPDMovimientosStockDetalles, MovimientosStockDetalles, 'id');
 end;
+
+
+procedure TDM_Stock.ImprimirComprobante(refMovimiento: GUID_ID);
+begin
+  EditarMovimiento (refMovimiento);
+  DM_General.LevantarReporte(FORMULARIO_MOV_STOCK, MovimientosStockDetalles);
+  DM_Proveedores.Editar(MovimientosStockproveedor_id.AsString);
+  DM_General.AgregarVariableReporte('Proveedor', DM_Proveedores.RazonSocial);
+  DM_General.AgregarVariableReporte('ListaPrecios', DM_Productos.NombreListaPrecios(MovimientosStocklistaprecio_id.AsInteger));
+  DM_General.EjecutarReporte;
+end;
+
 
 end.
 

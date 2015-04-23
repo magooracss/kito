@@ -14,6 +14,7 @@ type
   { TfrmBusquedaMovimientosStock }
 
   TfrmBusquedaMovimientosStock = class(TForm)
+    btnImprimir: TBitBtn;
     btnBuscar: TBitBtn;
     btnBuscarProveedor: TBitBtn;
     btnCancelar: TBitBtn;
@@ -37,6 +38,7 @@ type
     procedure btnBuscarProveedorClick(Sender: TObject);
     procedure btnCancelarClick(Sender: TObject);
     procedure btnGrabarClick(Sender: TObject);
+    procedure btnImprimirClick(Sender: TObject);
     procedure edFechaChange(Sender: TObject);
     procedure edNroMovimientoKeyPress(Sender: TObject; var Key: char);
     procedure FormCreate(Sender: TObject);
@@ -58,6 +60,7 @@ implementation
 {$R *.lfm}
 uses
   frm_busquedaempresas
+  ,dmstock
   ;
 
 { TfrmBusquedaMovimientosStock }
@@ -76,6 +79,11 @@ end;
 procedure TfrmBusquedaMovimientosStock.btnGrabarClick(Sender: TObject);
 begin
   ModalResult:= mrOK;
+end;
+
+procedure TfrmBusquedaMovimientosStock.btnImprimirClick(Sender: TObject);
+begin
+  DM_Stock.ImprimirComprobante(getMovStockID);
 end;
 
 procedure TfrmBusquedaMovimientosStock.edFechaChange(Sender: TObject);
