@@ -445,13 +445,13 @@ object frmPedidoAE: TfrmPedidoAE
       ButtonWidth = 23
       CharCase = ecNormal
       DialogTitle = 'Seleccionar Fecha'
-      Enabled = False
       MaxLength = 10
       NumGlyphs = 2
       PopupColor = clWindow
       TabOrder = 3
       Text = '  /  /    '
       YearDigits = dyFour
+      OnEnter = DBDateEdit1Enter
       DataField = 'fToma'
       DataSource = DS_Pedidos
     end
@@ -463,12 +463,12 @@ object frmPedidoAE: TfrmPedidoAE
       ButtonWidth = 23
       CharCase = ecNormal
       DialogTitle = 'Seleccionar Fecha'
-      Enabled = False
       MaxLength = 10
       NumGlyphs = 2
       PopupColor = clWindow
       TabOrder = 4
       Text = '  /  /    '
+      OnEnter = DBDateEdit1Enter
       DataField = 'fAEntregar'
       DataSource = DS_Pedidos
     end

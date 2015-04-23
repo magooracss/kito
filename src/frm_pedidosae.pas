@@ -80,6 +80,7 @@ type
     procedure btnCancelarClick(Sender: TObject);
     procedure btnDetallesEstadosClick(Sender: TObject);
     procedure btnGrabarClick(Sender: TObject);
+    procedure DBDateEdit1Enter(Sender: TObject);
     procedure edBusCodigoKeyPress(Sender: TObject; var Key: char);
     procedure edBusNombreKeyPress(Sender: TObject; var Key: char);
     procedure FormShow(Sender: TObject);
@@ -209,6 +210,12 @@ begin
          DM_Pedidos.ImprimirFrmPedido(DM_Pedidos.Pedidosid.AsString);
    ModalResult:= mrOK;
   end;
+end;
+
+procedure TfrmPedidoAE.DBDateEdit1Enter(Sender: TObject);
+begin
+  if NOT (DM_Pedidos.Pedidos.State in dsEditModes) then
+   DM_Pedidos.Pedidos.Edit;
 end;
 
 procedure TfrmPedidoAE.FormShow(Sender: TObject);

@@ -213,6 +213,7 @@ object frmMovimientosStockAE: TfrmMovimientosStockAE
       PopupColor = clWindow
       TabOrder = 0
       Text = '  /  /    '
+      OnEnter = DBDateEdit1Enter
       DataField = 'fecha'
       DataSource = ds_MovStock
     end

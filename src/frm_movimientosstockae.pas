@@ -60,6 +60,7 @@ type
     procedure btnBuscarProveedorClick(Sender: TObject);
     procedure btnCancelarClick(Sender: TObject);
     procedure btnGrabarClick(Sender: TObject);
+    procedure DBDateEdit1Enter(Sender: TObject);
     procedure edBusCodigoKeyPress(Sender: TObject; var Key: char);
     procedure edBusNombreKeyPress(Sender: TObject; var Key: char);
     procedure edCantidadKeyPress(Sender: TObject; var Key: char);
@@ -359,6 +360,12 @@ begin
   DM_Stock.GrabarMovimientoStock;
   DM_Stock.RecalcularStockPorMovimiento;
   ModalResult:= mrOK;
+end;
+
+procedure TfrmMovimientosStockAE.DBDateEdit1Enter(Sender: TObject);
+begin
+  if NOT (DM_Stock.MovimientosStock.State in dsEditModes) then
+     DM_Stock.MovimientosStock.Edit;
 end;
 
 end.
