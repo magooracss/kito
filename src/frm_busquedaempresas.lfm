@@ -237,6 +237,7 @@ object frmBusquedaEmpresas: TfrmBusquedaEmpresas
         'Razón Social'
         'CUIT'
         'Código'
+        'Domicilio'
       )
       TabOrder = 1
     end
@@ -356,7 +357,7 @@ object frmBusquedaEmpresas: TfrmBusquedaEmpresas
       item
         Title.Alignment = taCenter
         Title.Caption = 'Razón social'
-        Width = 537
+        Width = 268
         FieldName = 'RazonSocial'
       end    
       item
@@ -372,6 +373,12 @@ object frmBusquedaEmpresas: TfrmBusquedaEmpresas
         Title.Caption = 'Código'
         Width = 120
         FieldName = 'codigo'
+      end    
+      item
+        Title.Alignment = taCenter
+        Title.Caption = 'Domicilio'
+        Width = 268
+        FieldName = 'Domicilio'
       end    
       item
         SizePriority = 0

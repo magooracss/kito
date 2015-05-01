@@ -2,10 +2,10 @@ object frmMain: TfrmMain
   Left = 111
   Height = 676
   Top = 37
-  Width = 1151
+  Width = 1123
   Caption = 'KITO'
   ClientHeight = 656
-  ClientWidth = 1151
+  ClientWidth = 1123
   Font.CharSet = ANSI_CHARSET
   Font.Height = -13
   Font.Name = 'Arial'
@@ -13,13 +13,13 @@ object frmMain: TfrmMain
   Font.Quality = fqDraft
   Menu = MainMenu1
   OnShow = FormShow
-  Position = poScreenCenter
+  Position = poDesktopCenter
   LCLVersion = '1.2.6.0'
   object st: TStatusBar
     Left = 0
     Height = 23
     Top = 633
-    Width = 1151
+    Width = 1123
     Panels = <    
       item
         Width = 150
@@ -34,7 +34,7 @@ object frmMain: TfrmMain
     Left = 0
     Height = 82
     Top = 0
-    Width = 1151
+    Width = 1123
     AutoSize = True
     ButtonHeight = 80
     ButtonWidth = 92
@@ -83,18 +83,18 @@ object frmMain: TfrmMain
     Left = 0
     Height = 54
     Top = 579
-    Width = 1151
+    Width = 1123
     Align = alBottom
     BevelInner = bvRaised
     BevelOuter = bvLowered
     ClientHeight = 54
-    ClientWidth = 1151
+    ClientWidth = 1123
     TabOrder = 2
     object ckRefrescarGrilla: TCheckBox
-      Left = 1027
+      Left = 992
       Height = 20
-      Top = 19
-      Width = 112
+      Top = 16
+      Width = 124
       Anchors = [akTop, akLeft, akRight]
       Caption = 'Refrescar grilla'
       OnChange = ckRefrescarGrillaChange
@@ -253,7 +253,7 @@ object frmMain: TfrmMain
     Left = 0
     Height = 497
     Top = 82
-    Width = 1151
+    Width = 1123
     Align = alClient
     AutoFillColumns = True
     Color = clWindow
@@ -283,7 +283,7 @@ object frmMain: TfrmMain
       item
         Title.Alignment = taCenter
         Title.Caption = 'Producto'
-        Width = 727
+        Width = 699
         FieldName = 'NOMBRE'
       end    
       item

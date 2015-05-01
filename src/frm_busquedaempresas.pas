@@ -14,6 +14,8 @@ Const
   CRI_RAZONSOCIAL = 0;
   CRI_CUIT = 1;
   CRI_CODIGO = 2;
+  CRI_DOMICILIO = 3;
+
   IDX_CLIENTE = 0;
   IDX_PROVEEDOR = 1;
   IDX_TRANSPORTISTA = 2;
@@ -132,6 +134,17 @@ begin
        DM_BusquedaEmpresas.BuscarTransportistaPorCodigo(Trim(edDatoBusqueda.Text));
      if ckTipoEmpresa.Checked[IDX_VENDEDOR] then
        DM_BusquedaEmpresas.BuscarVendedorPorCodigo(Trim(edDatoBusqueda.Text));
+   end;
+   CRI_DOMICILIO:
+   begin
+     if ckTipoEmpresa.Checked[IDX_CLIENTE] then
+        DM_BusquedaEmpresas.BuscarClientesPorDomicilio(Trim(edDatoBusqueda.Text));
+     if ckTipoEmpresa.Checked[IDX_PROVEEDOR] then
+       DM_BusquedaEmpresas.BuscarProvPorDomicilio(Trim(edDatoBusqueda.Text));
+     if ckTipoEmpresa.Checked[IDX_TRANSPORTISTA] then
+       DM_BusquedaEmpresas.BuscarTransportistaPorDomicilio(Trim(edDatoBusqueda.Text));
+     if ckTipoEmpresa.Checked[IDX_VENDEDOR] then
+       DM_BusquedaEmpresas.BuscarVendedorPorDomicilio(Trim(edDatoBusqueda.Text));
    end;
   end;
 end;

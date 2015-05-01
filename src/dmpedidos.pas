@@ -281,7 +281,6 @@ end;
 
 procedure TDM_Pedidos.Grabar;
 begin
-
   DM_General.GrabarDatos(SELPedidos, INSPedidos, UPDPedidos, Pedidos, 'id');
   DM_General.GrabarDatos(SELPedidosDetalles, INSPedidosDetalles, UPDPedidosDetalles, PedidosDetalles, 'id');
   GrabarEstados;
@@ -542,6 +541,7 @@ begin
   DM_General.LevantarReporte(FORMULARIO_PEDIDO, PedidosDetalles);
   DM_Clientes.Editar(Pedidoscliente_id.AsString);
   DM_General.AgregarVariableReporte('Cliente', DM_Clientes.RazonSocial);
+  DM_General.AgregarVariableReporte('Cliente_Direccion', DM_Clientes.Domicilio);
   DM_Vendedores.Editar(Pedidosvendedor_id.AsString);
   DM_General.AgregarVariableReporte('Vendedor', DM_Vendedores.RazonSocial);
   DM_Transportistas.Editar(Pedidostransportista_id.AsString);

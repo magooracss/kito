@@ -7,7 +7,7 @@
     <KeyWords Value=""/>
     <Comments Value=""/>
     <ReportCreateDate Value="1899-12-30 00:00:00"/>
-    <ReportLastChange Value="2015-04-22 19:12:12"/>
+    <ReportLastChange Value="2015-05-01 13:01:42"/>
     <ReportVersionBuild Value=""/>
     <ReportVersionMajor Value=""/>
     <ReportVersionMinor Value=""/>
@@ -220,7 +220,7 @@
           <Data>
             <Format Value="558"/>
             <FormatStr Value=""/>
-            <Memo Value="Cliente: [Cliente]&#xD;&#xA;"/>
+            <Memo Value="Cliente: [Cliente] / [Cliente_Direccion]&#xD;&#xA;"/>
             <Script Value=""/>
           </Data>
           <Tag Value=""/>

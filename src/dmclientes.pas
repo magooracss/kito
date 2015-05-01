@@ -48,9 +48,11 @@ type
     procedure DataModuleCreate(Sender: TObject);
   private
     _idEmpresa: GUID_ID;
+    function getDomicilio: String;
     function getRazonSocial: String;
   public
     property RazonSocial: String read getRazonSocial;
+    property Domicilio: String read getDomicilio;
     procedure Nuevo;
     procedure Editar (refCliente: GUID_ID);
     procedure Grabar;
@@ -88,6 +90,12 @@ function TDM_Clientes.getRazonSocial: String;
 begin
   DM_Empresa.LevantarEmpresa(_idEmpresa);
   Result:= DM_Empresa.RazonSocial;
+end;
+
+function TDM_Clientes.getDomicilio: String;
+begin
+  DM_Empresa.LevantarEmpresa(_idEmpresa);
+  Result:= DM_Empresa.Domicilio;
 end;
 
 procedure TDM_Clientes.Nuevo;

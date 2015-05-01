@@ -41,6 +41,12 @@ object DM_BusquedaEmpresas: TDM_BusquedaEmpresas
         DataType = ftString
         Precision = 0
         Size = 38
+      end    
+      item
+        Name = 'Domicilio'
+        DataType = ftString
+        Precision = 0
+        Size = 500
       end>
     PacketRecords = 0
     left = 104
@@ -109,6 +115,17 @@ object DM_BusquedaEmpresas: TDM_BusquedaEmpresas
       Required = False
       Size = 38
     end
+    object ResultadosDomicilio: TStringField
+      DisplayWidth = 500
+      FieldKind = fkData
+      FieldName = 'Domicilio'
+      Index = 6
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 500
+    end
   end
   object qBusqueda: TZQuery
     Connection = DM_General.cnxBase
@@ -119,8 +136,10 @@ object DM_BusquedaEmpresas: TDM_BusquedaEmpresas
       '      ,''CLIENTE'' as Tipo'
       '      ,E.id as idEmpresa'
       '      ,Cli.id as idTipo'
+      '     , Do.Domicilio'
       'FROM Empresas E'
       '     INNER JOIN Clientes Cli ON Cli.empresa_id = E.id'
+      '    LEFT JOIN Domicilios Do ON Do.empresa_id = E.id'
     )
     Params = <>
     left = 104
@@ -190,6 +209,17 @@ object DM_BusquedaEmpresas: TDM_BusquedaEmpresas
       ReadOnly = False
       Required = True
       Size = 152
+    end
+    object qBusquedaDOMICILIO: TStringField
+      DisplayWidth = 2000
+      FieldKind = fkData
+      FieldName = 'DOMICILIO'
+      Index = 6
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 2000
     end
   end
 end
