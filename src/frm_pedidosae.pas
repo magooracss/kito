@@ -117,6 +117,7 @@ uses
   ,frm_pedidoeditarproducto
   ,frm_pedidosEstados
   ,frm_pedidoestadosae
+  ,dmstock
   ;
 
 { TfrmPedidoAE }
@@ -204,6 +205,8 @@ begin
   if DatosValidos then
   begin
    DM_Pedidos.Grabar;
+//   DM_Stock.GrabarMovimientoPedido(_idPedido);
+   DM_Stock.RecalcularStockCompleto;
    if (MessageDlg ('Información'
                   , 'Desea imprimir el comprobante del pedido?'
                   , mtConfirmation, [mbYes, mbNo],0 ) = mrYes) then
@@ -237,6 +240,7 @@ begin
   if _idPedido = GUIDNULO then
   begin
     DM_Pedidos.Nuevo;
+    _idPedido:= DM_Pedidos.Pedidosid.AsString;
   end
   Else
   begin

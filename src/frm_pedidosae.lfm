@@ -445,6 +445,7 @@ object frmPedidoAE: TfrmPedidoAE
       ButtonWidth = 23
       CharCase = ecNormal
       DialogTitle = 'Seleccionar Fecha'
+      Enabled = False
       MaxLength = 10
       NumGlyphs = 2
       PopupColor = clWindow
@@ -463,6 +464,7 @@ object frmPedidoAE: TfrmPedidoAE
       ButtonWidth = 23
       CharCase = ecNormal
       DialogTitle = 'Seleccionar Fecha'
+      Enabled = False
       MaxLength = 10
       NumGlyphs = 2
       PopupColor = clWindow

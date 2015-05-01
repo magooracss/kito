@@ -15,6 +15,10 @@ const
   MOV_INGRESO = 'I';
   MOV_EGRESO = 'E';
 
+  TIPO_GENERAL = 1;
+  TIPO_DEVOLUCION = 2;
+  TIPO_PEDIDO = 3;
+
 type
 
   { TDM_Stock }
@@ -38,8 +42,10 @@ type
     MovimientosStocklistaprecio_id: TLongintField;
     MovimientosStocknotas: TStringField;
     MovimientosStocknumero: TLongintField;
+    MovimientosStockpedido_id: TStringField;
     MovimientosStockproveedor_id: TStringField;
     MovimientosStockremito: TStringField;
+    MovimientosStockTipoMovimiento: TLongintField;
     qLstStockMinimoCODIGO: TStringField;
     qLstStockMinimoDISPONIBLE: TFloatField;
     qLstStockMinimoMINIMO: TFloatField;
@@ -53,6 +59,16 @@ type
     qMovimientosProductoPRECIOTOTAL: TFloatField;
     qMovimientosProductoPRECIOUNITARIO: TFloatField;
     qMovimientosProductoPRODUCTO_ID: TStringField;
+    qMovPorPedidoBVISIBLE: TSmallintField;
+    qMovPorPedidoFECHA: TDateField;
+    qMovPorPedidoID: TStringField;
+    qMovPorPedidoLISTAPRECIO_ID: TLongintField;
+    qMovPorPedidoNOTAS: TStringField;
+    qMovPorPedidoNUMERO: TLongintField;
+    qMovPorPedidoPEDIDO_ID: TStringField;
+    qMovPorPedidoPROVEEDOR_ID: TStringField;
+    qMovPorPedidoREMITO: TStringField;
+    qMovPorPedidoTIPOMOVIMIENTO: TLongintField;
     qMovStockDetallesPorIdMovLXCODIGO: TStringField;
     qMovStockDetallesPorIdMovLXNOMBRE: TStringField;
     qProductosParaStock: TZQuery;
@@ -63,6 +79,7 @@ type
     qStockProductoPEDIDOS: TFloatField;
     qStockProductoPRODUCTO_ID: TStringField;
     SELMovimientosStock: TZQuery;
+    qMovPorPedido: TZQuery;
     SELMovimientosStockBVISIBLE: TSmallintField;
     qMovStockDetallesPorIdMov: TZQuery;
     SELMovimientosStockDetallesBVISIBLE: TSmallintField;
@@ -86,9 +103,11 @@ type
     SELMovimientosStockLISTAPRECIO_ID: TLongintField;
     SELMovimientosStockNOTAS: TStringField;
     SELMovimientosStockNUMERO: TLongintField;
+    SELMovimientosStockPEDIDO_ID: TStringField;
     SELMovimientosStockPROVEEDOR_ID: TStringField;
     SELMovimientosStockREMITO: TStringField;
     SELMovimientosStockDetalles: TZQuery;
+    SELMovimientosStockTIPOMOVIMIENTO: TLongintField;
     SELStockARMADO: TFloatField;
     SELStockDISPONIBLE: TFloatField;
     SELStockID: TStringField;
@@ -118,6 +137,7 @@ type
     function GetidProducto: GUID_ID;
     function Getpedidos: double;
     procedure SetidProducto(AValue: GUID_ID);
+    procedure CargarDatosPedido;
   public
     property idProducto: GUID_ID read GetidProducto write SetidProducto;
     property disponible: double read Getdisponible;
@@ -145,6 +165,8 @@ type
     procedure RecalcularStockCompleto;
 
     procedure ImprimirComprobante (refMovimiento: GUID_ID);
+
+    procedure GrabarMovimientoPedido (refPedido: GUID_ID);
 
   end;
 
@@ -180,6 +202,8 @@ begin
   MovimientosStockremito.AsString:='0';
   MovimientosStocknotas.AsString:= ' ';
   MovimientosStockbVisible.AsInteger:=1;
+  MovimientosStockTipoMovimiento.AsInteger:= TIPO_GENERAL;
+  MovimientosStockpedido_id.AsString:= GUIDNULO;
 end;
 
 procedure TDM_Stock.MovimientosStockDetallesAfterInsert(DataSet: TDataSet);
@@ -239,6 +263,7 @@ begin
     Close;
   end;
 end;
+
 
 
 procedure TDM_Stock.productoDisponible(cantidad: double);
@@ -486,6 +511,92 @@ begin
   DM_General.AgregarVariableReporte('Proveedor', DM_Proveedores.RazonSocial);
   DM_General.AgregarVariableReporte('ListaPrecios', DM_Productos.NombreListaPrecios(MovimientosStocklistaprecio_id.AsInteger));
   DM_General.EjecutarReporte;
+end;
+
+procedure TDM_Stock.CargarDatosPedido;
+begin
+  MovimientosStockDetallesproducto_id.AsString:= DM_Pedidos.PedidosDetallesproducto_id.AsString;
+  MovimientosStockDetallesprecioUnitario.AsFloat:= DM_Pedidos.PedidosDetallesprecioUnitario.AsFloat;
+  MovimientosStockDetallesprecioTotal.AsFloat:= DM_Pedidos.PedidosDetallesprecioTotal.AsFloat;
+  MovimientosStockDetallescantidad.AsFloat:= DM_Pedidos.PedidosDetallescantidad.AsFloat;
+  MovimientosStockDetalleslxCodigo.AsString:= DM_Pedidos.PedidosDetalleslxCodigo.AsString;
+  MovimientosStockDetalleslxNombre.AsString:= DM_Pedidos.PedidosDetalleslxProducto.AsString;
+end;
+
+
+procedure TDM_Stock.GrabarMovimientoPedido(refPedido: GUID_ID);
+var
+  refMovimiento: GUID_ID;
+begin
+
+  with qMovPorPedido do
+  begin
+    if Active then close;
+    ParamByName('pedido_id').asString:= refPedido;
+    Open;
+    if RecordCount > 0 then
+     refMovimiento:= qMovPorPedidoID.AsString
+    else
+      refMovimiento:= GUIDNULO;
+    close;
+  end;
+
+  if refMovimiento = GUIDNULO then
+  begin // Pedido nuevo
+    NuevoMovimientoStock;
+
+    MovimientosStock.Edit;
+    MovimientosStockpedido_id.AsString:= refPedido;
+    MovimientosStockTipoMovimiento.AsInteger:= TIPO_PEDIDO;
+    MovimientosStock.Post;
+
+    DM_Pedidos.PedidosDetalles.First;
+    while Not DM_Pedidos.PedidosDetalles.EOF do
+    begin
+      MovimientosStockDetalles.Insert;
+      CargarDatosPedido;
+      MovimientosStockDetallesmovimiento.AsString:= MOV_EGRESO;
+      MovimientosStockDetalles.Post;
+      DM_Pedidos.PedidosDetalles.Next;
+    end;
+  end
+  else // PedidoModificado
+  begin
+    EditarMovimiento(refMovimiento);
+    DM_Pedidos.PedidosDetalles.First;
+    while Not DM_Pedidos.PedidosDetalles.EOF do //Altas y ediciones
+    begin
+      if MovimientosStockDetalles.Locate(DM_Pedidos.PedidosDetallesproducto_id.AsString
+                           ,DM_Pedidos.PedidosDetallesproducto_id.asString
+                           ,[loCaseInsensitive]
+                           ) then
+        MovimientosStockDetalles.Edit
+      else
+      begin
+        MovimientosStockDetalles.Insert;
+        MovimientosStockDetallesmovimiento.AsString:= MOV_EGRESO;
+      end;
+      CargarDatosPedido;
+      MovimientosStockDetalles.Post;
+      DM_Pedidos.PedidosDetalles.Next;
+    end;
+
+    MovimientosStockDetalles.First;
+    while Not MovimientosStockDetalles.EOF do //Bajas
+    begin
+      if NOT DM_Pedidos.PedidosDetalles.Locate(MovimientosStockDetallesproducto_id.AsString
+                           ,MovimientosStockDetallesproducto_id.asString
+                           ,[loCaseInsensitive]
+                           ) then
+      begin
+        MovimientosStockDetalles.Delete;
+        MovimientosStockDetalles.First;
+      end;
+      MovimientosStockDetalles.Next;
+    end;
+  end;
+  GrabarMovimientoStock;
+  RecalcularStockPorMovimiento;
 end;
 
 
