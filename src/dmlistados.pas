@@ -43,6 +43,7 @@ type
     qListadosIDX: TLongintField;
     qListadosLISTADO: TStringField;
     qLstListaClientesZonas: TZQuery;
+    qLstListaPreciosOFERTA: TStringField;
     qLstListaTodosClientes: TZQuery;
     qLstListaClientesZonasCODIGO: TStringField;
     qLstListaClientesZonasCONDICIONFISCAL: TStringField;

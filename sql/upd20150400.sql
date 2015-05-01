@@ -35,3 +35,9 @@ INSERT INTO TiposMovimientosStock
 VALUES
 (3, 'Pedido', 1);
 
+Alter table Precios add bOferta smallint default 0;
+Alter table Precios add OfertaIni date ;
+Alter table Precios add OfertaFin date;
+
+Update Precios
+set bOferta = 0;

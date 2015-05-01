@@ -852,7 +852,7 @@ object frmProductoAE: TfrmProductoAE
         item
           Title.Alignment = taCenter
           Title.Caption = 'Lista de precios'
-          Width = 308
+          Width = 254
           FieldName = 'lxListaPrecio'
         end      
         item
@@ -868,6 +868,14 @@ object frmProductoAE: TfrmProductoAE
           Title.Caption = 'IVA'
           Width = 60
           FieldName = 'iva'
+        end      
+        item
+          ButtonStyle = cbsCheckboxColumn
+          SizePriority = 0
+          Title.Alignment = taCenter
+          Title.Caption = 'Oferta'
+          Width = 54
+          FieldName = 'bOferta'
         end>
       DataSource = ds_precios
       FixedCols = 0

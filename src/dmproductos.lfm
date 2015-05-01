@@ -910,6 +910,24 @@ object DM_Productos: TDM_Productos
         DataType = ftString
         Precision = 0
         Size = 100
+      end    
+      item
+        Name = 'bOferta'
+        DataType = ftInteger
+        Precision = 0
+        Size = 0
+      end    
+      item
+        Name = 'OfertaIni'
+        DataType = ftDateTime
+        Precision = 0
+        Size = 0
+      end    
+      item
+        Name = 'OfertaFin'
+        DataType = ftDateTime
+        Precision = 0
+        Size = 0
       end>
     AfterInsert = PreciosAfterInsert
     PacketRecords = 0
@@ -996,9 +1014,40 @@ object DM_Productos: TDM_Productos
       Required = False
       Size = 38
     end
+    object PreciosbOferta: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'bOferta'
+      Index = 7
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object PreciosOfertaIni: TDateTimeField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'OfertaIni'
+      Index = 8
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object PreciosOfertaFin: TDateTimeField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'OfertaFin'
+      Index = 9
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
   end
   object SELPrecios: TZQuery
     Connection = DM_General.cnxBase
+    Active = True
     SQL.Strings = (
       'SELECT *'
       'FROM Precios'
@@ -1086,14 +1135,44 @@ object DM_Productos: TDM_Productos
       ReadOnly = False
       Required = False
     end
+    object SELPreciosBOFERTA: TSmallintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'BOFERTA'
+      Index = 6
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object SELPreciosOFERTAINI: TDateField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'OFERTAINI'
+      Index = 7
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = True
+      Required = False
+    end
+    object SELPreciosOFERTAFIN: TDateField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'OFERTAFIN'
+      Index = 8
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = True
+      Required = False
+    end
   end
   object INSPrecios: TZQuery
     Connection = DM_General.cnxBase
     SQL.Strings = (
       'INSERT INTO Precios'
-      '(  id,  monto, producto_id, listaPrecio_id, iva, bVisible)'
+      '(  id,  monto, producto_id, listaPrecio_id, iva, bVisible, bOferta, OfertaIni, OfertaFin)'
       'VALUES'
-      '( :id,  :monto, :producto_id, :listaPrecio_id, :iva, :bVisible)'
+      '( :id,  :monto, :producto_id, :listaPrecio_id, :iva, :bVisible, :bOferta, :OfertaIni, :OfertaFin)'
     )
     Params = <    
       item
@@ -1124,6 +1203,21 @@ object DM_Productos: TDM_Productos
       item
         DataType = ftUnknown
         Name = 'bVisible'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'bOferta'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'OfertaIni'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'OfertaFin'
         ParamType = ptUnknown
       end>
     left = 176
@@ -1158,6 +1252,21 @@ object DM_Productos: TDM_Productos
         DataType = ftUnknown
         Name = 'bVisible'
         ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'bOferta'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'OfertaIni'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'OfertaFin'
+        ParamType = ptUnknown
       end>
   end
   object UPDPrecios: TZQuery
@@ -1170,6 +1279,9 @@ object DM_Productos: TDM_Productos
       ', listaPrecio_id = :listaPrecio_id'
       ', iva = :iva'
       ', bVisible = :bVisible'
+      ',bOferta = :bOferta'
+      ', OfertaIni = :OfertaIni'
+      ', OfertaFin = :OfertaFin'
       'WHERE id = :id'
     )
     Params = <    
@@ -1196,6 +1308,21 @@ object DM_Productos: TDM_Productos
       item
         DataType = ftUnknown
         Name = 'bVisible'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'bOferta'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'OfertaIni'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'OfertaFin'
         ParamType = ptUnknown
       end    
       item
@@ -1229,6 +1356,21 @@ object DM_Productos: TDM_Productos
       item
         DataType = ftUnknown
         Name = 'bVisible'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'bOferta'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'OfertaIni'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'OfertaFin'
         ParamType = ptUnknown
       end    
       item
@@ -1404,6 +1546,36 @@ object DM_Productos: TDM_Productos
       Required = False
       Size = 400
     end
+    object qPreciosProductoBOFERTA: TSmallintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'BOFERTA'
+      Index = 7
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object qPreciosProductoOFERTAINI: TDateField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'OFERTAINI'
+      Index = 8
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = True
+      Required = False
+    end
+    object qPreciosProductoOFERTAFIN: TDateField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'OFERTAFIN'
+      Index = 9
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = True
+      Required = False
+    end
   end
   object qListaPreciosID: TZQuery
     Connection = DM_General.cnxBase
@@ -1571,6 +1743,36 @@ object DM_Productos: TDM_Productos
       ReadOnly = False
       Required = False
       Size = 400
+    end
+    object qPrecioProductoBOFERTA: TSmallintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'BOFERTA'
+      Index = 7
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object qPrecioProductoOFERTAINI: TDateField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'OFERTAINI'
+      Index = 8
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = True
+      Required = False
+    end
+    object qPrecioProductoOFERTAFIN: TDateField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'OFERTAFIN'
+      Index = 9
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = True
+      Required = False
     end
   end
   object qGrillaPrincipal: TZQuery

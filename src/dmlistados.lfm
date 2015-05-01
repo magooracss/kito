@@ -500,6 +500,10 @@ object DM_Listados: TDM_Listados
       '      , Pr.Nombre'
       '      , LP.LISTAPRECIO '
       '      , P.MONTO      '
+      '      , case P.BOFERTA'
+      '          When 1 Then ''OFERTA'''
+      '          else '''''
+      '          end as Oferta'
       'FROM PRECIOS P'
       '       left join PRODUCTOS Pr on Pr.ID = P.PRODUCTO_ID'
       '       left join LISTASPRECIOS LP on LP.ID = P.LISTAPRECIO_ID'
@@ -566,6 +570,17 @@ object DM_Listados: TDM_Listados
       MaxValue = 0
       MinValue = 0
       Precision = 2
+    end
+    object qLstListaPreciosOFERTA: TStringField
+      DisplayWidth = 24
+      FieldKind = fkData
+      FieldName = 'OFERTA'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = True
+      Required = False
+      Size = 24
     end
   end
   object qZonas: TZQuery

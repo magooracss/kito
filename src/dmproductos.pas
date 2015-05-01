@@ -24,12 +24,15 @@ type
     DELPrecios: TZQuery;
     INSPrecios: TZQuery;
     Precios: TRxMemoryData;
+    PreciosbOferta: TLongintField;
     PreciosbVisible: TLongintField;
     Preciosid: TStringField;
     Preciosiva: TFloatField;
     PrecioslistaPrecio_id: TLongintField;
     PrecioslxListaPrecio: TStringField;
     Preciosmonto: TFloatField;
+    PreciosOfertaFin: TDateTimeField;
+    PreciosOfertaIni: TDateTimeField;
     Preciosproducto_id: TStringField;
     Productos: TRxMemoryData;
     ProductosbVisible: TLongintField;
@@ -71,24 +74,30 @@ type
     qListaPreciosIDLISTAPRECIO: TStringField;
     qListasPrecios: TZQuery;
     qListaPreciosID: TZQuery;
+    qPrecioProductoBOFERTA: TSmallintField;
     qPrecioProductoBVISIBLE: TSmallintField;
     qPrecioProductoID: TStringField;
     qPrecioProductoIVA: TFloatField;
     qPrecioProductoLISTAPRECIO_ID: TLongintField;
     qPrecioProductoLXLISTAPRECIO: TStringField;
     qPrecioProductoMONTO: TFloatField;
+    qPrecioProductoOFERTAFIN: TDateField;
+    qPrecioProductoOFERTAINI: TDateField;
     qPrecioProductoPRODUCTO_ID: TStringField;
     qPreciosProducto: TZQuery;
     qListasPreciosBVISIBLE: TSmallintField;
     qListasPreciosID: TLongintField;
     qListasPreciosLISTAPRECIO: TStringField;
     qPrecioProducto: TZQuery;
+    qPreciosProductoBOFERTA: TSmallintField;
     qPreciosProductoBVISIBLE: TSmallintField;
     qPreciosProductoID: TStringField;
     qPreciosProductoIVA: TFloatField;
     qPreciosProductoLISTAPRECIO_ID: TLongintField;
     qPreciosProductoLXLISTAPRECIO: TStringField;
     qPreciosProductoMONTO: TFloatField;
+    qPreciosProductoOFERTAFIN: TDateField;
+    qPreciosProductoOFERTAINI: TDateField;
     qPreciosProductoPRODUCTO_ID: TStringField;
     qUnidades: TZQuery;
     qMarcasBVISIBLE: TSmallintField;
@@ -100,6 +109,7 @@ type
     qUnidadesTOTALIZA: TStringField;
     qUnidadesUNIDAD: TStringField;
     SELPrecios: TZQuery;
+    SELPreciosBOFERTA: TSmallintField;
     SELPreciosBVISIBLE: TSmallintField;
     SELPreciosBVISIBLE1: TSmallintField;
     SELPreciosID: TStringField;
@@ -110,6 +120,8 @@ type
     SELPreciosLISTAPRECIO_ID1: TLongintField;
     SELPreciosMONTO: TFloatField;
     SELPreciosMONTO1: TFloatField;
+    SELPreciosOFERTAFIN: TDateField;
+    SELPreciosOFERTAINI: TDateField;
     SELPreciosPRODUCTO_ID: TStringField;
     SELPreciosPRODUCTO_ID1: TStringField;
     SELProductos: TZQuery;
@@ -211,7 +223,11 @@ begin
   Preciosmonto.AsFloat:= 0;
   PrecioslistaPrecio_id.AsInteger:= 0;
   PreciosbVisible.AsInteger:= 1;
+  PreciosbOferta.AsInteger:= 0;
+  PreciosOfertaIni.AsDateTime:= Now;
+  PreciosOfertaFin.AsDateTime:= Now;
 end;
+
 
 
 procedure TDM_Productos.ActualizarRefsCb(refMarca, refCategoria,

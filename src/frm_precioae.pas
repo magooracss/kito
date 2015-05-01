@@ -5,8 +5,8 @@ unit frm_precioae;
 interface
 
 uses
-  Classes, SysUtils, db, FileUtil, Forms, Controls, Graphics, Dialogs, DbCtrls,
-  StdCtrls, Buttons, dmprecios, dmgeneral;
+  Classes, SysUtils, db, FileUtil, dbdateedit, Forms, Controls, Graphics,
+  Dialogs, DbCtrls, StdCtrls, Buttons, dmprecios, dmgeneral;
 
 type
 
@@ -17,14 +17,20 @@ type
     btnGrabar: TBitBtn;
     btnTugUnidad: TSpeedButton;
     cbListaPrecios: TComboBox;
+    DBCheckBox1: TDBCheckBox;
+    DBDateEdit1: TDBDateEdit;
+    DBDateEdit2: TDBDateEdit;
     ds_productos: TDataSource;
     ds_Precios: TDataSource;
     DBEdit1: TDBEdit;
     DBEdit2: TDBEdit;
     DBText1: TDBText;
+    GroupBox1: TGroupBox;
     Label1: TLabel;
     Label2: TLabel;
     Label3: TLabel;
+    Label4: TLabel;
+    Label5: TLabel;
     procedure btnCancelarClick(Sender: TObject);
     procedure btnGrabarClick(Sender: TObject);
     procedure btnTugUnidadClick(Sender: TObject);

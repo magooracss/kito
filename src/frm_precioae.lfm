@@ -1,11 +1,11 @@
 object frmPrecioAE: TfrmPrecioAE
-  Left = 345
-  Height = 171
+  Left = 296
+  Height = 242
   Top = 247
-  Width = 599
+  Width = 621
   Caption = 'Precio'
-  ClientHeight = 171
-  ClientWidth = 599
+  ClientHeight = 242
+  ClientWidth = 621
   Font.CharSet = ANSI_CHARSET
   Font.Height = -13
   Font.Name = 'Arial'
@@ -161,7 +161,7 @@ object frmPrecioAE: TfrmPrecioAE
   object btnGrabar: TBitBtn
     Left = 32
     Height = 40
-    Top = 120
+    Top = 184
     Width = 134
     Caption = 'Grabar'
     Glyph.Data = {
@@ -233,9 +233,9 @@ object frmPrecioAE: TfrmPrecioAE
     TabOrder = 3
   end
   object btnCancelar: TBitBtn
-    Left = 424
+    Left = 446
     Height = 40
-    Top = 120
+    Top = 184
     Width = 134
     Anchors = [akTop, akRight]
     Caption = 'Cancelar'
@@ -306,6 +306,79 @@ object frmPrecioAE: TfrmPrecioAE
     }
     OnClick = btnCancelarClick
     TabOrder = 4
+  end
+  object GroupBox1: TGroupBox
+    Left = 16
+    Height = 72
+    Top = 96
+    Width = 568
+    Caption = 'Oferta'
+    ClientHeight = 54
+    ClientWidth = 564
+    TabOrder = 5
+    object DBCheckBox1: TDBCheckBox
+      Left = 24
+      Height = 20
+      Top = 24
+      Width = 147
+      AutoSize = True
+      Caption = 'Es un precio de oferta'
+      DataField = 'bOferta'
+      DataSource = ds_Precios
+      TabOrder = 0
+      ValueChecked = '1'
+      ValueUnchecked = '0'
+    end
+    object DBDateEdit1: TDBDateEdit
+      Left = 216
+      Height = 24
+      Top = 24
+      Width = 104
+      ButtonWidth = 23
+      CharCase = ecNormal
+      DialogTitle = 'Seleccionar Fecha'
+      Enabled = False
+      MaxLength = 10
+      NumGlyphs = 2
+      PopupColor = clWindow
+      TabOrder = 1
+      Text = '  /  /    '
+      DataField = 'OfertaIni'
+      DataSource = ds_Precios
+    end
+    object DBDateEdit2: TDBDateEdit
+      Left = 408
+      Height = 24
+      Top = 24
+      Width = 104
+      ButtonWidth = 23
+      CharCase = ecNormal
+      DialogTitle = 'Seleccionar Fecha'
+      Enabled = False
+      MaxLength = 10
+      NumGlyphs = 2
+      PopupColor = clWindow
+      TabOrder = 2
+      Text = '  /  /    '
+      DataField = 'OfertaFin'
+      DataSource = ds_Precios
+    end
+    object Label4: TLabel
+      Left = 216
+      Height = 16
+      Top = 6
+      Width = 98
+      Caption = 'Inicio de la oferta'
+      ParentColor = False
+    end
+    object Label5: TLabel
+      Left = 408
+      Height = 16
+      Top = 6
+      Width = 86
+      Caption = 'Fin de la oferta'
+      ParentColor = False
+    end
   end
   object ds_productos: TDataSource
     DataSet = DM_Productos.Productos
