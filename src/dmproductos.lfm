@@ -1047,7 +1047,6 @@ object DM_Productos: TDM_Productos
   end
   object SELPrecios: TZQuery
     Connection = DM_General.cnxBase
-    Active = True
     SQL.Strings = (
       'SELECT *'
       'FROM Precios'

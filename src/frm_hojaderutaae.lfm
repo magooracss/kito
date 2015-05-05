@@ -1,0 +1,57 @@
+object frmHojaDeRutaAE: TfrmHojaDeRutaAE
+  Left = 269
+  Height = 532
+  Top = 147
+  Width = 799
+  Caption = 'Hoja de ruta'
+  ClientHeight = 532
+  ClientWidth = 799
+  Font.CharSet = ANSI_CHARSET
+  Font.Height = -13
+  Font.Name = 'Arial'
+  Font.Pitch = fpVariable
+  Font.Quality = fqDraft
+  OnCreate = FormCreate
+  OnDestroy = FormDestroy
+  Position = poOwnerFormCenter
+  LCLVersion = '1.2.6.0'
+  object Panel1: TPanel
+    Left = 0
+    Height = 128
+    Top = 0
+    Width = 799
+    Align = alTop
+    TabOrder = 0
+  end
+  object Panel2: TPanel
+    Left = 0
+    Height = 50
+    Top = 482
+    Width = 799
+    Align = alBottom
+    TabOrder = 1
+  end
+  object Panel3: TPanel
+    Left = 749
+    Height = 354
+    Top = 128
+    Width = 50
+    Align = alRight
+    TabOrder = 2
+  end
+  object DBGrid1: TDBGrid
+    Left = 0
+    Height = 354
+    Top = 128
+    Width = 749
+    Align = alClient
+    Color = clWindow
+    Columns = <>
+    TabOrder = 3
+    TitleFont.CharSet = ANSI_CHARSET
+    TitleFont.Height = -13
+    TitleFont.Name = 'Arial'
+    TitleFont.Pitch = fpVariable
+    TitleFont.Quality = fqDraft
+  end
+end

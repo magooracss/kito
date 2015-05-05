@@ -1,0 +1,385 @@
+object DM_HojaDeRuta: TDM_HojaDeRuta
+  OldCreateOrder = False
+  Height = 438
+  HorizontalOffset = 397
+  VerticalOffset = 138
+  Width = 654
+  object HojaDeRuta: TRxMemoryData
+    FieldDefs = <    
+      item
+        Name = 'id'
+        DataType = ftString
+        Precision = 0
+        Size = 38
+      end    
+      item
+        Name = 'numero'
+        DataType = ftInteger
+        Precision = 0
+        Size = 0
+      end    
+      item
+        Name = 'transportista_id'
+        DataType = ftString
+        Precision = 0
+        Size = 38
+      end    
+      item
+        Name = 'Fecha'
+        DataType = ftDateTime
+        Precision = 0
+        Size = 0
+      end    
+      item
+        Name = 'bAnulada'
+        DataType = ftInteger
+        Precision = 0
+        Size = 0
+      end    
+      item
+        Name = 'fAnulada'
+        DataType = ftDateTime
+        Precision = 0
+        Size = 0
+      end    
+      item
+        Name = 'bVisible'
+        DataType = ftInteger
+        Precision = 0
+        Size = 0
+      end>
+    PacketRecords = 0
+    left = 48
+    top = 38
+    object HojaDeRutaid: TStringField
+      DisplayWidth = 38
+      FieldKind = fkData
+      FieldName = 'id'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 38
+    end
+    object HojaDeRutanumero: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'numero'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object HojaDeRutatransportista_id: TStringField
+      DisplayWidth = 38
+      FieldKind = fkData
+      FieldName = 'transportista_id'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 38
+    end
+    object HojaDeRutaFecha: TDateTimeField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'Fecha'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object HojaDeRutabAnulada: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'bAnulada'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object HojaDeRutafAnulada: TDateTimeField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'fAnulada'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object HojaDeRutabVisible: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'bVisible'
+      Index = 6
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+  end
+  object HojaDeRutaDetalles: TRxMemoryData
+    FieldDefs = <    
+      item
+        Name = 'id'
+        DataType = ftString
+        Precision = 0
+        Size = 38
+      end    
+      item
+        Name = 'hojaDeRuta_id'
+        DataType = ftString
+        Precision = 0
+        Size = 38
+      end    
+      item
+        Name = 'nroOrdena'
+        DataType = ftInteger
+        Precision = 0
+        Size = 0
+      end    
+      item
+        Name = 'pedido_id'
+        DataType = ftString
+        Precision = 0
+        Size = 38
+      end    
+      item
+        Name = 'clienteDireccion_id'
+        DataType = ftString
+        Precision = 0
+        Size = 38
+      end    
+      item
+        Name = 'bultos'
+        DataType = ftInteger
+        Precision = 0
+        Size = 0
+      end    
+      item
+        Name = 'bCobroDestino'
+        DataType = ftInteger
+        Precision = 0
+        Size = 0
+      end    
+      item
+        Name = 'montoCobrar'
+        DataType = ftFloat
+        Precision = 0
+        Size = 0
+      end    
+      item
+        Name = 'nota'
+        DataType = ftString
+        Precision = 0
+        Size = 3000
+      end    
+      item
+        Name = 'bEntregaCompleto'
+        DataType = ftInteger
+        Precision = 0
+        Size = 0
+      end    
+      item
+        Name = 'montoCobrado'
+        DataType = ftFloat
+        Precision = 0
+        Size = 0
+      end    
+      item
+        Name = 'devolucion_id'
+        DataType = ftString
+        Precision = 0
+        Size = 38
+      end    
+      item
+        Name = 'bNoEntregado'
+        DataType = ftInteger
+        Precision = 0
+        Size = 0
+      end    
+      item
+        Name = 'motivoNoEntrega_id'
+        DataType = ftInteger
+        Precision = 0
+        Size = 0
+      end    
+      item
+        Name = 'bVisible'
+        DataType = ftInteger
+        Precision = 0
+        Size = 0
+      end>
+    PacketRecords = 0
+    left = 168
+    top = 40
+    object HojaDeRutaDetallesid: TStringField
+      DisplayWidth = 38
+      FieldKind = fkData
+      FieldName = 'id'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 38
+    end
+    object HojaDeRutaDetalleshojaDeRuta_id: TStringField
+      DisplayWidth = 38
+      FieldKind = fkData
+      FieldName = 'hojaDeRuta_id'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 38
+    end
+    object HojaDeRutaDetallesnroOrdena: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'nroOrdena'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object HojaDeRutaDetallespedido_id: TStringField
+      DisplayWidth = 38
+      FieldKind = fkData
+      FieldName = 'pedido_id'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 38
+    end
+    object HojaDeRutaDetallesclienteDireccion_id: TStringField
+      DisplayWidth = 38
+      FieldKind = fkData
+      FieldName = 'clienteDireccion_id'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 38
+    end
+    object HojaDeRutaDetallesbultos: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'bultos'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object HojaDeRutaDetallesbCobroDestino: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'bCobroDestino'
+      Index = 6
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object HojaDeRutaDetallesmontoCobrar: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'montoCobrar'
+      Index = 7
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object HojaDeRutaDetallesnota: TStringField
+      DisplayWidth = 3000
+      FieldKind = fkData
+      FieldName = 'nota'
+      Index = 8
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 3000
+    end
+    object HojaDeRutaDetallesbEntregaCompleto: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'bEntregaCompleto'
+      Index = 9
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object HojaDeRutaDetallesmontoCobrado: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'montoCobrado'
+      Index = 10
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object HojaDeRutaDetallesdevolucion_id: TStringField
+      DisplayWidth = 38
+      FieldKind = fkData
+      FieldName = 'devolucion_id'
+      Index = 11
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 38
+    end
+    object HojaDeRutaDetallesbNoEntregado: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'bNoEntregado'
+      Index = 12
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object HojaDeRutaDetallesmotivoNoEntrega_id: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'motivoNoEntrega_id'
+      Index = 13
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object HojaDeRutaDetallesbVisible: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'bVisible'
+      Index = 14
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+  end
+end

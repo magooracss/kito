@@ -5608,7 +5608,7 @@ object DM_General: TDM_General
     User = 'SYSDBA'
     Password = 'masterkey'
     Protocol = 'firebirdd-2.5'
-    left = 431
+    left = 432
     top = 72
   end
   object ImgAccionesMenu: TImageList

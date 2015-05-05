@@ -243,6 +243,7 @@ end;
 procedure TDM_Productos.Nuevo;
 begin
   DM_General.ReiniciarTabla(Productos);
+  DM_General.ReiniciarTabla(Precios);
   Productos.Insert;
 end;
 
