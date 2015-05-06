@@ -438,7 +438,6 @@ object DM_HojaDeRuta: TDM_HojaDeRuta
   end
   object SELHdR: TZQuery
     Connection = DM_General.cnxBase
-    Active = True
     SQL.Strings = (
       'SELECT *'
       'FROM HojasDeRuta'
@@ -705,7 +704,6 @@ object DM_HojaDeRuta: TDM_HojaDeRuta
   end
   object SELHdRDet: TZQuery
     Connection = DM_General.cnxBase
-    Active = True
     SQL.Strings = (
       'SELECT *'
       'FROM HojaDeRutaDetalles'

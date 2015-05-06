@@ -75,10 +75,16 @@ type
     procedure HojaDeRutaDetallesAfterInsert(DataSet: TDataSet);
   private
     bArtSonBultos: Boolean;
+
+    procedure RenumerarDetalle;
   public
     procedure Nuevo;
     procedure Editar (refHojaDeRuta: GUID_ID);
     procedure Grabar;
+
+    procedure ModificarPosicionPedido(pasos: integer);
+
+    procedure AgregarPedido (refPEdido: GUID_ID);
 
   end;
 
@@ -118,7 +124,7 @@ procedure TDM_HojaDeRuta.HojaDeRutaDetallesAfterInsert(DataSet: TDataSet);
 begin
   HojaDeRutaDetallesid.AsString:= DM_General.CrearGUID;
   HojaDeRutaDetalleshojaDeRuta_id.AsString:= HojaDeRutaid.AsString;
-  HojaDeRutaDetallesnroOrdena.AsInteger:= MaxInt;
+  HojaDeRutaDetallesnroOrdena.AsInteger:= HojaDeRutaDetalles.RecordCount;
   HojaDeRutaDetallespedido_id.AsString:= GUIDNULO;
   HojaDeRutaDetallesclienteDireccion_id.AsString:= GUIDNULO;
   HojaDeRutaDetallesbultos.AsInteger:= 0;
@@ -131,7 +137,7 @@ begin
   HojaDeRutaDetallesbNoEntregado.AsInteger:= 0;
   HojaDeRutaDetallesmotivoNoEntrega_id.AsInteger:= 0;
   HojaDeRutaDetallesbVisible.AsInteger:= 1;
-  HojaDeRutaDetalleslxPedidoNro.AsInteger:= 0;
+  HojaDeRutaDetalleslxPedidoNro.AsInteger:= HojaDeRutaDetalles.RecordCount;
   HojaDeRutaDetalleslxCliente.asString:= EmptyStr;
   HojaDeRutaDetalleslxClienteDir.AsString:= EmptyStr;
 end;
@@ -152,6 +158,81 @@ procedure TDM_HojaDeRuta.Grabar;
 begin
   DM_General.GrabarDatos(SELHdR, INSHdR, UPDHdR, HojaDeRuta, 'id');
   DM_General.GrabarDatos(SELHdRDet, INSHdRDet, UPDHdRDet, HojaDeRutaDetalles, 'id');
+end;
+
+procedure TDM_HojaDeRuta.RenumerarDetalle;
+var
+  marca: TBookmark;
+  idx: integer;
+begin
+  with HojaDeRutaDetalles do
+  begin
+    marca:= GetBookmark;
+    try
+      First;
+      idx:= 0;
+      While Not Eof do
+      begin
+        Edit;
+        HojaDeRutaDetallesnroOrdena.AsInteger:= idx;
+        HojaDeRutaDetalleslxPedidoNro.AsInteger:= HojaDeRutaDetallesnroOrdena.AsInteger;
+        Inc(idx);
+        Post;
+        Next;
+      end;
+      GotoBookmark(marca);
+    finally
+      FreeBookmark(marca);
+    end;
+  end;
+end;
+
+
+procedure TDM_HojaDeRuta.ModificarPosicionPedido(pasos: integer);
+var
+  tmp: integer;
+  marca: TBookmark;
+begin
+  with HojaDeRutaDetalles do
+  begin
+    marca:= GetBookmark;
+    Edit;
+    HojaDeRutaDetallesnroOrdena.AsInteger:= HojaDeRutaDetallesnroOrdena.AsInteger + pasos;
+    Post;
+    if pasos > 0 then
+    begin //Avanzo
+      next;
+      next;
+      While Not eof do
+      begin
+        Edit;
+        HojaDeRutaDetallesnroOrdena.AsInteger:= HojaDeRutaDetallesnroOrdena.AsInteger + 1;
+        Post;
+        Next;
+      end;
+    end
+    else //Retrocedo
+    begin
+      Prior;
+      Prior;
+      While Not bof do
+      begin
+        Edit;
+        HojaDeRutaDetallesnroOrdena.AsInteger:= HojaDeRutaDetallesnroOrdena.AsInteger - 1;
+        Post;
+        Prior;
+      end;
+    end;
+    GotoBookmark(marca);
+    FreeBookmark(marca);
+  end;
+  HojaDeRutaDetalles.SortOnFields('nroOrdena');
+  RenumerarDetalle;
+end;
+
+procedure TDM_HojaDeRuta.AgregarPedido(refPEdido: GUID_ID);
+begin
+  HojaDeRutaDetalles.SortOnFields('nroOrdena');
 end;
 
 end.

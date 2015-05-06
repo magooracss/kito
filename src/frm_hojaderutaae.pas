@@ -14,6 +14,10 @@ type
   { TfrmHojaDeRutaAE }
 
   TfrmHojaDeRutaAE = class(TForm)
+    btnAgregarPedido: TBitBtn;
+    btnMoverArriba: TBitBtn;
+    btnMoverAbajo: TBitBtn;
+    BitBtn4: TBitBtn;
     btnBuscarTransportista: TBitBtn;
     DBDateEdit1: TDBDateEdit;
     DBText1: TDBText;
@@ -25,9 +29,13 @@ type
     Panel1: TPanel;
     Panel2: TPanel;
     Panel3: TPanel;
+    procedure btnAgregarPedidoClick(Sender: TObject);
+    procedure btnMoverArribaClick(Sender: TObject);
+    procedure btnMoverAbajoClick(Sender: TObject);
     procedure btnBuscarTransportistaClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
+    procedure FormShow(Sender: TObject);
   private
     _HojaRutaID: GUID_ID;
      procedure Inicializar;
@@ -58,7 +66,7 @@ var
 begin
   pant:= TfrmBusquedaEmpresas.Create(self);
   try
-    pant.restringirTipo:= IDX_CLIENTE;
+    pant.restringirTipo:= IDX_TRANSPORTISTA;
     if pant.ShowModal = mrOK then
     begin
       DM_HojaDeRuta.HojaDeRuta.Edit;
@@ -71,9 +79,24 @@ begin
   end;
 end;
 
+procedure TfrmHojaDeRutaAE.btnMoverArribaClick(Sender: TObject);
+begin
+  DM_HojaDeRuta.ModificarPosicionPedido(-2);
+end;
+
+procedure TfrmHojaDeRutaAE.btnMoverAbajoClick(Sender: TObject);
+begin
+  DM_HojaDeRuta.ModificarPosicionPedido(2);
+end;
+
 procedure TfrmHojaDeRutaAE.FormDestroy(Sender: TObject);
 begin
   DM_HojaDeRuta.Free;
+end;
+
+procedure TfrmHojaDeRutaAE.FormShow(Sender: TObject);
+begin
+  Inicializar;
 end;
 
 procedure TfrmHojaDeRutaAE.Inicializar;
@@ -87,6 +110,18 @@ begin
     DM_HojaDeRuta.Editar(_HojaRutaID);
   end;
 end;
+
+procedure TfrmHojaDeRutaAE.btnAgregarPedidoClick(Sender: TObject);
+begin
+  With DM_HojaDeRuta, HojaDeRutaDetalles do
+  begin
+    Insert;
+    HojaDeRutaDetalleslxCliente.asString:= 'Cliente:  '+ IntToStr (HojaDeRutaDetalles.RecordCount);
+    Post;
+  end;
+  DM_HojaDeRuta.AgregarPedido(GUIDNULO);
+end;
+
 
 end.
 

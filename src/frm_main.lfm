@@ -67,16 +67,33 @@ object frmMain: TfrmMain
       Action = pedDevolucion
     end
     object ToolButton5: TToolButton
-      Left = 305
+      Left = 558
       Top = 2
       Width = 10
       Caption = 'ToolButton5'
       Style = tbsSeparator
     end
     object ToolButton6: TToolButton
-      Left = 315
+      Left = 568
       Top = 2
       Action = prgListados
+    end
+    object ToolButton7: TToolButton
+      Left = 315
+      Top = 2
+      Action = HrRNueva
+    end
+    object ToolButton8: TToolButton
+      Left = 305
+      Top = 2
+      Width = 10
+      Caption = 'ToolButton8'
+      Style = tbsSeparator
+    end
+    object ToolButton9: TToolButton
+      Left = 437
+      Top = 2
+      Action = HdRModificar
     end
   end
   object Panel1: TPanel
@@ -484,6 +501,19 @@ object frmMain: TfrmMain
       ImageIndex = 18
       OnExecute = prgListadosExecute
     end
+    object HrRNueva: TAction
+      Category = 'Hoja de Ruta'
+      Caption = 'Nueva Hoja de Ruta'
+      Hint = 'Crea una nueva hoja de ruta'
+      ImageIndex = 20
+      OnExecute = HrRNuevaExecute
+    end
+    object HdRModificar: TAction
+      Category = 'Hoja de Ruta'
+      Caption = 'Editar Hoja de Ruta'
+      Hint = 'Mofifica los datos de una hoja de ruta'
+      ImageIndex = 19
+    end
   end
   object MainMenu1: TMainMenu
     Images = DM_General.ImgAccionesMenu
@@ -597,6 +627,12 @@ object frmMain: TfrmMain
         Action = stkEditar
       end
       object MenuItem35: TMenuItem
+        Caption = '-'
+      end
+      object MenuItem39: TMenuItem
+        Action = HrRNueva
+      end
+      object MenuItem40: TMenuItem
         Caption = '-'
       end
       object MenuItem36: TMenuItem

@@ -15,7 +15,11 @@ type
   { TfrmMain }
 
   TfrmMain = class(TForm)
+    HdRModificar: TAction;
+    HrRNueva: TAction;
     MenuItem38: TMenuItem;
+    MenuItem39: TMenuItem;
+    MenuItem40: TMenuItem;
     prgListados: TAction;
     MenuItem37: TMenuItem;
     OD: TOpenDialog;
@@ -62,6 +66,9 @@ type
     ToolButton4: TToolButton;
     ToolButton5: TToolButton;
     ToolButton6: TToolButton;
+    ToolButton7: TToolButton;
+    ToolButton8: TToolButton;
+    ToolButton9: TToolButton;
     tRefrescarGrilla: TTimer;
     ToolButton3: TToolButton;
     vendEditar: TAction;
@@ -116,6 +123,7 @@ type
     procedure edFiltroCodigoKeyPress(Sender: TObject; var Key: char);
     procedure edFiltroNombreKeyPress(Sender: TObject; var Key: char);
     procedure FormShow(Sender: TObject);
+    procedure HrRNuevaExecute(Sender: TObject);
     procedure pedDevolucionExecute(Sender: TObject);
     procedure pedModificarExecute(Sender: TObject);
     procedure pedNuevoExecute(Sender: TObject);
@@ -152,6 +160,7 @@ type
      procedure pantallaVendedores(ID: GUID_ID);
      procedure pantallaPedidos(ID: GUID_ID);
      procedure pantallaMovimientosStock (ID: GUID_ID);
+     procedure pantallaHojaDeRuta (ID: GUID_ID);
   public
     { public declarations }
   end;
@@ -185,6 +194,7 @@ uses
   ,dmstock
   ,frm_listados
   ,dmlistados
+  ,frm_hojaderutaae
   ;
 
 { TfrmMain }
@@ -720,6 +730,31 @@ begin
   end;
 end;
 
+
+(*******************************************************************************
+*** HOJAS DE RUTA
+*******************************************************************************)
+procedure TfrmMain.pantallaHojaDeRuta(ID: GUID_ID);
+var
+ pant: TfrmHojaDeRutaAE;
+begin
+  pant:= TfrmHojaDeRutaAE.Create(self);
+  try
+    pant.HojaDeRutaID:= ID;
+    if pant.ShowModal = mrOK then
+    begin
+
+    end;
+  finally
+    pant.Free;
+  end;
+end;
+
+
+procedure TfrmMain.HrRNuevaExecute(Sender: TObject);
+begin
+  pantallaHojaDeRuta(GUIDNULO);
+end;
 
 end.
 
