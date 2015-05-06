@@ -21,6 +21,7 @@ const
   CFG_SEP_DECIMAL = 'SEP_DECIMAL';
   CFG_SEP_MILES='SEP_MILES';
   CFGD_IVA_PROD='IVA_PROD';
+  ART_BULTOS='ART_BULTOS'; //Se trata a cada artículo como un bulto
 
   PROD_BUS_CRIT = 'P_BUS_CRIT';
   LOCALIDAD = 'LOCALIDAD'; //Localidad por defecto para los domicilios

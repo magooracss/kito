@@ -418,6 +418,7 @@
         <Filename Value="frm_hojaderutaae.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="frmHojaDeRutaAE"/>
+        <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="frm_hojaderutaae"/>
       </Unit46>
@@ -425,6 +426,7 @@
         <Filename Value="dmhojaderuta.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="DM_HojaDeRuta"/>
+        <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="dmhojaderuta"/>
       </Unit47>
