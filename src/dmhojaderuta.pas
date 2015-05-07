@@ -69,6 +69,7 @@ type
     SELHdRTRANSPORTISTA_ID: TStringField;
     UPDHdR: TZQuery;
     UPDHdRDet: TZQuery;
+    DELHdRDet: TZQuery;
     procedure DataModuleCreate(Sender: TObject);
     procedure DataModuleDestroy(Sender: TObject);
     procedure HojaDeRutaAfterInsert(DataSet: TDataSet);
@@ -84,7 +85,8 @@ type
 
     procedure ModificarPosicionPedido(pasos: integer);
 
-    procedure AgregarPedido (refPEdido: GUID_ID);
+    procedure AgregarPedido (refPedido: GUID_ID);
+    procedure EliminarPedido;
 
   end;
 
@@ -95,6 +97,9 @@ implementation
 {$R *.lfm}
 uses
   SD_Configuracion
+  ,dmpedidos
+  ,dmclientes
+  ,variants
   ;
 
 { TDM_HojaDeRuta }
@@ -175,7 +180,6 @@ begin
       begin
         Edit;
         HojaDeRutaDetallesnroOrdena.AsInteger:= idx;
-        HojaDeRutaDetalleslxPedidoNro.AsInteger:= HojaDeRutaDetallesnroOrdena.AsInteger;
         Inc(idx);
         Post;
         Next;
@@ -230,9 +234,33 @@ begin
   RenumerarDetalle;
 end;
 
-procedure TDM_HojaDeRuta.AgregarPedido(refPEdido: GUID_ID);
+procedure TDM_HojaDeRuta.AgregarPedido(refPedido: GUID_ID);
 begin
-  HojaDeRutaDetalles.SortOnFields('nroOrdena');
+  if NOT HojaDeRutaDetalles.Locate('pedido_id',refPedido, []) then
+  begin
+    DM_Pedidos.LevantarPedido(refPedido);
+    DM_Clientes.Editar(DM_Pedidos.Pedidoscliente_id.AsString);
+
+    HojaDeRutaDetalles.Insert;
+    HojaDeRutaDetallespedido_id.AsString:= refPedido;
+    HojaDeRutaDetalleslxPedidoNro.asInteger:= DM_Pedidos.Pedidosnumero.AsInteger;
+    HojaDeRutaDetallesmontoCobrar.AsFloat:= DM_Pedidos.PedidosTotalPedido.AsFloat;
+    HojaDeRutaDetalleslxCliente.AsString:= DM_Clientes.RazonSocial;
+
+    HojaDeRutaDetalles.Post;
+    HojaDeRutaDetalles.SortOnFields('nroOrdena');
+  end;
+end;
+
+procedure TDM_HojaDeRuta.EliminarPedido;
+begin
+  if ((HojaDeRutaDetalles.Active) and (HojaDeRutaDetalles.RecordCount > 0)) then
+  begin
+    DELHdRDet.ParamByName('id').AsString:= HojaDeRutaDetallesid.AsString;
+    DELHdRDet.ExecSQL;
+    HojaDeRutaDetalles.Delete;
+  end;
+
 end;
 
 end.

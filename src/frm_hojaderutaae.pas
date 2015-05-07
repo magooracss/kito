@@ -14,6 +14,8 @@ type
   { TfrmHojaDeRutaAE }
 
   TfrmHojaDeRutaAE = class(TForm)
+    btnAceptar: TBitBtn;
+    btnCancelar: TBitBtn;
     btnAgregarPedido: TBitBtn;
     btnMoverArriba: TBitBtn;
     btnMoverAbajo: TBitBtn;
@@ -29,7 +31,10 @@ type
     Panel1: TPanel;
     Panel2: TPanel;
     Panel3: TPanel;
+    procedure BitBtn4Click(Sender: TObject);
+    procedure btnAceptarClick(Sender: TObject);
     procedure btnAgregarPedidoClick(Sender: TObject);
+    procedure btnCancelarClick(Sender: TObject);
     procedure btnMoverArribaClick(Sender: TObject);
     procedure btnMoverAbajoClick(Sender: TObject);
     procedure btnBuscarTransportistaClick(Sender: TObject);
@@ -39,6 +44,7 @@ type
   private
     _HojaRutaID: GUID_ID;
      procedure Inicializar;
+     function Validar: boolean;
   public
     property HojaDeRutaID: GUID_ID read _HojaRutaID write _HojaRutaID;
   end;
@@ -51,6 +57,7 @@ implementation
 uses
   dmhojaderuta
   ,frm_busquedaempresas
+  ,frm_seleccionarpedidos
   ;
 
 { TfrmHojaDeRutaAE }
@@ -111,15 +118,60 @@ begin
   end;
 end;
 
-procedure TfrmHojaDeRutaAE.btnAgregarPedidoClick(Sender: TObject);
+function TfrmHojaDeRutaAE.Validar: boolean;
 begin
-  With DM_HojaDeRuta, HojaDeRutaDetalles do
-  begin
-    Insert;
-    HojaDeRutaDetalleslxCliente.asString:= 'Cliente:  '+ IntToStr (HojaDeRutaDetalles.RecordCount);
-    Post;
+  Result:= True;
+  if DM_HojaDeRuta.HojaDeRutatransportista_id.AsString = GUIDNULO then
+   Result:= False;
+  if DM_HojaDeRuta.HojaDeRutaDetalles.RecordCount = 0 then
+   Result:= False;
+end;
+
+procedure TfrmHojaDeRutaAE.btnAgregarPedidoClick(Sender: TObject);
+var
+  pant: TfrmSeleccionarPedidos;
+  idx: integer;
+begin
+  pant:= TfrmSeleccionarPedidos.Create(self);
+  try
+    pant.restringirEstados:= IDX_AENTREGAR;
+    if pant.ShowModal = mrOK then
+    begin
+      for idx:= 0 to pant.PedidosSeleccionados.Count -1 do
+       DM_HojaDeRuta.AgregarPedido(pant.PedidosSeleccionados[idx]);
+    end;
+  finally
+    pant.Free;
   end;
-  DM_HojaDeRuta.AgregarPedido(GUIDNULO);
+
+end;
+
+procedure TfrmHojaDeRutaAE.btnAceptarClick(Sender: TObject);
+begin
+  if Validar then
+  begin
+    DM_HojaDeRuta.Grabar;
+    ModalResult:= mrOK;
+  end
+  else
+   ShowMessage('Complete todos los datos antes de intentar salir de esta pantalla');
+
+end;
+
+procedure TfrmHojaDeRutaAE.BitBtn4Click(Sender: TObject);
+begin
+  if (MessageDlg ('ATENCION'
+                , 'Borro el pedido de la hoja de ruta?'
+                , mtConfirmation, [mbYes, mbNo],0 ) = mrYes) then
+  begin
+    DM_HojaDeRuta.EliminarPedido;
+  end;
+
+end;
+
+procedure TfrmHojaDeRutaAE.btnCancelarClick(Sender: TObject);
+begin
+  ModalResult:= mrCancel;
 end;
 
 

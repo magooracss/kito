@@ -324,6 +324,7 @@ object DM_HojaDeRuta: TDM_HojaDeRuta
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
       Required = False
+      Currency = True
       MaxValue = 0
       MinValue = 0
       Precision = 2
@@ -358,6 +359,7 @@ object DM_HojaDeRuta: TDM_HojaDeRuta
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
       Required = False
+      Currency = True
       MaxValue = 0
       MinValue = 0
       Precision = 2
@@ -1220,6 +1222,28 @@ object DM_HojaDeRuta: TDM_HojaDeRuta
         Name = 'bVisible'
         ParamType = ptUnknown
       end    
+      item
+        DataType = ftUnknown
+        Name = 'id'
+        ParamType = ptUnknown
+      end>
+  end
+  object DELHdRDet: TZQuery
+    Connection = DM_General.cnxBase
+    SQL.Strings = (
+      'UPDATE HojadeRutaDetalles'
+      'SET bVisible = 0'
+      'WHERE id = :id'
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'id'
+        ParamType = ptUnknown
+      end>
+    left = 168
+    top = 320
+    ParamData = <    
       item
         DataType = ftUnknown
         Name = 'id'

@@ -78,5 +78,5 @@ INSERT INTO motivosNoEntrega
 VALUES
 (3, 'Ausencia de encargado/responsable', 1);
 
-
+CREATE INDEX PedidosEStadosTiposID ON PedidosEstados (TIPOESTADO_ID, pedido_id)
 

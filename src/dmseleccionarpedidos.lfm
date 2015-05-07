@@ -1,0 +1,265 @@
+object DM_SeleccionarPedidos: TDM_SeleccionarPedidos
+  OnCreate = DataModuleCreate
+  OnDestroy = DataModuleDestroy
+  OldCreateOrder = False
+  Height = 359
+  HorizontalOffset = 561
+  VerticalOffset = 164
+  Width = 417
+  object SeleccionPedidos: TRxMemoryData
+    FieldDefs = <    
+      item
+        Name = 'Seleccionado'
+        DataType = ftBoolean
+        Precision = 0
+        Size = 0
+      end    
+      item
+        Name = 'idPedido'
+        DataType = ftString
+        Precision = 0
+        Size = 38
+      end    
+      item
+        Name = 'NroPedido'
+        DataType = ftInteger
+        Precision = 0
+        Size = 0
+      end    
+      item
+        Name = 'Cliente'
+        DataType = ftString
+        Precision = 0
+        Size = 500
+      end    
+      item
+        Name = 'fTomado'
+        DataType = ftDateTime
+        Precision = 0
+        Size = 0
+      end    
+      item
+        Name = 'fPrometido'
+        DataType = ftDateTime
+        Precision = 0
+        Size = 0
+      end    
+      item
+        Name = 'Monto'
+        DataType = ftFloat
+        Precision = 0
+        Size = 0
+      end    
+      item
+        Name = 'Estado'
+        DataType = ftString
+        Precision = 0
+        Size = 100
+      end>
+    AfterInsert = SeleccionPedidosAfterInsert
+    PacketRecords = 0
+    left = 64
+    top = 32
+    object SeleccionPedidosSeleccionado: TBooleanField
+      DisplayWidth = 5
+      FieldKind = fkData
+      FieldName = 'Seleccionado'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      DisplayValues = 'True;False'
+    end
+    object SeleccionPedidosidPedido: TStringField
+      DisplayWidth = 38
+      FieldKind = fkData
+      FieldName = 'idPedido'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 38
+    end
+    object SeleccionPedidosNroPedido: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'NroPedido'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object SeleccionPedidosCliente: TStringField
+      DisplayWidth = 500
+      FieldKind = fkData
+      FieldName = 'Cliente'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 500
+    end
+    object SeleccionPedidosfTomado: TDateTimeField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'fTomado'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      DisplayFormat = 'DD/MM/YYYY'
+    end
+    object SeleccionPedidosfPrometido: TDateTimeField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'fPrometido'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      DisplayFormat = 'DD/MM/YYYY'
+    end
+    object SeleccionPedidosMonto: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'Monto'
+      Index = 6
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Currency = True
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object SeleccionPedidosEstado: TStringField
+      DisplayWidth = 100
+      FieldKind = fkData
+      FieldName = 'Estado'
+      Index = 7
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 100
+    end
+  end
+  object qPedidosEstado: TZQuery
+    Connection = DM_General.cnxBase
+    SQL.Strings = (
+      'select  P.ID as idPedido'
+      '      , P.NUMERO as NroPedido      '
+      '      , E.RAZONSOCIAL as Cliente'
+      '      , P.FTOMA as fTomado'
+      '      , P.FAENTREGAR as fPrometido'
+      '      , P.TOTALPEDIDO as Monto'
+      '      , PTE.TIPOESTADO as Estado'
+      'from  PEDIDOSESTADOS PE'
+      '     inner join PEDIDOS P on PE.PEDIDO_ID = P.ID'
+      '     left join PEDIDOSTIPOSESTADOS PTE on PTE.ID = PE.TIPOESTADO_ID'
+      '     left join CLIENTES C on C.ID = P.CLIENTE_ID'
+      '     left join EMPRESAS E on E.ID = C.EMPRESA_ID'
+      'where (P.BVISIBLE = 1)'
+      '     and (PE.TIPOESTADO_ID = :TipoEstado_id)'
+      'order by P.FAENTREGAR, PTE.TIPOESTADO     '
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'TipoEstado_id'
+        ParamType = ptUnknown
+      end>
+    left = 64
+    top = 128
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'TipoEstado_id'
+        ParamType = ptUnknown
+      end>
+    object qPedidosEstadoIDPEDIDO: TStringField
+      DisplayWidth = 152
+      FieldKind = fkData
+      FieldName = 'IDPEDIDO'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      Size = 152
+    end
+    object qPedidosEstadoNROPEDIDO: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'NROPEDIDO'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object qPedidosEstadoCLIENTE: TStringField
+      DisplayWidth = 2000
+      FieldKind = fkData
+      FieldName = 'CLIENTE'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 2000
+    end
+    object qPedidosEstadoFTOMADO: TDateField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'FTOMADO'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object qPedidosEstadoFPROMETIDO: TDateField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'FPROMETIDO'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object qPedidosEstadoMONTO: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'MONTO'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Currency = True
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object qPedidosEstadoESTADO: TStringField
+      DisplayWidth = 120
+      FieldKind = fkData
+      FieldName = 'ESTADO'
+      Index = 6
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 120
+    end
+  end
+end

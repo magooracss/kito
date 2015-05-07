@@ -21,7 +21,7 @@
       <MajorVersionNr Value="2015"/>
       <MinorVersionNr Value="5"/>
       <RevisionNr Value="1"/>
-      <BuildNr Value="51"/>
+      <BuildNr Value="53"/>
       <Language Value="080A"/>
       <StringTable Comments="Carlos Enrique Rodriguez / Magoo" CompanyName="RACSS Programación" LegalCopyright="Carlos Enrique Rodriguez - RACSS Programacion" ProductName="KITO" ProductVersion=""/>
     </VersionInfo>
@@ -56,7 +56,7 @@
         <PackageName Value="LCL"/>
       </Item6>
     </RequiredPackages>
-    <Units Count="48">
+    <Units Count="50">
       <Unit0>
         <Filename Value="kito.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -430,6 +430,20 @@
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="dmhojaderuta"/>
       </Unit47>
+      <Unit48>
+        <Filename Value="frm_seleccionarpedidos.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmSeleccionarPedidos"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="frm_seleccionarpedidos"/>
+      </Unit48>
+      <Unit49>
+        <Filename Value="dmseleccionarpedidos.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="DM_SeleccionarPedidos"/>
+        <ResourceBaseClass Value="DataModule"/>
+        <UnitName Value="dmseleccionarpedidos"/>
+      </Unit49>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
