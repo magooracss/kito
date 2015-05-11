@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, db, FileUtil, dbdateedit, Forms, Controls, Graphics,
-  Dialogs, ExtCtrls, DBGrids, DbCtrls, Buttons, StdCtrls
+  Dialogs, ExtCtrls, DBGrids, DbCtrls, Buttons, StdCtrls, Menus, ActnList
   ,dmgeneral;
 
 type
@@ -14,12 +14,14 @@ type
   { TfrmHojaDeRutaAE }
 
   TfrmHojaDeRutaAE = class(TForm)
+    pedSubir: TAction;
+    pedBajar: TAction;
+    pedAgregar: TAction;
+    pedEliminar: TAction;
+    pedEditar: TAction;
+    ActionList1: TActionList;
     btnAceptar: TBitBtn;
     btnCancelar: TBitBtn;
-    btnAgregarPedido: TBitBtn;
-    btnMoverArriba: TBitBtn;
-    btnMoverAbajo: TBitBtn;
-    BitBtn4: TBitBtn;
     btnBuscarTransportista: TBitBtn;
     DBDateEdit1: TDBDateEdit;
     DBText1: TDBText;
@@ -28,23 +30,35 @@ type
     DBGrid1: TDBGrid;
     edTransportista: TEdit;
     Label1: TLabel;
+    MenuItem1: TMenuItem;
+    MenuItem2: TMenuItem;
+    MenuItem3: TMenuItem;
+    MenuItem4: TMenuItem;
+    MenuItem5: TMenuItem;
     Panel1: TPanel;
     Panel2: TPanel;
     Panel3: TPanel;
-    procedure BitBtn4Click(Sender: TObject);
+    PopupMenu1: TPopupMenu;
+    SpeedButton1: TSpeedButton;
+    SpeedButton2: TSpeedButton;
+    SpeedButton3: TSpeedButton;
+    SpeedButton4: TSpeedButton;
     procedure btnAceptarClick(Sender: TObject);
-    procedure btnAgregarPedidoClick(Sender: TObject);
-    procedure btnCancelarClick(Sender: TObject);
-    procedure btnMoverArribaClick(Sender: TObject);
-    procedure btnMoverAbajoClick(Sender: TObject);
     procedure btnBuscarTransportistaClick(Sender: TObject);
+    procedure btnCancelarClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure FormShow(Sender: TObject);
+    procedure pedAgregarExecute(Sender: TObject);
+    procedure pedBajarExecute(Sender: TObject);
+    procedure pedEditarExecute(Sender: TObject);
+    procedure pedEliminarExecute(Sender: TObject);
+    procedure pedSubirExecute(Sender: TObject);
   private
     _HojaRutaID: GUID_ID;
      procedure Inicializar;
      function Validar: boolean;
+     procedure ModificarRenglon;
   public
     property HojaDeRutaID: GUID_ID read _HojaRutaID write _HojaRutaID;
   end;
@@ -58,6 +72,7 @@ uses
   dmhojaderuta
   ,frm_busquedaempresas
   ,frm_seleccionarpedidos
+  ,frm_hojaderutapedido
   ;
 
 { TfrmHojaDeRutaAE }
@@ -86,14 +101,9 @@ begin
   end;
 end;
 
-procedure TfrmHojaDeRutaAE.btnMoverArribaClick(Sender: TObject);
+procedure TfrmHojaDeRutaAE.btnCancelarClick(Sender: TObject);
 begin
-  DM_HojaDeRuta.ModificarPosicionPedido(-2);
-end;
-
-procedure TfrmHojaDeRutaAE.btnMoverAbajoClick(Sender: TObject);
-begin
-  DM_HojaDeRuta.ModificarPosicionPedido(2);
+   ModalResult:= mrCancel;
 end;
 
 procedure TfrmHojaDeRutaAE.FormDestroy(Sender: TObject);
@@ -104,6 +114,57 @@ end;
 procedure TfrmHojaDeRutaAE.FormShow(Sender: TObject);
 begin
   Inicializar;
+end;
+
+procedure TfrmHojaDeRutaAE.pedAgregarExecute(Sender: TObject);
+var
+  pant: TfrmSeleccionarPedidos;
+  idx: integer;
+begin
+  pant:= TfrmSeleccionarPedidos.Create(self);
+  try
+    pant.restringirEstados:= IDX_AENTREGAR;
+    if pant.ShowModal = mrOK then
+    begin
+      for idx:= 0 to pant.PedidosSeleccionados.Count -1 do
+       DM_HojaDeRuta.AgregarPedido(pant.PedidosSeleccionados[idx]);
+    end;
+  finally
+    pant.Free;
+  end;
+end;
+
+procedure TfrmHojaDeRutaAE.pedBajarExecute(Sender: TObject);
+begin
+  DM_HojaDeRuta.ModificarPosicionPedido(2);
+end;
+
+procedure TfrmHojaDeRutaAE.pedEditarExecute(Sender: TObject);
+var
+  pant: TfrmHdRPedidos;
+begin
+  pant:= TfrmHdRPedidos.Create(self);
+  try
+    pant.ShowModal;
+  finally
+    pant.Free;
+  end;
+
+end;
+
+procedure TfrmHojaDeRutaAE.pedEliminarExecute(Sender: TObject);
+begin
+  if (MessageDlg ('ATENCION'
+                , 'Borro el pedido de la hoja de ruta?'
+                , mtConfirmation, [mbYes, mbNo],0 ) = mrYes) then
+  begin
+    DM_HojaDeRuta.EliminarPedido;
+  end;
+end;
+
+procedure TfrmHojaDeRutaAE.pedSubirExecute(Sender: TObject);
+begin
+  DM_HojaDeRuta.ModificarPosicionPedido(-2);
 end;
 
 procedure TfrmHojaDeRutaAE.Inicializar;
@@ -127,24 +188,18 @@ begin
    Result:= False;
 end;
 
-procedure TfrmHojaDeRutaAE.btnAgregarPedidoClick(Sender: TObject);
+procedure TfrmHojaDeRutaAE.ModificarRenglon;
 var
-  pant: TfrmSeleccionarPedidos;
-  idx: integer;
+  pant: TfrmHdRPedidos;
 begin
-  pant:= TfrmSeleccionarPedidos.Create(self);
+  pant:= TfrmHdRPedidos.Create(self);
   try
-    pant.restringirEstados:= IDX_AENTREGAR;
-    if pant.ShowModal = mrOK then
-    begin
-      for idx:= 0 to pant.PedidosSeleccionados.Count -1 do
-       DM_HojaDeRuta.AgregarPedido(pant.PedidosSeleccionados[idx]);
-    end;
+    pant.ShowModal;
   finally
     pant.Free;
   end;
-
 end;
+
 
 procedure TfrmHojaDeRutaAE.btnAceptarClick(Sender: TObject);
 begin
@@ -158,21 +213,6 @@ begin
 
 end;
 
-procedure TfrmHojaDeRutaAE.BitBtn4Click(Sender: TObject);
-begin
-  if (MessageDlg ('ATENCION'
-                , 'Borro el pedido de la hoja de ruta?'
-                , mtConfirmation, [mbYes, mbNo],0 ) = mrYes) then
-  begin
-    DM_HojaDeRuta.EliminarPedido;
-  end;
-
-end;
-
-procedure TfrmHojaDeRutaAE.btnCancelarClick(Sender: TObject);
-begin
-  ModalResult:= mrCancel;
-end;
 
 
 end.

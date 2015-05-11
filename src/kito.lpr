@@ -19,7 +19,8 @@ uses
   frm_EditarProductoMovimientoStock, frm_movimientosstockbusqueda,
   dmbusquedamovstock, frm_modificarprecios, dmmodificarprecios,
   frm_devolucionesae, dmdevoluciones, dmlistados, frm_listados,
-  frm_hojaderutaae, dmhojaderuta, frm_seleccionarpedidos, dmseleccionarpedidos;
+  frm_hojaderutaae, dmhojaderuta, frm_seleccionarpedidos, dmseleccionarpedidos,
+  frm_hojaderutapedido;
 
 {$R *.res}
 

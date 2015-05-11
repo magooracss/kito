@@ -190,7 +190,7 @@ begin
     First;
     While Not EOF do
     begin
-      cad:=FieldByName (campoIndice).AsString;
+      cad:= String (FieldByName (campoIndice).AsString);
       elComboBox.Items.AddObject(FieldByName(campoVisible).asString, TObject(cad));
       Next;
     end;
@@ -249,7 +249,7 @@ begin
 
    if (string(elComboBox.Items.Objects[i]) = indice) then
    begin
-      ShowMessage (IntToStr(i) + '  -  '+ string(elComboBox.Items.Objects[i]));
+//      ShowMessage (IntToStr(i) + '  -  '+ string(elComboBox.Items.Objects[i]));
       resultado:= i;
 
    end;

@@ -76,6 +76,7 @@ type
     procedure HojaDeRutaDetallesAfterInsert(DataSet: TDataSet);
   private
     bArtSonBultos: Boolean;
+    bPagoDestino: Boolean;
 
     procedure RenumerarDetalle;
   public
@@ -97,6 +98,7 @@ implementation
 {$R *.lfm}
 uses
   SD_Configuracion
+  ,dmempresa
   ,dmpedidos
   ,dmclientes
   ,variants
@@ -107,11 +109,13 @@ uses
 procedure TDM_HojaDeRuta.DataModuleCreate(Sender: TObject);
 begin
   bArtSonBultos:= StrToBoolDef(LeerDato(SECCION_APP, ART_BULTOS), true);
+  bPagoDestino:= StrToBoolDef(LeerDato(SECCION_APP, PG_DESTINO), false);
 end;
 
 procedure TDM_HojaDeRuta.DataModuleDestroy(Sender: TObject);
 begin
   EscribirDato(SECCION_APP, ART_BULTOS, BoolToStr(bArtSonBultos));
+  EscribirDato(SECCION_APP, PG_DESTINO, BoolToStr(bPagoDestino));
 end;
 
 procedure TDM_HojaDeRuta.HojaDeRutaAfterInsert(DataSet: TDataSet);
@@ -133,7 +137,10 @@ begin
   HojaDeRutaDetallespedido_id.AsString:= GUIDNULO;
   HojaDeRutaDetallesclienteDireccion_id.AsString:= GUIDNULO;
   HojaDeRutaDetallesbultos.AsInteger:= 0;
-  HojaDeRutaDetallesbCobroDestino.AsInteger:= 0;
+  if bPagoDestino then
+    HojaDeRutaDetallesbCobroDestino.AsInteger:= 1
+  else
+   HojaDeRutaDetallesbCobroDestino.AsInteger:= 0;
   HojaDeRutaDetallesmontoCobrar.AsFloat:= 0;
   HojaDeRutaDetallesnota.AsString:= '-';
   HojaDeRutaDetallesbEntregaCompleto.AsInteger:= 0;
@@ -244,9 +251,12 @@ begin
     HojaDeRutaDetalles.Insert;
     HojaDeRutaDetallespedido_id.AsString:= refPedido;
     HojaDeRutaDetalleslxPedidoNro.asInteger:= DM_Pedidos.Pedidosnumero.AsInteger;
+    if bArtSonBultos then
+      HojaDeRutaDetallesbultos.AsInteger:= DM_Pedidos.CantidadArticulosPedido;
     HojaDeRutaDetallesmontoCobrar.AsFloat:= DM_Pedidos.PedidosTotalPedido.AsFloat;
     HojaDeRutaDetalleslxCliente.AsString:= DM_Clientes.RazonSocial;
-
+    HojaDeRutaDetallesclienteDireccion_id.AsString:= DM_Empresa.Domiciliosid.AsString;
+    HojaDeRutaDetalleslxClienteDir.AsString:= DM_Clientes.Domicilio;
     HojaDeRutaDetalles.Post;
     HojaDeRutaDetalles.SortOnFields('nroOrdena');
   end;

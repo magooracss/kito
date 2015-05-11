@@ -199,6 +199,7 @@ type
     procedure NuevoProducto (productoID: GUID_ID; listaPrecioID: integer
                              ; cantidad: Double);
     procedure LevantarDetallePedido;
+    function CantidadArticulosPedido: LongInt;
 
     procedure EliminarProducto;
 
@@ -483,6 +484,33 @@ begin
     PedidosDetalles.LoadFromDataSet(qDetallesPedido, 0, lmAppend);
     close;
   end;
+end;
+
+function TDM_Pedidos.CantidadArticulosPedido: LongInt;
+var
+  marca: TBookmark;
+  conteo, redondeo: LongInt;
+begin
+  with PedidosDetalles do
+  begin
+    marca:= GetBookmark;
+    conteo:= 0;
+    try
+      First;
+      While Not eof do
+      begin
+        redondeo:= round(PedidosDetallescantidad.AsFloat);
+        if (PedidosDetallescantidad.AsFloat > redondeo) then //Todo artículo vale al menos 1
+         Inc (redondeo);
+        conteo:= conteo + redondeo;
+        Next;
+      end;
+      GotoBookmark(marca);
+    finally
+      FreeBookmark(marca);
+    end;
+  end;
+  Result:= conteo;
 end;
 
 procedure TDM_Pedidos.AjustarPreciosProducto;
