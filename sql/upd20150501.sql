@@ -80,3 +80,20 @@ VALUES
 
 CREATE INDEX PedidosEStadosTiposID ON PedidosEstados (TIPOESTADO_ID, pedido_id)
 
+
+CREATE GENERATOR numeraHojaDeRuta;
+
+SET GENERATOR numeraHojaDeRuta TO 0;
+
+
+SET TERM ^ ;
+
+CREATE TRIGGER numerarHojaDeRuta FOR HojasDeRuta
+BEFORE INSERT POSITION 0
+AS 
+BEGIN 
+    If (New.numero = -1) then
+   New.id = GEN_ID(numeraHojaDeRuta,1);
+END^
+
+SET TERM ; ^  
