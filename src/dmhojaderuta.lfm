@@ -892,9 +892,9 @@ object DM_HojaDeRuta: TDM_HojaDeRuta
     Connection = DM_General.cnxBase
     SQL.Strings = (
       'INSERT INTO HojaDeRutaDetalles'
-      '(id, hojaDeRuta_id, nroOdena, pedido_id, clienteDireccion_id, bultos, bCobroDestino, montoCobrar, nota, bEntregaCompleto, montoCobrado, devolucion_id, bNoEntregado, motivoNoEntrega_id, bVisible)'
+      '(id, hojaDeRuta_id, nroOrdena, pedido_id, clienteDireccion_id, bultos, bCobroDestino, montoCobrar, nota, bEntregaCompleto, montoCobrado, devolucion_id, bNoEntregado, motivoNoEntrega_id, bVisible)'
       'VALUES'
-      '( :id, :hojaDeRuta_id, :nroOdena, :pedido_id, :clienteDireccion_id, :bultos, :bCobroDestino, :montoCobrar, :nota, :bEntregaCompleto, :montoCobrado, :devolucion_id, :bNoEntregado, :motivoNoEntrega_id, :bVisible)'
+      '( :id, :hojaDeRuta_id, :nroOrdena, :pedido_id, :clienteDireccion_id, :bultos, :bCobroDestino, :montoCobrar, :nota, :bEntregaCompleto, :montoCobrado, :devolucion_id, :bNoEntregado, :motivoNoEntrega_id, :bVisible)'
       ''
     )
     Params = <    
@@ -910,7 +910,7 @@ object DM_HojaDeRuta: TDM_HojaDeRuta
       end    
       item
         DataType = ftUnknown
-        Name = 'nroOdena'
+        Name = 'nroOrdena'
         ParamType = ptUnknown
       end    
       item
@@ -988,7 +988,7 @@ object DM_HojaDeRuta: TDM_HojaDeRuta
       end    
       item
         DataType = ftUnknown
-        Name = 'nroOdena'
+        Name = 'nroOrdena'
         ParamType = ptUnknown
       end    
       item
@@ -1058,7 +1058,7 @@ object DM_HojaDeRuta: TDM_HojaDeRuta
       'UPDATE HojadeRutaDetalles'
       'SET'
       ' hojaDeRuta_id = :hojaDeRuta_id'
-      ', nroOdena = :nroOrdena'
+      ', nroOrdena = :nroOrdena'
       ', pedido_id = :pedido_id'
       ', clienteDireccion_id = :clienteDireccion_id'
       ', bultos = :bultos'
@@ -1249,5 +1249,10 @@ object DM_HojaDeRuta: TDM_HojaDeRuta
         Name = 'id'
         ParamType = ptUnknown
       end>
+  end
+  object sacarPedidos: TStrHolder
+    Macros = <>
+    left = 272
+    top = 32
   end
 end

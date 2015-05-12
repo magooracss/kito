@@ -209,6 +209,8 @@ type
     procedure CambiarEstado (estadoID: integer; fecha: TDateTime; obs: String);
     procedure BorrarEstado (idEstado: GUID_ID);
 
+    procedure CambiarEstadoPedido(estadoID: integer; pedidoID: GUID_ID);
+
     procedure ImprimirFrmPedido (refPedido: GUID_ID);
 
   end;
@@ -282,9 +284,15 @@ end;
 
 procedure TDM_Pedidos.Grabar;
 begin
-  DM_General.GrabarDatos(SELPedidos, INSPedidos, UPDPedidos, Pedidos, 'id');
-  DM_General.GrabarDatos(SELPedidosDetalles, INSPedidosDetalles, UPDPedidosDetalles, PedidosDetalles, 'id');
-  GrabarEstados;
+  DM_General.cnxBase.StartTransaction;
+  try
+    DM_General.GrabarDatos(SELPedidos, INSPedidos, UPDPedidos, Pedidos, 'id');
+    DM_General.GrabarDatos(SELPedidosDetalles, INSPedidosDetalles, UPDPedidosDetalles, PedidosDetalles, 'id');
+    GrabarEstados;
+    DM_General.cnxBase.Commit;
+  Except
+    DM_General.cnxBase.Rollback;
+  end;
 end;
 
 procedure TDM_Pedidos.Nuevo;
@@ -375,6 +383,16 @@ begin
     Post;
   end;
 end;
+
+
+procedure TDM_Pedidos.CambiarEstadoPedido(estadoID: integer; pedidoID: GUID_ID);
+begin
+  LevantarPedido(pedidoID);
+  CambiarEstado(estadoID,Now, '-');
+  Grabar;
+end;
+
+
 
 
 procedure TDM_Pedidos.LevantarPedidoHistorialEstados;

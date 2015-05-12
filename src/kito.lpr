@@ -7,8 +7,8 @@ uses
   cthreads,
   {$ENDIF}{$ENDIF}
   Interfaces, // this includes the LCL widgetset
-  Forms, rxnew, zcomponent, frm_main, dmgeneral, SD_Configuracion, versioninfo,
-  frm_productoae, dmproductos, dmediciontugs, frm_ediciontugs,
+  Forms, rxnew, rx, zcomponent, frm_main, dmgeneral, SD_Configuracion,
+  versioninfo, frm_productoae, dmproductos, dmediciontugs, frm_ediciontugs,
   frm_busquedaProductos, frm_precioae, dmprecios, fra_empresa, dmempresa,
   frm_clientesae, frm_contactoae, dmclientes, frm_domicilioae,
   frm_localidadesae, frm_buscarlocalidad, frm_busquedaempresas,

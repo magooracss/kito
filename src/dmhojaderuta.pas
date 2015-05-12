@@ -5,7 +5,7 @@ unit dmhojaderuta;
 interface
 
 uses
-  Classes, SysUtils, db, FileUtil, rxmemds, ZDataset
+  Classes, SysUtils, db, FileUtil, rxmemds, StrHolder, ZDataset
   ,dmgeneral
   ;
 
@@ -67,6 +67,7 @@ type
     SELHdRID: TStringField;
     SELHdRNUMERO: TLongintField;
     SELHdRTRANSPORTISTA_ID: TStringField;
+    sacarPedidos: TStrHolder;
     UPDHdR: TZQuery;
     UPDHdRDet: TZQuery;
     DELHdRDet: TZQuery;
@@ -79,6 +80,8 @@ type
     bPagoDestino: Boolean;
 
     procedure RenumerarDetalle;
+    procedure CambiarEstadosPedidos;
+
   public
     procedure Nuevo;
     procedure Editar (refHojaDeRuta: GUID_ID);
@@ -168,8 +171,16 @@ end;
 
 procedure TDM_HojaDeRuta.Grabar;
 begin
-  DM_General.GrabarDatos(SELHdR, INSHdR, UPDHdR, HojaDeRuta, 'id');
-  DM_General.GrabarDatos(SELHdRDet, INSHdRDet, UPDHdRDet, HojaDeRutaDetalles, 'id');
+  DM_General.cnxBase.StartTransaction;
+  try
+    DM_General.GrabarDatos(SELHdR, INSHdR, UPDHdR, HojaDeRuta, 'id');
+    DM_General.GrabarDatos(SELHdRDet, INSHdRDet, UPDHdRDet, HojaDeRutaDetalles, 'id');
+    CambiarEstadosPedidos;
+    DM_General.cnxBase.Commit;
+  except
+    DM_General.cnxBase.Rollback;
+  end;
+
 end;
 
 procedure TDM_HojaDeRuta.RenumerarDetalle;
@@ -196,6 +207,33 @@ begin
       FreeBookmark(marca);
     end;
   end;
+end;
+
+procedure TDM_HojaDeRuta.CambiarEstadosPedidos;
+var
+  idx: integer;
+begin
+  With HojaDeRutaDetalles do
+  begin
+    DisableControls;
+    First;
+    While Not EOF do
+    begin
+      DM_Pedidos.CambiarEstadoPedido(EST_TRANSP, HojaDeRutaDetallespedido_id.AsString);
+      Next;
+    end;
+    EnableControls;
+  end;
+
+  for idx:= 0 to sacarPedidos.Strings.Count -1 do
+  begin
+    //Valido que se esté trabajando sobre un estado transportista antes de volverlo al estado de ARMADO
+    DM_Pedidos.LevantarPedido(sacarPedidos.Strings[idx]);
+    DM_Pedidos.LevantarEstadoActual;
+    if DM_Pedidos.PedidosEstadostipoEstado_id.AsInteger = EST_TRANSP then
+      DM_Pedidos.CambiarEstadoPedido(EST_ARMADO, sacarPedidos.Strings[idx]);
+  end;
+
 end;
 
 
@@ -266,6 +304,7 @@ procedure TDM_HojaDeRuta.EliminarPedido;
 begin
   if ((HojaDeRutaDetalles.Active) and (HojaDeRutaDetalles.RecordCount > 0)) then
   begin
+    sacarPedidos.Strings.Add(HojaDeRutaDetallesid.AsString);
     DELHdRDet.ParamByName('id').AsString:= HojaDeRutaDetallesid.AsString;
     DELHdRDet.ExecSQL;
     HojaDeRutaDetalles.Delete;
