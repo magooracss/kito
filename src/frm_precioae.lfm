@@ -14,7 +14,7 @@ object frmPrecioAE: TfrmPrecioAE
   OnCreate = FormCreate
   OnShow = FormShow
   Position = poOwnerFormCenter
-  LCLVersion = '1.2.6.0'
+  LCLVersion = '1.4.0.4'
   object DBEdit1: TDBEdit
     Left = 344
     Height = 24
@@ -313,7 +313,7 @@ object frmPrecioAE: TfrmPrecioAE
     Top = 96
     Width = 568
     Caption = 'Oferta'
-    ClientHeight = 54
+    ClientHeight = 51
     ClientWidth = 564
     TabOrder = 5
     object DBCheckBox1: TDBCheckBox
@@ -329,34 +329,34 @@ object frmPrecioAE: TfrmPrecioAE
       ValueChecked = '1'
       ValueUnchecked = '0'
     end
-    object DBDateEdit1: TDBDateEdit
+    object DBDateEdit1: TRxDBDateEdit
       Left = 216
       Height = 24
       Top = 24
       Width = 104
       ButtonWidth = 23
-      CharCase = ecNormal
+      CancelCaption = 'Cancelar'
       DialogTitle = 'Seleccionar Fecha'
-      Enabled = False
       MaxLength = 10
       NumGlyphs = 2
+      PasswordChar = #0
       PopupColor = clWindow
       TabOrder = 1
       Text = '  /  /    '
       DataField = 'OfertaIni'
       DataSource = ds_Precios
     end
-    object DBDateEdit2: TDBDateEdit
+    object DBDateEdit2: TRxDBDateEdit
       Left = 408
       Height = 24
       Top = 24
       Width = 104
       ButtonWidth = 23
-      CharCase = ecNormal
+      CancelCaption = 'Cancelar'
       DialogTitle = 'Seleccionar Fecha'
-      Enabled = False
       MaxLength = 10
       NumGlyphs = 2
+      PasswordChar = #0
       PopupColor = clWindow
       TabOrder = 2
       Text = '  /  /    '

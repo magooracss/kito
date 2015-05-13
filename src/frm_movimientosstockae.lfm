@@ -1,7 +1,7 @@
 object frmMovimientosStockAE: TfrmMovimientosStockAE
-  Left = 305
+  Left = 554
   Height = 559
-  Top = 112
+  Top = 126
   Width = 791
   Caption = 'Movimientos de Stock'
   ClientHeight = 559
@@ -14,7 +14,7 @@ object frmMovimientosStockAE: TfrmMovimientosStockAE
   OnCreate = FormCreate
   OnShow = FormShow
   Position = poOwnerFormCenter
-  LCLVersion = '1.2.6.0'
+  LCLVersion = '1.4.0.4'
   object Panel1: TPanel
     Left = 0
     Height = 50
@@ -199,24 +199,6 @@ object frmMovimientosStockAE: TfrmMovimientosStockAE
       ParentColor = False
       ParentFont = False
     end
-    object DBDateEdit1: TDBDateEdit
-      Left = 8
-      Height = 24
-      Top = 54
-      Width = 96
-      ButtonWidth = 23
-      CharCase = ecNormal
-      DialogTitle = 'Seleccionar Fecha'
-      Enabled = False
-      MaxLength = 10
-      NumGlyphs = 2
-      PopupColor = clWindow
-      TabOrder = 0
-      Text = '  /  /    '
-      OnEnter = DBDateEdit1Enter
-      DataField = 'fecha'
-      DataSource = ds_MovStock
-    end
     object Label1: TLabel
       Left = 8
       Height = 16
@@ -232,9 +214,9 @@ object frmMovimientosStockAE: TfrmMovimientosStockAE
       Width = 621
       Anchors = [akTop, akLeft, akRight]
       Caption = 'Proveedor'
-      ClientHeight = 38
+      ClientHeight = 35
       ClientWidth = 617
-      TabOrder = 1
+      TabOrder = 0
       object btnBuscarProveedor: TBitBtn
         Left = 8
         Height = 30
@@ -342,7 +324,7 @@ object frmMovimientosStockAE: TfrmMovimientosStockAE
       DataSource = ds_MovStock
       CharCase = ecNormal
       MaxLength = 0
-      TabOrder = 2
+      TabOrder = 1
     end
     object DBMemo1: TDBMemo
       Left = 448
@@ -352,7 +334,7 @@ object frmMovimientosStockAE: TfrmMovimientosStockAE
       Anchors = [akTop, akLeft, akRight]
       DataField = 'notas'
       DataSource = ds_MovStock
-      TabOrder = 3
+      TabOrder = 2
     end
     object Label2: TLabel
       Left = 8
@@ -384,9 +366,9 @@ object frmMovimientosStockAE: TfrmMovimientosStockAE
       Top = 80
       Width = 113
       Caption = 'Totales'
-      ClientHeight = 87
+      ClientHeight = 84
       ClientWidth = 109
-      TabOrder = 4
+      TabOrder = 3
       object Label5: TLabel
         Left = 8
         Height = 16
@@ -438,8 +420,24 @@ object frmMovimientosStockAE: TfrmMovimientosStockAE
       Top = 107
       Width = 288
       ItemHeight = 16
-      TabOrder = 5
+      TabOrder = 4
       Text = 'cbListaPrecio'
+    end
+    object RxDBDateEdit1: TRxDBDateEdit
+      Left = 8
+      Height = 24
+      Top = 54
+      Width = 112
+      ButtonWidth = 23
+      DialogTitle = 'Seleccionar Fecha'
+      MaxLength = 10
+      NumGlyphs = 2
+      PasswordChar = #0
+      PopupColor = clWindow
+      TabOrder = 5
+      Text = '  /  /    '
+      DataField = 'fecha'
+      DataSource = ds_MovStock
     end
   end
   object Panel3: TPanel
@@ -458,7 +456,7 @@ object frmMovimientosStockAE: TfrmMovimientosStockAE
       Width = 677
       Align = alLeft
       Caption = 'Producto'
-      ClientHeight = 50
+      ClientHeight = 47
       ClientWidth = 673
       TabOrder = 0
       object edBusNombre: TEdit
@@ -671,7 +669,7 @@ object frmMovimientosStockAE: TfrmMovimientosStockAE
       ChildSizing.ShrinkVertical = crsScaleChilds
       ChildSizing.Layout = cclLeftToRightThenTopToBottom
       ChildSizing.ControlsPerLine = 1
-      ClientHeight = 50
+      ClientHeight = 47
       ClientWidth = 106
       ItemIndex = 0
       Items.Strings = (

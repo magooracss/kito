@@ -1,7 +1,7 @@
 object frmPedidoAE: TfrmPedidoAE
-  Left = 176
+  Left = 207
   Height = 654
-  Top = 25
+  Top = 125
   Width = 1036
   ActiveControl = btnBusquedaCliente
   Caption = 'Pedido'
@@ -14,7 +14,7 @@ object frmPedidoAE: TfrmPedidoAE
   Font.Quality = fqDraft
   OnShow = FormShow
   Position = poOwnerFormCenter
-  LCLVersion = '1.2.6.0'
+  LCLVersion = '1.4.0.4'
   object Panel1: TPanel
     Left = 0
     Height = 50
@@ -223,7 +223,7 @@ object frmPedidoAE: TfrmPedidoAE
       Top = 32
       Width = 688
       Caption = 'Cliente'
-      ClientHeight = 56
+      ClientHeight = 53
       ClientWidth = 684
       ParentColor = False
       TabOrder = 1
@@ -337,7 +337,7 @@ object frmPedidoAE: TfrmPedidoAE
       Top = 112
       Width = 488
       Caption = 'Vendedor'
-      ClientHeight = 56
+      ClientHeight = 53
       ClientWidth = 484
       TabOrder = 2
       object btnBusquedaVendedor: TBitBtn
@@ -437,43 +437,6 @@ object frmPedidoAE: TfrmPedidoAE
         TabOrder = 1
       end
     end
-    object DBDateEdit1: TDBDateEdit
-      Left = 584
-      Height = 24
-      Top = 118
-      Width = 80
-      ButtonWidth = 23
-      CharCase = ecNormal
-      DialogTitle = 'Seleccionar Fecha'
-      Enabled = False
-      MaxLength = 10
-      NumGlyphs = 2
-      PopupColor = clWindow
-      TabOrder = 3
-      Text = '  /  /    '
-      YearDigits = dyFour
-      OnEnter = DBDateEdit1Enter
-      DataField = 'fToma'
-      DataSource = DS_Pedidos
-    end
-    object DBDateEdit2: TDBDateEdit
-      Left = 584
-      Height = 24
-      Top = 152
-      Width = 80
-      ButtonWidth = 23
-      CharCase = ecNormal
-      DialogTitle = 'Seleccionar Fecha'
-      Enabled = False
-      MaxLength = 10
-      NumGlyphs = 2
-      PopupColor = clWindow
-      TabOrder = 4
-      Text = '  /  /    '
-      OnEnter = DBDateEdit1Enter
-      DataField = 'fAEntregar'
-      DataSource = DS_Pedidos
-    end
     object Label2: TLabel
       Left = 534
       Height = 16
@@ -497,9 +460,9 @@ object frmPedidoAE: TfrmPedidoAE
       Width = 231
       Anchors = [akTop, akLeft, akRight]
       Caption = 'Montos'
-      ClientHeight = 71
+      ClientHeight = 68
       ClientWidth = 227
-      TabOrder = 5
+      TabOrder = 3
       object RxDBCurrEdit1: TRxDBCurrEdit
         Left = 88
         Height = 24
@@ -553,9 +516,9 @@ object frmPedidoAE: TfrmPedidoAE
       Top = 193
       Width = 488
       Caption = 'Transportista'
-      ClientHeight = 69
+      ClientHeight = 66
       ClientWidth = 484
-      TabOrder = 6
+      TabOrder = 4
       object btnBusquedaTransportista: TBitBtn
         Left = 8
         Height = 38
@@ -659,9 +622,9 @@ object frmPedidoAE: TfrmPedidoAE
       Top = 192
       Width = 289
       Caption = 'Descuentos/Recargos'
-      ClientHeight = 71
+      ClientHeight = 68
       ClientWidth = 285
-      TabOrder = 7
+      TabOrder = 5
       object RxDBCurrEdit3: TRxDBCurrEdit
         Left = 64
         Height = 24
@@ -693,7 +656,7 @@ object frmPedidoAE: TfrmPedidoAE
       end
       object DBRadioGroup1: TDBRadioGroup
         Left = 176
-        Height = 71
+        Height = 68
         Top = 0
         Width = 109
         Align = alRight
@@ -725,6 +688,38 @@ object frmPedidoAE: TfrmPedidoAE
         Caption = 'Porcentaje'
         ParentColor = False
       end
+    end
+    object RxDBDateEdit1: TRxDBDateEdit
+      Left = 584
+      Height = 24
+      Top = 117
+      Width = 109
+      ButtonWidth = 23
+      DialogTitle = 'Seleccionar Fecha'
+      MaxLength = 10
+      NumGlyphs = 2
+      PasswordChar = #0
+      PopupColor = clWindow
+      TabOrder = 6
+      Text = '  /  /    '
+      DataField = 'fToma'
+      DataSource = DS_Pedidos
+    end
+    object RxDBDateEdit2: TRxDBDateEdit
+      Left = 584
+      Height = 24
+      Top = 151
+      Width = 109
+      ButtonWidth = 23
+      DialogTitle = 'Seleccionar Fecha'
+      MaxLength = 10
+      NumGlyphs = 2
+      PasswordChar = #0
+      PopupColor = clWindow
+      TabOrder = 7
+      Text = '  /  /    '
+      DataField = 'fAEntregar'
+      DataSource = DS_Pedidos
     end
   end
   object Panel3: TPanel
@@ -778,7 +773,7 @@ object frmPedidoAE: TfrmPedidoAE
       Width = 253
       Align = alRight
       Caption = 'Estado'
-      ClientHeight = 48
+      ClientHeight = 45
       ClientWidth = 249
       TabOrder = 1
       object btnDetallesEstados: TBitBtn
@@ -868,7 +863,7 @@ object frmPedidoAE: TfrmPedidoAE
       Width = 590
       Align = alLeft
       Caption = 'Producto'
-      ClientHeight = 48
+      ClientHeight = 45
       ClientWidth = 586
       TabOrder = 2
       object cbListaPrecio: TComboBox

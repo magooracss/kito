@@ -7,7 +7,7 @@ interface
 uses
   Classes, SysUtils, db, FileUtil, dbdateedit, dbcurredit, RxDBSpinEdit, rxspin,
   Forms, Controls, Graphics, Dialogs, ExtCtrls, Buttons, DbCtrls, StdCtrls,
-  DBGrids, Menus, dmgeneral
+  DBGrids, Menus, DBExtCtrls, dmgeneral
   ;
 
 type
@@ -27,8 +27,6 @@ type
     DBText2: TDBText;
     DBText3: TDBText;
     ds_PedidosDetalles: TDataSource;
-    DBDateEdit1: TDBDateEdit;
-    DBDateEdit2: TDBDateEdit;
     DBMemo1: TDBMemo;
     DBRadioGroup1: TDBRadioGroup;
     DBText1: TDBText;
@@ -72,6 +70,8 @@ type
     RxDBCurrEdit2: TRxDBCurrEdit;
     RxDBCurrEdit3: TRxDBCurrEdit;
     RxDBCurrEdit4: TRxDBCurrEdit;
+    RxDBDateEdit1: TRxDBDateEdit;
+    RxDBDateEdit2: TRxDBDateEdit;
     RxDBSpinEdit1: TRxDBSpinEdit;
     procedure btnBuscarProductoClick(Sender: TObject);
     procedure btnBusquedaClienteClick(Sender: TObject);

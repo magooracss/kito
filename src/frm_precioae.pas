@@ -18,8 +18,8 @@ type
     btnTugUnidad: TSpeedButton;
     cbListaPrecios: TComboBox;
     DBCheckBox1: TDBCheckBox;
-    DBDateEdit1: TDBDateEdit;
-    DBDateEdit2: TDBDateEdit;
+    DBDateEdit1: TRxDBDateEdit;
+    DBDateEdit2: TRxDBDateEdit;
     ds_productos: TDataSource;
     ds_Precios: TDataSource;
     DBEdit1: TDBEdit;

@@ -21,7 +21,6 @@ type
     DBText5: TDBText;
     dsDevolucionDetalles: TDataSource;
     dsPedidos: TDataSource;
-    DBDateEdit1: TDBDateEdit;
     DBMemo1: TDBMemo;
     DBText1: TDBText;
     DBText2: TDBText;
@@ -37,6 +36,7 @@ type
     Label5: TLabel;
     Panel1: TPanel;
     Panel2: TPanel;
+    RxDBDateEdit1: TRxDBDateEdit;
     procedure btnBuscarPedidoClick(Sender: TObject);
     procedure btnCancelarClick(Sender: TObject);
     procedure btnGrabarClick(Sender: TObject);

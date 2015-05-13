@@ -23,7 +23,6 @@ type
     btnAceptar: TBitBtn;
     btnCancelar: TBitBtn;
     btnBuscarTransportista: TBitBtn;
-    DBDateEdit1: TDBDateEdit;
     DBText1: TDBText;
     ds_HRdetalles: TDataSource;
     ds_HR: TDataSource;
@@ -39,6 +38,7 @@ type
     Panel2: TPanel;
     Panel3: TPanel;
     PopupMenu1: TPopupMenu;
+    RxDBDateEdit1: TRxDBDateEdit;
     SpeedButton1: TSpeedButton;
     SpeedButton2: TSpeedButton;
     SpeedButton3: TSpeedButton;

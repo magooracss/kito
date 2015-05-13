@@ -24,7 +24,6 @@ type
     edPrecioTotal: TCurrencyEdit;
     edTotalCargado: TCurrencyEdit;
     edTotalListaPrecio: TCurrencyEdit;
-    DBDateEdit1: TDBDateEdit;
     DBEdit1: TDBEdit;
     DBGrid1: TDBGrid;
     DBMemo1: TDBMemo;
@@ -57,6 +56,7 @@ type
     Panel3: TPanel;
     pMenuProductos: TPopupMenu;
     rgMovimiento: TRadioGroup;
+    RxDBDateEdit1: TRxDBDateEdit;
     procedure btnBuscarProveedorClick(Sender: TObject);
     procedure btnCancelarClick(Sender: TObject);
     procedure btnGrabarClick(Sender: TObject);

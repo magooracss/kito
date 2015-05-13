@@ -21,7 +21,7 @@
       <MajorVersionNr Value="2015"/>
       <MinorVersionNr Value="5"/>
       <RevisionNr Value="1"/>
-      <BuildNr Value="59"/>
+      <BuildNr Value="62"/>
       <Language Value="080A"/>
       <StringTable Comments="Carlos Enrique Rodriguez / Magoo" CompanyName="RACSS Programación" LegalCopyright="Carlos Enrique Rodriguez - RACSS Programacion" ProductName="KITO" ProductVersion=""/>
     </VersionInfo>
@@ -63,7 +63,6 @@
       <Unit0>
         <Filename Value="kito.lpr"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="kito"/>
       </Unit0>
       <Unit1>
         <Filename Value="frm_main.pas"/>
@@ -79,17 +78,14 @@
         <ComponentName Value="DM_General"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
-        <UnitName Value="dmgeneral"/>
       </Unit2>
       <Unit3>
         <Filename Value="SD_Configuracion.pas"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="SD_Configuracion"/>
       </Unit3>
       <Unit4>
         <Filename Value="versioninfo.pas"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="versioninfo"/>
       </Unit4>
       <Unit5>
         <Filename Value="frm_productoae.pas"/>
@@ -97,7 +93,6 @@
         <ComponentName Value="frmProductoAE"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="frm_productoae"/>
       </Unit5>
       <Unit6>
         <Filename Value="dmproductos.pas"/>
@@ -105,7 +100,6 @@
         <ComponentName Value="DM_Productos"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
-        <UnitName Value="dmproductos"/>
       </Unit6>
       <Unit7>
         <Filename Value="dmediciontugs.pas"/>
@@ -113,7 +107,6 @@
         <ComponentName Value="DM_EdicionTUGs"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
-        <UnitName Value="dmediciontugs"/>
       </Unit7>
       <Unit8>
         <Filename Value="frm_ediciontugs.pas"/>
@@ -121,7 +114,6 @@
         <ComponentName Value="frmEdicionTugs"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="frm_ediciontugs"/>
       </Unit8>
       <Unit9>
         <Filename Value="frm_busquedaproductos.pas"/>
@@ -129,7 +121,6 @@
         <ComponentName Value="frmBusquedaProducto"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="frm_busquedaProductos"/>
       </Unit9>
       <Unit10>
         <Filename Value="frm_precioae.pas"/>
@@ -137,7 +128,6 @@
         <ComponentName Value="frmPrecioAE"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="frm_precioae"/>
       </Unit10>
       <Unit11>
         <Filename Value="dmprecios.pas"/>
@@ -145,7 +135,6 @@
         <ComponentName Value="DM_Precios"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
-        <UnitName Value="dmprecios"/>
       </Unit11>
       <Unit12>
         <Filename Value="fra_empresa.pas"/>
@@ -153,7 +142,6 @@
         <ComponentName Value="fraEmpresa"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Frame"/>
-        <UnitName Value="fra_empresa"/>
       </Unit12>
       <Unit13>
         <Filename Value="dmempresa.pas"/>
@@ -161,7 +149,6 @@
         <ComponentName Value="DM_Empresa"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
-        <UnitName Value="dmempresa"/>
       </Unit13>
       <Unit14>
         <Filename Value="frm_clientesae.pas"/>
@@ -169,7 +156,6 @@
         <ComponentName Value="frmClientesAE"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="frm_clientesae"/>
       </Unit14>
       <Unit15>
         <Filename Value="frm_contactoae.pas"/>
@@ -177,7 +163,6 @@
         <ComponentName Value="frmContactoAE"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="frm_contactoae"/>
       </Unit15>
       <Unit16>
         <Filename Value="dmclientes.pas"/>
@@ -185,7 +170,6 @@
         <ComponentName Value="DM_Clientes"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
-        <UnitName Value="dmclientes"/>
       </Unit16>
       <Unit17>
         <Filename Value="frm_domicilioae.pas"/>
@@ -193,7 +177,6 @@
         <ComponentName Value="frmDomicilioAE"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="frm_domicilioae"/>
       </Unit17>
       <Unit18>
         <Filename Value="frm_localidadesae.pas"/>
@@ -201,14 +184,12 @@
         <ComponentName Value="frmLocalidadesAE"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="frm_localidadesae"/>
       </Unit18>
       <Unit19>
         <Filename Value="frm_buscarlocalidad.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="frmBuscarLocalidad"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="frm_buscarlocalidad"/>
       </Unit19>
       <Unit20>
         <Filename Value="frm_busquedaempresas.pas"/>
@@ -216,7 +197,6 @@
         <ComponentName Value="frmBusquedaEmpresas"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="frm_busquedaempresas"/>
       </Unit20>
       <Unit21>
         <Filename Value="dmbusquedaempresas.pas"/>
@@ -224,7 +204,6 @@
         <ComponentName Value="DM_BusquedaEmpresas"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
-        <UnitName Value="dmbusquedaempresas"/>
       </Unit21>
       <Unit22>
         <Filename Value="frm_proveedoresae.pas"/>
@@ -232,7 +211,6 @@
         <ComponentName Value="frmProveedoresAE"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="frm_proveedoresae"/>
       </Unit22>
       <Unit23>
         <Filename Value="dmproveedores.pas"/>
@@ -240,7 +218,6 @@
         <ComponentName Value="DM_Proveedores"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
-        <UnitName Value="dmproveedores"/>
       </Unit23>
       <Unit24>
         <Filename Value="frm_transportistasae.pas"/>
@@ -248,7 +225,6 @@
         <ComponentName Value="frmTransportistasAE"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="frm_transportistasae"/>
       </Unit24>
       <Unit25>
         <Filename Value="dmtransportistas.pas"/>
@@ -256,7 +232,6 @@
         <ComponentName Value="DM_Transportistas"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
-        <UnitName Value="dmtransportistas"/>
       </Unit25>
       <Unit26>
         <Filename Value="frm_vendedoresae.pas"/>
@@ -264,7 +239,6 @@
         <ComponentName Value="frmVendedoresAE"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="frm_vendedoresae"/>
       </Unit26>
       <Unit27>
         <Filename Value="dmvendedores.pas"/>
@@ -272,7 +246,6 @@
         <ComponentName Value="DM_Vendedores"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
-        <UnitName Value="dmvendedores"/>
       </Unit27>
       <Unit28>
         <Filename Value="frm_pedidosae.pas"/>
@@ -280,7 +253,6 @@
         <ComponentName Value="frmPedidoAE"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="frm_pedidosae"/>
       </Unit28>
       <Unit29>
         <Filename Value="dmpedidos.pas"/>
@@ -288,7 +260,6 @@
         <ComponentName Value="DM_Pedidos"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
-        <UnitName Value="dmpedidos"/>
       </Unit29>
       <Unit30>
         <Filename Value="frm_pedidoeditarproducto.pas"/>
@@ -296,14 +267,12 @@
         <ComponentName Value="frmPedidoEditarProducto"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="frm_pedidoeditarproducto"/>
       </Unit30>
       <Unit31>
         <Filename Value="frm_pedidosestados.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="frmPedidosEstados"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="frm_pedidosEstados"/>
       </Unit31>
       <Unit32>
         <Filename Value="frm_pedidoestadosae.pas"/>
@@ -311,7 +280,6 @@
         <ComponentName Value="frmPedEstadosAE"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="frm_pedidoestadosae"/>
       </Unit32>
       <Unit33>
         <Filename Value="frm_pedidosbusqueda.pas"/>
@@ -319,7 +287,6 @@
         <ComponentName Value="frmPedidosBusqueda"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="frm_pedidosbusqueda"/>
       </Unit33>
       <Unit34>
         <Filename Value="dmbusquedapedidos.pas"/>
@@ -327,7 +294,6 @@
         <ComponentName Value="DM_BusquedaPedidos"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
-        <UnitName Value="dmbusquedapedidos"/>
       </Unit34>
       <Unit35>
         <Filename Value="dmstock.pas"/>
@@ -335,7 +301,6 @@
         <ComponentName Value="DM_Stock"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
-        <UnitName Value="dmstock"/>
       </Unit35>
       <Unit36>
         <Filename Value="frm_movimientosstockae.pas"/>
@@ -343,7 +308,6 @@
         <ComponentName Value="frmMovimientosStockAE"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="frm_movimientosstockae"/>
       </Unit36>
       <Unit37>
         <Filename Value="frm_editarproductomovimientostock.pas"/>
@@ -351,7 +315,6 @@
         <ComponentName Value="frmEditarProductoMovimientoStock"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="frm_EditarProductoMovimientoStock"/>
       </Unit37>
       <Unit38>
         <Filename Value="frm_movimientosstockbusqueda.pas"/>
@@ -359,7 +322,6 @@
         <ComponentName Value="frmBusquedaMovimientosStock"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="frm_movimientosstockbusqueda"/>
       </Unit38>
       <Unit39>
         <Filename Value="dmbusquedamovstock.pas"/>
@@ -367,7 +329,6 @@
         <ComponentName Value="DM_BusquedaMovStock"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
-        <UnitName Value="dmbusquedamovstock"/>
       </Unit39>
       <Unit40>
         <Filename Value="frm_modificarprecios.pas"/>
@@ -375,7 +336,6 @@
         <ComponentName Value="frmModificarPrecios"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="frm_modificarprecios"/>
       </Unit40>
       <Unit41>
         <Filename Value="dmmodificarprecios.pas"/>
@@ -383,7 +343,6 @@
         <ComponentName Value="DM_ModificarPrecios"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
-        <UnitName Value="dmmodificarprecios"/>
       </Unit41>
       <Unit42>
         <Filename Value="frm_devolucionesae.pas"/>
@@ -391,7 +350,6 @@
         <ComponentName Value="frmDevolucionesae"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="frm_devolucionesae"/>
       </Unit42>
       <Unit43>
         <Filename Value="dmdevoluciones.pas"/>
@@ -399,7 +357,6 @@
         <ComponentName Value="DM_Devoluciones"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
-        <UnitName Value="dmdevoluciones"/>
       </Unit43>
       <Unit44>
         <Filename Value="dmlistados.pas"/>
@@ -423,7 +380,6 @@
         <ComponentName Value="frmHojaDeRutaAE"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="frm_hojaderutaae"/>
       </Unit46>
       <Unit47>
         <Filename Value="dmhojaderuta.pas"/>
@@ -431,7 +387,6 @@
         <ComponentName Value="DM_HojaDeRuta"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
-        <UnitName Value="dmhojaderuta"/>
       </Unit47>
       <Unit48>
         <Filename Value="frm_seleccionarpedidos.pas"/>
@@ -439,7 +394,6 @@
         <ComponentName Value="frmSeleccionarPedidos"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="frm_seleccionarpedidos"/>
       </Unit48>
       <Unit49>
         <Filename Value="dmseleccionarpedidos.pas"/>
@@ -447,7 +401,6 @@
         <ComponentName Value="DM_SeleccionarPedidos"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
-        <UnitName Value="dmseleccionarpedidos"/>
       </Unit49>
       <Unit50>
         <Filename Value="frm_hojaderutapedido.pas"/>
@@ -455,7 +408,6 @@
         <ComponentName Value="frmHdRPedidos"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="frm_hojaderutapedido"/>
       </Unit50>
     </Units>
   </ProjectOptions>
@@ -476,12 +428,6 @@
         </Win32>
       </Options>
     </Linking>
-    <Other>
-      <CompilerMessages>
-        <MsgFileName Value=""/>
-      </CompilerMessages>
-      <CompilerPath Value="$(CompPath)"/>
-    </Other>
   </CompilerOptions>
   <Debugging>
     <Exceptions Count="3">
