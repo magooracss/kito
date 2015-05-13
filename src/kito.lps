@@ -4,7 +4,7 @@
     <PathDelim Value="\"/>
     <Version Value="9"/>
     <BuildModes Active="Default"/>
-    <Units Count="86">
+    <Units Count="87">
       <Unit0>
         <Filename Value="kito.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -19,14 +19,13 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="frm_main"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="249"/>
-        <CursorPos X="19" Y="259"/>
+        <CursorPos X="52" Y="259"/>
         <UsageCount Value="200"/>
         <Bookmarks Count="1">
           <Item0 Y="752" ID="1"/>
         </Bookmarks>
-        <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
       </Unit1>
       <Unit2>
         <Filename Value="dmgeneral.pas"/>
@@ -466,12 +465,10 @@
         <ComponentName Value="DM_Listados"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
-        <UnitName Value="dmlistados"/>
-        <EditorIndex Value="4"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="301"/>
         <CursorPos Y="303"/>
         <UsageCount Value="92"/>
-        <Loaded Value="True"/>
       </Unit44>
       <Unit45>
         <Filename Value="frm_listados.pas"/>
@@ -480,11 +477,12 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="frm_listados"/>
-        <EditorIndex Value="3"/>
-        <TopLine Value="131"/>
-        <CursorPos X="52" Y="134"/>
+        <IsVisibleTab Value="True"/>
+        <TopLine Value="89"/>
+        <CursorPos Y="99"/>
         <UsageCount Value="91"/>
         <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
       </Unit45>
       <Unit46>
         <Filename Value="frm_hojaderutaae.pas"/>
@@ -758,48 +756,83 @@
       <Unit85>
         <Filename Value="frm_listados.lfm"/>
         <HasResources Value="True"/>
-        <IsVisibleTab Value="True"/>
-        <EditorIndex Value="2"/>
-        <ExtraEditorCount Value="1"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="52"/>
+        <CursorPos X="31" Y="62"/>
+        <ExtraEditorCount Value="2"/>
         <ExtraEditor1>
-          <EditorIndex Value="1"/>
+          <EditorIndex Value="-1"/>
         </ExtraEditor1>
+        <ExtraEditor2>
+          <EditorIndex Value="-1"/>
+          <TopLine Value="52"/>
+          <CursorPos X="19" Y="66"/>
+        </ExtraEditor2>
         <UsageCount Value="10"/>
-        <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="LFM"/>
       </Unit85>
+      <Unit86>
+        <Filename Value="frm_main.lfm"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="301"/>
+        <CursorPos Y="285"/>
+        <UsageCount Value="10"/>
+        <DefaultSyntaxHighlighter Value="LFM"/>
+      </Unit86>
     </Units>
-    <JumpHistory Count="3" HistoryIndex="2">
+    <JumpHistory Count="13" HistoryIndex="12">
       <Position1>
-        <Filename Value="frm_main.pas"/>
-        <Caret Line="550" TopLine="523"/>
+        <Filename Value="frm_listados.pas"/>
+        <Caret Line="139" Column="35" TopLine="116"/>
       </Position1>
       <Position2>
-        <Filename Value="frm_main.pas"/>
-        <Caret Line="259" Column="19" TopLine="255"/>
+        <Filename Value="frm_listados.pas"/>
+        <Caret Line="138" Column="35" TopLine="115"/>
       </Position2>
       <Position3>
-        <Filename Value="dmlistados.pas"/>
-        <Caret Line="348" Column="25" TopLine="337"/>
+        <Filename Value="frm_listados.pas"/>
+        <Caret Line="137" Column="35" TopLine="114"/>
       </Position3>
+      <Position4>
+        <Filename Value="frm_listados.pas"/>
+        <Caret Line="138" Column="35" TopLine="115"/>
+      </Position4>
+      <Position5>
+        <Filename Value="frm_listados.pas"/>
+        <Caret Line="137" Column="35" TopLine="114"/>
+      </Position5>
+      <Position6>
+        <Filename Value="frm_listados.pas"/>
+        <Caret Line="122" Column="30" TopLine="114"/>
+      </Position6>
+      <Position7>
+        <Filename Value="frm_listados.pas"/>
+        <Caret Line="121" Column="30" TopLine="113"/>
+      </Position7>
+      <Position8>
+        <Filename Value="frm_listados.pas"/>
+        <Caret Line="122" Column="30" TopLine="114"/>
+      </Position8>
+      <Position9>
+        <Filename Value="frm_listados.pas"/>
+        <Caret Line="124" Column="30" TopLine="116"/>
+      </Position9>
+      <Position10>
+        <Filename Value="frm_listados.pas"/>
+        <Caret Line="123" Column="30" TopLine="115"/>
+      </Position10>
+      <Position11>
+        <Filename Value="frm_listados.pas"/>
+        <Caret Line="124" Column="30" TopLine="116"/>
+      </Position11>
+      <Position12>
+        <Filename Value="frm_listados.pas"/>
+        <Caret Line="123" Column="30" TopLine="115"/>
+      </Position12>
+      <Position13>
+        <Filename Value="frm_listados.pas"/>
+        <Caret Line="125" Column="30" TopLine="117"/>
+      </Position13>
     </JumpHistory>
   </ProjectSession>
-  <Debugging>
-    <BreakPoints Count="2">
-      <Item1>
-        <Kind Value="bpkSource"/>
-        <WatchScope Value="wpsLocal"/>
-        <WatchKind Value="wpkWrite"/>
-        <Source Value="frm_listados.pas"/>
-        <Line Value="138"/>
-      </Item1>
-      <Item2>
-        <Kind Value="bpkSource"/>
-        <WatchScope Value="wpsLocal"/>
-        <WatchKind Value="wpkWrite"/>
-        <Source Value="frm_main.pas"/>
-        <Line Value="259"/>
-      </Item2>
-    </BreakPoints>
-  </Debugging>
 </CONFIG>

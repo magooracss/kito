@@ -5,9 +5,9 @@ unit frm_listados;
 interface
 
 uses
-  Classes, SysUtils, db, FileUtil, Forms, Controls, Graphics, Dialogs, ExtCtrls,
-  ComCtrls, DBGrids, Buttons, EditBtn, StdCtrls, types
-   , dmgeneral
+  Classes, SysUtils, db, FileUtil, rxdbgrid, DBDateTimePicker, Forms, Controls,
+  Graphics, Dialogs, ExtCtrls, ComCtrls, DBGrids, Buttons, EditBtn, StdCtrls,
+  DBExtCtrls, types, dmgeneral
   ;
 
 type
@@ -25,6 +25,8 @@ type
     cbTabListaPrecio: TComboBox;
     cbTabZonas: TComboBox;
     cbTabPedidosEstado: TComboBox;
+    DBGrid1: TDBGrid;
+    DBGrid2: TDBGrid;
     edFechaFinTabPedEst: TDateEdit;
     edFechaFinTabProd: TDateEdit;
     edFechaFinTabProv: TDateEdit;
@@ -41,8 +43,6 @@ type
     edFechaFinTabFechas: TDateEdit;
     ds_GrupoListado: TDataSource;
     ds_Listados: TDataSource;
-    DBGrid1: TDBGrid;
-    DBGrid2: TDBGrid;
     edFechaIniTabVend: TDateEdit;
     edFechaIniTabCli: TDateEdit;
     edVend: TEdit;
@@ -170,6 +170,7 @@ procedure TfrmListados.FormShow(Sender: TObject);
 begin
   AjustarPantalla;
 end;
+
 
 procedure TfrmListados.TabClienteFechasShow(Sender: TObject);
 begin
