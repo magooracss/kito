@@ -14,7 +14,7 @@ object frmMain: TfrmMain
   Menu = MainMenu1
   OnShow = FormShow
   Position = poDesktopCenter
-  LCLVersion = '1.2.6.0'
+  LCLVersion = '1.4.0.4'
   object st: TStatusBar
     Left = 0
     Height = 23
@@ -51,6 +51,7 @@ object frmMain: TfrmMain
     end
     object ToolButton2: TToolButton
       Left = 93
+      Height = 80
       Top = 2
       Width = 10
       Caption = 'ToolButton2'
@@ -68,6 +69,7 @@ object frmMain: TfrmMain
     end
     object ToolButton5: TToolButton
       Left = 558
+      Height = 80
       Top = 2
       Width = 10
       Caption = 'ToolButton5'
@@ -85,6 +87,7 @@ object frmMain: TfrmMain
     end
     object ToolButton8: TToolButton
       Left = 305
+      Height = 80
       Top = 2
       Width = 10
       Caption = 'ToolButton8'
@@ -123,7 +126,7 @@ object frmMain: TfrmMain
       Top = 2
       Width = 616
       Caption = 'Filtrar grilla'
-      ClientHeight = 30
+      ClientHeight = 27
       ClientWidth = 612
       TabOrder = 1
       object edFiltroCodigo: TEdit
@@ -513,6 +516,7 @@ object frmMain: TfrmMain
       Caption = 'Editar Hoja de Ruta'
       Hint = 'Mofifica los datos de una hoja de ruta'
       ImageIndex = 19
+      OnExecute = HdRModificarExecute
     end
   end
   object MainMenu1: TMainMenu

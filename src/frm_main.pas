@@ -123,6 +123,7 @@ type
     procedure edFiltroCodigoKeyPress(Sender: TObject; var Key: char);
     procedure edFiltroNombreKeyPress(Sender: TObject; var Key: char);
     procedure FormShow(Sender: TObject);
+    procedure HdRModificarExecute(Sender: TObject);
     procedure HrRNuevaExecute(Sender: TObject);
     procedure pedDevolucionExecute(Sender: TObject);
     procedure pedModificarExecute(Sender: TObject);
@@ -195,6 +196,7 @@ uses
   ,frm_listados
   ,dmlistados
   ,frm_hojaderutaae
+  ,frm_busquedahojaderuta
   ;
 
 { TfrmMain }
@@ -755,6 +757,24 @@ procedure TfrmMain.HrRNuevaExecute(Sender: TObject);
 begin
   pantallaHojaDeRuta(GUIDNULO);
 end;
+
+
+procedure TfrmMain.HdRModificarExecute(Sender: TObject);
+var
+ pantBus: TfrmBuscarHdR;
+begin
+  pantBus:= TfrmBuscarHdR.Create(self);
+  try
+    if (pantBus.ShowModal = mrOK)
+      and (pantBus.idHojaDeRuta <> GUIDNULO) then
+    begin
+      pantallaHojaDeRuta(pantBus.idHojaDeRuta);
+    end;
+  finally
+    pantBus.Free;
+  end;
+end;
+
 
 end.
 

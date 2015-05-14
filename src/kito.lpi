@@ -21,7 +21,7 @@
       <MajorVersionNr Value="2015"/>
       <MinorVersionNr Value="5"/>
       <RevisionNr Value="1"/>
-      <BuildNr Value="63"/>
+      <BuildNr Value="64"/>
       <Language Value="080A"/>
       <StringTable Comments="Carlos Enrique Rodriguez / Magoo" CompanyName="RACSS Programación" LegalCopyright="Carlos Enrique Rodriguez - RACSS Programacion" ProductName="KITO" ProductVersion=""/>
     </VersionInfo>
@@ -62,7 +62,7 @@
         <PackageName Value="LCL"/>
       </Item8>
     </RequiredPackages>
-    <Units Count="51">
+    <Units Count="53">
       <Unit0>
         <Filename Value="kito.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -159,6 +159,7 @@
         <ComponentName Value="frmClientesAE"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
+        <UnitName Value="frm_clientesae"/>
       </Unit14>
       <Unit15>
         <Filename Value="frm_contactoae.pas"/>
@@ -389,6 +390,7 @@
         <ComponentName Value="DM_HojaDeRuta"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
+        <UnitName Value="dmhojaderuta"/>
       </Unit47>
       <Unit48>
         <Filename Value="frm_seleccionarpedidos.pas"/>
@@ -411,6 +413,20 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
       </Unit50>
+      <Unit51>
+        <Filename Value="frm_busquedahojaderuta.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmBuscarHdR"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="frm_busquedahojaderuta"/>
+      </Unit51>
+      <Unit52>
+        <Filename Value="dmbusquedahojaderuta.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="DM_BuscarHdR"/>
+        <ResourceBaseClass Value="DataModule"/>
+        <UnitName Value="dmbusquedahojaderuta"/>
+      </Unit52>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

@@ -20,7 +20,7 @@ uses
   dmbusquedamovstock, frm_modificarprecios, dmmodificarprecios,
   frm_devolucionesae, dmdevoluciones, dmlistados, frm_listados,
   frm_hojaderutaae, dmhojaderuta, frm_seleccionarpedidos, dmseleccionarpedidos,
-  frm_hojaderutapedido;
+  frm_hojaderutapedido, frm_busquedahojaderuta, dmbusquedahojaderuta;
 
 {$R *.res}
 

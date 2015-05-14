@@ -1,0 +1,480 @@
+object DM_BuscarHdR: TDM_BuscarHdR
+  OldCreateOrder = False
+  Height = 477
+  HorizontalOffset = 390
+  VerticalOffset = 158
+  Width = 417
+  object Resultados: TRxMemoryData
+    FieldDefs = <    
+      item
+        Name = 'id'
+        DataType = ftString
+        Precision = 0
+        Size = 38
+      end    
+      item
+        Name = 'Fecha'
+        DataType = ftDateTime
+        Precision = 0
+        Size = 0
+      end    
+      item
+        Name = 'NroHdR'
+        DataType = ftInteger
+        Precision = 0
+        Size = 0
+      end    
+      item
+        Name = 'Transportista'
+        DataType = ftString
+        Precision = 0
+        Size = 200
+      end    
+      item
+        Name = 'Dato'
+        DataType = ftString
+        Precision = 0
+        Size = 200
+      end>
+    PacketRecords = 0
+    left = 98
+    top = 51
+    object Resultadosid: TStringField
+      DisplayWidth = 38
+      FieldKind = fkData
+      FieldName = 'id'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 38
+    end
+    object ResultadosFecha: TDateTimeField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'Fecha'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object ResultadosNroHdR: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'NroHdR'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object ResultadosTransportista: TStringField
+      DisplayWidth = 200
+      FieldKind = fkData
+      FieldName = 'Transportista'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 200
+    end
+    object ResultadosDato: TStringField
+      DisplayWidth = 200
+      FieldKind = fkData
+      FieldName = 'Dato'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 200
+    end
+  end
+  object qBusNroHdR: TZQuery
+    Connection = DM_General.cnxBase
+    SQL.Strings = (
+      'select  HdR.ID'
+      '    , HdR.NUMERO as NroHdR'
+      '    , HdR.FECHA'
+      '    , ET.RAZONSOCIAL as Transportista    '
+      'from HOJASDERUTA HdR'
+      '      left join TRANSPORTISTAS T on HdR.TRANSPORTISTA_ID = T.ID'
+      '      left join Empresas ET on T.EMPRESA_ID = ET.ID'
+      'WHERE (HdR.BVISIBLE = 1)'
+      '    and (HdR.NUMERO = :parametro)'
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'parametro'
+        ParamType = ptUnknown
+      end>
+    left = 96
+    top = 135
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'parametro'
+        ParamType = ptUnknown
+      end>
+    object qBusNroHdRID: TStringField
+      DisplayWidth = 152
+      FieldKind = fkData
+      FieldName = 'ID'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      Size = 152
+    end
+    object qBusNroHdRNROHDR: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'NROHDR'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object qBusNroHdRFECHA: TDateField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'FECHA'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object qBusNroHdRTRANSPORTISTA: TStringField
+      DisplayWidth = 2000
+      FieldKind = fkData
+      FieldName = 'TRANSPORTISTA'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 2000
+    end
+  end
+  object qBusFechaHdR: TZQuery
+    Connection = DM_General.cnxBase
+    SQL.Strings = (
+      'select  HdR.ID'
+      '    , HdR.NUMERO as NroHdR'
+      '    , HdR.FECHA'
+      '    , ET.RAZONSOCIAL as Transportista    '
+      'from HOJASDERUTA HdR'
+      '      left join TRANSPORTISTAS T on HdR.TRANSPORTISTA_ID = T.ID'
+      '      left join Empresas ET on T.EMPRESA_ID = ET.ID'
+      'WHERE (HdR.BVISIBLE = 1)'
+      '    and (HdR.FECHA = :parametro)'
+      'ORDER BY HdR.NUMERO'
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'parametro'
+        ParamType = ptUnknown
+      end>
+    left = 98
+    top = 192
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'parametro'
+        ParamType = ptUnknown
+      end>
+    object qBusNroHdRID1: TStringField
+      DisplayWidth = 152
+      FieldKind = fkData
+      FieldName = 'ID'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      Size = 152
+    end
+    object qBusNroHdRNROHDR1: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'NROHDR'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object qBusNroHdRFECHA1: TDateField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'FECHA'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object qBusNroHdRTRANSPORTISTA1: TStringField
+      DisplayWidth = 2000
+      FieldKind = fkData
+      FieldName = 'TRANSPORTISTA'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 2000
+    end
+  end
+  object qBusTransp: TZQuery
+    Connection = DM_General.cnxBase
+    SQL.Strings = (
+      'select  HdR.ID'
+      '    , HdR.NUMERO as NroHdR'
+      '    , HdR.FECHA'
+      '    , ET.RAZONSOCIAL as Transportista    '
+      'from HOJASDERUTA HdR'
+      '      left join TRANSPORTISTAS T on HdR.TRANSPORTISTA_ID = T.ID'
+      '      left join Empresas ET on T.EMPRESA_ID = ET.ID'
+      'WHERE (HdR.BVISIBLE = 1)'
+      '    and (HdR.TRANSPORTISTA_ID = :parametro)'
+      'ORDER BY HdR.NUMERO DESC'
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'parametro'
+        ParamType = ptUnknown
+      end>
+    left = 98
+    top = 256
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'parametro'
+        ParamType = ptUnknown
+      end>
+    object qBusNroHdRID2: TStringField
+      DisplayWidth = 152
+      FieldKind = fkData
+      FieldName = 'ID'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      Size = 152
+    end
+    object qBusNroHdRNROHDR2: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'NROHDR'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object qBusNroHdRFECHA2: TDateField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'FECHA'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object qBusNroHdRTRANSPORTISTA2: TStringField
+      DisplayWidth = 2000
+      FieldKind = fkData
+      FieldName = 'TRANSPORTISTA'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 2000
+    end
+  end
+  object qBusCliente: TZQuery
+    Connection = DM_General.cnxBase
+    SQL.Strings = (
+      'select distinct HdR.ID'
+      '    , HdR.NUMERO as NroHdR'
+      '    , HdR.FECHA'
+      '    , ET.RAZONSOCIAL as Transportista    '
+      '    , EC.RAZONSOCIAL as Dato'
+      'from HOJASDERUTA HdR'
+      '      left join TRANSPORTISTAS T on HdR.TRANSPORTISTA_ID = T.ID'
+      '      left join Empresas ET on T.EMPRESA_ID = ET.ID'
+      '      inner join HOJADERUTADETALLES HdRD ON HdrD.HOJADERUTA_ID = HdR.ID'
+      '      inner join PEDIDOS P on HdRD.PEDIDO_ID = P.ID'
+      '      left join Clientes C on P.CLIENTE_ID = C.ID'
+      '      left join EMPRESAS EC on EC.ID = C.EMPRESA_ID     '
+      'WHERE (HdR.BVISIBLE = 1)'
+      '    and (C.id = :parametro)'
+      'ORDER BY HdR.NUMERO DESC'
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'parametro'
+        ParamType = ptUnknown
+      end>
+    left = 98
+    top = 320
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'parametro'
+        ParamType = ptUnknown
+      end>
+    object qBusNroHdRID3: TStringField
+      DisplayWidth = 152
+      FieldKind = fkData
+      FieldName = 'ID'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      Size = 152
+    end
+    object qBusNroHdRNROHDR3: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'NROHDR'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object qBusNroHdRFECHA3: TDateField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'FECHA'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object qBusNroHdRTRANSPORTISTA3: TStringField
+      DisplayWidth = 2000
+      FieldKind = fkData
+      FieldName = 'TRANSPORTISTA'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 2000
+    end
+    object qBusClienteDATO: TStringField
+      DisplayWidth = 2000
+      FieldKind = fkData
+      FieldName = 'DATO'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 2000
+    end
+  end
+  object qBusNroPedido: TZQuery
+    Connection = DM_General.cnxBase
+    SQL.Strings = (
+      'select distinct HdR.ID'
+      '    , HdR.NUMERO as NroHdR'
+      '    , HdR.FECHA'
+      '    , ET.RAZONSOCIAL as Transportista    '
+      '    , P.Numero as Dato'
+      'from HOJASDERUTA HdR'
+      '      left join TRANSPORTISTAS T on HdR.TRANSPORTISTA_ID = T.ID'
+      '      left join Empresas ET on T.EMPRESA_ID = ET.ID'
+      '      inner join HOJADERUTADETALLES HdRD ON HdrD.HOJADERUTA_ID = HdR.ID'
+      '      inner join PEDIDOS P on HdRD.PEDIDO_ID = P.ID'
+      'WHERE (HdR.BVISIBLE = 1)'
+      '    and (P.Numero = :parametro)'
+      'ORDER BY HdR.NUMERO DESC'
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'parametro'
+        ParamType = ptUnknown
+      end>
+    left = 96
+    top = 384
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'parametro'
+        ParamType = ptUnknown
+      end>
+    object qBusNroHdRID4: TStringField
+      DisplayWidth = 152
+      FieldKind = fkData
+      FieldName = 'ID'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      Size = 152
+    end
+    object qBusNroHdRNROHDR4: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'NROHDR'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object qBusNroHdRFECHA4: TDateField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'FECHA'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object qBusNroHdRTRANSPORTISTA4: TStringField
+      DisplayWidth = 2000
+      FieldKind = fkData
+      FieldName = 'TRANSPORTISTA'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 2000
+    end
+    object qBusClienteDATO1: TStringField
+      DisplayWidth = 2000
+      FieldKind = fkData
+      FieldName = 'DATO'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 2000
+    end
+  end
+end
