@@ -43,25 +43,44 @@ type
     HojaDeRutaDetalles: TRxMemoryData;
     INSHdR: TZQuery;
     INSHdRDet: TZQuery;
+    qDetHdRLXCLIENTE: TStringField;
+    qDetHdRLXCLIENTEDIR: TStringField;
+    qDetHdRLXPEDIDONRO: TLongintField;
     SELHdR: TZQuery;
     SELHdRDet: TZQuery;
     SELHdRBANULADA: TSmallintField;
     SELHdRBVISIBLE: TSmallintField;
+    qDetHdR: TZQuery;
     SELHdRDetBCOBRODESTINO: TSmallintField;
+    SELHdRDetBCOBRODESTINO1: TSmallintField;
     SELHdRDetBENTREGACOMPLETO: TSmallintField;
+    SELHdRDetBENTREGACOMPLETO1: TSmallintField;
     SELHdRDetBNOENTREGADO: TSmallintField;
+    SELHdRDetBNOENTREGADO1: TSmallintField;
     SELHdRDetBULTOS: TLongintField;
+    SELHdRDetBULTOS1: TLongintField;
     SELHdRDetBVISIBLE: TSmallintField;
+    SELHdRDetBVISIBLE1: TSmallintField;
     SELHdRDetCLIENTEDIRECCION_ID: TStringField;
+    SELHdRDetCLIENTEDIRECCION_ID1: TStringField;
     SELHdRDetDEVOLUCION_ID: TStringField;
+    SELHdRDetDEVOLUCION_ID1: TStringField;
     SELHdRDetHOJADERUTA_ID: TStringField;
+    SELHdRDetHOJADERUTA_ID1: TStringField;
     SELHdRDetID: TStringField;
+    SELHdRDetID1: TStringField;
     SELHdRDetMONTOCOBRADO: TFloatField;
+    SELHdRDetMONTOCOBRADO1: TFloatField;
     SELHdRDetMONTOCOBRAR: TFloatField;
+    SELHdRDetMONTOCOBRAR1: TFloatField;
     SELHdRDetMOTIVONOENTREGA_ID: TLongintField;
+    SELHdRDetMOTIVONOENTREGA_ID1: TLongintField;
     SELHdRDetNOTA: TStringField;
+    SELHdRDetNOTA1: TStringField;
     SELHdRDetNROORDENA: TLongintField;
+    SELHdRDetNROORDENA1: TLongintField;
     SELHdRDetPEDIDO_ID: TStringField;
+    SELHdRDetPEDIDO_ID1: TStringField;
     SELHdRFANULADA: TDateField;
     SELHdRFECHA: TDateField;
     SELHdRID: TStringField;
@@ -152,10 +171,11 @@ begin
   HojaDeRutaDetallesbNoEntregado.AsInteger:= 0;
   HojaDeRutaDetallesmotivoNoEntrega_id.AsInteger:= 0;
   HojaDeRutaDetallesbVisible.AsInteger:= 1;
-  HojaDeRutaDetalleslxPedidoNro.AsInteger:= HojaDeRutaDetalles.RecordCount;
+  HojaDeRutaDetalleslxPedidoNro.AsInteger:= 0;
   HojaDeRutaDetalleslxCliente.asString:= EmptyStr;
   HojaDeRutaDetalleslxClienteDir.AsString:= EmptyStr;
 end;
+
 
 procedure TDM_HojaDeRuta.Nuevo;
 begin
@@ -166,6 +186,26 @@ end;
 
 procedure TDM_HojaDeRuta.Editar(refHojaDeRuta: GUID_ID);
 begin
+  DM_General.ReiniciarTabla(HojaDeRuta);
+  DM_General.ReiniciarTabla(HojaDeRutaDetalles);
+
+  With SELHdR do
+  begin
+    if active then close;
+    ParamByName('id').asString:= refHojaDeRuta;
+    open;
+    HojaDeRuta.LoadFromDataSet(SELHdR, 0, lmAppend);
+    Close;
+  end;
+
+  with qDetHdR do
+  begin
+    if active then close;
+    ParamByName('HojaDeRuta_ID').asString:= refHojaDeRuta;
+    open;
+    HojaDeRutaDetalles.LoadFromDataSet(qDetHdR, 0, lmAppend);
+    Close;
+  end;
 
 end;
 
@@ -212,6 +252,7 @@ end;
 procedure TDM_HojaDeRuta.CambiarEstadosPedidos;
 var
   idx: integer;
+  tempo: string;
 begin
   With HojaDeRutaDetalles do
   begin
@@ -230,6 +271,7 @@ begin
     //Valido que se esté trabajando sobre un estado transportista antes de volverlo al estado de ARMADO
     DM_Pedidos.LevantarPedido(sacarPedidos.Strings[idx]);
     DM_Pedidos.LevantarEstadoActual;
+    tempo:= sacarPedidos.Strings[idx];
     if DM_Pedidos.PedidosEstadostipoEstado_id.AsInteger = EST_TRANSP then
       DM_Pedidos.CambiarEstadoPedido(EST_ARMADO, sacarPedidos.Strings[idx]);
   end;
@@ -288,13 +330,13 @@ begin
 
     HojaDeRutaDetalles.Insert;
     HojaDeRutaDetallespedido_id.AsString:= refPedido;
-    HojaDeRutaDetalleslxPedidoNro.asInteger:= DM_Pedidos.Pedidosnumero.AsInteger;
     if bArtSonBultos then
       HojaDeRutaDetallesbultos.AsInteger:= DM_Pedidos.CantidadArticulosPedido;
     HojaDeRutaDetallesmontoCobrar.AsFloat:= DM_Pedidos.PedidosTotalPedido.AsFloat;
     HojaDeRutaDetalleslxCliente.AsString:= DM_Clientes.RazonSocial;
     HojaDeRutaDetallesclienteDireccion_id.AsString:= DM_Empresa.Domiciliosid.AsString;
     HojaDeRutaDetalleslxClienteDir.AsString:= DM_Clientes.Domicilio;
+    HojaDeRutaDetalleslxPedidoNro.asInteger:= DM_Pedidos.Pedidosnumero.AsInteger;
     HojaDeRutaDetalles.Post;
     HojaDeRutaDetalles.SortOnFields('nroOrdena');
   end;
@@ -304,7 +346,7 @@ procedure TDM_HojaDeRuta.EliminarPedido;
 begin
   if ((HojaDeRutaDetalles.Active) and (HojaDeRutaDetalles.RecordCount > 0)) then
   begin
-    sacarPedidos.Strings.Add(HojaDeRutaDetallesid.AsString);
+    sacarPedidos.Strings.Add(HojaDeRutaDetallespedido_id.AsString);
     DELHdRDet.ParamByName('id').AsString:= HojaDeRutaDetallesid.AsString;
     DELHdRDet.ExecSQL;
     HojaDeRutaDetalles.Delete;

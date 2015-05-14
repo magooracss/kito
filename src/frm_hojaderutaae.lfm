@@ -154,6 +154,7 @@ object frmHojaDeRutaAE: TfrmHojaDeRutaAE
       Width = 128
       ButtonWidth = 23
       DialogTitle = 'Seleccionar Fecha'
+      Enabled = False
       MaxLength = 10
       NumGlyphs = 2
       PasswordChar = #0
@@ -654,7 +655,7 @@ object frmHojaDeRutaAE: TfrmHojaDeRutaAE
   object ActionList1: TActionList
     Images = DM_General.ImgAccionesMenu
     left = 425
-    top = 307
+    top = 312
     object pedAgregar: TAction
       Category = 'Pedidos'
       Caption = 'Agregar Pedidos'

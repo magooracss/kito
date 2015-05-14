@@ -73,6 +73,7 @@ uses
   ,frm_busquedaempresas
   ,frm_seleccionarpedidos
   ,frm_hojaderutapedido
+  ,dmtransportistas
   ;
 
 { TfrmHojaDeRutaAE }
@@ -176,6 +177,8 @@ begin
   else
   begin
     DM_HojaDeRuta.Editar(_HojaRutaID);
+    DM_Transportistas.Editar(DM_HojaDeRuta.HojaDeRutatransportista_id.AsString);
+    edTransportista.Text:= DM_Transportistas.RazonSocial;
   end;
 end;
 

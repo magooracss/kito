@@ -81,6 +81,7 @@
         <ComponentName Value="DM_General"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
+        <UnitName Value="dmgeneral"/>
       </Unit2>
       <Unit3>
         <Filename Value="SD_Configuracion.pas"/>
@@ -159,7 +160,6 @@
         <ComponentName Value="frmClientesAE"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="frm_clientesae"/>
       </Unit14>
       <Unit15>
         <Filename Value="frm_contactoae.pas"/>
@@ -264,6 +264,7 @@
         <ComponentName Value="DM_Pedidos"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
+        <UnitName Value="dmpedidos"/>
       </Unit29>
       <Unit30>
         <Filename Value="frm_pedidoeditarproducto.pas"/>
@@ -375,7 +376,6 @@
         <ComponentName Value="frmListados"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="frm_listados"/>
       </Unit45>
       <Unit46>
         <Filename Value="frm_hojaderutaae.pas"/>
@@ -383,6 +383,7 @@
         <ComponentName Value="frmHojaDeRutaAE"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
+        <UnitName Value="frm_hojaderutaae"/>
       </Unit46>
       <Unit47>
         <Filename Value="dmhojaderuta.pas"/>
@@ -417,6 +418,7 @@
         <Filename Value="frm_busquedahojaderuta.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="frmBuscarHdR"/>
+        <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="frm_busquedahojaderuta"/>
       </Unit51>
@@ -424,6 +426,7 @@
         <Filename Value="dmbusquedahojaderuta.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="DM_BuscarHdR"/>
+        <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="dmbusquedahojaderuta"/>
       </Unit52>

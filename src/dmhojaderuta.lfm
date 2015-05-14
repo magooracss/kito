@@ -1069,7 +1069,7 @@ object DM_HojaDeRuta: TDM_HojaDeRuta
       ', montoCobrado = :montoCobrado'
       ', devolucion_id = :devolucion_id'
       ', bNoEntregado = :bNoEntregado'
-      ', motivoNoEntrega_id =:motivoNoEntrega '
+      ', motivoNoEntrega_id = :motivoNoEntrega_id'
       ', bVisible = :bVisible'
       'WHERE id = :id'
     )
@@ -1136,7 +1136,7 @@ object DM_HojaDeRuta: TDM_HojaDeRuta
       end    
       item
         DataType = ftUnknown
-        Name = 'motivoNoEntrega'
+        Name = 'motivoNoEntrega_id'
         ParamType = ptUnknown
       end    
       item
@@ -1150,7 +1150,7 @@ object DM_HojaDeRuta: TDM_HojaDeRuta
         ParamType = ptUnknown
       end>
     left = 168
-    top = 254
+    top = 256
     ParamData = <    
       item
         DataType = ftUnknown
@@ -1214,7 +1214,7 @@ object DM_HojaDeRuta: TDM_HojaDeRuta
       end    
       item
         DataType = ftUnknown
-        Name = 'motivoNoEntrega'
+        Name = 'motivoNoEntrega_id'
         ParamType = ptUnknown
       end    
       item
@@ -1254,5 +1254,229 @@ object DM_HojaDeRuta: TDM_HojaDeRuta
     Macros = <>
     left = 272
     top = 32
+  end
+  object qDetHdR: TZQuery
+    Connection = DM_General.cnxBase
+    SQL.Strings = (
+      'SELECT HDRD.*'
+      '      ,P.NUMERO as lxPedidoNro'
+      '      ,EC.RAZONSOCIAL as lxCliente'
+      '      ,D.DOMICILIO as lxClienteDir'
+      'FROM HojaDeRutaDetalles HDRD'
+      '      left join PEDIDOS P ON HDRD.PEDIDO_ID = P.ID'
+      '      left join DOMICILIOS D ON HDRD.CLIENTEDIRECCION_ID = D.ID'
+      '      left join Clientes C ON P.CLIENTE_ID = C.ID'
+      '      left join Empresas EC on EC.ID = C.EMPRESA_ID'
+      'WHERE (HDRD.BVISIBLE = 1)'
+      '        and (HDRD.HojaDeRuta_ID = :HojaDeRuta_ID)'
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'HojaDeRuta_ID'
+        ParamType = ptUnknown
+      end>
+    left = 168
+    top = 392
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'HojaDeRuta_ID'
+        ParamType = ptUnknown
+      end>
+    object SELHdRDetID1: TStringField
+      DisplayWidth = 152
+      FieldKind = fkData
+      FieldName = 'ID'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      Size = 152
+    end
+    object SELHdRDetHOJADERUTA_ID1: TStringField
+      DisplayWidth = 152
+      FieldKind = fkData
+      FieldName = 'HOJADERUTA_ID'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 152
+    end
+    object SELHdRDetNROORDENA1: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'NROORDENA'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object SELHdRDetPEDIDO_ID1: TStringField
+      DisplayWidth = 152
+      FieldKind = fkData
+      FieldName = 'PEDIDO_ID'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 152
+    end
+    object SELHdRDetCLIENTEDIRECCION_ID1: TStringField
+      DisplayWidth = 152
+      FieldKind = fkData
+      FieldName = 'CLIENTEDIRECCION_ID'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 152
+    end
+    object SELHdRDetBULTOS1: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'BULTOS'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object SELHdRDetBCOBRODESTINO1: TSmallintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'BCOBRODESTINO'
+      Index = 6
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object SELHdRDetMONTOCOBRAR1: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'MONTOCOBRAR'
+      Index = 7
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object SELHdRDetNOTA1: TStringField
+      DisplayWidth = 12000
+      FieldKind = fkData
+      FieldName = 'NOTA'
+      Index = 8
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 12000
+    end
+    object SELHdRDetBENTREGACOMPLETO1: TSmallintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'BENTREGACOMPLETO'
+      Index = 9
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object SELHdRDetMONTOCOBRADO1: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'MONTOCOBRADO'
+      Index = 10
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object SELHdRDetDEVOLUCION_ID1: TStringField
+      DisplayWidth = 152
+      FieldKind = fkData
+      FieldName = 'DEVOLUCION_ID'
+      Index = 11
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 152
+    end
+    object SELHdRDetBNOENTREGADO1: TSmallintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'BNOENTREGADO'
+      Index = 12
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object SELHdRDetMOTIVONOENTREGA_ID1: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'MOTIVONOENTREGA_ID'
+      Index = 13
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object SELHdRDetBVISIBLE1: TSmallintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'BVISIBLE'
+      Index = 14
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object qDetHdRLXCLIENTEDIR: TStringField
+      DisplayWidth = 2000
+      FieldKind = fkData
+      FieldName = 'LXCLIENTEDIR'
+      Index = 15
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 2000
+    end
+    object qDetHdRLXCLIENTE: TStringField
+      DisplayWidth = 2000
+      FieldKind = fkData
+      FieldName = 'LXCLIENTE'
+      Index = 16
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 2000
+    end
+    object qDetHdRLXPEDIDONRO: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'LXPEDIDONRO'
+      Index = 17
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
   end
 end
