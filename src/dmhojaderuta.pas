@@ -8,6 +8,9 @@ uses
   Classes, SysUtils, db, FileUtil, rxmemds, StrHolder, ZDataset
   ,dmgeneral
   ;
+const
+
+FORMULARIO_HDR = 'frmHojaDeRuta.lrf';
 
 type
 
@@ -111,6 +114,8 @@ type
     procedure AgregarPedido (refPedido: GUID_ID);
     procedure EliminarPedido;
 
+    procedure ImprimirFrmHdR(refHojaDeRuta: GUID_ID);
+
   end;
 
 var
@@ -123,8 +128,9 @@ uses
   ,dmempresa
   ,dmpedidos
   ,dmclientes
-  ,variants
+  ,dmtransportistas
   ;
+
 
 { TDM_HojaDeRuta }
 
@@ -205,6 +211,7 @@ begin
     open;
     HojaDeRutaDetalles.LoadFromDataSet(qDetHdR, 0, lmAppend);
     Close;
+    HojaDeRutaDetalles.SortOnFields('nroOrdena');
   end;
 
 end;
@@ -352,6 +359,15 @@ begin
     HojaDeRutaDetalles.Delete;
   end;
 
+end;
+
+procedure TDM_HojaDeRuta.ImprimirFrmHdR(refHojaDeRuta: GUID_ID);
+begin
+  Editar(refHojaDeRuta);
+  DM_General.LevantarReporte(FORMULARIO_HDR, HojaDeRutaDetalles);
+  DM_Transportistas.Editar(HojaDeRutatransportista_id.AsString);
+  DM_General.AgregarVariableReporte('Transportista',DM_Transportistas.RazonSocial);
+  DM_General.EjecutarReporte;
 end;
 
 end.

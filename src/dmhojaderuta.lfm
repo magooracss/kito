@@ -11,43 +11,43 @@ object DM_HojaDeRuta: TDM_HojaDeRuta
       item
         Name = 'id'
         DataType = ftString
-        Precision = 0
+        Precision = -1
         Size = 38
       end    
       item
         Name = 'numero'
         DataType = ftInteger
-        Precision = 0
+        Precision = -1
         Size = 0
       end    
       item
         Name = 'transportista_id'
         DataType = ftString
-        Precision = 0
+        Precision = -1
         Size = 38
       end    
       item
         Name = 'Fecha'
         DataType = ftDateTime
-        Precision = 0
+        Precision = -1
         Size = 0
       end    
       item
         Name = 'bAnulada'
         DataType = ftInteger
-        Precision = 0
+        Precision = -1
         Size = 0
       end    
       item
         Name = 'fAnulada'
         DataType = ftDateTime
-        Precision = 0
+        Precision = -1
         Size = 0
       end    
       item
         Name = 'bVisible'
         DataType = ftInteger
-        Precision = 0
+        Precision = -1
         Size = 0
       end>
     AfterInsert = HojaDeRutaAfterInsert

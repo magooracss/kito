@@ -209,6 +209,10 @@ begin
   if Validar then
   begin
     DM_HojaDeRuta.Grabar;
+    if (MessageDlg ('Información'
+                  , 'Desea imprimir el comprobante de la Hoja de Ruta?'
+                  , mtConfirmation, [mbYes, mbNo],0 ) = mrYes) then
+         DM_HojaDeRuta.ImprimirFrmHdR(DM_HojaDeRuta.HojaDeRutaid.AsString);
     ModalResult:= mrOK;
   end
   else

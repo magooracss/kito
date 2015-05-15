@@ -257,6 +257,7 @@
         <ComponentName Value="frmPedidoAE"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
+        <UnitName Value="frm_pedidosae"/>
       </Unit28>
       <Unit29>
         <Filename Value="dmpedidos.pas"/>
@@ -292,6 +293,7 @@
         <ComponentName Value="frmPedidosBusqueda"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
+        <UnitName Value="frm_pedidosbusqueda"/>
       </Unit33>
       <Unit34>
         <Filename Value="dmbusquedapedidos.pas"/>
@@ -428,7 +430,6 @@
         <ComponentName Value="DM_BuscarHdR"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
-        <UnitName Value="dmbusquedahojaderuta"/>
       </Unit52>
     </Units>
   </ProjectOptions>

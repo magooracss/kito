@@ -18,6 +18,7 @@ type
     btnBuscar: TBitBtn;
     btnBuscarCliente: TBitBtn;
     btnCancelar: TBitBtn;
+    btnImprimir: TBitBtn;
     btnSeleccionar: TBitBtn;
     ds_Grilla: TDataSource;
     edPedido: TRxSpinEdit;
@@ -45,6 +46,7 @@ type
     procedure btnBuscarClienteClick(Sender: TObject);
     procedure btnBuscarTranspClick(Sender: TObject);
     procedure btnCancelarClick(Sender: TObject);
+    procedure btnImprimirClick(Sender: TObject);
     procedure btnSeleccionarClick(Sender: TObject);
     procedure edFechaHdRKeyPress(Sender: TObject; var Key: char);
     procedure FormCreate(Sender: TObject);
@@ -73,6 +75,7 @@ implementation
 uses
   dmbusquedahojaderuta
   ,frm_busquedaempresas
+  , dmhojaderuta
   ;
 
 const
@@ -94,6 +97,13 @@ end;
 procedure TfrmBuscarHdR.btnCancelarClick(Sender: TObject);
 begin
   ModalResult:= mrCancel;
+end;
+
+procedure TfrmBuscarHdR.btnImprimirClick(Sender: TObject);
+begin
+  Application.CreateForm(TDM_HojaDeRuta, DM_HojaDeRuta);
+  DM_HojaDeRuta.ImprimirFrmHdR(getIdHojadeRuta);
+  DM_HojaDeRuta.Free;
 end;
 
 procedure TfrmBuscarHdR.btnBuscarClick(Sender: TObject);
