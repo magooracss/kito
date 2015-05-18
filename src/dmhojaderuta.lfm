@@ -49,6 +49,18 @@ object DM_HojaDeRuta: TDM_HojaDeRuta
         DataType = ftInteger
         Precision = -1
         Size = 0
+      end    
+      item
+        Name = 'Estado'
+        DataType = ftInteger
+        Precision = 0
+        Size = 0
+      end    
+      item
+        Name = 'fPresentada'
+        DataType = ftDateTime
+        Precision = 0
+        Size = 0
       end>
     AfterInsert = HojaDeRutaAfterInsert
     PacketRecords = 0
@@ -121,6 +133,26 @@ object DM_HojaDeRuta: TDM_HojaDeRuta
       FieldKind = fkData
       FieldName = 'bVisible'
       Index = 6
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object HojaDeRutaEstado: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'Estado'
+      Index = 7
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object HojaDeRutafPresentada: TDateTimeField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'fPresentada'
+      Index = 8
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
@@ -531,14 +563,34 @@ object DM_HojaDeRuta: TDM_HojaDeRuta
       ReadOnly = False
       Required = False
     end
+    object SELHdRESTADO: TSmallintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'ESTADO'
+      Index = 7
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object SELHdRFPRESENTADA: TDateField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'FPRESENTADA'
+      Index = 8
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
   end
   object INSHdR: TZQuery
     Connection = DM_General.cnxBase
     SQL.Strings = (
       'INSERT INTO HojasDeRuta'
-      '(id, numero, transportista_id, fecha, bAnulada, fAnulada, bVisible)'
+      '(id, numero, transportista_id, fecha, bAnulada, fAnulada, bVisible, estado, fPresentada)'
       'VALUES'
-      '( :id, :numero, :transportista_id, :fecha, :bAnulada, :fAnulada, :bVisible)'
+      '( :id, :numero, :transportista_id, :fecha, :bAnulada, :fAnulada, :bVisible, :estado, :fPresentada)'
       ''
     )
     Params = <    
@@ -575,6 +627,16 @@ object DM_HojaDeRuta: TDM_HojaDeRuta
       item
         DataType = ftUnknown
         Name = 'bVisible'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'estado'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'fPresentada'
         ParamType = ptUnknown
       end>
     left = 48
@@ -614,6 +676,16 @@ object DM_HojaDeRuta: TDM_HojaDeRuta
         DataType = ftUnknown
         Name = 'bVisible'
         ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'estado'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'fPresentada'
+        ParamType = ptUnknown
       end>
   end
   object UPDHdR: TZQuery
@@ -627,6 +699,8 @@ object DM_HojaDeRuta: TDM_HojaDeRuta
       ', bAnulada = :bAnulada'
       ', fAnulada = :fAnulada'
       ', bVisible = :bVisible'
+      ', estado = :estado'
+      ', fPresentada = :fPresentada'
       'WHERE id = :id'
     )
     Params = <    
@@ -658,6 +732,16 @@ object DM_HojaDeRuta: TDM_HojaDeRuta
       item
         DataType = ftUnknown
         Name = 'bVisible'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'estado'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'fPresentada'
         ParamType = ptUnknown
       end    
       item
@@ -696,6 +780,16 @@ object DM_HojaDeRuta: TDM_HojaDeRuta
       item
         DataType = ftUnknown
         Name = 'bVisible'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'estado'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'fPresentada'
         ParamType = ptUnknown
       end    
       item

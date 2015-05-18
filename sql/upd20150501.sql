@@ -9,6 +9,8 @@ CREATE TABLE HojasDeRuta
 , fecha		date
 , bAnulada	smallint default 0
 , fAnulada	date
+, Estado	smallint default 1
+, fPresentada	date
 , bVisible	smallint default 1
 );
 

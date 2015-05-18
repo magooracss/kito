@@ -1,0 +1,184 @@
+object DM_HdRPresentacion: TDM_HdRPresentacion
+  OldCreateOrder = False
+  Height = 303
+  HorizontalOffset = 390
+  VerticalOffset = 158
+  Width = 359
+  object Presentacion: TRxMemoryData
+    FieldDefs = <    
+      item
+        Name = 'id'
+        DataType = ftString
+        Precision = 0
+        Size = 38
+      end    
+      item
+        Name = 'fecha'
+        DataType = ftDateTime
+        Precision = 0
+        Size = 0
+      end    
+      item
+        Name = 'Numero'
+        DataType = ftInteger
+        Precision = 0
+        Size = 0
+      end    
+      item
+        Name = 'Estado'
+        DataType = ftString
+        Precision = 0
+        Size = 30
+      end    
+      item
+        Name = 'fPresentada'
+        DataType = ftDateTime
+        Precision = 0
+        Size = 0
+      end    
+      item
+        Name = 'marca'
+        DataType = ftBoolean
+        Precision = 0
+        Size = 0
+      end>
+    AfterInsert = PresentacionAfterInsert
+    PacketRecords = 0
+    left = 64
+    top = 32
+    object Presentacionid: TStringField
+      DisplayWidth = 38
+      FieldKind = fkData
+      FieldName = 'id'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 38
+    end
+    object Presentacionfecha: TDateTimeField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'fecha'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object PresentacionNumero: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'Numero'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object PresentacionEstado: TStringField
+      DisplayWidth = 30
+      FieldKind = fkData
+      FieldName = 'Estado'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 30
+    end
+    object PresentacionfPresentada: TDateTimeField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'fPresentada'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object Presentacionmarca: TBooleanField
+      DisplayWidth = 5
+      FieldKind = fkData
+      FieldName = 'marca'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      DisplayValues = 'True;False'
+    end
+  end
+  object qBuscar: TZQuery
+    Connection = DM_General.cnxBase
+    Active = True
+    SQL.Strings = (
+      'select  H.ID'
+      '      , H.FECHA'
+      '      , H.NUMERO'
+      '      , case '
+      '         when H.ESTADO = 1 THEN ''REALIZADA'''
+      '         when H.Estado = 2 THEN ''PRESENTADA'''
+      '       end as Estado'
+      '      , H.FPRESENTADA'
+      'from HOJASDERUTA H'
+      'where (H.BVISIBLE = 1)'
+    )
+    Params = <>
+    left = 120
+    top = 96
+    object qBuscarID: TStringField
+      DisplayWidth = 152
+      FieldKind = fkData
+      FieldName = 'ID'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      Size = 152
+    end
+    object qBuscarFECHA: TDateField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'FECHA'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object qBuscarNUMERO: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'NUMERO'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object qBuscarESTADO: TStringField
+      DisplayWidth = 40
+      FieldKind = fkData
+      FieldName = 'ESTADO'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = True
+      Required = False
+      Size = 40
+    end
+    object qBuscarFPRESENTADA: TDateField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'FPRESENTADA'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+  end
+end

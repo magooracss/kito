@@ -11,6 +11,8 @@ uses
 const
 
 FORMULARIO_HDR = 'frmHojaDeRuta.lrf';
+HdR_ESTADO_REALIZADA = 1;
+HdR_ESTADO_PRESENTADA = 2;
 
 type
 
@@ -38,8 +40,10 @@ type
     HojaDeRutaDetallesnota: TStringField;
     HojaDeRutaDetallesnroOrdena: TLongintField;
     HojaDeRutaDetallespedido_id: TStringField;
+    HojaDeRutaEstado: TLongintField;
     HojaDeRutafAnulada: TDateTimeField;
     HojaDeRutaFecha: TDateTimeField;
+    HojaDeRutafPresentada: TDateTimeField;
     HojaDeRutaid: TStringField;
     HojaDeRutanumero: TLongintField;
     HojaDeRutatransportista_id: TStringField;
@@ -84,8 +88,10 @@ type
     SELHdRDetNROORDENA1: TLongintField;
     SELHdRDetPEDIDO_ID: TStringField;
     SELHdRDetPEDIDO_ID1: TStringField;
+    SELHdRESTADO: TSmallintField;
     SELHdRFANULADA: TDateField;
     SELHdRFECHA: TDateField;
+    SELHdRFPRESENTADA: TDateField;
     SELHdRID: TStringField;
     SELHdRNUMERO: TLongintField;
     SELHdRTRANSPORTISTA_ID: TStringField;
@@ -155,6 +161,8 @@ begin
   HojaDeRutabAnulada.AsInteger:= 0;
   HojaDeRutafAnulada.AsDateTime:= 0;
   HojaDeRutabVisible.asInteger:= 1;
+  HojaDeRutafPresentada.AsDateTime:= 0;
+  HojaDeRutaEstado.asInteger:= HdR_ESTADO_REALIZADA;
 end;
 
 procedure TDM_HojaDeRuta.HojaDeRutaDetallesAfterInsert(DataSet: TDataSet);
