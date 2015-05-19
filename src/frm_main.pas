@@ -15,11 +15,14 @@ type
   { TfrmMain }
 
   TfrmMain = class(TForm)
+    HdRPresentar: TAction;
     HdRModificar: TAction;
     HrRNueva: TAction;
     MenuItem38: TMenuItem;
     MenuItem39: TMenuItem;
     MenuItem40: TMenuItem;
+    MenuItem41: TMenuItem;
+    MenuItem42: TMenuItem;
     prgListados: TAction;
     MenuItem37: TMenuItem;
     OD: TOpenDialog;
@@ -63,12 +66,12 @@ type
     MenuItem22: TMenuItem;
     MenuItem23: TMenuItem;
     MenuItem24: TMenuItem;
+    ToolButton10: TToolButton;
     ToolButton4: TToolButton;
     ToolButton5: TToolButton;
     ToolButton6: TToolButton;
     ToolButton7: TToolButton;
     ToolButton8: TToolButton;
-    ToolButton9: TToolButton;
     tRefrescarGrilla: TTimer;
     ToolButton3: TToolButton;
     vendEditar: TAction;
@@ -124,6 +127,7 @@ type
     procedure edFiltroNombreKeyPress(Sender: TObject; var Key: char);
     procedure FormShow(Sender: TObject);
     procedure HdRModificarExecute(Sender: TObject);
+    procedure HdRPresentarExecute(Sender: TObject);
     procedure HrRNuevaExecute(Sender: TObject);
     procedure pedDevolucionExecute(Sender: TObject);
     procedure pedModificarExecute(Sender: TObject);
@@ -197,6 +201,8 @@ uses
   ,dmlistados
   ,frm_hojaderutaae
   ,frm_busquedahojaderuta
+  ,frm_hojaderutapresentacion
+  ,frm_hojaderutapresentarpedidos
   ;
 
 { TfrmMain }
@@ -773,6 +779,27 @@ begin
   finally
     pantBus.Free;
   end;
+end;
+
+procedure TfrmMain.HdRPresentarExecute(Sender: TObject);
+var
+ pant: TfrmPresentacionHdR;
+ detalle: TfrmHdRPresentacionPedidos;
+begin
+ pant:= TfrmPresentacionHdR.Create(self);
+ detalle:= TfrmHdRPresentacionPedidos.Create(self);
+ try
+   if ((pant.ShowModal = mrOK)
+    and (pant.idHojaDeRuta <> GUIDNULO)) then
+   begin
+     detalle.idHojaDeRuta:= pant.idHojaDeRuta;
+     detalle.ShowModal;
+   end;
+ finally
+   pant.Free;
+   detalle.Free;
+ end;
+
 end;
 
 

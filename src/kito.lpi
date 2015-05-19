@@ -21,7 +21,7 @@
       <MajorVersionNr Value="2015"/>
       <MinorVersionNr Value="5"/>
       <RevisionNr Value="1"/>
-      <BuildNr Value="67"/>
+      <BuildNr Value="68"/>
       <Language Value="080A"/>
       <StringTable Comments="Carlos Enrique Rodriguez / Magoo" CompanyName="RACSS Programación" LegalCopyright="Carlos Enrique Rodriguez - RACSS Programacion" ProductName="KITO" ProductVersion=""/>
     </VersionInfo>
@@ -62,7 +62,7 @@
         <PackageName Value="LCL"/>
       </Item8>
     </RequiredPackages>
-    <Units Count="55">
+    <Units Count="56">
       <Unit0>
         <Filename Value="kito.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -81,7 +81,6 @@
         <ComponentName Value="DM_General"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
-        <UnitName Value="dmgeneral"/>
       </Unit2>
       <Unit3>
         <Filename Value="SD_Configuracion.pas"/>
@@ -160,6 +159,7 @@
         <ComponentName Value="frmClientesAE"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
+        <UnitName Value="frm_clientesae"/>
       </Unit14>
       <Unit15>
         <Filename Value="frm_contactoae.pas"/>
@@ -257,7 +257,6 @@
         <ComponentName Value="frmPedidoAE"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="frm_pedidosae"/>
       </Unit28>
       <Unit29>
         <Filename Value="dmpedidos.pas"/>
@@ -265,7 +264,6 @@
         <ComponentName Value="DM_Pedidos"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
-        <UnitName Value="dmpedidos"/>
       </Unit29>
       <Unit30>
         <Filename Value="frm_pedidoeditarproducto.pas"/>
@@ -293,7 +291,6 @@
         <ComponentName Value="frmPedidosBusqueda"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="frm_pedidosbusqueda"/>
       </Unit33>
       <Unit34>
         <Filename Value="dmbusquedapedidos.pas"/>
@@ -385,7 +382,6 @@
         <ComponentName Value="frmHojaDeRutaAE"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="frm_hojaderutaae"/>
       </Unit46>
       <Unit47>
         <Filename Value="dmhojaderuta.pas"/>
@@ -422,7 +418,6 @@
         <ComponentName Value="frmBuscarHdR"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="frm_busquedahojaderuta"/>
       </Unit51>
       <Unit52>
         <Filename Value="dmbusquedahojaderuta.pas"/>
@@ -435,6 +430,7 @@
         <Filename Value="frm_hojaderutapresentacion.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="frmPresentacionHdR"/>
+        <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="frm_hojaderutapresentacion"/>
       </Unit53>
@@ -442,9 +438,17 @@
         <Filename Value="dmhojaderutapresentacion.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="DM_HdRPresentacion"/>
+        <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="dmhojaderutapresentacion"/>
       </Unit54>
+      <Unit55>
+        <Filename Value="frm_hojaderutapresentarpedidos.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmHdRPresentacionPedidos"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="frm_hojaderutapresentarpedidos"/>
+      </Unit55>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

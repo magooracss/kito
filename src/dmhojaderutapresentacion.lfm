@@ -25,7 +25,7 @@ object DM_HdRPresentacion: TDM_HdRPresentacion
         Size = 0
       end    
       item
-        Name = 'Estado'
+        Name = 'lxEstado'
         DataType = ftString
         Precision = 0
         Size = 30
@@ -39,6 +39,12 @@ object DM_HdRPresentacion: TDM_HdRPresentacion
       item
         Name = 'marca'
         DataType = ftBoolean
+        Precision = 0
+        Size = 0
+      end    
+      item
+        Name = 'MontoPedido'
+        DataType = ftFloat
         Precision = 0
         Size = 0
       end>
@@ -77,22 +83,11 @@ object DM_HdRPresentacion: TDM_HdRPresentacion
       ReadOnly = False
       Required = False
     end
-    object PresentacionEstado: TStringField
-      DisplayWidth = 30
-      FieldKind = fkData
-      FieldName = 'Estado'
-      Index = 3
-      LookupCache = False
-      ProviderFlags = [pfInUpdate, pfInWhere]
-      ReadOnly = False
-      Required = False
-      Size = 30
-    end
     object PresentacionfPresentada: TDateTimeField
       DisplayWidth = 10
       FieldKind = fkData
       FieldName = 'fPresentada'
-      Index = 4
+      Index = 3
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
@@ -102,17 +97,27 @@ object DM_HdRPresentacion: TDM_HdRPresentacion
       DisplayWidth = 5
       FieldKind = fkData
       FieldName = 'marca'
-      Index = 5
+      Index = 4
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
       Required = False
       DisplayValues = 'True;False'
     end
+    object PresentacionlxEstado: TStringField
+      DisplayWidth = 30
+      FieldKind = fkData
+      FieldName = 'lxEstado'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 30
+    end
   end
   object qBuscar: TZQuery
     Connection = DM_General.cnxBase
-    Active = True
     SQL.Strings = (
       'select  H.ID'
       '      , H.FECHA'
@@ -120,7 +125,7 @@ object DM_HdRPresentacion: TDM_HdRPresentacion
       '      , case '
       '         when H.ESTADO = 1 THEN ''REALIZADA'''
       '         when H.Estado = 2 THEN ''PRESENTADA'''
-      '       end as Estado'
+      '       end as lxEstado'
       '      , H.FPRESENTADA'
       'from HOJASDERUTA H'
       'where (H.BVISIBLE = 1)'
@@ -159,26 +164,26 @@ object DM_HdRPresentacion: TDM_HdRPresentacion
       ReadOnly = False
       Required = False
     end
-    object qBuscarESTADO: TStringField
+    object qBuscarFPRESENTADA: TDateField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'FPRESENTADA'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object qBuscarLXESTADO: TStringField
       DisplayWidth = 40
       FieldKind = fkData
-      FieldName = 'ESTADO'
-      Index = 3
+      FieldName = 'LXESTADO'
+      Index = 4
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = True
       Required = False
       Size = 40
-    end
-    object qBuscarFPRESENTADA: TDateField
-      DisplayWidth = 10
-      FieldKind = fkData
-      FieldName = 'FPRESENTADA'
-      Index = 4
-      LookupCache = False
-      ProviderFlags = [pfInUpdate, pfInWhere]
-      ReadOnly = False
-      Required = False
     end
   end
 end

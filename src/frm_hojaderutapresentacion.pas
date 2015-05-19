@@ -6,7 +6,8 @@ interface
 
 uses
   Classes, SysUtils, db, FileUtil, DateTimePicker, Forms, Controls, Graphics,
-  Dialogs, ExtCtrls, Buttons, StdCtrls, ComCtrls, DBGrids;
+  Dialogs, ExtCtrls, Buttons, StdCtrls, ComCtrls, DBGrids
+  ,dmgeneral;
 
 type
 
@@ -14,7 +15,8 @@ type
 
   TfrmPresentacionHdR = class(TForm)
     btnBuscar: TBitBtn;
-    btnSalir: TBitBtn;
+    btnCancelar: TBitBtn;
+    btnGrabar: TBitBtn;
     DS_Presentadas: TDataSource;
     edFecha: TDateTimePicker;
     DBGrid1: TDBGrid;
@@ -28,17 +30,21 @@ type
     tabBlanco: TTabSheet;
     tabFecha: TTabSheet;
     procedure btnBuscarClick(Sender: TObject);
+    procedure btnCancelarClick(Sender: TObject);
+    procedure btnGrabarClick(Sender: TObject);
     procedure btnSalirClick(Sender: TObject);
+    procedure DBGrid1DblClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure rgCriterioSelectionChanged(Sender: TObject);
   private
+    function getIdHdR: GUID_ID;
     procedure Inicializar;
     procedure Buscar;
     procedure BuscarHdR;
   public
-    { public declarations }
+    property idHojaDeRuta: GUID_ID read getIdHdR;
   end;
 
 var
@@ -75,9 +81,24 @@ begin
   ModalResult:= mrOK;
 end;
 
+procedure TfrmPresentacionHdR.DBGrid1DblClick(Sender: TObject);
+begin
+  DM_HdRPresentacion.cambiarMarca;
+end;
+
 procedure TfrmPresentacionHdR.btnBuscarClick(Sender: TObject);
 begin
   Buscar;
+end;
+
+procedure TfrmPresentacionHdR.btnCancelarClick(Sender: TObject);
+begin
+  ModalResult:= mrCancel;
+end;
+
+procedure TfrmPresentacionHdR.btnGrabarClick(Sender: TObject);
+begin
+  ModalResult:= mrOK;
 end;
 
 procedure TfrmPresentacionHdR.FormDestroy(Sender: TObject);
@@ -93,10 +114,15 @@ end;
 procedure TfrmPresentacionHdR.rgCriterioSelectionChanged(Sender: TObject);
 begin
   case rgCriterio.ItemIndex of
-   CRITERIO_ESTADO: DM_HdRPresentacion.BuscarEstado (rgEstado.ItemIndex + 1);
-   CRITERIO_FECHA: DM_HdRPresentacion.BuscarFechaEstado (edFecha.Date,rgEstado.ItemIndex + 1 );
-   CRITERIO_BUSCARHdR: BuscarHdR;
+    CRITERIO_ESTADO: PCBusqueda.ActivePageIndex:= IDX_BLANCO;
+    CRITERIO_FECHA:  PCBusqueda.ActivePageIndex:= IDX_FECHA;
+    CRITERIO_BUSCARHdR: PCBusqueda.ActivePageIndex:= IDX_BLANCO;
   end;
+end;
+
+function TfrmPresentacionHdR.getIdHdR: GUID_ID;
+begin
+  Result:= DM_HdRPresentacion.idSeleccion;
 end;
 
 procedure TfrmPresentacionHdR.Inicializar;
@@ -107,9 +133,9 @@ end;
 procedure TfrmPresentacionHdR.Buscar;
 begin
   case rgCriterio.ItemIndex of
-    CRITERIO_ESTADO: PCBusqueda.ActivePageIndex:= IDX_BLANCO;
-    CRITERIO_FECHA:  PCBusqueda.ActivePageIndex:= IDX_FECHA;
-    CRITERIO_BUSCARHdR: PCBusqueda.ActivePageIndex:= IDX_BLANCO;
+   CRITERIO_ESTADO: DM_HdRPresentacion.BuscarEstado (rgEstado.ItemIndex + 1);
+   CRITERIO_FECHA: DM_HdRPresentacion.BuscarFechaEstado (edFecha.Date,rgEstado.ItemIndex + 1 );
+   CRITERIO_BUSCARHdR: BuscarHdR;
   end;
 end;
 

@@ -1,0 +1,15 @@
+object frmHdRPresentacionPedidos: TfrmHdRPresentacionPedidos
+  Left = 390
+  Height = 463
+  Top = 158
+  Width = 659
+  Caption = 'Presentación Hoja de Ruta '
+  Font.CharSet = ANSI_CHARSET
+  Font.Height = -13
+  Font.Name = 'Arial'
+  Font.Pitch = fpVariable
+  Font.Quality = fqDraft
+  OnCreate = FormCreate
+  Position = poOwnerFormCenter
+  LCLVersion = '1.4.0.4'
+end
