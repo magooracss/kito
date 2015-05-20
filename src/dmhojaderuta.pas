@@ -113,9 +113,12 @@ type
   public
     procedure Nuevo;
     procedure Editar (refHojaDeRuta: GUID_ID);
+    procedure LevantarRenglon (refHojaDeRutaDetalle: GUID_ID);
+    procedure GrabarDetalles;
     procedure Grabar;
 
     procedure ModificarPosicionPedido(pasos: integer);
+    procedure CambiarEstado(elEstado: integer);
 
     procedure AgregarPedido (refPedido: GUID_ID);
     procedure EliminarPedido;
@@ -224,12 +227,31 @@ begin
 
 end;
 
+procedure TDM_HojaDeRuta.LevantarRenglon(refHojaDeRutaDetalle: GUID_ID);
+begin
+  DM_General.ReiniciarTabla(HojaDeRutaDetalles);
+
+  with SELHdRDet  do
+  begin
+    if active then close;
+    ParamByName('id').asString:= refHojaDeRutaDetalle;
+    open;
+    HojaDeRutaDetalles.LoadFromDataSet(SELHdRDet, 0, lmAppend);
+    Close;
+  end;
+end;
+
+procedure TDM_HojaDeRuta.GrabarDetalles;
+begin
+  DM_General.GrabarDatos(SELHdRDet, INSHdRDet, UPDHdRDet, HojaDeRutaDetalles, 'id');
+end;
+
 procedure TDM_HojaDeRuta.Grabar;
 begin
   DM_General.cnxBase.StartTransaction;
   try
     DM_General.GrabarDatos(SELHdR, INSHdR, UPDHdR, HojaDeRuta, 'id');
-    DM_General.GrabarDatos(SELHdRDet, INSHdRDet, UPDHdRDet, HojaDeRutaDetalles, 'id');
+    GrabarDetalles;
     CambiarEstadosPedidos;
     DM_General.cnxBase.Commit;
   except
@@ -334,6 +356,16 @@ begin
   end;
   HojaDeRutaDetalles.SortOnFields('nroOrdena');
   RenumerarDetalle;
+end;
+
+procedure TDM_HojaDeRuta.CambiarEstado(elEstado: integer);
+begin
+  With HojaDeRuta do
+  begin
+    Edit;
+    HojaDeRutaEstado.AsInteger:= elEstado;
+    Post;
+  end;
 end;
 
 procedure TDM_HojaDeRuta.AgregarPedido(refPedido: GUID_ID);

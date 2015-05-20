@@ -40,14 +40,28 @@ type
     procedure BuscarHdR (refHojaDeRuta: GUID_ID );
 
     procedure CambiarMarca;
+
+    procedure PresentarPedido ( refPedido: GUID_ID
+                              ; refDevolucion: GUID_ID
+                              ; montoPresentado: Double
+                              ; refEstado: integer
+                              ; refHdRDetalle: GUID_ID
+                              ; refMotivoNoEntrega: integer
+                              );
+
+
+
   end;
 
 var
   DM_HdRPresentacion: TDM_HdRPresentacion;
 
 implementation
-
 {$R *.lfm}
+uses
+  dmpedidos
+  ,dmhojaderuta
+  ;
 
 { TDM_HdRPresentacion }
 
@@ -125,6 +139,35 @@ begin
       Presentacionmarca.AsBoolean:= NOT Presentacionmarca.AsBoolean;
       Post;
     end;
+  end;
+end;
+
+procedure TDM_HdRPresentacion.PresentarPedido(refPedido: GUID_ID;
+  refDevolucion: GUID_ID; montoPresentado: Double; refEstado: integer;
+  refHdRDetalle: GUID_ID; refMotivoNoEntrega: integer);
+begin
+  DM_General.cnxBase.StartTransaction;
+  try
+     DM_Pedidos.CambiarEstadoPedido(refEstado, refPedido);
+
+     DM_HojaDeRuta.LevantarRenglon(refHdRDetalle);
+     DM_HojaDeRuta.HojaDeRutaDetalles.Edit;
+     DM_HojaDeRuta.HojaDeRutaDetallesmontoCobrado.AsFloat:= montoPresentado;
+     if refDevolucion <> GUIDNULO then
+     begin
+       DM_HojaDeRuta.HojaDeRutaDetallesdevolucion_id.AsString:= refDevolucion;
+       DM_HojaDeRuta.HojaDeRutaDetallesbEntregaCompleto.AsInteger:= 0;
+     end
+     else
+        DM_HojaDeRuta.HojaDeRutaDetallesbEntregaCompleto.AsInteger:= 1;
+     if refMotivoNoEntrega > -1 then
+        DM_HojaDeRuta.HojaDeRutaDetallesmotivoNoEntrega_id.AsInteger:= refMotivoNoEntrega ;
+     DM_HojaDeRuta.HojaDeRutaDetalles.Post;
+     DM_HojaDeRuta.GrabarDetalles;
+
+     DM_General.cnxBase.Commit;
+  Except
+    DM_General.cnxBase.Rollback;
   end;
 end;
 

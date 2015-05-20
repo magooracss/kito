@@ -22,7 +22,7 @@ uses
   frm_hojaderutaae, dmhojaderuta, frm_seleccionarpedidos, dmseleccionarpedidos,
   frm_hojaderutapedido, frm_busquedahojaderuta, dmbusquedahojaderuta, 
 frm_hojaderutapresentacion, dmhojaderutapresentacion, 
-frm_hojaderutapresentarpedidos;
+frm_hojaderutapresentarpedidos, frm_hojaderutapresentarpedido;
 
 {$R *.res}
 
