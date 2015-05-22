@@ -16,7 +16,7 @@ object frmHdRPresentacionPedido: TfrmHdRPresentacionPedido
   object GroupBox1: TGroupBox
     Left = 80
     Height = 105
-    Top = 208
+    Top = 216
     Width = 440
     Caption = 'Entrega del pedido'
     ClientHeight = 84

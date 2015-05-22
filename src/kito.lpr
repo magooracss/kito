@@ -22,7 +22,8 @@ uses
   frm_hojaderutaae, dmhojaderuta, frm_seleccionarpedidos, dmseleccionarpedidos,
   frm_hojaderutapedido, frm_busquedahojaderuta, dmbusquedahojaderuta, 
 frm_hojaderutapresentacion, dmhojaderutapresentacion, 
-frm_hojaderutapresentarpedidos, frm_hojaderutapresentarpedido;
+frm_hojaderutapresentarpedidos, frm_hojaderutapresentarpedido,
+frm_seleccionmotivonoentrega;
 
 {$R *.res}
 

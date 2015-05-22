@@ -108,7 +108,7 @@ type
     bPagoDestino: Boolean;
 
     procedure RenumerarDetalle;
-    procedure CambiarEstadosPedidos;
+
 
   public
     procedure Nuevo;
@@ -119,6 +119,7 @@ type
 
     procedure ModificarPosicionPedido(pasos: integer);
     procedure CambiarEstado(elEstado: integer);
+    procedure CambiarEstadosPedidos;
 
     procedure AgregarPedido (refPedido: GUID_ID);
     procedure EliminarPedido;
@@ -252,7 +253,7 @@ begin
   try
     DM_General.GrabarDatos(SELHdR, INSHdR, UPDHdR, HojaDeRuta, 'id');
     GrabarDetalles;
-    CambiarEstadosPedidos;
+//    CambiarEstadosPedidos;
     DM_General.cnxBase.Commit;
   except
     DM_General.cnxBase.Rollback;
@@ -291,6 +292,7 @@ var
   idx: integer;
   tempo: string;
 begin
+
   With HojaDeRutaDetalles do
   begin
     DisableControls;

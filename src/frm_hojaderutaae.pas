@@ -209,6 +209,7 @@ begin
   if Validar then
   begin
     DM_HojaDeRuta.Grabar;
+    DM_HojaDeRuta.CambiarEstadosPedidos;
     if (MessageDlg ('Información'
                   , 'Desea imprimir el comprobante de la Hoja de Ruta?'
                   , mtConfirmation, [mbYes, mbNo],0 ) = mrYes) then

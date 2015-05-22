@@ -95,7 +95,7 @@ BEFORE INSERT POSITION 0
 AS 
 BEGIN 
     If (New.numero = -1) then
-   New.id = GEN_ID(numeraHojaDeRuta,1);
+   New.numero = GEN_ID(numeraHojaDeRuta,1);
 END^
 
 SET TERM ; ^  

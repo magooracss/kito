@@ -131,8 +131,8 @@ object DM_HdRPresentacion: TDM_HdRPresentacion
       'where (H.BVISIBLE = 1)'
     )
     Params = <>
-    left = 120
-    top = 96
+    left = 64
+    top = 104
     object qBuscarID: TStringField
       DisplayWidth = 152
       FieldKind = fkData
@@ -184,6 +184,339 @@ object DM_HdRPresentacion: TDM_HdRPresentacion
       ReadOnly = True
       Required = False
       Size = 40
+    end
+  end
+  object PresPedidos: TRxMemoryData
+    FieldDefs = <    
+      item
+        Name = 'pedido_id'
+        DataType = ftString
+        Precision = 0
+        Size = 38
+      end    
+      item
+        Name = 'hojaderuta_id'
+        DataType = ftString
+        Precision = 0
+        Size = 38
+      end    
+      item
+        Name = 'marca'
+        DataType = ftBoolean
+        Precision = 0
+        Size = 0
+      end    
+      item
+        Name = 'nroPedido'
+        DataType = ftInteger
+        Precision = 0
+        Size = 0
+      end    
+      item
+        Name = 'cliente'
+        DataType = ftString
+        Precision = 0
+        Size = 500
+      end    
+      item
+        Name = 'montoPedido'
+        DataType = ftFloat
+        Precision = 0
+        Size = 0
+      end    
+      item
+        Name = 'estado_id'
+        DataType = ftInteger
+        Precision = 0
+        Size = 0
+      end    
+      item
+        Name = 'lxEstado'
+        DataType = ftString
+        Precision = 0
+        Size = 30
+      end    
+      item
+        Name = 'montoCobrado'
+        DataType = ftFloat
+        Precision = 0
+        Size = 0
+      end>
+    AfterInsert = PresPedidosAfterInsert
+    PacketRecords = 0
+    left = 179
+    top = 32
+    object PresPedidospedido_id: TStringField
+      DisplayWidth = 38
+      FieldKind = fkData
+      FieldName = 'pedido_id'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 38
+    end
+    object PresPedidoshojaderuta_id: TStringField
+      DisplayWidth = 38
+      FieldKind = fkData
+      FieldName = 'hojaderuta_id'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 38
+    end
+    object PresPedidosmarca: TBooleanField
+      DisplayWidth = 5
+      FieldKind = fkData
+      FieldName = 'marca'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      DisplayValues = 'True;False'
+    end
+    object PresPedidosnroPedido: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'nroPedido'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object PresPedidoscliente: TStringField
+      DisplayWidth = 500
+      FieldKind = fkData
+      FieldName = 'cliente'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 500
+    end
+    object PresPedidosmontoPedido: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'montoPedido'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Currency = True
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object PresPedidosestado_id: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'estado_id'
+      Index = 6
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object PresPedidoslxEstado: TStringField
+      DisplayWidth = 30
+      FieldKind = fkData
+      FieldName = 'lxEstado'
+      Index = 7
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 30
+    end
+    object PresPedidosmontoCobrado: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'montoCobrado'
+      Index = 8
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Currency = True
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+  end
+  object qLevantaPedidos: TZQuery
+    Connection = DM_General.cnxBase
+    SQL.Strings = (
+      'select H.PEDIDO_ID '
+      '      ,H.id as HOJADERUTA_ID'
+      '      ,P.NUMERO as NROPEDIDO'
+      '      ,E.RAZONSOCIAL as CLIENTE'
+      '      ,P.TOTALPEDIDO as montoPedido'
+      '      ,PTE.ID as estado_id'
+      '      ,PTE.TIPOESTADO as lxEstado'
+      '      ,H.MONTOCOBRADO       '
+      'from HOJADERUTADETALLES H'
+      '     left join PEDIDOS P on P.ID = H.PEDIDO_ID'
+      '     left join CLIENTES C on C.ID = P.CLIENTE_ID'
+      '     left join EMPRESAS E on E.ID = C.EMPRESA_ID'
+      '     left join PEDIDOSESTADOS PE on PE.ID = P.ESTADOACTUAL_ID'
+      '     left join PEDIDOSTIPOSESTADOS PTE on PTE.id = PE.TIPOESTADO_ID'
+      'where (H.BVISIBLE = 1)'
+      '   and (H.HOJADERUTA_ID = :hojaDeRuta_id)'
+      'order by H.nroOrdena'
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'hojaDeRuta_id'
+        ParamType = ptUnknown
+      end>
+    left = 179
+    top = 101
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'hojaDeRuta_id'
+        ParamType = ptUnknown
+      end>
+    object qLevantaPedidosPEDIDO_ID: TStringField
+      DisplayWidth = 152
+      FieldKind = fkData
+      FieldName = 'PEDIDO_ID'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 152
+    end
+    object qLevantaPedidosHOJADERUTA_ID: TStringField
+      DisplayWidth = 152
+      FieldKind = fkData
+      FieldName = 'HOJADERUTA_ID'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 152
+    end
+    object qLevantaPedidosNROPEDIDO: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'NROPEDIDO'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object qLevantaPedidosCLIENTE: TStringField
+      DisplayWidth = 2000
+      FieldKind = fkData
+      FieldName = 'CLIENTE'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 2000
+    end
+    object qLevantaPedidosMONTOPEDIDO: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'MONTOPEDIDO'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object qLevantaPedidosESTADO_ID: TStringField
+      DisplayWidth = 152
+      FieldKind = fkData
+      FieldName = 'ESTADO_ID'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      Size = 152
+    end
+    object qLevantaPedidosLXESTADO: TStringField
+      DisplayWidth = 120
+      FieldKind = fkData
+      FieldName = 'LXESTADO'
+      Index = 6
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 120
+    end
+    object qLevantaPedidosMONTOCOBRADO: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'MONTOCOBRADO'
+      Index = 7
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+  end
+  object qMotivosNoEntrega: TZQuery
+    Connection = DM_General.cnxBase
+    SQL.Strings = (
+      'select *'
+      'from MotivosNoEntrega'
+      'where (bVisible = 1)'
+    )
+    Params = <>
+    left = 179
+    top = 176
+    object qMotivosNoEntregaID: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'ID'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object qMotivosNoEntregaMOTIVONOENTREGA: TStringField
+      DisplayWidth = 600
+      FieldKind = fkData
+      FieldName = 'MOTIVONOENTREGA'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 600
+    end
+    object qMotivosNoEntregaBVISIBLE: TSmallintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'BVISIBLE'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
     end
   end
 end

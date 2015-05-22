@@ -21,13 +21,37 @@ type
     PresentacionlxEstado: TStringField;
     Presentacionmarca: TBooleanField;
     PresentacionNumero: TLongintField;
+    PresPedidoscliente: TStringField;
+    PresPedidosestado_id: TLongintField;
+    PresPedidoshojaderuta_id: TStringField;
+    PresPedidoslxEstado: TStringField;
+    PresPedidosmarca: TBooleanField;
+    PresPedidosmontoCobrado: TFloatField;
+    PresPedidosmontoPedido: TFloatField;
+    PresPedidosnroPedido: TLongintField;
+    PresPedidospedido_id: TStringField;
     qBuscar: TZQuery;
     qBuscarFECHA: TDateField;
     qBuscarFPRESENTADA: TDateField;
     qBuscarID: TStringField;
     qBuscarLXESTADO: TStringField;
     qBuscarNUMERO: TLongintField;
+    PresPedidos: TRxMemoryData;
+    qLevantaPedidos: TZQuery;
+    qLevantaPedidosCLIENTE: TStringField;
+    qLevantaPedidosESTADO_ID: TStringField;
+    qLevantaPedidosHOJADERUTA_ID: TStringField;
+    qLevantaPedidosLXESTADO: TStringField;
+    qLevantaPedidosMONTOCOBRADO: TFloatField;
+    qLevantaPedidosMONTOPEDIDO: TFloatField;
+    qLevantaPedidosNROPEDIDO: TLongintField;
+    qLevantaPedidosPEDIDO_ID: TStringField;
+    qMotivosNoEntrega: TZQuery;
+    qMotivosNoEntregaBVISIBLE: TSmallintField;
+    qMotivosNoEntregaID: TLongintField;
+    qMotivosNoEntregaMOTIVONOENTREGA: TStringField;
     procedure PresentacionAfterInsert(DataSet: TDataSet);
+    procedure PresPedidosAfterInsert(DataSet: TDataSet);
   private
     procedure CabeceraSQL (consulta: TZQuery);
     procedure ConsultaATabla;
@@ -49,6 +73,12 @@ type
                               ; refMotivoNoEntrega: integer
                               );
 
+    procedure LevantarPedidosHdR (refHojaDeRuta: GUID_ID);
+    procedure CambiarMarcaPedido;
+
+    procedure PedMarcadosEntregaCompleta;
+    procedure PedMarcadosNoEntregados(refMotivoNoEntrega: integer);
+
 
 
   end;
@@ -68,6 +98,11 @@ uses
 procedure TDM_HdRPresentacion.PresentacionAfterInsert(DataSet: TDataSet);
 begin
   Presentacionmarca.AsBoolean:= False;
+end;
+
+procedure TDM_HdRPresentacion.PresPedidosAfterInsert(DataSet: TDataSet);
+begin
+  PresPedidosmarca.AsBoolean:= false;
 end;
 
 procedure TDM_HdRPresentacion.CabeceraSQL(consulta: TZQuery);
@@ -151,6 +186,7 @@ begin
      DM_Pedidos.CambiarEstadoPedido(refEstado, refPedido);
 
      DM_HojaDeRuta.LevantarRenglon(refHdRDetalle);
+
      DM_HojaDeRuta.HojaDeRutaDetalles.Edit;
      DM_HojaDeRuta.HojaDeRutaDetallesmontoCobrado.AsFloat:= montoPresentado;
      if refDevolucion <> GUIDNULO then
@@ -160,14 +196,94 @@ begin
      end
      else
         DM_HojaDeRuta.HojaDeRutaDetallesbEntregaCompleto.AsInteger:= 1;
+
      if refMotivoNoEntrega > -1 then
+     begin
+        DM_HojaDeRuta.HojaDeRutaDetallesbEntregaCompleto.AsInteger:= 0;
         DM_HojaDeRuta.HojaDeRutaDetallesmotivoNoEntrega_id.AsInteger:= refMotivoNoEntrega ;
+     end;
+
      DM_HojaDeRuta.HojaDeRutaDetalles.Post;
      DM_HojaDeRuta.GrabarDetalles;
 
      DM_General.cnxBase.Commit;
   Except
     DM_General.cnxBase.Rollback;
+  end;
+end;
+
+procedure TDM_HdRPresentacion.LevantarPedidosHdR(refHojaDeRuta: GUID_ID);
+begin
+  DM_General.ReiniciarTabla(PresPedidos);
+  with qLevantaPedidos do
+  begin
+    if active then close;
+    ParamByName('hojaderuta_id').asString:= refHojaDeRuta;
+    Open;
+    PresPedidos.LoadFromDataSet(qLevantaPedidos, 0, lmAppend);
+    close;
+  end;
+end;
+
+procedure TDM_HdRPresentacion.CambiarMarcaPedido;
+begin
+  with PresPedidos do
+  begin
+    if ((Active) and (RecordCount > 0)) then
+    begin
+      Edit;
+      PresPedidosmarca.AsBoolean:= NOT PresPedidosmarca.AsBoolean;
+      Post;
+    end;
+  end;
+end;
+
+procedure TDM_HdRPresentacion.PedMarcadosEntregaCompleta;
+begin
+  with PresPedidos do
+  begin
+    DisableControls;
+    First;
+    while Not EOF do
+    begin
+      if PresPedidosmarca.AsBoolean then
+      begin
+        PresentarPedido(PresPedidospedido_id.AsString
+                       ,GUIDNULO
+                       ,PresPedidosmontoPedido.AsFloat
+                       ,EST_ENTREGADO
+                       ,PresPedidoshojaderuta_id.AsString
+                       ,0
+                       );
+      end;
+      Next;
+    end;
+    EnableControls;
+  end;
+end;
+
+procedure TDM_HdRPresentacion.PedMarcadosNoEntregados(
+  refMotivoNoEntrega: integer);
+begin
+  with PresPedidos do
+  begin
+    DisableControls;
+    First;
+    while Not EOF do
+    begin
+      if PresPedidosmarca.AsBoolean then
+      begin
+        PresentarPedido(PresPedidospedido_id.AsString
+                       ,GUIDNULO
+                       ,0
+                       ,EST_ARMADO
+                       ,PresPedidoshojaderuta_id.AsString
+                       ,refMotivoNoEntrega
+                       );
+      end;
+      Next;
+    end;
+    EnableControls;
   end;
 end;
 

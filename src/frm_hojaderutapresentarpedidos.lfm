@@ -1,10 +1,10 @@
 object frmHdRPresentacionPedidos: TfrmHdRPresentacionPedidos
-  Left = 284
-  Height = 374
-  Top = 209
+  Left = 302
+  Height = 436
+  Top = 85
   Width = 787
   Caption = 'Presentación Hoja de Ruta '
-  ClientHeight = 374
+  ClientHeight = 436
   ClientWidth = 787
   Font.CharSet = ANSI_CHARSET
   Font.Height = -13
@@ -19,7 +19,7 @@ object frmHdRPresentacionPedidos: TfrmHdRPresentacionPedidos
   object Panel2: TPanel
     Left = 0
     Height = 50
-    Top = 324
+    Top = 386
     Width = 787
     Align = alBottom
     ClientHeight = 50
@@ -73,11 +73,11 @@ object frmHdRPresentacionPedidos: TfrmHdRPresentacionPedidos
   end
   object Panel1: TPanel
     Left = 0
-    Height = 154
+    Height = 192
     Top = 0
     Width = 787
     Align = alTop
-    ClientHeight = 154
+    ClientHeight = 192
     ClientWidth = 787
     TabOrder = 1
     object DBText1: TDBText
@@ -104,30 +104,273 @@ object frmHdRPresentacionPedidos: TfrmHdRPresentacionPedidos
       Caption = 'Presentada'
       ParentColor = False
     end
-    object RxDBDateEdit1: TRxDBDateEdit
+    object edTransportista: TEdit
+      Left = 16
+      Height = 24
+      Top = 64
+      Width = 752
+      Anchors = [akTop, akLeft, akRight]
+      Color = clMoneyGreen
+      ReadOnly = True
+      TabStop = False
+      TabOrder = 0
+    end
+    object DBEdit1: TDBEdit
+      Left = 304
+      Height = 24
+      Top = 32
+      Width = 80
+      DataField = 'Fecha'
+      DataSource = ds_HDR
+      ReadOnly = True
+      CharCase = ecNormal
+      Color = clMoneyGreen
+      MaxLength = 0
+      TabOrder = 1
+      TabStop = False
+    end
+    object Label2: TLabel
+      Left = 304
+      Height = 16
+      Top = 15
+      Width = 56
+      Caption = 'Generada'
+      ParentColor = False
+    end
+    object Label3: TLabel
+      Left = 18
+      Height = 16
+      Top = 46
+      Width = 75
+      Caption = 'Transportista'
+      ParentColor = False
+    end
+    object GroupBox1: TGroupBox
+      Left = 152
+      Height = 88
+      Top = 96
+      Width = 440
+      Caption = 'Entrega de los pedidos seleccionados'
+      ClientHeight = 67
+      ClientWidth = 436
+      TabOrder = 2
+      object btnEntregaCompleta: TBitBtn
+        Left = 8
+        Height = 50
+        Top = 8
+        Width = 132
+        Caption = 'Completa'
+        OnClick = btnEntregaCompletaClick
+        TabOrder = 0
+      end
+      object btnEntregaParcial: TBitBtn
+        Left = 152
+        Height = 50
+        Top = 8
+        Width = 132
+        Caption = 'Parcial'
+        TabOrder = 1
+      end
+      object btnNoEntregado: TBitBtn
+        Left = 296
+        Height = 50
+        Top = 8
+        Width = 132
+        Caption = 'No Entregado'
+        OnClick = btnNoEntregadoClick
+        TabOrder = 2
+      end
+    end
+    object DBDateEdit1: TDBDateEdit
       Left = 403
       Height = 24
       Top = 32
       Width = 103
-      ButtonWidth = 23
+      CalendarDisplaySettings = [dsShowHeadings]
+      OKCaption = 'OK'
       CancelCaption = 'Cancelar'
-      DefaultToday = True
-      DialogTitle = 'Seleccionar Fecha'
-      DirectInput = False
+      DateOrder = doDMY
+      ButtonWidth = 23
+      NumGlyphs = 1
       MaxLength = 10
-      NumGlyphs = 2
-      PasswordChar = #0
-      PopupColor = clWindow
-      TabOrder = 0
+      TabOrder = 3
       Text = '  /  /    '
-      YearDigits = dyFour
-      DataField = 'fPresentada'
+      DataField = 'Fecha'
       DataSource = ds_HDR
     end
   end
+  object RxDBGrid1: TRxDBGrid
+    Left = 0
+    Height = 194
+    Top = 192
+    Width = 787
+    AfterQuickSearch = RxDBGrid1AfterQuickSearch
+    TitleButtons = True
+    AutoSort = True
+    Columns = <    
+      item
+        ButtonStyle = cbsCheckboxColumn
+        SizePriority = 0
+        Title.Alignment = taCenter
+        Title.Caption = '*'
+        Title.Orientation = toHorizontal
+        Width = 42
+        FieldName = 'marca'
+        EditButtons = <>
+        Filter.DropDownRows = 0
+        Filter.EmptyValue = '(Todos)'
+        Filter.EmptyFont.Style = [fsItalic]
+        Filter.ItemIndex = -1
+      end    
+      item
+        SizePriority = 0
+        Title.Alignment = taCenter
+        Title.Caption = 'Pedido'
+        Title.Orientation = toHorizontal
+        Width = 120
+        FieldName = 'nroPedido'
+        EditButtons = <>
+        Filter.DropDownRows = 0
+        Filter.EmptyValue = '(Todos)'
+        Filter.EmptyFont.Style = [fsItalic]
+        Filter.ItemIndex = -1
+      end    
+      item
+        Title.Alignment = taCenter
+        Title.Caption = 'Cliente'
+        Title.Orientation = toHorizontal
+        Width = 249
+        FieldName = 'cliente'
+        EditButtons = <>
+        Filter.DropDownRows = 0
+        Filter.EmptyValue = '(Todos)'
+        Filter.EmptyFont.Style = [fsItalic]
+        Filter.ItemIndex = -1
+      end    
+      item
+        SizePriority = 0
+        Title.Alignment = taCenter
+        Title.Caption = 'Monto pedido'
+        Title.Orientation = toHorizontal
+        Width = 120
+        FieldName = 'montoPedido'
+        EditButtons = <>
+        Filter.DropDownRows = 0
+        Filter.EmptyValue = '(Todos)'
+        Filter.EmptyFont.Style = [fsItalic]
+        Filter.ItemIndex = -1
+      end    
+      item
+        SizePriority = 0
+        Title.Alignment = taCenter
+        Title.Caption = 'Monto Cobrado'
+        Title.Orientation = toHorizontal
+        Width = 120
+        FieldName = 'montoCobrado'
+        EditButtons = <>
+        Filter.DropDownRows = 0
+        Filter.EmptyValue = '(Todos)'
+        Filter.EmptyFont.Style = [fsItalic]
+        Filter.ItemIndex = -1
+      end    
+      item
+        SizePriority = 0
+        Title.Alignment = taCenter
+        Title.Caption = 'Estado'
+        Title.Orientation = toHorizontal
+        Width = 132
+        FieldName = 'lxEstado'
+        EditButtons = <>
+        Filter.DropDownRows = 0
+        Filter.EmptyValue = '(Todos)'
+        Filter.EmptyFont.Style = [fsItalic]
+        Filter.ItemIndex = -1
+      end>
+    KeyStrokes = <    
+      item
+        Command = rxgcShowFindDlg
+        ShortCut = 16454
+        Enabled = True
+      end    
+      item
+        Command = rxgcShowColumnsDlg
+        ShortCut = 16471
+        Enabled = True
+      end    
+      item
+        Command = rxgcShowFilterDlg
+        ShortCut = 16468
+        Enabled = True
+      end    
+      item
+        Command = rxgcShowSortDlg
+        ShortCut = 16467
+        Enabled = True
+      end    
+      item
+        Command = rxgcShowQuickFilter
+        ShortCut = 16465
+        Enabled = True
+      end    
+      item
+        Command = rxgcHideQuickFilter
+        ShortCut = 16456
+        Enabled = True
+      end    
+      item
+        Command = rxgcSelectAll
+        ShortCut = 16449
+        Enabled = True
+      end    
+      item
+        Command = rxgcDeSelectAll
+        ShortCut = 16429
+        Enabled = True
+      end    
+      item
+        Command = rxgcInvertSelection
+        ShortCut = 16426
+        Enabled = True
+      end    
+      item
+        Command = rxgcOptimizeColumnsWidth
+        ShortCut = 16427
+        Enabled = True
+      end    
+      item
+        Command = rxgcCopyCellValue
+        ShortCut = 16451
+        Enabled = True
+      end>
+    OptionsRx = [rdgAllowColumnsForm, rdgAllowQuickFilter, rdgAllowFilterForm, rdgAllowSortForm, rdgWordWrap]
+    Align = alClient
+    AutoFillColumns = True
+    Color = clWindow
+    DrawFullLine = False
+    FocusColor = clRed
+    SelectedColor = clHighlight
+    GridLineStyle = psSolid
+    DataSource = ds_PresentacionPedidos
+    FixedCols = 0
+    Options = [dgTitles, dgColumnResize, dgColumnMove, dgColLines, dgRowLines, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgHeaderPushedLook]
+    ParentColor = False
+    Scrollbars = ssAutoVertical
+    TabOrder = 2
+    TitleFont.CharSet = ANSI_CHARSET
+    TitleFont.Height = -13
+    TitleFont.Name = 'Arial'
+    TitleFont.Pitch = fpVariable
+    TitleFont.Quality = fqDraft
+    OnDblClick = RxDBGrid1DblClick
+  end
   object ds_HDR: TDataSource
     DataSet = DM_HojaDeRuta.HojaDeRuta
-    left = 56
-    top = 96
+    left = 144
+    top = 16
+  end
+  object ds_PresentacionPedidos: TDataSource
+    DataSet = DM_HdRPresentacion.PresPedidos
+    left = 200
+    top = 16
   end
 end

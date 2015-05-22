@@ -21,7 +21,7 @@
       <MajorVersionNr Value="2015"/>
       <MinorVersionNr Value="5"/>
       <RevisionNr Value="1"/>
-      <BuildNr Value="69"/>
+      <BuildNr Value="71"/>
       <Language Value="080A"/>
       <StringTable Comments="Carlos Enrique Rodriguez / Magoo" CompanyName="RACSS Programación" LegalCopyright="Carlos Enrique Rodriguez - RACSS Programacion" ProductName="KITO" ProductVersion=""/>
     </VersionInfo>
@@ -62,7 +62,7 @@
         <PackageName Value="LCL"/>
       </Item8>
     </RequiredPackages>
-    <Units Count="57">
+    <Units Count="58">
       <Unit0>
         <Filename Value="kito.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -73,7 +73,6 @@
         <ComponentName Value="frmMain"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="frm_main"/>
       </Unit1>
       <Unit2>
         <Filename Value="dmgeneral.pas"/>
@@ -235,6 +234,7 @@
         <ComponentName Value="DM_Transportistas"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
+        <UnitName Value="dmtransportistas"/>
       </Unit25>
       <Unit26>
         <Filename Value="frm_vendedoresae.pas"/>
@@ -382,6 +382,7 @@
         <ComponentName Value="frmHojaDeRutaAE"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
+        <UnitName Value="frm_hojaderutaae"/>
       </Unit46>
       <Unit47>
         <Filename Value="dmhojaderuta.pas"/>
@@ -432,7 +433,6 @@
         <ComponentName Value="frmPresentacionHdR"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="frm_hojaderutapresentacion"/>
       </Unit53>
       <Unit54>
         <Filename Value="dmhojaderutapresentacion.pas"/>
@@ -454,9 +454,18 @@
         <Filename Value="frm_hojaderutapresentarpedido.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="frmHdRPresentacionPedido"/>
+        <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="frm_hojaderutapresentarpedido"/>
       </Unit56>
+      <Unit57>
+        <Filename Value="frm_seleccionmotivonoentrega.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmMotivoNoEntrega"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="frm_seleccionmotivonoentrega"/>
+      </Unit57>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
