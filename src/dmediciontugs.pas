@@ -47,6 +47,9 @@ type
   TDM_EdicionTUGs = class(TDataModule)
     Categorias: TZTable;
     CondicionesFiscales: TZTable;
+    MotivosNoEntregaBVISIBLE: TSmallintField;
+    MotivosNoEntregaID: TLongintField;
+    MotivosNoEntregaMOTIVONOENTREGA: TStringField;
     TiposContactos: TZTable;
     CondicionesFiscalesBVISIBLE: TSmallintField;
     CondicionesFiscalesCONDICIONFISCAL: TStringField;
@@ -56,6 +59,7 @@ type
     ListasPreciosID: TLongintField;
     ListasPreciosLISTAPRECIO: TStringField;
     Zonas: TZTable;
+    MotivosNoEntrega: TZTable;
     ZonasBVISIBLE: TSmallintField;
     ZonasID: TLongintField;
     ZonasZONA: TStringField;

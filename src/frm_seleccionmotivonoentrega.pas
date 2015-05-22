@@ -56,7 +56,7 @@ begin
   try
     with datos do
     begin
-      nombre:= 'MotivoNoEntrega';
+      nombre:= 'MotivosNoEntrega';
       titulo:= 'Motivo por el que no se realiza la entrega';
       AgregarCampo('motivoNoEntrega','Detalle del motivo');
     end;

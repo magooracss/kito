@@ -42,10 +42,13 @@ type
     procedure btnGrabarClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
+    procedure FormShow(Sender: TObject);
   private
     _idPedido: GUID_ID;
+    function GetidDevolucion: GUID_ID;
   public
-    { public declarations }
+    property idPedido: GUID_ID write _idPedido;
+    property idDevolucion: GUID_ID read GetidDevolucion;
   end;
 
 var
@@ -70,6 +73,22 @@ end;
 procedure TfrmDevolucionesae.FormDestroy(Sender: TObject);
 begin
   DM_Devoluciones.Free;
+end;
+
+procedure TfrmDevolucionesae.FormShow(Sender: TObject);
+begin
+  if _idPedido <> GUIDNULO then
+  begin
+     DM_Pedidos.LevantarPedido(_idPedido);
+     DM_Clientes.Editar(DM_Pedidos.Pedidoscliente_id.AsString);
+     edRazonSocial.Caption:= DM_Clientes.RazonSocial;
+     DM_Devoluciones.cargarPedidoDevolucion (_idPedido);
+  end;
+end;
+
+function TfrmDevolucionesae.GetidDevolucion: GUID_ID;
+begin
+  Result:= DM_Devoluciones.idDevolucion;
 end;
 
 procedure TfrmDevolucionesae.btnBuscarPedidoClick(Sender: TObject);

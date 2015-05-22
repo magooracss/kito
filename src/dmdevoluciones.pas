@@ -69,8 +69,10 @@ type
     procedure DevolucionesAfterInsert(DataSet: TDataSet);
     procedure DevolucionesDetallesAfterInsert(DataSet: TDataSet);
   private
+    function GetidDevolucion: GUID_ID;
     { private declarations }
   public
+    property idDevolucion: GUID_ID read GetidDevolucion;
     procedure cargarPedidoDevolucion (refPedido: GUID_ID);
     function ValidarCantidades: boolean;
     function PedidoConDevolucionCargada (refPedido: GUID_ID): boolean;
@@ -115,6 +117,14 @@ begin
   DevolucionesDetallesdescartado.AsFloat:= 0;
   DevolucionesDetallesNota.AsString:= ' ';
   DevolucionesDetallesbVisible.AsInteger:= 1;
+end;
+
+function TDM_Devoluciones.GetidDevolucion: GUID_ID;
+begin
+  if ((Devoluciones.Active) and (Devoluciones.RecordCount > 0)) then
+    Result:= Devolucionesid.AsString
+  else
+    Result:= GUIDNULO;
 end;
 
 procedure TDM_Devoluciones.cargarPedidoDevolucion(refPedido: GUID_ID);

@@ -276,7 +276,6 @@ object DM_EdicionTUGs: TDM_EdicionTUGs
   object Zonas: TZTable
     Connection = DM_General.cnxBase
     AfterInsert = MarcasAfterInsert
-    Active = True
     TableName = 'ZONAS'
     left = 448
     top = 32
@@ -302,6 +301,44 @@ object DM_EdicionTUGs: TDM_EdicionTUGs
       Size = 400
     end
     object ZonasBVISIBLE: TSmallintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'BVISIBLE'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+  end
+  object MotivosNoEntrega: TZTable
+    Connection = DM_General.cnxBase
+    AfterInsert = MarcasAfterInsert
+    TableName = 'MOTIVOSNOENTREGA'
+    left = 512
+    top = 32
+    object MotivosNoEntregaID: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'ID'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object MotivosNoEntregaMOTIVONOENTREGA: TStringField
+      DisplayWidth = 600
+      FieldKind = fkData
+      FieldName = 'MOTIVONOENTREGA'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 600
+    end
+    object MotivosNoEntregaBVISIBLE: TSmallintField
       DisplayWidth = 10
       FieldKind = fkData
       FieldName = 'BVISIBLE'

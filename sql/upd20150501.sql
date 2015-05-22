@@ -98,4 +98,9 @@ BEGIN
    New.numero = GEN_ID(numeraHojaDeRuta,1);
 END^
 
-SET TERM ; ^  
+SET TERM ; ^ 
+
+INSERT INTO PedidosTiposEstados
+(id, TipoEstado, bVisible)
+VALUES
+(6, 'Devolución parcial', 1)

@@ -78,6 +78,7 @@ type
 
     procedure PedMarcadosEntregaCompleta;
     procedure PedMarcadosNoEntregados(refMotivoNoEntrega: integer);
+    procedure PedMarcadoDevuelto (refDevolucion: GUID_ID);
 
 
 
@@ -284,6 +285,20 @@ begin
       Next;
     end;
     EnableControls;
+  end;
+end;
+
+procedure TDM_HdRPresentacion.PedMarcadoDevuelto(refDevolucion: GUID_ID);
+begin
+  with PresPedidos do
+  begin
+     PresentarPedido(PresPedidospedido_id.AsString
+                    ,refDevolucion
+                     ,0
+                     ,EST_DEVPARCIAL
+                     ,PresPedidoshojaderuta_id.AsString
+                     ,0
+                     );
   end;
 end;
 

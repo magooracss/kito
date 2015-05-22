@@ -17,6 +17,7 @@ const
   EST_TRANSP = 3; //Estado En Transporte
   EST_ENTREGADO = 4; // Estado Entregado
   EST_RECHAZADO = 5; // Estado Rechazado
+  EST_DEVPARCIAL = 6; //Estado Devolución parcial
 
 type
 

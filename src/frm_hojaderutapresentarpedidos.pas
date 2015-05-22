@@ -33,13 +33,12 @@ type
     Panel2: TPanel;
     RxDBGrid1: TRxDBGrid;
     procedure btnEntregaCompletaClick(Sender: TObject);
+    procedure btnEntregaParcialClick(Sender: TObject);
     procedure btnNoEntregadoClick(Sender: TObject);
     procedure btnSalirClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure FormShow(Sender: TObject);
-    procedure RxDBGrid1AfterQuickSearch(Sender: TObject; Field: TField;
-      var AValue: string);
     procedure RxDBGrid1DblClick(Sender: TObject);
   private
     _idHojaDeRuta: GUID_ID;
@@ -60,6 +59,7 @@ uses
   ,dmtransportistas
   ,dmhojaderutapresentacion
   ,frm_seleccionmotivonoentrega
+  ,frm_devolucionesae
   ;
 
 { TfrmHdRPresentacionPedidos }
@@ -79,8 +79,46 @@ end;
 
 procedure TfrmHdRPresentacionPedidos.btnEntregaCompletaClick(Sender: TObject);
 begin
-  DM_HdRPresentacion.PedMarcadosEntregaCompleta;
-  DM_HdRPresentacion.LevantarPedidosHdR(_idHojaDeRuta);
+  if (MessageDlg ('ATENCION'
+               , 'Marco como pedidos ENTREGADOS todos los que se encuentran marcados?'
+               , mtConfirmation, [mbYes, mbNo],0 ) = mrYes) then
+  begin
+    DM_HdRPresentacion.PedMarcadosEntregaCompleta;
+    DM_HdRPresentacion.LevantarPedidosHdR(_idHojaDeRuta);
+  end;
+end;
+
+procedure TfrmHdRPresentacionPedidos.btnEntregaParcialClick(Sender: TObject);
+var
+  pantDev: TfrmDevolucionesae;
+begin
+  if (MessageDlg ('ATENCION'
+               , 'Marco como pedidos DEVUELTOS todos los que se encuentran marcados?'
+               , mtConfirmation, [mbYes, mbNo],0 ) = mrYes) then
+  begin
+    with ds_PresentacionPedidos.DataSet do
+    begin
+      First;
+      DisableControls;
+      pantDev:= TfrmDevolucionesae.Create(self);
+      try
+        While not EOF do
+        begin
+          if FieldByName('marca').AsBoolean then
+          begin
+            pantDev.idPedido:= FieldByName('pedido_id').AsString;
+            if pantDev.ShowModal = mrOK then
+             DM_HdRPresentacion.PedMarcadoDevuelto(pantDev.idDevolucion);;
+          end;
+          Next;
+        end;
+      finally
+        pantDev.Free;
+      end;
+      EnableControls;
+      DM_HdRPresentacion.LevantarPedidosHdR(_idHojaDeRuta);
+    end;
+  end;
 end;
 
 procedure TfrmHdRPresentacionPedidos.btnNoEntregadoClick(Sender: TObject);
@@ -89,10 +127,15 @@ var
 begin
   pant:= TfrmMotivoNoEntrega.Create (Self);
   try
-    if pant.ShowModal = mrOK then
+    if (MessageDlg ('ATENCION'
+                 , 'Marco como pedidos NO ENTREGADOS todos los que se encuentran marcados?'
+                 , mtConfirmation, [mbYes, mbNo],0 ) = mrYes) then
     begin
-      DM_HdRPresentacion.PedMarcadosNoEntregados(pant.idMotivoNoEntrega);
-      DM_HdRPresentacion.LevantarPedidosHdR(_idHojaDeRuta);
+      if pant.ShowModal = mrOK then
+      begin
+        DM_HdRPresentacion.PedMarcadosNoEntregados(pant.idMotivoNoEntrega);
+        DM_HdRPresentacion.LevantarPedidosHdR(_idHojaDeRuta);
+      end;
     end;
   finally
     pant.Free;
@@ -107,12 +150,6 @@ end;
 procedure TfrmHdRPresentacionPedidos.FormShow(Sender: TObject);
 begin
   Inicializar;
-end;
-
-procedure TfrmHdRPresentacionPedidos.RxDBGrid1AfterQuickSearch(Sender: TObject;
-  Field: TField; var AValue: string);
-begin
-
 end;
 
 procedure TfrmHdRPresentacionPedidos.RxDBGrid1DblClick(Sender: TObject);

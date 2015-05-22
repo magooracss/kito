@@ -169,6 +169,7 @@ object frmHdRPresentacionPedidos: TfrmHdRPresentacionPedidos
         Top = 8
         Width = 132
         Caption = 'Parcial'
+        OnClick = btnEntregaParcialClick
         TabOrder = 1
       end
       object btnNoEntregado: TBitBtn
@@ -204,7 +205,6 @@ object frmHdRPresentacionPedidos: TfrmHdRPresentacionPedidos
     Height = 194
     Top = 192
     Width = 787
-    AfterQuickSearch = RxDBGrid1AfterQuickSearch
     TitleButtons = True
     AutoSort = True
     Columns = <    
