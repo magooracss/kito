@@ -19,10 +19,10 @@
       <UseVersionInfo Value="True"/>
       <AutoIncrementBuild Value="True"/>
       <MajorVersionNr Value="2015"/>
-      <MinorVersionNr Value="5"/>
+      <MinorVersionNr Value="26"/>
       <RevisionNr Value="1"/>
-      <BuildNr Value="71"/>
-      <Language Value="080A"/>
+      <BuildNr Value="72"/>
+      <Language Value="040A"/>
       <StringTable Comments="Carlos Enrique Rodriguez / Magoo" CompanyName="RACSS Programación" LegalCopyright="Carlos Enrique Rodriguez - RACSS Programacion" ProductName="KITO" ProductVersion=""/>
     </VersionInfo>
     <BuildModes Count="1">
@@ -80,6 +80,7 @@
         <ComponentName Value="DM_General"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
+        <UnitName Value="dmgeneral"/>
       </Unit2>
       <Unit3>
         <Filename Value="SD_Configuracion.pas"/>
@@ -237,7 +238,6 @@
         <ComponentName Value="DM_Transportistas"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
-        <UnitName Value="dmtransportistas"/>
       </Unit25>
       <Unit26>
         <Filename Value="frm_vendedoresae.pas"/>

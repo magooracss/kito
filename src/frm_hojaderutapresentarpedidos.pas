@@ -7,7 +7,7 @@ interface
 uses
   Classes, SysUtils, db, FileUtil, DBDateTimePicker, dbdateedit, rxdbgrid,
   Forms, Controls, Graphics, Dialogs, ExtCtrls, Buttons, StdCtrls, DbCtrls,
-  DBExtCtrls, DBGrids, dmgeneral
+  DBExtCtrls, DBGrids, Menus, dmgeneral
   ;
 
 type
@@ -29,8 +29,10 @@ type
     Label1: TLabel;
     Label2: TLabel;
     Label3: TLabel;
+    MenuItem1: TMenuItem;
     Panel1: TPanel;
     Panel2: TPanel;
+    PopupMenu1: TPopupMenu;
     RxDBGrid1: TRxDBGrid;
     procedure btnEntregaCompletaClick(Sender: TObject);
     procedure btnEntregaParcialClick(Sender: TObject);
@@ -39,6 +41,7 @@ type
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure FormShow(Sender: TObject);
+    procedure MenuItem1Click(Sender: TObject);
     procedure RxDBGrid1DblClick(Sender: TObject);
   private
     _idHojaDeRuta: GUID_ID;
@@ -60,6 +63,7 @@ uses
   ,dmhojaderutapresentacion
   ,frm_seleccionmotivonoentrega
   ,frm_devolucionesae
+  ,frm_hojaderutapresentarpedido
   ;
 
 { TfrmHdRPresentacionPedidos }
@@ -151,6 +155,26 @@ procedure TfrmHdRPresentacionPedidos.FormShow(Sender: TObject);
 begin
   Inicializar;
 end;
+
+procedure TfrmHdRPresentacionPedidos.MenuItem1Click(Sender: TObject);
+var
+  pant: TfrmHdRPresentacionPedido;
+begin
+  pant:= TfrmHdRPresentacionPedido.Create(self);
+  try
+    if pant.ShowModal = mrOK then
+    begin
+      DM_HojaDeRuta.LevantarRenglon(ds_PresentacionPedidos.DataSet.FieldByName('hojaderuta_id').asString);
+      DM_HojaDeRuta.HojaDeRutaDetalles.Edit;
+      DM_HojaDeRuta.HojaDeRutaDetallesmontoCobrado.AsFloat:= ds_PresentacionPedidos.DataSet.FieldByName('montoCobrado').AsFloat;
+      DM_HojaDeRuta.HojaDeRutaDetalles.Post;
+      DM_HojaDeRuta.GrabarDetalles;
+    end;
+  finally
+    pant.Free;
+  end;
+end;
+
 
 procedure TfrmHdRPresentacionPedidos.RxDBGrid1DblClick(Sender: TObject);
 begin

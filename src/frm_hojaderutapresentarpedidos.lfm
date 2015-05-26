@@ -354,6 +354,7 @@ object frmHdRPresentacionPedidos: TfrmHdRPresentacionPedidos
     FixedCols = 0
     Options = [dgTitles, dgColumnResize, dgColumnMove, dgColLines, dgRowLines, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgHeaderPushedLook]
     ParentColor = False
+    PopupMenu = PopupMenu1
     Scrollbars = ssAutoVertical
     TabOrder = 2
     TitleFont.CharSet = ANSI_CHARSET
@@ -372,5 +373,13 @@ object frmHdRPresentacionPedidos: TfrmHdRPresentacionPedidos
     DataSet = DM_HdRPresentacion.PresPedidos
     left = 200
     top = 16
+  end
+  object PopupMenu1: TPopupMenu
+    left = 248
+    top = 285
+    object MenuItem1: TMenuItem
+      Caption = 'Cambiar monto presentado'
+      OnClick = MenuItem1Click
+    end
   end
 end
