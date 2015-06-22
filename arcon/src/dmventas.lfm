@@ -1,0 +1,17 @@
+object DM_Ventas: TDM_Ventas
+  OldCreateOrder = False
+  Height = 449
+  HorizontalOffset = 435
+  VerticalOffset = 115
+  Width = 519
+  object qTiposComprobantes: TZQuery
+    SQL.Strings = (
+      'SELECT *'
+      'FROM TIPOSCOMPROBANTES'
+      'WHERE bVisible = 1'
+    )
+    Params = <>
+    left = 376
+    top = 48
+  end
+end

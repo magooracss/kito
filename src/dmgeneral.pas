@@ -33,6 +33,7 @@ type
   { TDM_General }
 
   TDM_General = class(TDataModule)
+    cnxBase: TZConnection;
     elReporte: TfrReport;
     frDataset: TfrDBDataSet;
     frDesigner1: TfrDesigner;
@@ -46,7 +47,6 @@ type
     qLevantarValoresVALORSTR: TStringField;
     RxMemoryData1: TRxMemoryData;
     qLevantarValores: TZQuery;
-    cnxBase: TZConnection;
     procedure DataModuleCreate(Sender: TObject);
   private
     procedure AbrirConexion;

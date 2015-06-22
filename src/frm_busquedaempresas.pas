@@ -44,6 +44,7 @@ type
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
   private
+    function getCUIT: string;
     function getIdCliente: GUID_ID;
     function getIdEmpresa: GUID_ID;
     procedure Buscar;
@@ -61,6 +62,7 @@ type
     property idVendedor: GUID_ID read getIdVendedor;
     property restringirTipo: integer write SetrestringirTipo;
     property RazonSocial: string read getRazonSocial;
+    property CUIT: string read getCUIT;
 
   end;
 
@@ -83,6 +85,14 @@ end;
 procedure TfrmBusquedaEmpresas.FormDestroy(Sender: TObject);
 begin
     DM_BusquedaEmpresas.Free;
+end;
+
+function TfrmBusquedaEmpresas.getCUIT: string;
+begin
+  Result:= EmptyStr;
+  if (DM_BusquedaEmpresas.Resultados.Active)
+      and (DM_BusquedaEmpresas.Resultados.RecordCount > 0)then
+    Result:= DM_BusquedaEmpresas.ResultadosCuit.AsString;
 end;
 
 function TfrmBusquedaEmpresas.getIdCliente: GUID_ID;

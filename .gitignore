@@ -7,6 +7,9 @@
 **/doc
 **/src/backup
 **/src/lib
+**/arcon/src/backup
+**/arcon/src/lib
+**/vrs/
 *.*~*
 *.exe
 *.swp

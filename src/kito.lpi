@@ -19,9 +19,9 @@
       <UseVersionInfo Value="True"/>
       <AutoIncrementBuild Value="True"/>
       <MajorVersionNr Value="2015"/>
-      <MinorVersionNr Value="26"/>
-      <RevisionNr Value="1"/>
-      <BuildNr Value="72"/>
+      <MinorVersionNr Value="5"/>
+      <RevisionNr Value="26"/>
+      <BuildNr Value="73"/>
       <Language Value="040A"/>
       <StringTable Comments="Carlos Enrique Rodriguez / Magoo" CompanyName="RACSS Programación" LegalCopyright="Carlos Enrique Rodriguez - RACSS Programacion" ProductName="KITO" ProductVersion=""/>
     </VersionInfo>
@@ -110,7 +110,6 @@
         <ComponentName Value="DM_EdicionTUGs"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
-        <UnitName Value="dmediciontugs"/>
       </Unit7>
       <Unit8>
         <Filename Value="frm_ediciontugs.pas"/>
@@ -118,7 +117,6 @@
         <ComponentName Value="frmEdicionTugs"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="frm_ediciontugs"/>
       </Unit8>
       <Unit9>
         <Filename Value="frm_busquedaproductos.pas"/>
@@ -161,7 +159,6 @@
         <ComponentName Value="frmClientesAE"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="frm_clientesae"/>
       </Unit14>
       <Unit15>
         <Filename Value="frm_contactoae.pas"/>
@@ -357,7 +354,6 @@
         <ComponentName Value="frmDevolucionesae"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="frm_devolucionesae"/>
       </Unit42>
       <Unit43>
         <Filename Value="dmdevoluciones.pas"/>
@@ -365,7 +361,6 @@
         <ComponentName Value="DM_Devoluciones"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
-        <UnitName Value="dmdevoluciones"/>
       </Unit43>
       <Unit44>
         <Filename Value="dmlistados.pas"/>
@@ -469,7 +464,6 @@
         <ComponentName Value="frmMotivoNoEntrega"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="frm_seleccionmotivonoentrega"/>
       </Unit57>
     </Units>
   </ProjectOptions>

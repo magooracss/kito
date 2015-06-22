@@ -1,5 +1,5 @@
 -- Versión Origen Ejecutable: 2015-05-01
--- Versión Destino Ejecutable: 2015-05-
+-- Versión Destino Ejecutable: 2015-05-26
 
 CREATE TABLE HojasDeRuta
 (
