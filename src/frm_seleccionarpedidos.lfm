@@ -16,7 +16,7 @@ object frmSeleccionarPedidos: TfrmSeleccionarPedidos
   OnShow = FormShow
   Position = poOwnerFormCenter
   ShowHint = True
-  LCLVersion = '1.2.6.0'
+  LCLVersion = '1.4.0.4'
   object Panel1: TPanel
     Left = 0
     Height = 90
@@ -30,7 +30,7 @@ object frmSeleccionarPedidos: TfrmSeleccionarPedidos
       Left = 1
       Height = 88
       Top = 1
-      Width = 231
+      Width = 423
       Align = alLeft
       AutoFill = True
       Caption = 'Estados del Pedido'
@@ -41,20 +41,22 @@ object frmSeleccionarPedidos: TfrmSeleccionarPedidos
       ChildSizing.ShrinkHorizontal = crsScaleChilds
       ChildSizing.ShrinkVertical = crsScaleChilds
       ChildSizing.Layout = cclLeftToRightThenTopToBottom
-      ChildSizing.ControlsPerLine = 2
-      ClientHeight = 70
-      ClientWidth = 227
-      Columns = 2
+      ChildSizing.ControlsPerLine = 4
+      ClientHeight = 67
+      ClientWidth = 419
+      Columns = 4
       Items.Strings = (
         'Tomado'
         'Armado'
         'En tránsito'
         'Entregado'
         'Rechazado'
+        'Devolución Parcial'
+        'Facturado'
       )
       TabOrder = 0
       Data = {
-        050000000202020202
+        0700000002020202020202
       }
     end
     object btnFiltrar: TBitBtn

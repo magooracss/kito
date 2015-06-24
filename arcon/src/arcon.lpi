@@ -20,7 +20,7 @@
       <AutoIncrementBuild Value="True"/>
       <MajorVersionNr Value="2015"/>
       <MinorVersionNr Value="7"/>
-      <BuildNr Value="5"/>
+      <BuildNr Value="6"/>
       <Language Value="040A"/>
       <StringTable CompanyName="RACSS Programacion" InternalName="ARCON" LegalTrademarks="Carlos Enrique Rodriguez" ProductName="Arcon" ProductVersion=""/>
     </VersionInfo>
@@ -55,7 +55,7 @@
         <PackageName Value="LCL"/>
       </Item6>
     </RequiredPackages>
-    <Units Count="7">
+    <Units Count="11">
       <Unit0>
         <Filename Value="arcon.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -66,7 +66,6 @@
         <ComponentName Value="frmMain"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="frm_main"/>
       </Unit1>
       <Unit2>
         <Filename Value="..\..\src\dmgeneral.pas"/>
@@ -74,12 +73,12 @@
         <ComponentName Value="DM_General"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
-        <UnitName Value="dmgeneral"/>
       </Unit2>
       <Unit3>
         <Filename Value="frm_ventaae.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="frmVentasAE"/>
+        <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="frm_ventaae"/>
       </Unit3>
@@ -95,7 +94,6 @@
         <Filename Value="..\..\src\dmclientes.pas"/>
         <IsPartOfProject Value="True"/>
         <HasResources Value="True"/>
-        <UnitName Value="dmclientes"/>
       </Unit5>
       <Unit6>
         <Filename Value="..\..\src\dmempresa.pas"/>
@@ -103,8 +101,38 @@
         <ComponentName Value="DM_Empresa"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
-        <UnitName Value="dmempresa"/>
       </Unit6>
+      <Unit7>
+        <Filename Value="frm_ventaconceptosae.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmVentaConceptosAE"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="frm_ventaconceptosae"/>
+      </Unit7>
+      <Unit8>
+        <Filename Value="..\..\src\dmseleccionarpedidos.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="DM_SeleccionarPedidos"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="DataModule"/>
+        <UnitName Value="dmseleccionarpedidos"/>
+      </Unit8>
+      <Unit9>
+        <Filename Value="..\..\src\frm_seleccionarpedidos.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmSeleccionarPedidos"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="frm_seleccionarpedidos"/>
+      </Unit9>
+      <Unit10>
+        <Filename Value="..\..\src\dmpedidos.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="DM_Pedidos"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="DataModule"/>
+        <UnitName Value="dmpedidos"/>
+      </Unit10>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

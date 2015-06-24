@@ -11,6 +11,7 @@ uses
 
 const
   IDX_AENTREGAR = -1;
+  IDX_AFACTURAR = -2;
 
   //Los ID de estados en la BD son IDX_ + 1
   IDX_TOMADO = 0;
@@ -18,6 +19,8 @@ const
   IDX_TRANSPORTE = 2;
   IDX_ENTREGADO = 3;
   IDX_RECHAZADO = 4;
+  IDX_DEVOLUCION_PARCIAL = 5;
+  IDX_FACTURADO = 6;
 
 
 type
@@ -45,12 +48,14 @@ type
     procedure GrillaTitleClick(Column: TColumn);
   private
     _EstadosValidos: integer;
+    _idCliente: GUID_ID;
     function GetPedidosSeleccionados: TStringList;
     procedure Inicializar;
     procedure FiltrarPorEstado;
 
   public
     property restringirEstados: integer write _EstadosValidos;
+    property restringirCliente: GUID_ID write _idCliente;
     property PedidosSeleccionados: TStringList read GetPedidosSeleccionados;
   end;
 
@@ -82,6 +87,7 @@ end;
 
 procedure TfrmSeleccionarPedidos.FormCreate(Sender: TObject);
 begin
+  _idCliente:= GUIDNULO;
   Application.CreateForm(TDM_SeleccionarPedidos,DM_SeleccionarPedidos);
 end;
 
@@ -129,6 +135,15 @@ begin
          ckEstados.Checked[IDX_ARMADO]:= True;
          ckEstados.Checked[IDX_TOMADO]:= True;
        end;
+     IDX_AFACTURAR:
+       begin
+         ckEstados.Checked[IDX_ARMADO]:= True;
+         ckEstados.Checked[IDX_TOMADO]:= True;
+         ckEstados.Checked[IDX_TRANSPORTE]:= True;
+         ckEstados.Checked[IDX_ENTREGADO]:= True;
+         ckEstados.Checked[IDX_RECHAZADO]:= True;
+         ckEstados.Checked[IDX_DEVOLUCION_PARCIAL]:= True;
+       end;
     end;
   end
   else
@@ -149,7 +164,12 @@ begin
   for idx:= 0 to ckEstados.Items.Count -1 do
   begin
     if ckEstados.Checked[idx] then
-      DM_SeleccionarPedidos.ObtenerPedidosEstado(idx + 1);
+    begin
+      if _idCliente = GUIDNULO then
+        DM_SeleccionarPedidos.ObtenerPedidosEstado(idx + 1)
+      else
+        DM_SeleccionarPedidos.ObtenerPedidosEstadoCliente(idx + 1, _idCliente);
+    end;
   end;
 end;
 

@@ -2,10 +2,10 @@ object DM_SeleccionarPedidos: TDM_SeleccionarPedidos
   OnCreate = DataModuleCreate
   OnDestroy = DataModuleDestroy
   OldCreateOrder = False
-  Height = 359
+  Height = 357
   HorizontalOffset = 561
-  VerticalOffset = 164
-  Width = 417
+  VerticalOffset = 166
+  Width = 415
   object SeleccionPedidos: TRxMemoryData
     FieldDefs = <    
       item
@@ -251,6 +251,128 @@ object DM_SeleccionarPedidos: TDM_SeleccionarPedidos
       Precision = 2
     end
     object qPedidosEstadoESTADO: TStringField
+      DisplayWidth = 120
+      FieldKind = fkData
+      FieldName = 'ESTADO'
+      Index = 6
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 120
+    end
+  end
+  object qPedidosEstadoCli: TZQuery
+    Connection = DM_General.cnxBase
+    SQL.Strings = (
+      'select  P.ID as idPedido'
+      '      , P.NUMERO as NroPedido      '
+      '      , E.RAZONSOCIAL as Cliente'
+      '      , P.FTOMA as fTomado'
+      '      , P.FAENTREGAR as fPrometido'
+      '      , P.TOTALPEDIDO as Monto'
+      '      , PTE.TIPOESTADO as Estado'
+      'from  PEDIDOS P'
+      '     inner join  PEDIDOSESTADOS PE on PE.id = P.ESTADOACTUAL_ID'
+      '     left join PEDIDOSTIPOSESTADOS PTE on PTE.ID = PE.TIPOESTADO_ID'
+      '     left join CLIENTES C on C.ID = P.CLIENTE_ID'
+      '     left join EMPRESAS E on E.ID = C.EMPRESA_ID'
+      'where (P.BVISIBLE = 1)'
+      '     and (PE.TIPOESTADO_ID = :TipoEstado_id)'
+      '     and (P.CLIENTE_ID = :cliente_id)'
+      'order by P.FAENTREGAR, PTE.TIPOESTADO     '
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'TipoEstado_id'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'cliente_id'
+        ParamType = ptUnknown
+      end>
+    left = 64
+    top = 200
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'TipoEstado_id'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'cliente_id'
+        ParamType = ptUnknown
+      end>
+    object qPedidosEstadoCliIDPEDIDO: TStringField
+      DisplayWidth = 152
+      FieldKind = fkData
+      FieldName = 'IDPEDIDO'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      Size = 152
+    end
+    object qPedidosEstadoCliNROPEDIDO: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'NROPEDIDO'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object qPedidosEstadoCliCLIENTE: TStringField
+      DisplayWidth = 2000
+      FieldKind = fkData
+      FieldName = 'CLIENTE'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 2000
+    end
+    object qPedidosEstadoCliFTOMADO: TDateField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'FTOMADO'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object qPedidosEstadoCliFPROMETIDO: TDateField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'FPROMETIDO'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object qPedidosEstadoCliMONTO: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'MONTO'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Currency = True
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object qPedidosEstadoCliESTADO: TStringField
       DisplayWidth = 120
       FieldKind = fkData
       FieldName = 'ESTADO'

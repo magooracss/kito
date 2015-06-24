@@ -14,4 +14,81 @@ object DM_Ventas: TDM_Ventas
     left = 376
     top = 48
   end
+  object Pedidos: TRxMemoryData
+    Active = True
+    FieldDefs = <    
+      item
+        Name = 'id'
+        DataType = ftString
+        Precision = -1
+        Size = 38
+      end    
+      item
+        Name = 'Numero'
+        DataType = ftInteger
+        Precision = -1
+        Size = 0
+      end    
+      item
+        Name = 'fToma'
+        DataType = ftDateTime
+        Precision = -1
+        Size = 0
+      end    
+      item
+        Name = 'TotalPedido'
+        DataType = ftFloat
+        Precision = 2
+        Size = 0
+      end>
+    PacketRecords = 0
+    left = 248
+    top = 64
+    object Pedidosid: TStringField
+      DisplayWidth = 38
+      FieldKind = fkData
+      FieldName = 'id'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 38
+    end
+    object PedidosNumero: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'Numero'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object PedidosfToma: TDateTimeField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'fToma'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      DisplayFormat = 'dd/mm/yyyy'
+    end
+    object PedidosTotalPedido: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'TotalPedido'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Currency = True
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+  end
 end

@@ -10,7 +10,8 @@ uses
   Forms, rxnew, datetimectrls, zcomponent, frm_main, dmgeneral
   ,frm_ventaae, dmventas
   { you can add units after this }
-  , dmclientes, dmempresa;
+  , dmclientes, dmempresa, dmseleccionarpedidos, frm_seleccionarpedidos,
+  dmpedidos, frm_ventaconceptosae;
 
 {$R *.res}
 

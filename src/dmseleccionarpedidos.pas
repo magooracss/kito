@@ -14,7 +14,15 @@ type
   { TDM_SeleccionarPedidos }
 
   TDM_SeleccionarPedidos = class(TDataModule)
+    qPedidosEstadoCli: TZQuery;
+    qPedidosEstadoCliCLIENTE: TStringField;
     qPedidosEstadoCLIENTE: TStringField;
+    qPedidosEstadoCliESTADO: TStringField;
+    qPedidosEstadoCliFPROMETIDO: TDateField;
+    qPedidosEstadoCliFTOMADO: TDateField;
+    qPedidosEstadoCliIDPEDIDO: TStringField;
+    qPedidosEstadoCliMONTO: TFloatField;
+    qPedidosEstadoCliNROPEDIDO: TLongintField;
     qPedidosEstadoESTADO: TStringField;
     qPedidosEstadoFPROMETIDO: TDateField;
     qPedidosEstadoFTOMADO: TDateField;
@@ -42,6 +50,7 @@ type
     property PedidosSeleccionados: TStringList read getPedidosSeleccionados;
     procedure NuevaSeleccion;
     procedure ObtenerPedidosEstado (refEstado: integer);
+    procedure ObtenerPedidosEstadoCliente (refEstado: integer; refCliente: GUID_ID);
 
     procedure CambiarEstadoFila;
   end;
@@ -116,6 +125,21 @@ begin
     SeleccionPedidos.LoadFromDataSet(qPedidosEstado, 0, lmAppend);
     Close;
   end;
+end;
+
+procedure TDM_SeleccionarPedidos.ObtenerPedidosEstadoCliente(
+  refEstado: integer; refCliente: GUID_ID);
+begin
+  with qPedidosEstadoCli do
+  begin
+    if active then close;
+    ParamByName('tipoEstado_id').asInteger:= refEstado;
+    ParamByName('cliente_id').asString:= refCliente;
+    Open;
+    SeleccionPedidos.LoadFromDataSet(qPedidosEstadoCli, 0, lmAppend);
+    Close;
+  end;
+
 end;
 
 procedure TDM_SeleccionarPedidos.CambiarEstadoFila;
