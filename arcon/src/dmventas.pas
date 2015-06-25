@@ -19,10 +19,13 @@ type
     PedidosTotalPedido: TFloatField;
     qTiposComprobantes: TZQuery;
     Pedidos: TRxMemoryData;
+    ComproVta: TRxMemoryData;
+    ComproVtaConceptos: TRxMemoryData;
   private
     { private declarations }
   public
     procedure AgregarPedido (refPedido: GUID_ID);
+    procedure AgregarConceptoPedidos;
   end;
 
 var
@@ -40,6 +43,17 @@ procedure TDM_Ventas.AgregarPedido(refPedido: GUID_ID);
 begin
   DM_Pedidos.LevantarPedido(refPedido);
   Pedidos.LoadFromDataSet(DM_Pedidos.Pedidos, 0, lmAppend);
+end;
+
+procedure TDM_Ventas.AgregarConceptoPedidos;
+begin
+  Pedidos.First;
+  While Not Pedidos.EOF do
+  begin
+    DM_Pedidos.VincularFactura();
+
+    Pedidos.Next;
+  end;
 end;
 
 end.

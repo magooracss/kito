@@ -547,4 +547,57 @@ VALUES
 (7, 'Facturado', 1);
 
 
+CREATE TABLE ComprobantesVenta 
+(
+  id		"guid"  NOT NULL PRIMARY KEY
+, fecha     date
+, cliente_id "guid" default '{00000000-0000-0000-0000-000000000000}'
+, tipoComprobante_id integer default 0
+, puntoVenta integer default 0
+, nroComprobante integer default 0
+, bProducto smallint default 0
+, bServicio smallint default 0
+, formaPago_id integer default 0
+, periodoFacturadoIni   date
+, periodoFacturadoFin   date
+, vtoPago   date
+, netoGravado   float default 0
+, netoNoGravado float default 0
+, exento    float default 0
+, cae varchar(14) default '00000000000000'
+, vtoCAE date
+, bVisible smallint default 1
+);
 
+CREATE TABLE ComprobantesVentaConceptos
+(
+  id		"guid"  NOT NULL PRIMARY KEY
+, comprobanteVenta_id "guid" default '{00000000-0000-0000-0000-000000000000}'
+, orden integer default -1
+, cantidad  float default 0
+, concepto_id   integer default 0
+, detalle   varchar(500)
+, gravado   float default 0
+, noGravado float default 0
+, exento    float default 0
+, producto_id "guid" default '{00000000-0000-0000-0000-000000000000}'
+, bVisible smallint default 1
+);
+
+CREATE TABLE ComprobantesVentaIVA
+(
+  id		"guid"  NOT NULL PRIMARY KEY
+, comprobanteVentaConcepto_id "guid" default '{00000000-0000-0000-0000-000000000000}'
+, alicuota_id   integer default 0
+, monto float default 0
+, bVisible smallint default 1
+);
+
+CREATE TABLE ComprobantesVentaImpuestos
+(
+  id		"guid"  NOT NULL PRIMARY KEY
+, comprobanteVentaConcepto_id "guid" default '{00000000-0000-0000-0000-000000000000}'
+, impuesto_id   integer default 0
+, monto float default 0
+, bVisible smallint default 1
+);

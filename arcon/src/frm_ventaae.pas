@@ -59,6 +59,9 @@ type
     _clienteID: GUID_ID;
     procedure Inicializar;
     procedure AgregarConcepto;
+    procedure AgregarConceptoGeneral;
+    procedure AgregarConceptoPedidos;
+
   public
     property ventaID: GUID_ID read _ventaID write _VentaID;
   end;
@@ -135,6 +138,20 @@ begin
   end;
 end;
 
+(*******************************************************************************
+*** CONCEPTOS
+*******************************************************************************)
+
+procedure TfrmVentasAE.AgregarConceptoGeneral;
+begin
+
+end;
+
+procedure TfrmVentasAE.AgregarConceptoPedidos;
+begin
+  DM_Ventas.agregar
+end;
+
 
 procedure TfrmVentasAE.AgregarConcepto;
 var
@@ -143,7 +160,13 @@ begin
   pant:= TfrmVentaConceptosAE.Create(self);
   try
     pant.refCliente:= _clienteID;
-    pant.ShowModal;
+    if pant.ShowModal = mrOK then
+    begin
+       if pant.tipoConcepto = CONCEPTO_PEDIDO then
+        AgregarConceptoPedidos;
+       else
+        AgregarConceptoGeneral;
+    end;
   finally
     pant.Free;
   end;

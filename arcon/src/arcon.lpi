@@ -106,6 +106,7 @@
         <Filename Value="frm_ventaconceptosae.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="frmVentaConceptosAE"/>
+        <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="frm_ventaconceptosae"/>
       </Unit7>
@@ -115,7 +116,6 @@
         <ComponentName Value="DM_SeleccionarPedidos"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
-        <UnitName Value="dmseleccionarpedidos"/>
       </Unit8>
       <Unit9>
         <Filename Value="..\..\src\frm_seleccionarpedidos.pas"/>
@@ -123,7 +123,6 @@
         <ComponentName Value="frmSeleccionarPedidos"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="frm_seleccionarpedidos"/>
       </Unit9>
       <Unit10>
         <Filename Value="..\..\src\dmpedidos.pas"/>

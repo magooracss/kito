@@ -11,8 +11,8 @@ object DM_Ventas: TDM_Ventas
       'WHERE bVisible = 1'
     )
     Params = <>
-    left = 376
-    top = 48
+    left = 400
+    top = 40
   end
   object Pedidos: TRxMemoryData
     Active = True
@@ -42,8 +42,8 @@ object DM_Ventas: TDM_Ventas
         Size = 0
       end>
     PacketRecords = 0
-    left = 248
-    top = 64
+    left = 296
+    top = 40
     object Pedidosid: TStringField
       DisplayWidth = 38
       FieldKind = fkData
@@ -90,5 +90,17 @@ object DM_Ventas: TDM_Ventas
       MinValue = 0
       Precision = 2
     end
+  end
+  object ComproVta: TRxMemoryData
+    FieldDefs = <>
+    PacketRecords = 0
+    left = 48
+    top = 40
+  end
+  object ComproVtaConceptos: TRxMemoryData
+    FieldDefs = <>
+    PacketRecords = 0
+    left = 152
+    top = 40
   end
 end

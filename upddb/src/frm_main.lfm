@@ -1,0 +1,76 @@
+object frmMain: TfrmMain
+  Left = 477
+  Height = 366
+  Top = 192
+  Width = 593
+  ClientHeight = 366
+  ClientWidth = 593
+  OnCreate = FormCreate
+  Position = poDesktopCenter
+  LCLVersion = '1.4.0.4'
+  object instrucciones: TMemo
+    Left = 0
+    Height = 316
+    Top = 0
+    Width = 593
+    Align = alClient
+    TabOrder = 0
+  end
+  object Panel1: TPanel
+    Left = 0
+    Height = 50
+    Top = 316
+    Width = 593
+    Align = alBottom
+    ClientHeight = 50
+    ClientWidth = 593
+    TabOrder = 1
+    object btnEjecutar: TBitBtn
+      Left = 232
+      Height = 40
+      Top = 4
+      Width = 120
+      Caption = 'Ejecutar'
+      OnClick = btnEjecutarClick
+      TabOrder = 0
+    end
+    object btnCargar: TBitBtn
+      Left = 16
+      Height = 40
+      Top = 4
+      Width = 123
+      Caption = 'Cargar'
+      OnClick = btnCargarClick
+      TabOrder = 1
+    end
+  end
+  object cnxBase: TZConnection
+    ControlsCodePage = cCP_UTF8
+    AutoEncodeStrings = False
+    Properties.Strings = (
+      'AutoEncodeStrings='
+    )
+    SQLHourGlass = True
+    Port = 0
+    User = 'sysdba'
+    Password = 'masterkey'
+    Protocol = 'firebird-2.5'
+    left = 80
+    top = 40
+  end
+  object Procesador: TZSQLProcessor
+    Params = <>
+    Connection = cnxBase
+    DelimiterType = dtSetTerm
+    Delimiter = ';'
+    CleanupStatements = True
+    left = 216
+    top = 40
+  end
+  object OD: TOpenDialog
+    DefaultExt = '.sql'
+    Filter = 'Archivos sql (*.sql)|*.sql|Todos los archivos (*.*)|*.*'
+    left = 228
+    top = 234
+  end
+end

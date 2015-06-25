@@ -21,7 +21,8 @@ type
   TfrmVentaConceptosAE = class(TForm)
     btnAgregarPedidos: TBitBtn;
     BitBtn2: TBitBtn;
-    BitBtn3: TBitBtn;
+    btnPedidosAceptar: TBitBtn;
+    btnPedidosCancelar: TBitBtn;
     ds_pedidos: TDataSource;
     ds_detallePedido: TDataSource;
     Panel1: TPanel;
@@ -31,8 +32,9 @@ type
     Splitter1: TSplitter;
     TabGenerales: TTabSheet;
     TabSheet2: TTabSheet;
-    procedure BitBtn3Click(Sender: TObject);
+    procedure btnPedidosAceptarClick(Sender: TObject);
     procedure btnAgregarPedidosClick(Sender: TObject);
+    procedure btnPedidosCancelarClick(Sender: TObject);
     procedure ds_pedidosDataChange(Sender: TObject; Field: TField);
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
@@ -77,7 +79,7 @@ begin
 end;
 
 
-procedure TfrmVentaConceptosAE.BitBtn3Click(Sender: TObject);
+procedure TfrmVentaConceptosAE.btnPedidosAceptarClick(Sender: TObject);
 begin
   _tipoConcepto:= PCConceptos.ActivePageIndex;
   ModalResult:= mrOK;
@@ -100,6 +102,11 @@ begin
   finally
     pant.Free;
   end;
+end;
+
+procedure TfrmVentaConceptosAE.btnPedidosCancelarClick(Sender: TObject);
+begin
+  ModalResult:= mrCancel;
 end;
 
 procedure TfrmVentaConceptosAE.ds_pedidosDataChange(Sender: TObject;
