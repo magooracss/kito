@@ -193,8 +193,10 @@ type
     procedure Grabar;
     procedure Nuevo;
     procedure LevantarPedido(refPedido: GUID_ID);
+    procedure VincularFactura (refPedido, refFactura: GUID_ID; fecha: TDate);
     procedure AjustarMontoPedido;
     procedure AjustarPreciosProducto;
+
 
 
     procedure NuevoProducto (productoID: GUID_ID; listaPrecioID: integer
@@ -322,6 +324,20 @@ begin
 
   LevantarDetallePedido;
   LevantarEstadoActual;
+end;
+
+procedure TDM_Pedidos.VincularFactura(refPedido, refFactura: GUID_ID;
+  fecha: TDate);
+begin
+  LevantarPedido(refPedido);
+  if((Pedidos.Active) and (Pedidos.RecordCount > 0)) then
+  begin
+    Pedidos.Edit;
+    Pedidosfactura_id.AsString:= refFactura;
+    PedidosfFacturacion.AsDateTime:= fecha;
+    Pedidos.Post;
+  end;
+  Grabar;
 end;
 
 procedure TDM_Pedidos.AjustarMontoPedido;

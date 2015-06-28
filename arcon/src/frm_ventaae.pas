@@ -149,7 +149,7 @@ end;
 
 procedure TfrmVentasAE.AgregarConceptoPedidos;
 begin
-  DM_Ventas.agregar
+  DM_Ventas.AgregarConceptoPedidos;
 end;
 
 
@@ -163,7 +163,7 @@ begin
     if pant.ShowModal = mrOK then
     begin
        if pant.tipoConcepto = CONCEPTO_PEDIDO then
-        AgregarConceptoPedidos;
+        AgregarConceptoPedidos
        else
         AgregarConceptoGeneral;
     end;

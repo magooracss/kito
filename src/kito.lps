@@ -20,7 +20,8 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="frm_main"/>
-        <TopLine Value="204"/>
+        <IsVisibleTab Value="True"/>
+        <TopLine Value="201"/>
         <CursorPos X="28" Y="206"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
@@ -346,6 +347,7 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="frm_pedidosbusqueda"/>
         <EditorIndex Value="1"/>
+        <TopLine Value="4"/>
         <CursorPos X="16"/>
         <UsageCount Value="162"/>
         <Loaded Value="True"/>
@@ -519,10 +521,9 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="frm_seleccionarpedidos"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="5"/>
-        <TopLine Value="148"/>
-        <CursorPos X="80" Y="170"/>
+        <TopLine Value="140"/>
+        <CursorPos X="47" Y="163"/>
         <UsageCount Value="75"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>

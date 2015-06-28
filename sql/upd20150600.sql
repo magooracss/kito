@@ -601,3 +601,62 @@ CREATE TABLE ComprobantesVentaImpuestos
 , monto float default 0
 , bVisible smallint default 1
 );
+
+
+
+ALTER TABLE Precios add alicuotaIVA_id integer default 0;
+
+DROP TABLE AlicuotasIVA;
+
+CREATE TABLE AlicuotasIVA
+(
+  id    integer  NOT NULL PRIMARY KEY
+, nombre    varchar(15)
+, porcentaje    float default 0
+, codigoAFIP    float default -1  
+, bVisible   smallint default 1    
+);
+
+INSERT INTO AlicuotasIVA
+(id, nombre, porcentaje, codigoAFIP, bVisible)
+VALUES
+(0, 'DESCONOCIDO', 0, 0, 0);
+
+
+INSERT INTO AlicuotasIVA
+(id, nombre, porcentaje, codigoAFIP, bVisible)
+VALUES
+(1, '0%', 0, 21, 1);
+
+
+INSERT INTO AlicuotasIVA
+(id, nombre, porcentaje, codigoAFIP, bVisible)
+VALUES
+(2, '10,5%', 10.5, 10.5, 1);
+
+
+INSERT INTO AlicuotasIVA
+(id, nombre, porcentaje, codigoAFIP, bVisible)
+VALUES
+(3, '21%', 21, 0, 1);
+
+
+INSERT INTO AlicuotasIVA
+(id, nombre, porcentaje, codigoAFIP, bVisible)
+VALUES
+(4, '27%', 27, 27, 1);
+
+
+INSERT INTO AlicuotasIVA
+(id, nombre, porcentaje, codigoAFIP, bVisible)
+VALUES
+(5, '5%', 5, 5, 1);
+
+
+INSERT INTO AlicuotasIVA
+(id, nombre, porcentaje, codigoAFIP, bVisible)
+VALUES
+(6, '2,5%', 2.5, 2.5, 1);
+
+
+
