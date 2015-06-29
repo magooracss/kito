@@ -113,7 +113,7 @@ var
   ivaProducto: integer;
 begin
   Pedidos.First;
-  ivaProducto:= 0;
+  ivaProducto:= 3; //Por ahora, en caso de duda, el iva es 21%
   While Not Pedidos.EOF do
   begin
     DM_Pedidos.VincularFactura(Pedidosid.AsString

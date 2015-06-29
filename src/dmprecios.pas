@@ -23,8 +23,11 @@ type
     PrecioslistaPrecio_id: TLongintField;
     Preciosmonto: TFloatField;
     Preciosproducto_id: TLongintField;
+    qListasPreciosLISTAPRECIO: TStringField;
     SELPrecios: TZQuery;
     qListasPrecios: TZQuery;
+    SELPreciosALICUOTAIVA_ID: TLongintField;
+    SELPreciosBOFERTA: TSmallintField;
     SELPreciosBVISIBLE: TSmallintField;
     SELPreciosBVISIBLE1: TSmallintField;
     SELPreciosID: TStringField;
@@ -35,6 +38,8 @@ type
     SELPreciosLISTAPRECIO_ID1: TLongintField;
     SELPreciosMONTO: TFloatField;
     SELPreciosMONTO1: TFloatField;
+    SELPreciosOFERTAFIN: TDateField;
+    SELPreciosOFERTAINI: TDateField;
     SELPreciosPRODUCTO_ID: TStringField;
     SELPreciosPRODUCTO_ID1: TStringField;
     UPDPrecios: TZQuery;

@@ -41,6 +41,12 @@ object DM_Precios: TDM_Precios
         DataType = ftInteger
         Precision = 0
         Size = 0
+      end    
+      item
+        Name = 'alicuotaIVA_id'
+        DataType = ftInteger
+        Precision = 0
+        Size = 0
       end>
     AfterInsert = PreciosAfterInsert
     PacketRecords = 0
@@ -116,7 +122,6 @@ object DM_Precios: TDM_Precios
   end
   object SELPrecios: TZQuery
     Connection = DM_General.cnxBase
-    Active = True
     SQL.Strings = (
       'SELECT *'
       'FROM Precios'
@@ -204,14 +209,54 @@ object DM_Precios: TDM_Precios
       ReadOnly = False
       Required = False
     end
+    object SELPreciosBOFERTA: TSmallintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'BOFERTA'
+      Index = 6
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object SELPreciosOFERTAINI: TDateField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'OFERTAINI'
+      Index = 7
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object SELPreciosOFERTAFIN: TDateField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'OFERTAFIN'
+      Index = 8
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object SELPreciosALICUOTAIVA_ID: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'ALICUOTAIVA_ID'
+      Index = 9
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
   end
   object INSPrecios: TZQuery
     Connection = DM_General.cnxBase
     SQL.Strings = (
       'INSERT INTO Precios'
-      '(  id,  monto, producto_id, listaPrecio_id, iva, bVisible)'
+      '(  id,  monto, producto_id, listaPrecio_id, iva, bVisible, bOferta, ofertaIni, ofertaFin, alicuotaIVA_id)'
       'VALUES'
-      '( :id,  :monto, :producto_id, :listaPrecio_id, :iva, :bVisible)'
+      '( :id,  :monto, :producto_id, :listaPrecio_id, :iva, :bVisible, :bOferta, :ofertaIni, :ofertaFin, :alicuotaIVA_id)'
     )
     Params = <    
       item
@@ -242,6 +287,26 @@ object DM_Precios: TDM_Precios
       item
         DataType = ftUnknown
         Name = 'bVisible'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'bOferta'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'ofertaIni'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'ofertaFin'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'alicuotaIVA_id'
         ParamType = ptUnknown
       end>
     left = 72
@@ -276,6 +341,26 @@ object DM_Precios: TDM_Precios
         DataType = ftUnknown
         Name = 'bVisible'
         ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'bOferta'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'ofertaIni'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'ofertaFin'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'alicuotaIVA_id'
+        ParamType = ptUnknown
       end>
   end
   object UPDPrecios: TZQuery
@@ -288,6 +373,10 @@ object DM_Precios: TDM_Precios
       ', listaPrecio_id = :listaPrecio_id'
       ', iva = :iva'
       ', bVisible = :bVisible'
+      ', bOferta = :bOferta'
+      ', ofertaIni = :ofertaINI'
+      ', ofertaFin = :ofertaFIN'
+      ', alicuotaIVA_id = :alicuotaIVA_id'
       'WHERE id = :id'
     )
     Params = <    
@@ -314,6 +403,26 @@ object DM_Precios: TDM_Precios
       item
         DataType = ftUnknown
         Name = 'bVisible'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'bOferta'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'ofertaINI'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'ofertaFIN'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'alicuotaIVA_id'
         ParamType = ptUnknown
       end    
       item
@@ -347,6 +456,26 @@ object DM_Precios: TDM_Precios
       item
         DataType = ftUnknown
         Name = 'bVisible'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'bOferta'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'ofertaINI'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'ofertaFIN'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'alicuotaIVA_id'
         ParamType = ptUnknown
       end    
       item
@@ -454,6 +583,17 @@ object DM_Precios: TDM_Precios
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
       Required = False
+    end
+    object qListasPreciosLISTAPRECIO: TStringField
+      DisplayWidth = 400
+      FieldKind = fkData
+      FieldName = 'LISTAPRECIO'
+      Index = 6
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 400
     end
   end
 end

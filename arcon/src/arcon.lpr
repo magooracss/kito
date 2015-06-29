@@ -11,7 +11,7 @@ uses
   ,frm_ventaae, dmventas
   { you can add units after this }
   , dmclientes, dmempresa, dmseleccionarpedidos, frm_seleccionarpedidos,
-  dmpedidos, frm_ventaconceptosae;
+  dmpedidos, dmprecios, frm_ventaconceptosae;
 
 {$R *.res}
 
