@@ -21,7 +21,7 @@
       <MajorVersionNr Value="2015"/>
       <MinorVersionNr Value="5"/>
       <RevisionNr Value="26"/>
-      <BuildNr Value="73"/>
+      <BuildNr Value="74"/>
       <Language Value="040A"/>
       <StringTable Comments="Carlos Enrique Rodriguez / Magoo" CompanyName="RACSS Programación" LegalCopyright="Carlos Enrique Rodriguez - RACSS Programacion" ProductName="KITO" ProductVersion=""/>
     </VersionInfo>
@@ -73,6 +73,7 @@
         <ComponentName Value="frmMain"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
+        <UnitName Value="frm_main"/>
       </Unit1>
       <Unit2>
         <Filename Value="dmgeneral.pas"/>
@@ -80,7 +81,6 @@
         <ComponentName Value="DM_General"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
-        <UnitName Value="dmgeneral"/>
       </Unit2>
       <Unit3>
         <Filename Value="SD_Configuracion.pas"/>
@@ -256,6 +256,7 @@
         <ComponentName Value="frmPedidoAE"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
+        <UnitName Value="frm_pedidosae"/>
       </Unit28>
       <Unit29>
         <Filename Value="dmpedidos.pas"/>
@@ -291,6 +292,7 @@
         <ComponentName Value="frmPedidosBusqueda"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
+        <UnitName Value="frm_pedidosbusqueda"/>
       </Unit33>
       <Unit34>
         <Filename Value="dmbusquedapedidos.pas"/>
@@ -398,6 +400,7 @@
         <ComponentName Value="frmSeleccionarPedidos"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
+        <UnitName Value="frm_seleccionarpedidos"/>
       </Unit48>
       <Unit49>
         <Filename Value="dmseleccionarpedidos.pas"/>
@@ -405,6 +408,7 @@
         <ComponentName Value="DM_SeleccionarPedidos"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
+        <UnitName Value="dmseleccionarpedidos"/>
       </Unit49>
       <Unit50>
         <Filename Value="frm_hojaderutapedido.pas"/>
@@ -412,6 +416,7 @@
         <ComponentName Value="frmHdRPedidos"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
+        <UnitName Value="frm_hojaderutapedido"/>
       </Unit50>
       <Unit51>
         <Filename Value="frm_busquedahojaderuta.pas"/>
@@ -440,7 +445,6 @@
         <ComponentName Value="DM_HdRPresentacion"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
-        <UnitName Value="dmhojaderutapresentacion"/>
       </Unit54>
       <Unit55>
         <Filename Value="frm_hojaderutapresentarpedidos.pas"/>
@@ -448,7 +452,6 @@
         <ComponentName Value="frmHdRPresentacionPedidos"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="frm_hojaderutapresentarpedidos"/>
       </Unit55>
       <Unit56>
         <Filename Value="frm_hojaderutapresentarpedido.pas"/>
@@ -456,7 +459,6 @@
         <ComponentName Value="frmHdRPresentacionPedido"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="frm_hojaderutapresentarpedido"/>
       </Unit56>
       <Unit57>
         <Filename Value="frm_seleccionmotivonoentrega.pas"/>

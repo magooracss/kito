@@ -43,6 +43,7 @@ type
     PedidosDetallesprecioSubtotal: TFloatField;
     PedidosDetallesprecioTotal: TFloatField;
     PedidosDetallesprecioUnitario: TFloatField;
+    PedidosDetallesprecio_id: TStringField;
     PedidosDetallesproducto_id: TStringField;
     PedidosestadoActual_id: TStringField;
     PedidosEstados: TRxMemoryData;
@@ -73,6 +74,7 @@ type
     Pedidostransportista_id: TStringField;
     PedidostxNotas: TStringField;
     Pedidosvendedor_id: TStringField;
+    qDetallesPedidoPRECIO_ID: TStringField;
     qPedidosDetalleProducto: TZQuery;
     qDetallesPedidoBDESCUENTO: TSmallintField;
     qDetallesPedidoBVISIBLE: TSmallintField;
@@ -105,6 +107,7 @@ type
     qPedidosDetalleProductoPRECIOSUBTOTAL: TFloatField;
     qPedidosDetalleProductoPRECIOTOTAL: TFloatField;
     qPedidosDetalleProductoPRECIOUNITARIO: TFloatField;
+    qPedidosDetalleProductoPRECIO_ID: TStringField;
     qPedidosDetalleProductoPRODUCTO_ID: TStringField;
     qPedidosEstadosHistorialBVISIBLE: TSmallintField;
     qPedidosEstadosHistorialFECHA: TDateField;
@@ -114,6 +117,8 @@ type
     qPedidosEstadosHistorialPEDIDO_ID: TStringField;
     qPedidosEstadosHistorialTIPOESTADO_ID: TLongintField;
     qPrecio: TZQuery;
+    qPrecioALICUOTAIVA_ID: TLongintField;
+    qPrecioBOFERTA: TSmallintField;
     qPrecioBVISIBLE: TSmallintField;
     qPrecioBVISIBLE1: TSmallintField;
     qPrecioID: TStringField;
@@ -124,6 +129,8 @@ type
     qPrecioLISTAPRECIO_ID1: TLongintField;
     qPrecioMONTO: TFloatField;
     qPrecioMONTO1: TFloatField;
+    qPrecioOFERTAFIN: TDateField;
+    qPrecioOFERTAINI: TDateField;
     qPrecioPRODUCTO_ID: TStringField;
     qPrecioPRODUCTO_ID1: TStringField;
     SELPedidos: TZQuery;
@@ -132,6 +139,7 @@ type
     SELPedidosDetallesLXCODIGO: TStringField;
     SELPedidosDetallesLXLISTAPRECIO: TStringField;
     SELPedidosDetallesLXPRODUCTO: TStringField;
+    SELPedidosDetallesPRECIO_ID: TStringField;
     SELPedidosEstados: TZQuery;
     SELPedidosBDESCUENTO: TSmallintField;
     SELPedidosBFACTURADO: TSmallintField;
@@ -273,6 +281,7 @@ begin
   PedidosDetallesprecioTotal.AsFloat:=0;
   PedidosDetallescantidad.AsFloat:=0;
   PedidosDetallesbVisible.AsInteger:= 1;
+  PedidosDetallesprecio_id.asString:= GUIDNULO;
 end;
 
 procedure TDM_Pedidos.PedidosEstadosAfterInsert(DataSet: TDataSet);
@@ -563,7 +572,10 @@ begin
       ParamByName('listaprecio_id').asInteger:= PedidosDetalleslistaPrecio_id.AsInteger;
       Open;
       if RecordCount > 0 then
-        PedidosDetallesprecioUnitario.AsFloat:= qPrecioMONTO.AsFloat
+      begin
+        PedidosDetallesprecioUnitario.AsFloat:= qPrecioMONTO.AsFloat;
+        PedidosDetallesprecio_id.AsString:= qPrecioID.AsString;
+      end
       else
         PedidosDetallesprecioUnitario.AsFloat:= 0;
     end;

@@ -1,7 +1,7 @@
 object frmPedidoAE: TfrmPedidoAE
-  Left = 207
+  Left = 205
   Height = 654
-  Top = 125
+  Top = 32
   Width = 1036
   ActiveControl = btnBusquedaCliente
   Caption = 'Pedido'
@@ -696,6 +696,7 @@ object frmPedidoAE: TfrmPedidoAE
       Width = 109
       ButtonWidth = 23
       DialogTitle = 'Seleccionar Fecha'
+      Enabled = False
       MaxLength = 10
       NumGlyphs = 2
       PasswordChar = #0
@@ -712,6 +713,7 @@ object frmPedidoAE: TfrmPedidoAE
       Width = 109
       ButtonWidth = 23
       DialogTitle = 'Seleccionar Fecha'
+      Enabled = False
       MaxLength = 10
       NumGlyphs = 2
       PasswordChar = #0

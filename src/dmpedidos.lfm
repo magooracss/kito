@@ -1108,6 +1108,12 @@ object DM_Pedidos: TDM_Pedidos
         DataType = ftString
         Precision = 0
         Size = 100
+      end    
+      item
+        Name = 'precio_id'
+        DataType = ftString
+        Precision = 0
+        Size = 38
       end>
     AfterInsert = PedidosDetallesAfterInsert
     PacketRecords = 0
@@ -1277,9 +1283,21 @@ object DM_Pedidos: TDM_Pedidos
       Required = False
       Size = 100
     end
+    object PedidosDetallesprecio_id: TStringField
+      DisplayWidth = 38
+      FieldKind = fkData
+      FieldName = 'precio_id'
+      Index = 14
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 38
+    end
   end
   object SELPedidosDetalles: TZQuery
     Connection = DM_General.cnxBase
+    Active = True
     SQL.Strings = (
       'SELECT PD.*'
       '            , P.codigo as lxCodigo'
@@ -1465,14 +1483,44 @@ object DM_Pedidos: TDM_Pedidos
       Required = False
       Size = 400
     end
+    object SELPedidosDetallesPRECIO_ID: TStringField
+      DisplayWidth = 152
+      FieldKind = fkData
+      FieldName = 'PRECIO_ID'
+      Index = 14
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 152
+    end
   end
   object INSPedidosDetalles: TZQuery
     Connection = DM_General.cnxBase
     SQL.Strings = (
       'INSERT INTO PedidosDetalles'
-      '(ID,'#10'  PEDIDO_ID,'#10'  PRODUCTO_ID,'#10'  CANTIDAD,'#10'  LISTAPRECIO_ID ,'#10'  PRECIOUNITARIO,'#10'  PORCENTAJEAPLICAR,'#10'  BDESCUENTO,'#10'  PRECIOSUBTOTAL,'#10'  PRECIOTOTAL, BVISIBLE)'
+      '(ID,'
+      '  PEDIDO_ID,'
+      '  PRODUCTO_ID,'
+      '  CANTIDAD,'
+      '  LISTAPRECIO_ID ,'
+      '  PRECIOUNITARIO,'
+      '  PORCENTAJEAPLICAR,'
+      '  BDESCUENTO,'
+      '  PRECIOSUBTOTAL,'
+      '  PRECIOTOTAL, BVISIBLE'
+      ', precio_id)'
       'VALUES'
-      '(:ID,'#10'  :PEDIDO_ID,'#10' :PRODUCTO_ID,'#10' :CANTIDAD,'#10' :LISTAPRECIO_ID ,'#10' :PRECIOUNITARIO,'#10' :PORCENTAJEAPLICAR,'#10' :BDESCUENTO,'#10' :PRECIOSUBTOTAL,'#10' :PRECIOTOTAL, :BVISIBLE)'
+      '(:ID,'
+      '  :PEDIDO_ID,'
+      ' :PRODUCTO_ID,'
+      ' :CANTIDAD,'
+      ' :LISTAPRECIO_ID ,'
+      ' :PRECIOUNITARIO,'
+      ' :PORCENTAJEAPLICAR,'
+      ' :BDESCUENTO,'
+      ' :PRECIOSUBTOTAL,'
+      ' :PRECIOTOTAL, :BVISIBLE, :precio_id)'
       ''
     )
     Params = <    
@@ -1529,6 +1577,11 @@ object DM_Pedidos: TDM_Pedidos
       item
         DataType = ftUnknown
         Name = 'bVisible'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'precio_id'
         ParamType = ptUnknown
       end>
     left = 136
@@ -1588,6 +1641,11 @@ object DM_Pedidos: TDM_Pedidos
         DataType = ftUnknown
         Name = 'bVisible'
         ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'precio_id'
+        ParamType = ptUnknown
       end>
   end
   object UPDPedidosDetalles: TZQuery
@@ -1596,15 +1654,23 @@ object DM_Pedidos: TDM_Pedidos
       'UPDATE PedidosDetalles'
       'SET'
       ' PEDIDO_ID = :PEDIDO_ID '
-      ','#10'  PRODUCTO_ID = :PRODUCTO_ID '
-      ','#10'  CANTIDAD = :CANTIDAD '
-      ','#10'  LISTAPRECIO_ID = :LISTAPRECIO_ID '
-      ','#10'  PRECIOUNITARIO = :PRECIOUNITARIO '
-      ','#10'  PORCENTAJEAPLICAR = :PORCENTAJEAPLICAR '
-      ','#10'  BDESCUENTO = :BDESCUENTO '
-      ','#10'  PRECIOSUBTOTAL = :PRECIOSUBTOTAL '
+      ','
+      '  PRODUCTO_ID = :PRODUCTO_ID '
+      ','
+      '  CANTIDAD = :CANTIDAD '
+      ','
+      '  LISTAPRECIO_ID = :LISTAPRECIO_ID '
+      ','
+      '  PRECIOUNITARIO = :PRECIOUNITARIO '
+      ','
+      '  PORCENTAJEAPLICAR = :PORCENTAJEAPLICAR '
+      ','
+      '  BDESCUENTO = :BDESCUENTO '
+      ','
+      '  PRECIOSUBTOTAL = :PRECIOSUBTOTAL '
       ', PRECIOTOTAL = :PRECIOTOTAL '
       ', BVISIBLE  = :BVISIBLE  '
+      ', precio_id = :precio_id'
       'WHERE id = :id'
     )
     Params = <    
@@ -1656,6 +1722,11 @@ object DM_Pedidos: TDM_Pedidos
       item
         DataType = ftUnknown
         Name = 'bVisible'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'precio_id'
         ParamType = ptUnknown
       end    
       item
@@ -1714,6 +1785,11 @@ object DM_Pedidos: TDM_Pedidos
       item
         DataType = ftUnknown
         Name = 'bVisible'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'precio_id'
         ParamType = ptUnknown
       end    
       item
@@ -2335,6 +2411,46 @@ object DM_Pedidos: TDM_Pedidos
       ReadOnly = False
       Required = False
     end
+    object qPrecioBOFERTA: TSmallintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'BOFERTA'
+      Index = 6
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object qPrecioOFERTAINI: TDateField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'OFERTAINI'
+      Index = 7
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object qPrecioOFERTAFIN: TDateField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'OFERTAFIN'
+      Index = 8
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object qPrecioALICUOTAIVA_ID: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'ALICUOTAIVA_ID'
+      Index = 9
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
   end
   object qPedidosEstadosHistorial: TZQuery
     Connection = DM_General.cnxBase
@@ -2625,6 +2741,17 @@ object DM_Pedidos: TDM_Pedidos
       Required = False
       Size = 400
     end
+    object qDetallesPedidoPRECIO_ID: TStringField
+      DisplayWidth = 152
+      FieldKind = fkData
+      FieldName = 'PRECIO_ID'
+      Index = 14
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 152
+    end
   end
   object qPedidosDetalleProducto: TZQuery
     Connection = DM_General.cnxBase
@@ -2775,6 +2902,17 @@ object DM_Pedidos: TDM_Pedidos
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
       Required = False
+    end
+    object qPedidosDetalleProductoPRECIO_ID: TStringField
+      DisplayWidth = 152
+      FieldKind = fkData
+      FieldName = 'PRECIO_ID'
+      Index = 11
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 152
     end
   end
 end

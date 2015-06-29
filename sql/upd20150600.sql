@@ -659,4 +659,4 @@ VALUES
 (6, '2,5%', 2.5, 2.5, 1);
 
 
-
+ALTER TABLE PedidosDetalles ADD precio_id "guid" default '{00000000-0000-0000-0000-000000000000}';
