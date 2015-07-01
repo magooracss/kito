@@ -90,6 +90,7 @@ implementation
 {$R *.lfm}
 uses
   dmpedidos
+  ,dmprecios
   ;
 
 { TDM_Ventas }
@@ -126,6 +127,13 @@ begin
    begin
      While NOT PedidosDetalles.EOF do
      begin
+
+       if PedidosDetallesprecio_id.AsString <> GUIDNULO then //Alicuota de iva!
+       begin
+         DM_Precios.LevantarPrecio(PedidosDetallesprecio_id.AsString);
+         ivaProducto:= DM_Precios.PreciosalicuotaIVA_id.AsInteger;
+       end;
+
        AgregarConcepto (PedidosDetallescantidad.AsFloat
                         ,-999999 //Concepto a vincular los productos
                         ,PedidosDetalleslxProducto.AsString
@@ -176,7 +184,7 @@ begin
     ParamByName('id').AsInteger:= refAlicuotaIVA;
     Open;
     if RecordCount > 0 then
-      ivaCalculado:= ((qAlicuotaIVAIdPORCENTAJE.asFloat * monto) /100);
+      ivaCalculado:= ((qAlicuotaIVAIdPORCENTAJE.asFloat * monto) /100)
     else
       ivaCalculado:= 0;
     close;
@@ -184,7 +192,7 @@ begin
 
   ComproVtaIVA.Insert;
   ComproVtaIVAcomprobanteVentaConcepto_id.AsString:= refComprobanteConcepto;
-  ComproVtaIVAalicuota_id:= refAlicuotaIVA;
+  ComproVtaIVAalicuota_id.AsInteger:= refAlicuotaIVA;
   ComproVtaIVAmonto.AsFloat:= ivaCalculado;
   ComproVtaIVA.Post;
 end;

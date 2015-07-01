@@ -21,7 +21,7 @@
       <MajorVersionNr Value="2015"/>
       <MinorVersionNr Value="5"/>
       <RevisionNr Value="26"/>
-      <BuildNr Value="74"/>
+      <BuildNr Value="76"/>
       <Language Value="040A"/>
       <StringTable Comments="Carlos Enrique Rodriguez / Magoo" CompanyName="RACSS Programación" LegalCopyright="Carlos Enrique Rodriguez - RACSS Programacion" ProductName="KITO" ProductVersion=""/>
     </VersionInfo>
@@ -96,6 +96,7 @@
         <ComponentName Value="frmProductoAE"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
+        <UnitName Value="frm_productoae"/>
       </Unit5>
       <Unit6>
         <Filename Value="dmproductos.pas"/>
@@ -103,6 +104,7 @@
         <ComponentName Value="DM_Productos"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
+        <UnitName Value="dmproductos"/>
       </Unit6>
       <Unit7>
         <Filename Value="dmediciontugs.pas"/>
@@ -124,6 +126,7 @@
         <ComponentName Value="frmBusquedaProducto"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
+        <UnitName Value="frm_busquedaProductos"/>
       </Unit9>
       <Unit10>
         <Filename Value="frm_precioae.pas"/>
@@ -131,6 +134,7 @@
         <ComponentName Value="frmPrecioAE"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
+        <UnitName Value="frm_precioae"/>
       </Unit10>
       <Unit11>
         <Filename Value="dmprecios.pas"/>
@@ -138,6 +142,7 @@
         <ComponentName Value="DM_Precios"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
+        <UnitName Value="dmprecios"/>
       </Unit11>
       <Unit12>
         <Filename Value="fra_empresa.pas"/>

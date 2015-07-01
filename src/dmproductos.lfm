@@ -928,6 +928,12 @@ object DM_Productos: TDM_Productos
         DataType = ftDateTime
         Precision = 0
         Size = 0
+      end    
+      item
+        Name = 'alicuotaIVA_id'
+        DataType = ftInteger
+        Precision = 0
+        Size = 0
       end>
     AfterInsert = PreciosAfterInsert
     PacketRecords = 0
@@ -1039,6 +1045,16 @@ object DM_Productos: TDM_Productos
       FieldKind = fkData
       FieldName = 'OfertaFin'
       Index = 9
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object PreciosalicuotaIVA_id: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'alicuotaIVA_id'
+      Index = 10
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
@@ -1164,14 +1180,24 @@ object DM_Productos: TDM_Productos
       ReadOnly = True
       Required = False
     end
+    object SELPreciosALICUOTAIVA_ID: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'ALICUOTAIVA_ID'
+      Index = 9
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
   end
   object INSPrecios: TZQuery
     Connection = DM_General.cnxBase
     SQL.Strings = (
       'INSERT INTO Precios'
-      '(  id,  monto, producto_id, listaPrecio_id, iva, bVisible, bOferta, OfertaIni, OfertaFin)'
+      '(  id,  monto, producto_id, listaPrecio_id, iva, bVisible, bOferta, OfertaIni, OfertaFin, alicuotaIVA_id)'
       'VALUES'
-      '( :id,  :monto, :producto_id, :listaPrecio_id, :iva, :bVisible, :bOferta, :OfertaIni, :OfertaFin)'
+      '( :id,  :monto, :producto_id, :listaPrecio_id, :iva, :bVisible, :bOferta, :OfertaIni, :OfertaFin, :alicuotaIVA_id)'
     )
     Params = <    
       item
@@ -1217,6 +1243,11 @@ object DM_Productos: TDM_Productos
       item
         DataType = ftUnknown
         Name = 'OfertaFin'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'alicuotaIVA_id'
         ParamType = ptUnknown
       end>
     left = 176
@@ -1266,6 +1297,11 @@ object DM_Productos: TDM_Productos
         DataType = ftUnknown
         Name = 'OfertaFin'
         ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'alicuotaIVA_id'
+        ParamType = ptUnknown
       end>
   end
   object UPDPrecios: TZQuery
@@ -1281,6 +1317,7 @@ object DM_Productos: TDM_Productos
       ',bOferta = :bOferta'
       ', OfertaIni = :OfertaIni'
       ', OfertaFin = :OfertaFin'
+      ', alicuotaIVA_id = :alicuotaIVA_id'
       'WHERE id = :id'
     )
     Params = <    
@@ -1322,6 +1359,11 @@ object DM_Productos: TDM_Productos
       item
         DataType = ftUnknown
         Name = 'OfertaFin'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'alicuotaIVA_id'
         ParamType = ptUnknown
       end    
       item
@@ -1370,6 +1412,11 @@ object DM_Productos: TDM_Productos
       item
         DataType = ftUnknown
         Name = 'OfertaFin'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'alicuotaIVA_id'
         ParamType = ptUnknown
       end    
       item
@@ -1575,6 +1622,16 @@ object DM_Productos: TDM_Productos
       ReadOnly = True
       Required = False
     end
+    object qPreciosProductoALICUOTAIVA_ID: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'ALICUOTAIVA_ID'
+      Index = 10
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
   end
   object qListaPreciosID: TZQuery
     Connection = DM_General.cnxBase
@@ -1771,6 +1828,16 @@ object DM_Productos: TDM_Productos
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = True
+      Required = False
+    end
+    object qPrecioProductoALICUOTAIVA_ID: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'ALICUOTAIVA_ID'
+      Index = 10
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
       Required = False
     end
   end

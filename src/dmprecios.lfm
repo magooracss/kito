@@ -1,9 +1,9 @@
 object DM_Precios: TDM_Precios
   OldCreateOrder = False
   Height = 392
-  HorizontalOffset = 368
+  HorizontalOffset = 367
   VerticalOffset = 150
-  Width = 513
+  Width = 514
   object Precios: TRxMemoryData
     FieldDefs = <    
       item
@@ -45,6 +45,24 @@ object DM_Precios: TDM_Precios
       item
         Name = 'alicuotaIVA_id'
         DataType = ftInteger
+        Precision = 0
+        Size = 0
+      end    
+      item
+        Name = 'bOferta'
+        DataType = ftInteger
+        Precision = 0
+        Size = 0
+      end    
+      item
+        Name = 'OfertaIni'
+        DataType = ftDateTime
+        Precision = 0
+        Size = 0
+      end    
+      item
+        Name = 'OfertaFin'
+        DataType = ftDateTime
         Precision = 0
         Size = 0
       end>
@@ -114,6 +132,46 @@ object DM_Precios: TDM_Precios
       FieldKind = fkData
       FieldName = 'bVisible'
       Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object PreciosalicuotaIVA_id: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'alicuotaIVA_id'
+      Index = 6
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object PreciosbOferta: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'bOferta'
+      Index = 7
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object PreciosOfertaIni: TDateTimeField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'OfertaIni'
+      Index = 8
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object PreciosOfertaFin: TDateTimeField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'OfertaFin'
+      Index = 9
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False

@@ -20,7 +20,7 @@
       <AutoIncrementBuild Value="True"/>
       <MajorVersionNr Value="2015"/>
       <MinorVersionNr Value="7"/>
-      <BuildNr Value="7"/>
+      <BuildNr Value="8"/>
       <Language Value="040A"/>
       <StringTable CompanyName="RACSS Programacion" InternalName="ARCON" LegalTrademarks="Carlos Enrique Rodriguez" ProductName="Arcon" ProductVersion=""/>
     </VersionInfo>
@@ -55,7 +55,7 @@
         <PackageName Value="LCL"/>
       </Item6>
     </RequiredPackages>
-    <Units Count="12">
+    <Units Count="13">
       <Unit0>
         <Filename Value="arcon.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -140,6 +140,11 @@
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="dmprecios"/>
       </Unit11>
+      <Unit12>
+        <Filename Value="..\..\src\SD_Configuracion.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="SD_Configuracion"/>
+      </Unit12>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

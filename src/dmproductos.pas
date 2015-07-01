@@ -24,6 +24,7 @@ type
     DELPrecios: TZQuery;
     INSPrecios: TZQuery;
     Precios: TRxMemoryData;
+    PreciosalicuotaIVA_id: TLongintField;
     PreciosbOferta: TLongintField;
     PreciosbVisible: TLongintField;
     Preciosid: TStringField;
@@ -74,6 +75,7 @@ type
     qListaPreciosIDLISTAPRECIO: TStringField;
     qListasPrecios: TZQuery;
     qListaPreciosID: TZQuery;
+    qPrecioProductoALICUOTAIVA_ID: TLongintField;
     qPrecioProductoBOFERTA: TSmallintField;
     qPrecioProductoBVISIBLE: TSmallintField;
     qPrecioProductoID: TStringField;
@@ -89,6 +91,7 @@ type
     qListasPreciosID: TLongintField;
     qListasPreciosLISTAPRECIO: TStringField;
     qPrecioProducto: TZQuery;
+    qPreciosProductoALICUOTAIVA_ID: TLongintField;
     qPreciosProductoBOFERTA: TSmallintField;
     qPreciosProductoBVISIBLE: TSmallintField;
     qPreciosProductoID: TStringField;
@@ -109,6 +112,7 @@ type
     qUnidadesTOTALIZA: TStringField;
     qUnidadesUNIDAD: TStringField;
     SELPrecios: TZQuery;
+    SELPreciosALICUOTAIVA_ID: TLongintField;
     SELPreciosBOFERTA: TSmallintField;
     SELPreciosBVISIBLE: TSmallintField;
     SELPreciosBVISIBLE1: TSmallintField;
@@ -179,8 +183,10 @@ var
   DM_Productos: TDM_Productos;
 
 implementation
-
 {$R *.lfm}
+uses
+  SD_Configuracion
+  ;
 
 { TDM_Productos }
 
@@ -226,6 +232,8 @@ begin
   PreciosbOferta.AsInteger:= 0;
   PreciosOfertaIni.AsDateTime:= Now;
   PreciosOfertaFin.AsDateTime:= Now;
+  PreciosalicuotaIVA_id.asInteger:=  StrToIntDef(LeerDato(SECCION_APP,CFGD_IVA_ID), 3);
+  EscribirDato(SECCION_APP, CFGD_IVA_ID, IntToStr(PreciosalicuotaIVA_id.asInteger)); //Por si el valor no esta en el cfg;
 end;
 
 
