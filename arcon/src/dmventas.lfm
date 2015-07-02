@@ -4,15 +4,58 @@ object DM_Ventas: TDM_Ventas
   HorizontalOffset = 530
   VerticalOffset = 142
   Width = 774
-  object qTiposComprobantes: TZQuery
+  object qTiposComprobantesVentas: TZQuery
+    Connection = DM_General.cnxBase
     SQL.Strings = (
       'SELECT *'
-      'FROM TIPOSCOMPROBANTES'
+      'FROM TIPOSCOMPROBANTESVENTAS'
       'WHERE bVisible = 1'
     )
     Params = <>
     left = 656
     top = 40
+    object qTiposComprobantesVentasID: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'ID'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object qTiposComprobantesVentasCODIGO: TStringField
+      DisplayWidth = 12
+      FieldKind = fkData
+      FieldName = 'CODIGO'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 12
+    end
+    object qTiposComprobantesVentasCOMPROBANTEVENTA: TStringField
+      DisplayWidth = 400
+      FieldKind = fkData
+      FieldName = 'COMPROBANTEVENTA'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 400
+    end
+    object qTiposComprobantesVentasBVISIBLE: TSmallintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'BVISIBLE'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
   end
   object Pedidos: TRxMemoryData
     Active = True
@@ -849,6 +892,133 @@ object DM_Ventas: TDM_Ventas
       FieldKind = fkData
       FieldName = 'BVISIBLE'
       Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+  end
+  object qFormasPago: TZQuery
+    Connection = DM_General.cnxBase
+    SQL.Strings = (
+      'SELECT *'
+      'FROM TIPOSFORMASDEPAGO'
+      'WHERE bVisible = 1'
+    )
+    Params = <>
+    left = 656
+    top = 232
+    object qFormasPagoID: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'ID'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object qFormasPagoFORMADEPAGO: TStringField
+      DisplayWidth = 400
+      FieldKind = fkData
+      FieldName = 'FORMADEPAGO'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 400
+    end
+    object qFormasPagoBVISIBLE: TSmallintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'BVISIBLE'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+  end
+  object qUltComprobanteGrabado: TZQuery
+    Connection = DM_General.cnxBase
+    SQL.Strings = (
+      'SELECT *'
+      'FROM NumerosComprobantesVenta'
+      'WHERE (bVisible = 1)'
+      '             and (comprobanteVenta_id = :comprobanteVenta_id)'
+      '             and (puntoDeVenta = :puntoDeVenta)'
+      ''
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'comprobanteVenta_id'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'puntoDeVenta'
+        ParamType = ptUnknown
+      end>
+    left = 656
+    top = 328
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'comprobanteVenta_id'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'puntoDeVenta'
+        ParamType = ptUnknown
+      end>
+    object qUltComprobanteGrabadoID: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'ID'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object qUltComprobanteGrabadoCOMPROBANTEVENTA_ID: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'COMPROBANTEVENTA_ID'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object qUltComprobanteGrabadoPUNTODEVENTA: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'PUNTODEVENTA'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object qUltComprobanteGrabadoNUMERO: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'NUMERO'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object qUltComprobanteGrabadoBVISIBLE: TSmallintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'BVISIBLE'
+      Index = 4
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False

@@ -22,8 +22,10 @@ const
   CFG_SEP_MILES='SEP_MILES';
   CFGD_IVA_PROD='IVA_PROD';
   CFGD_IVA_ID='IVA_ID';
+  CFG_PTO_VTA = 'PTA_VTA';
   ART_BULTOS='ART_BULTOS'; //Se trata a cada artículo como un bulto
   PG_DESTINO='PG_DESTINO'; //Pone por default si el pago se hace en destino
+
 
   PROD_BUS_CRIT = 'P_BUS_CRIT';
   LOCALIDAD = 'LOCALIDAD'; //Localidad por defecto para los domicilios

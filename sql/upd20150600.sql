@@ -539,8 +539,6 @@ VALUES
 
 
 
-
-
 INSERT INTO PEDIDOSTIPOSESTADOS
 (ID, TIPOESTADO, BVISIBLE)
 VALUES
@@ -660,3 +658,96 @@ VALUES
 
 
 ALTER TABLE PedidosDetalles ADD precio_id "guid" default '{00000000-0000-0000-0000-000000000000}';
+
+
+CREATE TABLE TiposFormasDePago
+(
+  id    integer  NOT NULL PRIMARY KEY
+, FormaDePago varchar(100)
+, bVisible   smallint default 1    
+
+);
+
+CREATE GENERATOR TiposFormasDePagoID;
+
+SET GENERATOR TiposFormasDePagoID TO 5;
+
+
+SET TERM ^ ;
+
+CREATE TRIGGER TiposFormasDePagoID FOR TiposFormasDePago
+BEFORE INSERT POSITION 0
+AS 
+BEGIN 
+    If (New.id = -1) then
+   New.id = GEN_ID(TiposFormasDePagoID,1);
+END^
+
+SET TERM ; ^  
+
+
+INSERT INTO TiposFormasDePago
+(id,  formaDePago,  bVisible)
+VALUES
+(0,'Desconocido', 0);
+
+INSERT INTO TiposFormasDePago
+(id,  formaDePago,  bVisible)
+VALUES
+(1,'Contado', 1);
+
+INSERT INTO TiposFormasDePago
+(id,  formaDePago,  bVisible)
+VALUES
+(2,'Tarjeta de Credito', 1);
+
+INSERT INTO TiposFormasDePago
+(id,  formaDePago,  bVisible)
+VALUES
+(3,'Tarjeta de Debito', 1);
+
+INSERT INTO TiposFormasDePago
+(id,  formaDePago,  bVisible)
+VALUES
+(4,'Cheque', 1);
+
+INSERT INTO TiposFormasDePago
+(id,  formaDePago,  bVisible)
+VALUES
+(5,'Transferencia Bancaria', 1);
+
+
+
+CREATE TABLE NumerosComprobantesVenta
+(
+  id    integer  NOT NULL PRIMARY KEY
+, comprobanteVenta_id integer default 0
+, puntoDeVenta  integer default 0
+, numero    integer default 0
+, bVisible   smallint default 1    
+);
+
+CREATE GENERATOR NumerosComprobantesVentaID;
+
+SET GENERATOR NumerosComprobantesVentaID TO 0;
+
+
+SET TERM ^ ;
+
+CREATE TRIGGER NumerosComprobantesVentaID FOR NumerosComprobantesVenta
+BEFORE INSERT POSITION 0
+AS 
+BEGIN 
+    If (New.id = -1) then
+   New.id = GEN_ID(NumerosComprobantesVentaID,1);
+END^
+
+SET TERM ; ^  
+
+
+INSERT INTO NumerosComprobantesVenta
+(id,  comprobanteVenta_id, puntoDeVenta, numero,  bVisible)
+VALUES
+(0, 0, 0, 0, 0);
+
+

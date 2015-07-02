@@ -63,13 +63,27 @@ type
     qAlicuotaIVAIdID: TLongintField;
     qAlicuotaIVAIdNOMBRE: TStringField;
     qAlicuotaIVAIdPORCENTAJE: TFloatField;
-    qTiposComprobantes: TZQuery;
+    qUltComprobanteGrabado: TZQuery;
+    qFormasPagoBVISIBLE: TSmallintField;
+    qFormasPagoFORMADEPAGO: TStringField;
+    qFormasPagoID: TLongintField;
+    qTiposComprobantesVentas: TZQuery;
     Pedidos: TRxMemoryData;
     ComproVta: TRxMemoryData;
     ComproVtaConceptos: TRxMemoryData;
     ComproVtaIVA: TRxMemoryData;
     ComproVtaImpuestos: TRxMemoryData;
     qAlicuotaIVAId: TZQuery;
+    qFormasPago: TZQuery;
+    qTiposComprobantesVentasBVISIBLE: TSmallintField;
+    qTiposComprobantesVentasCODIGO: TStringField;
+    qTiposComprobantesVentasCOMPROBANTEVENTA: TStringField;
+    qTiposComprobantesVentasID: TLongintField;
+    qUltComprobanteGrabadoBVISIBLE: TSmallintField;
+    qUltComprobanteGrabadoCOMPROBANTEVENTA_ID: TLongintField;
+    qUltComprobanteGrabadoID: TLongintField;
+    qUltComprobanteGrabadoNUMERO: TLongintField;
+    qUltComprobanteGrabadoPUNTODEVENTA: TLongintField;
     procedure ComproVtaAfterInsert(DataSet: TDataSet);
   private
     { private declarations }
@@ -81,6 +95,7 @@ type
       refProducto: GUID_ID; alicuotaIVA: integer);
     procedure AgregarAlicuotaIva (refComprobanteConcepto: GUID_ID;
                                   refAlicuotaIVA: integer ; monto: double);
+    function ObtenerNroComprobante (refComprobante, NroPtoVenta: integer): integer;
   end;
 
 var
@@ -195,6 +210,23 @@ begin
   ComproVtaIVAalicuota_id.AsInteger:= refAlicuotaIVA;
   ComproVtaIVAmonto.AsFloat:= ivaCalculado;
   ComproVtaIVA.Post;
+end;
+
+function TDM_Ventas.ObtenerNroComprobante(refComprobante, NroPtoVenta: integer
+  ): integer;
+begin
+   with qUltComprobanteGrabado do
+   begin
+     if active then close;
+     ParamByName('comprobanteVenta_id').asInteger:= refComprobante;
+     ParamByName('PuntoDeVenta').asInteger:= NroPtoVenta;
+     Open;
+     if RecordCount > 0 then
+       Result:= (qUltComprobanteGrabadoNUMERO.AsInteger + 1)
+     else
+       Result:= 0;
+     Close;
+   end;
 end;
 
 

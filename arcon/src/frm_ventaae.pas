@@ -52,12 +52,18 @@ type
     procedure btnAgregarConceptoClick(Sender: TObject);
     procedure btnBuscarClick(Sender: TObject);
     procedure btnClienteNuevoClick(Sender: TObject);
+    procedure cbTipoComprobanteChange(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
   private
     _ventaID: GUID_ID;
     _clienteID: GUID_ID;
+    _PtoVenta: integer;
+
     procedure Inicializar;
+    procedure CargarCombos;
+    procedure LevantarPuntoDeVenta;
+
     procedure AgregarConcepto;
     procedure AgregarConceptoGeneral;
     procedure AgregarConceptoPedidos;
@@ -77,14 +83,36 @@ uses
   ,frm_busquedaempresas
   ,frm_clientesae
   ,frm_ventaconceptosae
+  ,SD_Configuracion
   ;
 
 { TfrmVentasAE }
 
 procedure TfrmVentasAE.Inicializar;
 begin
- _clienteID:= GUIDNULO;
- _ventaID:= GUIDNULO;
+  _clienteID:= GUIDNULO;
+  _ventaID:= GUIDNULO;
+  _PtoVenta:= StrToIntDef(LeerDato(SECCION_APP, CFG_PTO_VTA), 1);
+  EscribirDato(SECCION_APP, CFG_PTO_VTA, IntToStr(_PtoVenta));
+
+  CargarCombos;
+end;
+
+procedure TfrmVentasAE.CargarCombos;
+begin
+  DM_General.CargarComboBox(cbTipoComprobante,'comprobanteVenta', 'id', DM_Ventas.qTiposComprobantesVentas);
+  DM_General.CargarComboBox(cbFormaDePago, 'formaDePago', 'id', DM_Ventas.qFormasPago);
+end;
+
+procedure TfrmVentasAE.LevantarPuntoDeVenta;
+var
+  comprobante: integer;
+begin
+  comprobante:= DM_Ventas.obtenerNroComprobante (DM_General.obtenerIDIntComboBox(cbTipoComprobante), _PtoVenta);
+  if Comprobante = 0 then
+  begin
+    ShowMessage ('ERROR');
+  end;
 end;
 
 
@@ -136,6 +164,11 @@ begin
   finally
     pant.Free;
   end;
+end;
+
+procedure TfrmVentasAE.cbTipoComprobanteChange(Sender: TObject);
+begin
+  LevantarPuntoDeVenta;
 end;
 
 (*******************************************************************************
