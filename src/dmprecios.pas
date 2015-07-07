@@ -26,7 +26,7 @@ type
     Preciosmonto: TFloatField;
     PreciosOfertaFin: TDateTimeField;
     PreciosOfertaIni: TDateTimeField;
-    Preciosproducto_id: TLongintField;
+    Preciosproducto_id: TStringField;
     qListasPreciosLISTAPRECIO: TStringField;
     SELPrecios: TZQuery;
     qListasPrecios: TZQuery;
@@ -47,6 +47,7 @@ type
     SELPreciosPRODUCTO_ID: TStringField;
     SELPreciosPRODUCTO_ID1: TStringField;
     UPDPrecios: TZQuery;
+    procedure DataModuleCreate(Sender: TObject);
     procedure PreciosAfterInsert(DataSet: TDataSet);
   private
     _idPrecio: GUID_ID;
@@ -75,6 +76,11 @@ begin
   PreciosOfertaFin.AsDateTime:= 0;
   PreciosalicuotaIVA_id.asInteger:= StrToIntDef(LeerDato(SECCION_APP,CFGD_IVA_ID), 3);
   EscribirDato(SECCION_APP, CFGD_IVA_ID, IntToStr(PreciosalicuotaIVA_id.asInteger)); //Por si el valor no esta en el cfg
+end;
+
+procedure TDM_Precios.DataModuleCreate(Sender: TObject);
+begin
+
 end;
 
 procedure TDM_Precios.LevantarPrecio(refPrecio: GUID_ID);

@@ -5,9 +5,9 @@ unit frm_ventaae;
 interface
 
 uses
-  Classes, SysUtils, FileUtil, DBDateTimePicker, RxDBSpinEdit, Forms, Controls,
-  Graphics, Dialogs, StdCtrls, ExtCtrls, Buttons, DBExtCtrls, DbCtrls, DBGrids,
-  dmgeneral;
+  Classes, SysUtils, db, FileUtil, DBDateTimePicker, RxDBSpinEdit, Forms,
+  Controls, Graphics, Dialogs, StdCtrls, ExtCtrls, Buttons, DBExtCtrls, DbCtrls,
+  DBGrids, dmgeneral;
 
 type
 
@@ -31,6 +31,8 @@ type
     DBEdit1: TDBEdit;
     DBEdit2: TDBEdit;
     DBGrid1: TDBGrid;
+    ds_Comprobante: TDataSource;
+    ds_Conceptos: TDataSource;
     edCliente: TEdit;
     edCUIT: TEdit;
     GroupBox1: TGroupBox;
@@ -53,6 +55,7 @@ type
     procedure btnBuscarClick(Sender: TObject);
     procedure btnClienteNuevoClick(Sender: TObject);
     procedure cbTipoComprobanteChange(Sender: TObject);
+    procedure DBEdit1KeyPress(Sender: TObject; var Key: char);
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
   private
@@ -94,8 +97,9 @@ begin
   _ventaID:= GUIDNULO;
   _PtoVenta:= StrToIntDef(LeerDato(SECCION_APP, CFG_PTO_VTA), 1);
   EscribirDato(SECCION_APP, CFG_PTO_VTA, IntToStr(_PtoVenta));
-
   CargarCombos;
+  DM_Ventas.NuevoComprobante;
+  LevantarPuntoDeVenta;
 end;
 
 procedure TfrmVentasAE.CargarCombos;
@@ -109,10 +113,12 @@ var
   comprobante: integer;
 begin
   comprobante:= DM_Ventas.obtenerNroComprobante (DM_General.obtenerIDIntComboBox(cbTipoComprobante), _PtoVenta);
-  if Comprobante = 0 then
+  if Comprobante <> 0 then
   begin
-    ShowMessage ('ERROR');
-  end;
+    DM_Ventas.ComprobanteEditarNro(comprobante);
+  end
+  else
+   ShowMessage ('No se encuentra cargado el numerador para este tipo de comprobante');
 end;
 
 
@@ -120,6 +126,7 @@ procedure TfrmVentasAE.FormCreate(Sender: TObject);
 begin
   Application.CreateForm(TDM_Pedidos, DM_Pedidos);
   Application.CreateForm(TDM_Ventas, DM_Ventas);
+
   Inicializar;
 end;
 
@@ -142,6 +149,7 @@ begin
       edCliente.Text:= pantBus.RazonSocial;
       edCUIT.Text:= pantBus.CUIT;
       _clienteID:= pantBus.idCliente;
+      LevantarPuntoDeVenta;
     end;
   finally
     pantBus.Free;
@@ -170,6 +178,16 @@ procedure TfrmVentasAE.cbTipoComprobanteChange(Sender: TObject);
 begin
   LevantarPuntoDeVenta;
 end;
+
+procedure TfrmVentasAE.DBEdit1KeyPress(Sender: TObject; var Key: char);
+begin
+  if key = #13 then
+  begin
+    _PtoVenta:= StrToIntDef((Sender as TDBEdit).Text, 0 );
+    LevantarPuntoDeVenta;
+  end;
+end;
+
 
 (*******************************************************************************
 *** CONCEPTOS

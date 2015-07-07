@@ -250,6 +250,7 @@ object frmVentasAE: TfrmVentasAE
       NumGlyphs = 1
       MaxLength = 0
       TabOrder = 2
+      DataField = 'fecha'
     end
     object StaticText2: TStaticText
       Left = 768
@@ -265,9 +266,10 @@ object frmVentasAE: TfrmVentasAE
       Top = 40
       Width = 90
       Caption = 'Servicio'
+      DataField = 'bServicio'
       TabOrder = 4
-      ValueChecked = 'True'
-      ValueUnchecked = 'False'
+      ValueChecked = '1'
+      ValueUnchecked = '0'
     end
     object DBCheckBox2: TDBCheckBox
       Left = 663
@@ -275,26 +277,28 @@ object frmVentasAE: TfrmVentasAE
       Top = 40
       Width = 80
       Caption = 'Producto'
+      DataField = 'bProducto'
       TabOrder = 5
-      ValueChecked = 'True'
-      ValueUnchecked = 'False'
+      ValueChecked = '1'
+      ValueUnchecked = '0'
     end
     object DBEdit1: TDBEdit
       Left = 299
       Height = 24
       Top = 41
       Width = 69
-      ReadOnly = True
+      DataField = 'puntoVenta'
       CharCase = ecNormal
       MaxLength = 0
       TabOrder = 6
+      OnKeyPress = DBEdit1KeyPress
     end
     object DBEdit2: TDBEdit
       Left = 384
       Height = 24
       Top = 41
       Width = 192
-      ReadOnly = True
+      DataField = 'nroComprobante'
       CharCase = ecNormal
       MaxLength = 0
       TabOrder = 7
@@ -354,6 +358,7 @@ object frmVentasAE: TfrmVentasAE
         NumGlyphs = 1
         MaxLength = 0
         TabOrder = 0
+        DataField = 'periodoFacturadoIni'
       end
       object DBDateEdit3: TDBDateEdit
         Left = 140
@@ -368,6 +373,7 @@ object frmVentasAE: TfrmVentasAE
         NumGlyphs = 1
         MaxLength = 0
         TabOrder = 1
+        DataField = 'periodoFacturadoFin'
       end
       object Label5: TLabel
         Left = 6
@@ -407,6 +413,7 @@ object frmVentasAE: TfrmVentasAE
       NumGlyphs = 1
       MaxLength = 0
       TabOrder = 11
+      DataField = 'vtoPago'
     end
   end
   object GroupBox3: TGroupBox
@@ -425,8 +432,47 @@ object frmVentasAE: TfrmVentasAE
       Top = 0
       Width = 840
       Align = alClient
+      AutoFillColumns = True
       Color = clWindow
-      Columns = <>
+      Columns = <      
+        item
+          SizePriority = 0
+          Title.Alignment = taCenter
+          Title.Caption = 'Cantidad'
+          Width = 90
+          FieldName = 'cantidad'
+        end      
+        item
+          Title.Alignment = taCenter
+          Title.Caption = 'Detalle'
+          Width = 386
+          FieldName = 'detalle'
+        end      
+        item
+          SizePriority = 0
+          Title.Alignment = taCenter
+          Title.Caption = 'Gravado'
+          Width = 120
+          FieldName = 'gravado'
+        end      
+        item
+          SizePriority = 0
+          Title.Alignment = taCenter
+          Title.Caption = 'No Gravado'
+          Width = 120
+          FieldName = 'noGravado'
+        end      
+        item
+          SizePriority = 0
+          Title.Alignment = taCenter
+          Title.Caption = 'Exento'
+          Width = 120
+          FieldName = 'exento'
+        end>
+      DataSource = ds_Conceptos
+      FixedCols = 0
+      Options = [dgTitles, dgColumnResize, dgColumnMove, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit]
+      Scrollbars = ssAutoVertical
       TabOrder = 0
       TitleFont.CharSet = ANSI_CHARSET
       TitleFont.Height = -13
@@ -1653,5 +1699,15 @@ object frmVentasAE: TfrmVentasAE
     Width = 918
     Align = alBottom
     TabOrder = 3
+  end
+  object ds_Comprobante: TDataSource
+    DataSet = DM_Ventas.ComproVta
+    left = 368
+    top = 392
+  end
+  object ds_Conceptos: TDataSource
+    DataSet = DM_Ventas.ComproVtaConceptos
+    left = 444
+    top = 452
   end
 end

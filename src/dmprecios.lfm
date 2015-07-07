@@ -1,4 +1,5 @@
 object DM_Precios: TDM_Precios
+  OnCreate = DataModuleCreate
   OldCreateOrder = False
   Height = 392
   HorizontalOffset = 367
@@ -20,9 +21,9 @@ object DM_Precios: TDM_Precios
       end    
       item
         Name = 'producto_id'
-        DataType = ftInteger
+        DataType = ftString
         Precision = 0
-        Size = 0
+        Size = 38
       end    
       item
         Name = 'listaPrecio_id'
@@ -94,21 +95,11 @@ object DM_Precios: TDM_Precios
       MinValue = 0
       Precision = 2
     end
-    object Preciosproducto_id: TLongintField
-      DisplayWidth = 10
-      FieldKind = fkData
-      FieldName = 'producto_id'
-      Index = 2
-      LookupCache = False
-      ProviderFlags = [pfInUpdate, pfInWhere]
-      ReadOnly = False
-      Required = False
-    end
     object PrecioslistaPrecio_id: TLongintField
       DisplayWidth = 10
       FieldKind = fkData
       FieldName = 'listaPrecio_id'
-      Index = 3
+      Index = 2
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
@@ -118,7 +109,7 @@ object DM_Precios: TDM_Precios
       DisplayWidth = 10
       FieldKind = fkData
       FieldName = 'iva'
-      Index = 4
+      Index = 3
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
@@ -131,7 +122,7 @@ object DM_Precios: TDM_Precios
       DisplayWidth = 10
       FieldKind = fkData
       FieldName = 'bVisible'
-      Index = 5
+      Index = 4
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
@@ -141,7 +132,7 @@ object DM_Precios: TDM_Precios
       DisplayWidth = 10
       FieldKind = fkData
       FieldName = 'alicuotaIVA_id'
-      Index = 6
+      Index = 5
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
@@ -151,7 +142,7 @@ object DM_Precios: TDM_Precios
       DisplayWidth = 10
       FieldKind = fkData
       FieldName = 'bOferta'
-      Index = 7
+      Index = 6
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
@@ -161,7 +152,7 @@ object DM_Precios: TDM_Precios
       DisplayWidth = 10
       FieldKind = fkData
       FieldName = 'OfertaIni'
-      Index = 8
+      Index = 7
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
@@ -171,11 +162,22 @@ object DM_Precios: TDM_Precios
       DisplayWidth = 10
       FieldKind = fkData
       FieldName = 'OfertaFin'
+      Index = 8
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object Preciosproducto_id: TStringField
+      DisplayWidth = 38
+      FieldKind = fkData
+      FieldName = 'producto_id'
       Index = 9
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
       Required = False
+      Size = 38
     end
   end
   object SELPrecios: TZQuery

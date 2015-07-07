@@ -25,6 +25,9 @@ const
   CFG_PTO_VTA = 'PTA_VTA';
   ART_BULTOS='ART_BULTOS'; //Se trata a cada artículo como un bulto
   PG_DESTINO='PG_DESTINO'; //Pone por default si el pago se hace en destino
+  CFG_ES_SERVICIO = 'VTA_SERVICIO'; //Comprobante Vta es servicio
+  CFG_ES_PRODUCTO = 'VTA_PRODUCTO'; //Comprobante Vta es producto
+
 
 
   PROD_BUS_CRIT = 'P_BUS_CRIT';
