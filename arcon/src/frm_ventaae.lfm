@@ -1,10 +1,10 @@
 object frmVentasAE: TfrmVentasAE
-  Left = 217
-  Height = 640
-  Top = 29
+  Left = 255
+  Height = 667
+  Top = 0
   Width = 918
   Caption = 'VENTA'
-  ClientHeight = 640
+  ClientHeight = 667
   ClientWidth = 918
   Font.CharSet = ANSI_CHARSET
   Font.Height = -13
@@ -226,6 +226,7 @@ object frmVentasAE: TfrmVentasAE
       Width = 264
       ItemHeight = 16
       OnChange = cbTipoComprobanteChange
+      OnExit = cbTipoComprobanteExit
       TabOrder = 0
       Text = 'cbTipoComprobante'
     end
@@ -238,46 +239,51 @@ object frmVentasAE: TfrmVentasAE
       TabOrder = 1
     end
     object DBDateEdit1: TDBDateEdit
-      Left = 768
+      Left = 752
       Height = 24
-      Top = 40
+      Top = 14
       Width = 119
       CalendarDisplaySettings = [dsShowHeadings, dsShowDayNames]
       OKCaption = 'OK'
       CancelCaption = 'Cancel'
       DateOrder = doNone
       ButtonWidth = 23
+      Anchors = [akTop, akRight]
       NumGlyphs = 1
       MaxLength = 0
       TabOrder = 2
       DataField = 'fecha'
+      DataSource = ds_Comprobante
     end
     object StaticText2: TStaticText
-      Left = 768
+      Left = 761
       Height = 17
-      Top = 21
+      Top = -6
       Width = 127
+      Anchors = [akTop, akRight]
       Caption = 'Fecha'
       TabOrder = 3
     end
     object DBCheckBox1: TDBCheckBox
-      Left = 584
+      Left = 624
       Height = 23
-      Top = 40
+      Top = 8
       Width = 90
       Caption = 'Servicio'
       DataField = 'bServicio'
+      DataSource = ds_Comprobante
       TabOrder = 4
       ValueChecked = '1'
       ValueUnchecked = '0'
     end
     object DBCheckBox2: TDBCheckBox
-      Left = 663
+      Left = 624
       Height = 23
-      Top = 40
+      Top = 42
       Width = 80
       Caption = 'Producto'
       DataField = 'bProducto'
+      DataSource = ds_Comprobante
       TabOrder = 5
       ValueChecked = '1'
       ValueUnchecked = '0'
@@ -288,6 +294,7 @@ object frmVentasAE: TfrmVentasAE
       Top = 41
       Width = 69
       DataField = 'puntoVenta'
+      DataSource = ds_Comprobante
       CharCase = ecNormal
       MaxLength = 0
       TabOrder = 6
@@ -299,6 +306,8 @@ object frmVentasAE: TfrmVentasAE
       Top = 41
       Width = 192
       DataField = 'nroComprobante'
+      DataSource = ds_Comprobante
+      ReadOnly = True
       CharCase = ecNormal
       MaxLength = 0
       TabOrder = 7
@@ -359,6 +368,7 @@ object frmVentasAE: TfrmVentasAE
         MaxLength = 0
         TabOrder = 0
         DataField = 'periodoFacturadoIni'
+        DataSource = ds_Comprobante
       end
       object DBDateEdit3: TDBDateEdit
         Left = 140
@@ -374,6 +384,7 @@ object frmVentasAE: TfrmVentasAE
         MaxLength = 0
         TabOrder = 1
         DataField = 'periodoFacturadoFin'
+        DataSource = ds_Comprobante
       end
       object Label5: TLabel
         Left = 6
@@ -414,21 +425,46 @@ object frmVentasAE: TfrmVentasAE
       MaxLength = 0
       TabOrder = 11
       DataField = 'vtoPago'
+      DataSource = ds_Comprobante
+    end
+    object DBGrid2: TDBGrid
+      Left = 736
+      Height = 86
+      Top = 64
+      Width = 176
+      Anchors = [akTop, akRight, akBottom]
+      Color = clWindow
+      Columns = <>
+      TabOrder = 12
+      TitleFont.CharSet = ANSI_CHARSET
+      TitleFont.Height = -13
+      TitleFont.Name = 'Arial'
+      TitleFont.Pitch = fpVariable
+      TitleFont.Quality = fqDraft
+    end
+    object Label8: TLabel
+      Left = 736
+      Height = 16
+      Top = 46
+      Width = 20
+      Anchors = [akTop, akRight]
+      Caption = 'IVA'
+      ParentColor = False
     end
   end
   object GroupBox3: TGroupBox
     Left = 0
-    Height = 299
+    Height = 298
     Top = 280
     Width = 918
     Align = alClient
     Caption = 'Items'
-    ClientHeight = 278
+    ClientHeight = 277
     ClientWidth = 914
     TabOrder = 2
     object DBGrid1: TDBGrid
       Left = 0
-      Height = 278
+      Height = 277
       Top = 0
       Width = 840
       Align = alClient
@@ -482,11 +518,11 @@ object frmVentasAE: TfrmVentasAE
     end
     object Panel2: TPanel
       Left = 840
-      Height = 278
+      Height = 277
       Top = 0
       Width = 74
       Align = alRight
-      ClientHeight = 278
+      ClientHeight = 277
       ClientWidth = 74
       TabOrder = 1
       object btnAgregarConcepto: TBitBtn
@@ -1088,6 +1124,7 @@ object frmVentasAE: TfrmVentasAE
           0AFFC15C0AFFC05B0AFFC8702BFFDCA57AF0DFAD8868B7683103
         }
         Layout = blGlyphTop
+        OnClick = btnAgregarConcepto1Click
         TabOrder = 1
       end
       object btnAgregarConcepto2: TBitBtn
@@ -1388,6 +1425,7 @@ object frmVentasAE: TfrmVentasAE
           0000000000000000000000000000000000000000000000000000
         }
         Layout = blGlyphTop
+        OnClick = btnAgregarConcepto2Click
         TabOrder = 2
       end
       object btnAgregarConcepto3: TBitBtn
@@ -1395,6 +1433,7 @@ object frmVentasAE: TfrmVentasAE
         Height = 64
         Top = 208
         Width = 60
+        Enabled = False
         Glyph.Data = {
           36240000424D3624000000000000360000002800000030000000300000000100
           2000000000000024000064000000640000000000000000000000000000000000
@@ -1694,11 +1733,76 @@ object frmVentasAE: TfrmVentasAE
   end
   object Panel1: TPanel
     Left = 0
-    Height = 61
-    Top = 579
+    Height = 89
+    Top = 578
     Width = 918
     Align = alBottom
+    ClientHeight = 89
+    ClientWidth = 918
     TabOrder = 3
+    object GroupBox5: TGroupBox
+      Left = 464
+      Height = 87
+      Top = 1
+      Width = 453
+      Align = alRight
+      Caption = 'Totales'
+      ClientHeight = 66
+      ClientWidth = 449
+      TabOrder = 0
+      object totGravado: TStaticText
+        Left = 16
+        Height = 17
+        Top = 5
+        Width = 62
+        AutoSize = True
+        Caption = 'totGravado'
+        TabOrder = 0
+      end
+      object totNoGravado: TStaticText
+        Left = 16
+        Height = 17
+        Top = 26
+        Width = 78
+        AutoSize = True
+        Caption = 'totNoGravado'
+        TabOrder = 1
+      end
+      object totExento: TStaticText
+        Left = 16
+        Height = 17
+        Top = 47
+        Width = 56
+        AutoSize = True
+        Caption = 'totExento'
+        TabOrder = 2
+      end
+      object totIVA: TStaticText
+        Left = 236
+        Height = 17
+        Top = 5
+        Width = 36
+        AutoSize = True
+        Caption = 'totIVA'
+        TabOrder = 3
+      end
+      object totGral: TStaticText
+        Left = 236
+        Height = 19
+        Top = 33
+        Width = 49
+        AutoSize = True
+        Caption = 'totGral'
+        Font.CharSet = ANSI_CHARSET
+        Font.Height = -15
+        Font.Name = 'Arial'
+        Font.Pitch = fpVariable
+        Font.Quality = fqDraft
+        Font.Style = [fsBold]
+        ParentFont = False
+        TabOrder = 4
+      end
+    end
   end
   object ds_Comprobante: TDataSource
     DataSet = DM_Ventas.ComproVta

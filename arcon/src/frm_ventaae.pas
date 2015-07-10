@@ -31,6 +31,7 @@ type
     DBEdit1: TDBEdit;
     DBEdit2: TDBEdit;
     DBGrid1: TDBGrid;
+    DBGrid2: TDBGrid;
     ds_Comprobante: TDataSource;
     ds_Conceptos: TDataSource;
     edCliente: TEdit;
@@ -39,6 +40,7 @@ type
     GroupBox2: TGroupBox;
     GroupBox3: TGroupBox;
     GroupBox4: TGroupBox;
+    GroupBox5: TGroupBox;
     Label1: TLabel;
     Label2: TLabel;
     Label3: TLabel;
@@ -46,15 +48,24 @@ type
     Label5: TLabel;
     Label6: TLabel;
     Label7: TLabel;
+    Label8: TLabel;
     Panel1: TPanel;
     Panel2: TPanel;
     StaticText1: TStaticText;
     StaticText2: TStaticText;
     StaticText3: TStaticText;
+    totGravado: TStaticText;
+    totGral: TStaticText;
+    totNoGravado: TStaticText;
+    totExento: TStaticText;
+    totIVA: TStaticText;
+    procedure btnAgregarConcepto1Click(Sender: TObject);
+    procedure btnAgregarConcepto2Click(Sender: TObject);
     procedure btnAgregarConceptoClick(Sender: TObject);
     procedure btnBuscarClick(Sender: TObject);
     procedure btnClienteNuevoClick(Sender: TObject);
     procedure cbTipoComprobanteChange(Sender: TObject);
+    procedure cbTipoComprobanteExit(Sender: TObject);
     procedure DBEdit1KeyPress(Sender: TObject; var Key: char);
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
@@ -71,8 +82,12 @@ type
     procedure AgregarConceptoGeneral;
     procedure AgregarConceptoPedidos;
 
+    procedure MostrarTotales;
+
+
   public
     property ventaID: GUID_ID read _ventaID write _VentaID;
+
   end;
 
 var
@@ -100,6 +115,7 @@ begin
   CargarCombos;
   DM_Ventas.NuevoComprobante;
   LevantarPuntoDeVenta;
+  MostrarTotales;
 end;
 
 procedure TfrmVentasAE.CargarCombos;
@@ -118,7 +134,10 @@ begin
     DM_Ventas.ComprobanteEditarNro(comprobante);
   end
   else
+  begin
    ShowMessage ('No se encuentra cargado el numerador para este tipo de comprobante');
+   DM_Ventas.ComprobanteEditarNro(0);
+  end;
 end;
 
 
@@ -135,7 +154,6 @@ begin
   DM_Pedidos.Free;
   DM_Ventas.Free;
 end;
-
 
 procedure TfrmVentasAE.btnBuscarClick(Sender: TObject);
 var
@@ -161,6 +179,16 @@ begin
   AgregarConcepto;
 end;
 
+procedure TfrmVentasAE.btnAgregarConcepto2Click(Sender: TObject);
+begin
+  DM_Ventas.ModificarPosicionDetalle(-2);
+end;
+
+procedure TfrmVentasAE.btnAgregarConcepto1Click(Sender: TObject);
+begin
+  DM_Ventas.ModificarPosicionDetalle(2);
+end;
+
 procedure TfrmVentasAE.btnClienteNuevoClick(Sender: TObject);
 var
   pant: TfrmClientesAE;
@@ -179,6 +207,11 @@ begin
   LevantarPuntoDeVenta;
 end;
 
+procedure TfrmVentasAE.cbTipoComprobanteExit(Sender: TObject);
+begin
+  LevantarPuntoDeVenta;
+end;
+
 procedure TfrmVentasAE.DBEdit1KeyPress(Sender: TObject; var Key: char);
 begin
   if key = #13 then
@@ -186,6 +219,25 @@ begin
     _PtoVenta:= StrToIntDef((Sender as TDBEdit).Text, 0 );
     LevantarPuntoDeVenta;
   end;
+end;
+
+
+(*******************************************************************************
+*** Totales en Pantalla
+*******************************************************************************)
+
+procedure TfrmVentasAE.MostrarTotales;
+begin
+  DM_Ventas.CalcularTotales;
+  totGravado.Caption:= 'GRAVADO: ' + FormatFloat ('$ ########0.00', DM_Ventas.TotalGravado);
+  totNoGravado.Caption:= 'NO GRAVADO: ' + FormatFloat ('$ ########0.00', DM_Ventas.TotalNoGravado);
+  totExento.Caption:= 'EXENTO: ' + FormatFloat ('$ ########0.00', DM_Ventas.TotalExento);
+  totIVA.Caption:= 'IVA: ' ;//+ FormatFloat ('$ ########0.00', DM_Ventas.TotalGravado);
+  totGral.Caption:= 'TOTAL: ' + FormatFloat ('$ ##########0.00'
+                         , DM_Ventas.TotalGravado
+                         + DM_Ventas.TotalNoGravado
+                         + DM_Ventas.TotalExento );
+
 end;
 
 
@@ -221,7 +273,11 @@ begin
   finally
     pant.Free;
   end;
+  MostrarTotales;
 end;
+
+
+
 
 end.
 

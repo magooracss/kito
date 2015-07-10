@@ -88,8 +88,15 @@ type
     procedure DataModuleCreate(Sender: TObject);
     procedure DataModuleDestroy(Sender: TObject);
   private
-    { private declarations }
+    _totalGravado
+   ,_totalNoGravado
+   ,_totalExento: double;
+
   public
+    property TotalGravado: Double read _totalGravado;
+    property TotalNoGravado: Double read _totalNoGravado;
+    property TotalExento: Double read _totalExento;
+
     procedure NuevoComprobante;
     procedure AgregarPedido (refPedido: GUID_ID);
     procedure AgregarConceptoPedidos;
@@ -100,6 +107,11 @@ type
                                   refAlicuotaIVA: integer ; monto: double);
     function ObtenerNroComprobante (refComprobante, NroPtoVenta: integer): integer;
     procedure ComprobanteEditarNro (elNroComprobante: integer);
+
+    procedure ModificarPosicionDetalle (pasos: integer);
+    procedure RenumerarPosicionesDetalle;
+
+    procedure CalcularTotales;
   end;
 
 var
@@ -148,6 +160,9 @@ begin
   DM_General.ReiniciarTabla(ComproVtaConceptos);
   DM_General.ReiniciarTabla(ComproVtaIVA);
   DM_General.ReiniciarTabla(ComproVtaImpuestos);
+  _totalExento:= 0;
+  _totalGravado:= 0;
+  _totalNoGravado:= 0;
 end;
 
 procedure TDM_Ventas.AgregarPedido(refPedido: GUID_ID);
@@ -286,6 +301,109 @@ begin
     Post;
   end;
 end;
+
+
+procedure TDM_Ventas.CalcularTotales;
+var
+  marca: TBookmark;
+begin
+  ComproVtaConceptos.DisableControls;
+  marca:= ComproVtaConceptos.GetBookmark;
+
+  _totalExento:= 0;
+  _totalGravado:= 0;
+  _totalNoGravado:= 0;
+
+  With ComproVtaConceptos do
+  begin
+    First;
+    While Not EOF do
+    begin
+      _totalExento:= _totalExento + ComproVtaConceptosexento.AsFloat;
+      _totalGravado:= _totalGravado + ComproVtaConceptosgravado.AsFloat;
+      _totalNoGravado:= _totalNoGravado + ComproVtanetoNoGravado.AsFloat;
+      Next;
+    end;
+  end;
+  ComproVtaConceptos.GotoBookmark(marca);
+  ComproVtaConceptos.FreeBookmark(marca);
+
+  ComproVtaConceptos.EnableControls;
+end;
+
+
+(*******************************************************************************
+*** MODIFICAR POSICIONES EN EL DETALLE
+********************************************************************************)
+
+procedure TDM_Ventas.ModificarPosicionDetalle(pasos: integer);
+var
+  tmp: integer;
+  marca: TBookmark;
+begin
+  with ComproVtaConceptos do
+  begin
+    marca:= GetBookmark;
+    Edit;
+    ComproVtaConceptosorden.AsInteger:= ComproVtaConceptosorden.AsInteger + pasos;
+    Post;
+    if pasos > 0 then
+    begin //Avanzo
+      next;
+      next;
+      While Not eof do
+      begin
+        Edit;
+        ComproVtaConceptosorden.AsInteger:= ComproVtaConceptosorden.AsInteger + 1;
+        Post;
+        Next;
+      end;
+    end
+    else //Retrocedo
+    begin
+      Prior;
+      Prior;
+      While Not bof do
+      begin
+        Edit;
+        ComproVtaConceptosorden.AsInteger:= ComproVtaConceptosorden.AsInteger - 1;
+        Post;
+        Prior;
+      end;
+    end;
+    GotoBookmark(marca);
+    FreeBookmark(marca);
+  end;
+  ComproVtaConceptos.SortOnFields ('Orden');
+  RenumerarPosicionesDetalle;
+end;
+procedure TDM_Ventas.RenumerarPosicionesDetalle;
+var
+  marca: TBookmark;
+  idx: integer;
+begin
+  with ComproVtaConceptos do
+  begin
+    marca:= GetBookmark;
+    try
+      First;
+      idx:= 0;
+      While Not Eof do
+      begin
+        Edit;
+        ComproVtaConceptosorden.AsInteger:= idx;
+        Inc(idx);
+        Post;
+        Next;
+      end;
+      GotoBookmark(marca);
+    finally
+      FreeBookmark(marca);
+    end;
+  end;
+end;
+
+
 
 
 end.
