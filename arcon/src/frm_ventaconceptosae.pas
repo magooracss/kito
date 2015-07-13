@@ -32,6 +32,7 @@ type
     Splitter1: TSplitter;
     TabGenerales: TTabSheet;
     TabSheet2: TTabSheet;
+    procedure BitBtn2Click(Sender: TObject);
     procedure btnPedidosAceptarClick(Sender: TObject);
     procedure btnAgregarPedidosClick(Sender: TObject);
     procedure btnPedidosCancelarClick(Sender: TObject);
@@ -83,6 +84,11 @@ procedure TfrmVentaConceptosAE.btnPedidosAceptarClick(Sender: TObject);
 begin
   _tipoConcepto:= PCConceptos.ActivePageIndex;
   ModalResult:= mrOK;
+end;
+
+procedure TfrmVentaConceptosAE.BitBtn2Click(Sender: TObject);
+begin
+
 end;
 
 procedure TfrmVentaConceptosAE.btnAgregarPedidosClick(Sender: TObject);

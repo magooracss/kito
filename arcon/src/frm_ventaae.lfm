@@ -1,10 +1,10 @@
 object frmVentasAE: TfrmVentasAE
   Left = 255
-  Height = 667
+  Height = 673
   Top = 0
   Width = 918
   Caption = 'VENTA'
-  ClientHeight = 667
+  ClientHeight = 673
   ClientWidth = 918
   Font.CharSet = ANSI_CHARSET
   Font.Height = -13
@@ -428,28 +428,37 @@ object frmVentasAE: TfrmVentasAE
       DataSource = ds_Comprobante
     end
     object DBGrid2: TDBGrid
-      Left = 736
-      Height = 86
-      Top = 64
-      Width = 176
+      Left = 720
+      Height = 94
+      Top = 56
+      Width = 192
       Anchors = [akTop, akRight, akBottom]
+      AutoFillColumns = True
       Color = clWindow
-      Columns = <>
+      Columns = <      
+        item
+          SizePriority = 0
+          Title.Alignment = taCenter
+          Title.Caption = 'IVA'
+          Width = 66
+          FieldName = 'lxIVA'
+        end      
+        item
+          Title.Alignment = taCenter
+          Title.Caption = 'Monto'
+          Width = 122
+          FieldName = 'monto'
+        end>
+      DataSource = ds_IVA
+      FixedCols = 0
+      Options = [dgTitles, dgColumnResize, dgColumnMove, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit]
+      Scrollbars = ssAutoVertical
       TabOrder = 12
       TitleFont.CharSet = ANSI_CHARSET
       TitleFont.Height = -13
       TitleFont.Name = 'Arial'
       TitleFont.Pitch = fpVariable
       TitleFont.Quality = fqDraft
-    end
-    object Label8: TLabel
-      Left = 736
-      Height = 16
-      Top = 46
-      Width = 20
-      Anchors = [akTop, akRight]
-      Caption = 'IVA'
-      ParentColor = False
     end
   end
   object GroupBox3: TGroupBox
@@ -1733,21 +1742,21 @@ object frmVentasAE: TfrmVentasAE
   end
   object Panel1: TPanel
     Left = 0
-    Height = 89
+    Height = 95
     Top = 578
     Width = 918
     Align = alBottom
-    ClientHeight = 89
+    ClientHeight = 95
     ClientWidth = 918
     TabOrder = 3
     object GroupBox5: TGroupBox
       Left = 464
-      Height = 87
+      Height = 93
       Top = 1
       Width = 453
       Align = alRight
       Caption = 'Totales'
-      ClientHeight = 66
+      ClientHeight = 72
       ClientWidth = 449
       TabOrder = 0
       object totGravado: TStaticText
@@ -1803,6 +1812,78 @@ object frmVentasAE: TfrmVentasAE
         TabOrder = 4
       end
     end
+    object btnSalir: TBitBtn
+      Left = 20
+      Height = 46
+      Top = 21
+      Width = 116
+      Caption = 'Salir'
+      Glyph.Data = {
+        36040000424D3604000000000000360000002800000010000000100000000100
+        2000000000000004000064000000640000000000000000000000000000000101
+        01EA000000FF000000FF000000FF000000FF000000FF000000FF000000FF0000
+        00FF000000FF000000FF000000FF000000FF000000FF020202EA000000000000
+        00FFA7B9B7FF5C958EFF147469FF0F7267FF107368FF107368FF117469FF1174
+        69FF12756AFF12756AFF13766BFF13766BFF14776CFF000000FF000000000000
+        00FFBEC1C1FF0000A4FF6F74AAFF6E8C88FF2B655FFF1C5D56FF1D5E57FF1F60
+        59FF20615AFF22635CFF23645DFF24655EFF25665FFF000000FF488160000000
+        00FFBEBFBFFF0000A4FF0D0DA8FF5353A6FF9EA0A0FF747F7EFF425A58FF2C4A
+        47FF2E4C49FF304E4BFF32504DFF34524FFF355350FF000000FF0000A4FF0000
+        A4FF0000A4FF0000A4FF4343C9FF1616ACFF3232A3FF909096FF8D8D8DFF7474
+        74FF494949FF3B3B3BFF3D3D3DFF3F3F3FFF404040FF000000FF0000A4FF5252
+        D1FF5252D1FF5252D1FF5252D1FF4E4ED0FF2323B4FF1A1AA3FF7E7E8FFF8585
+        85FF606060FF383838FF3A3A3AFF3C3C3CFF3D3D3DFF000000FF0000A4FF5D5D
+        D5FF3535CBFF3535CBFF3535CBFF3B3BCDFF5656D4FF3434BFFF0C0CA3FF6868
+        89FF5D5D5DFF353535FF373737FF383838FF393939FF000000FF0000A4FF6767
+        DAFF3737CEFF3737CEFF3737CEFF3737CEFF4040D0FF6767DAFF2929B9FF0000
+        A4FF5B5B5BFF323232FF343434FF353535FF353535FF000000FF0000A4FF7171
+        DDFF3838D0FF3838D0FF3838D0FF4343D3FF6A6ADCFF3D3DC2FF0E0EA3FF6767
+        84FF585858FF2F2F2FFF303030FF313131FF323232FF000000FF0000A4FF7A7A
+        E1FF7A7AE1FF7A7AE1FF7A7AE1FF7373DFFF3030BAFF1C1CA1FF777785FF7B7B
+        7BFF555555FF2B2B2BFF2D2D2DFF2E2E2EFF2E2E2EFF000000FF0000A4FF0000
+        A4FF0000A4FF0000A4FF8080E1FF2222B1FF31319EFF838388FF808080FF7878
+        78FF525252FF282828FF292929FF2A2A2AFF2B2B2BFF000000FF000000000000
+        00FFC1C1C1FF0000A4FF1616ABFF4B4B9CFF8B8B8BFF838383FF7C7C7CFF7575
+        75FF4F4F4FFF252525FF262626FF262626FF272727FF000000FF000000000000
+        00FFC0C0C0FF0000A4FF636398FF898989FF818181FF797979FF737373FF6D6D
+        6DFF505050FF212121FF222222FF232323FF232323FF000000FF000000000000
+        00FFB4B4B4FF909090FF868686FF7D7D7DFF757575FF6E6E6EFF696969FF6464
+        64FF4E4E4EFF1E1E1EFF1F1F1FFF1F1F1FFF202020FF000000FF000000000000
+        00FFA9A9A9FF888888FF7D7D7DFF747474FF6C6C6CFF656565FF606060FF5C5C
+        5CFF4C4C4CFF1A1A1AFF1B1B1BFF1C1C1CFF1C1C1CFF000000FF000000000000
+        00EB000000FF000000FF000000FF000000FF000000FF000000FF000000FF0000
+        00FF000000FF000000FF000000FF000000FF000000FF010101E9
+      }
+      OnClick = btnSalirClick
+      TabOrder = 1
+    end
+    object btnGrabar: TBitBtn
+      Left = 178
+      Height = 46
+      Top = 1
+      Width = 116
+      Caption = 'Grabar'
+      OnClick = btnGrabarClick
+      TabOrder = 2
+    end
+    object btnImprimir: TBitBtn
+      Left = 298
+      Height = 46
+      Top = 1
+      Width = 116
+      Caption = 'Imprimir'
+      OnClick = btnImprimirClick
+      TabOrder = 3
+    end
+    object BitBtn4: TBitBtn
+      Left = 178
+      Height = 42
+      Top = 49
+      Width = 236
+      Caption = 'Facturar'
+      OnClick = BitBtn4Click
+      TabOrder = 4
+    end
   end
   object ds_Comprobante: TDataSource
     DataSet = DM_Ventas.ComproVta
@@ -1813,5 +1894,10 @@ object frmVentasAE: TfrmVentasAE
     DataSet = DM_Ventas.ComproVtaConceptos
     left = 444
     top = 452
+  end
+  object ds_IVA: TDataSource
+    DataSet = DM_Ventas.ComproVtaIVA
+    left = 539
+    top = 406
   end
 end

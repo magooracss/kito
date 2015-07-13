@@ -640,6 +640,7 @@ object frmVentaConceptosAE: TfrmVentaConceptosAE
             0000BEAC9700B7A18917B0998019FFFFFF000000000000000000000000000000
             0000000000000000000000000000000000000000000000000000
           }
+          OnClick = BitBtn2Click
           TabOrder = 1
         end
         object btnPedidosAceptar: TBitBtn

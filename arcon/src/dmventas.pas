@@ -45,6 +45,7 @@ type
     ComproVtaIVAbVisible: TLongintField;
     ComproVtaIVAcomprobanteVentaConcepto_id: TStringField;
     ComproVtaIVAid: TStringField;
+    ComproVtaIVAlxIVA: TStringField;
     ComproVtaIVAmonto: TFloatField;
     ComproVtanetoGravado: TFloatField;
     ComproVtanetoNoGravado: TFloatField;
@@ -55,6 +56,7 @@ type
     ComproVtatipoComprobante_id: TLongintField;
     ComproVtavtoCae: TDateTimeField;
     ComproVtavtoPago: TDateTimeField;
+    INSComproVta: TZQuery;
     PedidosfToma: TDateTimeField;
     Pedidosid: TStringField;
     PedidosNumero: TLongintField;
@@ -84,6 +86,26 @@ type
     qUltComprobanteGrabadoID: TLongintField;
     qUltComprobanteGrabadoNUMERO: TLongintField;
     qUltComprobanteGrabadoPUNTODEVENTA: TLongintField;
+    SELComproVta: TZQuery;
+    SELComproVtaBPRODUCTO: TSmallintField;
+    SELComproVtaBSERVICIO: TSmallintField;
+    SELComproVtaBVISIBLE: TSmallintField;
+    SELComproVtaCAE: TStringField;
+    SELComproVtaCLIENTE_ID: TStringField;
+    SELComproVtaEXENTO: TFloatField;
+    SELComproVtaFECHA: TDateField;
+    SELComproVtaFORMAPAGO_ID: TLongintField;
+    SELComproVtaID: TStringField;
+    SELComproVtaNETOGRAVADO: TFloatField;
+    SELComproVtaNETONOGRAVADO: TFloatField;
+    SELComproVtaNROCOMPROBANTE: TLongintField;
+    SELComproVtaPERIODOFACTURADOFIN: TDateField;
+    SELComproVtaPERIODOFACTURADOINI: TDateField;
+    SELComproVtaPUNTOVENTA: TLongintField;
+    SELComproVtaTIPOCOMPROBANTE_ID: TLongintField;
+    SELComproVtaVTOCAE: TDateField;
+    SELComproVtaVTOPAGO: TDateField;
+    UPDComproVta: TZQuery;
     procedure ComproVtaAfterInsert(DataSet: TDataSet);
     procedure DataModuleCreate(Sender: TObject);
     procedure DataModuleDestroy(Sender: TObject);
@@ -91,11 +113,13 @@ type
     _totalGravado
    ,_totalNoGravado
    ,_totalExento: double;
+   function getTotalIVA: Double;
 
   public
     property TotalGravado: Double read _totalGravado;
     property TotalNoGravado: Double read _totalNoGravado;
     property TotalExento: Double read _totalExento;
+    property TotalIVA: Double read getTotalIVA;
 
     procedure NuevoComprobante;
     procedure AgregarPedido (refPedido: GUID_ID);
@@ -112,6 +136,8 @@ type
     procedure RenumerarPosicionesDetalle;
 
     procedure CalcularTotales;
+
+    procedure Grabar;
   end;
 
 var
@@ -152,6 +178,25 @@ end;
 procedure TDM_Ventas.DataModuleDestroy(Sender: TObject);
 begin
   DM_Precios.Free;
+end;
+
+function TDM_Ventas.getTotalIVA: Double;
+var
+  accum: Double;
+begin
+  accum:= 0;
+  with ComproVtaIVA do
+  begin
+    DisableControls;
+    First;
+    While Not EOF do
+    begin
+      accum:= accum + ComproVtaIVAmonto.AsFloat;
+      Next;
+    end;
+    EnableControls;
+  end;
+  Result:= accum;
 end;
 
 procedure TDM_Ventas.NuevoComprobante;
@@ -254,6 +299,7 @@ procedure TDM_Ventas.AgregarAlicuotaIva(refComprobanteConcepto: GUID_ID;
   refAlicuotaIVA: integer; monto: double);
 var
   ivaCalculado: double;
+  nombre: string;
 begin
 
   with qAlicuotaIVAId do
@@ -265,14 +311,28 @@ begin
       ivaCalculado:= ((qAlicuotaIVAIdPORCENTAJE.asFloat * monto) /100)
     else
       ivaCalculado:= 0;
+    nombre:= qAlicuotaIVAIdNOMBRE.asString;
     close;
   end;
 
-  ComproVtaIVA.Insert;
-  ComproVtaIVAcomprobanteVentaConcepto_id.AsString:= refComprobanteConcepto;
-  ComproVtaIVAalicuota_id.AsInteger:= refAlicuotaIVA;
-  ComproVtaIVAmonto.AsFloat:= ivaCalculado;
-  ComproVtaIVA.Post;
+  with ComproVtaIVa do
+  begin
+    if Locate('alicuota_id', refAlicuotaIVA, []) then
+    begin
+      Edit;
+      ComproVtaIVAmonto.AsFloat:= ComproVtaIVAmonto.AsFloat + ivaCalculado;
+    end
+    else
+    begin
+      Insert;
+      ComproVtaIVAcomprobanteVentaConcepto_id.AsString:= refComprobanteConcepto;
+      ComproVtaIVAalicuota_id.AsInteger:= refAlicuotaIVA;
+      ComproVtaIVAmonto.AsFloat:= ivaCalculado;
+      ComproVtaIVAlxIVA.asString:= nombre;
+    end;
+    Post;
+  end;
+
 end;
 
 function TDM_Ventas.ObtenerNroComprobante(refComprobante, NroPtoVenta: integer
@@ -329,6 +389,13 @@ begin
   ComproVtaConceptos.FreeBookmark(marca);
 
   ComproVtaConceptos.EnableControls;
+end;
+
+
+
+procedure TDM_Ventas.Grabar;
+begin
+  DM_General.GrabarDatos(SELComproVta, INSComproVta, UPDComproVta, ComproVta, 'id');
 end;
 
 

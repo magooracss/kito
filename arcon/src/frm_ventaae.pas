@@ -14,6 +14,10 @@ type
   { TfrmVentasAE }
 
   TfrmVentasAE = class(TForm)
+    btnSalir: TBitBtn;
+    btnGrabar: TBitBtn;
+    btnImprimir: TBitBtn;
+    BitBtn4: TBitBtn;
     btnAgregarConcepto: TBitBtn;
     btnAgregarConcepto1: TBitBtn;
     btnAgregarConcepto2: TBitBtn;
@@ -22,6 +26,7 @@ type
     btnBuscar: TBitBtn;
     cbTipoComprobante: TComboBox;
     cbFormaDePago: TComboBox;
+    ds_IVA: TDataSource;
     DBCheckBox1: TDBCheckBox;
     DBCheckBox2: TDBCheckBox;
     DBDateEdit1: TDBDateEdit;
@@ -48,7 +53,6 @@ type
     Label5: TLabel;
     Label6: TLabel;
     Label7: TLabel;
-    Label8: TLabel;
     Panel1: TPanel;
     Panel2: TPanel;
     StaticText1: TStaticText;
@@ -59,11 +63,15 @@ type
     totNoGravado: TStaticText;
     totExento: TStaticText;
     totIVA: TStaticText;
+    procedure btnSalirClick(Sender: TObject);
+    procedure BitBtn4Click(Sender: TObject);
     procedure btnAgregarConcepto1Click(Sender: TObject);
     procedure btnAgregarConcepto2Click(Sender: TObject);
     procedure btnAgregarConceptoClick(Sender: TObject);
     procedure btnBuscarClick(Sender: TObject);
     procedure btnClienteNuevoClick(Sender: TObject);
+    procedure btnGrabarClick(Sender: TObject);
+    procedure btnImprimirClick(Sender: TObject);
     procedure cbTipoComprobanteChange(Sender: TObject);
     procedure cbTipoComprobanteExit(Sender: TObject);
     procedure DBEdit1KeyPress(Sender: TObject; var Key: char);
@@ -189,6 +197,7 @@ begin
   DM_Ventas.ModificarPosicionDetalle(2);
 end;
 
+
 procedure TfrmVentasAE.btnClienteNuevoClick(Sender: TObject);
 var
   pant: TfrmClientesAE;
@@ -201,6 +210,7 @@ begin
     pant.Free;
   end;
 end;
+
 
 procedure TfrmVentasAE.cbTipoComprobanteChange(Sender: TObject);
 begin
@@ -232,7 +242,7 @@ begin
   totGravado.Caption:= 'GRAVADO: ' + FormatFloat ('$ ########0.00', DM_Ventas.TotalGravado);
   totNoGravado.Caption:= 'NO GRAVADO: ' + FormatFloat ('$ ########0.00', DM_Ventas.TotalNoGravado);
   totExento.Caption:= 'EXENTO: ' + FormatFloat ('$ ########0.00', DM_Ventas.TotalExento);
-  totIVA.Caption:= 'IVA: ' ;//+ FormatFloat ('$ ########0.00', DM_Ventas.TotalGravado);
+  totIVA.Caption:= 'IVA: ' + FormatFloat ('$ ########0.00', DM_Ventas.TotalIVA);
   totGral.Caption:= 'TOTAL: ' + FormatFloat ('$ ##########0.00'
                          , DM_Ventas.TotalGravado
                          + DM_Ventas.TotalNoGravado
@@ -277,6 +287,34 @@ begin
 end;
 
 
+(*******************************************************************************
+*** CERRAR VENTA
+*******************************************************************************)
+
+procedure TfrmVentasAE.btnGrabarClick(Sender: TObject);
+begin
+   DM_Ventas.Grabar;
+end;
+
+procedure TfrmVentasAE.btnImprimirClick(Sender: TObject);
+begin
+  DM_Ventas.Grabar;
+//  DM_Ventas.ImprimirComprobante;
+end;
+
+procedure TfrmVentasAE.BitBtn4Click(Sender: TObject);
+begin
+ DM_Ventas.Grabar;
+// DM_Ventas.Facturar;
+end;
+
+procedure TfrmVentasAE.btnSalirClick(Sender: TObject);
+begin
+ if (MessageDlg ('Confirmación'
+                  , 'Desea salir del comprobante en el estado actual?'
+                   , mtConfirmation, [mbYes, mbNo],0 ) = mrYes) then
+  ModalResult:= mrOK;
+end;
 
 
 end.
