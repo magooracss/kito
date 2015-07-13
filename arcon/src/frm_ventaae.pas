@@ -92,6 +92,8 @@ type
 
     procedure MostrarTotales;
 
+    procedure GrabarComprobante;
+
 
   public
     property ventaID: GUID_ID read _ventaID write _VentaID;
@@ -151,7 +153,7 @@ end;
 
 procedure TfrmVentasAE.FormCreate(Sender: TObject);
 begin
-  Application.CreateForm(TDM_Pedidos, DM_Pedidos);
+//  Application.CreateForm(TDM_Pedidos, DM_Pedidos);
   Application.CreateForm(TDM_Ventas, DM_Ventas);
 
   Inicializar;
@@ -159,7 +161,7 @@ end;
 
 procedure TfrmVentasAE.FormDestroy(Sender: TObject);
 begin
-  DM_Pedidos.Free;
+//  DM_Pedidos.Free;
   DM_Ventas.Free;
 end;
 
@@ -251,6 +253,7 @@ begin
 end;
 
 
+
 (*******************************************************************************
 *** CONCEPTOS
 *******************************************************************************)
@@ -290,21 +293,32 @@ end;
 (*******************************************************************************
 *** CERRAR VENTA
 *******************************************************************************)
+procedure TfrmVentasAE.GrabarComprobante;
+begin
+ DM_Ventas.AjustarComprobante( DM_General.obtenerIDIntComboBox(cbTipoComprobante)
+                             , DM_General.obtenerIDIntComboBox(cbFormaDePago)
+                             , DM_Ventas.TotalGravado
+                             , DM_Ventas.TotalNoGravado
+                             , DM_Ventas.TotalExento
+                             );
+ DM_Ventas.Grabar;
+end;
+
 
 procedure TfrmVentasAE.btnGrabarClick(Sender: TObject);
 begin
-   DM_Ventas.Grabar;
+  GrabarComprobante;
 end;
 
 procedure TfrmVentasAE.btnImprimirClick(Sender: TObject);
 begin
-  DM_Ventas.Grabar;
+  GrabarComprobante;
 //  DM_Ventas.ImprimirComprobante;
 end;
 
 procedure TfrmVentasAE.BitBtn4Click(Sender: TObject);
 begin
- DM_Ventas.Grabar;
+  GrabarComprobante;
 // DM_Ventas.Facturar;
 end;
 

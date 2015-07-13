@@ -1297,7 +1297,6 @@ object DM_Pedidos: TDM_Pedidos
   end
   object SELPedidosDetalles: TZQuery
     Connection = DM_General.cnxBase
-    Active = True
     SQL.Strings = (
       'SELECT PD.*'
       '            , P.codigo as lxCodigo'
@@ -1735,7 +1734,7 @@ object DM_Pedidos: TDM_Pedidos
         ParamType = ptUnknown
       end>
     left = 136
-    top = 246
+    top = 248
     ParamData = <    
       item
         DataType = ftUnknown
@@ -2555,6 +2554,7 @@ object DM_Pedidos: TDM_Pedidos
   end
   object qDetallesPedido: TZQuery
     Connection = DM_General.cnxBase
+    AutoCalcFields = False
     SQL.Strings = (
       'SELECT PD.*'
       '            , P.codigo as lxCodigo'
@@ -2572,6 +2572,7 @@ object DM_Pedidos: TDM_Pedidos
         Name = 'pedido_id'
         ParamType = ptUnknown
       end>
+    Options = []
     left = 136
     top = 392
     ParamData = <    

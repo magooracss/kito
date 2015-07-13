@@ -5,7 +5,7 @@ unit dmventas;
 interface
 
 uses
-  Classes, SysUtils, db, FileUtil, rxmemds, ZDataset
+  Classes, SysUtils, db, FileUtil, rxmemds, StrHolder, ZDataset
   , dmgeneral;
 
 const
@@ -57,6 +57,9 @@ type
     ComproVtavtoCae: TDateTimeField;
     ComproVtavtoPago: TDateTimeField;
     INSComproVta: TZQuery;
+    INSComproVtaConceptos: TZQuery;
+    INSComproVtaIVA: TZQuery;
+    INSComproVtaImpuestos: TZQuery;
     PedidosfToma: TDateTimeField;
     Pedidosid: TStringField;
     PedidosNumero: TLongintField;
@@ -87,15 +90,39 @@ type
     qUltComprobanteGrabadoNUMERO: TLongintField;
     qUltComprobanteGrabadoPUNTODEVENTA: TLongintField;
     SELComproVta: TZQuery;
+    SELComproVtaConceptos: TZQuery;
     SELComproVtaBPRODUCTO: TSmallintField;
     SELComproVtaBSERVICIO: TSmallintField;
     SELComproVtaBVISIBLE: TSmallintField;
     SELComproVtaCAE: TStringField;
     SELComproVtaCLIENTE_ID: TStringField;
+    SELComproVtaImpuestosBVISIBLE: TSmallintField;
+    SELComproVtaImpuestosCOMPROBANTEVENTACONCEPTO_ID: TStringField;
+    SELComproVtaImpuestosID: TStringField;
+    SELComproVtaImpuestosIMPUESTO_ID: TLongintField;
+    SELComproVtaImpuestosMONTO: TFloatField;
+    SELComproVtaIVA: TZQuery;
+    SELComproVtaConceptosBVISIBLE: TSmallintField;
+    SELComproVtaConceptosCANTIDAD: TFloatField;
+    SELComproVtaConceptosCOMPROBANTEVENTA_ID: TStringField;
+    SELComproVtaConceptosCONCEPTO_ID: TLongintField;
+    SELComproVtaConceptosDETALLE: TStringField;
+    SELComproVtaConceptosEXENTO: TFloatField;
+    SELComproVtaConceptosGRAVADO: TFloatField;
+    SELComproVtaConceptosID: TStringField;
+    SELComproVtaConceptosNOGRAVADO: TFloatField;
+    SELComproVtaConceptosORDEN: TLongintField;
+    SELComproVtaConceptosPRODUCTO_ID: TStringField;
     SELComproVtaEXENTO: TFloatField;
     SELComproVtaFECHA: TDateField;
     SELComproVtaFORMAPAGO_ID: TLongintField;
     SELComproVtaID: TStringField;
+    SELComproVtaImpuestos: TZQuery;
+    SELComproVtaIVAALICUOTA_ID: TLongintField;
+    SELComproVtaIVABVISIBLE: TSmallintField;
+    SELComproVtaIVACOMPROBANTEVENTACONCEPTO_ID: TStringField;
+    SELComproVtaIVAID: TStringField;
+    SELComproVtaIVAMONTO: TFloatField;
     SELComproVtaNETOGRAVADO: TFloatField;
     SELComproVtaNETONOGRAVADO: TFloatField;
     SELComproVtaNROCOMPROBANTE: TLongintField;
@@ -105,8 +132,15 @@ type
     SELComproVtaTIPOCOMPROBANTE_ID: TLongintField;
     SELComproVtaVTOCAE: TDateField;
     SELComproVtaVTOPAGO: TDateField;
+    ListaPedidos: TStrHolder;
     UPDComproVta: TZQuery;
+    UPDComproVtaConceptos: TZQuery;
+    UPDComproVtaIVA: TZQuery;
+    UPDComproVtaImpuestos: TZQuery;
     procedure ComproVtaAfterInsert(DataSet: TDataSet);
+    procedure ComproVtaConceptosAfterInsert(DataSet: TDataSet);
+    procedure ComproVtaImpuestosAfterInsert(DataSet: TDataSet);
+    procedure ComproVtaIVAAfterInsert(DataSet: TDataSet);
     procedure DataModuleCreate(Sender: TObject);
     procedure DataModuleDestroy(Sender: TObject);
   private
@@ -137,6 +171,8 @@ type
 
     procedure CalcularTotales;
 
+    procedure AjustarComprobante (refTipoComprobante, refFormaPago: integer
+                                  ; montoGravado, montoNoGravado, montoExento: Double);
     procedure Grabar;
   end;
 
@@ -168,6 +204,40 @@ begin
   ComproVtaperiodoFacturadoIni.asDateTime:=  EncodeDate(y, m, 1);
   ComproVtaperiodoFacturadoFin.asDateTime:=  Now;
   ComproVtavtoPago.AsDateTime:= EncodeDate(y,m,DaysInAMonth(y,m));
+  ComproVtabVisible.AsInteger:= 1;
+end;
+
+procedure TDM_Ventas.ComproVtaConceptosAfterInsert(DataSet: TDataSet);
+begin
+  ComproVtaConceptosid.AsString:= DM_General.CrearGUID;
+  ComproVtaConceptoscomprobanteVenta_id.asString:= ComproVtaid.AsString;
+  ComproVtaConceptosorden.asInteger:= MaxInt;
+  ComproVtaConceptoscantidad.AsFloat:= 1;
+  ComproVtaConceptosconcepto_id.AsInteger:= 0;
+  ComproVtaConceptosdetalle.AsString:= '-';
+  ComproVtaConceptosgravado.AsFloat:= 0;
+  ComproVtaConceptosnoGravado.AsFloat:= 0;
+  ComproVtaConceptosexento.AsFloat:= 0;
+  ComproVtaConceptosproducto_id.AsString:= GUIDNULO;
+  ComproVtaConceptosbVisible.AsInteger:= 1;
+end;
+
+procedure TDM_Ventas.ComproVtaIVAAfterInsert(DataSet: TDataSet);
+begin
+  ComproVtaIVAid.AsString:= DM_General.CrearGUID;
+  ComproVtaIVAcomprobanteVentaConcepto_id.AsString:= ComproVtaConceptosid.AsString;
+  ComproVtaIVAalicuota_id.AsInteger:= StrToIntDef(LeerDato(SECCION_APP, CFGD_IVA_ID), 0);
+  ComproVtaIVAmonto.AsFloat:= 0;
+  ComproVtaIVAbVisible.AsInteger:= 1;
+end;
+
+procedure TDM_Ventas.ComproVtaImpuestosAfterInsert(DataSet: TDataSet);
+begin
+  ComproVtaImpuestosid.AsString:= DM_General.CrearGUID;
+  ComproVtaImpuestoscomprobanteVentaConcepto_id.AsString:= ComproVtaConceptosid.AsString;
+  ComproVtaImpuestosimpuesto_id.AsInteger:= 0;
+  ComproVtaImpuestosmonto.AsFloat:= 0;
+  ComproVtaImpuestosbVisible.AsInteger:= 1;
 end;
 
 procedure TDM_Ventas.DataModuleCreate(Sender: TObject);
@@ -208,6 +278,7 @@ begin
   _totalExento:= 0;
   _totalGravado:= 0;
   _totalNoGravado:= 0;
+  ListaPedidos.Strings.Clear;
 end;
 
 procedure TDM_Ventas.AgregarPedido(refPedido: GUID_ID);
@@ -230,6 +301,9 @@ begin
 
   //Vuelco todos los renglones del pedido a la factura/comprobante
    DM_Pedidos.LevantarPedido(Pedidosid.AsString);
+
+   ListaPedidos.Strings.Add(Pedidosid.AsString); //Llevo un control de los pedidos manejados para poder vincularle la factura
+
    With DM_Pedidos do
    begin
      While NOT PedidosDetalles.EOF do
@@ -391,11 +465,48 @@ begin
   ComproVtaConceptos.EnableControls;
 end;
 
-
+procedure TDM_Ventas.AjustarComprobante(refTipoComprobante,
+  refFormaPago: integer; montoGravado, montoNoGravado, montoExento: Double);
+begin
+  ComproVta.Edit;
+  ComproVtatipoComprobante_id.AsInteger:= refTipoComprobante;
+  ComproVtaformaPago_id.AsInteger:= refFormaPago;
+  ComproVtanetoGravado.asFloat:= montoGravado;
+  ComproVtanetoNoGravado.AsFloat:= montoNoGravado;
+  ComproVtaexento.AsFloat:= montoExento;
+  ComproVta.Post;
+end;
 
 procedure TDM_Ventas.Grabar;
+var
+  idx: integer;
+  cadena:string;
 begin
-  DM_General.GrabarDatos(SELComproVta, INSComproVta, UPDComproVta, ComproVta, 'id');
+
+    //Vinculo los pedidos con el comprobante
+    for idx:= 0 to ListaPedidos.Strings.Count -1 do
+    begin
+      DM_Pedidos.PedidosDetalles.DisableControls;
+      cadena:= ListaPedidos.Strings[idx];
+//      DM_Pedidos.VincularFactura(cadena,ComproVtaid.asString, ComproVtafecha.AsDateTime);
+      DM_Pedidos.LevantarPedido(cadena);
+      DM_Pedidos.CambiarEstado(EST_FACTURADO, Now, 'Comprobante ID: ' + ComproVtaid.AsString);
+      DM_Pedidos.Grabar;
+      DM_Pedidos.PedidosDetalles.EnableControls;
+    end;
+
+    DM_General.cnxBase.StartTransaction;
+    try
+
+    DM_General.GrabarDatos(SELComproVta, INSComproVta, UPDComproVta, ComproVta, 'id');
+    DM_General.GrabarDatos(SELComproVtaConceptos, INSComproVtaConceptos, UPDComproVtaConceptos, ComproVtaConceptos, 'id');
+    DM_General.GrabarDatos(SELComproVtaIVA, INSComproVtaIVA, UPDComproVtaIVA, ComproVtaIVA, 'id');
+    DM_General.GrabarDatos(SELComproVtaImpuestos, INSComproVtaImpuestos, UPDComproVtaImpuestos, ComproVtaImpuestos, 'id');
+    DM_General.cnxBase.Commit;
+  except
+    DM_General.cnxBase.Rollback;
+  end;
+
 end;
 
 

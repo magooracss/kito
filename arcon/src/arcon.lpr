@@ -7,7 +7,7 @@ uses
   cthreads,
   {$ENDIF}{$ENDIF}
   Interfaces, // this includes the LCL widgetset
-  Forms, rxnew, datetimectrls, zcomponent, frm_main, dmgeneral
+  Forms, rxnew, datetimectrls, rx, zcomponent, frm_main, dmgeneral
   ,frm_ventaae, dmventas
   { you can add units after this }
   , dmclientes, dmempresa, dmseleccionarpedidos, frm_seleccionarpedidos,
@@ -21,6 +21,7 @@ begin
   Application.CreateForm(TDM_General, DM_General);
   Application.CreateForm(TDM_Empresa, DM_Empresa);
   Application.CreateForm(TDM_Clientes, DM_Clientes);
+  Application.CreateForm(TDM_Pedidos, DM_Pedidos);
   Application.CreateForm(TfrmMain, frmMain);
   Application.Run;
 end.

@@ -18,6 +18,8 @@ const
   EST_ENTREGADO = 4; // Estado Entregado
   EST_RECHAZADO = 5; // Estado Rechazado
   EST_DEVPARCIAL = 6; //Estado Devolución parcial
+  EST_FACTURADO = 7; //Estado Facturado
+
 
 type
 
@@ -520,11 +522,13 @@ end;
 procedure TDM_Pedidos.LevantarDetallePedido;
 begin
   DM_General.ReiniciarTabla(PedidosDetalles);
+
   With qDetallesPedido do
   begin
     if active then close;
     ParamByName('pedido_id').AsString:= Pedidosid.AsString;
     Open;
+
     PedidosDetalles.LoadFromDataSet(qDetallesPedido, 0, lmAppend);
     close;
   end;
