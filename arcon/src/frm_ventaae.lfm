@@ -1737,6 +1737,7 @@ object frmVentasAE: TfrmVentasAE
         }
         Layout = blGlyphTop
         TabOrder = 3
+        Visible = False
       end
     end
   end

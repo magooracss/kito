@@ -1,7 +1,7 @@
 object frmSeleccionarPedidos: TfrmSeleccionarPedidos
-  Left = 390
+  Left = 374
   Height = 444
-  Top = 149
+  Top = 209
   Width = 876
   Caption = 'Seleccionar Pedidos'
   ClientHeight = 444

@@ -87,7 +87,6 @@ type
     procedure LevantarPuntoDeVenta;
 
     procedure AgregarConcepto;
-    procedure AgregarConceptoGeneral;
     procedure AgregarConceptoPedidos;
 
     procedure MostrarTotales;
@@ -257,12 +256,6 @@ end;
 (*******************************************************************************
 *** CONCEPTOS
 *******************************************************************************)
-
-procedure TfrmVentasAE.AgregarConceptoGeneral;
-begin
-
-end;
-
 procedure TfrmVentasAE.AgregarConceptoPedidos;
 begin
   DM_Ventas.AgregarConceptoPedidos;
@@ -281,7 +274,15 @@ begin
        if pant.tipoConcepto = CONCEPTO_PEDIDO then
         AgregarConceptoPedidos
        else
-        AgregarConceptoGeneral;
+        DM_Ventas.AgregarConcepto( pant.cantidad
+                                  ,pant.refConcepto
+                                  ,pant.descripcion
+                                  ,pant.montoGravado
+                                  ,pant.montoNoGravado
+                                  ,pant.montoExento
+                                  ,pant.refProducto
+                                  ,pant.refAlicuotaIVA
+                                 );
     end;
   finally
     pant.Free;

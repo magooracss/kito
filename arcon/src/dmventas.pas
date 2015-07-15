@@ -64,10 +64,22 @@ type
     Pedidosid: TStringField;
     PedidosNumero: TLongintField;
     PedidosTotalPedido: TFloatField;
+    qAlicuotasIVA: TZQuery;
+    qAlicuotaIVAIdBVISIBLE1: TSmallintField;
+    qAlicuotaIVAIdID1: TLongintField;
+    qAlicuotaIVAIdNOMBRE1: TStringField;
+    qAlicuotaIVAIdPORCENTAJE1: TFloatField;
+    qConceptos: TZQuery;
     qAlicuotaIVAIdBVISIBLE: TSmallintField;
     qAlicuotaIVAIdID: TLongintField;
     qAlicuotaIVAIdNOMBRE: TStringField;
     qAlicuotaIVAIdPORCENTAJE: TFloatField;
+    qConceptosBEXENTO: TSmallintField;
+    qConceptosBNOGRAVADO: TSmallintField;
+    qConceptosBVISIBLE: TSmallintField;
+    qConceptosID: TLongintField;
+    qConceptosNOMBRE: TStringField;
+    qConceptosPLANDECUENTAS_ID: TLongintField;
     qUltComprobanteGrabado: TZQuery;
     qFormasPagoBVISIBLE: TSmallintField;
     qFormasPagoFORMADEPAGO: TStringField;
@@ -327,7 +339,6 @@ begin
        PedidosDetalles.Next;
      end;
    end;
-
 
     Pedidos.Next;
   end;

@@ -3,9 +3,9 @@ object DM_Ventas: TDM_Ventas
   OnDestroy = DataModuleDestroy
   OldCreateOrder = False
   Height = 449
-  HorizontalOffset = 411
-  VerticalOffset = 135
-  Width = 774
+  HorizontalOffset = 353
+  VerticalOffset = 121
+  Width = 889
   object qTiposComprobantesVentas: TZQuery
     Connection = DM_General.cnxBase
     SQL.Strings = (
@@ -2484,5 +2484,132 @@ object DM_Ventas: TDM_Ventas
     Macros = <>
     left = 552
     top = 112
+  end
+  object qConceptos: TZQuery
+    Connection = DM_General.cnxBase
+    SQL.Strings = (
+      'SELECT *'
+      'FROM Conceptos'
+      'WHERE bVisible = 1'
+    )
+    Params = <>
+    left = 800
+    top = 128
+    object qConceptosID: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'ID'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object qConceptosNOMBRE: TStringField
+      DisplayWidth = 800
+      FieldKind = fkData
+      FieldName = 'NOMBRE'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 800
+    end
+    object qConceptosPLANDECUENTAS_ID: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'PLANDECUENTAS_ID'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object qConceptosBEXENTO: TSmallintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'BEXENTO'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object qConceptosBNOGRAVADO: TSmallintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'BNOGRAVADO'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object qConceptosBVISIBLE: TSmallintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'BVISIBLE'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+  end
+  object qAlicuotasIVA: TZQuery
+    Connection = DM_General.cnxBase
+    SQL.Strings = (
+      'SELECT *'
+      'FROM ALICUOTASIVA'
+      'WHERE bVisible = 1'
+    )
+    Params = <>
+    left = 800
+    top = 208
+    object qAlicuotaIVAIdID1: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'ID'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object qAlicuotaIVAIdNOMBRE1: TStringField
+      DisplayWidth = 60
+      FieldKind = fkData
+      FieldName = 'NOMBRE'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 60
+    end
+    object qAlicuotaIVAIdPORCENTAJE1: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'PORCENTAJE'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object qAlicuotaIVAIdBVISIBLE1: TSmallintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'BVISIBLE'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
   end
 end
