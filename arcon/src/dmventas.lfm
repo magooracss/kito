@@ -229,22 +229,16 @@ object DM_Ventas: TDM_Ventas
         Size = 0
       end    
       item
-        Name = 'cae'
-        DataType = ftString
-        Precision = 0
-        Size = 14
-      end    
-      item
-        Name = 'vtoCae'
-        DataType = ftDateTime
-        Precision = 0
-        Size = 0
-      end    
-      item
         Name = 'bVisible'
         DataType = ftInteger
         Precision = 0
         Size = 0
+      end    
+      item
+        Name = 'factura_id'
+        DataType = ftString
+        Precision = 0
+        Size = 38
       end>
     AfterInsert = ComproVtaAfterInsert
     PacketRecords = 0
@@ -419,37 +413,26 @@ object DM_Ventas: TDM_Ventas
       MinValue = 0
       Precision = 2
     end
-    object ComproVtacae: TStringField
-      DisplayWidth = 14
+    object ComproVtabVisible: TLongintField
+      DisplayWidth = 10
       FieldKind = fkData
-      FieldName = 'cae'
+      FieldName = 'bVisible'
       Index = 15
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
       Required = False
-      Size = 14
     end
-    object ComproVtavtoCae: TDateTimeField
-      DisplayWidth = 10
+    object ComproVtafactura_id: TStringField
+      DisplayWidth = 38
       FieldKind = fkData
-      FieldName = 'vtoCae'
+      FieldName = 'factura_id'
       Index = 16
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
       Required = False
-      DisplayFormat = 'DD/MM/YYYY'
-    end
-    object ComproVtabVisible: TLongintField
-      DisplayWidth = 10
-      FieldKind = fkData
-      FieldName = 'bVisible'
-      Index = 17
-      LookupCache = False
-      ProviderFlags = [pfInUpdate, pfInWhere]
-      ReadOnly = False
-      Required = False
+      Size = 38
     end
   end
   object ComproVtaConceptos: TRxMemoryData
@@ -1053,9 +1036,9 @@ object DM_Ventas: TDM_Ventas
     Connection = DM_General.cnxBase
     SQL.Strings = (
       'INSERT INTO ComprobantesVenta'
-      '( ID, FECHA, CLIENTE_ID, TIPOCOMPROBANTE_ID, PUNTOVENTA, NROCOMPROBANTE, BPRODUCTO, BSERVICIO, FORMAPAGO_ID, PERIODOFACTURADOINI, PERIODOFACTURADOFIN, VTOPAGO, NETOGRAVADO, NETONOGRAVADO, EXENTO, CAE, VTOCAE, BVISIBLE)'
+      '( ID, FECHA, CLIENTE_ID, TIPOCOMPROBANTE_ID, PUNTOVENTA, NROCOMPROBANTE, BPRODUCTO, BSERVICIO, FORMAPAGO_ID, PERIODOFACTURADOINI, PERIODOFACTURADOFIN, VTOPAGO, NETOGRAVADO, NETONOGRAVADO, EXENTO, FACTURA_ID, BVISIBLE)'
       'VALUES'
-      '(:ID, :FECHA, :CLIENTE_ID, :TIPOCOMPROBANTE_ID, :PUNTOVENTA, :NROCOMPROBANTE, :BPRODUCTO, :BSERVICIO, :FORMAPAGO_ID, :PERIODOFACTURADOINI, :PERIODOFACTURADOFIN, :VTOPAGO, :NETOGRAVADO, :NETONOGRAVADO, :EXENTO, :CAE, :VTOCAE, :BVISIBLE)'
+      '(:ID, :FECHA, :CLIENTE_ID, :TIPOCOMPROBANTE_ID, :PUNTOVENTA, :NROCOMPROBANTE, :BPRODUCTO, :BSERVICIO, :FORMAPAGO_ID, :PERIODOFACTURADOINI, :PERIODOFACTURADOFIN, :VTOPAGO, :NETOGRAVADO, :NETONOGRAVADO, :EXENTO, :FACTURA_ID, :BVISIBLE)'
     )
     Params = <    
       item
@@ -1135,12 +1118,7 @@ object DM_Ventas: TDM_Ventas
       end    
       item
         DataType = ftUnknown
-        Name = 'CAE'
-        ParamType = ptUnknown
-      end    
-      item
-        DataType = ftUnknown
-        Name = 'VTOCAE'
+        Name = 'FACTURA_ID'
         ParamType = ptUnknown
       end    
       item
@@ -1228,12 +1206,7 @@ object DM_Ventas: TDM_Ventas
       end    
       item
         DataType = ftUnknown
-        Name = 'CAE'
-        ParamType = ptUnknown
-      end    
-      item
-        DataType = ftUnknown
-        Name = 'VTOCAE'
+        Name = 'FACTURA_ID'
         ParamType = ptUnknown
       end    
       item
@@ -1261,8 +1234,7 @@ object DM_Ventas: TDM_Ventas
       ', NETOGRAVADO = :NETOGRAVADO'
       ', NETONOGRAVADO = :NETONOGRAVADO'
       ', EXENTO = :EXENTO'
-      ', CAE = :CAE'
-      ', VTOCAE = :VTOCAE'
+      ', FACTURA_ID = :FACTURA_ID'
       ', BVISIBLE = :BVISIBLE'
       'WHERE id = :id'
     )
@@ -1339,12 +1311,7 @@ object DM_Ventas: TDM_Ventas
       end    
       item
         DataType = ftUnknown
-        Name = 'CAE'
-        ParamType = ptUnknown
-      end    
-      item
-        DataType = ftUnknown
-        Name = 'VTOCAE'
+        Name = 'FACTURA_ID'
         ParamType = ptUnknown
       end    
       item
@@ -1432,12 +1399,7 @@ object DM_Ventas: TDM_Ventas
       end    
       item
         DataType = ftUnknown
-        Name = 'CAE'
-        ParamType = ptUnknown
-      end    
-      item
-        DataType = ftUnknown
-        Name = 'VTOCAE'
+        Name = 'FACTURA_ID'
         ParamType = ptUnknown
       end    
       item
@@ -1633,32 +1595,22 @@ object DM_Ventas: TDM_Ventas
       MinValue = 0
       Precision = 2
     end
-    object SELComproVtaCAE: TStringField
-      DisplayWidth = 56
+    object SELComproVtaFACTURA_ID: TStringField
+      DisplayWidth = 152
       FieldKind = fkData
-      FieldName = 'CAE'
+      FieldName = 'FACTURA_ID'
       Index = 15
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
       Required = False
-      Size = 56
-    end
-    object SELComproVtaVTOCAE: TDateField
-      DisplayWidth = 10
-      FieldKind = fkData
-      FieldName = 'VTOCAE'
-      Index = 16
-      LookupCache = False
-      ProviderFlags = [pfInUpdate, pfInWhere]
-      ReadOnly = False
-      Required = False
+      Size = 152
     end
     object SELComproVtaBVISIBLE: TSmallintField
       DisplayWidth = 10
       FieldKind = fkData
       FieldName = 'BVISIBLE'
-      Index = 17
+      Index = 16
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False

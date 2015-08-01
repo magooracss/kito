@@ -19,7 +19,6 @@ type
     ComproVtabProducto: TLongintField;
     ComproVtabServicio: TLongintField;
     ComproVtabVisible: TLongintField;
-    ComproVtacae: TStringField;
     ComproVtacliente_id: TStringField;
     ComproVtaConceptosbVisible: TLongintField;
     ComproVtaConceptoscantidad: TFloatField;
@@ -33,6 +32,7 @@ type
     ComproVtaConceptosorden: TLongintField;
     ComproVtaConceptosproducto_id: TStringField;
     ComproVtaexento: TFloatField;
+    ComproVtafactura_id: TStringField;
     ComproVtafecha: TDateTimeField;
     ComproVtaformaPago_id: TLongintField;
     ComproVtaid: TStringField;
@@ -54,7 +54,6 @@ type
     ComproVtaperiodoFacturadoIni: TDateTimeField;
     ComproVtapuntoVenta: TLongintField;
     ComproVtatipoComprobante_id: TLongintField;
-    ComproVtavtoCae: TDateTimeField;
     ComproVtavtoPago: TDateTimeField;
     INSComproVta: TZQuery;
     INSComproVtaConceptos: TZQuery;
@@ -102,12 +101,16 @@ type
     qUltComprobanteGrabadoNUMERO: TLongintField;
     qUltComprobanteGrabadoPUNTODEVENTA: TLongintField;
     SELComproVta: TZQuery;
-    SELComproVtaConceptos: TZQuery;
     SELComproVtaBPRODUCTO: TSmallintField;
     SELComproVtaBSERVICIO: TSmallintField;
     SELComproVtaBVISIBLE: TSmallintField;
-    SELComproVtaCAE: TStringField;
     SELComproVtaCLIENTE_ID: TStringField;
+    SELComproVtaConceptos: TZQuery;
+    SELComproVtaEXENTO: TFloatField;
+    SELComproVtaFACTURA_ID: TStringField;
+    SELComproVtaFECHA: TDateField;
+    SELComproVtaFORMAPAGO_ID: TLongintField;
+    SELComproVtaID: TStringField;
     SELComproVtaImpuestosBVISIBLE: TSmallintField;
     SELComproVtaImpuestosCOMPROBANTEVENTACONCEPTO_ID: TStringField;
     SELComproVtaImpuestosID: TStringField;
@@ -125,16 +128,13 @@ type
     SELComproVtaConceptosNOGRAVADO: TFloatField;
     SELComproVtaConceptosORDEN: TLongintField;
     SELComproVtaConceptosPRODUCTO_ID: TStringField;
-    SELComproVtaEXENTO: TFloatField;
-    SELComproVtaFECHA: TDateField;
-    SELComproVtaFORMAPAGO_ID: TLongintField;
-    SELComproVtaID: TStringField;
     SELComproVtaImpuestos: TZQuery;
     SELComproVtaIVAALICUOTA_ID: TLongintField;
     SELComproVtaIVABVISIBLE: TSmallintField;
     SELComproVtaIVACOMPROBANTEVENTACONCEPTO_ID: TStringField;
     SELComproVtaIVAID: TStringField;
     SELComproVtaIVAMONTO: TFloatField;
+    ListaPedidos: TStrHolder;
     SELComproVtaNETOGRAVADO: TFloatField;
     SELComproVtaNETONOGRAVADO: TFloatField;
     SELComproVtaNROCOMPROBANTE: TLongintField;
@@ -142,9 +142,7 @@ type
     SELComproVtaPERIODOFACTURADOINI: TDateField;
     SELComproVtaPUNTOVENTA: TLongintField;
     SELComproVtaTIPOCOMPROBANTE_ID: TLongintField;
-    SELComproVtaVTOCAE: TDateField;
     SELComproVtaVTOPAGO: TDateField;
-    ListaPedidos: TStrHolder;
     UPDComproVta: TZQuery;
     UPDComproVtaConceptos: TZQuery;
     UPDComproVtaIVA: TZQuery;
@@ -216,6 +214,7 @@ begin
   ComproVtaperiodoFacturadoIni.asDateTime:=  EncodeDate(y, m, 1);
   ComproVtaperiodoFacturadoFin.asDateTime:=  Now;
   ComproVtavtoPago.AsDateTime:= EncodeDate(y,m,DaysInAMonth(y,m));
+  ComproVtafactura_id.AsString:= GUIDNULO;
   ComproVtabVisible.AsInteger:= 1;
 end;
 

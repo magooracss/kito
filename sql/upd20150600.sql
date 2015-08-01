@@ -562,8 +562,7 @@ CREATE TABLE ComprobantesVenta
 , netoGravado   float default 0
 , netoNoGravado float default 0
 , exento    float default 0
-, cae varchar(14) default '00000000000000'
-, vtoCAE date
+, factura_id "guid" default '{00000000-0000-0000-0000-000000000000}'
 , bVisible smallint default 1
 );
 
