@@ -92,6 +92,7 @@ type
     procedure MostrarTotales;
 
     procedure GrabarComprobante;
+    procedure PantallaFacturar;
 
 
   public
@@ -107,10 +108,11 @@ implementation
 uses
   dmventas
   , dmpedidos
-  ,frm_busquedaempresas
-  ,frm_clientesae
-  ,frm_ventaconceptosae
-  ,SD_Configuracion
+  , frm_busquedaempresas
+  , frm_clientesae
+  , frm_ventaconceptosae
+  , SD_Configuracion
+  , process
   ;
 
 { TfrmVentasAE }
@@ -305,6 +307,25 @@ begin
  DM_Ventas.Grabar;
 end;
 
+procedure TfrmVentasAE.PantallaFacturar;
+var
+  archivo: string;
+  AProcess: TProcess;
+begin
+
+  archivo:= LeerDato(SECCION_APP, RUTA_SERV_FE);
+
+  if FileExists(archivo) then
+  begin
+   AProcess := TProcess.Create (nil);
+   AProcess.CommandLine  :=  archivo;
+   AProcess.Options  := AProcess.Options + [poWaitOnExit] ;
+   AProcess.Execute;
+   AProcess.Free;
+  end
+  else
+   ShowMessage('No se encuentra el módulo de facturación: ' + archivo);
+end;
 
 procedure TfrmVentasAE.btnGrabarClick(Sender: TObject);
 begin
@@ -320,7 +341,7 @@ end;
 procedure TfrmVentasAE.BitBtn4Click(Sender: TObject);
 begin
   GrabarComprobante;
-// DM_Ventas.Facturar;
+  PantallaFacturar;
 end;
 
 procedure TfrmVentasAE.btnSalirClick(Sender: TObject);

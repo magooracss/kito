@@ -16,6 +16,8 @@ const
   BASE_HOST='HOST';         //Dirección IP del HOST
 
   DIR_SERVIDOR = 'SERVIDOR';        //Ruta al archivo ejecutable
+  RUTA_SERV_FE = 'SERV_FE'; //SERVIDOR Factura Electrónica
+  RUTA_SERV_ARCON = 'SERV_ARCON'; //Servidor de facturación ARCON
   RUTA_LISTADOS = 'RUTA_LISTADOS';
 
   CFG_SEP_DECIMAL = 'SEP_DECIMAL';

@@ -76,7 +76,7 @@ object frmMain: TfrmMain
       Style = tbsSeparator
     end
     object ToolButton6: TToolButton
-      Left = 590
+      Left = 811
       Top = 2
       Action = prgListados
     end
@@ -97,6 +97,24 @@ object frmMain: TfrmMain
       Left = 437
       Top = 2
       Action = HdRPresentar
+    end
+    object ToolButton9: TToolButton
+      Left = 590
+      Top = 2
+      Action = dinFacturacion
+    end
+    object ToolButton11: TToolButton
+      Left = 801
+      Height = 80
+      Top = 2
+      Width = 10
+      Caption = 'ToolButton11'
+      Style = tbsSeparator
+    end
+    object ToolButton12: TToolButton
+      Left = 682
+      Top = 2
+      Action = dinCC
     end
   end
   object Panel1: TPanel
@@ -525,6 +543,17 @@ object frmMain: TfrmMain
       ImageIndex = 19
       OnExecute = HdRPresentarExecute
     end
+    object dinFacturacion: TAction
+      Category = 'Dinero'
+      Caption = 'Facturacion'
+      Hint = 'Muestra la pantalla de facturación'
+      OnExecute = dinFacturacionExecute
+    end
+    object dinCC: TAction
+      Category = 'Dinero'
+      Caption = 'Cuentas Corrientes'
+      Hint = 'Muestra la pantalla de cuentas corrientes'
+    end
   end
   object MainMenu1: TMainMenu
     Images = DM_General.ImgAccionesMenu
@@ -654,6 +683,15 @@ object frmMain: TfrmMain
       end
       object MenuItem36: TMenuItem
         Action = stkRecalcularTodo
+      end
+    end
+    object MenuItem43: TMenuItem
+      Caption = 'Dinero'
+      object MenuItem44: TMenuItem
+        Action = dinFacturacion
+      end
+      object MenuItem45: TMenuItem
+        Action = dinCC
       end
     end
   end

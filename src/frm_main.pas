@@ -15,6 +15,8 @@ type
   { TfrmMain }
 
   TfrmMain = class(TForm)
+    dinCC: TAction;
+    dinFacturacion: TAction;
     HdRPresentar: TAction;
     HdRModificar: TAction;
     HrRNueva: TAction;
@@ -23,6 +25,9 @@ type
     MenuItem40: TMenuItem;
     MenuItem41: TMenuItem;
     MenuItem42: TMenuItem;
+    MenuItem43: TMenuItem;
+    MenuItem44: TMenuItem;
+    MenuItem45: TMenuItem;
     prgListados: TAction;
     MenuItem37: TMenuItem;
     OD: TOpenDialog;
@@ -67,11 +72,14 @@ type
     MenuItem23: TMenuItem;
     MenuItem24: TMenuItem;
     ToolButton10: TToolButton;
+    ToolButton11: TToolButton;
+    ToolButton12: TToolButton;
     ToolButton4: TToolButton;
     ToolButton5: TToolButton;
     ToolButton6: TToolButton;
     ToolButton7: TToolButton;
     ToolButton8: TToolButton;
+    ToolButton9: TToolButton;
     tRefrescarGrilla: TTimer;
     ToolButton3: TToolButton;
     vendEditar: TAction;
@@ -121,6 +129,7 @@ type
     procedure cliBorrarExecute(Sender: TObject);
     procedure cliEditarExecute(Sender: TObject);
     procedure cliNuevoExecute(Sender: TObject);
+    procedure dinFacturacionExecute(Sender: TObject);
     procedure GrillaDrawColumnCell(Sender: TObject; const Rect: TRect;
       DataCol: Integer; Column: TColumn; State: TGridDrawState);
     procedure edFiltroCodigoKeyPress(Sender: TObject; var Key: char);
@@ -203,6 +212,7 @@ uses
   ,frm_busquedahojaderuta
   ,frm_hojaderutapresentacion
   ,frm_hojaderutapresentarpedidos
+  ,process
   ;
 
 { TfrmMain }
@@ -358,8 +368,6 @@ procedure TfrmMain.cliNuevoExecute(Sender: TObject);
 begin
   pantallaCliente(GUIDNULO);
 end;
-
-
 
 
 procedure TfrmMain.cliEditarExecute(Sender: TObject);
@@ -802,6 +810,29 @@ begin
 
 end;
 
+(*******************************************************************************
+*** DINERO
+*******************************************************************************)
+
+procedure TfrmMain.dinFacturacionExecute(Sender: TObject);
+var
+  archivo: string;
+  AProcess: TProcess;
+begin
+
+  archivo:= LeerDato(SECCION_APP, RUTA_SERV_ARCON);
+
+  if FileExists(archivo) then
+  begin
+   AProcess := TProcess.Create (nil);
+   AProcess.CommandLine  :=  archivo;
+   AProcess.Options  := AProcess.Options + [poWaitOnExit] ;
+   AProcess.Execute;
+   AProcess.Free;
+  end
+  else
+   ShowMessage('No se encuentra el módulo de facturación: ' + archivo);
+end;
 
 end.
 
