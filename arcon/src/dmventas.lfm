@@ -2564,4 +2564,306 @@ object DM_Ventas: TDM_Ventas
       Required = False
     end
   end
+  object qCompVtaConceptosPorVta: TZQuery
+    Connection = DM_General.cnxBase
+    SQL.Strings = (
+      'SELECT *'
+      'FROM ComprobantesVentaConceptos'
+      'WHERE (comprobanteVenta_id = :ComprovanteVenta_id)'
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'ComprovanteVenta_id'
+        ParamType = ptUnknown
+      end>
+    left = 152
+    top = 328
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'ComprovanteVenta_id'
+        ParamType = ptUnknown
+      end>
+    object SELComproVtaConceptosID1: TStringField
+      DisplayWidth = 152
+      FieldKind = fkData
+      FieldName = 'ID'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      Size = 152
+    end
+    object SELComproVtaConceptosCOMPROBANTEVENTA_ID1: TStringField
+      DisplayWidth = 152
+      FieldKind = fkData
+      FieldName = 'COMPROBANTEVENTA_ID'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 152
+    end
+    object SELComproVtaConceptosORDEN1: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'ORDEN'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object SELComproVtaConceptosCANTIDAD1: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'CANTIDAD'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object SELComproVtaConceptosCONCEPTO_ID1: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'CONCEPTO_ID'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object SELComproVtaConceptosDETALLE1: TStringField
+      DisplayWidth = 2000
+      FieldKind = fkData
+      FieldName = 'DETALLE'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 2000
+    end
+    object SELComproVtaConceptosGRAVADO1: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'GRAVADO'
+      Index = 6
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object SELComproVtaConceptosNOGRAVADO1: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'NOGRAVADO'
+      Index = 7
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object SELComproVtaConceptosEXENTO1: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'EXENTO'
+      Index = 8
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object SELComproVtaConceptosPRODUCTO_ID1: TStringField
+      DisplayWidth = 152
+      FieldKind = fkData
+      FieldName = 'PRODUCTO_ID'
+      Index = 9
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 152
+    end
+    object SELComproVtaConceptosBVISIBLE1: TSmallintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'BVISIBLE'
+      Index = 10
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+  end
+  object qComproVtaIVAPorCpto: TZQuery
+    Connection = DM_General.cnxBase
+    SQL.Strings = (
+      'SELECT *'
+      'FROM ComprobantesVentaIVA'
+      'WHERE (ComprobanteVentaConcepto_id = :ComprobanteVentaConcepto_id)'
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'ComprobanteVentaConcepto_id'
+        ParamType = ptUnknown
+      end>
+    left = 264
+    top = 328
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'ComprobanteVentaConcepto_id'
+        ParamType = ptUnknown
+      end>
+    object SELComproVtaIVAID1: TStringField
+      DisplayWidth = 152
+      FieldKind = fkData
+      FieldName = 'ID'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      Size = 152
+    end
+    object SELComproVtaIVACOMPROBANTEVENTACONCEPTO_ID1: TStringField
+      DisplayWidth = 152
+      FieldKind = fkData
+      FieldName = 'COMPROBANTEVENTACONCEPTO_ID'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 152
+    end
+    object SELComproVtaIVAALICUOTA_ID1: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'ALICUOTA_ID'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object SELComproVtaIVAMONTO1: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'MONTO'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object SELComproVtaIVABVISIBLE1: TSmallintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'BVISIBLE'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+  end
+  object qComproVtaImpuestosPorCpto: TZQuery
+    Connection = DM_General.cnxBase
+    SQL.Strings = (
+      'SELECT *'
+      'FROM ComprobantesVentaImpuestos'
+      'WHERE (ComprobanteVentaConcepto_id = :ComprobanteVentaConcepto_id)'
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'ComprobanteVentaConcepto_id'
+        ParamType = ptUnknown
+      end>
+    left = 376
+    top = 328
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'ComprobanteVentaConcepto_id'
+        ParamType = ptUnknown
+      end>
+    object SELComproVtaImpuestosID1: TStringField
+      DisplayWidth = 152
+      FieldKind = fkData
+      FieldName = 'ID'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      Size = 152
+    end
+    object SELComproVtaImpuestosCOMPROBANTEVENTACONCEPTO_ID1: TStringField
+      DisplayWidth = 152
+      FieldKind = fkData
+      FieldName = 'COMPROBANTEVENTACONCEPTO_ID'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 152
+    end
+    object SELComproVtaImpuestosIMPUESTO_ID1: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'IMPUESTO_ID'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object SELComproVtaImpuestosMONTO1: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'MONTO'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object SELComproVtaImpuestosBVISIBLE1: TSmallintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'BVISIBLE'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+  end
 end

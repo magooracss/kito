@@ -240,17 +240,23 @@ end;
 *******************************************************************************)
 
 procedure TfrmVentasAE.MostrarTotales;
+var
+ tGravado, tNoGravado, tExento, tIVA: Double;
 begin
   DM_Ventas.CalcularTotales;
-  totGravado.Caption:= 'GRAVADO: ' + FormatFloat ('$ ########0.00', DM_Ventas.TotalGravado);
-  totNoGravado.Caption:= 'NO GRAVADO: ' + FormatFloat ('$ ########0.00', DM_Ventas.TotalNoGravado);
-  totExento.Caption:= 'EXENTO: ' + FormatFloat ('$ ########0.00', DM_Ventas.TotalExento);
-  totIVA.Caption:= 'IVA: ' + FormatFloat ('$ ########0.00', DM_Ventas.TotalIVA);
+  tGravado:= DM_Ventas.TotalGravado;
+  tNoGravado:= DM_Ventas.TotalNoGravado;
+  tExento:= DM_Ventas.TotalExento;
+  tIVA:= DM_Ventas.TotalIVA;
+  totGravado.Caption:= 'GRAVADO: ' + FormatFloat ('$ ########0.00', tGravado );
+  totNoGravado.Caption:= 'NO GRAVADO: ' + FormatFloat ('$ ########0.00', tNoGravado );
+  totExento.Caption:= 'EXENTO: ' + FormatFloat ('$ ########0.00', tExento );
+  totIVA.Caption:= 'IVA: ' + FormatFloat ('$ ########0.00', tIVA );
   totGral.Caption:= 'TOTAL: ' + FormatFloat ('$ ##########0.00'
-                         , DM_Ventas.TotalGravado
-                         + DM_Ventas.TotalNoGravado
-                         + DM_Ventas.TotalExento );
-
+                         , tGravado
+                         + tNoGravado
+                         + tExento
+                         + tIVA);
 end;
 
 

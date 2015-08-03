@@ -1,0 +1,1519 @@
+object DM_FacturaElectronica: TDM_FacturaElectronica
+  OldCreateOrder = False
+  Height = 471
+  HorizontalOffset = 461
+  VerticalOffset = 178
+  Width = 566
+  object fe_comprobantes: TRxMemoryData
+    FieldDefs = <    
+      item
+        Name = 'id'
+        DataType = ftString
+        Precision = 0
+        Size = 38
+      end    
+      item
+        Name = 'concepto'
+        DataType = ftInteger
+        Precision = 0
+        Size = 0
+      end    
+      item
+        Name = 'doctipo'
+        DataType = ftInteger
+        Precision = 0
+        Size = 0
+      end    
+      item
+        Name = 'docnro'
+        DataType = ftFloat
+        Precision = 0
+        Size = 0
+      end    
+      item
+        Name = 'cteDesde'
+        DataType = ftFloat
+        Precision = 0
+        Size = 0
+      end    
+      item
+        Name = 'cteHasta'
+        DataType = ftFloat
+        Precision = 0
+        Size = 0
+      end    
+      item
+        Name = 'cbtFecha'
+        DataType = ftString
+        Precision = 0
+        Size = 8
+      end    
+      item
+        Name = 'impTotal'
+        DataType = ftFloat
+        Precision = 0
+        Size = 0
+      end    
+      item
+        Name = 'impTotalConc'
+        DataType = ftFloat
+        Precision = 0
+        Size = 0
+      end    
+      item
+        Name = 'impNeto'
+        DataType = ftFloat
+        Precision = 0
+        Size = 0
+      end    
+      item
+        Name = 'impOpEx'
+        DataType = ftFloat
+        Precision = 0
+        Size = 0
+      end    
+      item
+        Name = 'fechaServDesde'
+        DataType = ftString
+        Precision = 0
+        Size = 8
+      end    
+      item
+        Name = 'fechaServHasta'
+        DataType = ftString
+        Precision = 0
+        Size = 8
+      end    
+      item
+        Name = 'fechaVtoPago'
+        DataType = ftString
+        Precision = 0
+        Size = 8
+      end    
+      item
+        Name = 'monedaID'
+        DataType = ftString
+        Precision = 0
+        Size = 3
+      end    
+      item
+        Name = 'monCotiz'
+        DataType = ftFloat
+        Precision = 0
+        Size = 0
+      end    
+      item
+        Name = 'estadoFE'
+        DataType = ftInteger
+        Precision = 0
+        Size = 0
+      end    
+      item
+        Name = 'ptoVta'
+        DataType = ftInteger
+        Precision = 0
+        Size = 0
+      end    
+      item
+        Name = 'tipoCompr'
+        DataType = ftInteger
+        Precision = 0
+        Size = 0
+      end    
+      item
+        Name = 'CAE'
+        DataType = ftString
+        Precision = 0
+        Size = 14
+      end    
+      item
+        Name = 'vtoCAE'
+        DataType = ftString
+        Precision = 0
+        Size = 8
+      end    
+      item
+        Name = 'ultResultado'
+        DataType = ftString
+        Precision = 0
+        Size = 1
+      end    
+      item
+        Name = 'ultReproceso'
+        DataType = ftString
+        Precision = 0
+        Size = 1
+      end>
+    AfterInsert = fe_comprobantesAfterInsert
+    PacketRecords = 0
+    left = 48
+    top = 32
+    object fe_comprobantesid: TStringField
+      DisplayWidth = 38
+      FieldKind = fkData
+      FieldName = 'id'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 38
+    end
+    object fe_comprobantesconcepto: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'concepto'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object fe_comprobantesdoctipo: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'doctipo'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object fe_comprobantesdocnro: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'docnro'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object fe_comprobantescteDesde: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'cteDesde'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object fe_comprobantescteHasta: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'cteHasta'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object fe_comprobantescbtFecha: TStringField
+      DisplayWidth = 8
+      FieldKind = fkData
+      FieldName = 'cbtFecha'
+      Index = 6
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 8
+    end
+    object fe_comprobantesimpTotal: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'impTotal'
+      Index = 7
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Currency = True
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object fe_comprobantesimpTotalConc: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'impTotalConc'
+      Index = 8
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Currency = True
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object fe_comprobantesimpNeto: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'impNeto'
+      Index = 9
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Currency = True
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object fe_comprobantesimpOpEx: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'impOpEx'
+      Index = 10
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Currency = True
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object fe_comprobantesfechaServDesde: TStringField
+      DisplayWidth = 8
+      FieldKind = fkData
+      FieldName = 'fechaServDesde'
+      Index = 11
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 8
+    end
+    object fe_comprobantesfechaServHasta: TStringField
+      DisplayWidth = 8
+      FieldKind = fkData
+      FieldName = 'fechaServHasta'
+      Index = 12
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 8
+    end
+    object fe_comprobantesfechaVtoPago: TStringField
+      DisplayWidth = 8
+      FieldKind = fkData
+      FieldName = 'fechaVtoPago'
+      Index = 13
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 8
+    end
+    object fe_comprobantesmonedaID: TStringField
+      DisplayWidth = 3
+      FieldKind = fkData
+      FieldName = 'monedaID'
+      Index = 14
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 3
+    end
+    object fe_comprobantesmonCotiz: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'monCotiz'
+      Index = 15
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object fe_comprobantesestadoFE: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'estadoFE'
+      Index = 16
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object fe_comprobantesptoVta: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'ptoVta'
+      Index = 17
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object fe_comprobantestipoCompr: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'tipoCompr'
+      Index = 18
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object fe_comprobantesCAE: TStringField
+      DisplayWidth = 14
+      FieldKind = fkData
+      FieldName = 'CAE'
+      Index = 19
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 14
+    end
+    object fe_comprobantesvtoCAE: TStringField
+      DisplayWidth = 8
+      FieldKind = fkData
+      FieldName = 'vtoCAE'
+      Index = 20
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 8
+    end
+    object fe_comprobantesultResultado: TStringField
+      DisplayWidth = 1
+      FieldKind = fkData
+      FieldName = 'ultResultado'
+      Index = 21
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 1
+    end
+    object fe_comprobantesultReproceso: TStringField
+      DisplayWidth = 1
+      FieldKind = fkData
+      FieldName = 'ultReproceso'
+      Index = 22
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 1
+    end
+  end
+  object fe_agregarIVA: TRxMemoryData
+    FieldDefs = <    
+      item
+        Name = 'id'
+        DataType = ftString
+        Precision = 0
+        Size = 38
+      end    
+      item
+        Name = 'comprobante_id'
+        DataType = ftString
+        Precision = 0
+        Size = 38
+      end    
+      item
+        Name = 'tipoIVA'
+        DataType = ftInteger
+        Precision = 0
+        Size = 0
+      end    
+      item
+        Name = 'baseImp'
+        DataType = ftFloat
+        Precision = 0
+        Size = 0
+      end    
+      item
+        Name = 'importe'
+        DataType = ftFloat
+        Precision = 0
+        Size = 0
+      end>
+    AfterInsert = fe_agregarIVAAfterInsert
+    PacketRecords = 0
+    left = 184
+    top = 32
+    object fe_agregarIVAid: TStringField
+      DisplayWidth = 38
+      FieldKind = fkData
+      FieldName = 'id'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 38
+    end
+    object fe_agregarIVAcomprobante_id: TStringField
+      DisplayWidth = 38
+      FieldKind = fkData
+      FieldName = 'comprobante_id'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 38
+    end
+    object fe_agregarIVAtipoIVA: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'tipoIVA'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object fe_agregarIVAbaseImp: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'baseImp'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Currency = True
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object fe_agregarIVAimporte: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'importe'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Currency = True
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+  end
+  object SELfe_comprobantes: TZQuery
+    Connection = DM_General.cnxBase
+    SQL.Strings = (
+      'SELECT *'
+      'FROM fe_comprobantes'
+      'WHERE (id = :id)'
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'id'
+        ParamType = ptUnknown
+      end>
+    left = 48
+    top = 104
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'id'
+        ParamType = ptUnknown
+      end>
+    object SELfe_comprobantesID: TStringField
+      DisplayWidth = 152
+      FieldKind = fkData
+      FieldName = 'ID'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      Size = 152
+    end
+    object SELfe_comprobantesCONCEPTO: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'CONCEPTO'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object SELfe_comprobantesDOCTIPO: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'DOCTIPO'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object SELfe_comprobantesDOCNRO: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'DOCNRO'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object SELfe_comprobantesCBTEDESDE: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'CBTEDESDE'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object SELfe_comprobantesCBTHASTA: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'CBTHASTA'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object SELfe_comprobantesCBTFECHA: TStringField
+      DisplayWidth = 32
+      FieldKind = fkData
+      FieldName = 'CBTFECHA'
+      Index = 6
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 32
+    end
+    object SELfe_comprobantesIMPTOTAL: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'IMPTOTAL'
+      Index = 7
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object SELfe_comprobantesIMPTOTALCONC: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'IMPTOTALCONC'
+      Index = 8
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object SELfe_comprobantesIMPNETO: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'IMPNETO'
+      Index = 9
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object SELfe_comprobantesIMPOPEX: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'IMPOPEX'
+      Index = 10
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object SELfe_comprobantesFECHASERVDESDE: TStringField
+      DisplayWidth = 32
+      FieldKind = fkData
+      FieldName = 'FECHASERVDESDE'
+      Index = 11
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 32
+    end
+    object SELfe_comprobantesFECHASERVHASTA: TStringField
+      DisplayWidth = 32
+      FieldKind = fkData
+      FieldName = 'FECHASERVHASTA'
+      Index = 12
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 32
+    end
+    object SELfe_comprobantesFECHAVTOPAGO: TStringField
+      DisplayWidth = 32
+      FieldKind = fkData
+      FieldName = 'FECHAVTOPAGO'
+      Index = 13
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 32
+    end
+    object SELfe_comprobantesMONEDAID: TStringField
+      DisplayWidth = 12
+      FieldKind = fkData
+      FieldName = 'MONEDAID'
+      Index = 14
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 12
+    end
+    object SELfe_comprobantesMONCOTIZ: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'MONCOTIZ'
+      Index = 15
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object SELfe_comprobantesESTADOFE: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'ESTADOFE'
+      Index = 16
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object SELfe_comprobantesPTOVTA: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'PTOVTA'
+      Index = 17
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object SELfe_comprobantesTIPOCOMPR: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'TIPOCOMPR'
+      Index = 18
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object SELfe_comprobantesCAE: TStringField
+      DisplayWidth = 56
+      FieldKind = fkData
+      FieldName = 'CAE'
+      Index = 19
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 56
+    end
+    object SELfe_comprobantesVTOCAE: TStringField
+      DisplayWidth = 32
+      FieldKind = fkData
+      FieldName = 'VTOCAE'
+      Index = 20
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 32
+    end
+    object SELfe_comprobantesULTRESULTADO: TStringField
+      DisplayWidth = 4
+      FieldKind = fkData
+      FieldName = 'ULTRESULTADO'
+      Index = 21
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 4
+    end
+    object SELfe_comprobantesULTREPROCESO: TStringField
+      DisplayWidth = 4
+      FieldKind = fkData
+      FieldName = 'ULTREPROCESO'
+      Index = 22
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 4
+    end
+  end
+  object INSfe_comprobantes: TZQuery
+    Connection = DM_General.cnxBase
+    SQL.Strings = (
+      'INSERT INTO fe_comprobantes'
+      '( id, concepto, doctipo, docnro, cteDesde, cteHasta, cbtfecha, impTotal, impTotalConc, impNeto, impOpEx, fechaServDesde, fechaServHasta, fechaVtoPago, monedaID, monCotiz, estadofe, ptoVta, tipoCompr, cae, vtoCae, ultResultado, ultReproceso)'
+      'VALUES'
+      '( :id, :concepto, :doctipo, :docnro, :cteDesde, :cteHasta, :cbtfecha, :impTotal, :impTotalConc, :impNeto, :impOpEx, :fechaServDesde, :fechaServHasta, :fechaVtoPago, :monedaID, :monCotiz, :estadofe, :ptoVta, :tipoCompr, :cae, :vtoCae, :ultResultado, :ultReproceso)'
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'id'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'concepto'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'doctipo'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'docnro'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'cteDesde'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'cteHasta'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'cbtfecha'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'impTotal'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'impTotalConc'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'impNeto'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'impOpEx'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'fechaServDesde'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'fechaServHasta'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'fechaVtoPago'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'monedaID'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'monCotiz'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'estadofe'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'ptoVta'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'tipoCompr'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'cae'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'vtoCae'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'ultResultado'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'ultReproceso'
+        ParamType = ptUnknown
+      end>
+    left = 48
+    top = 171
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'id'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'concepto'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'doctipo'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'docnro'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'cteDesde'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'cteHasta'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'cbtfecha'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'impTotal'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'impTotalConc'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'impNeto'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'impOpEx'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'fechaServDesde'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'fechaServHasta'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'fechaVtoPago'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'monedaID'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'monCotiz'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'estadofe'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'ptoVta'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'tipoCompr'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'cae'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'vtoCae'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'ultResultado'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'ultReproceso'
+        ParamType = ptUnknown
+      end>
+  end
+  object UPDfe_comprobantes: TZQuery
+    Connection = DM_General.cnxBase
+    SQL.Strings = (
+      'UPDATE  fe_comprobantes'
+      'SET'
+      'concepto = :concepto'
+      ', doctipo = :doctipo'
+      ', docnro = :docNro'
+      ', cteDesde = :cteDesde'
+      ', cteHasta = :cteHasta'
+      ', cbtfecha = :cbtFecha'
+      ', impTotal = :impTotal'
+      ', impTotalConc = :impTotalConc'
+      ', impNeto = :impNeto'
+      ', impOpEx = :impOpEx'
+      ', fechaServDesde = :fechaServDesde'
+      ', fechaServHasta = :fechaServHasta'
+      ', fechaVtoPago = :fechaVtoPago'
+      ', monedaID = :monedaID'
+      ', monCotiz = :monCotiz'
+      ', estadofe = :estadoFe'
+      ', ptoVta = :ptoVta'
+      ', tipoCompr = :tipoCompr'
+      ', cae = :cae'
+      ', vtoCae = :vtoCAE'
+      ', ultResultado = :ultResultado'
+      ', ultReproceso = :ultReproceso'
+      'WHERE id = :id'
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'concepto'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'doctipo'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'docNro'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'cteDesde'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'cteHasta'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'cbtFecha'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'impTotal'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'impTotalConc'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'impNeto'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'impOpEx'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'fechaServDesde'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'fechaServHasta'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'fechaVtoPago'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'monedaID'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'monCotiz'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'estadoFe'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'ptoVta'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'tipoCompr'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'cae'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'vtoCAE'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'ultResultado'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'ultReproceso'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'id'
+        ParamType = ptUnknown
+      end>
+    left = 48
+    top = 243
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'concepto'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'doctipo'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'docNro'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'cteDesde'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'cteHasta'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'cbtFecha'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'impTotal'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'impTotalConc'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'impNeto'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'impOpEx'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'fechaServDesde'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'fechaServHasta'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'fechaVtoPago'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'monedaID'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'monCotiz'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'estadoFe'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'ptoVta'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'tipoCompr'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'cae'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'vtoCAE'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'ultResultado'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'ultReproceso'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'id'
+        ParamType = ptUnknown
+      end>
+  end
+  object SELfe_agregarIVA: TZQuery
+    Connection = DM_General.cnxBase
+    SQL.Strings = (
+      'SELECT *'
+      'FROM fe_agregarIVA'
+      'WHERE (id = :id)'
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'id'
+        ParamType = ptUnknown
+      end>
+    left = 184
+    top = 104
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'id'
+        ParamType = ptUnknown
+      end>
+    object SELfe_agregarIVAID: TStringField
+      DisplayWidth = 152
+      FieldKind = fkData
+      FieldName = 'ID'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      Size = 152
+    end
+    object SELfe_agregarIVACOMPROBANTE_ID: TStringField
+      DisplayWidth = 152
+      FieldKind = fkData
+      FieldName = 'COMPROBANTE_ID'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 152
+    end
+    object SELfe_agregarIVATIPOIVA: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'TIPOIVA'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object SELfe_agregarIVABASEIMP: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'BASEIMP'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object SELfe_agregarIVAIMPORTE: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'IMPORTE'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+  end
+  object INSfe_agregarIVA: TZQuery
+    Connection = DM_General.cnxBase
+    SQL.Strings = (
+      'INSERT INTO fe_AgregarIVA'
+      '( id, comprobante_id, tipoIVA, baseImp, importe)'
+      'VALUES'
+      '( :id, :comprobante_id, :tipoIVA, :baseImp, :importe)'
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'id'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'comprobante_id'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'tipoIVA'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'baseImp'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'importe'
+        ParamType = ptUnknown
+      end>
+    left = 184
+    top = 171
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'id'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'comprobante_id'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'tipoIVA'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'baseImp'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'importe'
+        ParamType = ptUnknown
+      end>
+  end
+  object UPDfe_agregarIVA: TZQuery
+    Connection = DM_General.cnxBase
+    SQL.Strings = (
+      'UPDATE  fe_AgregarIVA'
+      'SET'
+      ' comprobante_id = :comprobante_id'
+      ', tipoIVA = :tipoIVA'
+      ', baseImp = :baseImp'
+      ', importe = :importe'
+      'WHERE id = :id'
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'comprobante_id'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'tipoIVA'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'baseImp'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'importe'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'id'
+        ParamType = ptUnknown
+      end>
+    left = 184
+    top = 243
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'comprobante_id'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'tipoIVA'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'baseImp'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'importe'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'id'
+        ParamType = ptUnknown
+      end>
+  end
+end

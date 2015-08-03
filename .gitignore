@@ -11,5 +11,6 @@
 **/arcon/src/lib
 **/vrs/
 *.*~*
+*.*#*
 *.exe
 *.swp

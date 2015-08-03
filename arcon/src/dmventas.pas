@@ -106,16 +106,34 @@ type
     SELComproVtaBVISIBLE: TSmallintField;
     SELComproVtaCLIENTE_ID: TStringField;
     SELComproVtaConceptos: TZQuery;
+    qCompVtaConceptosPorVta: TZQuery;
+    SELComproVtaConceptosBVISIBLE1: TSmallintField;
+    SELComproVtaConceptosCANTIDAD1: TFloatField;
+    SELComproVtaConceptosCOMPROBANTEVENTA_ID1: TStringField;
+    SELComproVtaConceptosCONCEPTO_ID1: TLongintField;
+    SELComproVtaConceptosDETALLE1: TStringField;
+    SELComproVtaConceptosEXENTO1: TFloatField;
+    SELComproVtaConceptosGRAVADO1: TFloatField;
+    SELComproVtaConceptosID1: TStringField;
+    SELComproVtaConceptosNOGRAVADO1: TFloatField;
+    SELComproVtaConceptosORDEN1: TLongintField;
+    SELComproVtaConceptosPRODUCTO_ID1: TStringField;
     SELComproVtaEXENTO: TFloatField;
     SELComproVtaFACTURA_ID: TStringField;
     SELComproVtaFECHA: TDateField;
     SELComproVtaFORMAPAGO_ID: TLongintField;
     SELComproVtaID: TStringField;
+    qComproVtaImpuestosPorCpto: TZQuery;
     SELComproVtaImpuestosBVISIBLE: TSmallintField;
+    SELComproVtaImpuestosBVISIBLE1: TSmallintField;
     SELComproVtaImpuestosCOMPROBANTEVENTACONCEPTO_ID: TStringField;
+    SELComproVtaImpuestosCOMPROBANTEVENTACONCEPTO_ID1: TStringField;
     SELComproVtaImpuestosID: TStringField;
+    SELComproVtaImpuestosID1: TStringField;
     SELComproVtaImpuestosIMPUESTO_ID: TLongintField;
+    SELComproVtaImpuestosIMPUESTO_ID1: TLongintField;
     SELComproVtaImpuestosMONTO: TFloatField;
+    SELComproVtaImpuestosMONTO1: TFloatField;
     SELComproVtaIVA: TZQuery;
     SELComproVtaConceptosBVISIBLE: TSmallintField;
     SELComproVtaConceptosCANTIDAD: TFloatField;
@@ -129,12 +147,18 @@ type
     SELComproVtaConceptosORDEN: TLongintField;
     SELComproVtaConceptosPRODUCTO_ID: TStringField;
     SELComproVtaImpuestos: TZQuery;
+    qComproVtaIVAPorCpto: TZQuery;
     SELComproVtaIVAALICUOTA_ID: TLongintField;
+    SELComproVtaIVAALICUOTA_ID1: TLongintField;
     SELComproVtaIVABVISIBLE: TSmallintField;
+    SELComproVtaIVABVISIBLE1: TSmallintField;
     SELComproVtaIVACOMPROBANTEVENTACONCEPTO_ID: TStringField;
+    SELComproVtaIVACOMPROBANTEVENTACONCEPTO_ID1: TStringField;
     SELComproVtaIVAID: TStringField;
+    SELComproVtaIVAID1: TStringField;
     SELComproVtaIVAMONTO: TFloatField;
     ListaPedidos: TStrHolder;
+    SELComproVtaIVAMONTO1: TFloatField;
     SELComproVtaNETOGRAVADO: TFloatField;
     SELComproVtaNETONOGRAVADO: TFloatField;
     SELComproVtaNROCOMPROBANTE: TLongintField;
@@ -183,6 +207,9 @@ type
 
     procedure AjustarComprobante (refTipoComprobante, refFormaPago: integer
                                   ; montoGravado, montoNoGravado, montoExento: Double);
+
+    procedure LevantarVenta (refVenta: GUID_ID);
+    procedure LevantarIvaImpuestosComprobante (refComprobante: GUID_ID);
     procedure Grabar;
   end;
 
@@ -196,6 +223,7 @@ uses
   ,dmprecios
   ,dateutils
   ,SD_Configuracion
+  , dmfacturaelectronica
   ;
 
 { TDM_Ventas }
@@ -485,6 +513,57 @@ begin
   ComproVtanetoNoGravado.AsFloat:= montoNoGravado;
   ComproVtaexento.AsFloat:= montoExento;
   ComproVta.Post;
+end;
+
+procedure TDM_Ventas.LevantarVenta(refVenta: GUID_ID);
+begin
+  DM_General.ReiniciarTabla(ComproVta);
+  DM_General.ReiniciarTabla(ComproVtaConceptos);
+  DM_General.ReiniciarTabla(ComproVtaIVA);
+  DM_General.ReiniciarTabla(ComproVtaImpuestos);
+
+  with SELComproVta do
+  begin
+    if active then close;
+    ParamByName('id').asString:= refVenta;
+    Open;
+    ComproVta.LoadFromDataSet(SELComproVta, 0, lmAppend);
+    Close;
+  end;
+
+  with qCompVtaConceptosPorVta do
+  begin
+    if active then close;
+    ParamByName('comprobanteVenta_id').asString:= refVenta;
+    Open;
+    ComproVtaConceptos.LoadFromDataSet(qCompVtaConceptosPorVta, 0, lmAppend);
+    Close;
+  end;
+end;
+
+procedure TDM_Ventas.LevantarIvaImpuestosComprobante(refComprobante: GUID_ID);
+begin
+  DM_General.ReiniciarTabla(ComproVtaIVA);
+  DM_General.ReiniciarTabla(ComproVtaImpuestos);
+
+  with qComproVtaIVAPorCpto do
+  begin
+    if active then close;
+    ParamByName('ComprobanteVentaConcepto_id').AsString:= refComprobante;
+    Open;
+    ComproVtaIVA.LoadFromDataSet(qComproVtaIVAPorCpto, 0, lmAppend);
+    close;
+  end;
+
+  with qComproVtaImpuestosPorCpto do
+  begin
+    if active then close;
+    ParamByName('ComprobanteVentaConcepto_id').AsString:= refComprobante;
+    Open;
+    ComproVtaImpuestos.LoadFromDataSet(qComproVtaImpuestosPorCpto, 0, lmAppend);
+    close;
+  end;
+
 end;
 
 procedure TDM_Ventas.Grabar;
