@@ -50,9 +50,12 @@ type
     _idEmpresa: GUID_ID;
     function getDomicilio: String;
     function getRazonSocial: String;
+    function getCuit: string;
   public
     property RazonSocial: String read getRazonSocial;
     property Domicilio: String read getDomicilio;
+    property Cuit: string read getCuit;
+
     procedure Nuevo;
     procedure Editar (refCliente: GUID_ID);
     procedure Grabar;
@@ -90,6 +93,12 @@ function TDM_Clientes.getRazonSocial: String;
 begin
   DM_Empresa.LevantarEmpresa(_idEmpresa);
   Result:= DM_Empresa.RazonSocial;
+end;
+
+function TDM_Clientes.getCuit: string;
+begin
+  DM_Empresa.LevantarEmpresa(_idEmpresa);
+  Result:= DM_Empresa.CUIT;
 end;
 
 function TDM_Clientes.getDomicilio: String;

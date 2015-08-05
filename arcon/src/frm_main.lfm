@@ -67,6 +67,19 @@ object frmMain: TfrmMain
       Action = movCompra
       Caption = 'Compra'
     end
+    object ToolButton5: TToolButton
+      Left = 287
+      Height = 80
+      Top = 2
+      Width = 10
+      Caption = 'ToolButton5'
+      Style = tbsSeparator
+    end
+    object ToolButton6: TToolButton
+      Left = 297
+      Top = 2
+      Action = prgFacturar
+    end
   end
   object ActionList1: TActionList
     Images = DM_General.ImgAcciones
@@ -93,6 +106,11 @@ object frmMain: TfrmMain
       Hint = 'Agrega una nueva compra'
       ImageIndex = 26
       ShortCut = 116
+    end
+    object prgFacturar: TAction
+      Caption = 'Facturar'
+      Hint = 'Factura comprobantes ya preparados'
+      OnExecute = prgFacturarExecute
     end
   end
   object MainMenu1: TMainMenu

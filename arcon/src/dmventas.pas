@@ -42,6 +42,7 @@ type
     ComproVtaImpuestosimpuesto_id: TLongintField;
     ComproVtaImpuestosmonto: TFloatField;
     ComproVtaIVAalicuota_id: TLongintField;
+    ComproVtaIVABaseImponible: TFloatField;
     ComproVtaIVAbVisible: TLongintField;
     ComproVtaIVAcomprobanteVentaConcepto_id: TStringField;
     ComproVtaIVAid: TStringField;
@@ -63,11 +64,20 @@ type
     Pedidosid: TStringField;
     PedidosNumero: TLongintField;
     PedidosTotalPedido: TFloatField;
+    qAlicuotaIVAIdCODIGOAFIP: TFloatField;
+    qAlicuotaIVAIdCODIGOFE: TLongintField;
     qAlicuotasIVA: TZQuery;
     qAlicuotaIVAIdBVISIBLE1: TSmallintField;
     qAlicuotaIVAIdID1: TLongintField;
     qAlicuotaIVAIdNOMBRE1: TStringField;
     qAlicuotaIVAIdPORCENTAJE1: TFloatField;
+    qComproVtaIVAPorCptoALICUOTA_ID: TLongintField;
+    qComproVtaIVAPorCptoBASEIMPONIBLE: TFloatField;
+    qComproVtaIVAPorCptoBVISIBLE: TSmallintField;
+    qComproVtaIVAPorCptoCOMPROBANTEVENTACONCEPTO_ID: TStringField;
+    qComproVtaIVAPorCptoID: TStringField;
+    qComproVtaIVAPorCptoMONTO: TFloatField;
+    qCompVtaConceptosPorVtaID: TStringField;
     qConceptos: TZQuery;
     qAlicuotaIVAIdBVISIBLE: TSmallintField;
     qAlicuotaIVAIdID: TLongintField;
@@ -114,7 +124,6 @@ type
     SELComproVtaConceptosDETALLE1: TStringField;
     SELComproVtaConceptosEXENTO1: TFloatField;
     SELComproVtaConceptosGRAVADO1: TFloatField;
-    SELComproVtaConceptosID1: TStringField;
     SELComproVtaConceptosNOGRAVADO1: TFloatField;
     SELComproVtaConceptosORDEN1: TLongintField;
     SELComproVtaConceptosPRODUCTO_ID1: TStringField;
@@ -149,16 +158,12 @@ type
     SELComproVtaImpuestos: TZQuery;
     qComproVtaIVAPorCpto: TZQuery;
     SELComproVtaIVAALICUOTA_ID: TLongintField;
-    SELComproVtaIVAALICUOTA_ID1: TLongintField;
+    SELComproVtaIVABASEIMPONIBLE: TFloatField;
     SELComproVtaIVABVISIBLE: TSmallintField;
-    SELComproVtaIVABVISIBLE1: TSmallintField;
     SELComproVtaIVACOMPROBANTEVENTACONCEPTO_ID: TStringField;
-    SELComproVtaIVACOMPROBANTEVENTACONCEPTO_ID1: TStringField;
     SELComproVtaIVAID: TStringField;
-    SELComproVtaIVAID1: TStringField;
     SELComproVtaIVAMONTO: TFloatField;
     ListaPedidos: TStrHolder;
-    SELComproVtaIVAMONTO1: TFloatField;
     SELComproVtaNETOGRAVADO: TFloatField;
     SELComproVtaNETONOGRAVADO: TFloatField;
     SELComproVtaNROCOMPROBANTE: TLongintField;
@@ -206,10 +211,11 @@ type
     procedure CalcularTotales;
 
     procedure AjustarComprobante (refTipoComprobante, refFormaPago: integer
-                                  ; montoGravado, montoNoGravado, montoExento: Double);
+                                  ; montoGravado, montoNoGravado, montoExento: Double
+                                  ; refCliente: GUID_ID);
 
     procedure LevantarVenta (refVenta: GUID_ID);
-    procedure LevantarIvaImpuestosComprobante (refComprobante: GUID_ID);
+    procedure LevantarAgregandoIvaImpuestosComprobante (refComprobante: GUID_ID);
     procedure Grabar;
   end;
 
@@ -282,6 +288,7 @@ end;
 procedure TDM_Ventas.DataModuleCreate(Sender: TObject);
 begin
   DM_Precios := TDM_Precios.Create(self);
+
 end;
 
 procedure TDM_Ventas.DataModuleDestroy(Sender: TObject);
@@ -433,6 +440,7 @@ begin
     begin
       Edit;
       ComproVtaIVAmonto.AsFloat:= ComproVtaIVAmonto.AsFloat + ivaCalculado;
+      ComproVtaIVABaseImponible.AsFloat:= ComproVtaIVABaseImponible.AsFloat + monto;
     end
     else
     begin
@@ -440,6 +448,7 @@ begin
       ComproVtaIVAcomprobanteVentaConcepto_id.AsString:= refComprobanteConcepto;
       ComproVtaIVAalicuota_id.AsInteger:= refAlicuotaIVA;
       ComproVtaIVAmonto.AsFloat:= ivaCalculado;
+      ComproVtaIVABaseImponible.AsFloat:= monto;
       ComproVtaIVAlxIVA.asString:= nombre;
     end;
     Post;
@@ -504,7 +513,8 @@ begin
 end;
 
 procedure TDM_Ventas.AjustarComprobante(refTipoComprobante,
-  refFormaPago: integer; montoGravado, montoNoGravado, montoExento: Double);
+  refFormaPago: integer; montoGravado, montoNoGravado, montoExento: Double;
+  refCliente: GUID_ID);
 begin
   ComproVta.Edit;
   ComproVtatipoComprobante_id.AsInteger:= refTipoComprobante;
@@ -512,6 +522,7 @@ begin
   ComproVtanetoGravado.asFloat:= montoGravado;
   ComproVtanetoNoGravado.AsFloat:= montoNoGravado;
   ComproVtaexento.AsFloat:= montoExento;
+  ComproVtacliente_id.AsString:= refCliente;
   ComproVta.Post;
 end;
 
@@ -539,19 +550,37 @@ begin
     ComproVtaConceptos.LoadFromDataSet(qCompVtaConceptosPorVta, 0, lmAppend);
     Close;
   end;
+
+  with ComproVtaConceptos do
+  begin
+   if RecordCount > 0 then
+   begin
+     First;
+     while NOT EOF do
+     begin
+       LevantarAgregandoIvaImpuestosComprobante(ComproVtaConceptosid.AsString);
+       Next;
+     end;
+   end;
+
+  end;
+
 end;
 
-procedure TDM_Ventas.LevantarIvaImpuestosComprobante(refComprobante: GUID_ID);
+procedure TDM_Ventas.LevantarAgregandoIvaImpuestosComprobante(refComprobante: GUID_ID);
 begin
-  DM_General.ReiniciarTabla(ComproVtaIVA);
-  DM_General.ReiniciarTabla(ComproVtaImpuestos);
-
   with qComproVtaIVAPorCpto do
   begin
     if active then close;
     ParamByName('ComprobanteVentaConcepto_id').AsString:= refComprobante;
     Open;
-    ComproVtaIVA.LoadFromDataSet(qComproVtaIVAPorCpto, 0, lmAppend);
+    While Not EOF do
+    begin
+      AgregarAlicuotaIva(refComprobante
+                        , qComproVtaIVAPorCptoALICUOTA_ID.AsInteger
+                        , qComproVtaIVAPorCptoBASEIMPONIBLE.AsFloat);
+      Next;
+    end;
     close;
   end;
 

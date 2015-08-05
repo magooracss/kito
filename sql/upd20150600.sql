@@ -586,6 +586,7 @@ CREATE TABLE ComprobantesVentaIVA
   id		"guid"  NOT NULL PRIMARY KEY
 , comprobanteVentaConcepto_id "guid" default '{00000000-0000-0000-0000-000000000000}'
 , alicuota_id   integer default 0
+, baseimponible float default 0
 , monto float default 0
 , bVisible smallint default 1
 );
@@ -610,50 +611,57 @@ CREATE TABLE AlicuotasIVA
   id    integer  NOT NULL PRIMARY KEY
 , nombre    varchar(15)
 , porcentaje    float default 0
-, codigoAFIP    float default -1  
+, codigoAFIP    float default -1
+, codigoFE	integer default 0
 , bVisible   smallint default 1    
 );
 
 INSERT INTO AlicuotasIVA
-(id, nombre, porcentaje, codigoAFIP, bVisible)
+(id, nombre, porcentaje, codigoAFIP, codigoFE, bVisible)
 VALUES
-(0, 'DESCONOCIDO', 0, 0, 0);
+(0, 'DESCONOCIDO', 0, 0,0, 0);
 
 
 INSERT INTO AlicuotasIVA
-(id, nombre, porcentaje, codigoAFIP, bVisible)
+(id, nombre, porcentaje, codigoAFIP, codigoFE, bVisible)
 VALUES
-(1, '0%', 0, 21, 1);
+(1, '0%', 0, 21, 3, 1);
 
 
 INSERT INTO AlicuotasIVA
-(id, nombre, porcentaje, codigoAFIP, bVisible)
+(id, nombre, porcentaje, codigoAFIP, codigoFE, bVisible)
 VALUES
-(2, '10,5%', 10.5, 10.5, 1);
+(2, '10,5%', 10.5, 10.5, 4, 1);
 
 
 INSERT INTO AlicuotasIVA
-(id, nombre, porcentaje, codigoAFIP, bVisible)
+(id, nombre, porcentaje, codigoAFIP, codigoFE, bVisible)
 VALUES
-(3, '21%', 21, 0, 1);
+(3, '21%', 21, 0, 5, 1);
 
 
 INSERT INTO AlicuotasIVA
-(id, nombre, porcentaje, codigoAFIP, bVisible)
+(id, nombre, porcentaje, codigoAFIP, codigoFE, bVisible)
 VALUES
-(4, '27%', 27, 27, 1);
+(4, '27%', 27, 27, 6, 1);
 
 
 INSERT INTO AlicuotasIVA
-(id, nombre, porcentaje, codigoAFIP, bVisible)
+(id, nombre, porcentaje, codigoAFIP, codigoFE, bVisible)
 VALUES
-(5, '5%', 5, 5, 1);
+(5, '5%', 5, 5, 8, 1);
 
 
 INSERT INTO AlicuotasIVA
-(id, nombre, porcentaje, codigoAFIP, bVisible)
+(id, nombre, porcentaje, codigoAFIP, codigoFE, bVisible)
 VALUES
-(6, '2,5%', 2.5, 2.5, 1);
+(6, '2,5%', 2.5, 2.5, 9, 1);
+
+INSERT INTO AlicuotasIVA
+(id, nombre, porcentaje, codigoAFIP, codigoFE, bVisible)
+VALUES
+(7, 'Exento', 0, 2, 3, 1);
+
 
 
 ALTER TABLE PedidosDetalles ADD precio_id "guid" default '{00000000-0000-0000-0000-000000000000}';

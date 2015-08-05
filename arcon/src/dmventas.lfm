@@ -3,8 +3,8 @@ object DM_Ventas: TDM_Ventas
   OnDestroy = DataModuleDestroy
   OldCreateOrder = False
   Height = 449
-  HorizontalOffset = 353
-  VerticalOffset = 121
+  HorizontalOffset = 260
+  VerticalOffset = 90
   Width = 889
   object qTiposComprobantesVentas: TZQuery
     Connection = DM_General.cnxBase
@@ -674,6 +674,12 @@ object DM_Ventas: TDM_Ventas
         DataType = ftString
         Precision = 0
         Size = 30
+      end    
+      item
+        Name = 'BaseImponible'
+        DataType = ftFloat
+        Precision = 0
+        Size = 0
       end>
     AfterInsert = ComproVtaIVAAfterInsert
     PacketRecords = 0
@@ -745,6 +751,19 @@ object DM_Ventas: TDM_Ventas
       ReadOnly = False
       Required = False
       Size = 30
+    end
+    object ComproVtaIVABaseImponible: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'BaseImponible'
+      Index = 6
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
     end
   end
   object ComproVtaImpuestos: TRxMemoryData
@@ -899,6 +918,29 @@ object DM_Ventas: TDM_Ventas
       FieldKind = fkData
       FieldName = 'BVISIBLE'
       Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object qAlicuotaIVAIdCODIGOAFIP: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'CODIGOAFIP'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object qAlicuotaIVAIdCODIGOFE: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'CODIGOFE'
+      Index = 5
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
@@ -2024,9 +2066,9 @@ object DM_Ventas: TDM_Ventas
     Connection = DM_General.cnxBase
     SQL.Strings = (
       'INSERT INTO ComprobantesVentaIVA'
-      '(ID, COMPROBANTEVENTACONCEPTO_ID, ALICUOTA_ID, MONTO, BVISIBLE)'
+      '(ID, COMPROBANTEVENTACONCEPTO_ID, ALICUOTA_ID, MONTO, BVISIBLE, BASEIMPONIBLE)'
       'VALUES'
-      '(:ID, :COMPROBANTEVENTACONCEPTO_ID, :ALICUOTA_ID, :MONTO, :BVISIBLE)'
+      '(:ID, :COMPROBANTEVENTACONCEPTO_ID, :ALICUOTA_ID, :MONTO, :BVISIBLE, :BASEIMPONIBLE)'
     )
     Params = <    
       item
@@ -2052,6 +2094,11 @@ object DM_Ventas: TDM_Ventas
       item
         DataType = ftUnknown
         Name = 'bVisible'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'BASEIMPONIBLE'
         ParamType = ptUnknown
       end>
     left = 264
@@ -2081,6 +2128,11 @@ object DM_Ventas: TDM_Ventas
         DataType = ftUnknown
         Name = 'bVisible'
         ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'BASEIMPONIBLE'
+        ParamType = ptUnknown
       end>
   end
   object UPDComproVtaIVA: TZQuery
@@ -2092,6 +2144,7 @@ object DM_Ventas: TDM_Ventas
       ', ALICUOTA_ID =:ALICUOTA_ID'
       ', MONTO =:MONTO'
       ', BVISIBLE =:BVISIBLE'
+      ', BASEIMPONIBLE = :BASEIMPONIBLE'
       'WHERE id = :id'
     )
     Params = <    
@@ -2113,6 +2166,11 @@ object DM_Ventas: TDM_Ventas
       item
         DataType = ftUnknown
         Name = 'bVisible'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'BASEIMPONIBLE'
         ParamType = ptUnknown
       end    
       item
@@ -2141,6 +2199,11 @@ object DM_Ventas: TDM_Ventas
       item
         DataType = ftUnknown
         Name = 'bVisible'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'BASEIMPONIBLE'
         ParamType = ptUnknown
       end    
       item
@@ -2224,6 +2287,19 @@ object DM_Ventas: TDM_Ventas
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
       Required = False
+    end
+    object SELComproVtaIVABASEIMPONIBLE: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'BASEIMPONIBLE'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
     end
   end
   object INSComproVtaImpuestos: TZQuery
@@ -2569,12 +2645,12 @@ object DM_Ventas: TDM_Ventas
     SQL.Strings = (
       'SELECT *'
       'FROM ComprobantesVentaConceptos'
-      'WHERE (comprobanteVenta_id = :ComprovanteVenta_id)'
+      'WHERE (comprobanteVenta_id = :ComprobanteVenta_id)'
     )
     Params = <    
       item
         DataType = ftUnknown
-        Name = 'ComprovanteVenta_id'
+        Name = 'ComprobanteVenta_id'
         ParamType = ptUnknown
       end>
     left = 152
@@ -2582,10 +2658,10 @@ object DM_Ventas: TDM_Ventas
     ParamData = <    
       item
         DataType = ftUnknown
-        Name = 'ComprovanteVenta_id'
+        Name = 'ComprobanteVenta_id'
         ParamType = ptUnknown
       end>
-    object SELComproVtaConceptosID1: TStringField
+    object qCompVtaConceptosPorVtaID: TStringField
       DisplayWidth = 152
       FieldKind = fkData
       FieldName = 'ID'
@@ -2733,7 +2809,7 @@ object DM_Ventas: TDM_Ventas
         Name = 'ComprobanteVentaConcepto_id'
         ParamType = ptUnknown
       end>
-    object SELComproVtaIVAID1: TStringField
+    object qComproVtaIVAPorCptoID: TStringField
       DisplayWidth = 152
       FieldKind = fkData
       FieldName = 'ID'
@@ -2744,7 +2820,7 @@ object DM_Ventas: TDM_Ventas
       Required = True
       Size = 152
     end
-    object SELComproVtaIVACOMPROBANTEVENTACONCEPTO_ID1: TStringField
+    object qComproVtaIVAPorCptoCOMPROBANTEVENTACONCEPTO_ID: TStringField
       DisplayWidth = 152
       FieldKind = fkData
       FieldName = 'COMPROBANTEVENTACONCEPTO_ID'
@@ -2755,7 +2831,7 @@ object DM_Ventas: TDM_Ventas
       Required = False
       Size = 152
     end
-    object SELComproVtaIVAALICUOTA_ID1: TLongintField
+    object qComproVtaIVAPorCptoALICUOTA_ID: TLongintField
       DisplayWidth = 10
       FieldKind = fkData
       FieldName = 'ALICUOTA_ID'
@@ -2765,7 +2841,7 @@ object DM_Ventas: TDM_Ventas
       ReadOnly = False
       Required = False
     end
-    object SELComproVtaIVAMONTO1: TFloatField
+    object qComproVtaIVAPorCptoMONTO: TFloatField
       DisplayWidth = 10
       FieldKind = fkData
       FieldName = 'MONTO'
@@ -2778,7 +2854,7 @@ object DM_Ventas: TDM_Ventas
       MinValue = 0
       Precision = 2
     end
-    object SELComproVtaIVABVISIBLE1: TSmallintField
+    object qComproVtaIVAPorCptoBVISIBLE: TSmallintField
       DisplayWidth = 10
       FieldKind = fkData
       FieldName = 'BVISIBLE'
@@ -2787,6 +2863,19 @@ object DM_Ventas: TDM_Ventas
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
       Required = False
+    end
+    object qComproVtaIVAPorCptoBASEIMPONIBLE: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'BASEIMPONIBLE'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
     end
   end
   object qComproVtaImpuestosPorCpto: TZQuery

@@ -174,11 +174,13 @@ type
     procedure ProvinciasAfterInsert(DataSet: TDataSet);
   private
     _idEmpresa: GUID_ID;
+    function GetCUIT: string;
     function GetDomicilio: string;
     function GetRazonSocial: string;
   public
     property RazonSocial: string read GetRazonSocial;
     property Domicilio: string read GetDomicilio;
+    property CUIT: string read GetCUIT;
 
     function Nueva: GUID_ID;
     procedure Editar (refEmpresa: GUID_ID);
@@ -308,6 +310,18 @@ begin
     if (active and
       (RecordCount > 0)) then
       Result:= Domiciliosdomicilio.AsString + ' - ' + DomicilioslxLocalidad.AsString
+    else
+      Result:= EmptyStr;
+  end;
+end;
+
+function TDM_Empresa.GetCUIT: string;
+begin
+  with Empresas do
+  begin
+    if (active and
+      (RecordCount > 0)) then
+      Result:= EmpresasCUIT.AsString
     else
       Result:= EmptyStr;
   end;

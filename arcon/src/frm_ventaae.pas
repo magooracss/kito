@@ -113,6 +113,9 @@ uses
   , frm_ventaconceptosae
   , SD_Configuracion
   , process
+  , dmfacturaelectronica
+
+  ,dmclientes
   ;
 
 { TfrmVentasAE }
@@ -154,7 +157,7 @@ end;
 
 procedure TfrmVentasAE.FormCreate(Sender: TObject);
 begin
-//  Application.CreateForm(TDM_Pedidos, DM_Pedidos);
+  Application.CreateForm(TDM_FacturaElectronica, DM_FacturaElectronica);
   Application.CreateForm(TDM_Ventas, DM_Ventas);
 
   Inicializar;
@@ -162,7 +165,7 @@ end;
 
 procedure TfrmVentasAE.FormDestroy(Sender: TObject);
 begin
-//  DM_Pedidos.Free;
+  DM_FacturaElectronica.Free;
   DM_Ventas.Free;
 end;
 
@@ -309,6 +312,7 @@ begin
                              , DM_Ventas.TotalGravado
                              , DM_Ventas.TotalNoGravado
                              , DM_Ventas.TotalExento
+                             , _clienteID
                              );
  DM_Ventas.Grabar;
 end;
@@ -340,13 +344,18 @@ end;
 
 procedure TfrmVentasAE.btnImprimirClick(Sender: TObject);
 begin
-  GrabarComprobante;
+//  DM_Clientes.Editar(DM_Ventas.ComproVtacliente_id.AsString);
+  DM_Clientes.Editar(_clienteID);
+
+  ShowMessage(DM_Clientes.Cuit + ' - ' + FloatToStr(StrToFloatDef(DM_Clientes.Cuit, 0)));
+//GrabarComprobante;
 //  DM_Ventas.ImprimirComprobante;
 end;
 
 procedure TfrmVentasAE.BitBtn4Click(Sender: TObject);
 begin
   GrabarComprobante;
+  DM_FacturaElectronica.FacturarVenta(DM_Ventas.ComproVtaid.AsString) ;
   PantallaFacturar;
 end;
 

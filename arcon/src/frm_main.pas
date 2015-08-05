@@ -14,6 +14,7 @@ type
   { TfrmMain }
 
   TfrmMain = class(TForm)
+    prgFacturar: TAction;
     movCompra: TAction;
     movVenta: TAction;
     MenuItem1: TMenuItem;
@@ -31,8 +32,11 @@ type
     ToolButton2: TToolButton;
     ToolButton3: TToolButton;
     ToolButton4: TToolButton;
+    ToolButton5: TToolButton;
+    ToolButton6: TToolButton;
     procedure FormShow(Sender: TObject);
     procedure movVentaExecute(Sender: TObject);
+    procedure prgFacturarExecute(Sender: TObject);
     procedure PrgSalirExecute(Sender: TObject);
   private
     procedure PantallaVentas (idVenta: GUID_ID);
@@ -47,8 +51,10 @@ var
 implementation
 {$R *.lfm}
 uses
-  versioninfo
-  ,frm_ventaae
+    versioninfo
+  , frm_ventaae
+  , SD_Configuracion
+  , process
   ;
 
 { TfrmMain }
@@ -100,6 +106,29 @@ end;
 procedure TfrmMain.movVentaExecute(Sender: TObject);
 begin
   PantallaVentas(GUIDNULO);
+end;
+
+(*******************************************************************************
+*** FACTURAR
+*******************************************************************************)
+procedure TfrmMain.prgFacturarExecute(Sender: TObject);
+var
+  archivo: string;
+  AProcess: TProcess;
+begin
+
+  archivo:= LeerDato(SECCION_APP, RUTA_SERV_FE);
+
+  if FileExists(archivo) then
+  begin
+   AProcess := TProcess.Create (nil);
+   AProcess.CommandLine  :=  archivo;
+   AProcess.Options  := AProcess.Options + [poWaitOnExit] ;
+   AProcess.Execute;
+   AProcess.Free;
+  end
+  else
+   ShowMessage('No se encuentra el módulo de facturación: ' + archivo);
 end;
 
 
