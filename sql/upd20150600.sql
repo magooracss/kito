@@ -1,5 +1,5 @@
--- Versión Origen Ejecutable: 2015-05-26
--- Versión Destino Ejecutable: 2015-
+-- Version Origen Ejecutable: 2015-05-26
+-- Version Destino Ejecutable: 2015-
 
 
 CREATE TABLE GruposCuentas
@@ -756,5 +756,545 @@ INSERT INTO NumerosComprobantesVenta
 (id,  comprobanteVenta_id, puntoDeVenta, numero,  bVisible)
 VALUES
 (0, 0, 0, 0, 0);
+
+INSERT INTO NumerosComprobantesVenta
+(id,  comprobanteVenta_id, puntoDeVenta, numero,  bVisible)
+VALUES
+(-1, 1, 1, 0, 1);
+
+INSERT INTO NumerosComprobantesVenta
+(id,  comprobanteVenta_id, puntoDeVenta, numero,  bVisible)
+VALUES
+(-1, 2, 1, 0, 1);
+
+INSERT INTO NumerosComprobantesVenta
+(id,  comprobanteVenta_id, puntoDeVenta, numero,  bVisible)
+VALUES
+(-1, 3, 1, 0, 1);
+
+INSERT INTO NumerosComprobantesVenta
+(id,  comprobanteVenta_id, puntoDeVenta, numero,  bVisible)
+VALUES
+(-1, 4, 1, 0, 1);
+
+INSERT INTO NumerosComprobantesVenta
+(id,  comprobanteVenta_id, puntoDeVenta, numero,  bVisible)
+VALUES
+(-1, 5, 1, 0, 1);
+
+INSERT INTO NumerosComprobantesVenta
+(id,  comprobanteVenta_id, puntoDeVenta, numero,  bVisible)
+VALUES
+(-1, 6, 1, 0, 1);
+
+INSERT INTO NumerosComprobantesVenta
+(id,  comprobanteVenta_id, puntoDeVenta, numero,  bVisible)
+VALUES
+(-1, 7, 1, 0, 1);
+
+INSERT INTO NumerosComprobantesVenta
+(id,  comprobanteVenta_id, puntoDeVenta, numero,  bVisible)
+VALUES
+(-1, 8, 1, 0, 1);
+
+INSERT INTO NumerosComprobantesVenta
+(id,  comprobanteVenta_id, puntoDeVenta, numero,  bVisible)
+VALUES
+(-1, 9, 1, 0, 1);
+
+INSERT INTO NumerosComprobantesVenta
+(id,  comprobanteVenta_id, puntoDeVenta, numero,  bVisible)
+VALUES
+(-1, 10, 1, 0, 1);
+
+INSERT INTO NumerosComprobantesVenta
+(id,  comprobanteVenta_id, puntoDeVenta, numero,  bVisible)
+VALUES
+(-1, 11, 1, 0, 1);
+
+INSERT INTO NumerosComprobantesVenta
+(id,  comprobanteVenta_id, puntoDeVenta, numero,  bVisible)
+VALUES
+(-1, 12, 1, 0, 1);
+
+INSERT INTO NumerosComprobantesVenta
+(id,  comprobanteVenta_id, puntoDeVenta, numero,  bVisible)
+VALUES
+(-1, 13, 1, 0, 1);
+
+INSERT INTO NumerosComprobantesVenta
+(id,  comprobanteVenta_id, puntoDeVenta, numero,  bVisible)
+VALUES
+(-1, 14, 1, 0, 1);
+
+INSERT INTO NumerosComprobantesVenta
+(id,  comprobanteVenta_id, puntoDeVenta, numero,  bVisible)
+VALUES
+(-1, 15, 1, 0, 1);
+
+INSERT INTO NumerosComprobantesVenta
+(id,  comprobanteVenta_id, puntoDeVenta, numero,  bVisible)
+VALUES
+(-1, 16, 1, 0, 1);
+
+INSERT INTO NumerosComprobantesVenta
+(id,  comprobanteVenta_id, puntoDeVenta, numero,  bVisible)
+VALUES
+(-1, 17, 1, 0, 1);
+
+INSERT INTO NumerosComprobantesVenta
+(id,  comprobanteVenta_id, puntoDeVenta, numero,  bVisible)
+VALUES
+(-1, 18, 1, 0, 1);
+
+INSERT INTO NumerosComprobantesVenta
+(id,  comprobanteVenta_id, puntoDeVenta, numero,  bVisible)
+VALUES
+(-1, 19, 1, 0, 1);
+
+INSERT INTO NumerosComprobantesVenta
+(id,  comprobanteVenta_id, puntoDeVenta, numero,  bVisible)
+VALUES
+(-1, 20, 1, 0, 1);
+
+INSERT INTO NumerosComprobantesVenta
+(id,  comprobanteVenta_id, puntoDeVenta, numero,  bVisible)
+VALUES
+(-1, 21, 1, 0, 1);
+
+INSERT INTO NumerosComprobantesVenta
+(id,  comprobanteVenta_id, puntoDeVenta, numero,  bVisible)
+VALUES
+(-1, 22, 1, 0, 1);
+
+INSERT INTO NumerosComprobantesVenta
+(id,  comprobanteVenta_id, puntoDeVenta, numero,  bVisible)
+VALUES
+(-1, 23, 1, 0, 1);
+
+INSERT INTO NumerosComprobantesVenta
+(id,  comprobanteVenta_id, puntoDeVenta, numero,  bVisible)
+VALUES
+(-1, 24, 1, 0, 1);
+
+INSERT INTO NumerosComprobantesVenta
+(id,  comprobanteVenta_id, puntoDeVenta, numero,  bVisible)
+VALUES
+(-1, 25, 1, 0, 1);
+
+INSERT INTO NumerosComprobantesVenta
+(id,  comprobanteVenta_id, puntoDeVenta, numero,  bVisible)
+VALUES
+(-1, 26, 1, 0, 1);
+
+INSERT INTO NumerosComprobantesVenta
+(id,  comprobanteVenta_id, puntoDeVenta, numero,  bVisible)
+VALUES
+(-1, 27, 1, 0, 1);
+
+INSERT INTO NumerosComprobantesVenta
+(id,  comprobanteVenta_id, puntoDeVenta, numero,  bVisible)
+VALUES
+(-1, 28, 1, 0, 1);
+
+INSERT INTO NumerosComprobantesVenta
+(id,  comprobanteVenta_id, puntoDeVenta, numero,  bVisible)
+VALUES
+(-1, 29, 1, 0, 1);
+
+INSERT INTO NumerosComprobantesVenta
+(id,  comprobanteVenta_id, puntoDeVenta, numero,  bVisible)
+VALUES
+(-1, 30, 1, 0, 1);
+
+INSERT INTO NumerosComprobantesVenta
+(id,  comprobanteVenta_id, puntoDeVenta, numero,  bVisible)
+VALUES
+(-1, 31, 1, 0, 1);
+
+INSERT INTO NumerosComprobantesVenta
+(id,  comprobanteVenta_id, puntoDeVenta, numero,  bVisible)
+VALUES
+(-1, 32, 1, 0, 1);
+
+INSERT INTO NumerosComprobantesVenta
+(id,  comprobanteVenta_id, puntoDeVenta, numero,  bVisible)
+VALUES
+(-1, 33, 1, 0, 1);
+
+INSERT INTO NumerosComprobantesVenta
+(id,  comprobanteVenta_id, puntoDeVenta, numero,  bVisible)
+VALUES
+(-1, 34, 1, 0, 1);
+
+INSERT INTO NumerosComprobantesVenta
+(id,  comprobanteVenta_id, puntoDeVenta, numero,  bVisible)
+VALUES
+(-1, 35, 1, 0, 1);
+
+INSERT INTO NumerosComprobantesVenta
+(id,  comprobanteVenta_id, puntoDeVenta, numero,  bVisible)
+VALUES
+(-1, 36, 1, 0, 1);
+
+INSERT INTO NumerosComprobantesVenta
+(id,  comprobanteVenta_id, puntoDeVenta, numero,  bVisible)
+VALUES
+(-1, 37, 1, 0, 1);
+
+INSERT INTO NumerosComprobantesVenta
+(id,  comprobanteVenta_id, puntoDeVenta, numero,  bVisible)
+VALUES
+(-1, 38, 1, 0, 1);
+
+INSERT INTO NumerosComprobantesVenta
+(id,  comprobanteVenta_id, puntoDeVenta, numero,  bVisible)
+VALUES
+(-1, 39, 1, 0, 1);
+
+INSERT INTO NumerosComprobantesVenta
+(id,  comprobanteVenta_id, puntoDeVenta, numero,  bVisible)
+VALUES
+(-1, 40, 1, 0, 1);
+
+INSERT INTO NumerosComprobantesVenta
+(id,  comprobanteVenta_id, puntoDeVenta, numero,  bVisible)
+VALUES
+(-1, 41, 1, 0, 1);
+
+INSERT INTO NumerosComprobantesVenta
+(id,  comprobanteVenta_id, puntoDeVenta, numero,  bVisible)
+VALUES
+(-1, 42, 1, 0, 1);
+
+INSERT INTO NumerosComprobantesVenta
+(id,  comprobanteVenta_id, puntoDeVenta, numero,  bVisible)
+VALUES
+(-1, 43, 1, 0, 1);
+
+INSERT INTO NumerosComprobantesVenta
+(id,  comprobanteVenta_id, puntoDeVenta, numero,  bVisible)
+VALUES
+(-1, 44, 1, 0, 1);
+
+INSERT INTO NumerosComprobantesVenta
+(id,  comprobanteVenta_id, puntoDeVenta, numero,  bVisible)
+VALUES
+(-1, 45, 1, 0, 1);
+
+INSERT INTO NumerosComprobantesVenta
+(id,  comprobanteVenta_id, puntoDeVenta, numero,  bVisible)
+VALUES
+(-1, 46, 1, 0, 1);
+
+INSERT INTO NumerosComprobantesVenta
+(id,  comprobanteVenta_id, puntoDeVenta, numero,  bVisible)
+VALUES
+(-1, 47, 1, 0, 1);
+
+INSERT INTO NumerosComprobantesVenta
+(id,  comprobanteVenta_id, puntoDeVenta, numero,  bVisible)
+VALUES
+(-1, 48, 1, 0, 1);
+
+INSERT INTO NumerosComprobantesVenta
+(id,  comprobanteVenta_id, puntoDeVenta, numero,  bVisible)
+VALUES
+(-1, 49, 1, 0, 1);
+
+INSERT INTO NumerosComprobantesVenta
+(id,  comprobanteVenta_id, puntoDeVenta, numero,  bVisible)
+VALUES
+(-1, 50, 1, 0, 1);
+
+INSERT INTO NumerosComprobantesVenta
+(id,  comprobanteVenta_id, puntoDeVenta, numero,  bVisible)
+VALUES
+(-1, 51, 1, 0, 1);
+
+INSERT INTO NumerosComprobantesVenta
+(id,  comprobanteVenta_id, puntoDeVenta, numero,  bVisible)
+VALUES
+(-1, 52, 1, 0, 1);
+
+INSERT INTO NumerosComprobantesVenta
+(id,  comprobanteVenta_id, puntoDeVenta, numero,  bVisible)
+VALUES
+(-1, 53, 1, 0, 1);
+
+INSERT INTO NumerosComprobantesVenta
+(id,  comprobanteVenta_id, puntoDeVenta, numero,  bVisible)
+VALUES
+(-1, 54, 1, 0, 1);
+
+INSERT INTO NumerosComprobantesVenta
+(id,  comprobanteVenta_id, puntoDeVenta, numero,  bVisible)
+VALUES
+(-1, 55, 1, 0, 1);
+
+INSERT INTO NumerosComprobantesVenta
+(id,  comprobanteVenta_id, puntoDeVenta, numero,  bVisible)
+VALUES
+(-1, 56, 1, 0, 1);
+
+INSERT INTO NumerosComprobantesVenta
+(id,  comprobanteVenta_id, puntoDeVenta, numero,  bVisible)
+VALUES
+(-1, 57, 1, 0, 1);
+
+INSERT INTO NumerosComprobantesVenta
+(id,  comprobanteVenta_id, puntoDeVenta, numero,  bVisible)
+VALUES
+(-1, 58, 1, 0, 1);
+
+INSERT INTO NumerosComprobantesVenta
+(id,  comprobanteVenta_id, puntoDeVenta, numero,  bVisible)
+VALUES
+(-1, 59, 1, 0, 1);
+
+INSERT INTO NumerosComprobantesVenta
+(id,  comprobanteVenta_id, puntoDeVenta, numero,  bVisible)
+VALUES
+(-1, 60, 1, 0, 1);
+
+INSERT INTO NumerosComprobantesVenta
+(id,  comprobanteVenta_id, puntoDeVenta, numero,  bVisible)
+VALUES
+(-1, 61, 1, 0, 1);
+
+INSERT INTO NumerosComprobantesVenta
+(id,  comprobanteVenta_id, puntoDeVenta, numero,  bVisible)
+VALUES
+(-1, 62, 1, 0, 1);
+
+INSERT INTO NumerosComprobantesVenta
+(id,  comprobanteVenta_id, puntoDeVenta, numero,  bVisible)
+VALUES
+(-1, 63, 1, 0, 1);
+
+CREATE DOMAIN "money"
+  AS DECIMAL (18,4)
+  DEFAULT 0 NOT NULL;
+
+CREATE TABLE ComprobantesCompra
+(
+  id		"guid"  NOT NULL PRIMARY KEY
+, numero	integer default -1
+, proveedor_id	"guid" default '{00000000-0000-0000-0000-000000000000}'
+, tipoComprobante_id integer default 0
+, puntoVenta	     integer default 0
+, comprobanteNro     integer default 0
+, condicionPago_id   integer default 0
+, plazoPago_id	     integer default 0
+, fecha		     date
+, montoTotal	     "money" default 0
+, precepcionCapital  "money" default 0
+, percepcionProvincia "money" default 0
+, percepcionIva	      "money" default 0
+, bAnulada	      smallint default 0
+, bFechaAnulada	      date
+, bVisible	      smallint default 1
+);
+
+CREATE TABLE ComprobantesCompraItems
+(
+  id		"guid"  NOT NULL PRIMARY KEY
+, comprobanteCompra_id "guid" default '{00000000-0000-0000-0000-000000000000}'
+, cantidad	       float default 1
+, concepto	       varchar (1000) default ''
+, cuentaImputacion     integer default 0
+, montoUnitario	       "money" default 0
+, iva		       "money" default 0
+, montoIVA	       "money" default 0
+, montoTotal	       "money" default 0
+, bVisible	       smallint default 1
+);
+
+
+CREATE TABLE TiposComprobantesCompras
+(
+  id    integer  NOT NULL PRIMARY KEY
+, ComprobanteCompra  varchar (100)
+, bVisible	     smallint default 1
+);
+
+
+CREATE GENERATOR ComprobantesCompraID;
+
+SET GENERATOR ComprobantesCompraID TO 0;
+
+
+SET TERM ^ ;
+
+CREATE TRIGGER ComprobantesComprasID FOR TiposComprobantesCompras
+BEFORE INSERT POSITION 0
+AS 
+BEGIN 
+    If (New.id = -1) then
+   New.id = GEN_ID(ComprobantesCompraID,1);
+END^
+
+SET TERM ; ^  
+
+
+INSERT INTO TiposComprobantesCompras
+(id,  ComprobanteCompra,  bVisible)
+VALUES
+(0, 'DESCONOCIDO' , 0);
+
+INSERT INTO TiposComprobantesCompras
+(id,  ComprobanteCompra,  bVisible)
+VALUES
+(-1, 'FACTURA A' , 1);
+
+INSERT INTO TiposComprobantesCompras
+(id,  ComprobanteCompra,  bVisible)
+VALUES
+(-1, 'FACTURA B' , 1);
+
+INSERT INTO TiposComprobantesCompras
+(id,  ComprobanteCompra,  bVisible)
+VALUES
+(-1, 'FACTURA C' , 1);
+
+INSERT INTO TiposComprobantesCompras
+(id,  ComprobanteCompra,  bVisible)
+VALUES
+(-1, 'NOTA CREDITO A' , 1);
+
+INSERT INTO TiposComprobantesCompras
+(id,  ComprobanteCompra,  bVisible)
+VALUES
+(-1, 'NOTA CREDITO B' , 1);
+
+INSERT INTO TiposComprobantesCompras
+(id,  ComprobanteCompra,  bVisible)
+VALUES
+(-1, 'NOTA CREDITO C' , 1);
+
+INSERT INTO TiposComprobantesCompras
+(id,  ComprobanteCompra,  bVisible)
+VALUES
+(-1, 'NOTA DEBITO A' , 1);
+
+INSERT INTO TiposComprobantesCompras
+(id,  ComprobanteCompra,  bVisible)
+VALUES
+(-1, 'NOTA DEBITO B', 1);
+
+INSERT INTO TiposComprobantesCompras
+(id,  ComprobanteCompra,  bVisible)
+VALUES
+(-1, 'NOTA DEBITO C' , 1);
+
+
+CREATE TABLE condicionesPago
+(
+  id    integer  NOT NULL PRIMARY KEY
+, CondicionPago  varchar (100)
+, bVisible	     smallint default 1
+);
+
+
+CREATE GENERATOR condicionesPagoID;
+
+SET GENERATOR condicionesPagoID TO 0;
+
+
+SET TERM ^ ;
+
+CREATE TRIGGER condicionesPagoID FOR condicionesPago
+BEFORE INSERT POSITION 0
+AS 
+BEGIN 
+    If (New.id = -1) then
+   New.id = GEN_ID(condicionesPagoID,1);
+END^
+
+SET TERM ; ^  
+
+INSERT INTO condicionesPago
+(id,  condicionPago,  bVisible)
+VALUES
+(0, 'DESCONOCIDO' , 0);
+
+INSERT INTO condicionesPago
+(id,  condicionPago,  bVisible)
+VALUES
+(-1, 'Contado' , 1);
+
+INSERT INTO condicionesPago
+(id,  condicionPago,  bVisible)
+VALUES
+(-1, 'Cuenta corriente' , 1);
+
+
+
+CREATE TABLE plazosPagos
+(
+  id    integer  NOT NULL PRIMARY KEY
+, plazoPago  varchar (100)
+, bVisible	     smallint default 1
+);
+
+
+CREATE GENERATOR plazosPagosID;
+
+SET GENERATOR plazosPagosID TO 0;
+
+
+SET TERM ^ ;
+
+CREATE TRIGGER plazosPagosID FOR plazosPagos
+BEFORE INSERT POSITION 0
+AS 
+BEGIN 
+    If (New.id = -1) then
+   New.id = GEN_ID(plazosPagosID, 1);
+END^
+
+SET TERM ; ^  
+
+INSERT INTO plazosPagos
+(id,  plazoPago,  bVisible)
+VALUES
+(0, 'DESCONOCIDO' , 0);
+
+INSERT INTO plazosPagos
+(id,  plazoPago,  bVisible)
+VALUES
+(-1, 'Contado' , 1);
+
+INSERT INTO plazosPagos
+(id,  plazoPago,  bVisible)
+VALUES
+(-1, '7 dias' , 1);
+
+INSERT INTO plazosPagos
+(id,  plazoPago,  bVisible)
+VALUES
+(-1, '15 dias' , 1);
+
+INSERT INTO plazosPagos
+(id,  plazoPago,  bVisible)
+VALUES
+(-1, '20 dias' , 1);
+
+INSERT INTO plazosPagos
+(id,  plazoPago,  bVisible)
+VALUES
+(-1, '30 dias' , 1);
+
+INSERT INTO plazosPagos
+(id,  plazoPago,  bVisible)
+VALUES
+(-1, '60 dias' , 1);
+
+INSERT INTO plazosPagos
+(id,  plazoPago,  bVisible)
+VALUES
+(-1, '90 dias' , 1);
+
+
 
 

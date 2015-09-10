@@ -15,7 +15,7 @@ object frmMain: TfrmMain
   OnShow = FormShow
   Position = poScreenCenter
   ShowHint = True
-  LCLVersion = '1.4.0.4'
+  LCLVersion = '1.4.2.0'
   object st: TStatusBar
     Left = 0
     Height = 23
@@ -80,6 +80,12 @@ object frmMain: TfrmMain
       Top = 2
       Action = prgFacturar
     end
+    object ToolButton7: TToolButton
+      Left = 389
+      Top = 2
+      Caption = 'ToolButton7'
+      OnClick = ToolButton7Click
+    end
   end
   object ActionList1: TActionList
     Images = DM_General.ImgAcciones
@@ -112,6 +118,18 @@ object frmMain: TfrmMain
       Hint = 'Factura comprobantes ya preparados'
       OnExecute = prgFacturarExecute
     end
+    object prgModificarReporte: TAction
+      Category = 'Programa'
+      Caption = 'Modificar Reporte'
+      ImageIndex = 17
+      OnExecute = prgModificarReporteExecute
+    end
+    object prgModificarFactura: TAction
+      Category = 'Programa'
+      Caption = 'Modificar Factura'
+      ImageIndex = 17
+      OnExecute = prgModificarFacturaExecute
+    end
   end
   object MainMenu1: TMainMenu
     Images = DM_General.ImgAccionesMenu
@@ -119,6 +137,12 @@ object frmMain: TfrmMain
     top = 120
     object MenuItem1: TMenuItem
       Caption = 'Programa'
+      object MenuItem7: TMenuItem
+        Action = prgModificarReporte
+      end
+      object MenuItem8: TMenuItem
+        Action = prgModificarFactura
+      end
       object MenuItem2: TMenuItem
         Caption = '-'
       end

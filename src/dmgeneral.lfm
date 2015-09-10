@@ -1,7 +1,7 @@
 object DM_General: TDM_General
   OnCreate = DataModuleCreate
   OldCreateOrder = False
-  Height = 314
+  Height = 407
   HorizontalOffset = 469
   VerticalOffset = 160
   Width = 632
@@ -9109,5 +9109,13 @@ object DM_General: TDM_General
       0007000000050000000400000003000000020000000100000000000000000000
       0000000000000000000000000000
     }
+  end
+  object frBarCodeObject1: TfrBarCodeObject
+    left = 128
+    top = 368
+  end
+  object frRoundRectObject1: TfrRoundRectObject
+    left = 128
+    top = 304
   end
 end

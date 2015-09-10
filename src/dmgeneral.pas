@@ -7,7 +7,7 @@ interface
 uses
   Classes, SysUtils, FileUtil, LResources, Forms, Controls, Dialogs, StdCtrls,
   ZConnection, ZDataset, rxmemds, StrHolder, LR_Class, LR_DBSet, LR_Shape,
-  LR_E_HTM, LR_Desgn
+  LR_E_HTM, LR_Desgn, LR_BarC, LR_RRect
   //,lr_e_pdf
   , db
   //, LR_Class
@@ -35,8 +35,10 @@ type
   TDM_General = class(TDataModule)
     cnxBase: TZConnection;
     elReporte: TfrReport;
+    frBarCodeObject1: TfrBarCodeObject;
     frDataset: TfrDBDataSet;
     frDesigner1: TfrDesigner;
+    frRoundRectObject1: TfrRoundRectObject;
     frShapeObject1: TfrShapeObject;
     ImgAcciones: TImageList;
     ImgAccionesMenu: TImageList;
@@ -83,6 +85,7 @@ type
     procedure IntervaloFechasConsulta (var fIni, fFin: TDateTime);
 
     procedure LevantarReporte (Reporte: string; elDataset: TDataSet);
+    procedure LevantarFactura (elDataset: TDataSet);
     procedure EditarReporte;
     procedure EjecutarReporte;
     procedure EjecutarReporteSilencioso;
@@ -491,6 +494,24 @@ begin
     LoadFromFile(ruta+ Reporte);
     frDataset.DataSet:= elDataset;
   end;
+end;
+
+procedure TDM_General.LevantarFactura (elDataset: TDataSet);
+var
+  ruta: string;
+begin
+  with elReporte do
+  begin
+    ruta:= LeerDato (SECCION_FI ,FI_FACTURA) ;
+    LoadFromFile(ruta);
+    frDataset.DataSet:= elDataset;
+  end;
+  AgregarVariableReporte('RAZON_SOCIAL',LeerDato (SECCION_FI ,FI_RAZON_SOCIAL));
+  AgregarVariableReporte('DOMICILIO',LeerDato (SECCION_FI ,FI_DOMICILIO));
+  AgregarVariableReporte('CONDICION_IVA',LeerDato (SECCION_FI ,FI_CONDICION_IVA));
+  AgregarVariableReporte('CUIT',LeerDato (SECCION_FI ,FI_CUIT));
+  AgregarVariableReporte('INGRESOS_BRUTOS',LeerDato (SECCION_FI ,FI_IB));
+  AgregarVariableReporte('INICIO_ACTIVIDADES',LeerDato (SECCION_FI ,FI_INIACT));
 end;
 
 procedure TDM_General.EditarReporte;

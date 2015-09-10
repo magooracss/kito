@@ -1,0 +1,597 @@
+object DM_Facturas: TDM_Facturas
+  OnCreate = DataModuleCreate
+  OldCreateOrder = False
+  Height = 451
+  HorizontalOffset = 433
+  VerticalOffset = 125
+  Width = 558
+  object Cabecera: TRxMemoryData
+    FieldDefs = <    
+      item
+        Name = 'facturaElectronica_id'
+        DataType = ftString
+        Precision = 0
+        Size = 38
+      end    
+      item
+        Name = 'PtoVenta'
+        DataType = ftInteger
+        Precision = 0
+        Size = 0
+      end    
+      item
+        Name = 'Nro'
+        DataType = ftInteger
+        Precision = 0
+        Size = 0
+      end    
+      item
+        Name = 'FEmision'
+        DataType = ftString
+        Precision = 0
+        Size = 8
+      end    
+      item
+        Name = 'CUIT'
+        DataType = ftLargeint
+        Precision = 0
+        Size = 0
+      end    
+      item
+        Name = 'RazonSocial'
+        DataType = ftString
+        Precision = 0
+        Size = 500
+      end    
+      item
+        Name = 'email'
+        DataType = ftString
+        Precision = 0
+        Size = 100
+      end    
+      item
+        Name = 'condicionIVA'
+        DataType = ftString
+        Precision = 0
+        Size = 100
+      end    
+      item
+        Name = 'Domicilio'
+        DataType = ftString
+        Precision = 0
+        Size = 500
+      end    
+      item
+        Name = 'Remito'
+        DataType = ftString
+        Precision = 0
+        Size = 200
+      end    
+      item
+        Name = 'SubTotal'
+        DataType = ftFloat
+        Precision = 0
+        Size = 0
+      end    
+      item
+        Name = 'OtrosTributos'
+        DataType = ftFloat
+        Precision = 0
+        Size = 0
+      end    
+      item
+        Name = 'IVA'
+        DataType = ftFloat
+        Precision = 0
+        Size = 0
+      end    
+      item
+        Name = 'Total'
+        DataType = ftFloat
+        Precision = 0
+        Size = 0
+      end    
+      item
+        Name = 'CAE'
+        DataType = ftLargeint
+        Precision = 0
+        Size = 0
+      end    
+      item
+        Name = 'vtoCAE'
+        DataType = ftString
+        Precision = 0
+        Size = 8
+      end>
+    PacketRecords = 0
+    left = 56
+    top = 36
+    object CabecerafacturaElectronica_id: TStringField
+      DisplayWidth = 38
+      FieldKind = fkData
+      FieldName = 'facturaElectronica_id'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 38
+    end
+    object CabeceraPtoVenta: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'PtoVenta'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object CabeceraNro: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'Nro'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object CabeceraRazonSocial: TStringField
+      DisplayWidth = 500
+      FieldKind = fkData
+      FieldName = 'RazonSocial'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 500
+    end
+    object CabeceracondicionIVA: TStringField
+      DisplayWidth = 100
+      FieldKind = fkData
+      FieldName = 'condicionIVA'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 100
+    end
+    object CabeceraDomicilio: TStringField
+      DisplayWidth = 500
+      FieldKind = fkData
+      FieldName = 'Domicilio'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 500
+    end
+    object CabeceraRemito: TStringField
+      DisplayWidth = 200
+      FieldKind = fkData
+      FieldName = 'Remito'
+      Index = 6
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 200
+    end
+    object CabeceraSubTotal: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'SubTotal'
+      Index = 7
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object CabeceraOtrosTributos: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'OtrosTributos'
+      Index = 8
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object CabeceraIVA: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'IVA'
+      Index = 9
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object CabeceraTotal: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'Total'
+      Index = 10
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object CabeceraCAE: TLargeintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'CAE'
+      Index = 11
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object Cabeceraemail: TStringField
+      DisplayWidth = 100
+      FieldKind = fkData
+      FieldName = 'email'
+      Index = 12
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 100
+    end
+    object CabeceraFEmision: TStringField
+      DisplayWidth = 8
+      FieldKind = fkData
+      FieldName = 'FEmision'
+      Index = 13
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 8
+    end
+    object CabeceravtoCAE: TStringField
+      DisplayWidth = 8
+      FieldKind = fkData
+      FieldName = 'vtoCAE'
+      Index = 14
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 8
+    end
+    object CabeceraCUIT: TLargeintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'CUIT'
+      Index = 15
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+  end
+  object Detalles: TRxMemoryData
+    FieldDefs = <    
+      item
+        Name = 'facturaElectronica_id'
+        DataType = ftString
+        Precision = 0
+        Size = 38
+      end    
+      item
+        Name = 'codigo'
+        DataType = ftString
+        Precision = 0
+        Size = 20
+      end    
+      item
+        Name = 'descripcion'
+        DataType = ftString
+        Precision = 0
+        Size = 500
+      end    
+      item
+        Name = 'precioUnitario'
+        DataType = ftFloat
+        Precision = 0
+        Size = 0
+      end    
+      item
+        Name = 'IVA'
+        DataType = ftFloat
+        Precision = 0
+        Size = 0
+      end    
+      item
+        Name = 'precioTotal'
+        DataType = ftFloat
+        Precision = 0
+        Size = 0
+      end>
+    PacketRecords = 0
+    left = 166
+    top = 36
+    object DetallesfacturaElectronica_id: TStringField
+      DisplayWidth = 38
+      FieldKind = fkData
+      FieldName = 'facturaElectronica_id'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 38
+    end
+    object Detallescodigo: TStringField
+      DisplayWidth = 20
+      FieldKind = fkData
+      FieldName = 'codigo'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object Detallesdescripcion: TStringField
+      DisplayWidth = 500
+      FieldKind = fkData
+      FieldName = 'descripcion'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 500
+    end
+    object DetallesprecioUnitario: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'precioUnitario'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object DetallesIVA: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'IVA'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object DetallesprecioTotal: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'precioTotal'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+  end
+  object qSELCabecera: TZQuery
+    Connection = DM_General.cnxBase
+    SQL.Strings = (
+      'select F.ID as FacturaElectronica_id '
+      '       ,F.PTOVTA as PtoVta'
+      '       ,F.CBTDESDE as Nro'
+      '       ,F.CBTFECHA as FEmision'
+      '       ,E.RAZONSOCIAL'
+      '       ,CF.CONDICIONFISCAL as CondicionIVA'
+      '       ,Cl.DOMICILIOFACTURA as Domicilio'
+      '       ,Cl.EMAILFACTURA as email'
+      '       ,F.DOCNRO as CUIT'
+      '       ,F.IMPNETO as Subtotal       '
+      '       ,F.IMPTOTAL as Total       '
+      '       ,F.CAE'
+      '       ,F.VTOCAE  '
+      'from FE_COMPROBANTES F'
+      '     left join COMPROBANTESVENTA V ON V.FACTURA_ID = F.ID'
+      '     left join CLIENTES Cl ON Cl.ID = V.CLIENTE_ID'
+      '     left join EMPRESAS E ON E.ID = Cl.EMPRESA_ID'
+      '     left join CONDICIONESFISCALES CF  ON CF.ID = E.CONDICIONFISCAL_ID'
+      'where F.ID = :id'
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'id'
+        ParamType = ptUnknown
+      end>
+    left = 56
+    top = 105
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'id'
+        ParamType = ptUnknown
+      end>
+    object qSELCabeceraFACTURAELECTRONICA_ID: TStringField
+      DisplayWidth = 152
+      FieldKind = fkData
+      FieldName = 'FACTURAELECTRONICA_ID'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      Size = 152
+    end
+    object qSELCabeceraPTOVTA: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'PTOVTA'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object qSELCabeceraNRO: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'NRO'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object qSELCabeceraFEMISION: TStringField
+      DisplayWidth = 32
+      FieldKind = fkData
+      FieldName = 'FEMISION'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 32
+    end
+    object qSELCabeceraRAZONSOCIAL: TStringField
+      DisplayWidth = 2000
+      FieldKind = fkData
+      FieldName = 'RAZONSOCIAL'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 2000
+    end
+    object qSELCabeceraCONDICIONIVA: TStringField
+      DisplayWidth = 120
+      FieldKind = fkData
+      FieldName = 'CONDICIONIVA'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 120
+    end
+    object qSELCabeceraDOMICILIO: TStringField
+      DisplayWidth = 2000
+      FieldKind = fkData
+      FieldName = 'DOMICILIO'
+      Index = 6
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 2000
+    end
+    object qSELCabeceraEMAIL: TStringField
+      DisplayWidth = 200
+      FieldKind = fkData
+      FieldName = 'EMAIL'
+      Index = 7
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 200
+    end
+    object qSELCabeceraCUIT: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'CUIT'
+      Index = 8
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object qSELCabeceraSUBTOTAL: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'SUBTOTAL'
+      Index = 9
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object qSELCabeceraTOTAL: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'TOTAL'
+      Index = 10
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object qSELCabeceraCAE: TStringField
+      DisplayWidth = 56
+      FieldKind = fkData
+      FieldName = 'CAE'
+      Index = 11
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 56
+    end
+    object qSELCabeceraVTOCAE: TStringField
+      DisplayWidth = 32
+      FieldKind = fkData
+      FieldName = 'VTOCAE'
+      Index = 12
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 32
+    end
+  end
+  object qSELDetalles: TZQuery
+    Connection = DM_General.cnxBase
+    Params = <>
+    left = 174
+    top = 105
+  end
+end

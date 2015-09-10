@@ -5,8 +5,8 @@ unit dmventas;
 interface
 
 uses
-  Classes, SysUtils, db, FileUtil, rxmemds, StrHolder, ZDataset
-  , dmgeneral;
+  Classes, SysUtils, db, FileUtil, rxmemds, StrHolder, LR_Class, LR_DBSet,
+  LR_BarC, LR_Shape, LR_RRect, ZDataset, dmgeneral;
 
 const
   CALCULAR_CONCEPTO = -1; //La uso cuando hay múltiples impuestos o alícuotas para un concepto y hay que calcularlos

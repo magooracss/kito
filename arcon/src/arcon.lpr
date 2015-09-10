@@ -12,7 +12,7 @@ uses
   { you can add units after this }
   , dmclientes, dmempresa, dmseleccionarpedidos, frm_seleccionarpedidos,
   dmpedidos, dmprecios, SD_Configuracion, frm_ventaconceptosae, 
-dmfacturaelectronica;
+dmfacturaelectronica, dmfacturas;
 
 {$R *.res}
 

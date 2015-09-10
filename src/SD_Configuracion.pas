@@ -11,6 +11,7 @@ const
 
   SECCION_APP = 'APLICACION';
   SECCION_SCR = 'PANTALLAS';
+  SECCION_FI = 'FACTURA_IMPRESA';
 
   SERVIDOR_FB = 'RUTA_FB';  //Ruta al archivo de BD
   BASE_HOST='HOST';         //Dirección IP del HOST
@@ -30,6 +31,15 @@ const
   CFG_ES_SERVICIO = 'VTA_SERVICIO'; //Comprobante Vta es servicio
   CFG_ES_PRODUCTO = 'VTA_PRODUCTO'; //Comprobante Vta es producto
 
+  //Factura Impresa
+  FI_LOGO = 'FI_LOGO';
+  FI_RAZON_SOCIAL = 'FI_RAZON_SOCIAL';
+  FI_DOMICILIO = 'FI_DOMICILIO';
+  FI_CONDICION_IVA = 'FI_CONDICION_IVA';
+  FI_CUIT = 'FI_CUIT';
+  FI_IB = 'FI_IB';
+  FI_INIACT = 'FI_INIACT';
+  FI_FACTURA = 'FI_FACTURA';
 
 
   PROD_BUS_CRIT = 'P_BUS_CRIT';

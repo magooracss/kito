@@ -2,10 +2,10 @@ object DM_Ventas: TDM_Ventas
   OnCreate = DataModuleCreate
   OnDestroy = DataModuleDestroy
   OldCreateOrder = False
-  Height = 449
-  HorizontalOffset = 260
-  VerticalOffset = 90
-  Width = 889
+  Height = 482
+  HorizontalOffset = 165
+  VerticalOffset = 109
+  Width = 1089
   object qTiposComprobantesVentas: TZQuery
     Connection = DM_General.cnxBase
     SQL.Strings = (

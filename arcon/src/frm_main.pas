@@ -14,6 +14,10 @@ type
   { TfrmMain }
 
   TfrmMain = class(TForm)
+    MenuItem8: TMenuItem;
+    prgModificarFactura: TAction;
+    MenuItem7: TMenuItem;
+    prgModificarReporte: TAction;
     prgFacturar: TAction;
     movCompra: TAction;
     movVenta: TAction;
@@ -34,10 +38,14 @@ type
     ToolButton4: TToolButton;
     ToolButton5: TToolButton;
     ToolButton6: TToolButton;
+    ToolButton7: TToolButton;
     procedure FormShow(Sender: TObject);
     procedure movVentaExecute(Sender: TObject);
     procedure prgFacturarExecute(Sender: TObject);
+    procedure prgModificarFacturaExecute(Sender: TObject);
+    procedure prgModificarReporteExecute(Sender: TObject);
     procedure PrgSalirExecute(Sender: TObject);
+    procedure ToolButton7Click(Sender: TObject);
   private
     procedure PantallaVentas (idVenta: GUID_ID);
     procedure Inicializar;
@@ -55,6 +63,8 @@ uses
   , frm_ventaae
   , SD_Configuracion
   , process
+  , dmfacturas
+
   ;
 
 { TfrmMain }
@@ -68,6 +78,7 @@ procedure TfrmMain.PrgSalirExecute(Sender: TObject);
 begin
   Application.Terminate;
 end;
+
 
 procedure TfrmMain.Inicializar;
 Var
@@ -85,6 +96,27 @@ begin
   st.Panels[0].Text:= 'v:' + NroVersion;
   st.Panels[1].Text:= FormatDateTime('dd/mm/yyyy', now)+ '        ';
 end;
+
+
+procedure TfrmMain.prgModificarReporteExecute(Sender: TObject);
+begin
+  DM_General.LevantarReporte('blanco.lrf', DM_General.qTugDesc);
+  DM_General.EditarReporte;
+end;
+
+
+procedure TfrmMain.prgModificarFacturaExecute(Sender: TObject);
+begin
+  Application.CreateForm(TDM_Facturas, DM_Facturas);
+  try
+    DM_General.LevantarFactura(DM_Facturas.Cabecera);
+    DM_General.EditarReporte;
+  finally
+    DM_Facturas.Free;
+  end;
+
+end;
+
 
 (*******************************************************************************
 *** VENTAS
@@ -130,6 +162,19 @@ begin
   else
    ShowMessage('No se encuentra el módulo de facturación: ' + archivo);
 end;
+
+procedure TfrmMain.ToolButton7Click(Sender: TObject);
+begin
+  Application.CreateForm(TDM_Facturas, DM_Facturas);
+  try
+    DM_Facturas.LevantarFacturaPorID_FE(GUIDNULO);
+    DM_General.LevantarFactura(DM_Facturas.Cabecera);
+    DM_General.EditarReporte;
+  finally
+    DM_Facturas.Free;
+  end;
+end;
+
 
 
 end.

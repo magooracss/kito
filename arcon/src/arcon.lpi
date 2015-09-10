@@ -20,7 +20,7 @@
       <AutoIncrementBuild Value="True"/>
       <MajorVersionNr Value="2015"/>
       <MinorVersionNr Value="7"/>
-      <BuildNr Value="29"/>
+      <BuildNr Value="33"/>
       <Language Value="040A"/>
       <StringTable CompanyName="RACSS Programacion" InternalName="ARCON" LegalTrademarks="Carlos Enrique Rodriguez" ProductName="Arcon" ProductVersion=""/>
     </VersionInfo>
@@ -58,7 +58,7 @@
         <PackageName Value="LCL"/>
       </Item7>
     </RequiredPackages>
-    <Units Count="14">
+    <Units Count="15">
       <Unit0>
         <Filename Value="arcon.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -69,7 +69,6 @@
         <ComponentName Value="frmMain"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="frm_main"/>
       </Unit1>
       <Unit2>
         <Filename Value="..\..\src\dmgeneral.pas"/>
@@ -77,7 +76,6 @@
         <ComponentName Value="DM_General"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
-        <UnitName Value="dmgeneral"/>
       </Unit2>
       <Unit3>
         <Filename Value="frm_ventaae.pas"/>
@@ -85,7 +83,6 @@
         <ComponentName Value="frmVentasAE"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="frm_ventaae"/>
       </Unit3>
       <Unit4>
         <Filename Value="dmventas.pas"/>
@@ -93,13 +90,11 @@
         <ComponentName Value="DM_Ventas"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
-        <UnitName Value="dmventas"/>
       </Unit4>
       <Unit5>
         <Filename Value="..\..\src\dmclientes.pas"/>
         <IsPartOfProject Value="True"/>
         <HasResources Value="True"/>
-        <UnitName Value="dmclientes"/>
       </Unit5>
       <Unit6>
         <Filename Value="..\..\src\dmempresa.pas"/>
@@ -107,7 +102,6 @@
         <ComponentName Value="DM_Empresa"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
-        <UnitName Value="dmempresa"/>
       </Unit6>
       <Unit7>
         <Filename Value="frm_ventaconceptosae.pas"/>
@@ -115,7 +109,6 @@
         <ComponentName Value="frmVentaConceptosAE"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="frm_ventaconceptosae"/>
       </Unit7>
       <Unit8>
         <Filename Value="..\..\src\dmseleccionarpedidos.pas"/>
@@ -130,7 +123,6 @@
         <ComponentName Value="frmSeleccionarPedidos"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="frm_seleccionarpedidos"/>
       </Unit9>
       <Unit10>
         <Filename Value="..\..\src\dmpedidos.pas"/>
@@ -138,7 +130,6 @@
         <ComponentName Value="DM_Pedidos"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
-        <UnitName Value="dmpedidos"/>
       </Unit10>
       <Unit11>
         <Filename Value="..\..\src\dmprecios.pas"/>
@@ -146,12 +137,10 @@
         <ComponentName Value="DM_Precios"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
-        <UnitName Value="dmprecios"/>
       </Unit11>
       <Unit12>
         <Filename Value="..\..\src\SD_Configuracion.pas"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="SD_Configuracion"/>
       </Unit12>
       <Unit13>
         <Filename Value="dmfacturaelectronica.pas"/>
@@ -159,8 +148,13 @@
         <ComponentName Value="DM_FacturaElectronica"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
-        <UnitName Value="dmfacturaelectronica"/>
       </Unit13>
+      <Unit14>
+        <Filename Value="dmfacturas.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="DM_Facturas"/>
+        <ResourceBaseClass Value="DataModule"/>
+      </Unit14>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

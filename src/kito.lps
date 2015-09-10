@@ -20,7 +20,6 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="frm_main"/>
-        <IsVisibleTab Value="True"/>
         <TopLine Value="810"/>
         <CursorPos X="50" Y="826"/>
         <UsageCount Value="200"/>
@@ -41,7 +40,6 @@
       <Unit3>
         <Filename Value="SD_Configuracion.pas"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="SD_Configuracion"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="10"/>
         <CursorPos X="66" Y="20"/>
@@ -102,7 +100,6 @@
         <ComponentName Value="frmBusquedaProducto"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="frm_busquedaProductos"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="9"/>
         <CursorPos X="3" Y="17"/>
@@ -136,9 +133,12 @@
         <ComponentName Value="fraEmpresa"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Frame"/>
-        <TopLine Value="108"/>
+        <UnitName Value="fra_empresa"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="1"/>
         <CursorPos X="79" Y="118"/>
         <UsageCount Value="200"/>
+        <Loaded Value="True"/>
       </Unit12>
       <Unit13>
         <Filename Value="dmempresa.pas"/>
@@ -299,7 +299,6 @@
         <ComponentName Value="frmPedidoAE"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="frm_pedidosae"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="276"/>
         <CursorPos X="19" Y="285"/>
@@ -322,7 +321,6 @@
         <ComponentName Value="frmPedidoEditarProducto"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="frm_pedidoeditarproducto"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="40" Y="17"/>
         <UsageCount Value="186"/>

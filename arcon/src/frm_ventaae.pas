@@ -348,7 +348,7 @@ begin
   DM_Clientes.Editar(_clienteID);
 
   ShowMessage(DM_Clientes.Cuit + ' - ' + FloatToStr(StrToFloatDef(DM_Clientes.Cuit, 0)));
-//GrabarComprobante;
+  GrabarComprobante;
 //  DM_Ventas.ImprimirComprobante;
 end;
 
