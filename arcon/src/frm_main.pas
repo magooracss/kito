@@ -167,9 +167,10 @@ procedure TfrmMain.ToolButton7Click(Sender: TObject);
 begin
   Application.CreateForm(TDM_Facturas, DM_Facturas);
   try
-    DM_Facturas.LevantarFacturaPorID_FE(GUIDNULO);
-    DM_General.LevantarFactura(DM_Facturas.Cabecera);
-    DM_General.EditarReporte;
+//    DM_Facturas.LevantarFacturaPorID_FE(GUIDNULO);
+//    DM_General.LevantarFactura(DM_Facturas.Cabecera);
+    DM_Facturas.ImprimirFactura('{4E7D1AA2-D186-4721-A724-639D28E2C993}');
+    DM_Facturas.elReporte.DesignReport;
   finally
     DM_Facturas.Free;
   end;

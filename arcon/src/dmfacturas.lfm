@@ -105,7 +105,7 @@ object DM_Facturas: TDM_Facturas
       end>
     PacketRecords = 0
     left = 56
-    top = 36
+    top = 40
     object CabecerafacturaElectronica_id: TStringField
       DisplayWidth = 38
       FieldKind = fkData
@@ -326,7 +326,7 @@ object DM_Facturas: TDM_Facturas
         Size = 0
       end>
     PacketRecords = 0
-    left = 166
+    left = 174
     top = 36
     object DetallesfacturaElectronica_id: TStringField
       DisplayWidth = 38
@@ -404,7 +404,7 @@ object DM_Facturas: TDM_Facturas
     Connection = DM_General.cnxBase
     SQL.Strings = (
       'select F.ID as FacturaElectronica_id '
-      '       ,F.PTOVTA as PtoVta'
+      '       ,F.PTOVTA as PtoVenta'
       '       ,F.CBTDESDE as Nro'
       '       ,F.CBTFECHA as FEmision'
       '       ,E.RAZONSOCIAL'
@@ -448,10 +448,10 @@ object DM_Facturas: TDM_Facturas
       Required = True
       Size = 152
     end
-    object qSELCabeceraPTOVTA: TLongintField
+    object qSELCabeceraPTOVENTA: TLongintField
       DisplayWidth = 10
       FieldKind = fkData
-      FieldName = 'PTOVTA'
+      FieldName = 'PTOVENTA'
       Index = 1
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
@@ -590,8 +590,134 @@ object DM_Facturas: TDM_Facturas
   end
   object qSELDetalles: TZQuery
     Connection = DM_General.cnxBase
-    Params = <>
+    SQL.Strings = (
+      'SELECT CVC.CANTIDAD'
+      '       ,CVC.DETALLE'
+      '       ,CVC.GRAVADO'
+      '       ,CVC.NOGRAVADO'
+      '       ,CVC.EXENTO'
+      '       ,P.CODIGO       '
+      'FROM COMPROBANTESVENTACONCEPTOS CVC'
+      '      LEFT JOIN PRODUCTOS P ON P.ID = CVC.PRODUCTO_ID'
+      'WHERE (CVC.BVISIBLE = 1)'
+      '     and (CVC.COMPROBANTEVENTA_ID = :ComprobanteID)'
+      'ORDER BY CVC.ORDEN'
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'ComprobanteID'
+        ParamType = ptUnknown
+      end>
     left = 174
     top = 105
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'ComprobanteID'
+        ParamType = ptUnknown
+      end>
+    object qSELDetallesCANTIDAD: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'CANTIDAD'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object qSELDetallesDETALLE: TStringField
+      DisplayWidth = 2000
+      FieldKind = fkData
+      FieldName = 'DETALLE'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 2000
+    end
+    object qSELDetallesGRAVADO: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'GRAVADO'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object qSELDetallesNOGRAVADO: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'NOGRAVADO'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object qSELDetallesEXENTO: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'EXENTO'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object qSELDetallesCODIGO: TStringField
+      DisplayWidth = 80
+      FieldKind = fkData
+      FieldName = 'CODIGO'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 80
+    end
+  end
+  object frBarCodeObject1: TfrBarCodeObject
+    left = 381
+    top = 280
+  end
+  object frRoundRectObject1: TfrRoundRectObject
+    left = 381
+    top = 208
+  end
+  object frDataset: TfrDBDataSet
+    DataSet = Cabecera
+    left = 381
+    top = 120
+  end
+  object elReporte: TfrReport
+    Dataset = frDataset
+    DefaultCopies = 0
+    InitialZoom = pzPageWidth
+    Options = []
+    PreviewButtons = [pbZoom, pbPrint, pbExit]
+    DataType = dtDataSet
+    Title = 'Listado'
+    left = 381
+    top = 52
+  end
+  object frShapeObject1: TfrShapeObject
+    left = 381
+    top = 360
   end
 end

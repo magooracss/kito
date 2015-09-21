@@ -1,7 +1,7 @@
 object DM_General: TDM_General
   OnCreate = DataModuleCreate
   OldCreateOrder = False
-  Height = 407
+  Height = 454
   HorizontalOffset = 469
   VerticalOffset = 160
   Width = 632

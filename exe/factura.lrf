@@ -7,7 +7,7 @@
     <KeyWords Value=""/>
     <Comments Value=""/>
     <ReportCreateDate Value="2015-09-10 16:49:34"/>
-    <ReportLastChange Value="2015-09-10 18:37:40"/>
+    <ReportLastChange Value="2015-09-21 18:11:47"/>
     <ReportVersionBuild Value=""/>
     <ReportVersionMajor Value=""/>
     <ReportVersionMinor Value=""/>
@@ -73,9 +73,9 @@
           <StreamMode Value="0"/>
           <Size>
             <Left Value="0"/>
-            <Top Value="176"/>
+            <Top Value="172"/>
             <Width Value="773"/>
-            <Height Value="152"/>
+            <Height Value="104"/>
           </Size>
           <Flags Value="48"/>
           <Data>
@@ -157,10 +157,10 @@
           <Typ Value="gtMemo"/>
           <StreamMode Value="0"/>
           <Size>
-            <Left Value="504"/>
-            <Top Value="24"/>
-            <Width Value="176"/>
-            <Height Value="34"/>
+            <Left Value="500"/>
+            <Top Value="20"/>
+            <Width Value="184"/>
+            <Height Value="38"/>
           </Size>
           <Flags Value="3"/>
           <FillColor Value="clNone"/>
@@ -185,7 +185,7 @@
           <FURLInfo Value=""/>
           <Font>
             <Name Value="Arial"/>
-            <Size Value="24"/>
+            <Size Value="26"/>
             <Color Value="clBlack"/>
             <Charset Value="0"/>
             <Style Value="fsBold"/>
@@ -237,7 +237,7 @@
           <FURLInfo Value=""/>
           <Font>
             <Name Value="Arial"/>
-            <Size Value="24"/>
+            <Size Value="28"/>
             <Color Value="clBlack"/>
             <Charset Value="0"/>
             <Style Value="fsBold"/>
@@ -612,7 +612,7 @@
           <Data>
             <Format Value="556"/>
             <FormatStr Value=""/>
-            <Memo Value="[DM_Facturas.Cabecera.&quot;PtoVenta&quot;] - [DM_Facturas.Cabecera.&quot;Nro&quot;]&#xD;&#xA;"/>
+            <Memo Value="[FacturaNro]&#xD;&#xA;"/>
             <Script Value=""/>
             <OnClick Value=""/>
             <OnMouseEnter Value=""/>
@@ -634,7 +634,7 @@
             <FillColor Value="clWhite"/>
             <HighlightStr Value=""/>
           </Highlight>
-          <Alignment Value="taLeftJustify"/>
+          <Alignment Value="taRightJustify"/>
           <Layout Value="tlTop"/>
           <Angle Value="0"/>
           <Justify Value="False"/>
@@ -648,7 +648,7 @@
           <StreamMode Value="0"/>
           <Size>
             <Left Value="500"/>
-            <Top Value="84"/>
+            <Top Value="89"/>
             <Width Value="224"/>
             <Height Value="24"/>
           </Size>
@@ -664,7 +664,7 @@
           <Data>
             <Format Value="556"/>
             <FormatStr Value=""/>
-            <Memo Value="[DM_Facturas.Cabecera.&quot;FEmision&quot;]&#xD;&#xA;"/>
+            <Memo Value="[FacturaFecha]&#xD;&#xA;"/>
             <Script Value=""/>
             <OnClick Value=""/>
             <OnMouseEnter Value=""/>
@@ -700,9 +700,9 @@
           <StreamMode Value="0"/>
           <Size>
             <Left Value="20"/>
-            <Top Value="180"/>
+            <Top Value="175"/>
             <Width Value="728"/>
-            <Height Value="90"/>
+            <Height Value="86"/>
           </Size>
           <Flags Value="3"/>
           <FillColor Value="clNone"/>
@@ -759,7 +759,7 @@
           <StreamMode Value="0"/>
           <Size>
             <Left Value="28"/>
-            <Top Value="188"/>
+            <Top Value="180"/>
             <Width Value="708"/>
             <Height Value="24"/>
           </Size>
@@ -786,7 +786,7 @@
           <FURLInfo Value=""/>
           <Font>
             <Name Value="Arial"/>
-            <Size Value="10"/>
+            <Size Value="12"/>
             <Color Value="clBlack"/>
             <Charset Value="0"/>
             <Style Value=""/>
@@ -810,8 +810,8 @@
           <Typ Value="gtMemo"/>
           <StreamMode Value="0"/>
           <Size>
-            <Left Value="32"/>
-            <Top Value="212"/>
+            <Left Value="28"/>
+            <Top Value="201"/>
             <Width Value="240"/>
             <Height Value="18"/>
           </Size>
@@ -863,7 +863,7 @@
           <StreamMode Value="0"/>
           <Size>
             <Left Value="272"/>
-            <Top Value="212"/>
+            <Top Value="201"/>
             <Width Value="464"/>
             <Height Value="18"/>
           </Size>
@@ -915,7 +915,7 @@
           <StreamMode Value="0"/>
           <Size>
             <Left Value="28"/>
-            <Top Value="240"/>
+            <Top Value="224"/>
             <Width Value="360"/>
             <Height Value="18"/>
           </Size>
@@ -931,7 +931,7 @@
           <Data>
             <Format Value="556"/>
             <FormatStr Value=""/>
-            <Memo Value="Condicion de venta: [DM_Facturas.Cabecera.&quot;condicionIVA&quot;]&#xD;&#xA;"/>
+            <Memo Value="Condición de venta: [DM_Facturas.Cabecera.&quot;condicionIVA&quot;]&#xD;&#xA;"/>
             <Script Value=""/>
             <OnClick Value=""/>
             <OnMouseEnter Value=""/>
