@@ -15,6 +15,7 @@ type
   TDM_Facturas = class(TDataModule)
     Cabecera: TRxMemoryData;
     CabeceraCAE: TLargeintField;
+    CabeceraComprobanteVentaID: TStringField;
     CabeceracondicionIVA: TStringField;
     CabeceraCUIT: TLargeintField;
     CabeceraDomicilio: TStringField;
@@ -31,12 +32,18 @@ type
     CabeceraTotal: TFloatField;
     CabeceravtoCAE: TStringField;
     Detalles: TRxMemoryData;
+    DetallesbaseImponible: TFloatField;
+    Detallescantidad: TFloatField;
     Detallescodigo: TStringField;
-    Detallesdescripcion: TStringField;
-    DetallesfacturaElectronica_id: TStringField;
-    DetallesIVA: TFloatField;
+    Detallesdetalle: TStringField;
+    Detallesexento: TFloatField;
+    Detallesgravado: TFloatField;
+    Detallesid: TStringField;
+    DetallesmontoIVA: TFloatField;
+    DetallesnoGravado: TFloatField;
+    DetallesPrecioRenglon: TFloatField;
     DetallesprecioTotal: TFloatField;
-    DetallesprecioUnitario: TFloatField;
+    DetallestipoIva: TStringField;
     elReporte: TfrReport;
     frBarCodeObject1: TfrBarCodeObject;
     frDataset: TfrDBDataSet;
@@ -44,6 +51,7 @@ type
     frShapeObject1: TfrShapeObject;
     qSELCabecera: TZQuery;
     qSELCabeceraCAE: TStringField;
+    qSELCabeceraCOMPROBANTEVENTAID: TStringField;
     qSELCabeceraCONDICIONIVA: TStringField;
     qSELCabeceraCUIT: TFloatField;
     qSELCabeceraDOMICILIO: TStringField;
@@ -57,15 +65,26 @@ type
     qSELCabeceraTOTAL: TFloatField;
     qSELCabeceraVTOCAE: TStringField;
     qSELDetalles: TZQuery;
+    qSELDetallesID: TStringField;
+    qSELIVA: TZQuery;
     qSELDetallesCANTIDAD: TFloatField;
     qSELDetallesCODIGO: TStringField;
     qSELDetallesDETALLE: TStringField;
     qSELDetallesEXENTO: TFloatField;
     qSELDetallesGRAVADO: TFloatField;
     qSELDetallesNOGRAVADO: TFloatField;
+    qSELIVABASEIMPONIBLE: TFloatField;
+    qSELIVAIVA: TFloatField;
+    qSELIVANOMBRE: TStringField;
+    qSELIVAPORCENTAJE: TFloatField;
     procedure DataModuleCreate(Sender: TObject);
   private
     factNro, factFecha: string;
+     iva2_5
+    ,iva5
+    ,iva10_5
+    ,iva21
+    ,iva27: double;
     procedure AjusteVisualDeCampos;
     function AjustarFecha(laFecha: string): string;
   public
@@ -126,6 +145,15 @@ begin
    DM_General.ReiniciarTabla(Cabecera);
    DM_General.ReiniciarTabla(Detalles);
 
+   Cabecera.DisableControls;
+   Detalles.DisableControls;
+
+   iva2_5:= 0;
+   iva5:= 0;
+   iva10_5:= 0;
+   iva21:= 0;
+   iva27:= 0;
+
    with qSELCabecera do
    begin
      if active then close;
@@ -135,13 +163,70 @@ begin
      Close;
    end;
 
+
    with qSELDetalles do
    begin
      if active then close;
+     ParamByName('ComprobanteID').asString:= CabeceraComprobanteVentaID.AsString;
+     Open;
+     Detalles.LoadFromDataSet(qSELDetalles, 0, lmAppend);
+     Close;
+   end;
 
+   with Detalles do
+   begin
+     if RecordCount > 0 then
+     begin
+       First;
+
+       While Not EOF do
+       begin
+         qSELIVA.Close;
+         qSELIVA.ParamByName('comprobanteVentaConceptoID').asString:= Detallesid.AsString;
+         qSELIVA.Open;
+
+         if qSELIVA.RecordCount > 0 then
+         begin
+           Edit;
+           DetallesbaseImponible.AsFloat:= qSELIVABASEIMPONIBLE.AsFloat;
+           DetallesmontoIVA.AsFloat:= qSELIVAIVA.AsFloat;
+           DetallestipoIva.AsString:= qSELIVANOMBRE.AsString;
+           DetallesPrecioRenglon.AsFloat:= Detallesgravado.AsFloat
+                                         + DetallesnoGravado.AsFloat
+                                         + Detallesexento.AsFloat
+                                         ;
+           DetallesprecioTotal.asFloat:= Detallesgravado.AsFloat
+                                       + DetallesnoGravado.AsFloat
+                                       + Detallesexento.AsFloat
+                                       + qSELIVAIVA.asFloat
+                                       ;
+
+            if (qSELIVAPORCENTAJE.AsFloat = 2.5) then
+              iva2_5:= iva2_5 + qSELIVAIVA.AsFloat
+            else
+              if (qSELIVAPORCENTAJE.AsFloat = 5) then
+                iva5:= iva5 + qSELIVAIVA.AsFloat
+              else
+                if (qSELIVAPORCENTAJE.AsFloat = 10.5) then
+                  iva10_5:= iva10_5 + qSELIVAIVA.AsFloat
+                else
+                  if (qSELIVAPORCENTAJE.AsFloat = 21) then
+                    iva21:= iva21 + qSELIVAIVA.AsFloat
+                  else
+                    iva27:= iva27 + qSELIVAIVA.AsFloat;
+
+           Post;
+         end;
+
+         Next;
+       end;
+     end;
    end;
 
    AjusteVisualDeCampos;
+
+   Cabecera.EnableControls;
+   Detalles.EnableControls;
 
 end;
 
@@ -172,6 +257,13 @@ begin
   frVariables ['INICIO_ACTIVIDADES']:= LeerDato (SECCION_FI ,FI_INIACT);
   frVariables ['FacturaNro']:= factNro;
   frVariables ['FacturaFecha']:= factFecha;
+  frVariables ['IVA2_5']:= FormatFloat('##########0.00', iva2_5);
+  frVariables ['IVA5']:= FormatFloat('##########0.00', iva5);
+  frVariables ['IVA10_5']:= FormatFloat('##########0.00', iva10_5);
+  frVariables ['IVA21']:= FormatFloat('##########0.00', iva21);
+  frVariables ['IVA27']:= FormatFloat('##########0.00', iva27);
+  frVariables ['IVATOTAL']:= FormatFloat('##########0.00', iva2_5+iva5+iva10_5+iva21+iva27);
+
 end;
 
 end.

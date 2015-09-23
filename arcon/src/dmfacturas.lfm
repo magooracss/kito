@@ -102,6 +102,12 @@ object DM_Facturas: TDM_Facturas
         DataType = ftString
         Precision = 0
         Size = 8
+      end    
+      item
+        Name = 'ComprobanteVentaID'
+        DataType = ftString
+        Precision = 0
+        Size = 38
       end>
     PacketRecords = 0
     left = 56
@@ -286,14 +292,37 @@ object DM_Facturas: TDM_Facturas
       ReadOnly = False
       Required = False
     end
+    object CabeceraComprobanteVentaID: TStringField
+      DisplayWidth = 38
+      FieldKind = fkData
+      FieldName = 'ComprobanteVentaID'
+      Index = 16
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 38
+    end
   end
   object Detalles: TRxMemoryData
     FieldDefs = <    
       item
-        Name = 'facturaElectronica_id'
+        Name = 'id'
         DataType = ftString
         Precision = 0
         Size = 38
+      end    
+      item
+        Name = 'cantidad'
+        DataType = ftFloat
+        Precision = 0
+        Size = 0
+      end    
+      item
+        Name = 'detalle'
+        DataType = ftString
+        Precision = 0
+        Size = 500
       end    
       item
         Name = 'codigo'
@@ -302,22 +331,46 @@ object DM_Facturas: TDM_Facturas
         Size = 20
       end    
       item
-        Name = 'descripcion'
+        Name = 'gravado'
+        DataType = ftFloat
+        Precision = 0
+        Size = 0
+      end    
+      item
+        Name = 'noGravado'
+        DataType = ftFloat
+        Precision = 0
+        Size = 0
+      end    
+      item
+        Name = 'exento'
+        DataType = ftFloat
+        Precision = 0
+        Size = 0
+      end    
+      item
+        Name = 'PrecioRenglon'
+        DataType = ftFloat
+        Precision = 0
+        Size = 0
+      end    
+      item
+        Name = 'baseImponible'
+        DataType = ftFloat
+        Precision = 0
+        Size = 0
+      end    
+      item
+        Name = 'montoIVA'
+        DataType = ftFloat
+        Precision = 0
+        Size = 0
+      end    
+      item
+        Name = 'tipoIva'
         DataType = ftString
         Precision = 0
-        Size = 500
-      end    
-      item
-        Name = 'precioUnitario'
-        DataType = ftFloat
-        Precision = 0
-        Size = 0
-      end    
-      item
-        Name = 'IVA'
-        DataType = ftFloat
-        Precision = 0
-        Size = 0
+        Size = 20
       end    
       item
         Name = 'precioTotal'
@@ -328,10 +381,10 @@ object DM_Facturas: TDM_Facturas
     PacketRecords = 0
     left = 174
     top = 36
-    object DetallesfacturaElectronica_id: TStringField
+    object Detallesid: TStringField
       DisplayWidth = 38
       FieldKind = fkData
-      FieldName = 'facturaElectronica_id'
+      FieldName = 'id'
       Index = 0
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
@@ -339,20 +392,23 @@ object DM_Facturas: TDM_Facturas
       Required = False
       Size = 38
     end
-    object Detallescodigo: TStringField
-      DisplayWidth = 20
+    object Detallescantidad: TFloatField
+      DisplayWidth = 10
       FieldKind = fkData
-      FieldName = 'codigo'
+      FieldName = 'cantidad'
       Index = 1
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
       Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
     end
-    object Detallesdescripcion: TStringField
+    object Detallesdetalle: TStringField
       DisplayWidth = 500
       FieldKind = fkData
-      FieldName = 'descripcion'
+      FieldName = 'detalle'
       Index = 2
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
@@ -360,41 +416,120 @@ object DM_Facturas: TDM_Facturas
       Required = False
       Size = 500
     end
-    object DetallesprecioUnitario: TFloatField
-      DisplayWidth = 10
+    object Detallescodigo: TStringField
+      DisplayWidth = 20
       FieldKind = fkData
-      FieldName = 'precioUnitario'
+      FieldName = 'codigo'
       Index = 3
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
       Required = False
-      MaxValue = 0
-      MinValue = 0
-      Precision = 2
     end
-    object DetallesIVA: TFloatField
+    object Detallesgravado: TFloatField
       DisplayWidth = 10
       FieldKind = fkData
-      FieldName = 'IVA'
+      FieldName = 'gravado'
       Index = 4
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
       Required = False
+      Currency = True
       MaxValue = 0
       MinValue = 0
       Precision = 2
     end
-    object DetallesprecioTotal: TFloatField
+    object DetallesnoGravado: TFloatField
       DisplayWidth = 10
       FieldKind = fkData
-      FieldName = 'precioTotal'
+      FieldName = 'noGravado'
       Index = 5
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
       Required = False
+      Currency = True
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object Detallesexento: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'exento'
+      Index = 6
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Currency = True
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object DetallesbaseImponible: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'baseImponible'
+      Index = 7
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Currency = True
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object DetallesmontoIVA: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'montoIVA'
+      Index = 8
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Currency = True
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object DetallestipoIva: TStringField
+      DisplayWidth = 20
+      FieldKind = fkData
+      FieldName = 'tipoIva'
+      Index = 9
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object DetallesprecioTotal: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'precioTotal'
+      Index = 10
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Currency = True
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object DetallesPrecioRenglon: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'PrecioRenglon'
+      Index = 11
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Currency = True
       MaxValue = 0
       MinValue = 0
       Precision = 2
@@ -416,6 +551,7 @@ object DM_Facturas: TDM_Facturas
       '       ,F.IMPTOTAL as Total       '
       '       ,F.CAE'
       '       ,F.VTOCAE  '
+      '      , V.ID as ComprobanteVentaID'
       'from FE_COMPROBANTES F'
       '     left join COMPROBANTESVENTA V ON V.FACTURA_ID = F.ID'
       '     left join CLIENTES Cl ON Cl.ID = V.CLIENTE_ID'
@@ -587,6 +723,17 @@ object DM_Facturas: TDM_Facturas
       Required = False
       Size = 32
     end
+    object qSELCabeceraCOMPROBANTEVENTAID: TStringField
+      DisplayWidth = 152
+      FieldKind = fkData
+      FieldName = 'COMPROBANTEVENTAID'
+      Index = 13
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      Size = 152
+    end
   end
   object qSELDetalles: TZQuery
     Connection = DM_General.cnxBase
@@ -597,6 +744,7 @@ object DM_Facturas: TDM_Facturas
       '       ,CVC.NOGRAVADO'
       '       ,CVC.EXENTO'
       '       ,P.CODIGO       '
+      '      , CVC.id'
       'FROM COMPROBANTESVENTACONCEPTOS CVC'
       '      LEFT JOIN PRODUCTOS P ON P.ID = CVC.PRODUCTO_ID'
       'WHERE (CVC.BVISIBLE = 1)'
@@ -610,7 +758,7 @@ object DM_Facturas: TDM_Facturas
         ParamType = ptUnknown
       end>
     left = 174
-    top = 105
+    top = 104
     ParamData = <    
       item
         DataType = ftUnknown
@@ -691,6 +839,17 @@ object DM_Facturas: TDM_Facturas
       Required = False
       Size = 80
     end
+    object qSELDetallesID: TStringField
+      DisplayWidth = 152
+      FieldKind = fkData
+      FieldName = 'ID'
+      Index = 6
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      Size = 152
+    end
   end
   object frBarCodeObject1: TfrBarCodeObject
     left = 381
@@ -719,5 +878,82 @@ object DM_Facturas: TDM_Facturas
   object frShapeObject1: TfrShapeObject
     left = 381
     top = 360
+  end
+  object qSELIVA: TZQuery
+    Connection = DM_General.cnxBase
+    SQL.Strings = (
+      'SELECT CVI.BASEIMPONIBLE'
+      '      ,CVI.MONTO as IVA'
+      '      ,A.NOMBRE    '
+      '      ,A.porcentaje'
+      'FROM COMPROBANTESVENTAIVA CVI'
+      '      LEFT JOIN ALICUOTASIVA A ON A.ID = CVI.ALICUOTA_ID'
+      'WHERE (CVI.COMPROBANTEVENTACONCEPTO_ID = :comprobanteVentaConceptoID)'
+      '     and (CVI.BVISIBLE = 1)'
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'comprobanteVentaConceptoID'
+        ParamType = ptUnknown
+      end>
+    left = 174
+    top = 168
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'comprobanteVentaConceptoID'
+        ParamType = ptUnknown
+      end>
+    object qSELIVABASEIMPONIBLE: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'BASEIMPONIBLE'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object qSELIVAIVA: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'IVA'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object qSELIVANOMBRE: TStringField
+      DisplayWidth = 60
+      FieldKind = fkData
+      FieldName = 'NOMBRE'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 60
+    end
+    object qSELIVAPORCENTAJE: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'PORCENTAJE'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
   end
 end
