@@ -58,7 +58,7 @@
         <PackageName Value="LCL"/>
       </Item7>
     </RequiredPackages>
-    <Units Count="15">
+    <Units Count="16">
       <Unit0>
         <Filename Value="arcon.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -156,6 +156,12 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
       </Unit14>
+      <Unit15>
+        <Filename Value="frm_impresioncomprobantes.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmImpresionComprobantes"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit15>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

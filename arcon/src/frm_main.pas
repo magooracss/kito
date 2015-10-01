@@ -14,6 +14,7 @@ type
   { TfrmMain }
 
   TfrmMain = class(TForm)
+    factImpresion: TAction;
     MenuItem8: TMenuItem;
     prgModificarFactura: TAction;
     MenuItem7: TMenuItem;
@@ -39,6 +40,9 @@ type
     ToolButton5: TToolButton;
     ToolButton6: TToolButton;
     ToolButton7: TToolButton;
+    ToolButton8: TToolButton;
+    ToolButton9: TToolButton;
+    procedure factImpresionExecute(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure movVentaExecute(Sender: TObject);
     procedure prgFacturarExecute(Sender: TObject);
@@ -64,6 +68,7 @@ uses
   , SD_Configuracion
   , process
   , dmfacturas
+  , frm_impresioncomprobantes
 
   ;
 
@@ -73,6 +78,7 @@ procedure TfrmMain.FormShow(Sender: TObject);
 begin
   Inicializar;
 end;
+
 
 procedure TfrmMain.PrgSalirExecute(Sender: TObject);
 begin
@@ -176,6 +182,18 @@ begin
   end;
 end;
 
+
+procedure TfrmMain.factImpresionExecute(Sender: TObject);
+var
+  pant: TfrmImpresionComprobantes;
+begin
+  pant:= TfrmImpresionComprobantes.Create(self);
+  try
+    pant.ShowModal;
+  finally
+    pant.Free;
+  end;
+end;
 
 
 end.

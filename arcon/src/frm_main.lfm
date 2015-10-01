@@ -1,11 +1,11 @@
 object frmMain: TfrmMain
-  Left = 207
-  Height = 476
-  Top = 92
-  Width = 943
+  Left = 304
+  Height = 143
+  Top = 238
+  Width = 674
   Caption = 'Finanzas'
-  ClientHeight = 456
-  ClientWidth = 943
+  ClientHeight = 123
+  ClientWidth = 674
   Font.CharSet = ANSI_CHARSET
   Font.Height = -13
   Font.Name = 'Arial'
@@ -19,8 +19,8 @@ object frmMain: TfrmMain
   object st: TStatusBar
     Left = 0
     Height = 23
-    Top = 433
-    Width = 943
+    Top = 100
+    Width = 674
     Panels = <    
       item
         Width = 150
@@ -35,7 +35,7 @@ object frmMain: TfrmMain
     Left = 0
     Height = 82
     Top = 0
-    Width = 943
+    Width = 674
     AutoSize = True
     ButtonHeight = 80
     ButtonWidth = 92
@@ -83,14 +83,27 @@ object frmMain: TfrmMain
     object ToolButton7: TToolButton
       Left = 389
       Top = 2
-      Caption = 'ToolButton7'
+      Caption = 'Test Factura'
       OnClick = ToolButton7Click
+    end
+    object ToolButton8: TToolButton
+      Left = 481
+      Top = 2
+      Action = factImpresion
+    end
+    object ToolButton9: TToolButton
+      Left = 573
+      Height = 80
+      Top = 2
+      Width = 10
+      Caption = 'ToolButton9'
+      Style = tbsSeparator
     end
   end
   object ActionList1: TActionList
     Images = DM_General.ImgAcciones
-    left = 240
-    top = 120
+    left = 184
+    top = 64
     object PrgSalir: TAction
       Category = 'Programa'
       Caption = 'Salir'
@@ -114,8 +127,10 @@ object frmMain: TfrmMain
       ShortCut = 116
     end
     object prgFacturar: TAction
+      Category = 'Facturas'
       Caption = 'Facturar'
       Hint = 'Factura comprobantes ya preparados'
+      ImageIndex = 20
       OnExecute = prgFacturarExecute
     end
     object prgModificarReporte: TAction
@@ -125,16 +140,22 @@ object frmMain: TfrmMain
       OnExecute = prgModificarReporteExecute
     end
     object prgModificarFactura: TAction
-      Category = 'Programa'
+      Category = 'Facturas'
       Caption = 'Modificar Factura'
       ImageIndex = 17
       OnExecute = prgModificarFacturaExecute
     end
+    object factImpresion: TAction
+      Category = 'Facturas'
+      Caption = 'Impresión'
+      ImageIndex = 18
+      OnExecute = factImpresionExecute
+    end
   end
   object MainMenu1: TMainMenu
     Images = DM_General.ImgAccionesMenu
-    left = 96
-    top = 120
+    left = 112
+    top = 64
     object MenuItem1: TMenuItem
       Caption = 'Programa'
       object MenuItem7: TMenuItem
