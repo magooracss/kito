@@ -47,6 +47,7 @@ type
     elReporte: TfrReport;
     frBarCodeObject1: TfrBarCodeObject;
     frDataset: TfrDBDataSet;
+    frDataset1: TfrDBDataSet;
     frRoundRectObject1: TfrRoundRectObject;
     frShapeObject1: TfrShapeObject;
     qBusCAE: TZQuery;

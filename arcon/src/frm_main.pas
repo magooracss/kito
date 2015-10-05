@@ -5,8 +5,8 @@ unit frm_main;
 interface
 
 uses
-  Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, ComCtrls,
-  ActnList, Menus
+  Classes, SysUtils, db, FileUtil, Forms, Controls, Graphics, Dialogs, ComCtrls,
+  ActnList, Menus, DBGrids
   , dmgeneral;
 
 type
@@ -173,7 +173,7 @@ procedure TfrmMain.ToolButton7Click(Sender: TObject);
 begin
   Application.CreateForm(TDM_Facturas, DM_Facturas);
   try
-    DM_Facturas.ImprimirFactura('{83C1D35A-7789-4137-87FD-6F1645F43904}');
+    DM_Facturas.ImprimirFactura('{A764B110-1DD9-4624-AF6C-1FB30339E311}');
     DM_Facturas.elReporte.DesignReport;
   finally
     DM_Facturas.Free;

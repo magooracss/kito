@@ -861,13 +861,13 @@ object DM_Facturas: TDM_Facturas
   end
   object frDataset: TfrDBDataSet
     DataSet = Cabecera
-    left = 381
-    top = 120
+    left = 352
+    top = 128
   end
   object elReporte: TfrReport
     Dataset = frDataset
     DefaultCopies = 0
-    InitialZoom = pzPageWidth
+    InitialZoom = pzOnePage
     Options = []
     PreviewButtons = [pbZoom, pbPrint, pbExit]
     DataType = dtDataSet
@@ -1321,7 +1321,6 @@ object DM_Facturas: TDM_Facturas
   end
   object qTiposComprVentas: TZQuery
     Connection = DM_General.cnxBase
-    Active = True
     SQL.Strings = (
       'SELECT *'
       'FROM TIPOSCOMPROBANTESVENTAS'
@@ -2011,7 +2010,6 @@ object DM_Facturas: TDM_Facturas
   end
   object qBusCliente: TZQuery
     Connection = DM_General.cnxBase
-    Active = True
     SQL.Strings = (
       'select F.id as id_FE'
       '      ,F.PTOVTA as PtoVenta'
@@ -2486,5 +2484,10 @@ object DM_Facturas: TDM_Facturas
       Required = False
       Size = 2000
     end
+  end
+  object frDataset1: TfrDBDataSet
+    DataSet = Detalles
+    left = 424
+    top = 128
   end
 end

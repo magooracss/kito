@@ -1,10 +1,10 @@
 object frmMain: TfrmMain
   Left = 304
-  Height = 143
+  Height = 128
   Top = 238
   Width = 586
   Caption = 'Finanzas'
-  ClientHeight = 123
+  ClientHeight = 108
   ClientWidth = 586
   Font.CharSet = ANSI_CHARSET
   Font.Height = -13
@@ -19,7 +19,7 @@ object frmMain: TfrmMain
   object st: TStatusBar
     Left = 0
     Height = 23
-    Top = 100
+    Top = 85
     Width = 586
     Panels = <    
       item

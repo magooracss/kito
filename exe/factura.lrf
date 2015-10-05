@@ -7,7 +7,7 @@
     <KeyWords Value=""/>
     <Comments Value=""/>
     <ReportCreateDate Value="2015-09-10 16:49:34"/>
-    <ReportLastChange Value="2015-10-05 15:42:00"/>
+    <ReportLastChange Value="2015-10-05 17:59:40"/>
     <ReportVersionBuild Value=""/>
     <ReportVersionMajor Value=""/>
     <ReportVersionMinor Value=""/>
@@ -103,7 +103,7 @@
             <Width Value="773"/>
             <Height Value="24"/>
           </Size>
-          <Flags Value="48"/>
+          <Flags Value="49"/>
           <Data>
             <Script Value=""/>
           </Data>
@@ -114,7 +114,7 @@
           </Frames>
           <BandType Value="btDetailData"/>
           <Condition Value=""/>
-          <DatasetStr Value="frDataset"/>
+          <DatasetStr Value="frDataset1"/>
           <Child Value=""/>
         </Object3>
         <Object4>
