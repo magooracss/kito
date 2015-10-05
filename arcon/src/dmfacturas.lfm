@@ -1,10 +1,10 @@
 object DM_Facturas: TDM_Facturas
   OnCreate = DataModuleCreate
   OldCreateOrder = False
-  Height = 451
-  HorizontalOffset = 433
-  VerticalOffset = 125
-  Width = 558
+  Height = 614
+  HorizontalOffset = 454
+  VerticalOffset = 37
+  Width = 806
   object Cabecera: TRxMemoryData
     FieldDefs = <    
       item
@@ -954,6 +954,1537 @@ object DM_Facturas: TDM_Facturas
       MaxValue = 0
       MinValue = 0
       Precision = 2
+    end
+  end
+  object Resultados: TRxMemoryData
+    FieldDefs = <    
+      item
+        Name = 'idComprobante'
+        DataType = ftString
+        Precision = 0
+        Size = 38
+      end    
+      item
+        Name = 'id_FE'
+        DataType = ftString
+        Precision = 0
+        Size = 38
+      end    
+      item
+        Name = 'PtoVenta'
+        DataType = ftInteger
+        Precision = 0
+        Size = 0
+      end    
+      item
+        Name = 'NroFactura'
+        DataType = ftInteger
+        Precision = 0
+        Size = 0
+      end    
+      item
+        Name = 'fechaFactura'
+        DataType = ftString
+        Precision = 0
+        Size = 10
+      end    
+      item
+        Name = 'CAE'
+        DataType = ftString
+        Precision = 0
+        Size = 14
+      end    
+      item
+        Name = 'NroInterno'
+        DataType = ftInteger
+        Precision = 0
+        Size = 0
+      end    
+      item
+        Name = 'Monto'
+        DataType = ftFloat
+        Precision = 0
+        Size = 0
+      end    
+      item
+        Name = 'Cliente'
+        DataType = ftString
+        Precision = 0
+        Size = 500
+      end    
+      item
+        Name = 'fechaComprobante'
+        DataType = ftDate
+        Precision = 0
+        Size = 0
+      end    
+      item
+        Name = 'TipoComprobante'
+        DataType = ftString
+        Precision = 0
+        Size = 50
+      end>
+    PacketRecords = 0
+    left = 608
+    top = 36
+    object ResultadosidComprobante: TStringField
+      DisplayWidth = 38
+      FieldKind = fkData
+      FieldName = 'idComprobante'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 38
+    end
+    object Resultadosid_FE: TStringField
+      DisplayWidth = 38
+      FieldKind = fkData
+      FieldName = 'id_FE'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 38
+    end
+    object ResultadosPtoVenta: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'PtoVenta'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object ResultadosNroFactura: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'NroFactura'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object ResultadosfechaFactura: TStringField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'fechaFactura'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 10
+    end
+    object ResultadosNroInterno: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'NroInterno'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object ResultadosMonto: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'Monto'
+      Index = 6
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Currency = True
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object ResultadosCliente: TStringField
+      DisplayWidth = 500
+      FieldKind = fkData
+      FieldName = 'Cliente'
+      Index = 7
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 500
+    end
+    object ResultadosfechaComprobante: TDateField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'fechaComprobante'
+      Index = 8
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object ResultadosTipoComprobante: TStringField
+      DisplayWidth = 50
+      FieldKind = fkData
+      FieldName = 'TipoComprobante'
+      Index = 9
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 50
+    end
+    object ResultadosCAE: TStringField
+      DisplayWidth = 14
+      FieldKind = fkData
+      FieldName = 'CAE'
+      Index = 10
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 14
+    end
+  end
+  object qBusNroFact: TZQuery
+    Connection = DM_General.cnxBase
+    SQL.Strings = (
+      'select F.id as id_FE'
+      '      ,F.PTOVTA as PtoVenta'
+      '      ,F.CBTHASTA as NroFactura'
+      '      ,F.CAE as CAE'
+      '      ,F.CBTFECHA as fechaFactura'
+      '      ,F.IMPTOTAL as Monto'
+      '      ,TCV.COMPROBANTEVENTA as TipoComprobante'
+      '      ,CV.id as idComprobante'
+      '      ,CV.FECHA as fechaComprobante'
+      '      ,CV.NROCOMPROBANTE as NroInterno'
+      '      ,E.RAZONSOCIAL as Cliente'
+      'from FE_COMPROBANTES F'
+      '     Left join TIPOSCOMPROBANTESVENTAS TCV on TCV.ID = F.TIPOCOMPR'
+      '     left join COMPROBANTESVENTA CV on F.id = CV.FACTURA_ID'
+      '     left join CLIENTES C on CV.CLIENTE_ID = C.ID'
+      '     left join EMPRESAS E on E.ID = C.EMPRESA_ID'
+      'where (F.PTOVTA = :ptoVta) '
+      '      and (F.CBTHASTA = :NroFactura)'
+      ''
+      ''
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'ptoVta'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'NroFactura'
+        ParamType = ptUnknown
+      end>
+    left = 608
+    top = 105
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'ptoVta'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'NroFactura'
+        ParamType = ptUnknown
+      end>
+    object qBusNroFactID_FE: TStringField
+      DisplayWidth = 152
+      FieldKind = fkData
+      FieldName = 'ID_FE'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      Size = 152
+    end
+    object qBusNroFactPTOVENTA: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'PTOVENTA'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object qBusNroFactNROFACTURA: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'NROFACTURA'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object qBusNroFactCAE: TStringField
+      DisplayWidth = 56
+      FieldKind = fkData
+      FieldName = 'CAE'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 56
+    end
+    object qBusNroFactFECHAFACTURA: TStringField
+      DisplayWidth = 32
+      FieldKind = fkData
+      FieldName = 'FECHAFACTURA'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 32
+    end
+    object qBusNroFactMONTO: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'MONTO'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object qBusNroFactTIPOCOMPROBANTE: TStringField
+      DisplayWidth = 400
+      FieldKind = fkData
+      FieldName = 'TIPOCOMPROBANTE'
+      Index = 6
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 400
+    end
+    object qBusNroFactIDCOMPROBANTE: TStringField
+      DisplayWidth = 152
+      FieldKind = fkData
+      FieldName = 'IDCOMPROBANTE'
+      Index = 7
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      Size = 152
+    end
+    object qBusNroFactFECHACOMPROBANTE: TDateField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'FECHACOMPROBANTE'
+      Index = 8
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object qBusNroFactNROINTERNO: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'NROINTERNO'
+      Index = 9
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object qBusNroFactCLIENTE: TStringField
+      DisplayWidth = 2000
+      FieldKind = fkData
+      FieldName = 'CLIENTE'
+      Index = 10
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 2000
+    end
+  end
+  object qTiposComprVentas: TZQuery
+    Connection = DM_General.cnxBase
+    Active = True
+    SQL.Strings = (
+      'SELECT *'
+      'FROM TIPOSCOMPROBANTESVENTAS'
+      'WHERE (bVisible = 1)'
+    )
+    Params = <>
+    left = 112
+    top = 312
+    object qTiposComprVentasID: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'ID'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object qTiposComprVentasCODIGO: TStringField
+      DisplayWidth = 12
+      FieldKind = fkData
+      FieldName = 'CODIGO'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 12
+    end
+    object qTiposComprVentasCOMPROBANTEVENTA: TStringField
+      DisplayWidth = 400
+      FieldKind = fkData
+      FieldName = 'COMPROBANTEVENTA'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 400
+    end
+    object qTiposComprVentasBVISIBLE: TSmallintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'BVISIBLE'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+  end
+  object qBusTipoComprobante: TZQuery
+    Connection = DM_General.cnxBase
+    SQL.Strings = (
+      'select F.id as id_FE'
+      '      ,F.PTOVTA as PtoVenta'
+      '      ,F.CBTHASTA as NroFactura'
+      '      ,F.CAE as CAE'
+      '      ,F.CBTFECHA as fechaFactura'
+      '      ,F.IMPTOTAL as Monto'
+      '      ,TCV.COMPROBANTEVENTA as TipoComprobante'
+      '      ,CV.id as idComprobante'
+      '      ,CV.FECHA as fechaComprobante'
+      '      ,CV.NROCOMPROBANTE as NroInterno'
+      '      ,E.RAZONSOCIAL as Cliente'
+      'from FE_COMPROBANTES F'
+      '     Left join TIPOSCOMPROBANTESVENTAS TCV on TCV.ID = F.TIPOCOMPR'
+      '     left join COMPROBANTESVENTA CV on F.id = CV.FACTURA_ID'
+      '     left join CLIENTES C on CV.CLIENTE_ID = C.ID'
+      '     left join EMPRESAS E on E.ID = C.EMPRESA_ID'
+      'where (F.TIPOCOMPR = :tipoComprobante)'
+      ''
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'tipoComprobante'
+        ParamType = ptUnknown
+      end>
+    left = 608
+    top = 168
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'tipoComprobante'
+        ParamType = ptUnknown
+      end>
+    object qBusTipoComprobanteID_FE: TStringField
+      DisplayWidth = 152
+      FieldKind = fkData
+      FieldName = 'ID_FE'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      Size = 152
+    end
+    object qBusTipoComprobantePTOVENTA: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'PTOVENTA'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object qBusTipoComprobanteNROFACTURA: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'NROFACTURA'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object qBusTipoComprobanteCAE: TStringField
+      DisplayWidth = 56
+      FieldKind = fkData
+      FieldName = 'CAE'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 56
+    end
+    object qBusTipoComprobanteFECHAFACTURA: TStringField
+      DisplayWidth = 32
+      FieldKind = fkData
+      FieldName = 'FECHAFACTURA'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 32
+    end
+    object qBusTipoComprobanteMONTO: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'MONTO'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object qBusTipoComprobanteTIPOCOMPROBANTE: TStringField
+      DisplayWidth = 400
+      FieldKind = fkData
+      FieldName = 'TIPOCOMPROBANTE'
+      Index = 6
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 400
+    end
+    object qBusTipoComprobanteIDCOMPROBANTE: TStringField
+      DisplayWidth = 152
+      FieldKind = fkData
+      FieldName = 'IDCOMPROBANTE'
+      Index = 7
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      Size = 152
+    end
+    object qBusTipoComprobanteFECHACOMPROBANTE: TDateField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'FECHACOMPROBANTE'
+      Index = 8
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object qBusTipoComprobanteNROINTERNO: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'NROINTERNO'
+      Index = 9
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object qBusTipoComprobanteCLIENTE: TStringField
+      DisplayWidth = 2000
+      FieldKind = fkData
+      FieldName = 'CLIENTE'
+      Index = 10
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 2000
+    end
+  end
+  object qBusFechaAFip: TZQuery
+    Connection = DM_General.cnxBase
+    SQL.Strings = (
+      'select F.id as id_FE'
+      '      ,F.PTOVTA as PtoVenta'
+      '      ,F.CBTHASTA as NroFactura'
+      '      ,F.CAE as CAE'
+      '      ,F.CBTFECHA as fechaFactura'
+      '      ,F.IMPTOTAL as Monto'
+      '      ,TCV.COMPROBANTEVENTA as TipoComprobante'
+      '      ,CV.id as idComprobante'
+      '      ,CV.FECHA as fechaComprobante'
+      '      ,CV.NROCOMPROBANTE as NroInterno'
+      '      ,E.RAZONSOCIAL as Cliente'
+      'from FE_COMPROBANTES F'
+      '     Left join TIPOSCOMPROBANTESVENTAS TCV on TCV.ID = F.TIPOCOMPR'
+      '     left join COMPROBANTESVENTA CV on F.id = CV.FACTURA_ID'
+      '     left join CLIENTES C on CV.CLIENTE_ID = C.ID'
+      '     left join EMPRESAS E on E.ID = C.EMPRESA_ID'
+      'where (F.CBTFECHA  LIKE  :fechaAfip)'
+      ''
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'fechaAfip'
+        ParamType = ptUnknown
+      end>
+    left = 608
+    top = 232
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'fechaAfip'
+        ParamType = ptUnknown
+      end>
+    object qBusFechaAFipID_FE: TStringField
+      DisplayWidth = 152
+      FieldKind = fkData
+      FieldName = 'ID_FE'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      Size = 152
+    end
+    object qBusFechaAFipPTOVENTA: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'PTOVENTA'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object qBusFechaAFipNROFACTURA: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'NROFACTURA'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object qBusFechaAFipCAE: TStringField
+      DisplayWidth = 56
+      FieldKind = fkData
+      FieldName = 'CAE'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 56
+    end
+    object qBusFechaAFipFECHAFACTURA: TStringField
+      DisplayWidth = 32
+      FieldKind = fkData
+      FieldName = 'FECHAFACTURA'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 32
+    end
+    object qBusFechaAFipMONTO: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'MONTO'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object qBusFechaAFipTIPOCOMPROBANTE: TStringField
+      DisplayWidth = 400
+      FieldKind = fkData
+      FieldName = 'TIPOCOMPROBANTE'
+      Index = 6
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 400
+    end
+    object qBusFechaAFipIDCOMPROBANTE: TStringField
+      DisplayWidth = 152
+      FieldKind = fkData
+      FieldName = 'IDCOMPROBANTE'
+      Index = 7
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      Size = 152
+    end
+    object qBusFechaAFipFECHACOMPROBANTE: TDateField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'FECHACOMPROBANTE'
+      Index = 8
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object qBusFechaAFipNROINTERNO: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'NROINTERNO'
+      Index = 9
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object qBusFechaAFipCLIENTE: TStringField
+      DisplayWidth = 2000
+      FieldKind = fkData
+      FieldName = 'CLIENTE'
+      Index = 10
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 2000
+    end
+  end
+  object qBusCAE: TZQuery
+    Connection = DM_General.cnxBase
+    SQL.Strings = (
+      'select F.id as id_FE'
+      '      ,F.PTOVTA as PtoVenta'
+      '      ,F.CBTHASTA as NroFactura'
+      '      ,F.CAE as CAE'
+      '      ,F.CBTFECHA as fechaFactura'
+      '      ,F.IMPTOTAL as Monto'
+      '      ,TCV.COMPROBANTEVENTA as TipoComprobante'
+      '      ,CV.id as idComprobante'
+      '      ,CV.FECHA as fechaComprobante'
+      '      ,CV.NROCOMPROBANTE as NroInterno'
+      '      ,E.RAZONSOCIAL as Cliente'
+      'from FE_COMPROBANTES F'
+      '     Left join TIPOSCOMPROBANTESVENTAS TCV on TCV.ID = F.TIPOCOMPR'
+      '     left join COMPROBANTESVENTA CV on F.id = CV.FACTURA_ID'
+      '     left join CLIENTES C on CV.CLIENTE_ID = C.ID'
+      '     left join EMPRESAS E on E.ID = C.EMPRESA_ID'
+      'where (F.CAE  LIKE  :CAE)'
+      ''
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'CAE'
+        ParamType = ptUnknown
+      end>
+    left = 608
+    top = 296
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'CAE'
+        ParamType = ptUnknown
+      end>
+    object qBusCAEID_FE: TStringField
+      DisplayWidth = 152
+      FieldKind = fkData
+      FieldName = 'ID_FE'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      Size = 152
+    end
+    object qBusCAEPTOVENTA: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'PTOVENTA'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object qBusCAENROFACTURA: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'NROFACTURA'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object qBusCAECAE: TStringField
+      DisplayWidth = 56
+      FieldKind = fkData
+      FieldName = 'CAE'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 56
+    end
+    object qBusCAEFECHAFACTURA: TStringField
+      DisplayWidth = 32
+      FieldKind = fkData
+      FieldName = 'FECHAFACTURA'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 32
+    end
+    object qBusCAEMONTO: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'MONTO'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object qBusCAETIPOCOMPROBANTE: TStringField
+      DisplayWidth = 400
+      FieldKind = fkData
+      FieldName = 'TIPOCOMPROBANTE'
+      Index = 6
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 400
+    end
+    object qBusCAEIDCOMPROBANTE: TStringField
+      DisplayWidth = 152
+      FieldKind = fkData
+      FieldName = 'IDCOMPROBANTE'
+      Index = 7
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      Size = 152
+    end
+    object qBusCAEFECHACOMPROBANTE: TDateField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'FECHACOMPROBANTE'
+      Index = 8
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object qBusCAENROINTERNO: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'NROINTERNO'
+      Index = 9
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object qBusCAECLIENTE: TStringField
+      DisplayWidth = 2000
+      FieldKind = fkData
+      FieldName = 'CLIENTE'
+      Index = 10
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 2000
+    end
+  end
+  object qBusNroInterno: TZQuery
+    Connection = DM_General.cnxBase
+    SQL.Strings = (
+      'select F.id as id_FE'
+      '      ,F.PTOVTA as PtoVenta'
+      '      ,F.CBTHASTA as NroFactura'
+      '      ,F.CAE as CAE'
+      '      ,F.CBTFECHA as fechaFactura'
+      '      ,F.IMPTOTAL as Monto'
+      '      ,TCV.COMPROBANTEVENTA as TipoComprobante'
+      '      ,CV.id as idComprobante'
+      '      ,CV.FECHA as fechaComprobante'
+      '      ,CV.NROCOMPROBANTE as NroInterno'
+      '      ,E.RAZONSOCIAL as Cliente'
+      'from COMPROBANTESVENTA CV'
+      '     inner join FE_COMPROBANTES F  on F.id = CV.FACTURA_ID'
+      '     Left join TIPOSCOMPROBANTESVENTAS TCV on TCV.ID = F.TIPOCOMPR'
+      '     left join CLIENTES C on CV.CLIENTE_ID = C.ID'
+      '     left join EMPRESAS E on E.ID = C.EMPRESA_ID'
+      'where (CV.NROCOMPROBANTE  = :nroInterno)'
+      ''
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'nroInterno'
+        ParamType = ptUnknown
+      end>
+    left = 616
+    top = 360
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'nroInterno'
+        ParamType = ptUnknown
+      end>
+    object qBusNroInternoID_FE: TStringField
+      DisplayWidth = 152
+      FieldKind = fkData
+      FieldName = 'ID_FE'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      Size = 152
+    end
+    object qBusNroInternoPTOVENTA: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'PTOVENTA'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object qBusNroInternoNROFACTURA: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'NROFACTURA'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object qBusNroInternoCAE: TStringField
+      DisplayWidth = 56
+      FieldKind = fkData
+      FieldName = 'CAE'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 56
+    end
+    object qBusNroInternoFECHAFACTURA: TStringField
+      DisplayWidth = 32
+      FieldKind = fkData
+      FieldName = 'FECHAFACTURA'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 32
+    end
+    object qBusNroInternoMONTO: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'MONTO'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object qBusNroInternoTIPOCOMPROBANTE: TStringField
+      DisplayWidth = 400
+      FieldKind = fkData
+      FieldName = 'TIPOCOMPROBANTE'
+      Index = 6
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 400
+    end
+    object qBusNroInternoIDCOMPROBANTE: TStringField
+      DisplayWidth = 152
+      FieldKind = fkData
+      FieldName = 'IDCOMPROBANTE'
+      Index = 7
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      Size = 152
+    end
+    object qBusNroInternoFECHACOMPROBANTE: TDateField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'FECHACOMPROBANTE'
+      Index = 8
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object qBusNroInternoNROINTERNO: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'NROINTERNO'
+      Index = 9
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object qBusNroInternoCLIENTE: TStringField
+      DisplayWidth = 2000
+      FieldKind = fkData
+      FieldName = 'CLIENTE'
+      Index = 10
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 2000
+    end
+  end
+  object qBusCliente: TZQuery
+    Connection = DM_General.cnxBase
+    Active = True
+    SQL.Strings = (
+      'select F.id as id_FE'
+      '      ,F.PTOVTA as PtoVenta'
+      '      ,F.CBTHASTA as NroFactura'
+      '      ,F.CAE as CAE'
+      '      ,F.CBTFECHA as fechaFactura'
+      '      ,F.IMPTOTAL as Monto'
+      '      ,TCV.COMPROBANTEVENTA as TipoComprobante'
+      '      ,CV.id as idComprobante'
+      '      ,CV.FECHA as fechaComprobante'
+      '      ,CV.NROCOMPROBANTE as NroInterno'
+      '      ,E.RAZONSOCIAL as Cliente'
+      'from COMPROBANTESVENTA CV'
+      '     inner join FE_COMPROBANTES F  on F.id = CV.FACTURA_ID'
+      '     Left join TIPOSCOMPROBANTESVENTAS TCV on TCV.ID = F.TIPOCOMPR'
+      '     left join CLIENTES C on CV.CLIENTE_ID = C.ID'
+      '     left join EMPRESAS E on E.ID = C.EMPRESA_ID'
+      'where (CV.CLIENTE_ID  = :refCliente)'
+      ''
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'refCliente'
+        ParamType = ptUnknown
+      end>
+    left = 616
+    top = 424
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'refCliente'
+        ParamType = ptUnknown
+      end>
+    object qBusClienteID_FE: TStringField
+      DisplayWidth = 152
+      FieldKind = fkData
+      FieldName = 'ID_FE'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      Size = 152
+    end
+    object qBusClientePTOVENTA: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'PTOVENTA'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object qBusClienteNROFACTURA: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'NROFACTURA'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object qBusClienteCAE: TStringField
+      DisplayWidth = 56
+      FieldKind = fkData
+      FieldName = 'CAE'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 56
+    end
+    object qBusClienteFECHAFACTURA: TStringField
+      DisplayWidth = 32
+      FieldKind = fkData
+      FieldName = 'FECHAFACTURA'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 32
+    end
+    object qBusClienteMONTO: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'MONTO'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object qBusClienteTIPOCOMPROBANTE: TStringField
+      DisplayWidth = 400
+      FieldKind = fkData
+      FieldName = 'TIPOCOMPROBANTE'
+      Index = 6
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 400
+    end
+    object qBusClienteIDCOMPROBANTE: TStringField
+      DisplayWidth = 152
+      FieldKind = fkData
+      FieldName = 'IDCOMPROBANTE'
+      Index = 7
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      Size = 152
+    end
+    object qBusClienteFECHACOMPROBANTE: TDateField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'FECHACOMPROBANTE'
+      Index = 8
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object qBusClienteNROINTERNO: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'NROINTERNO'
+      Index = 9
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object qBusClienteCLIENTE: TStringField
+      DisplayWidth = 2000
+      FieldKind = fkData
+      FieldName = 'CLIENTE'
+      Index = 10
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 2000
+    end
+  end
+  object qBusMonto: TZQuery
+    Connection = DM_General.cnxBase
+    SQL.Strings = (
+      'select F.id as id_FE'
+      '      ,F.PTOVTA as PtoVenta'
+      '      ,F.CBTHASTA as NroFactura'
+      '      ,F.CAE as CAE'
+      '      ,F.CBTFECHA as fechaFactura'
+      '      ,F.IMPTOTAL as Monto'
+      '      ,TCV.COMPROBANTEVENTA as TipoComprobante'
+      '      ,CV.id as idComprobante'
+      '      ,CV.FECHA as fechaComprobante'
+      '      ,CV.NROCOMPROBANTE as NroInterno'
+      '      ,E.RAZONSOCIAL as Cliente'
+      'from COMPROBANTESVENTA CV'
+      '     inner join FE_COMPROBANTES F  on F.id = CV.FACTURA_ID'
+      '     Left join TIPOSCOMPROBANTESVENTAS TCV on TCV.ID = F.TIPOCOMPR'
+      '     left join CLIENTES C on CV.CLIENTE_ID = C.ID'
+      '     left join EMPRESAS E on E.ID = C.EMPRESA_ID'
+      'where (F.IMPTOTAL  = :monto)'
+      ''
+    )
+    Params = <    
+      item
+        DataType = ftFloat
+        Name = 'monto'
+        ParamType = ptInput
+      end>
+    left = 616
+    top = 488
+    ParamData = <    
+      item
+        DataType = ftFloat
+        Name = 'monto'
+        ParamType = ptInput
+      end>
+    object qBusMontoID_FE: TStringField
+      DisplayWidth = 152
+      FieldKind = fkData
+      FieldName = 'ID_FE'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      Size = 152
+    end
+    object qBusMontoPTOVENTA: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'PTOVENTA'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object qBusMontoNROFACTURA: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'NROFACTURA'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object qBusMontoCAE: TStringField
+      DisplayWidth = 56
+      FieldKind = fkData
+      FieldName = 'CAE'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 56
+    end
+    object qBusMontoFECHAFACTURA: TStringField
+      DisplayWidth = 32
+      FieldKind = fkData
+      FieldName = 'FECHAFACTURA'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 32
+    end
+    object qBusMontoMONTO: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'MONTO'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object qBusMontoTIPOCOMPROBANTE: TStringField
+      DisplayWidth = 400
+      FieldKind = fkData
+      FieldName = 'TIPOCOMPROBANTE'
+      Index = 6
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 400
+    end
+    object qBusMontoIDCOMPROBANTE: TStringField
+      DisplayWidth = 152
+      FieldKind = fkData
+      FieldName = 'IDCOMPROBANTE'
+      Index = 7
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      Size = 152
+    end
+    object qBusMontoFECHACOMPROBANTE: TDateField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'FECHACOMPROBANTE'
+      Index = 8
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object qBusMontoNROINTERNO: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'NROINTERNO'
+      Index = 9
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object qBusMontoCLIENTE: TStringField
+      DisplayWidth = 2000
+      FieldKind = fkData
+      FieldName = 'CLIENTE'
+      Index = 10
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 2000
+    end
+  end
+  object qBusFechaVenta: TZQuery
+    Connection = DM_General.cnxBase
+    SQL.Strings = (
+      'select F.id as id_FE'
+      '      ,F.PTOVTA as PtoVenta'
+      '      ,F.CBTHASTA as NroFactura'
+      '      ,F.CAE as CAE'
+      '      ,F.CBTFECHA as fechaFactura'
+      '      ,F.IMPTOTAL as Monto'
+      '      ,TCV.COMPROBANTEVENTA as TipoComprobante'
+      '      ,CV.id as idComprobante'
+      '      ,CV.FECHA as fechaComprobante'
+      '      ,CV.NROCOMPROBANTE as NroInterno'
+      '      ,E.RAZONSOCIAL as Cliente'
+      'from COMPROBANTESVENTA CV'
+      '     inner join FE_COMPROBANTES F  on F.id = CV.FACTURA_ID'
+      '     Left join TIPOSCOMPROBANTESVENTAS TCV on TCV.ID = F.TIPOCOMPR'
+      '     left join CLIENTES C on CV.CLIENTE_ID = C.ID'
+      '     left join EMPRESAS E on E.ID = C.EMPRESA_ID'
+      'where (CV.Fecha = :fechaVenta)'
+      ''
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'fechaVenta'
+        ParamType = ptUnknown
+      end>
+    left = 616
+    top = 552
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'fechaVenta'
+        ParamType = ptUnknown
+      end>
+    object qBusClienteID_FE1: TStringField
+      DisplayWidth = 152
+      FieldKind = fkData
+      FieldName = 'ID_FE'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      Size = 152
+    end
+    object qBusClientePTOVENTA1: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'PTOVENTA'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object qBusClienteNROFACTURA1: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'NROFACTURA'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object qBusClienteCAE1: TStringField
+      DisplayWidth = 56
+      FieldKind = fkData
+      FieldName = 'CAE'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 56
+    end
+    object qBusClienteFECHAFACTURA1: TStringField
+      DisplayWidth = 32
+      FieldKind = fkData
+      FieldName = 'FECHAFACTURA'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 32
+    end
+    object qBusClienteMONTO1: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'MONTO'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object qBusClienteTIPOCOMPROBANTE1: TStringField
+      DisplayWidth = 400
+      FieldKind = fkData
+      FieldName = 'TIPOCOMPROBANTE'
+      Index = 6
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 400
+    end
+    object qBusClienteIDCOMPROBANTE1: TStringField
+      DisplayWidth = 152
+      FieldKind = fkData
+      FieldName = 'IDCOMPROBANTE'
+      Index = 7
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      Size = 152
+    end
+    object qBusClienteFECHACOMPROBANTE1: TDateField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'FECHACOMPROBANTE'
+      Index = 8
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object qBusClienteNROINTERNO1: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'NROINTERNO'
+      Index = 9
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object qBusClienteCLIENTE1: TStringField
+      DisplayWidth = 2000
+      FieldKind = fkData
+      FieldName = 'CLIENTE'
+      Index = 10
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 2000
     end
   end
 end

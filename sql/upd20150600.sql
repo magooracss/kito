@@ -534,8 +534,27 @@ VALUES
 INSERT INTO TiposComprobantesVentas
 (id, codigo, comprobanteVenta,  bVisible)
 VALUES
-(63,'332','CERTIFICADO DE DEPOSITO DE GRANOS EN PLANTA', 1);
+(64,'011','FACTURAS C', 1);
 
+INSERT INTO TiposComprobantesVentas
+(id, codigo, comprobanteVenta,  bVisible)
+VALUES
+(65,'012','NOTAS DE DEBITO C', 1);
+
+INSERT INTO TiposComprobantesVentas
+(id, codigo, comprobanteVenta,  bVisible)
+VALUES
+(66,'013','NOTAS DE CREDITO C', 1);
+
+INSERT INTO TiposComprobantesVentas
+(id, codigo, comprobanteVenta,  bVisible)
+VALUES
+(67,'015','RECIBOS C', 1);
+
+INSERT INTO TiposComprobantesVentas
+(id, codigo, comprobanteVenta,  bVisible)
+VALUES
+(68,'016','NOTAS DE VENTA AL CONTADO C', 1);
 
 
 
@@ -1298,3 +1317,5 @@ VALUES
 
 CREATE INDEX ComprobantesventaFK ON COMPROBANTESVENTAIVA (COMPROBANTEVENTACONCEPTO_ID);
 
+CREATE INDEX ComprobantesVentaFK2 ON COMPROBANTESVENTA (FACTURA_ID);
+CREATE INDEX FEComprobantesFK ON FE_Comprobantes (cbtHasta,PtoVta);

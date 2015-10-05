@@ -1,16 +1,18 @@
 object frmImpresionComprobantes: TfrmImpresionComprobantes
-  Left = 261
+  Left = 159
   Height = 501
-  Top = 162
-  Width = 885
+  Top = 147
+  Width = 1008
   Caption = 'Impresión de comprobantes'
   ClientHeight = 501
-  ClientWidth = 885
+  ClientWidth = 1008
   Font.CharSet = ANSI_CHARSET
   Font.Height = -13
   Font.Name = 'Arial'
   Font.Pitch = fpVariable
   Font.Quality = fqDraft
+  OnClose = FormClose
+  OnCreate = FormCreate
   OnShow = FormShow
   Position = poScreenCenter
   LCLVersion = '1.4.2.0'
@@ -18,71 +20,333 @@ object frmImpresionComprobantes: TfrmImpresionComprobantes
     Left = 0
     Height = 112
     Top = 0
-    Width = 885
+    Width = 1008
     Align = alTop
     ClientHeight = 112
-    ClientWidth = 885
+    ClientWidth = 1008
     TabOrder = 0
     object PCFiltros: TPageControl
       Left = 1
       Height = 110
       Top = 1
-      Width = 431
-      ActivePage = tabCliente
+      Width = 471
+      ActivePage = tabVenta
       Align = alLeft
       ShowTabs = False
-      TabIndex = 5
+      TabIndex = 7
       TabOrder = 0
       object tabNroAFIP: TTabSheet
         Caption = 'tabNroAFIP'
+        ClientHeight = 102
+        ClientWidth = 423
         TabVisible = False
+        object edPtoVenta: TSpinEdit
+          Left = 64
+          Height = 24
+          Top = 40
+          Width = 97
+          Alignment = taRightJustify
+          MaxValue = 1000
+          MinValue = 1
+          OnKeyPress = edPtoVentaKeyPress
+          TabOrder = 0
+          Value = 1
+        end
+        object edNroComprobante: TSpinEdit
+          Left = 208
+          Height = 24
+          Top = 40
+          Width = 97
+          Alignment = taRightJustify
+          MaxValue = 100000
+          MinValue = 1
+          OnKeyPress = edNroComprobanteKeyPress
+          TabOrder = 1
+          Value = 1
+        end
+        object Label2: TLabel
+          Left = 64
+          Height = 16
+          Top = 24
+          Width = 86
+          Caption = 'Punto de venta'
+          ParentColor = False
+        end
+        object Label3: TLabel
+          Left = 208
+          Height = 16
+          Top = 24
+          Width = 77
+          Caption = 'Comprobante'
+          ParentColor = False
+        end
       end
       object tabTipoComprobanteAFIP: TTabSheet
         Caption = 'tabTipoComprobanteAFIP'
+        ClientHeight = 102
+        ClientWidth = 463
+        object cbTipoComprobante: TComboBox
+          Left = 24
+          Height = 24
+          Top = 48
+          Width = 416
+          Anchors = [akTop, akLeft, akRight]
+          ItemHeight = 16
+          TabOrder = 0
+          Text = 'cbTipoComprobante'
+        end
+        object Label4: TLabel
+          Left = 27
+          Height = 16
+          Top = 29
+          Width = 121
+          Caption = 'Tipo de comprobante'
+          ParentColor = False
+        end
       end
       object tabFechaComprAFIP: TTabSheet
         Caption = 'tabFechaComprAFIP'
+        ClientHeight = 102
+        ClientWidth = 463
+        object edFechaAfip: TDateEdit
+          Left = 144
+          Height = 24
+          Top = 48
+          Width = 136
+          CalendarDisplaySettings = [dsShowHeadings, dsShowDayNames]
+          OKCaption = 'OK'
+          CancelCaption = 'Cancel'
+          DateOrder = doNone
+          ButtonWidth = 23
+          NumGlyphs = 1
+          MaxLength = 0
+          TabOrder = 0
+        end
+        object LabelFechaAfip: TLabel
+          Left = 147
+          Height = 16
+          Top = 30
+          Width = 68
+          Caption = 'Fecha AFIP'
+          ParentColor = False
+        end
       end
       object tabNroCAE: TTabSheet
         Caption = 'tabNroCAE'
+        ClientHeight = 102
+        ClientWidth = 463
+        object edCAE: TEdit
+          Left = 72
+          Height = 24
+          Top = 44
+          Width = 289
+          Alignment = taRightJustify
+          Anchors = [akTop, akLeft, akRight]
+          TabOrder = 0
+        end
+        object Label5: TLabel
+          Left = 72
+          Height = 16
+          Top = 24
+          Width = 27
+          Caption = 'CAE'
+          ParentColor = False
+        end
       end
       object tabNroVenta: TTabSheet
         Caption = 'tabNroVenta'
+        ClientHeight = 102
+        ClientWidth = 463
+        object edComprobanteVenta: TSpinEdit
+          Left = 96
+          Height = 24
+          Top = 45
+          Width = 222
+          Alignment = taRightJustify
+          Anchors = [akTop, akLeft, akRight]
+          MaxValue = 1000000
+          MinValue = 1
+          TabOrder = 0
+          Value = 1
+        end
+        object Label6: TLabel
+          Left = 96
+          Height = 16
+          Top = 24
+          Width = 129
+          Caption = 'Comprobante de venta'
+          ParentColor = False
+        end
       end
       object tabCliente: TTabSheet
         Caption = 'tabCliente'
         ClientHeight = 102
-        ClientWidth = 423
+        ClientWidth = 463
         object Label1: TLabel
-          Left = 16
+          Left = 144
           Height = 16
           Top = 24
-          Width = 77
-          Caption = 'Razón Social'
+          Width = 40
+          Caption = 'Cliente'
           ParentColor = False
         end
         object edCliRazonSocial: TEdit
-          Left = 16
+          Left = 144
           Height = 24
           Top = 46
-          Width = 392
+          Width = 304
           Anchors = [akTop, akLeft, akRight]
+          Color = clMoneyGreen
+          ReadOnly = True
           TabOrder = 0
-          Text = 'edCliRazonSocial'
+        end
+        object btnBuscarCliente: TBitBtn
+          Left = 16
+          Height = 38
+          Top = 39
+          Width = 110
+          Caption = 'Buscar'
+          Glyph.Data = {
+            36090000424D3609000000000000360000002800000018000000180000000100
+            2000000000000009000064000000640000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            000000000000000000000000000000000000000000071010101F130E0E35100C
+            0C410F0B0B451D1A1A46130E0E351010101F000000070000000810101020130E
+            0E36100C0C410F0B0B45100C0C41130E0E361010102000000000000000000000
+            0000000000000000000000000000000000010000000D36342EFF3A3832FF3937
+            31FF383630FF37352FFF36342EFF36342EFF3C3C3C26686C6C4036342EFF3A38
+            32FF393731FF383630FF37352FFF36342EFF36342EFF00000000000000000000
+            0000000000020000000E0000001900000024141414343C3C36FFBCBFBEFFBCC0
+            BFFF959896FF686B69FF535654FF36342EFD838888EB868A8AF83A3933F7BCBF
+            BEFFBCC0BFFF959896FF686B69FF535654FF37352FFC00000000000000000000
+            00020000000F0000001C575A575B4D4F4F641A1A1A4D3D3C37FFD9DBDAFFCBCF
+            CDFFA7ABA9FF808381FF6E7170FF383630FF9996ADFD8B8D95F43B3934FAD9DB
+            DAFFCBCFCDFFA7ABA9FF808381FF6E7170FF36342EFA00000000000000000000
+            0000000000084E534E2E868B8AF88A8F90F5848988F9535450FC9A9D9AFFB4BA
+            B7FF828785FF626664FF50514EFF58565CFFADA5CEFF8F909AF54C4C48EE9A9D
+            9AFFB4BAB7FF828785FF626664FF50514EFF393732B800000000000000000000
+            00000000000080808002898E8DE6B9B5CFFFB3AEC7FF9591A2FF585956FF8F92
+            91FF626664FF525452FF3E3D3AFFB3B1B2FFD2CEE4FFABA5C7FF7B7887FF5554
+            52FF8F9291FF626664FF525452FF343431F335352F5200000000000000000000
+            0000838B87428689894E878B8AACA8A6B5FFCFCAE2FF9E9C9CFF383631FF3E3E
+            38FF3B3B34FF393932FF373630FF393832FF8C8A8AFE9A989BFF3B3934FF3A3A
+            33FF3D3C36FF3A3933FF383832FF36352FFF39372F8100000000000000008288
+            882B858A88FD9FA2A9F09D9EA7F3C6C2D8FFF2F1F8FF3C3B35FFA4A9A7FFC4CA
+            C8FFA7ACA9FF858987FF6B6F6DFF51524EFF373630FF393832FF737471FFC4CA
+            C8FFA7ABA9FF858886FF6B6F6DFF656766FF37352FF900000000000000009999
+            9905898E8ED8ADACB6F8D1CCE3FFE3E0EEFFCDCDD7FE36342EFFADB2B0FFB4BB
+            B8FF929895FF6C716FFF535755FF36342EFF60625EFF565753FF36342EFFB5BC
+            B9FF929795FF6C706EFF535755FF6B6F6DFF36342EFF00000000000000000000
+            00008989891A878B8AF7D2D0E1FFECEAF4FF909494F136342EFFB0B5B3FFB4BB
+            B8FF929895FF6C716FFF535755FF36342EFF858A88FF727674FF36342EFFB5BC
+            B9FF929795FF6C706EFF535755FF707372FF36342EFF00000000000000008B90
+            9095898E8CF6A9ABB1F4E1DEEDFFE0DEE9FF8A8E8DE7383631F4A7ACAAFFC9CE
+            CCFFA4A9A6FF6D7270FF535755FF36342EFF858A88FF727674FF36342EFFB5BC
+            B9FF929795FF818482FF777A78FF707471FF37352EF70000000000000000878C
+            8BF7BFBFC5FEE1DFEAFFE4E2EFFFD9D7E1FF8C9090D33939326B383630F93F3D
+            36F8979A97FF7C817FFF535755FF36342EFF5B5C58FF52534FFF36342EFFB5BC
+            B9FF9DA2A0FF818481FF3D3C36FF393731FF3735306F00000000000000008489
+            89348A8F8DAF939796F5E8E6F0FFE1E0EAFF898E8DEA00000000000000003636
+            2C344F4E49FF989B9AFF828483FF60615DFF36342EFB37352FF9787A76FFCACF
+            CDFFB2B5B4FF4D4D48FF737674F4898D8D7D0000000000000000000000000000
+            0000878C8A59939796F3EDEBF3FFECE9F3FF969999F1858B8B2E000000000000
+            00003A3933FF37352FFF36342EFF36342EFF37352F784A4C448A383630FF3634
+            2EFF36342EFF393731FF85858517000000000000000000000000000000008489
+            8934959999F5EAE9EFFFF1F0F7FFEFEEF6FFD7D7DDFE8B8F8ED68080800C0000
+            000036342EFF7C807FFF555957FF36342EFF8989890D898D8CDC36342EFF7C80
+            7FFF555957FF36342EFF888D8CDD80808006000000000000000000000000858B
+            8B2E8C908FED8C9190EF959A99F5EDECF1FFF3F2F8FFC2C4C9F8898E8DDD868A
+            8A3D3C3A34BA36342EFF36342EFF3E3D37D1898D8DE0C1C1C8F96B6968FF3634
+            2EFF36342EFF53524FFB8E9291F6838B8B210000000000000000000000000000
+            000000000000000000008C9190CCEDECF0FFF4F3F8FFF6F5FAFFDEDEE2FE9CA1
+            A1F3878D8CF18A8F8FDC898C8BF29CA0A1F3DBDAE1FEF2F1F7FFEFEDF5FFCDCD
+            D4FE858B88A1868A8A3D858A8A30000000000000000000000000000000000000
+            0000000000008288882D9DA1A1F2F1F1F4FFD5D5D9FEF3F2F6FFF4F3F9FFF8F8
+            FBFFF3F3F7FFECECF0FFF3F2F6FFF5F4F9FFF5F4F9FFF0EFF4FFECEBEFFFEFEE
+            F3FF8A8D8EE78080800200000000000000000000000000000000000000000000
+            000000000000848989348D9291F9898D8CEB868B89ABC0C2C4F5FBFAFDFFF5F5
+            F8FFFBFAFCFFF7F6FAFFFAFAFCFFF9F8FBFFFAFAFCFF969A9AF68A8F8ECB969A
+            9AF68B908EFF8686861500000000000000000000000000000000000000000000
+            000000000000000000008080800CAAAAAA03848A8753BEC1C2F5D4D5D9FB858A
+            88FFC3C4C7F6FDFDFEFF9BA09FF6929796F7FAF9FBFF878C8AFC80808006868C
+            862A858B852C0000000000000000000000000000000000000000000000000000
+            00000000000000000000000000000000000084898936909494F9898E8DD9808C
+            8C148B908FF2DDDDE0FF8B918FAB888B8B4F9B9F9FF58C918FF0999999050000
+            0000000000000000000000000000000000000000000000000000000000000000
+            00000000000000000000000000000000000000000000838A8A238E8E8E090000
+            00008D908F888C908FF48888882F00000000878C8735868C862A000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000
+          }
+          OnClick = btnBuscarClienteClick
+          TabOrder = 1
         end
       end
       object tabMonto: TTabSheet
         Caption = 'tabMonto'
+        ClientHeight = 102
+        ClientWidth = 463
+        object edMonto: TCurrencyEdit
+          Left = 96
+          Height = 24
+          Top = 40
+          Width = 208
+          Alignment = taRightJustify
+          DecimalPlaces = 3
+          Anchors = [akTop, akLeft, akRight]
+          MaxValue = 0
+          MinValue = 0
+          TabOrder = 0
+          Value = 0
+          ZeroEmpty = False
+          OnKeyPress = edMontoKeyPress
+        end
+        object Label7: TLabel
+          Left = 96
+          Height = 16
+          Top = 24
+          Width = 111
+          Caption = 'Monto de la factura'
+          ParentColor = False
+        end
       end
       object tabVenta: TTabSheet
         Caption = 'tabVenta'
+        ClientHeight = 102
+        ClientWidth = 463
+        object LabelFechaAfip1: TLabel
+          Left = 147
+          Height = 16
+          Top = 30
+          Width = 102
+          Caption = 'Fecha de la venta'
+          ParentColor = False
+        end
+        object edFechaVenta: TDateEdit
+          Left = 144
+          Height = 24
+          Top = 48
+          Width = 136
+          CalendarDisplaySettings = [dsShowHeadings, dsShowDayNames]
+          OKCaption = 'OK'
+          CancelCaption = 'Cancel'
+          DateOrder = doNone
+          ButtonWidth = 23
+          NumGlyphs = 1
+          MaxLength = 0
+          TabOrder = 0
+        end
       end
     end
     object rgCriterioFiltro: TRadioGroup
-      Left = 570
+      Left = 610
       Height = 110
       Top = 1
-      Width = 314
+      Width = 397
       Align = alClient
       AutoFill = True
       Caption = 'Criterio'
@@ -94,7 +358,7 @@ object frmImpresionComprobantes: TfrmImpresionComprobantes
       ChildSizing.Layout = cclLeftToRightThenTopToBottom
       ChildSizing.ControlsPerLine = 2
       ClientHeight = 89
-      ClientWidth = 310
+      ClientWidth = 393
       Columns = 2
       ItemIndex = 5
       Items.Strings = (
@@ -111,7 +375,7 @@ object frmImpresionComprobantes: TfrmImpresionComprobantes
       TabOrder = 1
     end
     object Panel3: TPanel
-      Left = 432
+      Left = 472
       Height = 110
       Top = 1
       Width = 138
@@ -418,6 +682,7 @@ object frmImpresionComprobantes: TfrmImpresionComprobantes
           0000000000000000000000000000000000000000000000000000
         }
         Layout = blGlyphTop
+        OnClick = btnFiltrarClick
         TabOrder = 0
       end
     end
@@ -426,9 +691,128 @@ object frmImpresionComprobantes: TfrmImpresionComprobantes
     Left = 0
     Height = 328
     Top = 112
-    Width = 885
+    Width = 1008
     TitleButtons = True
     AutoSort = True
+    Columns = <    
+      item
+        SizePriority = 0
+        Title.Alignment = taCenter
+        Title.Caption = 'Punto Venta'
+        Title.Orientation = toHorizontal
+        Width = 60
+        FieldName = 'PtoVenta'
+        DisplayFormat = '0000'
+        EditButtons = <>
+        Filter.DropDownRows = 0
+        Filter.EmptyValue = '(Todos)'
+        Filter.EmptyFont.Style = [fsItalic]
+        Filter.ItemIndex = -1
+      end    
+      item
+        SizePriority = 0
+        Title.Alignment = taCenter
+        Title.Caption = 'Número Factura'
+        Title.Orientation = toHorizontal
+        Width = 90
+        FieldName = 'NroFactura'
+        DisplayFormat = '00000000'
+        EditButtons = <>
+        Filter.DropDownRows = 0
+        Filter.EmptyValue = '(Todos)'
+        Filter.EmptyFont.Style = [fsItalic]
+        Filter.ItemIndex = -1
+      end    
+      item
+        SizePriority = 0
+        Title.Alignment = taCenter
+        Title.Caption = 'Fecha   Factura'
+        Title.Orientation = toHorizontal
+        Width = 90
+        FieldName = 'fechaFactura'
+        EditButtons = <>
+        Filter.DropDownRows = 0
+        Filter.EmptyValue = '(Todos)'
+        Filter.EmptyFont.Style = [fsItalic]
+        Filter.ItemIndex = -1
+      end    
+      item
+        Title.Alignment = taCenter
+        Title.Caption = 'Cliente'
+        Title.Orientation = toHorizontal
+        Width = 245
+        FieldName = 'Cliente'
+        EditButtons = <>
+        Filter.DropDownRows = 0
+        Filter.EmptyValue = '(Todos)'
+        Filter.EmptyFont.Style = [fsItalic]
+        Filter.ItemIndex = -1
+      end    
+      item
+        SizePriority = 0
+        Title.Alignment = taCenter
+        Title.Caption = 'Tipo Comprobante'
+        Title.Orientation = toHorizontal
+        Width = 120
+        FieldName = 'TipoComprobante'
+        EditButtons = <>
+        Filter.DropDownRows = 0
+        Filter.EmptyValue = '(Todos)'
+        Filter.EmptyFont.Style = [fsItalic]
+        Filter.ItemIndex = -1
+      end    
+      item
+        SizePriority = 0
+        Title.Alignment = taCenter
+        Title.Caption = 'Monto'
+        Title.Orientation = toHorizontal
+        Width = 120
+        FieldName = 'Monto'
+        EditButtons = <>
+        Filter.DropDownRows = 0
+        Filter.EmptyValue = '(Todos)'
+        Filter.EmptyFont.Style = [fsItalic]
+        Filter.ItemIndex = -1
+      end    
+      item
+        SizePriority = 0
+        Title.Alignment = taCenter
+        Title.Caption = 'Numero Venta'
+        Title.Orientation = toHorizontal
+        Width = 90
+        FieldName = 'NroInterno'
+        EditButtons = <>
+        Filter.DropDownRows = 0
+        Filter.EmptyValue = '(Todos)'
+        Filter.EmptyFont.Style = [fsItalic]
+        Filter.ItemIndex = -1
+      end    
+      item
+        SizePriority = 0
+        Title.Alignment = taCenter
+        Title.Caption = 'Fecha Venta'
+        Title.Orientation = toHorizontal
+        Width = 90
+        FieldName = 'fechaComprobante'
+        EditButtons = <>
+        Filter.DropDownRows = 0
+        Filter.EmptyValue = '(Todos)'
+        Filter.EmptyFont.Style = [fsItalic]
+        Filter.ItemIndex = -1
+      end    
+      item
+        SizePriority = 0
+        Title.Alignment = taCenter
+        Title.Caption = 'CAE'
+        Title.Orientation = toHorizontal
+        Width = 99
+        FieldName = 'CAE'
+        EditButtons = <>
+        Filter.DropDownRows = 0
+        Filter.EmptyValue = '(Todos)'
+        Filter.EmptyFont.Style = [fsItalic]
+        Filter.ItemIndex = -1
+      end>
     KeyStrokes = <    
       item
         Command = rxgcShowFindDlg
@@ -493,6 +877,7 @@ object frmImpresionComprobantes: TfrmImpresionComprobantes
     FocusColor = clRed
     SelectedColor = clHighlight
     GridLineStyle = psSolid
+    DataSource = ds_resultados
     FixedCols = 0
     Options = [dgTitles, dgColumnResize, dgColumnMove, dgColLines, dgRowLines, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgHeaderPushedLook]
     ParentColor = False
@@ -508,10 +893,10 @@ object frmImpresionComprobantes: TfrmImpresionComprobantes
     Left = 0
     Height = 61
     Top = 440
-    Width = 885
+    Width = 1008
     Align = alBottom
     ClientHeight = 61
-    ClientWidth = 885
+    ClientWidth = 1008
     TabOrder = 2
     object BitBtn1: TBitBtn
       Left = 24
@@ -559,7 +944,7 @@ object frmImpresionComprobantes: TfrmImpresionComprobantes
       TabOrder = 0
     end
     object BitBtn2: TBitBtn
-      Left = 720
+      Left = 843
       Height = 41
       Top = 8
       Width = 128
@@ -601,7 +986,13 @@ object frmImpresionComprobantes: TfrmImpresionComprobantes
         FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
         FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00
       }
+      OnClick = BitBtn2Click
       TabOrder = 1
     end
+  end
+  object ds_resultados: TDataSource
+    DataSet = DM_Facturas.Resultados
+    left = 579
+    top = 182
   end
 end

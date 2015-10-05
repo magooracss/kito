@@ -145,7 +145,7 @@ begin
     fe_comprobantesestadoFE.AsInteger:= 0; // 0 = Estado Desconocido
     fe_comprobantesptoVta.AsInteger:= StrToIntDef (LeerDato(SECCION_APP, CFG_PTO_VTA),0);
     fe_comprobantestipoCompr.AsInteger:= 1;  //1 = Facturas A
-    fe_comprobantesCAE.AsString:= EmptyStr;
+    fe_comprobantesCAE.AsString:= '0';
     fe_comprobantesvtoCAE.asString:= fechaDefault;
     fe_comprobantesultResultado.asInteger:= 0;
     fe_comprobantesultReproceso.AsInteger:= 0;
@@ -219,6 +219,7 @@ begin
   DM_General.ReiniciarTabla(fe_comprobantes);
 
 
+
   acumuladorIVA:= 0;
 
   fe_comprobantes.Insert;
@@ -274,6 +275,11 @@ begin
     Post;
   end;
 
+  //Vinculo la factura electronica con el comprobante de venta
+  DM_Ventas.ComproVta.Edit;
+  DM_Ventas.ComproVtafactura_id.AsString:= fe_comprobantesid.asString;
+  DM_Ventas.ComproVta.Post;
+  DM_Ventas.Grabar;
 
   Grabar;
 end;

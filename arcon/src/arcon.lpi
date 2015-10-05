@@ -20,7 +20,7 @@
       <AutoIncrementBuild Value="True"/>
       <MajorVersionNr Value="2015"/>
       <MinorVersionNr Value="7"/>
-      <BuildNr Value="35"/>
+      <BuildNr Value="37"/>
       <Language Value="040A"/>
       <StringTable CompanyName="RACSS Programacion" InternalName="ARCON" LegalTrademarks="Carlos Enrique Rodriguez" ProductName="Arcon" ProductVersion=""/>
     </VersionInfo>
@@ -160,6 +160,7 @@
         <Filename Value="frm_impresioncomprobantes.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="frmImpresionComprobantes"/>
+        <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
       </Unit15>
     </Units>

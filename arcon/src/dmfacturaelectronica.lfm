@@ -1,9 +1,9 @@
 object DM_FacturaElectronica: TDM_FacturaElectronica
   OldCreateOrder = False
   Height = 471
-  HorizontalOffset = 461
-  VerticalOffset = 178
-  Width = 566
+  HorizontalOffset = 251
+  VerticalOffset = 137
+  Width = 805
   object fe_comprobantes: TRxMemoryData
     FieldDefs = <    
       item
@@ -1584,7 +1584,6 @@ object DM_FacturaElectronica: TDM_FacturaElectronica
   end
   object qAlicuotasIVA: TZQuery
     Connection = DM_General.cnxBase
-    Active = True
     SQL.Strings = (
       'SELECT *'
       'FROM AlicuotasIVA'

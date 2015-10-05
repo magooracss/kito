@@ -2,10 +2,10 @@ object frmMain: TfrmMain
   Left = 304
   Height = 143
   Top = 238
-  Width = 674
+  Width = 586
   Caption = 'Finanzas'
   ClientHeight = 123
-  ClientWidth = 674
+  ClientWidth = 586
   Font.CharSet = ANSI_CHARSET
   Font.Height = -13
   Font.Name = 'Arial'
@@ -20,7 +20,7 @@ object frmMain: TfrmMain
     Left = 0
     Height = 23
     Top = 100
-    Width = 674
+    Width = 586
     Panels = <    
       item
         Width = 150
@@ -35,7 +35,7 @@ object frmMain: TfrmMain
     Left = 0
     Height = 82
     Top = 0
-    Width = 674
+    Width = 586
     AutoSize = True
     ButtonHeight = 80
     ButtonWidth = 92
@@ -85,6 +85,7 @@ object frmMain: TfrmMain
       Top = 2
       Caption = 'Test Factura'
       OnClick = ToolButton7Click
+      Visible = False
     end
     object ToolButton8: TToolButton
       Left = 481

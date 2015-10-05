@@ -114,6 +114,7 @@ uses
   , SD_Configuracion
   , process
   , dmfacturaelectronica
+  , dmfacturas
 
   ,dmclientes
   ;
@@ -159,14 +160,16 @@ procedure TfrmVentasAE.FormCreate(Sender: TObject);
 begin
   Application.CreateForm(TDM_FacturaElectronica, DM_FacturaElectronica);
   Application.CreateForm(TDM_Ventas, DM_Ventas);
+  Application.CreateForm(TDM_Facturas, DM_Facturas);
 
   Inicializar;
 end;
 
 procedure TfrmVentasAE.FormDestroy(Sender: TObject);
 begin
-  DM_FacturaElectronica.Free;
-  DM_Ventas.Free;
+   DM_Facturas.Free;
+   DM_Ventas.Free;
+   DM_FacturaElectronica.Free;
 end;
 
 procedure TfrmVentasAE.btnBuscarClick(Sender: TObject);
@@ -344,12 +347,14 @@ end;
 
 procedure TfrmVentasAE.btnImprimirClick(Sender: TObject);
 begin
-//  DM_Clientes.Editar(DM_Ventas.ComproVtacliente_id.AsString);
-  DM_Clientes.Editar(_clienteID);
-
-  ShowMessage(DM_Clientes.Cuit + ' - ' + FloatToStr(StrToFloatDef(DM_Clientes.Cuit, 0)));
   GrabarComprobante;
-//  DM_Ventas.ImprimirComprobante;
+  if DM_Ventas.ComproVtafactura_id.AsString <> GUIDNULO then
+  begin
+     DM_Facturas.ImprimirFactura(DM_Ventas.ComproVtafactura_id.AsString);
+     DM_Facturas.elReporte.ShowReport;
+  end
+  else
+     ShowMessage('El comprobante todavía no está facturado');
 end;
 
 procedure TfrmVentasAE.BitBtn4Click(Sender: TObject);
