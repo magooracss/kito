@@ -288,44 +288,24 @@ object frmVentasAE: TfrmVentasAE
       ValueChecked = '1'
       ValueUnchecked = '0'
     end
-    object DBEdit1: TDBEdit
-      Left = 299
-      Height = 24
-      Top = 41
-      Width = 69
-      DataField = 'puntoVenta'
-      DataSource = ds_Comprobante
-      CharCase = ecNormal
-      MaxLength = 0
-      TabOrder = 6
-      OnKeyPress = DBEdit1KeyPress
-    end
     object DBEdit2: TDBEdit
-      Left = 384
+      Left = 352
       Height = 24
-      Top = 41
+      Top = 40
       Width = 192
       DataField = 'nroComprobante'
       DataSource = ds_Comprobante
       ReadOnly = True
       CharCase = ecNormal
       MaxLength = 0
-      TabOrder = 7
-    end
-    object Label3: TLabel
-      Left = 299
-      Height = 16
-      Top = 21
-      Width = 71
-      Caption = 'Punto Venta'
-      ParentColor = False
+      TabOrder = 6
     end
     object Label4: TLabel
-      Left = 384
+      Left = 352
       Height = 16
-      Top = 21
-      Width = 45
-      Caption = 'Número'
+      Top = 20
+      Width = 82
+      Caption = 'Número Venta'
       ParentColor = False
     end
     object cbFormaDePago: TComboBox
@@ -334,7 +314,7 @@ object frmVentasAE: TfrmVentasAE
       Top = 115
       Width = 264
       ItemHeight = 16
-      TabOrder = 8
+      TabOrder = 7
       Text = 'cbFormaDePago'
     end
     object StaticText3: TStaticText
@@ -343,7 +323,7 @@ object frmVentasAE: TfrmVentasAE
       Top = 96
       Width = 127
       Caption = 'Forma de Pago'
-      TabOrder = 9
+      TabOrder = 8
     end
     object GroupBox4: TGroupBox
       Left = 296
@@ -353,7 +333,7 @@ object frmVentasAE: TfrmVentasAE
       Caption = 'Período Facturado'
       ClientHeight = 46
       ClientWidth = 249
-      TabOrder = 10
+      TabOrder = 9
       object DBDateEdit2: TDBDateEdit
         Left = 4
         Height = 24
@@ -423,7 +403,7 @@ object frmVentasAE: TfrmVentasAE
       ButtonWidth = 23
       NumGlyphs = 1
       MaxLength = 0
-      TabOrder = 11
+      TabOrder = 10
       DataField = 'vtoPago'
       DataSource = ds_Comprobante
     end
@@ -453,7 +433,7 @@ object frmVentasAE: TfrmVentasAE
       FixedCols = 0
       Options = [dgTitles, dgColumnResize, dgColumnMove, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit]
       Scrollbars = ssAutoVertical
-      TabOrder = 12
+      TabOrder = 11
       TitleFont.CharSet = ANSI_CHARSET
       TitleFont.Height = -13
       TitleFont.Name = 'Arial'

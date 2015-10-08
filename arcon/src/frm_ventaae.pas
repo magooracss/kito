@@ -33,7 +33,6 @@ type
     DBDateEdit2: TDBDateEdit;
     DBDateEdit3: TDBDateEdit;
     DBDateEdit4: TDBDateEdit;
-    DBEdit1: TDBEdit;
     DBEdit2: TDBEdit;
     DBGrid1: TDBGrid;
     DBGrid2: TDBGrid;
@@ -48,7 +47,6 @@ type
     GroupBox5: TGroupBox;
     Label1: TLabel;
     Label2: TLabel;
-    Label3: TLabel;
     Label4: TLabel;
     Label5: TLabel;
     Label6: TLabel;
@@ -139,18 +137,20 @@ begin
   DM_General.CargarComboBox(cbFormaDePago, 'formaDePago', 'id', DM_Ventas.qFormasPago);
 end;
 
+{ TODO -oMagoo -cRefactoring : Eliminar el método LevantarPuntoDeVenta, porque ya no se usa más eso. Ahora el punto de venta y el número de comprobante lo entrega AFIP vía factura electrónica. }
+
 procedure TfrmVentasAE.LevantarPuntoDeVenta;
 var
   comprobante: integer;
 begin
-  comprobante:= DM_Ventas.obtenerNroComprobante (DM_General.obtenerIDIntComboBox(cbTipoComprobante), _PtoVenta);
+  comprobante:= DM_Ventas.obtenerNroComprobante (1, _PtoVenta);
   if Comprobante <> 0 then
   begin
     DM_Ventas.ComprobanteEditarNro(comprobante);
   end
   else
   begin
-   ShowMessage ('No se encuentra cargado el numerador para este tipo de comprobante');
+//   ShowMessage ('No se encuentra cargado el numerador para este tipo de comprobante');
    DM_Ventas.ComprobanteEditarNro(0);
   end;
 end;
