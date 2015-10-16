@@ -44,6 +44,7 @@ type
     ToolButton9: TToolButton;
     procedure factImpresionExecute(Sender: TObject);
     procedure FormShow(Sender: TObject);
+    procedure movCompraExecute(Sender: TObject);
     procedure movVentaExecute(Sender: TObject);
     procedure prgFacturarExecute(Sender: TObject);
     procedure prgModificarFacturaExecute(Sender: TObject);
@@ -52,6 +53,7 @@ type
     procedure ToolButton7Click(Sender: TObject);
   private
     procedure PantallaVentas (idVenta: GUID_ID);
+    procedure PantallaCompras (refCompra: GUID_ID);
     procedure Inicializar;
   public
     { public declarations }
@@ -69,6 +71,7 @@ uses
   , process
   , dmfacturas
   , frm_impresioncomprobantes
+  , frm_comprasae
 
   ;
 
@@ -78,6 +81,7 @@ procedure TfrmMain.FormShow(Sender: TObject);
 begin
   Inicializar;
 end;
+
 
 
 procedure TfrmMain.PrgSalirExecute(Sender: TObject);
@@ -141,9 +145,32 @@ begin
 
 end;
 
+
 procedure TfrmMain.movVentaExecute(Sender: TObject);
 begin
   PantallaVentas(GUIDNULO);
+end;
+
+
+(*******************************************************************************
+*** COMPRAS
+*******************************************************************************)
+procedure TfrmMain.PantallaCompras(refCompra: GUID_ID);
+var
+  pant: TfrmComprasAE;
+begin
+  pant:= TfrmComprasAE.Create(self);
+  try
+    pant.compraID:= refCompra;
+    pant.ShowModal;
+  finally
+    pant.Free;
+  end;
+end;
+
+procedure TfrmMain.movCompraExecute(Sender: TObject);
+begin
+  PantallaCompras(GUIDNULO);
 end;
 
 (*******************************************************************************

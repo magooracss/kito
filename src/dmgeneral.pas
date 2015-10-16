@@ -24,6 +24,8 @@ const
   _VAL_IVA = 'IVA';
   _VAL_IMP_CMPR = 'IMP_CMPRAS';
 
+  _FRM_MONEY = '##########0.00';
+
 type
 
   GUID_ID = string[38];

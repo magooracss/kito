@@ -20,7 +20,7 @@
       <AutoIncrementBuild Value="True"/>
       <MajorVersionNr Value="2015"/>
       <MinorVersionNr Value="7"/>
-      <BuildNr Value="38"/>
+      <BuildNr Value="41"/>
       <Language Value="040A"/>
       <StringTable CompanyName="RACSS Programacion" InternalName="ARCON" LegalTrademarks="Carlos Enrique Rodriguez" ProductName="Arcon" ProductVersion=""/>
     </VersionInfo>
@@ -58,7 +58,7 @@
         <PackageName Value="LCL"/>
       </Item7>
     </RequiredPackages>
-    <Units Count="16">
+    <Units Count="19">
       <Unit0>
         <Filename Value="arcon.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -163,6 +163,27 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
       </Unit15>
+      <Unit16>
+        <Filename Value="frm_comprasae.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmComprasAE"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit16>
+      <Unit17>
+        <Filename Value="dmcompras.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="DM_Compras"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="DataModule"/>
+      </Unit17>
+      <Unit18>
+        <Filename Value="frm_compraitemsae.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmCompraItemAE"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit18>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

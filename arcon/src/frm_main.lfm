@@ -125,6 +125,7 @@ object frmMain: TfrmMain
       Caption = 'Compra (F5)'
       Hint = 'Agrega una nueva compra'
       ImageIndex = 26
+      OnExecute = movCompraExecute
       ShortCut = 116
     end
     object prgFacturar: TAction
