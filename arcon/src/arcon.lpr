@@ -11,9 +11,10 @@ uses
   ,frm_ventaae, dmventas
   { you can add units after this }
   , dmclientes, dmempresa, dmseleccionarpedidos, frm_seleccionarpedidos,
-  dmpedidos, dmprecios, SD_Configuracion, frm_ventaconceptosae,
-  dmfacturaelectronica, dmfacturas, frm_impresioncomprobantes, frm_comprasae,
-  dmcompras, frm_compraitemsae;
+  dmpedidos, dmprecios, SD_Configuracion, frm_proveedoresae,
+  frm_ventaconceptosae, dmfacturaelectronica, dmfacturas,
+  frm_impresioncomprobantes, frm_comprasae, dmcompras, frm_compraitemsae
+  ,dmproveedores;
 
 {$R *.res}
 
@@ -24,6 +25,7 @@ begin
   Application.CreateForm(TDM_Empresa, DM_Empresa);
   Application.CreateForm(TDM_Clientes, DM_Clientes);
   Application.CreateForm(TDM_Pedidos, DM_Pedidos);
+  Application.CreateForm(TDM_Proveedores, DM_Proveedores);
   Application.CreateForm(TfrmMain, frmMain);
   Application.Run;
 end.

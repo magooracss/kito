@@ -17,6 +17,7 @@ type
   TfrmComprasAE = class(TForm)
     btnAceptar: TBitBtn;
     btnCancelar: TBitBtn;
+    btnProveedorNuevo: TBitBtn;
     btnNuevo: TBitBtn;
     btnEditar: TBitBtn;
     btnBorrar: TBitBtn;
@@ -64,6 +65,7 @@ type
     procedure btnCancelarClick(Sender: TObject);
     procedure btnEditarClick(Sender: TObject);
     procedure btnNuevoClick(Sender: TObject);
+    procedure btnProveedorNuevoClick(Sender: TObject);
     procedure DBEdit3Exit(Sender: TObject);
     procedure ds_ComprobanteDataChange(Sender: TObject; Field: TField);
     procedure FormCreate(Sender: TObject);
@@ -87,6 +89,7 @@ uses
    dmcompras
   ,frm_busquedaempresas
   ,frm_compraitemsae
+  ,frm_proveedoresae
   ;
 
 { TfrmComprasAE }
@@ -112,8 +115,21 @@ begin
   finally
     pant.Free;
   end;
-
 end;
+
+procedure TfrmComprasAE.btnProveedorNuevoClick(Sender: TObject);
+var
+  pant: TfrmProveedoresAE;
+begin
+  pant:= TfrmProveedoresAE.Create(self);
+  try
+    pant.idProveedor:= GUIDNULO;
+    pant.ShowModal;
+  finally
+    pant.Free;
+  end;
+end;
+
 
 procedure TfrmComprasAE.btnCancelarClick(Sender: TObject);
 begin
@@ -189,6 +205,7 @@ begin
   PantallaItems;
   AjustarMontos;
 end;
+
 
 procedure TfrmComprasAE.DBEdit3Exit(Sender: TObject);
 begin
