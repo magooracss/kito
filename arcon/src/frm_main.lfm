@@ -33,7 +33,7 @@ object frmMain: TfrmMain
   end
   object ToolBar1: TToolBar
     Left = 0
-    Height = 82
+    Height = 162
     Top = 0
     Width = 586
     AutoSize = True
@@ -68,7 +68,7 @@ object frmMain: TfrmMain
       Caption = 'Compra'
     end
     object ToolButton5: TToolButton
-      Left = 287
+      Left = 382
       Height = 80
       Top = 2
       Width = 10
@@ -76,29 +76,34 @@ object frmMain: TfrmMain
       Style = tbsSeparator
     end
     object ToolButton6: TToolButton
-      Left = 297
+      Left = 392
       Top = 2
       Action = prgFacturar
     end
     object ToolButton7: TToolButton
-      Left = 389
+      Left = 484
       Top = 2
       Caption = 'Test Factura'
       OnClick = ToolButton7Click
       Visible = False
     end
     object ToolButton8: TToolButton
-      Left = 481
-      Top = 2
+      Left = 1
+      Top = 82
       Action = factImpresion
     end
     object ToolButton9: TToolButton
-      Left = 573
+      Left = 93
       Height = 80
-      Top = 2
+      Top = 82
       Width = 10
       Caption = 'ToolButton9'
       Style = tbsSeparator
+    end
+    object ToolButton10: TToolButton
+      Left = 287
+      Top = 2
+      Action = movOrdenPago
     end
   end
   object ActionList1: TActionList
@@ -152,6 +157,12 @@ object frmMain: TfrmMain
       Caption = 'Impresión'
       ImageIndex = 18
       OnExecute = factImpresionExecute
+    end
+    object movOrdenPago: TAction
+      Category = 'Movimientos'
+      Caption = 'Orden de Pago'
+      ImageIndex = 28
+      OnExecute = movOrdenPagoExecute
     end
   end
   object MainMenu1: TMainMenu

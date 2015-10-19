@@ -1,3 +1,4 @@
+
 -- Version Origen Ejecutable: 2015-05-26
 -- Version Destino Ejecutable: 2015-
 
@@ -1439,3 +1440,53 @@ INSERT INTO PLANDECUENTAS (id, CODIGO, CUENTA, OPERACION, PORCIVA, BVISIBLE) VAL
 INSERT INTO PLANDECUENTAS (id, CODIGO, CUENTA, OPERACION, PORCIVA, BVISIBLE) VALUES ('117', '7101', 'INICIALIZACION COMPRAS', NULL, '0.000000', '1');
 INSERT INTO PLANDECUENTAS (id, CODIGO, CUENTA, OPERACION, PORCIVA, BVISIBLE) VALUES ('118', '7102', 'INICIALIZACION VENTAS', NULL, '0.000000', '1');
 INSERT INTO PLANDECUENTAS (id, CODIGO, CUENTA, OPERACION, PORCIVA, BVISIBLE) VALUES ('119', '7103', 'TRANSFERENCIAS RECIBIDAS', NULL, '0.000000', '1');
+
+
+CREATE TABLE OrdenesDePago
+(
+  id		"guid"  NOT NULL PRIMARY KEY
+, numero	integer default -1
+, proveedor_id 	"guid" default '{00000000-0000-0000-0000-000000000000}'
+, fecha		date   
+, total		"money" default 0
+, bAnulada	smallint default 0
+, fAnulada	date
+, bVisible	smallint default 1
+);
+
+CREATE GENERATOR nroOrdenesDePago;
+
+SET GENERATOR nroOrdenesDePago TO 0;
+
+
+SET TERM ^ ;
+
+CREATE TRIGGER nroOrdenPago FOR OrdenesDePago
+BEFORE INSERT POSITION 0
+AS 
+BEGIN 
+    If (New.numero = -1) then
+   New.numero = GEN_ID(nroOrdenesDePago,1);
+END^
+
+SET TERM ; ^  
+
+CREATE TABLE OPComprobantes
+(
+  id		"guid"  NOT NULL PRIMARY KEY
+, ordenDePago_id "guid" default '{00000000-0000-0000-0000-000000000000}'
+, comprobanteCompra_id	"guid" default '{00000000-0000-0000-0000-000000000000}'
+, montoPagado	"money" default 0
+, bVisible smallint default 1
+);
+
+CREATE TABLE OPFormasPago
+(
+  id		"guid"  NOT NULL PRIMARY KEY
+, ordenDePago_id "guid" default '{00000000-0000-0000-0000-000000000000}'
+, cheque_id	 "guid" default '{00000000-0000-0000-0000-000000000000}'
+, formaPago_id	 integer default 0
+, monto		 "money" default 0
+, bVisible 	 smallint default 1
+);
+

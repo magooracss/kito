@@ -20,7 +20,7 @@
       <AutoIncrementBuild Value="True"/>
       <MajorVersionNr Value="2015"/>
       <MinorVersionNr Value="7"/>
-      <BuildNr Value="44"/>
+      <BuildNr Value="45"/>
       <Language Value="040A"/>
       <StringTable CompanyName="RACSS Programacion" InternalName="ARCON" LegalTrademarks="Carlos Enrique Rodriguez" ProductName="Arcon" ProductVersion=""/>
     </VersionInfo>
@@ -58,7 +58,7 @@
         <PackageName Value="LCL"/>
       </Item7>
     </RequiredPackages>
-    <Units Count="21">
+    <Units Count="23">
       <Unit0>
         <Filename Value="arcon.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -194,8 +194,22 @@
       <Unit20>
         <Filename Value="..\..\src\dmproveedores.pas"/>
         <IsPartOfProject Value="True"/>
+        <ComponentName Value="DM_Proveedores"/>
         <HasResources Value="True"/>
+        <ResourceBaseClass Value="DataModule"/>
       </Unit20>
+      <Unit21>
+        <Filename Value="frm_ordendepagoae.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmOrdenDePagoAE"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit21>
+      <Unit22>
+        <Filename Value="dmordendepago.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="DM_OrdenDePago"/>
+        <ResourceBaseClass Value="DataModule"/>
+      </Unit22>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

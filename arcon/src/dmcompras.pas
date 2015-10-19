@@ -124,6 +124,7 @@ begin
   qTiposComprobantes.Open;
   qFormasDePago.Open;
   qPlazosPago.Open;
+  qPlanDeCuentas.Open;
 end;
 
 procedure TDM_Compras.ajustarMontos;

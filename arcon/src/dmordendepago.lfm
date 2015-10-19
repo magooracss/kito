@@ -1,0 +1,1235 @@
+object DM_OrdenDePago: TDM_OrdenDePago
+  OldCreateOrder = False
+  Height = 420
+  HorizontalOffset = 442
+  VerticalOffset = 189
+  Width = 705
+  object OrdenDePago: TRxMemoryData
+    FieldDefs = <    
+      item
+        Name = 'id'
+        DataType = ftString
+        Precision = 0
+        Size = 38
+      end    
+      item
+        Name = 'numero'
+        DataType = ftInteger
+        Precision = 0
+        Size = 0
+      end    
+      item
+        Name = 'proveedor_id'
+        DataType = ftString
+        Precision = 0
+        Size = 38
+      end    
+      item
+        Name = 'fecha'
+        DataType = ftDate
+        Precision = 0
+        Size = 0
+      end    
+      item
+        Name = 'total'
+        DataType = ftFloat
+        Precision = 0
+        Size = 0
+      end    
+      item
+        Name = 'bAnulada'
+        DataType = ftInteger
+        Precision = 0
+        Size = 0
+      end    
+      item
+        Name = 'fAnulada'
+        DataType = ftDate
+        Precision = 0
+        Size = 0
+      end    
+      item
+        Name = 'bVisible'
+        DataType = ftInteger
+        Precision = 0
+        Size = 0
+      end>
+    AfterInsert = OrdenDePagoAfterInsert
+    PacketRecords = 0
+    left = 64
+    top = 35
+    object OrdenDePagoid: TStringField
+      DisplayWidth = 38
+      FieldKind = fkData
+      FieldName = 'id'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 38
+    end
+    object OrdenDePagonumero: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'numero'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object OrdenDePagoproveedor_id: TStringField
+      DisplayWidth = 38
+      FieldKind = fkData
+      FieldName = 'proveedor_id'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 38
+    end
+    object OrdenDePagofecha: TDateField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'fecha'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object OrdenDePagototal: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'total'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Currency = True
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object OrdenDePagobAnulada: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'bAnulada'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object OrdenDePagofAnulada: TDateField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'fAnulada'
+      Index = 6
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object OrdenDePagobVisible: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'bVisible'
+      Index = 7
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+  end
+  object OPComprobantes: TRxMemoryData
+    FieldDefs = <    
+      item
+        Name = 'id'
+        DataType = ftString
+        Precision = 0
+        Size = 38
+      end    
+      item
+        Name = 'ordenDePago_id'
+        DataType = ftString
+        Precision = 0
+        Size = 38
+      end    
+      item
+        Name = 'comprobanteCompra_id'
+        DataType = ftString
+        Precision = 0
+        Size = 38
+      end    
+      item
+        Name = 'montoPagado'
+        DataType = ftFloat
+        Precision = 0
+        Size = 0
+      end    
+      item
+        Name = 'bVisible'
+        DataType = ftInteger
+        Precision = 0
+        Size = 0
+      end    
+      item
+        Name = 'ComprobanteNro'
+        DataType = ftInteger
+        Precision = 0
+        Size = 0
+      end    
+      item
+        Name = 'ComprobanteFecha'
+        DataType = ftDate
+        Precision = 0
+        Size = 0
+      end    
+      item
+        Name = 'ComprobanteMonto'
+        DataType = ftFloat
+        Precision = 0
+        Size = 0
+      end    
+      item
+        Name = 'ComprobantePagado'
+        DataType = ftFloat
+        Precision = 0
+        Size = 0
+      end>
+    AfterInsert = OPComprobantesAfterInsert
+    PacketRecords = 0
+    left = 178
+    top = 35
+    object OPComprobantesid: TStringField
+      DisplayWidth = 38
+      FieldKind = fkData
+      FieldName = 'id'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 38
+    end
+    object OPComprobantesordenDePago_id: TStringField
+      DisplayWidth = 38
+      FieldKind = fkData
+      FieldName = 'ordenDePago_id'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 38
+    end
+    object OPComprobantescomprobanteCompra_id: TStringField
+      DisplayWidth = 38
+      FieldKind = fkData
+      FieldName = 'comprobanteCompra_id'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 38
+    end
+    object OPComprobantesmontoPagado: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'montoPagado'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Currency = True
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object OPComprobantesbVisible: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'bVisible'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object OPComprobantesComprobanteNro: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'ComprobanteNro'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object OPComprobantesComprobanteFecha: TDateField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'ComprobanteFecha'
+      Index = 6
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object OPComprobantesComprobanteMonto: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'ComprobanteMonto'
+      Index = 7
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Currency = True
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object OPComprobantesComprobantePagado: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'ComprobantePagado'
+      Index = 8
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+  end
+  object OPFormasPago: TRxMemoryData
+    FieldDefs = <    
+      item
+        Name = 'id'
+        DataType = ftString
+        Precision = 0
+        Size = 38
+      end    
+      item
+        Name = 'ordenDePago_id'
+        DataType = ftString
+        Precision = 0
+        Size = 38
+      end    
+      item
+        Name = 'cheque_id'
+        DataType = ftString
+        Precision = 0
+        Size = 38
+      end    
+      item
+        Name = 'formaPago_id'
+        DataType = ftInteger
+        Precision = 0
+        Size = 0
+      end    
+      item
+        Name = 'monto'
+        DataType = ftFloat
+        Precision = 0
+        Size = 0
+      end    
+      item
+        Name = 'bVisible'
+        DataType = ftInteger
+        Precision = 0
+        Size = 0
+      end>
+    AfterInsert = OPFormasPagoAfterInsert
+    PacketRecords = 0
+    left = 296
+    top = 35
+    object OPFormasPagoid: TStringField
+      DisplayWidth = 38
+      FieldKind = fkData
+      FieldName = 'id'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 38
+    end
+    object OPFormasPagoordenDePago_id: TStringField
+      DisplayWidth = 38
+      FieldKind = fkData
+      FieldName = 'ordenDePago_id'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 38
+    end
+    object OPFormasPagocheque_id: TStringField
+      DisplayWidth = 38
+      FieldKind = fkData
+      FieldName = 'cheque_id'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 38
+    end
+    object OPFormasPagoformaPago_id: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'formaPago_id'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object OPFormasPagomonto: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'monto'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Currency = True
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object OPFormasPagobVisible: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'bVisible'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+  end
+  object SELOP: TZQuery
+    Connection = DM_General.cnxBase
+    Active = True
+    SQL.Strings = (
+      'SELECT *'
+      'FROM OrdenesDePago'
+      'WHERE (id = :id)'
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'id'
+        ParamType = ptUnknown
+      end>
+    left = 64
+    top = 104
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'id'
+        ParamType = ptUnknown
+      end>
+    object SELOPID: TStringField
+      DisplayWidth = 152
+      FieldKind = fkData
+      FieldName = 'ID'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      Size = 152
+    end
+    object SELOPNUMERO: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'NUMERO'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object SELOPPROVEEDOR_ID: TStringField
+      DisplayWidth = 152
+      FieldKind = fkData
+      FieldName = 'PROVEEDOR_ID'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 152
+    end
+    object SELOPFECHA: TDateField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'FECHA'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object SELOPTOTAL: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'TOTAL'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object SELOPBANULADA: TSmallintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'BANULADA'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object SELOPFANULADA: TDateField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'FANULADA'
+      Index = 6
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object SELOPBVISIBLE: TSmallintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'BVISIBLE'
+      Index = 7
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+  end
+  object INSOP: TZQuery
+    Connection = DM_General.cnxBase
+    SQL.Strings = (
+      'INSERT INTO OrdenesDePago'
+      '(ID, NUMERO, PROVEEDOR_ID, fecha, total, bAnulada, fAnulada , BVISIBLE)'
+      'VALUES'
+      '(:ID, :NUMERO, :PROVEEDOR_ID, :fecha, :total, :bAnulada , :fAnulada, :BVISIBLE)'
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'id'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'NUMERO'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'PROVEEDOR_ID'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'FECHA'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'total'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'bAnulada'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'fAnulada'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'bVisible'
+        ParamType = ptUnknown
+      end>
+    left = 64
+    top = 171
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'id'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'NUMERO'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'PROVEEDOR_ID'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'FECHA'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'total'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'bAnulada'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'fAnulada'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'bVisible'
+        ParamType = ptUnknown
+      end>
+  end
+  object UPDOP: TZQuery
+    Connection = DM_General.cnxBase
+    SQL.Strings = (
+      'UPDATE OrdenesDePago'
+      'SET'
+      'NUMERO = :Numero'
+      ', PROVEEDOR_ID  = :proveedor_id'
+      ', FECHA = :fecha'
+      ', total = :total'
+      ', BANULADA = :bAnulada'
+      ', FANULADA = :fAnulada'
+      ', BVISIBLE = :bVisible'
+      'WHERE id = :id'
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'Numero'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'proveedor_id'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'fecha'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'total'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'bAnulada'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'fAnulada'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'bVisible'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'id'
+        ParamType = ptUnknown
+      end>
+    left = 64
+    top = 240
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'Numero'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'proveedor_id'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'fecha'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'total'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'bAnulada'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'fAnulada'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'bVisible'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'id'
+        ParamType = ptUnknown
+      end>
+  end
+  object DELOP: TZQuery
+    Connection = DM_General.cnxBase
+    SQL.Strings = (
+      'UPDATE OrdenesDePago'
+      'SET bVisible = 0'
+      'WHERE id = :id'
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'id'
+        ParamType = ptUnknown
+      end>
+    left = 64
+    top = 312
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'id'
+        ParamType = ptUnknown
+      end>
+  end
+  object SELOPComprobantes: TZQuery
+    Connection = DM_General.cnxBase
+    SQL.Strings = (
+      'SELECT *'
+      'FROM OPComprobantes'
+      'WHERE (id = :id)'
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'id'
+        ParamType = ptUnknown
+      end>
+    left = 178
+    top = 104
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'id'
+        ParamType = ptUnknown
+      end>
+    object SELOPComprobantesID: TStringField
+      DisplayWidth = 152
+      FieldKind = fkData
+      FieldName = 'ID'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      Size = 152
+    end
+    object SELOPComprobantesORDENDEPAGO_ID: TStringField
+      DisplayWidth = 152
+      FieldKind = fkData
+      FieldName = 'ORDENDEPAGO_ID'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 152
+    end
+    object SELOPComprobantesCOMPROBANTECOMPRA_ID: TStringField
+      DisplayWidth = 152
+      FieldKind = fkData
+      FieldName = 'COMPROBANTECOMPRA_ID'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 152
+    end
+    object SELOPComprobantesMONTOPAGADO: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'MONTOPAGADO'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object SELOPComprobantesBVISIBLE: TSmallintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'BVISIBLE'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+  end
+  object INSOPComprobantes: TZQuery
+    Connection = DM_General.cnxBase
+    SQL.Strings = (
+      'INSERT INTO OPComprobantes'
+      '(ID, OrdenDePago_id, ComprobanteCompra_id, montoPagado , BVISIBLE)'
+      'VALUES'
+      '(:ID, :OrdenDePago_id, :ComprobanteCompra_id, :montoPagado ,  :BVISIBLE)'
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'id'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'OrdenDePago_id'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'ComprobanteCompra_id'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'montoPagado'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'bVisible'
+        ParamType = ptUnknown
+      end>
+    left = 178
+    top = 171
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'id'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'OrdenDePago_id'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'ComprobanteCompra_id'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'montoPagado'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'bVisible'
+        ParamType = ptUnknown
+      end>
+  end
+  object UPDOPComprobantes: TZQuery
+    Connection = DM_General.cnxBase
+    SQL.Strings = (
+      'UPDATE OPComprobantes'
+      'SET'
+      ' ordenDePago_id = :ordenDePago_id'
+      ', comprobanteCompra_id = :comprobanteCompra_id'
+      ', montoPagado = :montoPagado'
+      ', BVISIBLE = :bVisible'
+      'WHERE id = :id'
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'ordenDePago_id'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'comprobanteCompra_id'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'montoPagado'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'bVisible'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'id'
+        ParamType = ptUnknown
+      end>
+    left = 178
+    top = 240
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'ordenDePago_id'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'comprobanteCompra_id'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'montoPagado'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'bVisible'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'id'
+        ParamType = ptUnknown
+      end>
+  end
+  object DELOPComprobantes: TZQuery
+    Connection = DM_General.cnxBase
+    SQL.Strings = (
+      'UPDATE OPComprobantes'
+      'SET bVisible = 0'
+      'WHERE id = :id'
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'id'
+        ParamType = ptUnknown
+      end>
+    left = 178
+    top = 312
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'id'
+        ParamType = ptUnknown
+      end>
+  end
+  object SELOPFormasPago: TZQuery
+    Connection = DM_General.cnxBase
+    Active = True
+    SQL.Strings = (
+      'SELECT *'
+      'FROM OPFormasPago'
+      'WHERE (id = :id)'
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'id'
+        ParamType = ptUnknown
+      end>
+    left = 296
+    top = 104
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'id'
+        ParamType = ptUnknown
+      end>
+    object SELOPFormasPagoID: TStringField
+      DisplayWidth = 152
+      FieldKind = fkData
+      FieldName = 'ID'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      Size = 152
+    end
+    object SELOPFormasPagoORDENDEPAGO_ID: TStringField
+      DisplayWidth = 152
+      FieldKind = fkData
+      FieldName = 'ORDENDEPAGO_ID'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 152
+    end
+    object SELOPFormasPagoCHEQUE_ID: TStringField
+      DisplayWidth = 152
+      FieldKind = fkData
+      FieldName = 'CHEQUE_ID'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 152
+    end
+    object SELOPFormasPagoFORMAPAGO_ID: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'FORMAPAGO_ID'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object SELOPFormasPagoMONTO: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'MONTO'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object SELOPFormasPagoBVISIBLE: TSmallintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'BVISIBLE'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+  end
+  object INSOPFormasPago: TZQuery
+    Connection = DM_General.cnxBase
+    SQL.Strings = (
+      'INSERT INTO OPFormasPago'
+      '(ID, ordenPago_id, cheque_id, formaPago_id, monto, BVISIBLE)'
+      'VALUES'
+      '(:ID, :ordenPago_id, :cheque_id, :formaPago_id, :monto, :BVISIBLE)'
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'id'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'ordenPago_id'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'cheque_id'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'formaPago_id'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'monto'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'bVisible'
+        ParamType = ptUnknown
+      end>
+    left = 296
+    top = 171
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'id'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'ordenPago_id'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'cheque_id'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'formaPago_id'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'monto'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'bVisible'
+        ParamType = ptUnknown
+      end>
+  end
+  object UPDOPFormasPago: TZQuery
+    Connection = DM_General.cnxBase
+    SQL.Strings = (
+      'UPDATE OPFormasPago'
+      'SET'
+      ' ordenDePago = :ordenDePago'
+      ', cheque_id = :cheque_id'
+      ', formaPago_id = :formaPago_id'
+      ', monto = :monto'
+      ', BVISIBLE = :bVisible'
+      'WHERE id = :id'
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'ordenDePago'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'cheque_id'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'formaPago_id'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'monto'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'bVisible'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'id'
+        ParamType = ptUnknown
+      end>
+    left = 296
+    top = 240
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'ordenDePago'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'cheque_id'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'formaPago_id'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'monto'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'bVisible'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'id'
+        ParamType = ptUnknown
+      end>
+  end
+  object DELOPFormasPago: TZQuery
+    Connection = DM_General.cnxBase
+    SQL.Strings = (
+      'UPDATE OPFormasPago'
+      'SET bVisible = 0'
+      'WHERE id = :id'
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'id'
+        ParamType = ptUnknown
+      end>
+    left = 296
+    top = 312
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'id'
+        ParamType = ptUnknown
+      end>
+  end
+end

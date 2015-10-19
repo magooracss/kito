@@ -14,6 +14,7 @@ type
   { TfrmMain }
 
   TfrmMain = class(TForm)
+    movOrdenPago: TAction;
     factImpresion: TAction;
     MenuItem8: TMenuItem;
     prgModificarFactura: TAction;
@@ -34,6 +35,7 @@ type
     st: TStatusBar;
     ToolBar1: TToolBar;
     ToolButton1: TToolButton;
+    ToolButton10: TToolButton;
     ToolButton2: TToolButton;
     ToolButton3: TToolButton;
     ToolButton4: TToolButton;
@@ -45,6 +47,7 @@ type
     procedure factImpresionExecute(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure movCompraExecute(Sender: TObject);
+    procedure movOrdenPagoExecute(Sender: TObject);
     procedure movVentaExecute(Sender: TObject);
     procedure prgFacturarExecute(Sender: TObject);
     procedure prgModificarFacturaExecute(Sender: TObject);
@@ -72,7 +75,7 @@ uses
   , dmfacturas
   , frm_impresioncomprobantes
   , frm_comprasae
-
+  , frm_ordendepagoae
   ;
 
 { TfrmMain }
@@ -213,6 +216,22 @@ var
   pant: TfrmImpresionComprobantes;
 begin
   pant:= TfrmImpresionComprobantes.Create(self);
+  try
+    pant.ShowModal;
+  finally
+    pant.Free;
+  end;
+end;
+
+(*******************************************************************************
+*** ORDENES DE PAGO
+*******************************************************************************)
+
+procedure TfrmMain.movOrdenPagoExecute(Sender: TObject);
+var
+  pant: TfrmOrdenDePagoAE;
+begin
+  pant:= TfrmOrdenDePagoAE.Create(self);
   try
     pant.ShowModal;
   finally
