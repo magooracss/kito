@@ -58,7 +58,7 @@
         <PackageName Value="LCL"/>
       </Item7>
     </RequiredPackages>
-    <Units Count="23">
+    <Units Count="24">
       <Unit0>
         <Filename Value="arcon.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -202,14 +202,22 @@
         <Filename Value="frm_ordendepagoae.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="frmOrdenDePagoAE"/>
+        <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
       </Unit21>
       <Unit22>
         <Filename Value="dmordendepago.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="DM_OrdenDePago"/>
+        <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
       </Unit22>
+      <Unit23>
+        <Filename Value="frm_busquedacompras.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmBusquedaCompras"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit23>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

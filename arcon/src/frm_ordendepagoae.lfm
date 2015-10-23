@@ -13,6 +13,7 @@ object frmOrdenDePagoAE: TfrmOrdenDePagoAE
   Font.Quality = fqDraft
   OnCreate = FormCreate
   OnDestroy = FormDestroy
+  OnShow = FormShow
   Position = poOwnerFormCenter
   LCLVersion = '1.4.2.0'
   object Panel1: TPanel
@@ -450,6 +451,7 @@ object frmOrdenDePagoAE: TfrmOrdenDePagoAE
           000000000000000000007F000006823C174F935C38C2935E3AD98F5430CF8946
           2193783202200000000000000000000000000000000000000000
         }
+        OnClick = btnNuevoClick
         TabOrder = 0
       end
       object btnEditar: TBitBtn
@@ -540,7 +542,7 @@ object frmOrdenDePagoAE: TfrmOrdenDePagoAE
         }
         TabOrder = 2
       end
-      object CurrencyEdit1: TCurrencyEdit
+      object edTotalComprobantes: TCurrencyEdit
         Left = 3
         Height = 24
         Top = 7
@@ -567,7 +569,7 @@ object frmOrdenDePagoAE: TfrmOrdenDePagoAE
           Title.Alignment = taCenter
           Title.Caption = 'Número'
           Title.Orientation = toHorizontal
-          Width = 177
+          Width = 142
           FieldName = 'ComprobanteNro'
           EditButtons = <>
           Filter.DropDownRows = 0
@@ -579,7 +581,7 @@ object frmOrdenDePagoAE: TfrmOrdenDePagoAE
           Title.Alignment = taCenter
           Title.Caption = 'Fecha'
           Title.Orientation = toHorizontal
-          Width = 177
+          Width = 142
           FieldName = 'ComprobanteFecha'
           EditButtons = <>
           Filter.DropDownRows = 0
@@ -591,7 +593,7 @@ object frmOrdenDePagoAE: TfrmOrdenDePagoAE
           Title.Alignment = taCenter
           Title.Caption = 'Monto'
           Title.Orientation = toHorizontal
-          Width = 177
+          Width = 142
           FieldName = 'ComprobanteMonto'
           EditButtons = <>
           Filter.DropDownRows = 0
@@ -603,8 +605,20 @@ object frmOrdenDePagoAE: TfrmOrdenDePagoAE
           Title.Alignment = taCenter
           Title.Caption = 'Pagado'
           Title.Orientation = toHorizontal
-          Width = 180
+          Width = 142
           FieldName = 'ComprobantePagado'
+          EditButtons = <>
+          Filter.DropDownRows = 0
+          Filter.EmptyValue = '(Todos)'
+          Filter.EmptyFont.Style = [fsItalic]
+          Filter.ItemIndex = -1
+        end      
+        item
+          Title.Alignment = taCenter
+          Title.Caption = 'Saldo'
+          Title.Orientation = toHorizontal
+          Width = 143
+          FieldName = 'ComprobanteSaldo'
           EditButtons = <>
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Todos)'
@@ -847,7 +861,7 @@ object frmOrdenDePagoAE: TfrmOrdenDePagoAE
           }
           TabOrder = 2
         end
-        object CurrencyEdit2: TCurrencyEdit
+        object edTotalPagado: TCurrencyEdit
           Left = 3
           Height = 24
           Top = 7

@@ -25,8 +25,8 @@ type
     btnNuevo: TBitBtn;
     btnNuevo1: TBitBtn;
     btnProveedorNuevo: TBitBtn;
-    CurrencyEdit1: TCurrencyEdit;
-    CurrencyEdit2: TCurrencyEdit;
+    edTotalComprobantes: TCurrencyEdit;
+    edTotalPagado: TCurrencyEdit;
     ds_OP: TDataSource;
     ds_OPComprobantes: TDataSource;
     ds_FormasPago: TDataSource;
@@ -47,13 +47,19 @@ type
     RxDBGrid2: TRxDBGrid;
     procedure btnBuscarProveedorClick(Sender: TObject);
     procedure btnCancelarClick(Sender: TObject);
+    procedure btnNuevoClick(Sender: TObject);
     procedure btnProveedorNuevoClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
+    procedure FormShow(Sender: TObject);
   private
-    { private declarations }
+    _ordenPagoID: GUID_ID;
+    function getOrdenPagoID: GUID_ID;
+
+    procedure PantallaComprobantes (refComprobante: GUID_ID);
+    procedure CalcularParciales; //Es un refresco de pantalla con las sumas parciales
   public
-    { public declarations }
+    property ordenPagoID: GUID_ID read getOrdenPagoID write _ordenPagoID;
   end;
 
 var
@@ -65,6 +71,7 @@ uses
   dmordendepago
   ,frm_busquedaempresas
   ,frm_proveedoresae
+  ,frm_busquedacompras
   ;
 
 { TfrmOrdenDePagoAE }
@@ -72,11 +79,43 @@ uses
 procedure TfrmOrdenDePagoAE.FormCreate(Sender: TObject);
 begin
   Application.CreateForm(TDM_OrdenDePago, DM_OrdenDePago);
+  _ordenPagoID:= GUIDNULO;
 end;
 
 procedure TfrmOrdenDePagoAE.FormDestroy(Sender: TObject);
 begin
   DM_OrdenDePago.Free;
+end;
+
+procedure TfrmOrdenDePagoAE.FormShow(Sender: TObject);
+begin
+  if (_ordenPagoID = GUIDNULO ) then
+  begin
+    DM_OrdenDePago.Nueva;
+  end
+  else
+  begin
+    raise Exception.Create ('Falta levantar la orden de pago para editarla');
+  end;
+
+end;
+
+function TfrmOrdenDePagoAE.getOrdenPagoID: GUID_ID;
+begin
+  _ordenPagoID:= DM_OrdenDePago.ordenPagoID;
+  Result:= _ordenPagoID;
+end;
+
+procedure TfrmOrdenDePagoAE.PantallaComprobantes(refComprobante: GUID_ID);
+begin
+
+end;
+
+procedure TfrmOrdenDePagoAE.CalcularParciales;
+begin
+  edTotalPagado.Value:= -1.23;
+  edTotalComprobantes.Value:= DM_OrdenDePago.sumaSaldoComprobantes;
+  edTotalAdeudado.Value:= -1.23;
 end;
 
 procedure TfrmOrdenDePagoAE.btnCancelarClick(Sender: TObject);
@@ -108,6 +147,25 @@ begin
     begin
       edProveedor.Text:= pant.RazonSocial;
       DM_OrdenDePago.refProveedor:= pant.idProveedor;
+    end;
+  finally
+    pant.Free;
+  end;
+end;
+
+(*******************************************************************************
+*** COMPROBANTES DE COMPRA
+*******************************************************************************)
+procedure TfrmOrdenDePagoAE.btnNuevoClick(Sender: TObject);
+var
+  pant: TfrmBusquedaCompras;
+begin
+  pant:= TfrmBusquedaCompras.Create(self);
+  try
+    if pant.ShowModal = mrOK then
+    begin
+      DM_OrdenDePago.AgregarComprobante (pant.comprobanteID);
+      CalcularParciales;
     end;
   finally
     pant.Free;

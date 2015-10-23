@@ -49,6 +49,16 @@ type
     qFormasDePagoBVISIBLE: TSmallintField;
     qFormasDePagoFORMADEPAGO: TStringField;
     qFormasDePagoID: TLongintField;
+    qItemsCompraBVISIBLE: TSmallintField;
+    qItemsCompraCANTIDAD: TFloatField;
+    qItemsCompraCOMPROBANTECOMPRA_ID: TStringField;
+    qItemsCompraCONCEPTO: TStringField;
+    qItemsCompraCUENTAIMPUTACION: TLongintField;
+    qItemsCompraID: TStringField;
+    qItemsCompraIVA: TFloatField;
+    qItemsCompraMONTOIVA: TFloatField;
+    qItemsCompraMONTOTOTAL: TFloatField;
+    qItemsCompraMONTOUNITARIO: TFloatField;
     qPlanDeCuentas: TZQuery;
     qPlanDeCuentasBVISIBLE: TSmallintField;
     qPlanDeCuentasCODIGO: TStringField;
@@ -66,6 +76,7 @@ type
     qTiposComprobantesBVISIBLE: TSmallintField;
     qTiposComprobantesCOMPROBANTECOMPRA: TStringField;
     qTiposComprobantesID: TLongintField;
+    qItemsCompra: TZQuery;
     SELCompraItemsBVISIBLE: TSmallintField;
     SELCompraItemsCANTIDAD: TFloatField;
     SELCompraItemsCOMPROBANTECOMPRA_ID: TStringField;
@@ -101,7 +112,9 @@ type
     procedure CalcularMontosItem;
     procedure BorrarItem;
 
+    procedure Editar (refCompra: GUID_ID);
     procedure Grabar;
+
   end;
 
 var
@@ -223,6 +236,27 @@ begin
     CompraItems.Delete;
   end;
   CalcularMontosItem;
+end;
+
+procedure TDM_Compras.Editar(refCompra: GUID_ID);
+begin
+  DM_General.ReiniciarTabla(Compras);
+  DM_General.ReiniciarTabla(CompraItems);
+
+  if SELCompras.Active then
+     SELCompras.Close;
+  SELCompras.ParamByName('id').AsString:= refCompra;
+  SELCompras.Open;
+  Compras.LoadFromDataSet(SELCompras, 0, lmAppend);
+  SELCompras.Close;
+
+  if qItemsCompra.Active then
+     qItemsCompra.Close;
+  qItemsCompra.ParamByName('comprobanteCompra_id').asString:= refCompra;
+  qItemsCompra.Open;
+  CompraItems.LoadFromDataSet(qItemsCompra, 0, lmAppend);
+  qItemsCompra.Close;
+
 end;
 
 procedure TDM_Compras.Grabar;
