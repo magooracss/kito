@@ -32,7 +32,7 @@ type
     ds_FormasPago: TDataSource;
     edTotalAdeudado: TCurrencyEdit;
     DBDateEdit1: TDBDateEdit;
-    DBText1: TDBText;
+    dbNro: TDBText;
     edProveedor: TEdit;
     GroupBox1: TGroupBox;
     Label1: TLabel;
@@ -45,10 +45,12 @@ type
     Panel7: TPanel;
     RxDBGrid1: TRxDBGrid;
     RxDBGrid2: TRxDBGrid;
+    procedure btnBorrarClick(Sender: TObject);
     procedure btnBuscarProveedorClick(Sender: TObject);
     procedure btnCancelarClick(Sender: TObject);
     procedure btnNuevoClick(Sender: TObject);
     procedure btnProveedorNuevoClick(Sender: TObject);
+    procedure ds_OPDataChange(Sender: TObject; Field: TField);
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure FormShow(Sender: TObject);
@@ -136,6 +138,11 @@ begin
   end;
 end;
 
+procedure TfrmOrdenDePagoAE.ds_OPDataChange(Sender: TObject; Field: TField);
+begin
+  dbNro.Visible := (DM_OrdenDePago.OrdenDePagonumero.AsInteger > 0 )
+end;
+
 procedure TfrmOrdenDePagoAE.btnBuscarProveedorClick(Sender: TObject);
 var
   pant: TfrmBusquedaEmpresas;
@@ -153,6 +160,7 @@ begin
   end;
 end;
 
+
 (*******************************************************************************
 *** COMPROBANTES DE COMPRA
 *******************************************************************************)
@@ -162,6 +170,7 @@ var
 begin
   pant:= TfrmBusquedaCompras.Create(self);
   try
+    pant.proveedorID:= DM_OrdenDePago.refProveedor;
     if pant.ShowModal = mrOK then
     begin
       DM_OrdenDePago.AgregarComprobante (pant.comprobanteID);
@@ -173,6 +182,17 @@ begin
 end;
 
 
+procedure TfrmOrdenDePagoAE.btnBorrarClick(Sender: TObject);
+begin
+   if (MessageDlg ('Confirmación'
+                  , 'Desea quitar el comprobante seleccionado?'
+                   , mtConfirmation, [mbYes, mbNo],0 ) = mrYes) then
+   Begin
+      DM_OrdenDePago.QuitarComprobante;
+      CalcularParciales;
+   end;
+
+end;
 
 end.
 

@@ -194,11 +194,11 @@ object frmOrdenDePagoAE: TfrmOrdenDePagoAE
       DataField = 'fecha'
       DataSource = ds_OP
     end
-    object DBText1: TDBText
+    object dbNro: TDBText
       Left = 24
       Height = 22
       Top = 10
-      Width = 79
+      Width = 57
       DataField = 'numero'
       DataSource = ds_OP
       Font.CharSet = ANSI_CHARSET
@@ -497,6 +497,7 @@ object frmOrdenDePagoAE: TfrmOrdenDePagoAE
           A8B6A1A8A544FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00
         }
         TabOrder = 1
+        Visible = False
       end
       object btnBorrar: TBitBtn
         Left = 16
@@ -540,6 +541,7 @@ object frmOrdenDePagoAE: TfrmOrdenDePagoAE
           000041250F005F3A17085D381105806141000000000000000000000000000000
           00007B5C3C00582F04037655320B442812000000000000000000
         }
+        OnClick = btnBorrarClick
         TabOrder = 2
       end
       object edTotalComprobantes: TCurrencyEdit
@@ -963,6 +965,7 @@ object frmOrdenDePagoAE: TfrmOrdenDePagoAE
   end
   object ds_OP: TDataSource
     DataSet = DM_OrdenDePago.OrdenDePago
+    OnDataChange = ds_OPDataChange
     left = 232
     top = 184
   end

@@ -73,6 +73,8 @@ type
     UPDOP: TZQuery;
     UPDOPComprobantes: TZQuery;
     UPDOPFormasPago: TZQuery;
+    procedure DataModuleCreate(Sender: TObject);
+    procedure DataModuleDestroy(Sender: TObject);
     procedure OPComprobantesAfterInsert(DataSet: TDataSet);
     procedure OPFormasPagoAfterInsert(DataSet: TDataSet);
     procedure OrdenDePagoAfterInsert(DataSet: TDataSet);
@@ -81,6 +83,7 @@ type
     function getOrdenPagoID: GUID_ID;
     function getSumaSaldoComprobantes: double;
     procedure setIdProveedor(AValue: GUID_ID);
+    procedure RecalcularOP;
   public
     property refProveedor:GUID_ID read getIdProveedor write setIdProveedor;
     property ordenPagoID: GUID_ID read getOrdenPagoID;
@@ -90,6 +93,7 @@ type
     procedure Grabar;
 
     procedure AgregarComprobante (refComprobante: GUID_ID);
+    procedure QuitarComprobante;
     function PagadoComprobante (refComprobante:GUID_ID): Double ;
 
     procedure EditarMontoAsignado(elMonto: double);
@@ -103,6 +107,7 @@ implementation
 {$R *.lfm}
 uses
   dmcompras
+  ,Forms
   ;
 
 { TDM_OrdenDePago }
@@ -126,6 +131,16 @@ begin
   OPComprobantescomprobanteCompra_id.AsString:= GUIDNULO;
   OPComprobantesmontoPagado.AsFloat:= 0;
   OPComprobantesbVisible.AsInteger:= 1;
+end;
+
+procedure TDM_OrdenDePago.DataModuleCreate(Sender: TObject);
+begin
+ Application.CreateForm(TDM_Compras, DM_Compras);
+end;
+
+procedure TDM_OrdenDePago.DataModuleDestroy(Sender: TObject);
+begin
+  DM_Compras.Free;
 end;
 
 procedure TDM_OrdenDePago.OPFormasPagoAfterInsert(DataSet: TDataSet);
@@ -183,6 +198,31 @@ begin
   end;
 end;
 
+procedure TDM_OrdenDePago.RecalcularOP;
+var
+  monto: Double;
+begin
+  monto:= 0;
+  with OPComprobantes do
+  begin
+    DisableControls;
+    First;
+    while not EOF do
+    begin
+      monto:= monto + OPComprobantesmontoPagado.AsFloat;
+      Next;
+    end;
+    EnableControls;
+  end;
+
+  with OrdenDePago do
+  begin
+    Edit;
+    OrdenDePagototal.asFloat:= monto;
+    Post;
+  end;
+end;
+
 procedure TDM_OrdenDePago.Nueva;
 begin
   DM_General.ReiniciarTabla(OrdenDePago);
@@ -211,11 +251,23 @@ begin
   OPComprobantes.Insert;
   OPComprobantescomprobanteCompra_id.AsString:= refComprobante;
   DM_Compras.Editar(refComprobante);
-  OPComprobantesComprobanteNro.AsInteger:= DM_Compras.Comprasnumero.AsInteger;
+  OPComprobantesComprobanteNro.AsInteger:= DM_Compras.ComprascomprobanteNro.AsInteger;
   OPComprobantesComprobanteFecha.AsDateTime:= DM_Compras.Comprasfecha.asDateTime;
   OPComprobantesComprobanteMonto.asFloat:= DM_Compras.ComprasmontoTotal.AsFloat;
   OPComprobantesComprobanteSaldo.asFloat:= (OPComprobantesComprobanteMonto.asFloat - PagadoComprobante(refComprobante));
   OPComprobantes.Post;
+  RecalcularOP;
+end;
+
+procedure TDM_OrdenDePago.QuitarComprobante;
+begin
+  if ((OPComprobantes.Active) and (OPComprobantes.RecordCount > 0)) then
+  begin
+    DELOPComprobantes.ParamByName('id').AsString:= OPComprobantesid.AsString;
+    DELOPComprobantes.ExecSQL;
+    OPComprobantes.Delete;
+    RecalcularOP;
+  end;
 end;
 
 function TDM_OrdenDePago.PagadoComprobante(refComprobante: GUID_ID): Double;

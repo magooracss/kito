@@ -1,4 +1,6 @@
 object DM_OrdenDePago: TDM_OrdenDePago
+  OnCreate = DataModuleCreate
+  OnDestroy = DataModuleDestroy
   OldCreateOrder = False
   Height = 420
   HorizontalOffset = 442

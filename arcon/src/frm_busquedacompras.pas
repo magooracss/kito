@@ -5,9 +5,8 @@ unit frm_busquedacompras;
 interface
 
 uses
-  Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, ExtCtrls,
-  Buttons
-  , dmgeneral
+  Classes, SysUtils, db, FileUtil, rxdbgrid, Forms, Controls, Graphics, Dialogs,
+  ExtCtrls, Buttons, DBGrids, dmgeneral
   ;
 
 type
@@ -17,24 +16,31 @@ type
   TfrmBusquedaCompras = class(TForm)
     BitBtn1: TBitBtn;
     BitBtn2: TBitBtn;
+    ds_Resultados: TDataSource;
     Panel1: TPanel;
     Panel2: TPanel;
+    RxDBGrid1: TRxDBGrid;
     procedure BitBtn1Click(Sender: TObject);
     procedure BitBtn2Click(Sender: TObject);
+    procedure FormShow(Sender: TObject);
   private
     _idComprobante: GUID_ID;
+    _proveedorID: GUID_ID;
     function getIdComprobante: GUID_ID;
-    { private declarations }
   public
     property comprobanteID: GUID_ID read getIdComprobante write _idComprobante;
+    property proveedorID: GUID_ID read _proveedorID write _proveedorID;
+
   end;
 
 var
   frmBusquedaCompras: TfrmBusquedaCompras;
 
 implementation
-
 {$R *.lfm}
+uses
+  dmcompras
+  ;
 
 { TfrmBusquedaCompras }
 
@@ -43,9 +49,14 @@ begin
   ModalResult:= mrCancel;
 end;
 
+procedure TfrmBusquedaCompras.FormShow(Sender: TObject);
+begin
+  DM_Compras.ComprasProveedorEstado(_proveedorID, EST_NO_PAGADO);
+end;
+
 function TfrmBusquedaCompras.getIdComprobante: GUID_ID;
 begin
-  raise Exception.Create('Devolver el id del comprobante en la pantalla de búsqueda');
+  Result:= DM_Compras.IdBusquedaCompras;
 end;
 
 procedure TfrmBusquedaCompras.BitBtn1Click(Sender: TObject);

@@ -86,6 +86,12 @@ object DM_Compras: TDM_Compras
         Size = 0
       end    
       item
+        Name = 'estadoPagado'
+        DataType = ftInteger
+        Precision = 0
+        Size = 0
+      end    
+      item
         Name = 'bAnulado'
         DataType = ftInteger
         Precision = 0
@@ -268,11 +274,21 @@ object DM_Compras: TDM_Compras
       ReadOnly = False
       Required = False
     end
+    object ComprasestadoPagado: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'estadoPagado'
+      Index = 14
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
     object ComprasbAnulado: TLongintField
       DisplayWidth = 10
       FieldKind = fkData
       FieldName = 'bAnulado'
-      Index = 14
+      Index = 15
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
@@ -282,7 +298,7 @@ object DM_Compras: TDM_Compras
       DisplayWidth = 10
       FieldKind = fkData
       FieldName = 'fechaAnulado'
-      Index = 15
+      Index = 16
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
@@ -486,8 +502,8 @@ object DM_Compras: TDM_Compras
       'WHERE (bVisible = 1)'
     )
     Params = <>
-    left = 432
-    top = 48
+    left = 368
+    top = 56
     object qTiposComprobantesID: TLongintField
       DisplayWidth = 10
       FieldKind = fkData
@@ -528,8 +544,8 @@ object DM_Compras: TDM_Compras
       'WHERE (bVisible = 1)'
     )
     Params = <>
-    left = 432
-    top = 120
+    left = 368
+    top = 128
     object qFormasDePagoID: TLongintField
       DisplayWidth = 10
       FieldKind = fkData
@@ -570,8 +586,8 @@ object DM_Compras: TDM_Compras
       'WHERE (bVisible = 1)'
     )
     Params = <>
-    left = 432
-    top = 200
+    left = 368
+    top = 208
     object qPlazosPagoID: TLongintField
       DisplayWidth = 10
       FieldKind = fkData
@@ -612,8 +628,8 @@ object DM_Compras: TDM_Compras
       'WHERE (bVisible = 1)'
     )
     Params = <>
-    left = 432
-    top = 280
+    left = 368
+    top = 288
     object qPlanDeCuentasID: TLongintField
       DisplayWidth = 10
       FieldKind = fkData
@@ -712,14 +728,198 @@ object DM_Compras: TDM_Compras
         Name = 'id'
         ParamType = ptUnknown
       end>
+    object SELComprasID: TStringField
+      DisplayWidth = 152
+      FieldKind = fkData
+      FieldName = 'ID'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      Size = 152
+    end
+    object SELComprasNUMERO: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'NUMERO'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object SELComprasPROVEEDOR_ID: TStringField
+      DisplayWidth = 152
+      FieldKind = fkData
+      FieldName = 'PROVEEDOR_ID'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 152
+    end
+    object SELComprasTIPOCOMPROBANTE_ID: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'TIPOCOMPROBANTE_ID'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object SELComprasPUNTOVENTA: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'PUNTOVENTA'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object SELComprasCOMPROBANTENRO: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'COMPROBANTENRO'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object SELComprasCONDICIONPAGO_ID: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'CONDICIONPAGO_ID'
+      Index = 6
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object SELComprasPLAZOPAGO_ID: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'PLAZOPAGO_ID'
+      Index = 7
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object SELComprasFECHA: TDateField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'FECHA'
+      Index = 8
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object SELComprasMONTOTOTAL: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'MONTOTOTAL'
+      Index = 9
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object SELComprasPERCEPCIONCAPITAL: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'PERCEPCIONCAPITAL'
+      Index = 10
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object SELComprasPERCEPCIONPROVINCIA: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'PERCEPCIONPROVINCIA'
+      Index = 11
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object SELComprasPERCEPCIONIVA: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'PERCEPCIONIVA'
+      Index = 12
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object SELComprasESTADOPAGADO: TSmallintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'ESTADOPAGADO'
+      Index = 13
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object SELComprasBANULADO: TSmallintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'BANULADO'
+      Index = 14
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object SELComprasFECHAANULADO: TDateField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'FECHAANULADO'
+      Index = 15
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object SELComprasBVISIBLE: TSmallintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'BVISIBLE'
+      Index = 16
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
   end
   object INSCompras: TZQuery
     Connection = DM_General.cnxBase
     SQL.Strings = (
       'INSERT INTO ComprobantesCompra'
-      '(ID, NUMERO, PROVEEDOR_ID, TIPOCOMPROBANTE_ID, PUNTOVENTA, COMPROBANTENRO, CONDICIONPAGO_ID, PLAZOPAGO_ID, FECHA, MONTOTOTAL, PERCEPCIONCAPITAL, PERCEPCIONPROVINCIA, PERCEPCIONIVA, BANULADO, FECHAANULADO, BVISIBLE)'
+      '(ID, NUMERO, PROVEEDOR_ID, TIPOCOMPROBANTE_ID, PUNTOVENTA, COMPROBANTENRO, CONDICIONPAGO_ID, PLAZOPAGO_ID, FECHA, MONTOTOTAL, PERCEPCIONCAPITAL, PERCEPCIONPROVINCIA, PERCEPCIONIVA, estadoPagado, BANULADO, FECHAANULADO, BVISIBLE)'
       'VALUES'
-      '(:ID, :NUMERO, :PROVEEDOR_ID, :TIPOCOMPROBANTE_ID, :PUNTOVENTA, :COMPROBANTENRO, :CONDICIONPAGO_ID, :PLAZOPAGO_ID, :FECHA, :MONTOTOTAL, :PERCEPCIONCAPITAL, :PERCEPCIONPROVINCIA, :PERCEPCIONIVA,:BANULADO, :FECHAANULADO, :BVISIBLE)'
+      '(:ID, :NUMERO, :PROVEEDOR_ID, :TIPOCOMPROBANTE_ID, :PUNTOVENTA, :COMPROBANTENRO, :CONDICIONPAGO_ID, :PLAZOPAGO_ID, :FECHA, :MONTOTOTAL, :PERCEPCIONCAPITAL, :PERCEPCIONPROVINCIA, :PERCEPCIONIVA, :estadoPagado ,:BANULADO, :FECHAANULADO, :BVISIBLE)'
     )
     Params = <    
       item
@@ -785,6 +985,11 @@ object DM_Compras: TDM_Compras
       item
         DataType = ftUnknown
         Name = 'PERCEPCIONIVA'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'estadoPagado'
         ParamType = ptUnknown
       end    
       item
@@ -872,6 +1077,11 @@ object DM_Compras: TDM_Compras
       end    
       item
         DataType = ftUnknown
+        Name = 'estadoPagado'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
         Name = 'BANULADO'
         ParamType = ptUnknown
       end    
@@ -903,6 +1113,7 @@ object DM_Compras: TDM_Compras
       ', PERCEPCIONCAPITAL = :percepcionCapital'
       ', PERCEPCIONPROVINCIA = :percepcionProvincia'
       ', PERCEPCIONIVA = :percepcionIVA'
+      ', estadoPagado = :estadoPagado'
       ', BANULADO = :bAnulado'
       ', FECHAANULADO = :fechaAnulado'
       ', BVISIBLE = :bVisible'
@@ -967,6 +1178,11 @@ object DM_Compras: TDM_Compras
       item
         DataType = ftUnknown
         Name = 'percepcionIVA'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'estadoPagado'
         ParamType = ptUnknown
       end    
       item
@@ -1050,6 +1266,11 @@ object DM_Compras: TDM_Compras
       item
         DataType = ftUnknown
         Name = 'percepcionIVA'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'estadoPagado'
         ParamType = ptUnknown
       end    
       item
@@ -1493,7 +1714,6 @@ object DM_Compras: TDM_Compras
   end
   object qItemsCompra: TZQuery
     Connection = DM_General.cnxBase
-    Active = True
     SQL.Strings = (
       'SELECT *'
       'FROM ComprobantesCompraItems'
@@ -1630,6 +1850,555 @@ object DM_Compras: TDM_Compras
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
       Required = False
+    end
+  end
+  object qBusComprasProveedorEstado: TZQuery
+    Connection = DM_General.cnxBase
+    SQL.Strings = (
+      'SELECT  CC.*'
+      '     '
+      ' , E.RazonSocial'
+      ''
+      ''
+      'FROM ComprobantesCompra CC'
+      '             '
+      '       LEFT JOIN Proveedores P ON P.id = CC.proveedor_id'
+      ''
+      '                    LEFT JOIN Empresas E ON E.id = P.empresa_id'
+      'WHERE (CC.proveedor_id = :proveedor_id)'
+      ''
+      '            and (CC.estadoPagado = :estadoPagado)'
+      '            '
+      '            and (CC.bVisible = 1)'
+      ''
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'proveedor_id'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'estadoPagado'
+        ParamType = ptUnknown
+      end>
+    left = 544
+    top = 104
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'proveedor_id'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'estadoPagado'
+        ParamType = ptUnknown
+      end>
+    object qBusComprasProveedorEstadoID: TStringField
+      DisplayWidth = 152
+      FieldKind = fkData
+      FieldName = 'ID'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      Size = 152
+    end
+    object qBusComprasProveedorEstadoNUMERO: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'NUMERO'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object qBusComprasProveedorEstadoPROVEEDOR_ID: TStringField
+      DisplayWidth = 152
+      FieldKind = fkData
+      FieldName = 'PROVEEDOR_ID'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 152
+    end
+    object qBusComprasProveedorEstadoTIPOCOMPROBANTE_ID: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'TIPOCOMPROBANTE_ID'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object qBusComprasProveedorEstadoPUNTOVENTA: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'PUNTOVENTA'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object qBusComprasProveedorEstadoCOMPROBANTENRO: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'COMPROBANTENRO'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object qBusComprasProveedorEstadoCONDICIONPAGO_ID: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'CONDICIONPAGO_ID'
+      Index = 6
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object qBusComprasProveedorEstadoPLAZOPAGO_ID: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'PLAZOPAGO_ID'
+      Index = 7
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object qBusComprasProveedorEstadoFECHA: TDateField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'FECHA'
+      Index = 8
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object qBusComprasProveedorEstadoMONTOTOTAL: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'MONTOTOTAL'
+      Index = 9
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object qBusComprasProveedorEstadoPERCEPCIONCAPITAL: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'PERCEPCIONCAPITAL'
+      Index = 10
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object qBusComprasProveedorEstadoPERCEPCIONPROVINCIA: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'PERCEPCIONPROVINCIA'
+      Index = 11
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object qBusComprasProveedorEstadoPERCEPCIONIVA: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'PERCEPCIONIVA'
+      Index = 12
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object qBusComprasProveedorEstadoESTADOPAGADO: TSmallintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'ESTADOPAGADO'
+      Index = 13
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object qBusComprasProveedorEstadoBANULADO: TSmallintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'BANULADO'
+      Index = 14
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object qBusComprasProveedorEstadoFECHAANULADO: TDateField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'FECHAANULADO'
+      Index = 15
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object qBusComprasProveedorEstadoBVISIBLE: TSmallintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'BVISIBLE'
+      Index = 16
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object qBusComprasProveedorEstadoRAZONSOCIAL: TStringField
+      DisplayWidth = 2000
+      FieldKind = fkData
+      FieldName = 'RAZONSOCIAL'
+      Index = 17
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 2000
+    end
+  end
+  object BusquedaCompras: TRxMemoryData
+    FieldDefs = <    
+      item
+        Name = 'id'
+        DataType = ftString
+        Precision = 0
+        Size = 38
+      end    
+      item
+        Name = 'numero'
+        DataType = ftInteger
+        Precision = 0
+        Size = 0
+      end    
+      item
+        Name = 'proveedor_id'
+        DataType = ftString
+        Precision = 0
+        Size = 38
+      end    
+      item
+        Name = 'tipoComprobante_id'
+        DataType = ftInteger
+        Precision = 0
+        Size = 0
+      end    
+      item
+        Name = 'puntoVenta'
+        DataType = ftInteger
+        Precision = 0
+        Size = 0
+      end    
+      item
+        Name = 'comprobanteNro'
+        DataType = ftInteger
+        Precision = 0
+        Size = 0
+      end    
+      item
+        Name = 'condicionPago_id'
+        DataType = ftInteger
+        Precision = 0
+        Size = 0
+      end    
+      item
+        Name = 'plazoPago_id'
+        DataType = ftInteger
+        Precision = 0
+        Size = 0
+      end    
+      item
+        Name = 'fecha'
+        DataType = ftDate
+        Precision = 0
+        Size = 0
+      end    
+      item
+        Name = 'montoTotal'
+        DataType = ftFloat
+        Precision = 0
+        Size = 0
+      end    
+      item
+        Name = 'percepcionCapital'
+        DataType = ftFloat
+        Precision = 0
+        Size = 0
+      end    
+      item
+        Name = 'percepcionProvincia'
+        DataType = ftFloat
+        Precision = 0
+        Size = 0
+      end    
+      item
+        Name = 'percepcionIVA'
+        DataType = ftFloat
+        Precision = 0
+        Size = 0
+      end    
+      item
+        Name = 'estadoPagado'
+        DataType = ftInteger
+        Precision = 0
+        Size = 0
+      end    
+      item
+        Name = 'bAnulado'
+        DataType = ftInteger
+        Precision = 0
+        Size = 0
+      end    
+      item
+        Name = 'fechaAnulado'
+        DataType = ftDate
+        Precision = 0
+        Size = 0
+      end    
+      item
+        Name = 'bVisible'
+        DataType = ftInteger
+        Precision = 0
+        Size = 0
+      end    
+      item
+        Name = 'RazonSocial'
+        DataType = ftString
+        Precision = 0
+        Size = 500
+      end>
+    PacketRecords = 0
+    left = 544
+    top = 48
+    object BusquedaComprasid: TStringField
+      DisplayWidth = 38
+      FieldKind = fkData
+      FieldName = 'id'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 38
+    end
+    object BusquedaComprasnumero: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'numero'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object BusquedaComprasproveedor_id: TStringField
+      DisplayWidth = 38
+      FieldKind = fkData
+      FieldName = 'proveedor_id'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 38
+    end
+    object BusquedaComprastipoComprobante_id: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'tipoComprobante_id'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object BusquedaCompraspuntoVenta: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'puntoVenta'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object BusquedaComprascomprobanteNro: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'comprobanteNro'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object BusquedaComprascondicionPago_id: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'condicionPago_id'
+      Index = 6
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object BusquedaComprasplazoPago_id: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'plazoPago_id'
+      Index = 7
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object BusquedaComprasfecha: TDateField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'fecha'
+      Index = 8
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object BusquedaComprasmontoTotal: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'montoTotal'
+      Index = 9
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object BusquedaCompraspercepcionCapital: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'percepcionCapital'
+      Index = 10
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object BusquedaCompraspercepcionProvincia: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'percepcionProvincia'
+      Index = 11
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object BusquedaCompraspercepcionIVA: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'percepcionIVA'
+      Index = 12
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object BusquedaComprasestadoPagado: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'estadoPagado'
+      Index = 13
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object BusquedaComprasbAnulado: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'bAnulado'
+      Index = 14
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object BusquedaComprasfechaAnulado: TDateField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'fechaAnulado'
+      Index = 15
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object BusquedaComprasbVisible: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'bVisible'
+      Index = 16
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object BusquedaComprasRazonSocial: TStringField
+      DisplayWidth = 500
+      FieldKind = fkData
+      FieldName = 'RazonSocial'
+      Index = 17
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 500
     end
   end
 end

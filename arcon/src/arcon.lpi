@@ -20,7 +20,7 @@
       <AutoIncrementBuild Value="True"/>
       <MajorVersionNr Value="2015"/>
       <MinorVersionNr Value="7"/>
-      <BuildNr Value="45"/>
+      <BuildNr Value="46"/>
       <Language Value="040A"/>
       <StringTable CompanyName="RACSS Programacion" InternalName="ARCON" LegalTrademarks="Carlos Enrique Rodriguez" ProductName="Arcon" ProductVersion=""/>
     </VersionInfo>
@@ -216,6 +216,7 @@
         <Filename Value="frm_busquedacompras.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="frmBusquedaCompras"/>
+        <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
       </Unit23>
     </Units>

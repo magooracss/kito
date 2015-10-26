@@ -9,11 +9,34 @@ uses
   ,dmgeneral
   ;
 
+const
+  EST_NO_PAGADO = 0;
+  EST_PAGADO = 1;
+
+
 type
 
   { TDM_Compras }
 
   TDM_Compras = class(TDataModule)
+    BusquedaComprasbAnulado: TLongintField;
+    BusquedaComprasbVisible: TLongintField;
+    BusquedaComprascomprobanteNro: TLongintField;
+    BusquedaComprascondicionPago_id: TLongintField;
+    BusquedaComprasestadoPagado: TLongintField;
+    BusquedaComprasfecha: TDateField;
+    BusquedaComprasfechaAnulado: TDateField;
+    BusquedaComprasid: TStringField;
+    BusquedaComprasmontoTotal: TFloatField;
+    BusquedaComprasnumero: TLongintField;
+    BusquedaCompraspercepcionCapital: TFloatField;
+    BusquedaCompraspercepcionIVA: TFloatField;
+    BusquedaCompraspercepcionProvincia: TFloatField;
+    BusquedaComprasplazoPago_id: TLongintField;
+    BusquedaComprasproveedor_id: TStringField;
+    BusquedaCompraspuntoVenta: TLongintField;
+    BusquedaComprasRazonSocial: TStringField;
+    BusquedaComprastipoComprobante_id: TLongintField;
     CompraItemsbVisible: TLongintField;
     CompraItemscantidad: TFloatField;
     CompraItemscomprobanteCompra_id: TStringField;
@@ -25,10 +48,12 @@ type
     CompraItemsmontoTotal: TFloatField;
     CompraItemsmontoUnitario: TFloatField;
     Compras: TRxMemoryData;
+    BusquedaCompras: TRxMemoryData;
     ComprasbAnulado: TLongintField;
     ComprasbVisible: TLongintField;
     ComprascomprobanteNro: TLongintField;
     ComprascondicionPago_id: TLongintField;
+    ComprasestadoPagado: TLongintField;
     Comprasfecha: TDateField;
     ComprasfechaAnulado: TDateField;
     Comprasid: TStringField;
@@ -46,6 +71,24 @@ type
     DELComprasItem: TZQuery;
     INSCompras: TZQuery;
     INSCompraItems: TZQuery;
+    qBusComprasProveedorEstadoBANULADO: TSmallintField;
+    qBusComprasProveedorEstadoBVISIBLE: TSmallintField;
+    qBusComprasProveedorEstadoCOMPROBANTENRO: TLongintField;
+    qBusComprasProveedorEstadoCONDICIONPAGO_ID: TLongintField;
+    qBusComprasProveedorEstadoESTADOPAGADO: TSmallintField;
+    qBusComprasProveedorEstadoFECHA: TDateField;
+    qBusComprasProveedorEstadoFECHAANULADO: TDateField;
+    qBusComprasProveedorEstadoID: TStringField;
+    qBusComprasProveedorEstadoMONTOTOTAL: TFloatField;
+    qBusComprasProveedorEstadoNUMERO: TLongintField;
+    qBusComprasProveedorEstadoPERCEPCIONCAPITAL: TFloatField;
+    qBusComprasProveedorEstadoPERCEPCIONIVA: TFloatField;
+    qBusComprasProveedorEstadoPERCEPCIONPROVINCIA: TFloatField;
+    qBusComprasProveedorEstadoPLAZOPAGO_ID: TLongintField;
+    qBusComprasProveedorEstadoPROVEEDOR_ID: TStringField;
+    qBusComprasProveedorEstadoPUNTOVENTA: TLongintField;
+    qBusComprasProveedorEstadoRAZONSOCIAL: TStringField;
+    qBusComprasProveedorEstadoTIPOCOMPROBANTE_ID: TLongintField;
     qFormasDePagoBVISIBLE: TSmallintField;
     qFormasDePagoFORMADEPAGO: TStringField;
     qFormasDePagoID: TLongintField;
@@ -89,6 +132,24 @@ type
     SELCompraItemsMONTOUNITARIO: TFloatField;
     SELCompras: TZQuery;
     SELCompraItems: TZQuery;
+    qBusComprasProveedorEstado: TZQuery;
+    SELComprasBANULADO: TSmallintField;
+    SELComprasBVISIBLE: TSmallintField;
+    SELComprasCOMPROBANTENRO: TLongintField;
+    SELComprasCONDICIONPAGO_ID: TLongintField;
+    SELComprasESTADOPAGADO: TSmallintField;
+    SELComprasFECHA: TDateField;
+    SELComprasFECHAANULADO: TDateField;
+    SELComprasID: TStringField;
+    SELComprasMONTOTOTAL: TFloatField;
+    SELComprasNUMERO: TLongintField;
+    SELComprasPERCEPCIONCAPITAL: TFloatField;
+    SELComprasPERCEPCIONIVA: TFloatField;
+    SELComprasPERCEPCIONPROVINCIA: TFloatField;
+    SELComprasPLAZOPAGO_ID: TLongintField;
+    SELComprasPROVEEDOR_ID: TStringField;
+    SELComprasPUNTOVENTA: TLongintField;
+    SELComprasTIPOCOMPROBANTE_ID: TLongintField;
     UPDCompras: TZQuery;
     UPDCompraItems: TZQuery;
     procedure CompraItemsAfterInsert(DataSet: TDataSet);
@@ -98,6 +159,7 @@ type
     idCompra: GUID_ID;
     mNeto, mIVA: double;
     procedure ajustarMontos;
+    function getIdBusquedaCompras: GUID_ID;
     function getMontoIVA: double;
     function getMontoNeto: double;
     function getRefProveedor: GUID_ID;
@@ -107,6 +169,7 @@ type
     property montoNeto: double read getMontoNeto;
     property montoIVA: double read getMontoIVA;
     property refProveedor: GUID_ID read getRefProveedor write setRefProveedor;
+    property idBusquedaCompras: GUID_ID read getIdBusquedaCompras;
 
     procedure NuevoItem;
     procedure CalcularMontosItem;
@@ -115,6 +178,7 @@ type
     procedure Editar (refCompra: GUID_ID);
     procedure Grabar;
 
+    procedure ComprasProveedorEstado (Proveedor_id: GUID_ID; refEstado: integer);
   end;
 
 var
@@ -170,6 +234,17 @@ begin
                                  ;
     Post;
     EnableControls;
+  end;
+end;
+
+function TDM_Compras.getIdBusquedaCompras: GUID_ID;
+begin
+  with BusquedaCompras do
+  begin
+    if ((Active) and (RecordCount > 0)) then
+      Result:= BusquedaComprasid.AsString
+    else
+      Result:= GUIDNULO;
   end;
 end;
 
@@ -271,6 +346,24 @@ begin
   end;
 end;
 
+procedure TDM_Compras.ComprasProveedorEstado(Proveedor_id: GUID_ID;
+  refEstado: integer);
+begin
+
+  DM_General.ReiniciarTabla(BusquedaCompras);
+
+  with qBusComprasProveedorEstado do
+  begin
+    if active then close;
+    ParamByName('proveedor_id').AsString:= Proveedor_id;
+    ParamByName('estadoPagado').asInteger:= refEstado;
+    Open;
+
+    BusquedaCompras.LoadFromDataSet(qBusComprasProveedorEstado, 0, lmAppend);
+    Close;
+  end;
+end;
+
 procedure TDM_Compras.ComprasAfterInsert(DataSet: TDataSet);
 begin
   idCompra:= DM_General.CrearGUID;;
@@ -287,9 +380,10 @@ begin
   CompraspercepcionCapital.AsFloat:= 0;
   CompraspercepcionProvincia.AsFloat:= 0;
   CompraspercepcionIVA.AsFloat:= 0;
+  ComprasestadoPagado.AsInteger:= 0;
   ComprasbAnulado.AsInteger:= 0;
   ComprasfechaAnulado.AsDateTime:= 0;
-  ComprasbVisible.AsInteger:= 0;
+  ComprasbVisible.AsInteger:= 1;
 end;
 
 procedure TDM_Compras.CompraItemsAfterInsert(DataSet: TDataSet);
