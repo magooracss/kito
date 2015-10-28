@@ -1077,6 +1077,7 @@ CREATE TABLE ComprobantesCompra
 , percepcionCapital  "money" default 0
 , percepcionProvincia "money" default 0
 , percepcionIva	      "money" default 0
+, estadoPagado	      smallint default 0
 , bAnulado	      smallint default 0
 , fechaAnulado      date
 , bVisible	      smallint default 1

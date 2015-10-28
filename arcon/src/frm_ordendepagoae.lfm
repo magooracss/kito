@@ -242,7 +242,7 @@ object frmOrdenDePagoAE: TfrmOrdenDePagoAE
     ClientHeight = 50
     ClientWidth = 821
     TabOrder = 1
-    object BitBtn1: TBitBtn
+    object btnGrabar: TBitBtn
       Left = 24
       Height = 38
       Top = 8
@@ -313,6 +313,7 @@ object frmOrdenDePagoAE: TfrmOrdenDePagoAE
         0000000000000000000000000000000000000000000000000000000000000000
         00000000000000000000
       }
+      OnClick = btnGrabarClick
       TabOrder = 0
     end
     object btnCancelar: TBitBtn
@@ -731,7 +732,7 @@ object frmOrdenDePagoAE: TfrmOrdenDePagoAE
         ClientHeight = 174
         ClientWidth = 104
         TabOrder = 0
-        object btnNuevo1: TBitBtn
+        object btnNuevoFP: TBitBtn
           Left = 16
           Height = 30
           Top = 56
@@ -773,9 +774,10 @@ object frmOrdenDePagoAE: TfrmOrdenDePagoAE
             000000000000000000007F000006823C174F935C38C2935E3AD98F5430CF8946
             2193783202200000000000000000000000000000000000000000
           }
+          OnClick = btnNuevoFPClick
           TabOrder = 0
         end
-        object btnEditar1: TBitBtn
+        object btnEditarFP: TBitBtn
           Left = 16
           Height = 30
           Top = 96
@@ -817,9 +819,10 @@ object frmOrdenDePagoAE: TfrmOrdenDePagoAE
             A94EA6ADAAE5A5ABA9FCA5ABA8FCA4AAA8FCA4AAA7FCA4AAA7FCA3A9A7F7A5AB
             A8B6A1A8A544FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00
           }
+          OnClick = btnEditarFPClick
           TabOrder = 1
         end
-        object btnBorrar1: TBitBtn
+        object btnBorrarFP: TBitBtn
           Left = 16
           Height = 30
           Top = 128
@@ -861,6 +864,7 @@ object frmOrdenDePagoAE: TfrmOrdenDePagoAE
             000041250F005F3A17085D381105806141000000000000000000000000000000
             00007B5C3C00582F04037655320B442812000000000000000000
           }
+          OnClick = btnBorrarFPClick
           TabOrder = 2
         end
         object edTotalPagado: TCurrencyEdit
@@ -885,6 +889,31 @@ object frmOrdenDePagoAE: TfrmOrdenDePagoAE
         Width = 713
         TitleButtons = True
         AutoSort = True
+        Columns = <        
+          item
+            Title.Alignment = taCenter
+            Title.Caption = 'Forma de pago'
+            Title.Orientation = toHorizontal
+            Width = 354
+            FieldName = 'lxFormaDePago'
+            EditButtons = <>
+            Filter.DropDownRows = 0
+            Filter.EmptyValue = '(Todos)'
+            Filter.EmptyFont.Style = [fsItalic]
+            Filter.ItemIndex = -1
+          end        
+          item
+            Title.Alignment = taCenter
+            Title.Caption = 'Monto'
+            Title.Orientation = toHorizontal
+            Width = 355
+            FieldName = 'monto'
+            EditButtons = <>
+            Filter.DropDownRows = 0
+            Filter.EmptyValue = '(Todos)'
+            Filter.EmptyFont.Style = [fsItalic]
+            Filter.ItemIndex = -1
+          end>
         KeyStrokes = <        
           item
             Command = rxgcShowFindDlg

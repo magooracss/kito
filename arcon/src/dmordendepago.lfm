@@ -350,6 +350,12 @@ object DM_OrdenDePago: TDM_OrdenDePago
         DataType = ftInteger
         Precision = 0
         Size = 0
+      end    
+      item
+        Name = 'lxFormaDePago'
+        DataType = ftString
+        Precision = 0
+        Size = 50
       end>
     AfterInsert = OPFormasPagoAfterInsert
     PacketRecords = 0
@@ -421,6 +427,17 @@ object DM_OrdenDePago: TDM_OrdenDePago
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
       Required = False
+    end
+    object OPFormasPagolxFormaDePago: TStringField
+      DisplayWidth = 50
+      FieldKind = fkData
+      FieldName = 'lxFormaDePago'
+      Index = 6
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 50
     end
   end
   object SELOP: TZQuery
@@ -976,9 +993,11 @@ object DM_OrdenDePago: TDM_OrdenDePago
   object SELOPFormasPago: TZQuery
     Connection = DM_General.cnxBase
     SQL.Strings = (
-      'SELECT *'
-      'FROM OPFormasPago'
-      'WHERE (id = :id)'
+      'SELECT OP.*'
+      '           TFP.FormaDePago as lxFormaDePago'
+      'FROM OPFormasPago OP'
+      '     LEFT JOIN TIPOSFORMASDEPAGO TFP ON  TFO.id = OP.formaPago_id'
+      'WHERE (OP.id = :id)'
     )
     Params = <    
       item
@@ -1266,6 +1285,102 @@ object DM_OrdenDePago: TDM_OrdenDePago
       MaxValue = 0
       MinValue = 0
       Precision = 2
+    end
+  end
+  object qFormasPago: TZQuery
+    Connection = DM_General.cnxBase
+    SQL.Strings = (
+      'SELECT *'
+      'FROM TIPOSFORMASDEPAGO'
+      'WHERE (bVisible = 1)'
+    )
+    Params = <>
+    left = 560
+    top = 112
+    object qFormasPagoID: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'ID'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object qFormasPagoFORMADEPAGO: TStringField
+      DisplayWidth = 400
+      FieldKind = fkData
+      FieldName = 'FORMADEPAGO'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 400
+    end
+    object qFormasPagoBVISIBLE: TSmallintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'BVISIBLE'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+  end
+  object qFormasPagoPorID: TZQuery
+    Connection = DM_General.cnxBase
+    Active = True
+    SQL.Strings = (
+      'SELECT *'
+      'FROM TIPOSFORMASDEPAGO'
+      'WHERE (id = :id)'
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'id'
+        ParamType = ptUnknown
+      end>
+    left = 560
+    top = 176
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'id'
+        ParamType = ptUnknown
+      end>
+    object qFormasPagoPorIDID: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'ID'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object qFormasPagoPorIDFORMADEPAGO: TStringField
+      DisplayWidth = 400
+      FieldKind = fkData
+      FieldName = 'FORMADEPAGO'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 400
+    end
+    object qFormasPagoPorIDBVISIBLE: TSmallintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'BVISIBLE'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
     end
   end
 end

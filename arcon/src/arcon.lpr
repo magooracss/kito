@@ -14,7 +14,8 @@ uses
   dmpedidos, dmprecios, SD_Configuracion, frm_proveedoresae,
   frm_ventaconceptosae, dmfacturaelectronica, dmfacturas,
   frm_impresioncomprobantes, frm_comprasae, dmcompras, frm_compraitemsae
-  ,dmproveedores, frm_ordendepagoae, dmordendepago, frm_busquedacompras;
+  ,dmproveedores, frm_ordendepagoae, dmordendepago, frm_busquedacompras, 
+frm_formaspagoae;
 
 {$R *.res}
 

@@ -15,15 +15,15 @@ type
   { TfrmOrdenDePagoAE }
 
   TfrmOrdenDePagoAE = class(TForm)
-    BitBtn1: TBitBtn;
+    btnGrabar: TBitBtn;
     btnCancelar: TBitBtn;
     btnBorrar: TBitBtn;
-    btnBorrar1: TBitBtn;
+    btnBorrarFP: TBitBtn;
     btnBuscarProveedor: TBitBtn;
     btnEditar: TBitBtn;
-    btnEditar1: TBitBtn;
+    btnEditarFP: TBitBtn;
     btnNuevo: TBitBtn;
-    btnNuevo1: TBitBtn;
+    btnNuevoFP: TBitBtn;
     btnProveedorNuevo: TBitBtn;
     edTotalComprobantes: TCurrencyEdit;
     edTotalPagado: TCurrencyEdit;
@@ -45,9 +45,13 @@ type
     Panel7: TPanel;
     RxDBGrid1: TRxDBGrid;
     RxDBGrid2: TRxDBGrid;
+    procedure btnGrabarClick(Sender: TObject);
+    procedure btnBorrarFPClick(Sender: TObject);
     procedure btnBorrarClick(Sender: TObject);
     procedure btnBuscarProveedorClick(Sender: TObject);
     procedure btnCancelarClick(Sender: TObject);
+    procedure btnEditarFPClick(Sender: TObject);
+    procedure btnNuevoFPClick(Sender: TObject);
     procedure btnNuevoClick(Sender: TObject);
     procedure btnProveedorNuevoClick(Sender: TObject);
     procedure ds_OPDataChange(Sender: TObject; Field: TField);
@@ -60,6 +64,9 @@ type
 
     procedure PantallaComprobantes (refComprobante: GUID_ID);
     procedure CalcularParciales; //Es un refresco de pantalla con las sumas parciales
+
+    procedure PantallaFormasPago (refFP: GUID_ID);
+
   public
     property ordenPagoID: GUID_ID read getOrdenPagoID write _ordenPagoID;
   end;
@@ -74,6 +81,7 @@ uses
   ,frm_busquedaempresas
   ,frm_proveedoresae
   ,frm_busquedacompras
+  ,frm_formaspagoae
   ;
 
 { TfrmOrdenDePagoAE }
@@ -115,15 +123,16 @@ end;
 
 procedure TfrmOrdenDePagoAE.CalcularParciales;
 begin
-  edTotalPagado.Value:= -1.23;
+  edTotalPagado.Value:= DM_OrdenDePago.sumaFormasPago;
   edTotalComprobantes.Value:= DM_OrdenDePago.sumaSaldoComprobantes;
-  edTotalAdeudado.Value:= -1.23;
+  edTotalAdeudado.Value:= DM_OrdenDePago.sumaComprasImpagas;
 end;
 
 procedure TfrmOrdenDePagoAE.btnCancelarClick(Sender: TObject);
 begin
   ModalResult:= mrCancel;
 end;
+
 
 procedure TfrmOrdenDePagoAE.btnProveedorNuevoClick(Sender: TObject);
 var
@@ -154,6 +163,7 @@ begin
     begin
       edProveedor.Text:= pant.RazonSocial;
       DM_OrdenDePago.refProveedor:= pant.idProveedor;
+      CalcularParciales;
     end;
   finally
     pant.Free;
@@ -191,6 +201,56 @@ begin
       DM_OrdenDePago.QuitarComprobante;
       CalcularParciales;
    end;
+
+end;
+
+
+(*******************************************************************************
+*** FORMAS DE PAGO
+*******************************************************************************)
+
+procedure TfrmOrdenDePagoAE.PantallaFormasPago(refFP: GUID_ID);
+var
+  pant: TfrmFormasPagoAE;
+begin
+   pant:= TfrmFormasPagoAE.Create(self);
+   try
+     pant.formaPagoID:= refFP;
+     if pant.ShowModal = mrOK then
+     begin
+       CalcularParciales;
+     end;
+   finally
+     pant.Free;
+   end;
+end;
+
+
+
+procedure TfrmOrdenDePagoAE.btnNuevoFPClick(Sender: TObject);
+begin
+  PantallaFormasPago(GUIDNULO);
+end;
+
+procedure TfrmOrdenDePagoAE.btnEditarFPClick(Sender: TObject);
+begin
+  PantallaFormasPago(ds_OPComprobantes.DataSet.FieldByName('id').asString);
+end;
+
+
+procedure TfrmOrdenDePagoAE.btnBorrarFPClick(Sender: TObject);
+begin
+   if (MessageDlg ('Confirmación'
+                  , 'Desea quitar la forma de pago seleccionada?'
+                   , mtConfirmation, [mbYes, mbNo],0 ) = mrYes) then
+   Begin
+      DM_OrdenDePago.QuitarFP;
+      CalcularParciales;
+   end;
+end;
+
+procedure TfrmOrdenDePagoAE.btnGrabarClick(Sender: TObject);
+begin
 
 end;
 

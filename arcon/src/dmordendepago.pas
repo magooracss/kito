@@ -33,6 +33,7 @@ type
     OPFormasPagocheque_id: TStringField;
     OPFormasPagoformaPago_id: TLongintField;
     OPFormasPagoid: TStringField;
+    OPFormasPagolxFormaDePago: TStringField;
     OPFormasPagomonto: TFloatField;
     OPFormasPagoordenDePago_id: TStringField;
     OrdenDePago: TRxMemoryData;
@@ -46,6 +47,14 @@ type
     OrdenDePagonumero: TLongintField;
     OrdenDePagoproveedor_id: TStringField;
     OrdenDePagototal: TFloatField;
+    qFormasPago: TZQuery;
+    qFormasPagoPorID: TZQuery;
+    qFormasPagoBVISIBLE: TSmallintField;
+    qFormasPagoFORMADEPAGO: TStringField;
+    qFormasPagoID: TLongintField;
+    qFormasPagoPorIDBVISIBLE: TSmallintField;
+    qFormasPagoPorIDFORMADEPAGO: TStringField;
+    qFormasPagoPorIDID: TLongintField;
     qPagadoComprobanteTOTALPAGADO: TFloatField;
     SELOP: TZQuery;
     SELOPComprobantes: TZQuery;
@@ -81,13 +90,18 @@ type
   private
     function getIdProveedor: GUID_ID;
     function getOrdenPagoID: GUID_ID;
+    function getSumaComprasImpagas: double;
+    function getSumaFormasPago: double;
     function getSumaSaldoComprobantes: double;
     procedure setIdProveedor(AValue: GUID_ID);
     procedure RecalcularOP;
+
   public
     property refProveedor:GUID_ID read getIdProveedor write setIdProveedor;
     property ordenPagoID: GUID_ID read getOrdenPagoID;
     property sumaSaldoComprobantes: double read getSumaSaldoComprobantes;
+    property sumaFormasPago: double read getSumaFormasPago;
+    property sumaComprasImpagas: double read getSumaComprasImpagas;
 
     procedure Nueva;
     procedure Grabar;
@@ -97,6 +111,11 @@ type
     function PagadoComprobante (refComprobante:GUID_ID): Double ;
 
     procedure EditarMontoAsignado(elMonto: double);
+
+    procedure NuevaFormaPago;
+    procedure EditarFormaPagoActual;
+    function NombreformaDePago (refFormaPago: integer): string;
+    procedure QuitarFP;
 
   end;
 
@@ -136,6 +155,7 @@ end;
 procedure TDM_OrdenDePago.DataModuleCreate(Sender: TObject);
 begin
  Application.CreateForm(TDM_Compras, DM_Compras);
+ qFormasPago.Open;
 end;
 
 procedure TDM_OrdenDePago.DataModuleDestroy(Sender: TObject);
@@ -167,6 +187,11 @@ begin
     Result:= OrdenDePagoid.AsString
   else
     Result:= GUIDNULO;
+end;
+
+function TDM_OrdenDePago.getSumaComprasImpagas: double;
+begin
+  Result:= DM_Compras.montoComprasProveedorEstado(refProveedor, EST_NO_PAGADO);
 end;
 
 function TDM_OrdenDePago.getSumaSaldoComprobantes: double;
@@ -220,6 +245,20 @@ begin
     Edit;
     OrdenDePagototal.asFloat:= monto;
     Post;
+  end;
+end;
+
+function TDM_OrdenDePago.NombreformaDePago(refFormaPago: integer): string;
+begin
+  with qFormasPagoPorID do
+  begin
+    if active then close;
+    ParamByName('id').asInteger:= refFormaPago;
+    Open;
+    if RecordCount > 0 then
+      Result:= qFormasPagoPorIDFORMADEPAGO.AsString
+    else
+       Result:= EmptyStr;
   end;
 end;
 
@@ -295,6 +334,45 @@ begin
                                             - PagadoComprobante(OPComprobantesid.AsString)
                                             - elMonto;
     OPComprobantes.Post;
+  end;
+end;
+
+procedure TDM_OrdenDePago.NuevaFormaPago;
+begin
+  OPFormasPago.Insert;
+end;
+
+procedure TDM_OrdenDePago.EditarFormaPagoActual;
+begin
+  OPFormasPago.Edit;
+end;
+
+function TDM_OrdenDePago.getSumaFormasPago: double;
+var
+  acumulador: Double;
+begin
+  acumulador:= 0;
+  with OPFormasPago do
+  begin
+    DisableControls;
+    First;
+    while Not EOF do
+    begin
+      acumulador:= acumulador + OPFormasPagomonto.AsFloat;
+      Next;
+    end;
+    EnableControls;
+    Result:= acumulador;
+  end;
+end;
+
+procedure TDM_OrdenDePago.QuitarFP;
+begin
+  if ((OPFormasPago.Active) and (OPFormasPago.RecordCount > 0)) then
+  begin
+    DELOPFormasPago.ParamByName('id').AsString:= OPFormasPagoid.AsString;
+    DELOPFormasPago.ExecSQL;
+    OPFormasPago.Delete;
   end;
 end;
 

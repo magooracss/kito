@@ -179,6 +179,7 @@ type
     procedure Grabar;
 
     procedure ComprasProveedorEstado (Proveedor_id: GUID_ID; refEstado: integer);
+    function montoComprasProveedorEstado (Proveedor_id: GUID_ID; refEstado: integer): double;
   end;
 
 var
@@ -360,6 +361,31 @@ begin
     Open;
 
     BusquedaCompras.LoadFromDataSet(qBusComprasProveedorEstado, 0, lmAppend);
+    Close;
+  end;
+end;
+
+function TDM_Compras.montoComprasProveedorEstado(Proveedor_id: GUID_ID;
+  refEstado: integer): double;
+var
+  suma: double;
+begin
+  suma:= 0;
+  with qBusComprasProveedorEstado do
+  begin
+    if active then close;
+    ParamByName('proveedor_id').AsString:= Proveedor_id;
+    ParamByName('estadoPagado').asInteger:= refEstado;
+    Open;
+    First;
+
+    while not eof do
+    begin
+      suma:= suma + qBusComprasProveedorEstadoMONTOTOTAL.AsFloat;
+      Next;
+    end;
+
+    Result:= suma;
     Close;
   end;
 end;
