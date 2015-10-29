@@ -1083,6 +1083,24 @@ CREATE TABLE ComprobantesCompra
 , bVisible	      smallint default 1
 );
 
+
+CREATE GENERATOR nroComprobanteCompra;
+
+SET GENERATOR nroComprobanteCompra TO 0;
+
+
+SET TERM ^ ;
+
+CREATE TRIGGER nroComprobanteCompra FOR ComprobantesCompra
+BEFORE INSERT OR UPDATE POSITION 0
+AS 
+BEGIN 
+    If (New.numero = -1) then
+   New.id = GEN_ID(nroComprobanteCompra,1);
+END^
+
+SET TERM ; ^  
+
 CREATE TABLE ComprobantesCompraItems
 (
   id		"guid"  NOT NULL PRIMARY KEY
@@ -1106,19 +1124,19 @@ CREATE TABLE TiposComprobantesCompras
 );
 
 
-CREATE GENERATOR ComprobantesCompraID;
+CREATE GENERATOR TipoComprobantesCompraID;
 
-SET GENERATOR ComprobantesCompraID TO 0;
+SET GENERATOR TipoComprobantesCompraID TO 0;
 
 
 SET TERM ^ ;
 
-CREATE TRIGGER ComprobantesComprasID FOR TiposComprobantesCompras
+CREATE TRIGGER TipoComprobantesComprasID FOR TiposComprobantesCompras
 BEFORE INSERT POSITION 0
 AS 
 BEGIN 
     If (New.id = -1) then
-   New.id = GEN_ID(ComprobantesCompraID,1);
+   New.id = GEN_ID(TipoComprobantesCompraID,1);
 END^
 
 SET TERM ; ^  
@@ -1499,5 +1517,4 @@ CREATE TABLE Compensaciones
 , compra_id	 "guid" default '{00000000-0000-0000-0000-000000000000}'
 , fCompensacion date default 0
 , bVisible 	 smallint default 1
-
 );

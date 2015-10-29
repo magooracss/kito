@@ -61,6 +61,8 @@ procedure TDM_Compensaciones.Nueva(refOP: GUID_ID; monto: Double);
 begin
   with Compensaciones do
   begin
+    if Not Active then Open;
+
     Insert;
     CompensacionesordenDePago_id.AsString:= refOP;
     Compensacionesmonto.AsFloat:= monto;

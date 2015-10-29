@@ -202,6 +202,12 @@ object DM_OrdenDePago: TDM_OrdenDePago
         DataType = ftFloat
         Precision = 0
         Size = 0
+      end    
+      item
+        Name = 'ComprobantePagado'
+        DataType = ftFloat
+        Precision = 0
+        Size = 0
       end>
     AfterInsert = OPComprobantesAfterInsert
     PacketRecords = 0
@@ -303,6 +309,20 @@ object DM_OrdenDePago: TDM_OrdenDePago
       FieldKind = fkData
       FieldName = 'ComprobanteSaldo'
       Index = 8
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Currency = True
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object OPComprobantesComprobantePagado: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'ComprobantePagado'
+      Index = 9
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
@@ -442,6 +462,7 @@ object DM_OrdenDePago: TDM_OrdenDePago
   end
   object SELOP: TZQuery
     Connection = DM_General.cnxBase
+    Active = True
     SQL.Strings = (
       'SELECT *'
       'FROM OrdenesDePago'
@@ -992,11 +1013,12 @@ object DM_OrdenDePago: TDM_OrdenDePago
   end
   object SELOPFormasPago: TZQuery
     Connection = DM_General.cnxBase
+    Active = True
     SQL.Strings = (
       'SELECT OP.*'
-      '           TFP.FormaDePago as lxFormaDePago'
+      '         , TFP.FormaDePago as lxFormaDePago'
       'FROM OPFormasPago OP'
-      '     LEFT JOIN TIPOSFORMASDEPAGO TFP ON  TFO.id = OP.formaPago_id'
+      '     LEFT JOIN TIPOSFORMASDEPAGO TFP ON  TFP.id = OP.formaPago_id'
       'WHERE (OP.id = :id)'
     )
     Params = <    
@@ -1079,14 +1101,25 @@ object DM_OrdenDePago: TDM_OrdenDePago
       ReadOnly = False
       Required = False
     end
+    object SELOPFormasPagoLXFORMADEPAGO: TStringField
+      DisplayWidth = 400
+      FieldKind = fkData
+      FieldName = 'LXFORMADEPAGO'
+      Index = 6
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 400
+    end
   end
   object INSOPFormasPago: TZQuery
     Connection = DM_General.cnxBase
     SQL.Strings = (
       'INSERT INTO OPFormasPago'
-      '(ID, ordenPago_id, cheque_id, formaPago_id, monto, BVISIBLE)'
+      '(ID, ordenDePago_id, cheque_id, formaPago_id, monto, BVISIBLE)'
       'VALUES'
-      '(:ID, :ordenPago_id, :cheque_id, :formaPago_id, :monto, :BVISIBLE)'
+      '(:ID, :ordenDePago_id, :cheque_id, :formaPago_id, :monto, :BVISIBLE)'
     )
     Params = <    
       item
@@ -1096,7 +1129,7 @@ object DM_OrdenDePago: TDM_OrdenDePago
       end    
       item
         DataType = ftUnknown
-        Name = 'ordenPago_id'
+        Name = 'ordenDePago_id'
         ParamType = ptUnknown
       end    
       item
@@ -1129,7 +1162,7 @@ object DM_OrdenDePago: TDM_OrdenDePago
       end    
       item
         DataType = ftUnknown
-        Name = 'ordenPago_id'
+        Name = 'ordenDePago_id'
         ParamType = ptUnknown
       end    
       item
@@ -1158,7 +1191,7 @@ object DM_OrdenDePago: TDM_OrdenDePago
     SQL.Strings = (
       'UPDATE OPFormasPago'
       'SET'
-      ' ordenDePago = :ordenDePago'
+      ' ordenDePago_id = :ordenDePago_id'
       ', cheque_id = :cheque_id'
       ', formaPago_id = :formaPago_id'
       ', monto = :monto'
@@ -1168,7 +1201,7 @@ object DM_OrdenDePago: TDM_OrdenDePago
     Params = <    
       item
         DataType = ftUnknown
-        Name = 'ordenDePago'
+        Name = 'ordenDePago_id'
         ParamType = ptUnknown
       end    
       item
@@ -1201,7 +1234,7 @@ object DM_OrdenDePago: TDM_OrdenDePago
     ParamData = <    
       item
         DataType = ftUnknown
-        Name = 'ordenDePago'
+        Name = 'ordenDePago_id'
         ParamType = ptUnknown
       end    
       item
@@ -1282,6 +1315,7 @@ object DM_OrdenDePago: TDM_OrdenDePago
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = True
       Required = False
+      Currency = True
       MaxValue = 0
       MinValue = 0
       Precision = 2

@@ -69,6 +69,7 @@ type
 
     function ValidarGrabacion: boolean;
     procedure GrabarOrdenDePago;
+    procedure DistribuirPagos;
 
   public
     property ordenPagoID: GUID_ID read getOrdenPagoID write _ordenPagoID;
@@ -86,6 +87,7 @@ uses
   ,frm_busquedacompras
   ,frm_formaspagoae
   ,dmcompensaciones
+  ,frm_distribuirdinerocomprobantes
   ;
 
 { TfrmOrdenDePagoAE }
@@ -279,7 +281,7 @@ begin
    begin
      flgGrabar:=  (MessageDlg ('Atención'
                     , 'El monto a pagar difiere del total a cobrar. Desea corregirlo?'
-                     , mtConfirmation, [mbYes, mbNo],0 ) = mrYes);
+                     , mtConfirmation, [mbYes, mbNo],0 ) = mrNo);
    end
    else
      flgGrabar:= true;
@@ -287,18 +289,41 @@ begin
    Result:= flgGrabar;
 end;
 
+
+procedure TfrmOrdenDePagoAE.DistribuirPagos;
+var
+  pantDistr: TfrmDistribuirDineroComprobantes;
+begin
+  if (ds_OPComprobantes.DataSet.RecordCount = 1) then
+  begin
+    DM_OrdenDePago.PagarComprobanteActual(edTotalPagado.Value);
+  end
+  else
+  begin
+    pantDistr:= TfrmDistribuirDineroComprobantes.Create(self);
+    try
+      pantDistr.totalComprobantes:= edTotalComprobantes.Value;
+      pantDistr.totalDistribuir:= edTotalPagado.Value;
+      pantDistr.ShowModal;
+    finally
+      pantDistr.Free;
+    end;
+  end;
+end;
+
+
 procedure TfrmOrdenDePagoAE.GrabarOrdenDePago;
 var
   montoAdeudado
 , montoAPagar: double;
+
 begin
   montoAdeudado:= edTotalComprobantes.Value;
   montoAPagar:= edTotalPagado.Value;
 
-
   if (montoAdeudado > montoAPagar) then
   begin
-    raise Exception.Create('Distribuir el dinero entre los comprobantes');
+    DistribuirPagos;
   end
   else
   begin
@@ -317,11 +342,13 @@ begin
   DM_OrdenDePago.Grabar;
 end;
 
+
 procedure TfrmOrdenDePagoAE.btnGrabarClick(Sender: TObject);
 begin
   if ValidarGrabacion then
   begin
     GrabarOrdenDePago;
+    ModalResult:= mrOK;
   end;
 end;
 

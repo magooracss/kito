@@ -2306,6 +2306,7 @@ object DM_Compras: TDM_Compras
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
       Required = False
+      Currency = True
       MaxValue = 0
       MinValue = 0
       Precision = 2

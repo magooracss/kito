@@ -25,6 +25,7 @@ type
     OPComprobantesComprobanteFecha: TDateField;
     OPComprobantesComprobanteMonto: TFloatField;
     OPComprobantesComprobanteNro: TLongintField;
+    OPComprobantesComprobantePagado: TFloatField;
     OPComprobantesComprobanteSaldo: TFloatField;
     OPComprobantesid: TStringField;
     OPComprobantesmontoPagado: TFloatField;
@@ -73,6 +74,7 @@ type
     SELOPFormasPagoCHEQUE_ID: TStringField;
     SELOPFormasPagoFORMAPAGO_ID: TLongintField;
     SELOPFormasPagoID: TStringField;
+    SELOPFormasPagoLXFORMADEPAGO: TStringField;
     SELOPFormasPagoMONTO: TFloatField;
     SELOPFormasPagoORDENDEPAGO_ID: TStringField;
     SELOPID: TStringField;
@@ -96,8 +98,6 @@ type
     procedure setIdProveedor(AValue: GUID_ID);
     procedure RecalcularOP;
 
-    procedure PagarComprobanteActual (monto: double);
-
 
   public
     property refProveedor:GUID_ID read getIdProveedor write setIdProveedor;
@@ -112,6 +112,7 @@ type
     procedure AgregarComprobante (refComprobante: GUID_ID);
     procedure QuitarComprobante;
     function PagadoComprobante (refComprobante:GUID_ID): Double ;
+    procedure PagarComprobanteActual (monto: double);
 
     procedure EditarMontoAsignado(elMonto: double);
 
@@ -122,6 +123,7 @@ type
 
 
     procedure PagarTodosLosComprobantes;
+    procedure MarcarComprobantesDistribuidos;
 
 
   end;
@@ -173,9 +175,9 @@ end;
 procedure TDM_OrdenDePago.OPFormasPagoAfterInsert(DataSet: TDataSet);
 begin
   OPFormasPagoid.AsString:= DM_General.CrearGUID;
-  OPFormasPagoordenDePago_id.AsString:= GUIDNULO;
+  OPFormasPagoordenDePago_id.AsString:= OrdenDePagoid.AsString;
   OPFormasPagocheque_id.AsString:= GUIDNULO;
-  OPFormasPagoformaPago_id.AsInteger:= 0;
+  OPFormasPagoformaPago_id.AsInteger:= 1;
   OPFormasPagomonto.AsFloat:= 0;
   OPFormasPagobVisible.AsInteger:= 1;
 end;
@@ -239,6 +241,7 @@ begin
   begin
     DisableControls;
     First;
+
     while not EOF do
     begin
       monto:= monto + OPComprobantesmontoPagado.AsFloat;
@@ -279,6 +282,7 @@ end;
 
 procedure TDM_OrdenDePago.Grabar;
 begin
+  RecalcularOP;
   DM_General.cnxBase.StartTransaction;
   try
     DM_General.GrabarDatos(SELOP, INSOP, UPDOP, OrdenDePago, 'id' );
@@ -293,6 +297,8 @@ begin
 end;
 
 procedure TDM_OrdenDePago.AgregarComprobante(refComprobante: GUID_ID);
+var
+  pagado: double;
 begin
   OPComprobantes.Insert;
   OPComprobantescomprobanteCompra_id.AsString:= refComprobante;
@@ -300,7 +306,9 @@ begin
   OPComprobantesComprobanteNro.AsInteger:= DM_Compras.ComprascomprobanteNro.AsInteger;
   OPComprobantesComprobanteFecha.AsDateTime:= DM_Compras.Comprasfecha.asDateTime;
   OPComprobantesComprobanteMonto.asFloat:= DM_Compras.ComprasmontoTotal.AsFloat;
-  OPComprobantesComprobanteSaldo.asFloat:= (OPComprobantesComprobanteMonto.asFloat - PagadoComprobante(refComprobante));
+  pagado:= PagadoComprobante(refComprobante);
+  OPComprobantesComprobanteSaldo.asFloat:= (OPComprobantesComprobanteMonto.asFloat - pagado);
+  OPComprobantesComprobantePagado.AsFloat:= pagado;
   OPComprobantes.Post;
   RecalcularOP;
 end;
@@ -390,6 +398,10 @@ begin
     Edit;
     OPComprobantesmontoPagado.AsFloat:= monto;
     Post;
+    if DM_General.CmpIgualdadFloat(monto, OPComprobantesComprobanteSaldo.AsFloat) then
+    begin
+     DM_Compras.CompraPagada (OPComprobantescomprobanteCompra_id.AsString);
+    end;
   end;
 end;
 
@@ -401,7 +413,22 @@ begin
     while not EOF do
     begin
       PagarComprobanteActual(OPComprobantesComprobanteSaldo.AsFloat);
-      DM_Compras.CompraPagada (OPComprobantescomprobanteCompra_id.AsString);
+      Next;
+    end;
+  end;
+end;
+
+procedure TDM_OrdenDePago.MarcarComprobantesDistribuidos;
+begin
+  with OPComprobantes do
+  begin
+    First;
+    while not EOF do
+    begin
+      if DM_General.CmpIgualdadFloat(OPComprobantesmontoPagado.AsFloat,OPComprobantesComprobanteSaldo.AsFloat) then
+      begin
+       DM_Compras.CompraPagada (OPComprobantescomprobanteCompra_id.AsString);
+      end;
       Next;
     end;
   end;

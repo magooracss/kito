@@ -3,7 +3,7 @@ object DM_Compensaciones: TDM_Compensaciones
   Height = 517
   HorizontalOffset = 477
   VerticalOffset = 191
-  Width = 671
+  Width = 672
   object Compensaciones: TRxMemoryData
     FieldDefs = <    
       item
@@ -77,6 +77,7 @@ object DM_Compensaciones: TDM_Compensaciones
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
       Required = False
+      Currency = True
       MaxValue = 0
       MinValue = 0
       Precision = 2
@@ -205,9 +206,9 @@ object DM_Compensaciones: TDM_Compensaciones
     Connection = DM_General.cnxBase
     SQL.Strings = (
       'INSERT INTO Compensaciones'
-      '(ID, ordenPago_id, monto, compra_id, fcompensacion, BVISIBLE)'
+      '(ID, ordenDePago_id, monto, compra_id, fcompensacion, BVISIBLE)'
       'VALUES'
-      '(:ID, :ordenPago_id, :monto, :compra_id, :fcompensacion, :BVISIBLE)'
+      '(:ID, :ordenDePago_id, :monto, :compra_id, :fcompensacion, :BVISIBLE)'
     )
     Params = <    
       item
@@ -217,7 +218,7 @@ object DM_Compensaciones: TDM_Compensaciones
       end    
       item
         DataType = ftUnknown
-        Name = 'ordenPago_id'
+        Name = 'ordenDePago_id'
         ParamType = ptUnknown
       end    
       item
@@ -250,7 +251,7 @@ object DM_Compensaciones: TDM_Compensaciones
       end    
       item
         DataType = ftUnknown
-        Name = 'ordenPago_id'
+        Name = 'ordenDePago_id'
         ParamType = ptUnknown
       end    
       item

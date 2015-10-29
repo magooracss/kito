@@ -1,0 +1,336 @@
+object frmDistribuirDineroComprobantes: TfrmDistribuirDineroComprobantes
+  Left = 347
+  Height = 340
+  Top = 204
+  Width = 698
+  Caption = 'Distribuir el dinero entre los comprobantes'
+  ClientHeight = 340
+  ClientWidth = 698
+  Font.CharSet = ANSI_CHARSET
+  Font.Height = -13
+  Font.Name = 'Arial'
+  Font.Pitch = fpVariable
+  Font.Quality = fqDraft
+  Position = poOwnerFormCenter
+  LCLVersion = '1.4.2.0'
+  object Panel1: TPanel
+    Left = 0
+    Height = 50
+    Top = 0
+    Width = 698
+    Align = alTop
+    ClientHeight = 50
+    ClientWidth = 698
+    TabOrder = 0
+    object edTotalComprobantes: TCurrencyEdit
+      Left = 136
+      Height = 26
+      Top = 16
+      Width = 116
+      Alignment = taRightJustify
+      Color = clMoneyGreen
+      Font.CharSet = ANSI_CHARSET
+      Font.Height = -16
+      Font.Name = 'Arial'
+      Font.Pitch = fpVariable
+      Font.Quality = fqDraft
+      MaxValue = 0
+      MinValue = 0
+      ParentFont = False
+      ReadOnly = True
+      TabOrder = 0
+      TabStop = False
+      Value = 0
+    end
+    object edTotalPagado: TCurrencyEdit
+      Left = 559
+      Height = 26
+      Top = 16
+      Width = 116
+      Alignment = taRightJustify
+      Color = clMoneyGreen
+      Font.CharSet = ANSI_CHARSET
+      Font.Height = -16
+      Font.Name = 'Arial'
+      Font.Pitch = fpVariable
+      Font.Quality = fqDraft
+      Anchors = [akTop, akRight]
+      MaxValue = 0
+      MinValue = 0
+      ParentFont = False
+      ReadOnly = True
+      TabOrder = 1
+      TabStop = False
+      Value = 0
+    end
+    object Label1: TLabel
+      Left = 8
+      Height = 16
+      Top = 20
+      Width = 115
+      Caption = 'Total Comprobantes'
+      ParentColor = False
+    end
+    object Label2: TLabel
+      Left = 463
+      Height = 16
+      Top = 20
+      Width = 91
+      Anchors = [akTop, akRight]
+      Caption = 'Total a distribuir'
+      ParentColor = False
+    end
+  end
+  object Panel2: TPanel
+    Left = 0
+    Height = 50
+    Top = 290
+    Width = 698
+    Align = alBottom
+    ClientHeight = 50
+    ClientWidth = 698
+    TabOrder = 1
+    object btnAceptar: TBitBtn
+      Left = 32
+      Height = 40
+      Top = 4
+      Width = 120
+      Caption = 'Aceptar'
+      Glyph.Data = {
+        C6070000424DC607000000000000360000002800000016000000160000000100
+        2000000000009007000064000000640000000000000000000000000000000000
+        0000000000000000000000000000000000010000000100000003000000040000
+        0005000000060000000600000005000000040000000300000001000000010000
+        0000000000000000000000000000000000000000000000000000000000020000
+        0005000000070000000A0000000C0000000E0000001000000012000000130000
+        001300000012000000100000000E0000000C0000000A00000007000000050000
+        00020000000000000000000000000000000100000004000000070000000A0000
+        000D0000001000000013096136590E7744ED0E7544C8001E0F22000000190000
+        001600000013000000100000000D0000000A0000000700000004000000010000
+        00000000000000000000000000000000000300000005000000080022110F0C75
+        4496107B48F5319C74FF1A8455F60D73408C0000000E0000000D0000000C0000
+        000A000000080000000500000003000000000000000000000000000000000000
+        00000000000000000000000000000F7446210D7A46D31C8657F541A884FF3FA9
+        86FF3EA682FF0E7A45F70D724326000000010000000000000000000000000000
+        0000000000000000000000000000000000000000000000000000000000000000
+        00000C7943540F7A46F2349970FC4AAF8EFF3CA884FF36A681FF45AD8AFF3297
+        6EFB0E7A45C30000000000000000000000000000000000000000000000000000
+        000000000000000000000000000000000000008040080F7B479E16804DF447AA
+        86FF4CB290FF3AAA84FF38A983FF38A983FF3AAA84FF52B392FF18814FF40C77
+        4156000000000000000000000000000000000000000000000000000000000000
+        0000000000000C7644290F7A46DB2B9164F65AB898FF4AB28FFF3BAC86FF4AB3
+        8FFF58B898FF4EB492FF3BAC86FF4AB38FFF4DAC88FF0E7945ED14763B0D0000
+        0000000000000000000000000000000000000000000000000000000000000E79
+        45E944A57EFD64BEA0FF46B18EFF42B08BFF5CBB9CFF55B08FFF1A804FFD59B4
+        93FF4EB593FF3FAE89FF5FBC9DFF329368F70E79479400000000000000000000
+        000000000000000000000000000000000000000000000F7A47BE3D9D74F768C1
+        A3FF52B896FF6BC2A5FF40A078FA107A46EF0B7742B2228858F56BC2A5FF44B3
+        8DFF4AB591FF68BF9FFF147D49F70B77412F0000000000000000000000000000
+        00000000000000000000000000001177440F0E7A44DC4EA884FC6FC1A4FF248A
+        5BF4107A46C00B7A4317008080020F7A46D351AA87FD63C0A1FF43B38EFF62C0
+        A1FF51AB86FD0F7B46D000000001000000000000000000000000000000000000
+        000000000000000000000976401C0E7944E70C7944F90E77456F000000010000
+        0000000000000A784431157D49F777C7ACFF51BB97FF49B792FF7ACAB0FF288A
+        5CF50D7943630000000000000000000000000000000000000000000000000000
+        00000000000014763B0000555503006633000000000000000000000000000000
+        00000F7A4699419E76F77CCCB1FF49B893FF60C1A1FF73C2A5FF107A46F20D79
+        4313000000000000000000000000000000000000000000000000000000000000
+        00000000000000000000000000000000000000000000000000001280490E0F7A
+        46EE75C3A7FF69C6A7FF4BBB96FF80CFB5FF4AA37EF80E7B47A2000000000000
+        0000000000000000000000000000000000000000000000000000000000000000
+        000000000000000000000000000000000000000000000B7A445A28895CF590D5
+        BEFF54C09CFF5AC29FFF8ED3BCFF1A814EF70D79433900000000000000000000
+        0000000000000000000000000000000000000000000000000000000000000000
+        0000000000000000000000000000006D49000F7B46C765B695FD82D2B8FF50C0
+        9BFF7BCFB3FF72BFA1FE0F7B47DA008040040000000000000000000000000000
+        0000000000000000000000000000000000000000000000000000000000000000
+        000000000000000000000D794028167E4BF698D8C2FF68CAAAFF57C4A0FF9EDD
+        C8FF39966BF50E7A447100000000000000000000000000000000000000000000
+        0000000000000000000000000000000000000000000000000000000000000000
+        0000000000000D7A448A49A27CF7A0DFCAFF7AD2B5FFACE3D1FF68B998FF127C
+        49C7000000000000000000000000000000000000000000000000000000000000
+        0000000000000000000000000000000000000000000000000000000000000080
+        4D0A0E7B45E898D4BDFF97D3BCFF329163F2117D48D70B74432E000000000000
+        0000000000000000000000000000000000000000000000000000000000000000
+        00000000000000000000000000000000000000000000007139000C784242107A
+        47EE117D48D00A7742490B774100000000000000000000000000000000000000
+        0000000000000000000000000000000000000000000000000000000000000000
+        0000000000000000000000000000000000000D7543000F7D47000D7643000080
+        4000000000000000000000000000000000000000000000000000000000000000
+        0000000000000000000000000000000000000000000000000000000000000000
+        0000000000000000000000000000000000000000000000000000000000000000
+        00000000000000000000
+      }
+      OnClick = btnAceptarClick
+      TabOrder = 0
+    end
+  end
+  object RxDBGrid1: TRxDBGrid
+    Left = 0
+    Height = 240
+    Top = 50
+    Width = 698
+    TitleButtons = True
+    AutoSort = True
+    Columns = <    
+      item
+        ReadOnly = True
+        Title.Alignment = taCenter
+        Title.Caption = 'Número'
+        Title.Orientation = toHorizontal
+        Width = 115
+        FieldName = 'ComprobanteNro'
+        EditButtons = <>
+        Filter.DropDownRows = 0
+        Filter.EmptyValue = '(Todos)'
+        Filter.EmptyFont.Style = [fsItalic]
+        Filter.ItemIndex = -1
+      end    
+      item
+        ReadOnly = True
+        Title.Alignment = taCenter
+        Title.Caption = 'Fecha'
+        Title.Orientation = toHorizontal
+        Width = 115
+        FieldName = 'ComprobanteFecha'
+        EditButtons = <>
+        Filter.DropDownRows = 0
+        Filter.EmptyValue = '(Todos)'
+        Filter.EmptyFont.Style = [fsItalic]
+        Filter.ItemIndex = -1
+      end    
+      item
+        ReadOnly = True
+        Title.Alignment = taCenter
+        Title.Caption = 'Monto'
+        Title.Orientation = toHorizontal
+        Width = 115
+        FieldName = 'ComprobanteMonto'
+        EditButtons = <>
+        Filter.DropDownRows = 0
+        Filter.EmptyValue = '(Todos)'
+        Filter.EmptyFont.Style = [fsItalic]
+        Filter.ItemIndex = -1
+      end    
+      item
+        ReadOnly = True
+        Title.Alignment = taCenter
+        Title.Caption = 'Pagado'
+        Title.Orientation = toHorizontal
+        Width = 115
+        FieldName = 'ComprobantePagado'
+        EditButtons = <>
+        Filter.DropDownRows = 0
+        Filter.EmptyValue = '(Todos)'
+        Filter.EmptyFont.Style = [fsItalic]
+        Filter.ItemIndex = -1
+      end    
+      item
+        ReadOnly = True
+        Title.Alignment = taCenter
+        Title.Caption = 'Saldo'
+        Title.Orientation = toHorizontal
+        Width = 115
+        FieldName = 'ComprobanteSaldo'
+        EditButtons = <>
+        Filter.DropDownRows = 0
+        Filter.EmptyValue = '(Todos)'
+        Filter.EmptyFont.Style = [fsItalic]
+        Filter.ItemIndex = -1
+      end    
+      item
+        Title.Alignment = taCenter
+        Title.Caption = 'Asignado'
+        Title.Orientation = toHorizontal
+        Width = 119
+        FieldName = 'montoPagado'
+        EditButtons = <>
+        Filter.DropDownRows = 0
+        Filter.EmptyValue = '(Todos)'
+        Filter.EmptyFont.Style = [fsItalic]
+        Filter.ItemIndex = -1
+      end>
+    KeyStrokes = <    
+      item
+        Command = rxgcShowFindDlg
+        ShortCut = 16454
+        Enabled = True
+      end    
+      item
+        Command = rxgcShowColumnsDlg
+        ShortCut = 16471
+        Enabled = True
+      end    
+      item
+        Command = rxgcShowFilterDlg
+        ShortCut = 16468
+        Enabled = True
+      end    
+      item
+        Command = rxgcShowSortDlg
+        ShortCut = 16467
+        Enabled = True
+      end    
+      item
+        Command = rxgcShowQuickFilter
+        ShortCut = 16465
+        Enabled = True
+      end    
+      item
+        Command = rxgcHideQuickFilter
+        ShortCut = 16456
+        Enabled = True
+      end    
+      item
+        Command = rxgcSelectAll
+        ShortCut = 16449
+        Enabled = True
+      end    
+      item
+        Command = rxgcDeSelectAll
+        ShortCut = 16429
+        Enabled = True
+      end    
+      item
+        Command = rxgcInvertSelection
+        ShortCut = 16426
+        Enabled = True
+      end    
+      item
+        Command = rxgcOptimizeColumnsWidth
+        ShortCut = 16427
+        Enabled = True
+      end    
+      item
+        Command = rxgcCopyCellValue
+        ShortCut = 16451
+        Enabled = True
+      end>
+    OptionsRx = [rdgAllowColumnsForm, rdgAllowDialogFind, rdgAllowQuickFilter]
+    Align = alClient
+    AutoAdvance = aaDown
+    AutoFillColumns = True
+    Color = clWindow
+    DrawFullLine = False
+    FocusColor = clRed
+    SelectedColor = clHighlight
+    GridLineStyle = psSolid
+    DataSource = ds_OPComprobantes
+    FixedCols = 0
+    Options = [dgEditing, dgTitles, dgColumnResize, dgColumnMove, dgColLines, dgRowLines, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgHeaderPushedLook, dgDisableInsert]
+    ParentColor = False
+    Scrollbars = ssAutoVertical
+    TabOrder = 2
+    TitleFont.CharSet = ANSI_CHARSET
+    TitleFont.Height = -13
+    TitleFont.Name = 'Arial'
+    TitleFont.Pitch = fpVariable
+    TitleFont.Quality = fqDraft
+  end
+  object ds_OPComprobantes: TDataSource
+    DataSet = DM_OrdenDePago.OPComprobantes
+    OnUpdateData = ds_OPComprobantesUpdateData
+    left = 356
+    top = 212
+  end
+end

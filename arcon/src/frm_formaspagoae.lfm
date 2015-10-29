@@ -62,7 +62,6 @@ object frmFormasPagoAE: TfrmFormasPagoAE
       Top = 40
       Width = 144
       Alignment = taRightJustify
-      Enabled = False
       MaxValue = 0
       MinValue = 0
       TabOrder = 1

@@ -211,7 +211,7 @@ object frmOrdenDePagoAE: TfrmOrdenDePagoAE
       ParentFont = False
     end
     object edTotalAdeudado: TCurrencyEdit
-      Left = 680
+      Left = 679
       Height = 24
       Top = 10
       Width = 120
@@ -223,14 +223,16 @@ object frmOrdenDePagoAE: TfrmOrdenDePagoAE
       TabOrder = 2
       TabStop = False
       Value = 0
+      Visible = False
     end
     object Label1: TLabel
-      Left = 590
+      Left = 589
       Height = 16
       Top = 15
       Width = 87
       Caption = 'Total adeudado'
       ParentColor = False
+      Visible = False
     end
   end
   object Panel2: TPanel
@@ -411,7 +413,7 @@ object frmOrdenDePagoAE: TfrmOrdenDePagoAE
       ClientWidth = 104
       TabOrder = 0
       object btnNuevo: TBitBtn
-        Left = 16
+        Left = 17
         Height = 30
         Top = 56
         Width = 75
