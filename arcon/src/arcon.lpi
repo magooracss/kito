@@ -58,7 +58,7 @@
         <PackageName Value="LCL"/>
       </Item7>
     </RequiredPackages>
-    <Units Count="25">
+    <Units Count="26">
       <Unit0>
         <Filename Value="arcon.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -225,6 +225,12 @@
         <ComponentName Value="frmFormasPagoAE"/>
         <ResourceBaseClass Value="Form"/>
       </Unit24>
+      <Unit25>
+        <Filename Value="dmcompensaciones.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="DM_Compensaciones"/>
+        <ResourceBaseClass Value="DataModule"/>
+      </Unit25>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

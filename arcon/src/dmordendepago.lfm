@@ -1331,7 +1331,6 @@ object DM_OrdenDePago: TDM_OrdenDePago
   end
   object qFormasPagoPorID: TZQuery
     Connection = DM_General.cnxBase
-    Active = True
     SQL.Strings = (
       'SELECT *'
       'FROM TIPOSFORMASDEPAGO'

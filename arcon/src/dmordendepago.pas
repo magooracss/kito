@@ -96,6 +96,9 @@ type
     procedure setIdProveedor(AValue: GUID_ID);
     procedure RecalcularOP;
 
+    procedure PagarComprobanteActual (monto: double);
+
+
   public
     property refProveedor:GUID_ID read getIdProveedor write setIdProveedor;
     property ordenPagoID: GUID_ID read getOrdenPagoID;
@@ -116,6 +119,10 @@ type
     procedure EditarFormaPagoActual;
     function NombreformaDePago (refFormaPago: integer): string;
     procedure QuitarFP;
+
+
+    procedure PagarTodosLosComprobantes;
+
 
   end;
 
@@ -373,6 +380,30 @@ begin
     DELOPFormasPago.ParamByName('id').AsString:= OPFormasPagoid.AsString;
     DELOPFormasPago.ExecSQL;
     OPFormasPago.Delete;
+  end;
+end;
+
+procedure TDM_OrdenDePago.PagarComprobanteActual(monto: double);
+begin
+  with OPComprobantes do
+  begin
+    Edit;
+    OPComprobantesmontoPagado.AsFloat:= monto;
+    Post;
+  end;
+end;
+
+procedure TDM_OrdenDePago.PagarTodosLosComprobantes;
+begin
+  with OPComprobantes do
+  begin
+    First;
+    while not EOF do
+    begin
+      PagarComprobanteActual(OPComprobantesComprobanteSaldo.AsFloat);
+      DM_Compras.CompraPagada (OPComprobantescomprobanteCompra_id.AsString);
+      Next;
+    end;
   end;
 end;
 

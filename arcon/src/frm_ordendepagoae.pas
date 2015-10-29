@@ -67,6 +67,9 @@ type
 
     procedure PantallaFormasPago (refFP: GUID_ID);
 
+    function ValidarGrabacion: boolean;
+    procedure GrabarOrdenDePago;
+
   public
     property ordenPagoID: GUID_ID read getOrdenPagoID write _ordenPagoID;
   end;
@@ -82,6 +85,7 @@ uses
   ,frm_proveedoresae
   ,frm_busquedacompras
   ,frm_formaspagoae
+  ,dmcompensaciones
   ;
 
 { TfrmOrdenDePagoAE }
@@ -89,11 +93,13 @@ uses
 procedure TfrmOrdenDePagoAE.FormCreate(Sender: TObject);
 begin
   Application.CreateForm(TDM_OrdenDePago, DM_OrdenDePago);
+  Application.CreateForm(TDM_Compensaciones, DM_Compensaciones);
   _ordenPagoID:= GUIDNULO;
 end;
 
 procedure TfrmOrdenDePagoAE.FormDestroy(Sender: TObject);
 begin
+  DM_Compensaciones.Free;
   DM_OrdenDePago.Free;
 end;
 
@@ -226,7 +232,6 @@ begin
 end;
 
 
-
 procedure TfrmOrdenDePagoAE.btnNuevoFPClick(Sender: TObject);
 begin
   PantallaFormasPago(GUIDNULO);
@@ -249,9 +254,75 @@ begin
    end;
 end;
 
+
+(*******************************************************************************
+*** PERSISTENCIA DE DATOS
+*******************************************************************************)
+
+function TfrmOrdenDePagoAE.ValidarGrabacion: boolean;
+var
+  montoAdeudado
+, montoAPagar: double;
+  flgGrabar: boolean;
+begin
+   montoAdeudado:= edTotalComprobantes.Value;
+   montoAPagar:= edTotalPagado.Value;
+   flgGrabar:= false;
+
+   if DM_OrdenDePago.refProveedor = GUIDNULO then
+     ShowMessage('No se puede grabar una orden de pago sin seleccionar el proveedor');
+
+   if (DM_General.CmpIgualdadFloat(0,montoAPagar)) then
+     ShowMessage('No se puede grabar una orden de pago por $ 0.00');
+
+   if  (NOT DM_General.CmpIgualdadFloat(montoAdeudado,montoAPagar)) then
+   begin
+     flgGrabar:=  (MessageDlg ('Atención'
+                    , 'El monto a pagar difiere del total a cobrar. Desea corregirlo?'
+                     , mtConfirmation, [mbYes, mbNo],0 ) = mrYes);
+   end
+   else
+     flgGrabar:= true;
+
+   Result:= flgGrabar;
+end;
+
+procedure TfrmOrdenDePagoAE.GrabarOrdenDePago;
+var
+  montoAdeudado
+, montoAPagar: double;
+begin
+  montoAdeudado:= edTotalComprobantes.Value;
+  montoAPagar:= edTotalPagado.Value;
+
+
+  if (montoAdeudado > montoAPagar) then
+  begin
+    raise Exception.Create('Distribuir el dinero entre los comprobantes');
+  end
+  else
+  begin
+    //Se marca todo como pagado y se hacen las compensaciones si corresponde
+    DM_OrdenDePago.PagarTodosLosComprobantes;
+
+    if (NOT (DM_General.CmpIgualdadFloat(montoAdeudado,montoAPagar))) then
+    begin
+      DM_Compensaciones.Nueva (DM_OrdenDePago.OrdenDePagoid.AsString
+                               ,(montoAPagar - montoAdeudado)
+                              );
+      DM_Compensaciones.Grabar
+    end;
+  end;
+
+  DM_OrdenDePago.Grabar;
+end;
+
 procedure TfrmOrdenDePagoAE.btnGrabarClick(Sender: TObject);
 begin
-
+  if ValidarGrabacion then
+  begin
+    GrabarOrdenDePago;
+  end;
 end;
 
 end.

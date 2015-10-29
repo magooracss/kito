@@ -1491,3 +1491,13 @@ CREATE TABLE OPFormasPago
 , bVisible 	 smallint default 1
 );
 
+CREATE TABLE Compensaciones
+(
+  id		"guid"  NOT NULL PRIMARY KEY
+, ordenDePago_id "guid" default '{00000000-0000-0000-0000-000000000000}'
+, monto		 "money" default 0
+, compra_id	 "guid" default '{00000000-0000-0000-0000-000000000000}'
+, fCompensacion date default 0
+, bVisible 	 smallint default 1
+
+);

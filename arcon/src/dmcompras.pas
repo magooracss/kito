@@ -180,6 +180,9 @@ type
 
     procedure ComprasProveedorEstado (Proveedor_id: GUID_ID; refEstado: integer);
     function montoComprasProveedorEstado (Proveedor_id: GUID_ID; refEstado: integer): double;
+
+    procedure CompraPagada (refCompra:GUID_ID);
+
   end;
 
 var
@@ -333,6 +336,7 @@ begin
   CompraItems.LoadFromDataSet(qItemsCompra, 0, lmAppend);
   qItemsCompra.Close;
 
+  Compras.Edit;
 end;
 
 procedure TDM_Compras.Grabar;
@@ -388,6 +392,14 @@ begin
     Result:= suma;
     Close;
   end;
+end;
+
+procedure TDM_Compras.CompraPagada(refCompra: GUID_ID);
+begin
+  Editar(refCompra);
+  ComprasestadoPagado.AsInteger:= EST_PAGADO;
+  Compras.Post;
+  Grabar;
 end;
 
 procedure TDM_Compras.ComprasAfterInsert(DataSet: TDataSet);
