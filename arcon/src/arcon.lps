@@ -4,7 +4,7 @@
     <PathDelim Value="\"/>
     <Version Value="9"/>
     <BuildModes Active="Default"/>
-    <Units Count="48">
+    <Units Count="50">
       <Unit0>
         <Filename Value="arcon.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -19,10 +19,15 @@
         <ComponentName Value="frmMain"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="214"/>
-        <CursorPos X="10" Y="233"/>
+        <EditorIndex Value="1"/>
+        <TopLine Value="232"/>
+        <CursorPos X="18" Y="232"/>
         <UsageCount Value="200"/>
+        <Bookmarks Count="1">
+          <Item0 X="3" Y="253" ID="1"/>
+        </Bookmarks>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
       </Unit1>
       <Unit2>
         <Filename Value="..\..\src\dmgeneral.pas"/>
@@ -30,11 +35,10 @@
         <ComponentName Value="DM_General"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
-        <EditorIndex Value="5"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="342"/>
         <CursorPos X="68" Y="352"/>
         <UsageCount Value="200"/>
-        <Loaded Value="True"/>
       </Unit2>
       <Unit3>
         <Filename Value="frm_ventaae.pas"/>
@@ -134,7 +138,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="62"/>
         <CursorPos X="24" Y="80"/>
-        <UsageCount Value="198"/>
+        <UsageCount Value="202"/>
       </Unit11>
       <Unit12>
         <Filename Value="..\..\src\SD_Configuracion.pas"/>
@@ -142,7 +146,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="16"/>
         <CursorPos X="61" Y="20"/>
-        <UsageCount Value="193"/>
+        <UsageCount Value="198"/>
       </Unit12>
       <Unit13>
         <Filename Value="dmfacturaelectronica.pas"/>
@@ -153,7 +157,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="131"/>
         <CursorPos X="37" Y="144"/>
-        <UsageCount Value="150"/>
+        <UsageCount Value="155"/>
       </Unit13>
       <Unit14>
         <Filename Value="dmfacturas.pas"/>
@@ -164,7 +168,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="267"/>
         <CursorPos X="4" Y="304"/>
-        <UsageCount Value="90"/>
+        <UsageCount Value="95"/>
       </Unit14>
       <Unit15>
         <Filename Value="frm_impresioncomprobantes.pas"/>
@@ -175,7 +179,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="100"/>
         <CursorPos X="3" Y="112"/>
-        <UsageCount Value="76"/>
+        <UsageCount Value="81"/>
       </Unit15>
       <Unit16>
         <Filename Value="frm_comprasae.pas"/>
@@ -186,7 +190,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="126"/>
         <CursorPos X="57" Y="173"/>
-        <UsageCount Value="68"/>
+        <UsageCount Value="73"/>
       </Unit16>
       <Unit17>
         <Filename Value="dmcompras.pas"/>
@@ -194,12 +198,10 @@
         <ComponentName Value="DM_Compras"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
-        <EditorIndex Value="8"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="318"/>
         <CursorPos X="16" Y="403"/>
-        <UsageCount Value="68"/>
-        <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
+        <UsageCount Value="73"/>
       </Unit17>
       <Unit18>
         <Filename Value="frm_compraitemsae.pas"/>
@@ -210,7 +212,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="34"/>
         <CursorPos X="64" Y="23"/>
-        <UsageCount Value="60"/>
+        <UsageCount Value="65"/>
       </Unit18>
       <Unit19>
         <Filename Value="..\..\src\frm_proveedoresae.pas"/>
@@ -220,7 +222,7 @@
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="50" Y="67"/>
-        <UsageCount Value="53"/>
+        <UsageCount Value="58"/>
       </Unit19>
       <Unit20>
         <Filename Value="..\..\src\dmproveedores.pas"/>
@@ -229,7 +231,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <EditorIndex Value="-1"/>
-        <UsageCount Value="53"/>
+        <UsageCount Value="58"/>
       </Unit20>
       <Unit21>
         <Filename Value="frm_ordendepagoae.pas"/>
@@ -237,13 +239,9 @@
         <ComponentName Value="frmOrdenDePagoAE"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <IsVisibleTab Value="True"/>
         <TopLine Value="287"/>
-        <CursorPos Y="304"/>
-        <UsageCount Value="53"/>
-        <Bookmarks Count="1">
-          <Item0 X="9" Y="327" ID="1"/>
-        </Bookmarks>
+        <CursorPos X="7" Y="295"/>
+        <UsageCount Value="58"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit21>
@@ -253,12 +251,10 @@
         <ComponentName Value="DM_OrdenDePago"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
-        <EditorIndex Value="7"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="393"/>
         <CursorPos X="3" Y="399"/>
-        <UsageCount Value="53"/>
-        <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
+        <UsageCount Value="58"/>
       </Unit22>
       <Unit23>
         <Filename Value="frm_busquedacompras.pas"/>
@@ -266,12 +262,10 @@
         <ComponentName Value="frmBusquedaCompras"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="1"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="37"/>
         <CursorPos X="26" Y="54"/>
-        <UsageCount Value="45"/>
-        <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
+        <UsageCount Value="50"/>
       </Unit23>
       <Unit24>
         <Filename Value="frm_formaspagoae.pas"/>
@@ -279,12 +273,10 @@
         <ComponentName Value="frmFormasPagoAE"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="2"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="50"/>
         <CursorPos X="61" Y="77"/>
-        <UsageCount Value="39"/>
-        <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
+        <UsageCount Value="44"/>
       </Unit24>
       <Unit25>
         <Filename Value="dmcompensaciones.pas"/>
@@ -292,12 +284,10 @@
         <ComponentName Value="DM_Compensaciones"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
-        <EditorIndex Value="6"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="40"/>
         <CursorPos X="108" Y="45"/>
-        <UsageCount Value="32"/>
-        <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
+        <UsageCount Value="37"/>
       </Unit25>
       <Unit26>
         <Filename Value="frm_distribuirdinerocomprobantes.pas"/>
@@ -305,45 +295,43 @@
         <ComponentName Value="frmDistribuirDineroComprobantes"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="3"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="79"/>
         <CursorPos Y="91"/>
-        <UsageCount Value="31"/>
-        <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
+        <UsageCount Value="36"/>
       </Unit26>
       <Unit27>
         <Filename Value="C:\magoo\lazarus\lcl\dbgrids.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="731"/>
         <CursorPos Y="745"/>
-        <UsageCount Value="5"/>
+        <UsageCount Value="4"/>
       </Unit27>
       <Unit28>
         <Filename Value="..\..\src\frm_ediciontugs.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="89"/>
         <CursorPos X="28" Y="95"/>
-        <UsageCount Value="22"/>
+        <UsageCount Value="21"/>
       </Unit28>
       <Unit29>
         <Filename Value="C:\magoo\lazarus\lcl\include\customform.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="900"/>
         <CursorPos Y="944"/>
-        <UsageCount Value="5"/>
+        <UsageCount Value="4"/>
       </Unit29>
       <Unit30>
         <Filename Value="C:\magoo\lazarus\components\rxnew\rxmemds.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="1539"/>
         <CursorPos X="59" Y="1557"/>
-        <UsageCount Value="15"/>
+        <UsageCount Value="14"/>
       </Unit30>
       <Unit31>
         <Filename Value="..\..\src\dmpedidos.lfm"/>
         <EditorIndex Value="-1"/>
-        <UsageCount Value="5"/>
+        <UsageCount Value="4"/>
         <DefaultSyntaxHighlighter Value="LFM"/>
       </Unit31>
       <Unit32>
@@ -351,14 +339,14 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="34"/>
         <CursorPos X="7" Y="36"/>
-        <UsageCount Value="5"/>
+        <UsageCount Value="4"/>
       </Unit32>
       <Unit33>
         <Filename Value="C:\magoo\lazarus\components\zeos\src\component\ZAbstractRODataset.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="744"/>
         <CursorPos Y="757"/>
-        <UsageCount Value="5"/>
+        <UsageCount Value="4"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit33>
       <Unit34>
@@ -366,7 +354,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="824"/>
         <CursorPos X="79" Y="826"/>
-        <UsageCount Value="9"/>
+        <UsageCount Value="8"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit34>
       <Unit35>
@@ -375,27 +363,27 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="11361"/>
         <CursorPos Y="11387"/>
-        <UsageCount Value="3"/>
+        <UsageCount Value="2"/>
       </Unit35>
       <Unit36>
         <Filename Value="..\..\src\frm_busquedaempresas.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="124"/>
         <CursorPos X="3" Y="190"/>
-        <UsageCount Value="5"/>
+        <UsageCount Value="4"/>
       </Unit36>
       <Unit37>
         <Filename Value="C:\magoo\lazarus\lcl\include\customedit.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="541"/>
         <CursorPos Y="555"/>
-        <UsageCount Value="5"/>
+        <UsageCount Value="4"/>
       </Unit37>
       <Unit38>
         <Filename Value="..\..\sql\upd20150600.sql"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="289"/>
-        <UsageCount Value="6"/>
+        <UsageCount Value="5"/>
         <DefaultSyntaxHighlighter Value="SQL"/>
       </Unit38>
       <Unit39>
@@ -404,42 +392,42 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="1741"/>
         <CursorPos X="3" Y="1755"/>
-        <UsageCount Value="7"/>
+        <UsageCount Value="6"/>
       </Unit39>
       <Unit40>
         <Filename Value="C:\magoo\lazarus\lcl\include\control.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="2099"/>
         <CursorPos Y="2113"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="9"/>
       </Unit40>
       <Unit41>
         <Filename Value="C:\magoo\lazarus\lcl\include\buttoncontrol.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="7"/>
         <CursorPos Y="16"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="9"/>
       </Unit41>
       <Unit42>
         <Filename Value="C:\magoo\lazarus\lcl\include\buttons.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="156"/>
         <CursorPos Y="170"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="9"/>
       </Unit42>
       <Unit43>
         <Filename Value="C:\magoo\lazarus\lcl\include\bitbtn.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="52"/>
         <CursorPos Y="65"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="9"/>
       </Unit43>
       <Unit44>
         <Filename Value="C:\magoo\lazarus\lcl\include\wincontrol.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="5329"/>
         <CursorPos Y="5342"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="9"/>
       </Unit44>
       <Unit45>
         <Filename Value="C:\magoo\lazarus\lcl\lclmessageglue.pas"/>
@@ -447,142 +435,167 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="106"/>
         <CursorPos Y="123"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="9"/>
       </Unit45>
       <Unit46>
         <Filename Value="C:\magoo\lazarus\lcl\interfaces\win32\win32callback.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="86"/>
         <CursorPos Y="100"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="9"/>
       </Unit46>
       <Unit47>
         <Filename Value="C:\magoo\lazarus\fpc\2.6.4\source\packages\fcl-db\src\base\db.pas"/>
-        <EditorIndex Value="4"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="34"/>
         <CursorPos X="48" Y="49"/>
-        <UsageCount Value="11"/>
-        <Loaded Value="True"/>
+        <UsageCount Value="10"/>
       </Unit47>
+      <Unit48>
+        <Filename Value="frm_listadocc.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmListadoCC"/>
+        <ResourceBaseClass Value="Form"/>
+        <EditorIndex Value="2"/>
+        <TopLine Value="24"/>
+        <CursorPos X="40" Y="32"/>
+        <UsageCount Value="25"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
+      </Unit48>
+      <Unit49>
+        <Filename Value="dmcuentacorriente.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="DM_CuentaCorriente"/>
+        <ResourceBaseClass Value="DataModule"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="3"/>
+        <TopLine Value="52"/>
+        <CursorPos X="31" Y="80"/>
+        <UsageCount Value="25"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
+      </Unit49>
     </Units>
-    <JumpHistory Count="30" HistoryIndex="27">
+    <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
-        <Filename Value="dmordendepago.pas"/>
-        <Caret Line="242" TopLine="225"/>
+        <Filename Value="frm_main.pas"/>
+        <Caret Line="234" Column="10" TopLine="215"/>
       </Position1>
       <Position2>
-        <Filename Value="dmordendepago.pas"/>
-        <Caret Line="243" TopLine="225"/>
+        <Filename Value="frm_main.pas"/>
+        <Caret Line="235" Column="10" TopLine="216"/>
       </Position2>
       <Position3>
-        <Filename Value="dmordendepago.pas"/>
-        <Caret Line="244" TopLine="225"/>
+        <Filename Value="frm_main.pas"/>
+        <Caret Line="236" Column="10" TopLine="217"/>
       </Position3>
       <Position4>
-        <Filename Value="dmordendepago.pas"/>
-        <Caret Line="246" TopLine="225"/>
+        <Filename Value="frm_listadocc.pas"/>
+        <Caret Line="8" Column="104"/>
       </Position4>
       <Position5>
-        <Filename Value="dmordendepago.pas"/>
-        <Caret Line="247" TopLine="225"/>
+        <Filename Value="dmcuentacorriente.pas"/>
       </Position5>
       <Position6>
-        <Filename Value="dmordendepago.pas"/>
-        <Caret Line="246" TopLine="231"/>
+        <Filename Value="frm_listadocc.pas"/>
+        <Caret Line="43" Column="4" TopLine="15"/>
       </Position6>
       <Position7>
-        <Filename Value="dmordendepago.pas"/>
-        <Caret Line="247" TopLine="234"/>
+        <Filename Value="frm_listadocc.pas"/>
+        <Caret Line="41" Column="3" TopLine="17"/>
       </Position7>
       <Position8>
-        <Filename Value="dmordendepago.pas"/>
-        <Caret Line="246" Column="37" TopLine="238"/>
+        <Filename Value="frm_main.pas"/>
+        <Caret Line="253" Column="13" TopLine="230"/>
       </Position8>
       <Position9>
-        <Filename Value="frm_ordendepagoae.pas"/>
-        <Caret Line="341" TopLine="320"/>
+        <Filename Value="frm_main.pas"/>
+        <Caret Line="93" TopLine="90"/>
       </Position9>
       <Position10>
-        <Filename Value="frm_distribuirdinerocomprobantes.pas"/>
-        <Caret Line="76" Column="36" TopLine="26"/>
+        <Filename Value="frm_main.pas"/>
+        <Caret Line="250" Column="3" TopLine="225"/>
       </Position10>
       <Position11>
-        <Filename Value="dmordendepago.pas"/>
+        <Filename Value="frm_main.pas"/>
+        <Caret Line="84" Column="18" TopLine="57"/>
       </Position11>
       <Position12>
-        <Filename Value="dmordendepago.pas"/>
-        <Caret Line="50" Column="21" TopLine="27"/>
+        <Filename Value="frm_listadocc.pas"/>
+        <Caret Line="31" Column="40" TopLine="23"/>
       </Position12>
       <Position13>
-        <Filename Value="dmordendepago.pas"/>
-        <Caret Line="59" Column="28" TopLine="36"/>
+        <Filename Value="dmcuentacorriente.pas"/>
+        <Caret Line="28" Column="48"/>
       </Position13>
       <Position14>
-        <Filename Value="dmordendepago.pas"/>
-        <Caret Line="83" Column="15" TopLine="60"/>
+        <Filename Value="dmcuentacorriente.pas"/>
+        <Caret Line="27" Column="37" TopLine="12"/>
       </Position14>
       <Position15>
-        <Filename Value="dmordendepago.pas"/>
-        <Caret Line="149" Column="19" TopLine="125"/>
+        <Filename Value="dmcuentacorriente.pas"/>
+        <Caret Line="46" Column="8" TopLine="18"/>
       </Position15>
       <Position16>
-        <Filename Value="frm_distribuirdinerocomprobantes.pas"/>
-        <Caret Line="140" Column="15" TopLine="116"/>
+        <Filename Value="dmcuentacorriente.pas"/>
+        <Caret Line="49" Column="51" TopLine="22"/>
       </Position16>
       <Position17>
-        <Filename Value="frm_distribuirdinerocomprobantes.pas"/>
-        <Caret Line="59" Column="3" TopLine="56"/>
+        <Filename Value="dmcuentacorriente.pas"/>
+        <Caret Line="27" Column="7" TopLine="6"/>
       </Position17>
       <Position18>
-        <Filename Value="frm_distribuirdinerocomprobantes.pas"/>
-        <Caret Line="144" Column="38" TopLine="136"/>
+        <Filename Value="dmcuentacorriente.pas"/>
+        <Caret Line="67" Column="31" TopLine="12"/>
       </Position18>
       <Position19>
-        <Filename Value="dmordendepago.pas"/>
-        <Caret Line="244" TopLine="238"/>
+        <Filename Value="dmcuentacorriente.pas"/>
+        <Caret Line="68" Column="31" TopLine="40"/>
       </Position19>
       <Position20>
-        <Filename Value="dmordendepago.pas"/>
-        <Caret Line="245" Column="55" TopLine="231"/>
+        <Filename Value="dmcuentacorriente.pas"/>
+        <Caret Line="69" Column="31" TopLine="41"/>
       </Position20>
       <Position21>
-        <Filename Value="dmordendepago.pas"/>
-        <Caret Line="244" TopLine="231"/>
+        <Filename Value="dmcuentacorriente.pas"/>
+        <Caret Line="70" Column="31" TopLine="42"/>
       </Position21>
       <Position22>
-        <Filename Value="dmordendepago.pas"/>
-        <Caret Line="245" TopLine="231"/>
+        <Filename Value="dmcuentacorriente.pas"/>
+        <Caret Line="71" Column="31" TopLine="43"/>
       </Position22>
       <Position23>
-        <Filename Value="dmordendepago.pas"/>
-        <Caret Line="252" TopLine="231"/>
+        <Filename Value="dmcuentacorriente.pas"/>
+        <Caret Line="72" Column="31" TopLine="44"/>
       </Position23>
       <Position24>
-        <Filename Value="dmordendepago.pas"/>
-        <Caret Line="244" Column="5" TopLine="231"/>
+        <Filename Value="dmcuentacorriente.pas"/>
+        <Caret Line="73" Column="31" TopLine="45"/>
       </Position24>
       <Position25>
-        <Filename Value="dmordendepago.pas"/>
-        <Caret Line="222" TopLine="221"/>
+        <Filename Value="dmcuentacorriente.pas"/>
+        <Caret Line="74" Column="31" TopLine="46"/>
       </Position25>
       <Position26>
-        <Filename Value="frm_ordendepagoae.pas"/>
+        <Filename Value="dmcuentacorriente.pas"/>
+        <Caret Line="75" Column="31" TopLine="47"/>
       </Position26>
       <Position27>
-        <Filename Value="frm_ordendepagoae.pas"/>
-        <Caret Line="350" Column="22" TopLine="327"/>
+        <Filename Value="dmcuentacorriente.pas"/>
+        <Caret Line="76" Column="31" TopLine="48"/>
       </Position27>
       <Position28>
-        <Filename Value="frm_ordendepagoae.pas"/>
-        <Caret Line="330" TopLine="311"/>
+        <Filename Value="dmcuentacorriente.pas"/>
+        <Caret Line="77" Column="31" TopLine="49"/>
       </Position28>
       <Position29>
-        <Filename Value="frm_ordendepagoae.pas"/>
-        <Caret Line="307" Column="30" TopLine="292"/>
+        <Filename Value="dmcuentacorriente.pas"/>
+        <Caret Line="78" Column="31" TopLine="50"/>
       </Position29>
       <Position30>
-        <Filename Value="dmordendepago.pas"/>
-        <Caret Line="399" Column="3" TopLine="393"/>
+        <Filename Value="dmcuentacorriente.pas"/>
+        <Caret Line="79" Column="31" TopLine="51"/>
       </Position30>
     </JumpHistory>
   </ProjectSession>

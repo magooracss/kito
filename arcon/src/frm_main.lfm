@@ -1,11 +1,11 @@
 object frmMain: TfrmMain
   Left = 304
-  Height = 128
+  Height = 131
   Top = 238
-  Width = 586
+  Width = 681
   Caption = 'Finanzas'
-  ClientHeight = 108
-  ClientWidth = 586
+  ClientHeight = 111
+  ClientWidth = 681
   Font.CharSet = ANSI_CHARSET
   Font.Height = -13
   Font.Name = 'Arial'
@@ -19,8 +19,8 @@ object frmMain: TfrmMain
   object st: TStatusBar
     Left = 0
     Height = 23
-    Top = 85
-    Width = 586
+    Top = 88
+    Width = 681
     Panels = <    
       item
         Width = 150
@@ -35,7 +35,7 @@ object frmMain: TfrmMain
     Left = 0
     Height = 162
     Top = 0
-    Width = 586
+    Width = 681
     AutoSize = True
     ButtonHeight = 80
     ButtonWidth = 92
@@ -88,14 +88,14 @@ object frmMain: TfrmMain
       Visible = False
     end
     object ToolButton8: TToolButton
-      Left = 1
-      Top = 82
+      Left = 576
+      Top = 2
       Action = factImpresion
     end
     object ToolButton9: TToolButton
-      Left = 93
+      Left = 668
       Height = 80
-      Top = 82
+      Top = 2
       Width = 10
       Caption = 'ToolButton9'
       Style = tbsSeparator
@@ -105,11 +105,16 @@ object frmMain: TfrmMain
       Top = 2
       Action = movOrdenPago
     end
+    object ToolButton11: TToolButton
+      Left = 1
+      Top = 82
+      Action = lstCuentaCorriente
+    end
   end
   object ActionList1: TActionList
     Images = DM_General.ImgAcciones
     left = 184
-    top = 64
+    top = 32
     object PrgSalir: TAction
       Category = 'Programa'
       Caption = 'Salir'
@@ -164,11 +169,17 @@ object frmMain: TfrmMain
       ImageIndex = 28
       OnExecute = movOrdenPagoExecute
     end
+    object lstCuentaCorriente: TAction
+      Category = 'Listados'
+      Caption = 'Cuenta Corriente'
+      ImageIndex = 7
+      OnExecute = lstCuentaCorrienteExecute
+    end
   end
   object MainMenu1: TMainMenu
     Images = DM_General.ImgAccionesMenu
-    left = 112
-    top = 64
+    left = 104
+    top = 32
     object MenuItem1: TMenuItem
       Caption = 'Programa'
       object MenuItem7: TMenuItem
@@ -191,6 +202,12 @@ object frmMain: TfrmMain
       end
       object MenuItem6: TMenuItem
         Action = movCompra
+      end
+    end
+    object MenuItem9: TMenuItem
+      Caption = 'Listados'
+      object MenuItem10: TMenuItem
+        Action = lstCuentaCorriente
       end
     end
   end

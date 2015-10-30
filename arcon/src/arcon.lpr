@@ -15,7 +15,8 @@ uses
   frm_ventaconceptosae, dmfacturaelectronica, dmfacturas,
   frm_impresioncomprobantes, frm_comprasae, dmcompras, frm_compraitemsae
   ,dmproveedores, frm_ordendepagoae, dmordendepago, frm_busquedacompras, 
-frm_formaspagoae, dmcompensaciones, frm_distribuirdinerocomprobantes;
+frm_formaspagoae, dmcompensaciones, frm_distribuirdinerocomprobantes, 
+frm_listadocc, dmcuentacorriente;
 
 {$R *.res}
 

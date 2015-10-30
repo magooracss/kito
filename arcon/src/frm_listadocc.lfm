@@ -1,0 +1,227 @@
+object frmListadoCC: TfrmListadoCC
+  Left = 394
+  Height = 454
+  Top = 214
+  Width = 971
+  Caption = 'Cuenta Corriente'
+  ClientHeight = 454
+  ClientWidth = 971
+  Font.CharSet = ANSI_CHARSET
+  Font.Height = -13
+  Font.Name = 'Arial'
+  Font.Pitch = fpVariable
+  Font.Quality = fqDraft
+  OnClose = FormClose
+  OnCreate = FormCreate
+  Position = poOwnerFormCenter
+  LCLVersion = '1.4.2.0'
+  object Panel1: TPanel
+    Left = 0
+    Height = 112
+    Top = 0
+    Width = 971
+    Align = alTop
+    TabOrder = 0
+  end
+  object Panel2: TPanel
+    Left = 0
+    Height = 54
+    Top = 400
+    Width = 971
+    Align = alBottom
+    TabOrder = 1
+  end
+  object RxDBGrid1: TRxDBGrid
+    Left = 0
+    Height = 288
+    Top = 112
+    Width = 971
+    TitleButtons = True
+    AutoSort = True
+    Columns = <    
+      item
+        SizePriority = 0
+        Title.Alignment = taCenter
+        Title.Caption = 'Fecha'
+        Title.Orientation = toHorizontal
+        Width = 90
+        FieldName = 'Fecha'
+        EditButtons = <>
+        Filter.DropDownRows = 0
+        Filter.EmptyValue = '(Todos)'
+        Filter.EmptyFont.Style = [fsItalic]
+        Filter.ItemIndex = -1
+      end    
+      item
+        Title.Alignment = taCenter
+        Title.Caption = 'Empresa'
+        Title.Orientation = toHorizontal
+        Width = 109
+        FieldName = 'Empresa'
+        EditButtons = <>
+        Filter.DropDownRows = 0
+        Filter.EmptyValue = '(Todos)'
+        Filter.EmptyFont.Style = [fsItalic]
+        Filter.ItemIndex = -1
+        WordWrap = True
+      end    
+      item
+        Title.Alignment = taCenter
+        Title.Caption = 'TipoComprobante'
+        Title.Orientation = toHorizontal
+        Width = 109
+        FieldName = 'TipoComprobante'
+        EditButtons = <>
+        Filter.DropDownRows = 0
+        Filter.EmptyValue = '(Todos)'
+        Filter.EmptyFont.Style = [fsItalic]
+        Filter.ItemIndex = -1
+      end    
+      item
+        Title.Alignment = taCenter
+        Title.Caption = 'Title'
+        Title.Orientation = toHorizontal
+        Width = 109
+        EditButtons = <>
+        Filter.DropDownRows = 0
+        Filter.EmptyValue = '(Todos)'
+        Filter.EmptyFont.Style = [fsItalic]
+        Filter.ItemIndex = -1
+      end    
+      item
+        Title.Alignment = taCenter
+        Title.Caption = 'Title'
+        Title.Orientation = toHorizontal
+        Width = 109
+        EditButtons = <>
+        Filter.DropDownRows = 0
+        Filter.EmptyValue = '(Todos)'
+        Filter.EmptyFont.Style = [fsItalic]
+        Filter.ItemIndex = -1
+      end    
+      item
+        Title.Alignment = taCenter
+        Title.Caption = 'Title'
+        Title.Orientation = toHorizontal
+        Width = 109
+        EditButtons = <>
+        Filter.DropDownRows = 0
+        Filter.EmptyValue = '(Todos)'
+        Filter.EmptyFont.Style = [fsItalic]
+        Filter.ItemIndex = -1
+      end    
+      item
+        Title.Alignment = taCenter
+        Title.Caption = 'Title'
+        Title.Orientation = toHorizontal
+        Width = 109
+        EditButtons = <>
+        Filter.DropDownRows = 0
+        Filter.EmptyValue = '(Todos)'
+        Filter.EmptyFont.Style = [fsItalic]
+        Filter.ItemIndex = -1
+      end    
+      item
+        Title.Alignment = taCenter
+        Title.Caption = 'Title'
+        Title.Orientation = toHorizontal
+        Width = 109
+        EditButtons = <>
+        Filter.DropDownRows = 0
+        Filter.EmptyValue = '(Todos)'
+        Filter.EmptyFont.Style = [fsItalic]
+        Filter.ItemIndex = -1
+      end    
+      item
+        Title.Alignment = taCenter
+        Title.Caption = 'Title'
+        Title.Orientation = toHorizontal
+        Width = 114
+        EditButtons = <>
+        Filter.DropDownRows = 0
+        Filter.EmptyValue = '(Todos)'
+        Filter.EmptyFont.Style = [fsItalic]
+        Filter.ItemIndex = -1
+      end>
+    KeyStrokes = <    
+      item
+        Command = rxgcShowFindDlg
+        ShortCut = 16454
+        Enabled = True
+      end    
+      item
+        Command = rxgcShowColumnsDlg
+        ShortCut = 16471
+        Enabled = True
+      end    
+      item
+        Command = rxgcShowFilterDlg
+        ShortCut = 16468
+        Enabled = True
+      end    
+      item
+        Command = rxgcShowSortDlg
+        ShortCut = 16467
+        Enabled = True
+      end    
+      item
+        Command = rxgcShowQuickFilter
+        ShortCut = 16465
+        Enabled = True
+      end    
+      item
+        Command = rxgcHideQuickFilter
+        ShortCut = 16456
+        Enabled = True
+      end    
+      item
+        Command = rxgcSelectAll
+        ShortCut = 16449
+        Enabled = True
+      end    
+      item
+        Command = rxgcDeSelectAll
+        ShortCut = 16429
+        Enabled = True
+      end    
+      item
+        Command = rxgcInvertSelection
+        ShortCut = 16426
+        Enabled = True
+      end    
+      item
+        Command = rxgcOptimizeColumnsWidth
+        ShortCut = 16427
+        Enabled = True
+      end    
+      item
+        Command = rxgcCopyCellValue
+        ShortCut = 16451
+        Enabled = True
+      end>
+    OptionsRx = [rdgAllowColumnsForm, rdgAllowDialogFind, rdgAllowQuickFilter]
+    Align = alClient
+    AutoFillColumns = True
+    Color = clWindow
+    DrawFullLine = False
+    FocusColor = clRed
+    SelectedColor = clHighlight
+    GridLineStyle = psSolid
+    DataSource = ds_listadoCC
+    FixedCols = 0
+    Options = [dgTitles, dgColumnResize, dgColumnMove, dgColLines, dgRowLines, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgHeaderPushedLook]
+    ParentColor = False
+    Scrollbars = ssAutoVertical
+    TabOrder = 2
+    TitleFont.CharSet = ANSI_CHARSET
+    TitleFont.Height = -13
+    TitleFont.Name = 'Arial'
+    TitleFont.Pitch = fpVariable
+    TitleFont.Quality = fqDraft
+  end
+  object ds_listadoCC: TDataSource
+    DataSet = DM_CuentaCorriente.CuentaCorriente
+    left = 461
+    top = 275
+  end
+end

@@ -58,7 +58,7 @@
         <PackageName Value="LCL"/>
       </Item7>
     </RequiredPackages>
-    <Units Count="27">
+    <Units Count="29">
       <Unit0>
         <Filename Value="arcon.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -240,6 +240,18 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
       </Unit26>
+      <Unit27>
+        <Filename Value="frm_listadocc.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmListadoCC"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit27>
+      <Unit28>
+        <Filename Value="dmcuentacorriente.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="DM_CuentaCorriente"/>
+        <ResourceBaseClass Value="DataModule"/>
+      </Unit28>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

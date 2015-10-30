@@ -14,6 +14,9 @@ type
   { TfrmMain }
 
   TfrmMain = class(TForm)
+    lstCuentaCorriente: TAction;
+    MenuItem10: TMenuItem;
+    MenuItem9: TMenuItem;
     movOrdenPago: TAction;
     factImpresion: TAction;
     MenuItem8: TMenuItem;
@@ -36,6 +39,7 @@ type
     ToolBar1: TToolBar;
     ToolButton1: TToolButton;
     ToolButton10: TToolButton;
+    ToolButton11: TToolButton;
     ToolButton2: TToolButton;
     ToolButton3: TToolButton;
     ToolButton4: TToolButton;
@@ -46,6 +50,7 @@ type
     ToolButton9: TToolButton;
     procedure factImpresionExecute(Sender: TObject);
     procedure FormShow(Sender: TObject);
+    procedure lstCuentaCorrienteExecute(Sender: TObject);
     procedure movCompraExecute(Sender: TObject);
     procedure movOrdenPagoExecute(Sender: TObject);
     procedure movVentaExecute(Sender: TObject);
@@ -76,6 +81,7 @@ uses
   , frm_impresioncomprobantes
   , frm_comprasae
   , frm_ordendepagoae
+  , frm_listadocc
   ;
 
 { TfrmMain }
@@ -84,8 +90,6 @@ procedure TfrmMain.FormShow(Sender: TObject);
 begin
   Inicializar;
 end;
-
-
 
 procedure TfrmMain.PrgSalirExecute(Sender: TObject);
 begin
@@ -238,6 +242,22 @@ begin
     pant.Free;
   end;
 end;
+
+(*******************************************************************************
+*** Listados
+*******************************************************************************)
+procedure TfrmMain.lstCuentaCorrienteExecute(Sender: TObject);
+var
+  pant: TfrmListadoCC;
+begin
+  pant:= TfrmListadoCC.Create(self);
+  try
+    pant.ShowModal;
+  finally
+    pant.Free;
+  end;
+end;
+
 
 
 end.
