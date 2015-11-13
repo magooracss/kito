@@ -20,6 +20,7 @@ Const
   IDX_PROVEEDOR = 1;
   IDX_TRANSPORTISTA = 2;
   IDX_VENDEDOR = 3;
+  IDX_NINGUNO = 99;
 
 type
 
@@ -80,6 +81,7 @@ implementation
 procedure TfrmBusquedaEmpresas.FormCreate(Sender: TObject);
 begin
   Application.CreateForm(TDM_BusquedaEmpresas, DM_BusquedaEmpresas);
+  ds_resultados.DataSet:= DM_BusquedaEmpresas.Resultados;
 end;
 
 procedure TfrmBusquedaEmpresas.FormDestroy(Sender: TObject);
@@ -186,10 +188,19 @@ procedure TfrmBusquedaEmpresas.SetrestringirTipo(AValue: integer);
 var
   idx: integer;
 begin
-  for idx:= 0 to ckTipoEmpresa.Items.Count -1 do
-   ckTipoEmpresa.Checked[idx]:= false;
-  ckTipoEmpresa.Checked[AValue]:= true;
-  ckTipoEmpresa.Enabled:= False;
+  if AValue <> IDX_NINGUNO then
+  begin
+    for idx:= 0 to ckTipoEmpresa.Items.Count -1 do
+     ckTipoEmpresa.Checked[idx]:= false;
+    ckTipoEmpresa.Checked[AValue]:= true;
+    ckTipoEmpresa.Enabled:= False;
+  end
+  else
+  begin
+    for idx:= 0 to ckTipoEmpresa.Items.Count -1 do
+      ckTipoEmpresa.Checked[idx]:= true;
+    ckTipoEmpresa.Enabled:= true;
+  end;
 end;
 
 function TfrmBusquedaEmpresas.DevolverResultadoID(tipo: string): GUID_ID;

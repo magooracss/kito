@@ -2,10 +2,10 @@ object frmMain: TfrmMain
   Left = 304
   Height = 131
   Top = 238
-  Width = 681
+  Width = 709
   Caption = 'Finanzas'
   ClientHeight = 111
-  ClientWidth = 681
+  ClientWidth = 709
   Font.CharSet = ANSI_CHARSET
   Font.Height = -13
   Font.Name = 'Arial'
@@ -20,7 +20,7 @@ object frmMain: TfrmMain
     Left = 0
     Height = 23
     Top = 88
-    Width = 681
+    Width = 709
     Panels = <    
       item
         Width = 150
@@ -35,7 +35,7 @@ object frmMain: TfrmMain
     Left = 0
     Height = 162
     Top = 0
-    Width = 681
+    Width = 709
     AutoSize = True
     ButtonHeight = 80
     ButtonWidth = 92

@@ -1,4 +1,5 @@
 object DM_CuentaCorriente: TDM_CuentaCorriente
+  OnCreate = DataModuleCreate
   OldCreateOrder = False
   Height = 463
   HorizontalOffset = 422
@@ -110,10 +111,10 @@ object DM_CuentaCorriente: TDM_CuentaCorriente
       ReadOnly = False
       Required = False
     end
-    object CuentaCorrienteIngreso: TFloatField
+    object CuentaCorrienteDebe: TFloatField
       DisplayWidth = 10
       FieldKind = fkData
-      FieldName = 'Ingreso'
+      FieldName = 'Debe'
       Index = 5
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
@@ -124,10 +125,10 @@ object DM_CuentaCorriente: TDM_CuentaCorriente
       MinValue = 0
       Precision = 2
     end
-    object CuentaCorrienteEgreso: TFloatField
+    object CuentaCorrienteHaber: TFloatField
       DisplayWidth = 10
       FieldKind = fkData
-      FieldName = 'Egreso'
+      FieldName = 'Haber'
       Index = 6
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
@@ -161,7 +162,8 @@ object DM_CuentaCorriente: TDM_CuentaCorriente
       '       , TCC.COMPROBANTECOMPRA as TipoComprobante'
       '       , (CC.PUNTOVENTA || ''-'' || CC.COMPROBANTENRO) as Comprobante '
       '       , CC.NUMERO as nroInterno'
-      '       , CC.MONTOTOTAL as Debe        '
+      '       , CC.MONTOTOTAL as Debe    '
+      '       , 0 as Haber    '
       'FROM COMPROBANTESCOMPRA CC'
       '     left join PROVEEDORES P ON P.ID = CC.PROVEEDOR_ID'
       '     left join EMPRESAS E on E.ID = P.EMPRESA_ID'
@@ -237,6 +239,16 @@ object DM_CuentaCorriente: TDM_CuentaCorriente
       MinValue = 0
       Precision = 2
     end
+    object qComprasHABER: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'HABER'
+      Index = 6
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = True
+      Required = False
+    end
   end
   object qVentas: TZQuery
     Connection = DM_General.cnxBase
@@ -247,6 +259,7 @@ object DM_CuentaCorriente: TDM_CuentaCorriente
       '      , (CV.PUNTOVENTA || ''-'' || CV.NROCOMPROBANTE) as Comprobante '
       '      , 0 as NroInterno'
       '      , (CV.NETOGRAVADO + CV.NETONOGRAVADO + CV.EXENTO) as DEBE'
+      '     , 0 as Haber'
       ' FROM COMPROBANTESVENTA CV'
       '     left join CLIENTES C ON C.ID = CV.CLIENTE_ID'
       '     left join EMPRESAS E on E.ID = C.EMPRESA_ID'
@@ -317,6 +330,205 @@ object DM_CuentaCorriente: TDM_CuentaCorriente
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = True
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object qVentasHABER: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'HABER'
+      Index = 6
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = True
+      Required = False
+    end
+  end
+  object qOrdenesPago: TZQuery
+    Connection = DM_General.cnxBase
+    SQL.Strings = (
+      'SELECT  OP.FECHA'
+      '      , E.RAZONSOCIAL as Empresa'
+      '      , ''ORDEN DE PAGO'' as TipoComprobante'
+      '      , OP.NUMERO as Comprobante '
+      '      , 0 as NroInterno'
+      '      , 0 as DEBE'
+      '      , OP.TOTAL as HABER'
+      ' FROM OrdenesDePago OP '
+      '     left join PROVEEDORES P ON P.ID = OP.PROVEEDOR_ID'
+      '     left join EMPRESAS E on E.ID = P.EMPRESA_ID'
+      'WHERE (OP.BVISIBLE = 1) and (OP.BANULADA = 0)'
+    )
+    Params = <>
+    left = 264
+    top = 144
+    object qOrdenesPagoFECHA: TDateField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'FECHA'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object qOrdenesPagoEMPRESA: TStringField
+      DisplayWidth = 2000
+      FieldKind = fkData
+      FieldName = 'EMPRESA'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 2000
+    end
+    object qOrdenesPagoTIPOCOMPROBANTE: TStringField
+      DisplayWidth = 52
+      FieldKind = fkData
+      FieldName = 'TIPOCOMPROBANTE'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = True
+      Required = False
+      Size = 52
+    end
+    object qOrdenesPagoCOMPROBANTE: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'COMPROBANTE'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object qOrdenesPagoNROINTERNO: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'NROINTERNO'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = True
+      Required = False
+    end
+    object qOrdenesPagoDEBE: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'DEBE'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = True
+      Required = False
+    end
+    object qOrdenesPagoHABER: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'HABER'
+      Index = 6
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+  end
+  object qPedidos: TZQuery
+    Connection = DM_General.cnxBase
+    Active = True
+    SQL.Strings = (
+      'SELECT  P.FToma as FECHA'
+      '      , E.RAZONSOCIAL as Empresa'
+      '      , ''PEDIDO'' as TipoComprobante'
+      '      , P.NUMERO as Comprobante '
+      '      , P.NUMERO as NroInterno'
+      '      , 0 as DEBE'
+      '      , P.TOTALPEDIDO as HABER'
+      ' FROM PEDIDOS P'
+      '     left join  CLIENTES C ON C.ID = P.CLIENTE_ID'
+      '     left join EMPRESAS E on E.ID = C.EMPRESA_ID'
+      'WHERE (P.BVISIBLE = 1)'
+    )
+    Params = <>
+    left = 344
+    top = 144
+    object qPedidosFECHA: TDateField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'FECHA'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object qPedidosEMPRESA: TStringField
+      DisplayWidth = 2000
+      FieldKind = fkData
+      FieldName = 'EMPRESA'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 2000
+    end
+    object qPedidosTIPOCOMPROBANTE: TStringField
+      DisplayWidth = 24
+      FieldKind = fkData
+      FieldName = 'TIPOCOMPROBANTE'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = True
+      Required = False
+      Size = 24
+    end
+    object qPedidosCOMPROBANTE: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'COMPROBANTE'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object qPedidosNROINTERNO: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'NROINTERNO'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object qPedidosDEBE: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'DEBE'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = True
+      Required = False
+    end
+    object qPedidosHABER: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'HABER'
+      Index = 6
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
       Required = False
       MaxValue = 0
       MinValue = 0

@@ -15,7 +15,7 @@ object frmBusquedaEmpresas: TfrmBusquedaEmpresas
   OnCreate = FormCreate
   OnDestroy = FormDestroy
   Position = poOwnerFormCenter
-  LCLVersion = '1.2.6.0'
+  LCLVersion = '1.4.2.0'
   object Panel1: TPanel
     Left = 0
     Height = 50
@@ -200,7 +200,7 @@ object frmBusquedaEmpresas: TfrmBusquedaEmpresas
       ChildSizing.ShrinkVertical = crsScaleChilds
       ChildSizing.Layout = cclLeftToRightThenTopToBottom
       ChildSizing.ControlsPerLine = 2
-      ClientHeight = 54
+      ClientHeight = 51
       ClientWidth = 212
       Columns = 2
       Items.Strings = (
@@ -229,7 +229,7 @@ object frmBusquedaEmpresas: TfrmBusquedaEmpresas
       ChildSizing.ShrinkVertical = crsScaleChilds
       ChildSizing.Layout = cclLeftToRightThenTopToBottom
       ChildSizing.ControlsPerLine = 2
-      ClientHeight = 54
+      ClientHeight = 51
       ClientWidth = 245
       Columns = 2
       ItemIndex = 0
@@ -399,8 +399,7 @@ object frmBusquedaEmpresas: TfrmBusquedaEmpresas
     TitleFont.Quality = fqDraft
   end
   object ds_resultados: TDataSource
-    DataSet = DM_BusquedaEmpresas.Resultados
-    left = 225
-    top = 96
+    left = 288
+    top = 160
   end
 end

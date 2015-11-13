@@ -5,7 +5,8 @@ unit dmcuentacorriente;
 interface
 
 uses
-  Classes, SysUtils, db, FileUtil, rxmemds, ZDataset;
+  Classes, SysUtils, db, FileUtil, rxmemds, ZDataset
+  , dmgeneral;
 
 type
 
@@ -14,10 +15,10 @@ type
   TDM_CuentaCorriente = class(TDataModule)
     CuentaCorriente: TRxMemoryData;
     CuentaCorrienteComprobante: TStringField;
-    CuentaCorrienteEgreso: TFloatField;
+    CuentaCorrienteDebe: TFloatField;
     CuentaCorrienteEmpresa: TStringField;
     CuentaCorrienteFecha: TDateField;
-    CuentaCorrienteIngreso: TFloatField;
+    CuentaCorrienteHaber: TFloatField;
     CuentaCorrienteNroInterno: TLongintField;
     CuentaCorrienteSaldo: TFloatField;
     CuentaCorrienteTipoComprobante: TStringField;
@@ -26,20 +27,61 @@ type
     qComprasDEBE: TFloatField;
     qComprasEMPRESA: TStringField;
     qComprasFECHA: TDateField;
+    qComprasHABER: TLongintField;
     qComprasNROINTERNO: TLongintField;
     qComprasTIPOCOMPROBANTE: TStringField;
+    qPedidos: TZQuery;
+    qOrdenesPagoCOMPROBANTE: TLongintField;
+    qOrdenesPagoDEBE: TLongintField;
+    qOrdenesPagoEMPRESA: TStringField;
+    qOrdenesPagoFECHA: TDateField;
+    qOrdenesPagoHABER: TFloatField;
+    qOrdenesPagoNROINTERNO: TLongintField;
+    qOrdenesPagoTIPOCOMPROBANTE: TStringField;
+    qPedidosCOMPROBANTE: TLongintField;
+    qPedidosDEBE: TLongintField;
+    qPedidosEMPRESA: TStringField;
+    qPedidosFECHA: TDateField;
+    qPedidosHABER: TFloatField;
+    qPedidosNROINTERNO: TLongintField;
+    qPedidosTIPOCOMPROBANTE: TStringField;
     qVentas: TZQuery;
+    qOrdenesPago: TZQuery;
     qVentasCOMPROBANTE: TStringField;
     qVentasDEBE: TFloatField;
     qVentasEMPRESA: TStringField;
     qVentasFECHA: TDateField;
+    qVentasHABER: TLongintField;
     qVentasNROINTERNO: TLongintField;
     qVentasTIPOCOMPROBANTE: TStringField;
+    procedure DataModuleCreate(Sender: TObject);
   private
+    _idEmpresa: GUID_ID;
+    _incCompras: boolean;
+    _incOP: boolean;
+    _incPedidos: boolean;
+    _incVentas: boolean;
+    _saldo: Double;
+    procedure consultaFechas(fechaIni, fechaFin: TDate; var consulta: TZQuery;
+      campoFecha: string);
+    procedure consultaEmpresa (var consulta: TZQuery; campoID: string);
+    procedure ejecutarConsulta (var consulta: TZQuery);
+
     procedure prepararConsultaCompras;
     procedure prepararConsultaVentas;
+    procedure prepararConsultaOPs;
+    procedure prepararConsultaPedidos;
+
+    procedure ajustarSaldo;
   public
-    { public declarations }
+    property Saldo: Double read _saldo;
+    property incluirCompras: boolean write _incCompras;
+    property incluirVentas: boolean write _incVentas;
+    property incluirOP: boolean write _incOP;
+    property incluirPedidos: boolean write _incPedidos;
+    property empresaID: GUID_ID write _idEmpresa;
+
+    procedure ListadoCompleto (fIni, fFin: TDate);
   end;
 
 var
@@ -51,6 +93,45 @@ implementation
 
 { TDM_CuentaCorriente }
 
+procedure TDM_CuentaCorriente.DataModuleCreate(Sender: TObject);
+begin
+  _saldo:= 0;
+  _incCompras:= true;
+  _incPedidos:= true;
+  _incOP:= true;
+  _incVentas:= true;
+end;
+
+procedure TDM_CuentaCorriente.consultaFechas(fechaIni, fechaFin: TDate;
+  var consulta: TZQuery; campoFecha: string);
+var
+  tmpFecha, tmpCadena: string;
+begin
+  tmpFecha:= FormatDateTime('MM-DD-YYYY', fechaIni);
+  tmpCadena:= ' AND (' + campoFecha + ' >= ''' + tmpFecha +''') ';
+  tmpFecha:= FormatDateTime('MM-DD-YYYY', fechaFin);
+  tmpCadena:= tmpCadena + ' AND (' + campoFecha+ ' <= ''' + tmpFecha +''') ';
+  consulta.SQL.Add(tmpCadena);
+end;
+
+procedure TDM_CuentaCorriente.consultaEmpresa(var consulta: TZQuery;
+  campoID: string);
+begin
+  consulta.SQL.Add( ' AND ('+ campoID + ' = ''' + _idEmpresa + ''')');
+end;
+
+procedure TDM_CuentaCorriente.ejecutarConsulta(var consulta: TZQuery);
+begin
+  with consulta do
+  begin
+    if active then close;
+    Open;
+    CuentaCorriente.LoadFromDataSet(consulta, 0, lmAppend);
+    close;
+    CuentaCorriente.SortOnFields('fecha');
+  end;
+end;
+
 procedure TDM_CuentaCorriente.prepararConsultaCompras;
 begin
   with qCompras do
@@ -60,9 +141,10 @@ begin
     SQL.Add(' SELECT  CC.FECHA');
     SQL.Add('      , E.RAZONSOCIAL as Empresa');
     SQL.Add('      , TCC.COMPROBANTECOMPRA as TipoComprobante');
-    SQL.Add('      , (CC.PUNTOVENTA || '-' || CC.COMPROBANTENRO) as Comprobante');
+    SQL.Add('      , (CC.PUNTOVENTA || '' - '' || CC.COMPROBANTENRO) as Comprobante');
     SQL.Add('      , CC.NUMERO as nroInterno');
     SQL.Add('      , CC.MONTOTOTAL as DEBE');
+    SQL.Add('     , 0 as HABER ');
     SQL.Add(' FROM COMPROBANTESCOMPRA CC');
     SQL.Add('      left join PROVEEDORES P ON P.ID = CC.PROVEEDOR_ID');
     SQL.Add('      left join EMPRESAS E on E.ID = P.EMPRESA_ID');
@@ -80,15 +162,122 @@ begin
     SQL.Add(' SELECT  CV.FECHA');
     SQL.Add('      , E.RAZONSOCIAL as Empresa');
     SQL.Add('      , TCV.COMPROBANTEVENTA as TipoComprobante');
-    SQL.Add('      , (CV.PUNTOVENTA || '-' || CV.NROCOMPROBANTE) as Comprobante ');
+    SQL.Add('      , (CV.PUNTOVENTA || '' - '' || CV.NROCOMPROBANTE) as Comprobante ');
     SQL.Add('      , 0 as NroInterno');
-    SQL.Add('      , (CV.NETOGRAVADO + CV.NETONOGRAVADO + CV.EXENTO) as DEBE');
+    SQL.Add('      , (CV.NETOGRAVADO + CV.NETONOGRAVADO + CV.EXENTO) as HABER');
+    SQL.Add('     , 0 as DEBE ');
     SQL.Add(' FROM COMPROBANTESVENTA CV');
     SQL.Add('      left join CLIENTES C ON C.ID = CV.CLIENTE_ID');
     SQL.Add('      left join EMPRESAS E on E.ID = C.EMPRESA_ID');
     SQL.Add('      left join TIPOSCOMPROBANTESVENTAS TCV ON TCV.ID = CV.TIPOCOMPROBANTE_ID');
     SQL.Add(' WHERE (CV.BVISIBLE = 1) ');
   end;
+end;
+
+procedure TDM_CuentaCorriente.prepararConsultaOPs;
+begin
+  with qOrdenesPago do
+  begin
+    if active then close;
+    SQL.Clear;
+    SQL.Add(' SELECT  OP.FECHA ');
+    SQL.Add('     , E.RAZONSOCIAL as Empresa ');
+    SQL.Add('     , ''ORDEN DE PAGO'' as TipoComprobante ');
+    SQL.Add('     , OP.NUMERO as Comprobante ');
+    SQL.Add('     , 0 as NroInterno ');
+    SQL.Add('     , 0 as DEBE ');
+    SQL.Add('     , OP.TOTAL as HABER ');
+    SQL.Add(' FROM OrdenesDePago OP ');
+    SQL.Add('    left join PROVEEDORES P ON P.ID = OP.PROVEEDOR_ID ');
+    SQL.Add('    left join EMPRESAS E on E.ID = P.EMPRESA_ID ');
+    SQL.Add('  WHERE (OP.BVISIBLE = 1) and (OP.BANULADA = 0) ');
+  End;
+end;
+
+procedure TDM_CuentaCorriente.prepararConsultaPedidos;
+begin
+  with qPedidos do
+  begin
+    if active then close;
+    SQL.Clear;
+    SQL.Add(' SELECT  P.FToma as FECHA ');
+    SQL.Add(' , E.RAZONSOCIAL as Empresa ');
+    SQL.Add(' , ''PEDIDO'' as TipoComprobante ');
+    SQL.Add(' , P.NUMERO as Comprobante ');
+    SQL.Add(' , P.NUMERO as NroInterno ');
+    SQL.Add(' , 0 as HABER ');
+    SQL.Add(' , P.TOTALPEDIDO as DEBE ');
+    SQL.Add(' FROM PEDIDOS  P');
+    SQL.Add('  left join  CLIENTES C ON C.ID = P.CLIENTE_ID ');
+    SQL.Add('  left join EMPRESAS E on E.ID = C.EMPRESA_ID ');
+    SQL.Add(' WHERE (P.BVISIBLE = 1) ');
+  end;
+end;
+
+procedure TDM_CuentaCorriente.ajustarSaldo;
+begin
+  _saldo:= 0;
+  with CuentaCorriente do
+  begin
+    DisableControls;
+    if RecordCount > 0 then
+    begin
+      First;
+      While Not EOF do
+      begin
+        _saldo:= _saldo
+                 + CuentaCorrienteHaber.AsFloat
+                 - CuentaCorrienteDebe.AsFloat;
+        Edit;
+        CuentaCorrienteSaldo.AsFloat:= _saldo;
+        Post;
+
+        Next;
+      end;
+    end;
+    EnableControls;
+  end;
+end;
+
+
+procedure TDM_CuentaCorriente.ListadoCompleto(fIni, fFin: TDate);
+begin
+  //Armo las consultas
+  DM_General.ReiniciarTabla(CuentaCorriente);
+  prepararConsultaCompras;
+  prepararConsultaVentas;
+  prepararConsultaOPs;
+  prepararConsultaPedidos;
+
+  //Agrego el filtro por fechas
+  consultaFechas (fIni, fFin, qCompras, 'CC.FECHA');
+  consultaFechas (fIni, fFin, qVentas, 'CV.FECHA');
+  consultaFechas (fIni, fFin, qOrdenesPago, 'OP.FECHA');
+  consultaFechas(fIni, fFin, qPedidos, 'P.FTOMA');
+
+  if _idEmpresa <> GUIDNULO then
+  begin
+    consultaEmpresa (qCompras, 'E.id');
+    consultaEmpresa (qVentas, 'E.id');
+    consultaEmpresa (qOrdenesPago, 'E.id');
+    consultaEmpresa (qPedidos, 'E.id');
+  end;
+
+  //Ejecuto las consultas;
+  if _incCompras then
+    ejecutarConsulta (qCompras);
+
+  if _incVentas then
+    ejecutarConsulta (qVentas);
+
+  if _incOP then
+    ejecutarConsulta(qOrdenesPago);
+
+  if _incPedidos then
+    ejecutarConsulta(qPedidos);
+
+  //ajusto los Saldos
+  ajustarSaldo;
 end;
 
 end.
