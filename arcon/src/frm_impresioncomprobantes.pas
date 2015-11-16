@@ -132,8 +132,6 @@ begin
   finally
     pant.Free;
   end;
-
-
 end;
 
 procedure TfrmImpresionComprobantes.btnFiltrarClick(Sender: TObject);

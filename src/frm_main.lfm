@@ -14,7 +14,7 @@ object frmMain: TfrmMain
   Menu = MainMenu1
   OnShow = FormShow
   Position = poDesktopCenter
-  LCLVersion = '1.4.0.4'
+  LCLVersion = '1.4.2.0'
   object st: TStatusBar
     Left = 0
     Height = 23
@@ -76,7 +76,7 @@ object frmMain: TfrmMain
       Style = tbsSeparator
     end
     object ToolButton6: TToolButton
-      Left = 811
+      Left = 692
       Top = 2
       Action = prgListados
     end
@@ -104,17 +104,12 @@ object frmMain: TfrmMain
       Action = dinFacturacion
     end
     object ToolButton11: TToolButton
-      Left = 801
+      Left = 682
       Height = 80
       Top = 2
       Width = 10
       Caption = 'ToolButton11'
       Style = tbsSeparator
-    end
-    object ToolButton12: TToolButton
-      Left = 682
-      Top = 2
-      Action = dinCC
     end
   end
   object Panel1: TPanel

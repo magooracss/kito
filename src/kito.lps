@@ -19,9 +19,9 @@
         <ComponentName Value="frmMain"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="frm_main"/>
-        <TopLine Value="810"/>
-        <CursorPos X="50" Y="826"/>
+        <IsVisibleTab Value="True"/>
+        <TopLine Value="809"/>
+        <CursorPos X="50" Y="825"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -100,6 +100,7 @@
         <ComponentName Value="frmBusquedaProducto"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
+        <UnitName Value="frm_busquedaProductos"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="9"/>
         <CursorPos X="3" Y="17"/>
@@ -133,12 +134,9 @@
         <ComponentName Value="fraEmpresa"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Frame"/>
-        <UnitName Value="fra_empresa"/>
-        <IsVisibleTab Value="True"/>
-        <EditorIndex Value="1"/>
-        <CursorPos X="79" Y="118"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos X="39" Y="8"/>
         <UsageCount Value="200"/>
-        <Loaded Value="True"/>
       </Unit12>
       <Unit13>
         <Filename Value="dmempresa.pas"/>
@@ -877,7 +875,7 @@
         <DefaultSyntaxHighlighter Value="LFM"/>
       </Unit94>
     </Units>
-    <JumpHistory Count="12" HistoryIndex="11">
+    <JumpHistory Count="14" HistoryIndex="13">
       <Position1>
         <Filename Value="frm_main.pas"/>
         <Caret Line="300" Column="2" TopLine="274"/>
@@ -926,6 +924,14 @@
         <Filename Value="frm_main.pas"/>
         <Caret Line="215" Column="11" TopLine="205"/>
       </Position12>
+      <Position13>
+        <Filename Value="frm_main.pas"/>
+        <Caret Line="826" Column="50" TopLine="810"/>
+      </Position13>
+      <Position14>
+        <Filename Value="frm_main.pas"/>
+        <Caret Line="825" Column="50" TopLine="809"/>
+      </Position14>
     </JumpHistory>
   </ProjectSession>
 </CONFIG>

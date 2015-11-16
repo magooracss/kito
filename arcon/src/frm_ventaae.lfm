@@ -1983,7 +1983,7 @@ object frmVentasAE: TfrmVentasAE
     top = 452
   end
   object ds_IVA: TDataSource
-    DataSet = DM_Ventas.ComproVtaIVA
+    DataSet = DM_Ventas.ComproVtaIVAVista
     left = 539
     top = 406
   end

@@ -41,6 +41,7 @@ type
     ComproVtaImpuestosid: TStringField;
     ComproVtaImpuestosimpuesto_id: TLongintField;
     ComproVtaImpuestosmonto: TFloatField;
+    ComproVtaIVAVista: TRxMemoryData;
     ComproVtaIVAalicuota_id: TLongintField;
     ComproVtaIVABaseImponible: TFloatField;
     ComproVtaIVAbVisible: TLongintField;
@@ -48,6 +49,13 @@ type
     ComproVtaIVAid: TStringField;
     ComproVtaIVAlxIVA: TStringField;
     ComproVtaIVAmonto: TFloatField;
+    ComproVtaIVAVistaalicuota_id: TLongintField;
+    ComproVtaIVAVistaBaseImponible: TFloatField;
+    ComproVtaIVAVistabVisible: TLongintField;
+    ComproVtaIVAVistacomprobanteVentaConcepto_id: TStringField;
+    ComproVtaIVAVistaid: TStringField;
+    ComproVtaIVAVistalxIVA: TStringField;
+    ComproVtaIVAVistamonto: TFloatField;
     ComproVtanetoGravado: TFloatField;
     ComproVtanetoNoGravado: TFloatField;
     ComproVtanroComprobante: TLongintField;
@@ -325,6 +333,10 @@ begin
   DM_General.ReiniciarTabla(ComproVtaConceptos);
   DM_General.ReiniciarTabla(ComproVtaIVA);
   DM_General.ReiniciarTabla(ComproVtaImpuestos);
+
+  { TODO : Arreglar esta tabla, que esta para zafar la forma de mostar grilla de iva nomas }
+  DM_General.ReiniciarTabla(ComproVtaIVAVista);
+
   _totalExento:= 0;
   _totalGravado:= 0;
   _totalNoGravado:= 0;
@@ -439,26 +451,33 @@ begin
     close;
   end;
 
-  with ComproVtaIVa do
+  with ComproVtaIVAVista do
   begin
     if Locate('alicuota_id', refAlicuotaIVA, []) then
     begin
       Edit;
-      ComproVtaIVAmonto.AsFloat:= ComproVtaIVAmonto.AsFloat + ivaCalculado;
-      ComproVtaIVABaseImponible.AsFloat:= ComproVtaIVABaseImponible.AsFloat + monto;
+      ComproVtaIVAVistamonto.AsFloat:= ComproVtaIVAVistamonto.AsFloat + ivaCalculado;
+      ComproVtaIVAVistaBaseImponible.AsFloat:= ComproVtaIVAVistaBaseImponible.AsFloat + monto;
     end
     else
     begin
       Insert;
-      ComproVtaIVAcomprobanteVentaConcepto_id.AsString:= refComprobanteConcepto;
-      ComproVtaIVAalicuota_id.AsInteger:= refAlicuotaIVA;
-      ComproVtaIVAmonto.AsFloat:= ivaCalculado;
-      ComproVtaIVABaseImponible.AsFloat:= monto;
-      ComproVtaIVAlxIVA.asString:= nombre;
+      ComproVtaIVAVistacomprobanteVentaConcepto_id.AsString:= refComprobanteConcepto;
+      ComproVtaIVAVistaalicuota_id.AsInteger:= refAlicuotaIVA;
+      ComproVtaIVAVistamonto.AsFloat:= ivaCalculado;
+      ComproVtaIVAVistaBaseImponible.AsFloat:= monto;
+      ComproVtaIVAVistalxIVA.asString:= nombre;
     end;
     Post;
   end;
 
+  ComproVtaIVA.Insert;
+  ComproVtaIVAcomprobanteVentaConcepto_id.AsString:= refComprobanteConcepto;
+  ComproVtaIVAalicuota_id.AsInteger:= refAlicuotaIVA;
+  ComproVtaIVAmonto.AsFloat:= ivaCalculado;
+  ComproVtaIVABaseImponible.AsFloat:= monto;
+  ComproVtaIVAlxIVA.asString:= nombre;
+  ComproVtaIVA.Post;
 end;
 
 function TDM_Ventas.ObtenerNroComprobante(refComprobante, NroPtoVenta: integer
