@@ -89,6 +89,7 @@ type
     qConceptosID: TLongintField;
     qConceptosNOMBRE: TStringField;
     qConceptosPLANDECUENTAS_ID: TLongintField;
+    qTiposComprobantesVentasTIPOFACTURA: TLongintField;
     qUltComprobanteGrabado: TZQuery;
     qFormasPagoBVISIBLE: TSmallintField;
     qFormasPagoFORMADEPAGO: TStringField;
@@ -217,6 +218,8 @@ type
     procedure LevantarVenta (refVenta: GUID_ID);
     procedure LevantarAgregandoIvaImpuestosComprobante (refComprobante: GUID_ID);
     procedure Grabar;
+
+    procedure ObtenerTiposComprobantes (refTipo: integer);
   end;
 
 var
@@ -242,6 +245,7 @@ begin
   ComproVtaid.AsString:= DM_General.CrearGUID;
   ComproVtafecha.AsDateTime:= Now;
   ComproVtacliente_id.asString:= GUIDNULO;
+  ComproVtanroComprobante.AsInteger:= -1;
   ComproVtapuntoVenta.AsInteger:= StrToIntDef(LeerDato(SECCION_APP, CFG_PTO_VTA), 1);
   ComproVtabServicio.asInteger:= StrToIntDef(LeerDato(SECCION_APP, CFG_ES_SERVICIO), 1);
   ComproVtabProducto.asInteger:= StrToIntDef(LeerDato(SECCION_APP, CFG_ES_PRODUCTO), 1);
@@ -325,6 +329,7 @@ begin
   _totalGravado:= 0;
   _totalNoGravado:= 0;
   ListaPedidos.Strings.Clear;
+  ComproVta.Insert;
 end;
 
 procedure TDM_Ventas.AgregarPedido(refPedido: GUID_ID);
@@ -625,6 +630,16 @@ begin
     DM_General.cnxBase.Rollback;
   end;
 
+end;
+
+procedure TDM_Ventas.ObtenerTiposComprobantes(refTipo: integer);
+begin
+  with qTiposComprobantesVentas do
+  begin
+   if active then close;
+   ParamByName('tipoFactura').asInteger:= refTipo;
+   Open;
+  end;
 end;
 
 

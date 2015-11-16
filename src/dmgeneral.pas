@@ -28,6 +28,12 @@ const
 
   _FRM_MONEY = '##########0.00';
 
+  //Tipos de facturas a emitir
+   FAC_TIPO_DESC = 0;
+   FAC_TIPO_AB = 1;
+   FAC_TIPO_C = 2;
+
+
 type
 
   GUID_ID = string[38];

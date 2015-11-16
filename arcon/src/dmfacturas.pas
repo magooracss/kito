@@ -15,6 +15,8 @@ type
   TDM_Facturas = class(TDataModule)
     Cabecera: TRxMemoryData;
     CabeceraCAE: TLargeintField;
+    Cabeceracodigo: TStringField;
+    CabeceraComprobanteVenta: TStringField;
     CabeceraComprobanteVentaID: TStringField;
     CabeceracondicionIVA: TStringField;
     CabeceraCUIT: TLargeintField;
@@ -23,6 +25,7 @@ type
     CabecerafacturaElectronica_id: TStringField;
     CabeceraFEmision: TStringField;
     CabeceraIVA: TFloatField;
+    Cabeceraletra: TStringField;
     CabeceraNro: TLongintField;
     CabeceraOtrosTributos: TFloatField;
     CabeceraPtoVenta: TLongintField;
@@ -158,6 +161,8 @@ type
     qBusTipoComprobanteTIPOCOMPROBANTE: TStringField;
     qSELCabecera: TZQuery;
     qSELCabeceraCAE: TStringField;
+    qSELCabeceraCODIGO: TStringField;
+    qSELCabeceraCOMPROBANTEVENTA: TStringField;
     qSELCabeceraCOMPROBANTEVENTAID: TStringField;
     qSELCabeceraCONDICIONIVA: TStringField;
     qSELCabeceraCUIT: TFloatField;
@@ -165,6 +170,7 @@ type
     qSELCabeceraEMAIL: TStringField;
     qSELCabeceraFACTURAELECTRONICA_ID: TStringField;
     qSELCabeceraFEMISION: TStringField;
+    qSELCabeceraLETRA: TStringField;
     qSELCabeceraNRO: TFloatField;
     qSELCabeceraPTOVENTA: TLongintField;
     qSELCabeceraRAZONSOCIAL: TStringField;
@@ -347,8 +353,8 @@ begin
                   if (qSELIVAPORCENTAJE.AsFloat = 21) then
                     iva21:= iva21 + qSELIVAIVA.AsFloat
                   else
-                    iva27:= iva27 + qSELIVAIVA.AsFloat;
-
+                    if (qSELIVAPORCENTAJE.AsFloat <> 0) then
+                      iva27:= iva27 + qSELIVAIVA.AsFloat;
            Post;
          end;
 
@@ -372,6 +378,7 @@ end;
 procedure TDM_Facturas.ImprimirFactura(refFacturaElectronica: GUID_ID);
 var
   ruta: string;
+  letra, tipoComprobante: string;
 begin
 
   LevantarFacturaPorID_FE(refFacturaElectronica);
@@ -383,6 +390,8 @@ begin
     frDataset.DataSet:= Cabecera;
   end;
 
+  letra:= EmptyStr;
+  tipoComprobante:= EmptyStr;
   frVariables ['RAZON_SOCIAL']:= LeerDato (SECCION_FI ,FI_RAZON_SOCIAL);
   frVariables ['DOMICILIO']:= LeerDato (SECCION_FI ,FI_DOMICILIO);
   frVariables ['CONDICION_IVA']:= LeerDato (SECCION_FI ,FI_CONDICION_IVA);

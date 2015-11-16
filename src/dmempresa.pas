@@ -61,7 +61,12 @@ type
     ProvinciasID: TLongintField;
     ProvinciasPAIS_ID: TLongintField;
     ProvinciasPROVINCIA: TStringField;
+    qCondFiscIDBVISIBLE: TSmallintField;
+    qCondFiscIDCONDICIONFISCAL: TStringField;
+    qCondFiscIDID: TLongintField;
+    qCondFiscIDTIPOFACTURA: TLongintField;
     qCondicionesFiscales: TZQuery;
+    qCondFiscID: TZQuery;
     qLocalidadesProvincia: TZQuery;
     qLocalidadPorNombre: TZQuery;
     qLocalidadesProvinciaBVISIBLE: TSmallintField;
@@ -174,13 +179,17 @@ type
     procedure ProvinciasAfterInsert(DataSet: TDataSet);
   private
     _idEmpresa: GUID_ID;
+    function getCondicionIVA: integer;
     function GetCUIT: string;
     function GetDomicilio: string;
     function GetRazonSocial: string;
+    function getTipoFacturacion: integer;
   public
     property RazonSocial: string read GetRazonSocial;
     property Domicilio: string read GetDomicilio;
     property CUIT: string read GetCUIT;
+    property TipoFacturacion: integer read getTipoFacturacion;
+    property CondicionIVA: integer read getCondicionIVA;
 
     function Nueva: GUID_ID;
     procedure Editar (refEmpresa: GUID_ID);
@@ -303,6 +312,26 @@ begin
   end;
 end;
 
+function TDM_Empresa.getTipoFacturacion: integer;
+begin
+  with Empresas do
+  begin
+    if (active and (RecordCount > 0)) then
+    begin
+      qCondFiscID.Close;
+      qCondFiscID.ParamByName('id').AsInteger:= Empresascondicionfiscal_id.AsInteger;
+      qCondFiscID.Open;
+      if (RecordCount > 0 ) then
+        Result:= qCondFiscIDTIPOFACTURA.AsInteger
+      else
+        Result:= 0;
+    end
+    else
+      Result:= 0;
+  end;
+
+end;
+
 function TDM_Empresa.GetDomicilio: string;
 begin
   with Domicilios do
@@ -324,6 +353,17 @@ begin
       Result:= EmpresasCUIT.AsString
     else
       Result:= EmptyStr;
+  end;
+end;
+
+function TDM_Empresa.getCondicionIVA: integer;
+begin
+  with Empresas do
+  begin
+    if (active and (RecordCount > 0)) then
+      Result:= Empresascondicionfiscal_id.AsInteger
+    else
+      Result:= 0;
   end;
 end;
 

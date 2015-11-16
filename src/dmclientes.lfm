@@ -54,6 +54,12 @@ object DM_Clientes: TDM_Clientes
         DataType = ftInteger
         Precision = 0
         Size = 0
+      end    
+      item
+        Name = 'ultTipoFactura'
+        DataType = ftInteger
+        Precision = 0
+        Size = 0
       end>
     AfterInsert = ClientesAfterInsert
     PacketRecords = 0
@@ -139,6 +145,16 @@ object DM_Clientes: TDM_Clientes
       FieldKind = fkData
       FieldName = 'bVisible'
       Index = 7
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object ClientesultTipoFactura: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'ultTipoFactura'
+      Index = 8
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
@@ -251,14 +267,24 @@ object DM_Clientes: TDM_Clientes
       ReadOnly = False
       Required = False
     end
+    object SELClientesULTTIPOFACTURA: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'ULTTIPOFACTURA'
+      Index = 8
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
   end
   object INSClientes: TZQuery
     Connection = DM_General.cnxBase
     SQL.Strings = (
       'INSERT INTO Clientes'
-      '(id, empresa_id, codigo, emailfactura, domiciliofactura, zona_id, listaPrecio_id, bVisible)'
+      '(id, empresa_id, codigo, emailfactura, domiciliofactura, zona_id, listaPrecio_id, bVisible, ulttipoFactura)'
       'VALUES'
-      '( :id, :empresa_id, :codigo, :emailfactura, :domiciliofactura, :zona_id, :listaPrecio_id, :bVisible)'
+      '( :id, :empresa_id, :codigo, :emailfactura, :domiciliofactura, :zona_id, :listaPrecio_id, :bVisible, :ulttipoFactura)'
       ''
     )
     Params = <    
@@ -300,6 +326,11 @@ object DM_Clientes: TDM_Clientes
       item
         DataType = ftUnknown
         Name = 'bVisible'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'ulttipoFactura'
         ParamType = ptUnknown
       end>
     left = 40
@@ -344,6 +375,11 @@ object DM_Clientes: TDM_Clientes
         DataType = ftUnknown
         Name = 'bVisible'
         ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'ulttipoFactura'
+        ParamType = ptUnknown
       end>
   end
   object UPDClientes: TZQuery
@@ -358,6 +394,7 @@ object DM_Clientes: TDM_Clientes
       ', zona_id = :zona_id'
       ', listaPrecio_id = :listaPrecio_id'
       ', bVisible = :bVisible'
+      ', ulttipoFactura = :ulttipoFactura'
       'WHERE id = :id'
     )
     Params = <    
@@ -394,6 +431,11 @@ object DM_Clientes: TDM_Clientes
       item
         DataType = ftUnknown
         Name = 'bVisible'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'ulttipoFactura'
         ParamType = ptUnknown
       end    
       item
@@ -437,6 +479,11 @@ object DM_Clientes: TDM_Clientes
       item
         DataType = ftUnknown
         Name = 'bVisible'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'ulttipoFactura'
         ParamType = ptUnknown
       end    
       item

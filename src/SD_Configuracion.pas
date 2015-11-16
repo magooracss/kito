@@ -30,6 +30,7 @@ const
   PG_DESTINO='PG_DESTINO'; //Pone por default si el pago se hace en destino
   CFG_ES_SERVICIO = 'VTA_SERVICIO'; //Comprobante Vta es servicio
   CFG_ES_PRODUCTO = 'VTA_PRODUCTO'; //Comprobante Vta es producto
+  T_FACTURACION = 'TIPO_FACTURACION'; //Tipo de facturación propia. Si hago factura C o AB
 
   //Factura Impresa
   FI_LOGO = 'FI_LOGO';

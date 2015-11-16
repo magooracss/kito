@@ -20,7 +20,7 @@
       <AutoIncrementBuild Value="True"/>
       <MajorVersionNr Value="2015"/>
       <MinorVersionNr Value="7"/>
-      <BuildNr Value="50"/>
+      <BuildNr Value="55"/>
       <Language Value="040A"/>
       <StringTable CompanyName="RACSS Programacion" InternalName="ARCON" LegalTrademarks="Carlos Enrique Rodriguez" ProductName="Arcon" ProductVersion=""/>
     </VersionInfo>
@@ -94,7 +94,9 @@
       <Unit5>
         <Filename Value="..\..\src\dmclientes.pas"/>
         <IsPartOfProject Value="True"/>
+        <ComponentName Value="DM_Clientes"/>
         <HasResources Value="True"/>
+        <ResourceBaseClass Value="DataModule"/>
       </Unit5>
       <Unit6>
         <Filename Value="..\..\src\dmempresa.pas"/>

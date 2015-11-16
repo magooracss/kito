@@ -70,9 +70,6 @@ type
     procedure btnClienteNuevoClick(Sender: TObject);
     procedure btnGrabarClick(Sender: TObject);
     procedure btnImprimirClick(Sender: TObject);
-    procedure cbTipoComprobanteChange(Sender: TObject);
-    procedure cbTipoComprobanteExit(Sender: TObject);
-    procedure DBEdit1KeyPress(Sender: TObject; var Key: char);
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
   private
@@ -82,7 +79,6 @@ type
 
     procedure Inicializar;
     procedure CargarCombos;
-    procedure LevantarPuntoDeVenta;
 
     procedure AgregarConcepto;
     procedure AgregarConceptoPedidos;
@@ -91,6 +87,9 @@ type
 
     procedure GrabarComprobante;
     procedure PantallaFacturar;
+
+    procedure CargarComprobantesVenta (refTipoComprobante, UltTipoCompr: integer);
+
 
 
   public
@@ -105,7 +104,6 @@ implementation
 {$R *.lfm}
 uses
   dmventas
-  , dmpedidos
   , frm_busquedaempresas
   , frm_clientesae
   , frm_ventaconceptosae
@@ -113,7 +111,6 @@ uses
   , process
   , dmfacturaelectronica
   , dmfacturas
-
   ,dmclientes
   ;
 
@@ -127,34 +124,13 @@ begin
   EscribirDato(SECCION_APP, CFG_PTO_VTA, IntToStr(_PtoVenta));
   CargarCombos;
   DM_Ventas.NuevoComprobante;
-  LevantarPuntoDeVenta;
   MostrarTotales;
 end;
 
 procedure TfrmVentasAE.CargarCombos;
 begin
-  DM_General.CargarComboBox(cbTipoComprobante,'comprobanteVenta', 'id', DM_Ventas.qTiposComprobantesVentas);
   DM_General.CargarComboBox(cbFormaDePago, 'formaDePago', 'id', DM_Ventas.qFormasPago);
 end;
-
-{ TODO -oMagoo -cRefactoring : Eliminar el método LevantarPuntoDeVenta, porque ya no se usa más eso. Ahora el punto de venta y el número de comprobante lo entrega AFIP vía factura electrónica. }
-
-procedure TfrmVentasAE.LevantarPuntoDeVenta;
-var
-  comprobante: integer;
-begin
-  comprobante:= DM_Ventas.obtenerNroComprobante (1, _PtoVenta);
-  if Comprobante <> 0 then
-  begin
-    DM_Ventas.ComprobanteEditarNro(comprobante);
-  end
-  else
-  begin
-//   ShowMessage ('No se encuentra cargado el numerador para este tipo de comprobante');
-   DM_Ventas.ComprobanteEditarNro(0);
-  end;
-end;
-
 
 procedure TfrmVentasAE.FormCreate(Sender: TObject);
 begin
@@ -184,7 +160,9 @@ begin
       edCliente.Text:= pantBus.RazonSocial;
       edCUIT.Text:= pantBus.CUIT;
       _clienteID:= pantBus.idCliente;
-      LevantarPuntoDeVenta;
+
+      DM_Clientes.Editar(_clienteID);
+      cargarComprobantesVenta (DM_Clientes.TipoFacturacion, DM_Clientes.UltimoITipoFactura);
     end;
   finally
     pantBus.Free;
@@ -218,26 +196,7 @@ begin
   finally
     pant.Free;
   end;
-end;
-
-
-procedure TfrmVentasAE.cbTipoComprobanteChange(Sender: TObject);
-begin
-  LevantarPuntoDeVenta;
-end;
-
-procedure TfrmVentasAE.cbTipoComprobanteExit(Sender: TObject);
-begin
-  LevantarPuntoDeVenta;
-end;
-
-procedure TfrmVentasAE.DBEdit1KeyPress(Sender: TObject; var Key: char);
-begin
-  if key = #13 then
-  begin
-    _PtoVenta:= StrToIntDef((Sender as TDBEdit).Text, 0 );
-    LevantarPuntoDeVenta;
-  end;
+  btnBuscarClick(Sender);
 end;
 
 
@@ -317,6 +276,7 @@ begin
                              , DM_Ventas.TotalExento
                              , _clienteID
                              );
+ DM_Clientes.AjustarUltTipoFactura(_clienteID, DM_General.obtenerIDIntComboBox(cbTipoComprobante));
  DM_Ventas.Grabar;
 end;
 
@@ -338,6 +298,34 @@ begin
   end
   else
    ShowMessage('No se encuentra el módulo de facturación: ' + archivo);
+end;
+
+procedure TfrmVentasAE.CargarComprobantesVenta(refTipoComprobante,
+  UltTipoCompr: integer);
+var
+  propio: integer;
+
+begin
+  propio:= StrToIntDef(LeerDato(SECCION_APP,T_FACTURACION), 0);
+
+  if propio = FAC_TIPO_C then
+    DM_Ventas.ObtenerTiposComprobantes (FAC_TIPO_C)
+  else
+  begin
+    DM_Ventas.ObtenerTiposComprobantes (FAC_TIPO_AB);
+  end;
+
+  cbTipoComprobante.Clear;
+  with DM_Ventas.qTiposComprobantesVentas do
+  begin
+    While Not EOF do
+      begin
+        cbTipoComprobante.Items.AddObject(FieldByName('comprobanteVenta').asString, TObject(FieldByName ('id').asInteger));
+        Next;
+      end;
+  end;
+  cbTipoComprobante.ItemIndex:= DM_General.obtenerIdxCombo(cbTipoComprobante
+                                                          ,UltTipoCompr);
 end;
 
 procedure TfrmVentasAE.btnGrabarClick(Sender: TObject);

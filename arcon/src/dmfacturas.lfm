@@ -108,6 +108,24 @@ object DM_Facturas: TDM_Facturas
         DataType = ftString
         Precision = 0
         Size = 38
+      end    
+      item
+        Name = 'codigo'
+        DataType = ftString
+        Precision = 0
+        Size = 3
+      end    
+      item
+        Name = 'letra'
+        DataType = ftString
+        Precision = 0
+        Size = 3
+      end    
+      item
+        Name = 'ComprobanteVenta'
+        DataType = ftString
+        Precision = 0
+        Size = 100
       end>
     PacketRecords = 0
     left = 56
@@ -302,6 +320,39 @@ object DM_Facturas: TDM_Facturas
       ReadOnly = False
       Required = False
       Size = 38
+    end
+    object Cabeceracodigo: TStringField
+      DisplayWidth = 3
+      FieldKind = fkData
+      FieldName = 'codigo'
+      Index = 17
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 3
+    end
+    object Cabeceraletra: TStringField
+      DisplayWidth = 3
+      FieldKind = fkData
+      FieldName = 'letra'
+      Index = 18
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 3
+    end
+    object CabeceraComprobanteVenta: TStringField
+      DisplayWidth = 100
+      FieldKind = fkData
+      FieldName = 'ComprobanteVenta'
+      Index = 19
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 100
     end
   end
   object Detalles: TRxMemoryData
@@ -552,11 +603,15 @@ object DM_Facturas: TDM_Facturas
       '       ,F.CAE'
       '       ,F.VTOCAE  '
       '      , V.ID as ComprobanteVentaID'
+      '      , TCV.CODIGO'
+      '      , TCV.LETRA'
+      '      , TCV.COMPROBANTEVENTA'
       'from FE_COMPROBANTES F'
       '     left join COMPROBANTESVENTA V ON V.FACTURA_ID = F.ID'
       '     left join CLIENTES Cl ON Cl.ID = V.CLIENTE_ID'
       '     left join EMPRESAS E ON E.ID = Cl.EMPRESA_ID'
       '     left join CONDICIONESFISCALES CF  ON CF.ID = E.CONDICIONFISCAL_ID'
+      '     left join tiposcomprobantesVentas TCV ON TCV.ID = F.TIPOCOMPR'
       'where F.ID = :id'
     )
     Params = <    
@@ -733,6 +788,39 @@ object DM_Facturas: TDM_Facturas
       ReadOnly = False
       Required = True
       Size = 152
+    end
+    object qSELCabeceraCODIGO: TStringField
+      DisplayWidth = 12
+      FieldKind = fkData
+      FieldName = 'CODIGO'
+      Index = 14
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 12
+    end
+    object qSELCabeceraLETRA: TStringField
+      DisplayWidth = 12
+      FieldKind = fkData
+      FieldName = 'LETRA'
+      Index = 15
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 12
+    end
+    object qSELCabeceraCOMPROBANTEVENTA: TStringField
+      DisplayWidth = 400
+      FieldKind = fkData
+      FieldName = 'COMPROBANTEVENTA'
+      Index = 16
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 400
     end
   end
   object qSELDetalles: TZQuery

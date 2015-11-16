@@ -160,13 +160,14 @@ CREATE TABLE TiposComprobantesVentas
   id    integer  NOT NULL PRIMARY KEY
 , codigo    varchar (3)
 , comprobanteVenta varchar(100)
+, letra varchar(3)
 , bVisible   smallint default 1    
 
 );
 
 CREATE GENERATOR TiposComprobantesID;
 
-SET GENERATOR TiposComprobantesID TO 65;
+SET GENERATOR TiposComprobantesID TO 68;
 
 
 SET TERM ^ ;
@@ -183,345 +184,345 @@ SET TERM ; ^
 
 
 INSERT INTO TiposComprobantesVentas
-(id, codigo, comprobanteVenta,  bVisible)
+(id, codigo, comprobanteVenta, letra,  bVisible)
 VALUES
-(0,'000','Desconocido', 0);
+(0,'000','Desconocido','-', 0);
 
 INSERT INTO TiposComprobantesVentas
-(id, codigo, comprobanteVenta,  bVisible)
+(id, codigo, comprobanteVenta, letra,  bVisible)
 VALUES
-(1,'001','FACTURAS A', 1);
+(1,'001','FACTURAS A', 'A', 1);
 
 INSERT INTO TiposComprobantesVentas
-(id, codigo, comprobanteVenta,  bVisible)
+(id, codigo, comprobanteVenta, letra,  bVisible)
 VALUES
-(2,'002','NOTAS DE DEBITO A', 1);
+(2,'002','NOTAS DE DEBITO A','A', 1);
 
 INSERT INTO TiposComprobantesVentas
-(id, codigo, comprobanteVenta,  bVisible)
+(id, codigo, comprobanteVenta, letra,  bVisible)
 VALUES
-(3,'003','NOTAS DE CREDITO A', 1);
+(3,'003','NOTAS DE CREDITO A','A', 1);
 
 INSERT INTO TiposComprobantesVentas
-(id, codigo, comprobanteVenta,  bVisible)
+(id, codigo, comprobanteVenta, letra,  bVisible)
 VALUES
-(4,'004','RECIBOS A', 1);
+(4,'004','RECIBOS A','A', 1);
 
 INSERT INTO TiposComprobantesVentas
-(id, codigo, comprobanteVenta,  bVisible)
+(id, codigo, comprobanteVenta, letra,  bVisible)
 VALUES
-(5,'005','NOTAS DE VENTA AL CONTADO A', 1);
+(5,'005','NOTAS DE VENTA AL CONTADO A','A', 1);
 
 INSERT INTO TiposComprobantesVentas
-(id, codigo, comprobanteVenta,  bVisible)
+(id, codigo, comprobanteVenta, letra,  bVisible)
 VALUES
-(6,'006','FACTURAS B', 1);
+(6,'006','FACTURAS B','B', 1);
 
 INSERT INTO TiposComprobantesVentas
-(id, codigo, comprobanteVenta,  bVisible)
+(id, codigo, comprobanteVenta, letra,  bVisible)
 VALUES
-(7,'007','NOTAS DE DEBITO B', 1);
+(7,'007','NOTAS DE DEBITO B','B', 1);
 
 INSERT INTO TiposComprobantesVentas
-(id, codigo, comprobanteVenta,  bVisible)
+(id, codigo, comprobanteVenta, letra,  bVisible)
 VALUES
-(8,'008','NOTAS DE CREDITO B', 1);
+(8,'008','NOTAS DE CREDITO B','B', 1);
 
 INSERT INTO TiposComprobantesVentas
-(id, codigo, comprobanteVenta,  bVisible)
+(id, codigo, comprobanteVenta, letra,  bVisible)
 VALUES
-(9,'009','RECIBOS B', 1);
+(9,'009','RECIBOS B','B', 1);
 
 INSERT INTO TiposComprobantesVentas
-(id, codigo, comprobanteVenta,  bVisible)
+(id, codigo, comprobanteVenta, letra,  bVisible)
 VALUES
-(10,'010','NOTAS DE VENTA AL CONTADO B', 1);
+(10,'010','NOTAS DE VENTA AL CONTADO B','B', 1);
 
 INSERT INTO TiposComprobantesVentas
-(id, codigo, comprobanteVenta,  bVisible)
+(id, codigo, comprobanteVenta, letra,  bVisible)
 VALUES
-(11,'017','LIQUIDACION DE SERVICIOS PUBLICOS CLASE A', 1);
+(11,'017','LIQUIDACION DE SERVICIOS PUBLICOS CLASE A','A', 1);
 
 INSERT INTO TiposComprobantesVentas
-(id, codigo, comprobanteVenta,  bVisible)
+(id, codigo, comprobanteVenta, letra,  bVisible)
 VALUES
-(12,'018','LIQUIDACION DE SERVICIOS PUBLICOS CLASE B', 1);
+(12,'018','LIQUIDACION DE SERVICIOS PUBLICOS CLASE B','B', 1);
 
 INSERT INTO TiposComprobantesVentas
-(id, codigo, comprobanteVenta,  bVisible)
+(id, codigo, comprobanteVenta, letra,  bVisible)
 VALUES
-(13,'019','FACTURAS DE EXPORTACION', 1);
+(13,'019','FACTURAS DE EXPORTACION','E', 1);
 
 INSERT INTO TiposComprobantesVentas
-(id, codigo, comprobanteVenta,  bVisible)
+(id, codigo, comprobanteVenta, letra,  bVisible)
 VALUES
-(14,'020','NOTAS DE DEBITO POR OPERACIONES CON EL EXTERIOR', 1);
+(14,'020','NOTAS DE DEBITO POR OPERACIONES CON EL EXTERIOR','E', 1);
 
 INSERT INTO TiposComprobantesVentas
-(id, codigo, comprobanteVenta,  bVisible)
+(id, codigo, comprobanteVenta, letra,  bVisible)
 VALUES
-(15,'021','NOTAS DE CREDITO POR OPERACIONES CON EL EXTERIOR', 1);
+(15,'021','NOTAS DE CREDITO POR OPERACIONES CON EL EXTERIOR','E', 1);
 
 INSERT INTO TiposComprobantesVentas
-(id, codigo, comprobanteVenta,  bVisible)
+(id, codigo, comprobanteVenta, letra,  bVisible)
 VALUES
-(16,'022','FACTURAS - PERMISO EXPORTACION SIMPLIFICADO - DTO. 855/97', 1);
+(16,'022','FACTURAS - PERMISO EXPORTACION SIMPLIFICADO - DTO. 855/97','E', 1);
 
 INSERT INTO TiposComprobantesVentas
-(id, codigo, comprobanteVenta,  bVisible)
+(id, codigo, comprobanteVenta, letra,  bVisible)
 VALUES
-(17,'023','CPTES  A  DE COMPRA PRIMARIA PARA EL SECTOR PESQUERO MARITIMO', 1);
+(17,'023','CPTES  A  DE COMPRA PRIMARIA PARA EL SECTOR PESQUERO MARITIMO','A', 1);
 
 INSERT INTO TiposComprobantesVentas
-(id, codigo, comprobanteVenta,  bVisible)
+(id, codigo, comprobanteVenta, letra,  bVisible)
 VALUES
-(18,'024','CPTES  A  DE COSIGNACION PRIMARIA PARA EL SECTOR PESQUERO MARITIMO', 1);
+(18,'024','CPTES  A  DE COSIGNACION PRIMARIA PARA EL SECTOR PESQUERO MARITIMO','A', 1);
 
 INSERT INTO TiposComprobantesVentas
-(id, codigo, comprobanteVenta,  bVisible)
+(id, codigo, comprobanteVenta, letra,  bVisible)
 VALUES
-(19,'027','LIQUIDACION UNICA COMERCIAL IMPOSITIVA CLASE A', 1);
+(19,'027','LIQUIDACION UNICA COMERCIAL IMPOSITIVA CLASE A','A', 1);
 
 INSERT INTO TiposComprobantesVentas
-(id, codigo, comprobanteVenta,  bVisible)
+(id, codigo, comprobanteVenta, letra,  bVisible)
 VALUES
-(20,'028','LIQUIDACION UNICA COMERCIAL IMPOSITIVA CLASE B', 1);
+(20,'028','LIQUIDACION UNICA COMERCIAL IMPOSITIVA CLASE B','B', 1);
 
 INSERT INTO TiposComprobantesVentas
-(id, codigo, comprobanteVenta,  bVisible)
+(id, codigo, comprobanteVenta, letra,  bVisible)
 VALUES
-(21,'029','LIQUIDACION UNICA COMERCIAL IMPOSITIVA CLASE C', 1);
+(21,'029','LIQUIDACION UNICA COMERCIAL IMPOSITIVA CLASE C','C', 2);
 
 INSERT INTO TiposComprobantesVentas
-(id, codigo, comprobanteVenta,  bVisible)
+(id, codigo, comprobanteVenta, letra,  bVisible)
 VALUES
-(22,'033','LIQUIDACION PRIMARIA DE GRANOS', 1);
+(22,'033','LIQUIDACION PRIMARIA DE GRANOS','A', 1);
 
 INSERT INTO TiposComprobantesVentas
-(id, codigo, comprobanteVenta,  bVisible)
+(id, codigo, comprobanteVenta, letra,  bVisible)
 VALUES
-(23,'034','COMPROBANTES A DEL APARTADO A  INCISO F  R G  N  1415', 1);
+(23,'034','COMPROBANTES A DEL APARTADO A  INCISO F  R G  N  1415','A', 1);
 
 INSERT INTO TiposComprobantesVentas
-(id, codigo, comprobanteVenta,  bVisible)
+(id, codigo, comprobanteVenta, letra,  bVisible)
 VALUES
-(24,'035','COMPROBANTES B DEL ANEXO I  APARTADO A  INC. F   RG N  1415', 1);
+(24,'035','COMPROBANTES B DEL ANEXO I  APARTADO A  INC. F   RG N  1415','B', 1);
 
 INSERT INTO TiposComprobantesVentas
-(id, codigo, comprobanteVenta,  bVisible)
+(id, codigo, comprobanteVenta, letra,  bVisible)
 VALUES
-(25,'037','NOTAS DE DEBITO O DOCUMENTO EQUIVALENTE QUE CUMPLAN CON LA R.G. N  1415', 1);
+(25,'037','NOTAS DE DEBITO O DOCUMENTO EQUIVALENTE QUE CUMPLAN CON LA R.G. N  1415','A', 1);
 
 INSERT INTO TiposComprobantesVentas
-(id, codigo, comprobanteVenta,  bVisible)
+(id, codigo, comprobanteVenta, letra,  bVisible)
 VALUES
-(26,'038','NOTAS DE CREDITO O DOCUMENTO EQUIVALENTE QUE CUMPLAN CON LA R.G. N  1415', 1);
+(26,'038','NOTAS DE CREDITO O DOCUMENTO EQUIVALENTE QUE CUMPLAN CON LA R.G. N  1415','A', 1);
 
 INSERT INTO TiposComprobantesVentas
-(id, codigo, comprobanteVenta,  bVisible)
+(id, codigo, comprobanteVenta, letra,  bVisible)
 VALUES
-(27,'039','OTROS COMPROBANTES A QUE CUMPLEN CON LA R G  1415', 1);
+(27,'039','OTROS COMPROBANTES A QUE CUMPLEN CON LA R G  1415','A', 1);
 
 
 INSERT INTO TiposComprobantesVentas
-(id, codigo, comprobanteVenta,  bVisible)
+(id, codigo, comprobanteVenta, letra,  bVisible)
 VALUES
-(28,'040','OTROS COMPROBANTES B QUE CUMPLAN CON LA R.G. 1415', 1);
+(28,'040','OTROS COMPROBANTES B QUE CUMPLAN CON LA R.G. 1415','B', 1);
 
 INSERT INTO TiposComprobantesVentas
-(id, codigo, comprobanteVenta,  bVisible)
+(id, codigo, comprobanteVenta, letra,  bVisible)
 VALUES
-(29,'043','NOTA DE CREDITO LIQUIDACION UNICA COMERCIAL IMPOSITIVA CLASE B', 1);
+(29,'043','NOTA DE CREDITO LIQUIDACION UNICA COMERCIAL IMPOSITIVA CLASE B','B', 1);
 
 INSERT INTO TiposComprobantesVentas
-(id, codigo, comprobanteVenta,  bVisible)
+(id, codigo, comprobanteVenta, letra,  bVisible)
 VALUES
-(30,'044','NOTA DE CREDITO LIQUIDACION UNICA COMERCIAL IMPOSITIVA CLASE C', 1);
+(30,'044','NOTA DE CREDITO LIQUIDACION UNICA COMERCIAL IMPOSITIVA CLASE C','C', 2);
 
 INSERT INTO TiposComprobantesVentas
-(id, codigo, comprobanteVenta,  bVisible)
+(id, codigo, comprobanteVenta, letra,  bVisible)
 VALUES
-(31,'045','NOTA DE DEBITO LIQUIDACION UNICA COMERCIAL IMPOSITIVA CLASE A', 1);
+(31,'045','NOTA DE DEBITO LIQUIDACION UNICA COMERCIAL IMPOSITIVA CLASE A','A', 1);
 
 INSERT INTO TiposComprobantesVentas
-(id, codigo, comprobanteVenta,  bVisible)
+(id, codigo, comprobanteVenta, letra,  bVisible)
 VALUES
-(32,'046','NOTA DE DEBITO LIQUIDACION UNICA COMERCIAL IMPOSITIVA CLASE B', 1);
+(32,'046','NOTA DE DEBITO LIQUIDACION UNICA COMERCIAL IMPOSITIVA CLASE B','B', 1);
 
 INSERT INTO TiposComprobantesVentas
-(id, codigo, comprobanteVenta,  bVisible)
+(id, codigo, comprobanteVenta, letra,  bVisible)
 VALUES
-(33,'047','NOTA DE DEBITO LIQUIDACION UNICA COMERCIAL IMPOSITIVA CLASE C', 1);
+(33,'047','NOTA DE DEBITO LIQUIDACION UNICA COMERCIAL IMPOSITIVA CLASE C','C', 1);
 
 INSERT INTO TiposComprobantesVentas
-(id, codigo, comprobanteVenta,  bVisible)
+(id, codigo, comprobanteVenta, letra,  bVisible)
 VALUES
-(34,'048','NOTA DE CREDITO LIQUIDACION UNICA COMERCIAL IMPOSITIVA CLASE A', 1);
+(34,'048','NOTA DE CREDITO LIQUIDACION UNICA COMERCIAL IMPOSITIVA CLASE A','A', 1);
 
 INSERT INTO TiposComprobantesVentas
-(id, codigo, comprobanteVenta,  bVisible)
+(id, codigo, comprobanteVenta, letra,  bVisible)
 VALUES
-(35,'051','FACTURAS M', 1);
+(35,'051','FACTURAS M','M', 1);
 
 INSERT INTO TiposComprobantesVentas
-(id, codigo, comprobanteVenta,  bVisible)
+(id, codigo, comprobanteVenta, letra,  bVisible)
 VALUES
-(36,'052','NOTAS DE DEBITO M', 1);
+(36,'052','NOTAS DE DEBITO M','M', 1);
 
 INSERT INTO TiposComprobantesVentas
-(id, codigo, comprobanteVenta,  bVisible)
+(id, codigo, comprobanteVenta, letra,  bVisible)
 VALUES
-(37,'053','NOTAS DE CREDITO M', 1);
+(37,'053','NOTAS DE CREDITO M','M', 1);
 
 INSERT INTO TiposComprobantesVentas
-(id, codigo, comprobanteVenta,  bVisible)
+(id, codigo, comprobanteVenta, letra,  bVisible)
 VALUES
-(38,'054','RECIBOS M', 1);
+(38,'054','RECIBOS M','M', 1);
 
 INSERT INTO TiposComprobantesVentas
-(id, codigo, comprobanteVenta,  bVisible)
+(id, codigo, comprobanteVenta, letra,  bVisible)
 VALUES
-(39,'055','NOTAS DE VENTA AL CONTADO M', 1);
+(39,'055','NOTAS DE VENTA AL CONTADO M','M', 1);
 
 INSERT INTO TiposComprobantesVentas
-(id, codigo, comprobanteVenta,  bVisible)
+(id, codigo, comprobanteVenta, letra,  bVisible)
 VALUES
-(40,'056','COMPROBANTES M DEL ANEXO I  APARTADO A  INC F   R G  N  1415', 1);
+(40,'056','COMPROBANTES M DEL ANEXO I  APARTADO A  INC F   R G  N  1415','M', 1);
 
 INSERT INTO TiposComprobantesVentas
-(id, codigo, comprobanteVenta,  bVisible)
+(id, codigo, comprobanteVenta, letra,  bVisible)
 VALUES
-(41,'057','OTROS COMPROBANTES M QUE CUMPLAN CON LA R G  N  1415', 1);
+(41,'057','OTROS COMPROBANTES M QUE CUMPLAN CON LA R G  N  1415','M', 1);
 
 INSERT INTO TiposComprobantesVentas
-(id, codigo, comprobanteVenta,  bVisible)
+(id, codigo, comprobanteVenta, letra,  bVisible)
 VALUES
-(42,'058','CUENTAS DE VENTA Y LIQUIDO PRODUCTO M', 1);
+(42,'058','CUENTAS DE VENTA Y LIQUIDO PRODUCTO M','M', 1);
 
 INSERT INTO TiposComprobantesVentas
-(id, codigo, comprobanteVenta,  bVisible)
+(id, codigo, comprobanteVenta, letra,  bVisible)
 VALUES
-(43,'059','LIQUIDACIONES M', 1);
+(43,'059','LIQUIDACIONES M','M', 1);
 
 INSERT INTO TiposComprobantesVentas
-(id, codigo, comprobanteVenta,  bVisible)
+(id, codigo, comprobanteVenta, letra,  bVisible)
 VALUES
-(44,'060','CUENTAS DE VENTA Y LIQUIDO PRODUCTO A', 1);
+(44,'060','CUENTAS DE VENTA Y LIQUIDO PRODUCTO A','A', 1);
 
 INSERT INTO TiposComprobantesVentas
-(id, codigo, comprobanteVenta,  bVisible)
+(id, codigo, comprobanteVenta, letra,  bVisible)
 VALUES
-(45,'061','CUENTAS DE VENTA Y LIQUIDO PRODUCTO B', 1);
+(45,'061','CUENTAS DE VENTA Y LIQUIDO PRODUCTO B','B', 1);
 
 INSERT INTO TiposComprobantesVentas
-(id, codigo, comprobanteVenta,  bVisible)
+(id, codigo, comprobanteVenta, letra,  bVisible)
 VALUES
-(46,'063','LIQUIDACIONES A', 1);
+(46,'063','LIQUIDACIONES A','A', 1);
 
 INSERT INTO TiposComprobantesVentas
-(id, codigo, comprobanteVenta,  bVisible)
+(id, codigo, comprobanteVenta, letra,  bVisible)
 VALUES
-(47,'064','LIQUIDACIONES B', 1);
+(47,'064','LIQUIDACIONES B','B', 1);
 
 INSERT INTO TiposComprobantesVentas
-(id, codigo, comprobanteVenta,  bVisible)
+(id, codigo, comprobanteVenta, letra,  bVisible)
 VALUES
-(48,'068','LIQUIDACION C', 1);
+(48,'068','LIQUIDACION C','C', 1);
 
 INSERT INTO TiposComprobantesVentas
-(id, codigo, comprobanteVenta,  bVisible)
+(id, codigo, comprobanteVenta, letra,  bVisible)
 VALUES
-(49,'081','TIQUE FACTURA A   CONTROLADORES FISCALES', 1);
+(49,'081','TIQUE FACTURA A  CONTROLADORES FISCALES','A', 1);
 
 INSERT INTO TiposComprobantesVentas
-(id, codigo, comprobanteVenta,  bVisible)
+(id, codigo, comprobanteVenta, letra,  bVisible)
 VALUES
-(50,'082','TIQUE - FACTURA B', 1);
+(50,'082','TIQUE - FACTURA B','B', 1);
 
 INSERT INTO TiposComprobantesVentas
-(id, codigo, comprobanteVenta,  bVisible)
+(id, codigo, comprobanteVenta, letra,  bVisible)
 VALUES
-(51,'083','TIQUE', 1);
+(51,'083','TIQUE','B', 1);
 
 INSERT INTO TiposComprobantesVentas
-(id, codigo, comprobanteVenta,  bVisible)
+(id, codigo, comprobanteVenta, letra,  bVisible)
 VALUES
-(52,'090','NOTA DE CREDITO OTROS COMP  QUE NO CUMPLEN CON LA R G  1415 Y SUS MODIF', 1);
+(52,'090','NOTA DE CREDITO OTROS COMP  QUE NO CUMPLEN CON LA R G  1415 Y SUS MODIF','A', 1);
 
 INSERT INTO TiposComprobantesVentas
-(id, codigo, comprobanteVenta,  bVisible)
+(id, codigo, comprobanteVenta, letra,  bVisible)
 VALUES
-(53,'099','OTROS COMP  QUE NO CUMPLEN CON LA R G  1415 Y SUS MODIF', 1);
+(53,'099','OTROS COMP  QUE NO CUMPLEN CON LA R G  1415 Y SUS MODIF','A', 1);
 
 INSERT INTO TiposComprobantesVentas
-(id, codigo, comprobanteVenta,  bVisible)
+(id, codigo, comprobanteVenta, letra,  bVisible)
 VALUES
-(54,'110','TIQUE NOTA DE CREDITO', 1);
+(54,'110','TIQUE NOTA DE CREDITO','B', 1);
 
 INSERT INTO TiposComprobantesVentas
-(id, codigo, comprobanteVenta,  bVisible)
+(id, codigo, comprobanteVenta, letra,  bVisible)
 VALUES
-(55,'112','TIQUE NOTA DE CREDITO A', 1);
+(55,'112','TIQUE NOTA DE CREDITO A','A', 1);
 
 INSERT INTO TiposComprobantesVentas
-(id, codigo, comprobanteVenta,  bVisible)
+(id, codigo, comprobanteVenta, letra,  bVisible)
 VALUES
-(56,'113','TIQUE NOTA DE CREDITO B', 1);
+(56,'113','TIQUE NOTA DE CREDITO B','B', 1);
 
 INSERT INTO TiposComprobantesVentas
-(id, codigo, comprobanteVenta,  bVisible)
+(id, codigo, comprobanteVenta, letra,  bVisible)
 VALUES
-(57,'115','TIQUE NOTA DE DEBITO A', 1);
+(57,'115','TIQUE NOTA DE DEBITO A','A', 1);
 
 INSERT INTO TiposComprobantesVentas
-(id, codigo, comprobanteVenta,  bVisible)
+(id, codigo, comprobanteVenta, letra,  bVisible)
 VALUES
-(58,'116','TIQUE NOTA DE DEBITO B', 1);
+(58,'116','TIQUE NOTA DE DEBITO B','B', 1);
 
 INSERT INTO TiposComprobantesVentas
-(id, codigo, comprobanteVenta,  bVisible)
+(id, codigo, comprobanteVenta, letra,  bVisible)
 VALUES
-(59,'118','TIQUE FACTURA M', 1);
+(59,'118','TIQUE FACTURA M','M', 1);
 
 INSERT INTO TiposComprobantesVentas
-(id, codigo, comprobanteVenta,  bVisible)
+(id, codigo, comprobanteVenta, letra,  bVisible)
 VALUES
-(60,'119','TIQUE NOTA DE CREDITO M', 1);
+(60,'119','TIQUE NOTA DE CREDITO M','M', 1);
 
 INSERT INTO TiposComprobantesVentas
-(id, codigo, comprobanteVenta,  bVisible)
+(id, codigo, comprobanteVenta, letra,  bVisible)
 VALUES
-(61,'120','TIQUE NOTA DE DEBITO M', 1);
+(61,'120','TIQUE NOTA DE DEBITO M','M', 1);
 
 INSERT INTO TiposComprobantesVentas
-(id, codigo, comprobanteVenta,  bVisible)
+(id, codigo, comprobanteVenta, letra,  bVisible)
 VALUES
-(62,'331','LIQUIDACION SECUNDARIA DE GRANOS', 1);
+(62,'331','LIQUIDACION SECUNDARIA DE GRANOS','A', 1);
 
 INSERT INTO TiposComprobantesVentas
-(id, codigo, comprobanteVenta,  bVisible)
+(id, codigo, comprobanteVenta, letra,  bVisible)
 VALUES
-(64,'011','FACTURAS C', 1);
+(64,'011','FACTURAS C','C', 1);
 
 INSERT INTO TiposComprobantesVentas
-(id, codigo, comprobanteVenta,  bVisible)
+(id, codigo, comprobanteVenta, letra,  bVisible)
 VALUES
-(65,'012','NOTAS DE DEBITO C', 1);
+(65,'012','NOTAS DE DEBITO C','C', 1);
 
 INSERT INTO TiposComprobantesVentas
-(id, codigo, comprobanteVenta,  bVisible)
+(id, codigo, comprobanteVenta, letra,  bVisible)
 VALUES
-(66,'013','NOTAS DE CREDITO C', 1);
+(66,'013','NOTAS DE CREDITO C','C', 1);
 
 INSERT INTO TiposComprobantesVentas
-(id, codigo, comprobanteVenta,  bVisible)
+(id, codigo, comprobanteVenta, letra,  bVisible)
 VALUES
-(67,'015','RECIBOS C', 1);
+(67,'015','RECIBOS C','C', 1);
 
 INSERT INTO TiposComprobantesVentas
-(id, codigo, comprobanteVenta,  bVisible)
+(id, codigo, comprobanteVenta, letra,  bVisible)
 VALUES
-(68,'016','NOTAS DE VENTA AL CONTADO C', 1);
+(68,'016','NOTAS DE VENTA AL CONTADO C','C', 1);
 
 
 
@@ -1518,3 +1519,29 @@ CREATE TABLE Compensaciones
 , fCompensacion date default 0
 , bVisible 	 smallint default 1
 );
+
+ALTER TABLE TiposComprobantesVentas add TipoFactura integer default 0;
+
+UPDATE TiposComprobantesVentas set TipoFactura = 1 WHERE id <= 63;
+UPDATE TiposComprobantesVentas set TipoFactura = 0 WHERE id = 0;
+UPDATE TiposComprobantesVentas set TipoFactura = 2 WHERE id > 63;
+
+ALTER TABLE Clientes add UltTipoFactura integer default 0;
+
+
+
+CREATE GENERATOR nroComprobanteInt;
+
+SET GENERATOR nroComprobanteInt TO 0;
+
+SET TERM ^ ;
+
+CREATE TRIGGER nroVenta FOR ComprobantesVenta
+BEFORE INSERT POSITION 0
+AS 
+BEGIN 
+    If (New.nroComprobante = -1) then
+   New.nroComprobante = GEN_ID(nroComprobanteInt,1);
+END^
+
+SET TERM ; ^  

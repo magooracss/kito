@@ -225,10 +225,8 @@ object frmVentasAE: TfrmVentasAE
       Top = 40
       Width = 264
       ItemHeight = 16
-      OnChange = cbTipoComprobanteChange
-      OnExit = cbTipoComprobanteExit
       TabOrder = 0
-      Text = 'cbTipoComprobante'
+      Text = 'Primero seleccione el cliente'
     end
     object StaticText1: TStaticText
       Left = 17

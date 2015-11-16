@@ -23,6 +23,7 @@ type
     Clientesempresa_id: TStringField;
     Clientesid: TStringField;
     ClienteslistaPrecio_id: TLongintField;
+    ClientesultTipoFactura: TLongintField;
     Clienteszona_id: TLongintField;
     DELClientes: TZQuery;
     INSClientes: TZQuery;
@@ -30,6 +31,11 @@ type
     qListasPreciosBVISIBLE: TSmallintField;
     qListasPreciosID: TLongintField;
     qListasPreciosLISTAPRECIO: TStringField;
+    qTiposComprobantesBVISIBLE: TSmallintField;
+    qTiposComprobantesCODIGO: TStringField;
+    qTiposComprobantesCOMPROBANTEVENTA: TStringField;
+    qTiposComprobantesID: TLongintField;
+    qTiposComprobantesTIPOFACTURA: TLongintField;
     qZonasClientesBVISIBLE: TSmallintField;
     qZonasClientesID: TLongintField;
     qZonasClientesZONA: TStringField;
@@ -42,6 +48,7 @@ type
     SELClientesEMPRESA_ID: TStringField;
     SELClientesID: TStringField;
     SELClientesLISTAPRECIO_ID: TLongintField;
+    SELClientesULTTIPOFACTURA: TLongintField;
     SELClientesZONA_ID: TLongintField;
     UPDClientes: TZQuery;
     procedure ClientesAfterInsert(DataSet: TDataSet);
@@ -51,15 +58,20 @@ type
     function getDomicilio: String;
     function getRazonSocial: String;
     function getCuit: string;
+    function getTipoFacturacion: integer;
+    function getUltTipoFActura: integer;
   public
     property RazonSocial: String read getRazonSocial;
     property Domicilio: String read getDomicilio;
     property Cuit: string read getCuit;
+    property TipoFacturacion: integer read getTipoFacturacion;
+    property UltimoITipoFactura: integer read getUltTipoFActura;
 
     procedure Nuevo;
     procedure Editar (refCliente: GUID_ID);
     procedure Grabar;
     procedure Borrar (refCliente: GUID_ID);
+    procedure AjustarUltTipoFactura (refCliente: GUID_ID; ultTipoFactura: integer);
   end;
 
 var
@@ -81,6 +93,7 @@ begin
   Clienteszona_id.AsInteger:= 0;
   ClienteslistaPrecio_id.AsInteger:= 0;
   ClientesbVisible.AsInteger:=1;
+  ClientesultTipoFactura.AsInteger:= 0;
 end;
 
 procedure TDM_Clientes.DataModuleCreate(Sender: TObject);
@@ -101,11 +114,27 @@ begin
   Result:= DM_Empresa.CUIT;
 end;
 
+function TDM_Clientes.getTipoFacturacion: integer;
+begin
+  DM_Empresa.LevantarEmpresa(_idEmpresa);
+  Result:= DM_Empresa.TipoFacturacion;
+end;
+
+function TDM_Clientes.getUltTipoFActura: integer;
+begin
+  if ((Clientes.Active) and (Clientes.RecordCount > 0))
+  then
+    Result:= ClientesultTipoFactura.AsInteger
+  else
+    Result:= 0;
+end;
+
 function TDM_Clientes.getDomicilio: String;
 begin
   DM_Empresa.LevantarEmpresa(_idEmpresa);
   Result:= DM_Empresa.Domicilio;
 end;
+
 
 procedure TDM_Clientes.Nuevo;
 begin
@@ -139,6 +168,19 @@ begin
     ParamByName('id').asString:= refCliente;
     ExecSQL;
   end;
+end;
+
+procedure TDM_Clientes.AjustarUltTipoFactura(refCliente: GUID_ID;
+  ultTipoFactura: integer);
+begin
+  Editar(refCliente);
+  with Clientes do
+  begin
+    Edit;
+    ClientesultTipoFactura.AsInteger:= ultTipoFactura;
+    Post;
+  end;
+  Grabar;
 end;
 
 end.

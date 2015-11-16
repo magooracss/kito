@@ -11,11 +11,23 @@ object DM_Ventas: TDM_Ventas
     SQL.Strings = (
       'SELECT *'
       'FROM TIPOSCOMPROBANTESVENTAS'
-      'WHERE bVisible = 1'
+      'WHERE (bVisible = 1)'
+      '             and (tipoFactura = :tipoFactura)'
     )
-    Params = <>
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'tipoFactura'
+        ParamType = ptUnknown
+      end>
     left = 656
     top = 40
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'tipoFactura'
+        ParamType = ptUnknown
+      end>
     object qTiposComprobantesVentasID: TLongintField
       DisplayWidth = 10
       FieldKind = fkData
@@ -53,6 +65,16 @@ object DM_Ventas: TDM_Ventas
       FieldKind = fkData
       FieldName = 'BVISIBLE'
       Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object qTiposComprobantesVentasTIPOFACTURA: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'TIPOFACTURA'
+      Index = 4
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
