@@ -14,6 +14,9 @@ type
   { TfrmMain }
 
   TfrmMain = class(TForm)
+    MenuItem11: TMenuItem;
+    MenuItem12: TMenuItem;
+    movVentaEditar: TAction;
     lstCuentaCorriente: TAction;
     MenuItem10: TMenuItem;
     MenuItem9: TMenuItem;
@@ -53,6 +56,7 @@ type
     procedure lstCuentaCorrienteExecute(Sender: TObject);
     procedure movCompraExecute(Sender: TObject);
     procedure movOrdenPagoExecute(Sender: TObject);
+    procedure movVentaEditarExecute(Sender: TObject);
     procedure movVentaExecute(Sender: TObject);
     procedure prgFacturarExecute(Sender: TObject);
     procedure prgModificarFacturaExecute(Sender: TObject);
@@ -149,13 +153,26 @@ begin
   finally
     pant.Free;
   end;
-
 end;
 
 
 procedure TfrmMain.movVentaExecute(Sender: TObject);
 begin
   PantallaVentas(GUIDNULO);
+end;
+
+procedure TfrmMain.movVentaEditarExecute(Sender: TObject);
+var
+  pant: TfrmImpresionComprobantes;
+begin
+  pant:= TfrmImpresionComprobantes.Create(self);
+  try
+    pant.seleccion:= true;
+    if ((pant.ShowModal = mrOK) and (pant.seleccionID <> GUIDNULO)) then
+     PantallaVentas(pant.seleccionID);
+  finally
+    pant.Free;
+  end;
 end;
 
 

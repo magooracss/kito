@@ -11,8 +11,8 @@ object frmImpresionComprobantes: TfrmImpresionComprobantes
   Font.Name = 'Arial'
   Font.Pitch = fpVariable
   Font.Quality = fqDraft
-  OnClose = FormClose
   OnCreate = FormCreate
+  OnDestroy = FormDestroy
   OnShow = FormShow
   Position = poScreenCenter
   LCLVersion = '1.4.2.0'
@@ -898,7 +898,7 @@ object frmImpresionComprobantes: TfrmImpresionComprobantes
     ClientHeight = 61
     ClientWidth = 1008
     TabOrder = 2
-    object BitBtn1: TBitBtn
+    object btnSalir: TBitBtn
       Left = 24
       Height = 41
       Top = 8
@@ -940,7 +940,7 @@ object frmImpresionComprobantes: TfrmImpresionComprobantes
         00EB000000FF000000FF000000FF000000FF000000FF000000FF000000FF0000
         00FF000000FF000000FF000000FF000000FF000000FF010101E9
       }
-      OnClick = BitBtn1Click
+      OnClick = btnSalirClick
       TabOrder = 0
     end
     object BitBtn2: TBitBtn

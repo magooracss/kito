@@ -471,13 +471,26 @@ begin
     Post;
   end;
 
-  ComproVtaIVA.Insert;
-  ComproVtaIVAcomprobanteVentaConcepto_id.AsString:= refComprobanteConcepto;
-  ComproVtaIVAalicuota_id.AsInteger:= refAlicuotaIVA;
-  ComproVtaIVAmonto.AsFloat:= ivaCalculado;
-  ComproVtaIVABaseImponible.AsFloat:= monto;
-  ComproVtaIVAlxIVA.asString:= nombre;
-  ComproVtaIVA.Post;
+  with ComproVtaIVA do
+  begin
+    if Locate('ComprobanteVentaConcepto_id', refComprobanteConcepto, []) then
+    begin
+      Edit;
+      ComproVtaIVAmonto.AsFloat:= ComproVtaIVAmonto.AsFloat + ivaCalculado;
+      ComproVtaIVABaseImponible.AsFloat:= ComproVtaIVABaseImponible.AsFloat + monto;
+    end
+    else
+    begin
+      ComproVtaIVA.Insert;
+      ComproVtaIVAcomprobanteVentaConcepto_id.AsString:= refComprobanteConcepto;
+      ComproVtaIVAalicuota_id.AsInteger:= refAlicuotaIVA;
+      ComproVtaIVAmonto.AsFloat:= ivaCalculado;
+      ComproVtaIVABaseImponible.AsFloat:= monto;
+      ComproVtaIVAlxIVA.asString:= nombre;
+      ComproVtaIVA.Post;
+    end;
+  end;
+
 end;
 
 function TDM_Ventas.ObtenerNroComprobante(refComprobante, NroPtoVenta: integer

@@ -81,19 +81,19 @@ object frmMain: TfrmMain
       Action = prgFacturar
     end
     object ToolButton7: TToolButton
-      Left = 484
-      Top = 2
+      Left = 1
+      Top = 82
       Caption = 'Test Factura'
       OnClick = ToolButton7Click
       Visible = False
     end
     object ToolButton8: TToolButton
-      Left = 576
+      Left = 484
       Top = 2
       Action = factImpresion
     end
     object ToolButton9: TToolButton
-      Left = 668
+      Left = 576
       Height = 80
       Top = 2
       Width = 10
@@ -106,8 +106,8 @@ object frmMain: TfrmMain
       Action = movOrdenPago
     end
     object ToolButton11: TToolButton
-      Left = 1
-      Top = 82
+      Left = 586
+      Top = 2
       Action = lstCuentaCorriente
     end
   end
@@ -175,6 +175,12 @@ object frmMain: TfrmMain
       ImageIndex = 7
       OnExecute = lstCuentaCorrienteExecute
     end
+    object movVentaEditar: TAction
+      Category = 'Movimientos'
+      Caption = 'Modificar'
+      ImageIndex = 30
+      OnExecute = movVentaEditarExecute
+    end
   end
   object MainMenu1: TMainMenu
     Images = DM_General.ImgAccionesMenu
@@ -199,6 +205,12 @@ object frmMain: TfrmMain
       Caption = 'Operaciones'
       object MenuItem5: TMenuItem
         Action = movVenta
+      end
+      object MenuItem11: TMenuItem
+        Action = movVentaEditar
+      end
+      object MenuItem12: TMenuItem
+        Caption = '-'
       end
       object MenuItem6: TMenuItem
         Action = movCompra

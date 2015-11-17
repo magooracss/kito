@@ -70,8 +70,10 @@ type
     procedure btnClienteNuevoClick(Sender: TObject);
     procedure btnGrabarClick(Sender: TObject);
     procedure btnImprimirClick(Sender: TObject);
+    procedure DBGrid1DblClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
+    procedure FormShow(Sender: TObject);
   private
     _ventaID: GUID_ID;
     _clienteID: GUID_ID;
@@ -82,6 +84,7 @@ type
 
     procedure AgregarConcepto;
     procedure AgregarConceptoPedidos;
+    procedure EditarConcepto;
 
     procedure MostrarTotales;
 
@@ -90,7 +93,7 @@ type
 
     procedure CargarComprobantesVenta (refTipoComprobante, UltTipoCompr: integer);
 
-
+    procedure AjustarPantalla;
 
   public
     property ventaID: GUID_ID read _ventaID write _VentaID;
@@ -148,6 +151,17 @@ begin
    DM_FacturaElectronica.Free;
 end;
 
+procedure TfrmVentasAE.FormShow(Sender: TObject);
+begin
+  if _ventaID = GUIDNULO then
+    DM_Ventas.NuevoComprobante
+  else
+  begin
+    DM_Ventas.LevantarVenta(_ventaID);
+    AjustarPantalla;
+  end;
+end;
+
 procedure TfrmVentasAE.btnBuscarClick(Sender: TObject);
 var
   pantBus: TfrmBusquedaEmpresas;
@@ -173,6 +187,12 @@ procedure TfrmVentasAE.btnAgregarConceptoClick(Sender: TObject);
 begin
   AgregarConcepto;
 end;
+
+procedure TfrmVentasAE.DBGrid1DblClick(Sender: TObject);
+begin
+  EditarConcepto;
+end;
+
 
 procedure TfrmVentasAE.btnAgregarConcepto2Click(Sender: TObject);
 begin
@@ -232,6 +252,11 @@ end;
 procedure TfrmVentasAE.AgregarConceptoPedidos;
 begin
   DM_Ventas.AgregarConceptoPedidos;
+end;
+
+procedure TfrmVentasAE.EditarConcepto;
+begin
+  ShowMessage ('En contruccion: ' + DM_Ventas.ComproVtaConceptosid.AsString );
 end;
 
 
@@ -326,6 +351,18 @@ begin
   end;
   cbTipoComprobante.ItemIndex:= DM_General.obtenerIdxCombo(cbTipoComprobante
                                                           ,UltTipoCompr);
+end;
+
+procedure TfrmVentasAE.AjustarPantalla;
+begin
+  _clienteID:= DM_Ventas.ComproVtacliente_id.AsString;
+  DM_Clientes.Editar(_clienteID);
+  edCliente.Text:= DM_Clientes.RazonSocial;
+  edCUIT.Text:= DM_Clientes.Cuit;
+  cbFormaDePago.ItemIndex:= DM_General.obtenerIdxCombo(cbFormaDePago
+                                                     , DM_Ventas.ComproVtaformaPago_id.AsInteger);
+  CargarComprobantesVenta(0,DM_Ventas.ComproVtatipoComprobante_id.AsInteger);
+  MostrarTotales;
 end;
 
 procedure TfrmVentasAE.btnGrabarClick(Sender: TObject);
