@@ -33,6 +33,12 @@ const
    FAC_TIPO_AB = 1;
    FAC_TIPO_C = 2;
 
+ // usado principalmente en listado_CC
+  MAX_INCLUIR = 4; //Cantidad de items a incluir (Compras, ventas, OP, Pedidos)
+  INC_COMPRAS = 0;
+  INC_VENTAS = 1;
+  INC_OP = 2;
+  INC_PEDIDOS = 3;
 
 type
 

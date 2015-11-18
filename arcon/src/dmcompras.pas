@@ -175,6 +175,7 @@ type
     procedure CalcularMontosItem;
     procedure BorrarItem;
 
+    procedure NuevaCompra;
     procedure Editar (refCompra: GUID_ID);
     procedure Grabar;
 
@@ -315,6 +316,13 @@ begin
     CompraItems.Delete;
   end;
   CalcularMontosItem;
+end;
+
+procedure TDM_Compras.NuevaCompra;
+begin
+  DM_General.ReiniciarTabla(Compras);
+  DM_General.ReiniciarTabla(CompraItems);
+  Compras.Insert;
 end;
 
 procedure TDM_Compras.Editar(refCompra: GUID_ID);

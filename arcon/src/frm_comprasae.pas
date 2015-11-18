@@ -70,6 +70,7 @@ type
     procedure ds_ComprobanteDataChange(Sender: TObject; Field: TField);
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
+    procedure FormShow(Sender: TObject);
     procedure Panel1Click(Sender: TObject);
   private
     idCompra: GUID_ID;
@@ -90,6 +91,7 @@ uses
   ,frm_busquedaempresas
   ,frm_compraitemsae
   ,frm_proveedoresae
+  , dmproveedores
   ;
 
 { TfrmComprasAE }
@@ -162,6 +164,25 @@ end;
 procedure TfrmComprasAE.FormDestroy(Sender: TObject);
 begin
   DM_Compras.Free;
+end;
+
+procedure TfrmComprasAE.FormShow(Sender: TObject);
+var
+  proveedor: TDM_Proveedores;
+begin
+  proveedor:= TDM_Proveedores.Create(self);
+  try
+    if idCompra = GUIDNULO then
+     DM_Compras.NuevaCompra
+    else
+    begin
+      DM_Compras.Editar (idCompra);
+      proveedor.Editar(DM_Compras.Comprasproveedor_id.AsString);
+      edProveedor.Text:= proveedor.RazonSocial;
+    end;
+  finally
+    proveedor.Free;
+  end;
 end;
 
 procedure TfrmComprasAE.Panel1Click(Sender: TObject);

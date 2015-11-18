@@ -1097,7 +1097,7 @@ BEFORE INSERT OR UPDATE POSITION 0
 AS 
 BEGIN 
     If (New.numero = -1) then
-   New.id = GEN_ID(nroComprobanteCompra,1);
+   New.numero = GEN_ID(nroComprobanteCompra,1);
 END^
 
 SET TERM ; ^  

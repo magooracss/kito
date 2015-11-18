@@ -14,6 +14,9 @@ type
   { TfrmMain }
 
   TfrmMain = class(TForm)
+    MenuItem13: TMenuItem;
+    movCompraEditar: TAction;
+    movOPEditr: TAction;
     MenuItem11: TMenuItem;
     MenuItem12: TMenuItem;
     movVentaEditar: TAction;
@@ -54,6 +57,7 @@ type
     procedure factImpresionExecute(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure lstCuentaCorrienteExecute(Sender: TObject);
+    procedure movCompraEditarExecute(Sender: TObject);
     procedure movCompraExecute(Sender: TObject);
     procedure movOrdenPagoExecute(Sender: TObject);
     procedure movVentaEditarExecute(Sender: TObject);
@@ -67,6 +71,8 @@ type
     procedure PantallaVentas (idVenta: GUID_ID);
     procedure PantallaCompras (refCompra: GUID_ID);
     procedure Inicializar;
+
+    procedure BuscarComprobante (var ResultadoID: GUID_ID; var tipoID: integer);
   public
     { public declarations }
   end;
@@ -118,7 +124,6 @@ begin
   st.Panels[1].Text:= FormatDateTime('dd/mm/yyyy', now)+ '        ';
 end;
 
-
 procedure TfrmMain.prgModificarReporteExecute(Sender: TObject);
 begin
   DM_General.LevantarReporte('blanco.lrf', DM_General.qTugDesc);
@@ -137,6 +142,34 @@ begin
   end;
 
 end;
+
+
+(*******************************************************************************
+*** Búsqueda genérica de comprobantes
+*******************************************************************************)
+
+
+procedure TfrmMain.BuscarComprobante(var ResultadoID: GUID_ID;
+  var tipoID: integer);
+var
+  pant: TfrmListadoCC;
+begin
+  pant:= TfrmListadoCC.Create(self);
+  try
+    pant.modoBusqueda:= true;
+    pant.tipoSeleccion:= tipoID;
+    if pant.ShowModal = mrOK then
+    begin
+     ResultadoID:= pant.seleccionID;
+     tipoID:= tipoID;
+    end
+    else
+      ResultadoID:= GUIDNULO;
+  finally
+    pant.Free;
+  end;
+end;
+
 
 
 (*******************************************************************************
@@ -196,6 +229,19 @@ procedure TfrmMain.movCompraExecute(Sender: TObject);
 begin
   PantallaCompras(GUIDNULO);
 end;
+
+procedure TfrmMain.movCompraEditarExecute(Sender: TObject);
+var
+  resultado: GUID_ID;
+  tipo: integer;
+begin
+  tipo:= INC_COMPRAS;
+  resultado:= GUIDNULO;
+  BuscarComprobante(resultado, tipo);
+  if ((resultado <> GUIDNULO) and (tipo = INC_COMPRAS)) then
+   PantallaCompras(resultado);
+end;
+
 
 (*******************************************************************************
 *** FACTURAR
@@ -274,7 +320,6 @@ begin
     pant.Free;
   end;
 end;
-
 
 
 end.

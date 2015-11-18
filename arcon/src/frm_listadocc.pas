@@ -37,17 +37,23 @@ type
     procedure btnExportarClick(Sender: TObject);
     procedure btnObtenerClick(Sender: TObject);
     procedure btnSalirClick(Sender: TObject);
-    procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
+    procedure FormDestroy(Sender: TObject);
     procedure FormShow(Sender: TObject);
   private
     dmCuentaCorriente: TDM_CuentaCorriente;
     _idEmpresa: GUID_ID;
+    _modoBusqueda: boolean;
+    _tipoSeleccion: integer;
+
 
     procedure Filtrar;
+    function getSeleccionID: GUID_ID;
   public
+    property modoBusqueda:boolean write _modoBusqueda;
+    property seleccionID: GUID_ID read getSeleccionID;
+    property tipoSeleccion: integer read _tipoSeleccion write _tipoSeleccion;
 
-    { public declarations }
   end;
 
 var
@@ -60,26 +66,23 @@ uses
   ,frm_busquedaempresas
   ;
 
-const
-  MAX_INCLUIR = 4; //Cantidad de items a incluir (Compras, ventas, OP, Pedidos)
-  INC_COMPRAS = 0;
-  INC_VENTAS = 1;
-  INC_OP = 2;
-  INC_PEDIDOS = 3;
+
 
 { TfrmListadoCC }
 
-procedure TfrmListadoCC.FormClose(Sender: TObject; var CloseAction: TCloseAction
-  );
-begin
-  dmCuentaCorriente.Free;
-end;
 
 procedure TfrmListadoCC.FormCreate(Sender: TObject);
 begin
   dmCuentaCorriente:= TDM_CuentaCorriente.Create(self);
   ds_listadoCC.DataSet:= dmCuentaCorriente.CuentaCorriente;
   _idEmpresa:= GUIDNULO;
+  _modoBusqueda:= false;
+  _tipoSeleccion:= 0;
+end;
+
+procedure TfrmListadoCC.FormDestroy(Sender: TObject);
+begin
+   dmCuentaCorriente.Free;
 end;
 
 procedure TfrmListadoCC.btnSalirClick(Sender: TObject);
@@ -98,6 +101,23 @@ begin
     ckIncluir.Checked[idx]:= true;
 
   edEmpresa.Clear;
+  if _modoBusqueda then
+  begin
+    btnSalir.Caption:= 'Seleccionar';
+    btnExportar.Visible:= False;
+
+    for idx:= 0 to MAX_INCLUIR -1 do
+    begin
+      ckIncluir.CheckEnabled[idx]:= False;
+      ckIncluir.Checked[idx]:= False;
+    end;
+
+    if _tipoSeleccion <= ckIncluir.Items.Count then
+    begin
+      ckIncluir.CheckEnabled[_tipoSeleccion]:= True;
+      ckIncluir.Checked[_tipoSeleccion]:= true;
+    end;
+  end;
 end;
 
 procedure TfrmListadoCC.Filtrar;
@@ -153,6 +173,19 @@ begin
   if SD.Execute then
     DM_General.ExportarXLS(dmCuentaCorriente.CuentaCorriente, sd.FileName, 'CuentaCorriente');
 end;
+
+function TfrmListadoCC.getSeleccionID: GUID_ID;
+begin
+  if ((dmCuentaCorriente.CuentaCorriente.Active)
+    and (dmCuentaCorriente.CuentaCorriente.RecordCount > 0) ) then
+  begin
+    Result:= dmCuentaCorriente.CuentaCorrientefila_id.AsString;
+  end
+  else
+    Result:= GUIDNULO;
+end;
+
+
 
 
 end.

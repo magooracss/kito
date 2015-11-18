@@ -8,6 +8,7 @@ uses
   Classes, SysUtils, db, FileUtil, rxmemds, ZDataset
   , dmgeneral;
 
+
 type
 
   { TDM_CuentaCorriente }
@@ -18,18 +19,24 @@ type
     CuentaCorrienteDebe: TFloatField;
     CuentaCorrienteEmpresa: TStringField;
     CuentaCorrienteFecha: TDateField;
+    CuentaCorrientefila_id: TStringField;
     CuentaCorrienteHaber: TFloatField;
     CuentaCorrienteNroInterno: TLongintField;
     CuentaCorrienteSaldo: TFloatField;
     CuentaCorrienteTipoComprobante: TStringField;
+    CuentaCorrientetipo_id: TLongintField;
     qCompras: TZQuery;
     qComprasCOMPROBANTE: TStringField;
     qComprasDEBE: TFloatField;
     qComprasEMPRESA: TStringField;
     qComprasFECHA: TDateField;
+    qComprasFILA_ID: TStringField;
     qComprasHABER: TLongintField;
     qComprasNROINTERNO: TLongintField;
     qComprasTIPOCOMPROBANTE: TStringField;
+    qComprasTIPO_ID: TLongintField;
+    qOrdenesPagoFILA_ID: TStringField;
+    qOrdenesPagoTIPO_ID: TLongintField;
     qPedidos: TZQuery;
     qOrdenesPagoCOMPROBANTE: TLongintField;
     qOrdenesPagoDEBE: TLongintField;
@@ -42,18 +49,22 @@ type
     qPedidosDEBE: TLongintField;
     qPedidosEMPRESA: TStringField;
     qPedidosFECHA: TDateField;
+    qPedidosFILA_ID: TStringField;
     qPedidosHABER: TFloatField;
     qPedidosNROINTERNO: TLongintField;
     qPedidosTIPOCOMPROBANTE: TStringField;
+    qPedidosTIPO_ID: TLongintField;
     qVentas: TZQuery;
     qOrdenesPago: TZQuery;
     qVentasCOMPROBANTE: TStringField;
     qVentasDEBE: TFloatField;
     qVentasEMPRESA: TStringField;
     qVentasFECHA: TDateField;
+    qVentasFILA_ID: TStringField;
     qVentasHABER: TLongintField;
     qVentasNROINTERNO: TLongintField;
     qVentasTIPOCOMPROBANTE: TStringField;
+    qVentasTIPO_ID: TLongintField;
     procedure DataModuleCreate(Sender: TObject);
   private
     _idEmpresa: GUID_ID;
@@ -145,6 +156,8 @@ begin
     SQL.Add('      , CC.NUMERO as nroInterno');
     SQL.Add('      , CC.MONTOTOTAL as DEBE');
     SQL.Add('     , 0 as HABER ');
+    SQL.Add('     , CC.id as fila_id ');
+    SQL.Add('     , ' + IntToStr (INC_COMPRAS) +  ' as tipo_id ');
     SQL.Add(' FROM COMPROBANTESCOMPRA CC');
     SQL.Add('      left join PROVEEDORES P ON P.ID = CC.PROVEEDOR_ID');
     SQL.Add('      left join EMPRESAS E on E.ID = P.EMPRESA_ID');
@@ -166,6 +179,8 @@ begin
     SQL.Add('      , 0 as NroInterno');
     SQL.Add('      , (CV.NETOGRAVADO + CV.NETONOGRAVADO + CV.EXENTO) as HABER');
     SQL.Add('     , 0 as DEBE ');
+    SQL.Add('     , CV.id as fila_id ');
+    SQL.Add('     , ' + IntToStr (INC_VENTAS) +  ' as tipo_id ');
     SQL.Add(' FROM COMPROBANTESVENTA CV');
     SQL.Add('      left join CLIENTES C ON C.ID = CV.CLIENTE_ID');
     SQL.Add('      left join EMPRESAS E on E.ID = C.EMPRESA_ID');
@@ -187,6 +202,8 @@ begin
     SQL.Add('     , 0 as NroInterno ');
     SQL.Add('     , 0 as DEBE ');
     SQL.Add('     , OP.TOTAL as HABER ');
+    SQL.Add('     , OP.id as fila_id ');
+    SQL.Add('     , ' + IntToStr (INC_OP) +  ' as tipo_id ');
     SQL.Add(' FROM OrdenesDePago OP ');
     SQL.Add('    left join PROVEEDORES P ON P.ID = OP.PROVEEDOR_ID ');
     SQL.Add('    left join EMPRESAS E on E.ID = P.EMPRESA_ID ');
@@ -207,6 +224,8 @@ begin
     SQL.Add(' , P.NUMERO as NroInterno ');
     SQL.Add(' , 0 as HABER ');
     SQL.Add(' , P.TOTALPEDIDO as DEBE ');
+    SQL.Add('     , P.id as fila_id ');
+    SQL.Add('     , ' + IntToStr (INC_PEDIDOS) +  ' as tipo_id ');
     SQL.Add(' FROM PEDIDOS  P');
     SQL.Add('  left join  CLIENTES C ON C.ID = P.CLIENTE_ID ');
     SQL.Add('  left join EMPRESAS E on E.ID = C.EMPRESA_ID ');

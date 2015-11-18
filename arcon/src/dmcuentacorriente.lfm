@@ -54,6 +54,18 @@ object DM_CuentaCorriente: TDM_CuentaCorriente
         DataType = ftFloat
         Precision = 0
         Size = 0
+      end    
+      item
+        Name = 'fila_id'
+        DataType = ftString
+        Precision = 0
+        Size = 38
+      end    
+      item
+        Name = 'tipo_id'
+        DataType = ftInteger
+        Precision = 0
+        Size = 0
       end>
     PacketRecords = 0
     left = 96
@@ -153,6 +165,27 @@ object DM_CuentaCorriente: TDM_CuentaCorriente
       MinValue = 0
       Precision = 2
     end
+    object CuentaCorrientefila_id: TStringField
+      DisplayWidth = 38
+      FieldKind = fkData
+      FieldName = 'fila_id'
+      Index = 8
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 38
+    end
+    object CuentaCorrientetipo_id: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'tipo_id'
+      Index = 9
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
   end
   object qCompras: TZQuery
     Connection = DM_General.cnxBase
@@ -164,6 +197,8 @@ object DM_CuentaCorriente: TDM_CuentaCorriente
       '       , CC.NUMERO as nroInterno'
       '       , CC.MONTOTOTAL as Debe    '
       '       , 0 as Haber    '
+      '      , CC.id as fila_id'
+      '      , 0 as tipo_id'
       'FROM COMPROBANTESCOMPRA CC'
       '     left join PROVEEDORES P ON P.ID = CC.PROVEEDOR_ID'
       '     left join EMPRESAS E on E.ID = P.EMPRESA_ID'
@@ -249,6 +284,27 @@ object DM_CuentaCorriente: TDM_CuentaCorriente
       ReadOnly = True
       Required = False
     end
+    object qComprasFILA_ID: TStringField
+      DisplayWidth = 152
+      FieldKind = fkData
+      FieldName = 'FILA_ID'
+      Index = 7
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      Size = 152
+    end
+    object qComprasTIPO_ID: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'TIPO_ID'
+      Index = 8
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = True
+      Required = False
+    end
   end
   object qVentas: TZQuery
     Connection = DM_General.cnxBase
@@ -260,6 +316,9 @@ object DM_CuentaCorriente: TDM_CuentaCorriente
       '      , 0 as NroInterno'
       '      , (CV.NETOGRAVADO + CV.NETONOGRAVADO + CV.EXENTO) as DEBE'
       '     , 0 as Haber'
+      '      , CV.id as fila_id'
+      '      , 0 as tipo_id'
+      ''
       ' FROM COMPROBANTESVENTA CV'
       '     left join CLIENTES C ON C.ID = CV.CLIENTE_ID'
       '     left join EMPRESAS E on E.ID = C.EMPRESA_ID'
@@ -345,6 +404,27 @@ object DM_CuentaCorriente: TDM_CuentaCorriente
       ReadOnly = True
       Required = False
     end
+    object qVentasFILA_ID: TStringField
+      DisplayWidth = 152
+      FieldKind = fkData
+      FieldName = 'FILA_ID'
+      Index = 7
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      Size = 152
+    end
+    object qVentasTIPO_ID: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'TIPO_ID'
+      Index = 8
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = True
+      Required = False
+    end
   end
   object qOrdenesPago: TZQuery
     Connection = DM_General.cnxBase
@@ -356,6 +436,9 @@ object DM_CuentaCorriente: TDM_CuentaCorriente
       '      , 0 as NroInterno'
       '      , 0 as DEBE'
       '      , OP.TOTAL as HABER'
+      '      , OP.id as fila_id'
+      '      , 0 as tipo_id'
+      ''
       ' FROM OrdenesDePago OP '
       '     left join PROVEEDORES P ON P.ID = OP.PROVEEDOR_ID'
       '     left join EMPRESAS E on E.ID = P.EMPRESA_ID'
@@ -439,10 +522,30 @@ object DM_CuentaCorriente: TDM_CuentaCorriente
       MinValue = 0
       Precision = 2
     end
+    object qOrdenesPagoFILA_ID: TStringField
+      DisplayWidth = 152
+      FieldKind = fkData
+      FieldName = 'FILA_ID'
+      Index = 7
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      Size = 152
+    end
+    object qOrdenesPagoTIPO_ID: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'TIPO_ID'
+      Index = 8
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = True
+      Required = False
+    end
   end
   object qPedidos: TZQuery
     Connection = DM_General.cnxBase
-    Active = True
     SQL.Strings = (
       'SELECT  P.FToma as FECHA'
       '      , E.RAZONSOCIAL as Empresa'
@@ -451,6 +554,9 @@ object DM_CuentaCorriente: TDM_CuentaCorriente
       '      , P.NUMERO as NroInterno'
       '      , 0 as DEBE'
       '      , P.TOTALPEDIDO as HABER'
+      '      , P.id as fila_id'
+      '      , 0 as tipo_id'
+      ''
       ' FROM PEDIDOS P'
       '     left join  CLIENTES C ON C.ID = P.CLIENTE_ID'
       '     left join EMPRESAS E on E.ID = C.EMPRESA_ID'
@@ -533,6 +639,27 @@ object DM_CuentaCorriente: TDM_CuentaCorriente
       MaxValue = 0
       MinValue = 0
       Precision = 2
+    end
+    object qPedidosFILA_ID: TStringField
+      DisplayWidth = 152
+      FieldKind = fkData
+      FieldName = 'FILA_ID'
+      Index = 7
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      Size = 152
+    end
+    object qPedidosTIPO_ID: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'TIPO_ID'
+      Index = 8
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = True
+      Required = False
     end
   end
 end

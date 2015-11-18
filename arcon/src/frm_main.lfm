@@ -181,6 +181,17 @@ object frmMain: TfrmMain
       ImageIndex = 30
       OnExecute = movVentaEditarExecute
     end
+    object movOPEditr: TAction
+      Category = 'Movimientos'
+      Caption = 'Editar Orden Pago'
+      ImageIndex = 31
+    end
+    object movCompraEditar: TAction
+      Category = 'Movimientos'
+      Caption = 'Editar Compra'
+      ImageIndex = 29
+      OnExecute = movCompraEditarExecute
+    end
   end
   object MainMenu1: TMainMenu
     Images = DM_General.ImgAccionesMenu
@@ -214,6 +225,9 @@ object frmMain: TfrmMain
       end
       object MenuItem6: TMenuItem
         Action = movCompra
+      end
+      object MenuItem13: TMenuItem
+        Action = movCompraEditar
       end
     end
     object MenuItem9: TMenuItem

@@ -13,6 +13,7 @@ object frmComprasAE: TfrmComprasAE
   Font.Quality = fqDraft
   OnCreate = FormCreate
   OnDestroy = FormDestroy
+  OnShow = FormShow
   Position = poOwnerFormCenter
   LCLVersion = '1.4.2.0'
   object Panel1: TPanel
@@ -29,12 +30,14 @@ object frmComprasAE: TfrmComprasAE
       Left = 1055
       Height = 29
       Top = 9
-      Width = 71
+      Width = 143
+      Alignment = taRightJustify
+      Anchors = [akTop, akLeft, akRight]
       AutoSize = False
       DataField = 'numero'
       DataSource = ds_Comprobante
       Font.CharSet = ANSI_CHARSET
-      Font.Height = -24
+      Font.Height = 29
       Font.Name = 'Arial'
       Font.Pitch = fpVariable
       Font.Quality = fqDraft
@@ -289,6 +292,8 @@ object frmComprasAE: TfrmComprasAE
       ButtonOnlyWhenFocused = False
       ButtonWidth = 15
       Color = clWindow
+      DataField = 'condicionPago_id'
+      DataSource = ds_Comprobante
       PopUpFormOptions.Columns = <>
       PopUpFormOptions.DropDownCount = 5
       PopUpFormOptions.Options = []
@@ -321,6 +326,8 @@ object frmComprasAE: TfrmComprasAE
       ButtonOnlyWhenFocused = False
       ButtonWidth = 15
       Color = clWindow
+      DataField = 'plazoPago_id'
+      DataSource = ds_Comprobante
       PopUpFormOptions.Columns = <>
       PopUpFormOptions.DropDownCount = 5
       PopUpFormOptions.Options = []
