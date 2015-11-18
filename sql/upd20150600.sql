@@ -1537,7 +1537,7 @@ SET GENERATOR nroComprobanteInt TO 0;
 SET TERM ^ ;
 
 CREATE TRIGGER nroVenta FOR ComprobantesVenta
-BEFORE INSERT POSITION 0
+BEFORE INSERT OR UPDATE POSITION 0
 AS 
 BEGIN 
     If (New.nroComprobante = -1) then
