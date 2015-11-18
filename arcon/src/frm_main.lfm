@@ -1,11 +1,11 @@
 object frmMain: TfrmMain
   Left = 304
-  Height = 131
+  Height = 128
   Top = 238
-  Width = 709
+  Width = 711
   Caption = 'Finanzas'
-  ClientHeight = 111
-  ClientWidth = 709
+  ClientHeight = 108
+  ClientWidth = 711
   Font.CharSet = ANSI_CHARSET
   Font.Height = -13
   Font.Name = 'Arial'
@@ -19,8 +19,8 @@ object frmMain: TfrmMain
   object st: TStatusBar
     Left = 0
     Height = 23
-    Top = 88
-    Width = 709
+    Top = 85
+    Width = 711
     Panels = <    
       item
         Width = 150
@@ -33,9 +33,9 @@ object frmMain: TfrmMain
   end
   object ToolBar1: TToolBar
     Left = 0
-    Height = 162
+    Height = 82
     Top = 0
-    Width = 709
+    Width = 711
     AutoSize = True
     ButtonHeight = 80
     ButtonWidth = 92
@@ -79,13 +79,6 @@ object frmMain: TfrmMain
       Left = 392
       Top = 2
       Action = prgFacturar
-    end
-    object ToolButton7: TToolButton
-      Left = 1
-      Top = 82
-      Caption = 'Test Factura'
-      OnClick = ToolButton7Click
-      Visible = False
     end
     object ToolButton8: TToolButton
       Left = 484
@@ -181,10 +174,11 @@ object frmMain: TfrmMain
       ImageIndex = 30
       OnExecute = movVentaEditarExecute
     end
-    object movOPEditr: TAction
+    object movOPEditar: TAction
       Category = 'Movimientos'
       Caption = 'Editar Orden Pago'
       ImageIndex = 31
+      OnExecute = movOPEditarExecute
     end
     object movCompraEditar: TAction
       Category = 'Movimientos'
@@ -228,6 +222,15 @@ object frmMain: TfrmMain
       end
       object MenuItem13: TMenuItem
         Action = movCompraEditar
+      end
+      object MenuItem14: TMenuItem
+        Caption = '-'
+      end
+      object MenuItem15: TMenuItem
+        Action = movOrdenPago
+      end
+      object MenuItem16: TMenuItem
+        Action = movOPEditar
       end
     end
     object MenuItem9: TMenuItem

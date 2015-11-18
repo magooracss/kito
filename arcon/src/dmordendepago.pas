@@ -60,6 +60,12 @@ type
     SELOP: TZQuery;
     SELOPComprobantes: TZQuery;
     qPagadoComprobante: TZQuery;
+    SELOPComprOP: TZQuery;
+    SELOPComprOPBVISIBLE: TSmallintField;
+    SELOPComprOPCOMPROBANTECOMPRA_ID: TStringField;
+    SELOPComprOPID: TStringField;
+    SELOPComprOPMONTOPAGADO: TFloatField;
+    SELOPComprOPORDENDEPAGO_ID: TStringField;
     SELOPFormasPago: TZQuery;
     SELOPBANULADA: TSmallintField;
     SELOPBVISIBLE: TSmallintField;
@@ -70,12 +76,20 @@ type
     SELOPComprobantesORDENDEPAGO_ID: TStringField;
     SELOPFANULADA: TDateField;
     SELOPFECHA: TDateField;
+    SELOPFormasPagoOP: TZQuery;
     SELOPFormasPagoBVISIBLE: TSmallintField;
     SELOPFormasPagoCHEQUE_ID: TStringField;
     SELOPFormasPagoFORMAPAGO_ID: TLongintField;
     SELOPFormasPagoID: TStringField;
     SELOPFormasPagoLXFORMADEPAGO: TStringField;
     SELOPFormasPagoMONTO: TFloatField;
+    SELOPFormasPagoOPBVISIBLE: TSmallintField;
+    SELOPFormasPagoOPCHEQUE_ID: TStringField;
+    SELOPFormasPagoOPFORMAPAGO_ID: TLongintField;
+    SELOPFormasPagoOPID: TStringField;
+    SELOPFormasPagoOPLXFORMADEPAGO: TStringField;
+    SELOPFormasPagoOPMONTO: TFloatField;
+    SELOPFormasPagoOPORDENDEPAGO_ID: TStringField;
     SELOPFormasPagoORDENDEPAGO_ID: TStringField;
     SELOPID: TStringField;
     SELOPNUMERO: TLongintField;
@@ -97,6 +111,7 @@ type
     function getSumaSaldoComprobantes: double;
     procedure setIdProveedor(AValue: GUID_ID);
     procedure RecalcularOP;
+    procedure DatosComprobante (refComprobante: GUID_ID);
 
 
   public
@@ -107,6 +122,7 @@ type
     property sumaComprasImpagas: double read getSumaComprasImpagas;
 
     procedure Nueva;
+    procedure Editar (refOP: GUID_ID);
     procedure Grabar;
 
     procedure AgregarComprobante (refComprobante: GUID_ID);
@@ -258,6 +274,21 @@ begin
   end;
 end;
 
+procedure TDM_OrdenDePago.DatosComprobante(refComprobante: GUID_ID);
+var
+  pagado: Double;
+begin
+  DM_Compras.Editar(refComprobante);
+  OPcomprobantes.Edit;
+  OPComprobantesComprobanteNro.AsInteger:= DM_Compras.ComprascomprobanteNro.AsInteger;
+  OPComprobantesComprobanteFecha.AsDateTime:= DM_Compras.Comprasfecha.asDateTime;
+  OPComprobantesComprobanteMonto.asFloat:= DM_Compras.ComprasmontoTotal.AsFloat;
+  pagado:= PagadoComprobante(refComprobante);
+  OPComprobantesComprobanteSaldo.asFloat:= (OPComprobantesComprobanteMonto.asFloat - pagado);
+  OPComprobantesComprobantePagado.AsFloat:= OPComprobantesmontoPagado.AsFloat;
+  OPComprobantes.Post;
+end;
+
 function TDM_OrdenDePago.NombreformaDePago(refFormaPago: integer): string;
 begin
   with qFormasPagoPorID do
@@ -278,6 +309,49 @@ begin
   DM_General.ReiniciarTabla(OPComprobantes);
   DM_General.ReiniciarTabla(OPFormasPago);
   OrdenDePago.Insert;
+end;
+
+procedure TDM_OrdenDePago.Editar(refOP: GUID_ID);
+begin
+  DM_General.ReiniciarTabla(OrdenDePago);
+  DM_General.ReiniciarTabla(OPComprobantes);
+  DM_General.ReiniciarTabla(OPFormasPago);
+
+  with SELOP do
+  begin
+    if active then close;
+    ParamByName('id').asString:= refOP;
+    Open;
+    OrdenDePago.LoadFromDataSet(SELOP, 0, lmAppend);
+    Close;
+  end;
+
+  with SELOPComprOP do
+  begin
+    if active then close;
+    ParamByName('ordenDePago_id').asString:= refOP;
+    Open;
+    OPComprobantes.LoadFromDataSet(SELOPComprOP, 0, lmAppend);
+    if OPComprobantes. RecordCount > 0 then
+      OPComprobantes.First;
+    While not OPComprobantes.EOF do
+    begin
+      DatosComprobante(OPComprobantescomprobanteCompra_id.AsString);
+      OPComprobantes.Next;
+    end;
+    Close;
+  end;
+
+  with SELOPFormasPagoOP do
+  begin
+    if active then close;
+    ParamByName('ordenDePago_id').asString:= refOP;
+    Open;
+    OPFormasPago.LoadFromDataSet(SELOPFormasPagoOP, 0, lmAppend);
+    Close;
+  end;
+
+
 end;
 
 procedure TDM_OrdenDePago.Grabar;

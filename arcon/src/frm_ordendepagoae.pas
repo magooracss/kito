@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, db, FileUtil, rxdbgrid, curredit, Forms, Controls,
-  Graphics, Dialogs, ExtCtrls, StdCtrls, Buttons, DBExtCtrls, DbCtrls,
+  Graphics, Dialogs, ExtCtrls, StdCtrls, Buttons, DBExtCtrls, DbCtrls, DBGrids,
   dmgeneral
   ;
 
@@ -88,6 +88,7 @@ uses
   ,frm_formaspagoae
   ,dmcompensaciones
   ,frm_distribuirdinerocomprobantes
+  ,dmproveedores
   ;
 
 { TfrmOrdenDePagoAE }
@@ -106,16 +107,25 @@ begin
 end;
 
 procedure TfrmOrdenDePagoAE.FormShow(Sender: TObject);
+var
+  proveedor: TDM_Proveedores;
 begin
-  if (_ordenPagoID = GUIDNULO ) then
-  begin
-    DM_OrdenDePago.Nueva;
-  end
-  else
-  begin
-    raise Exception.Create ('Falta levantar la orden de pago para editarla');
+  proveedor:= TDM_Proveedores.Create(self);
+  try
+    if (_ordenPagoID = GUIDNULO ) then
+    begin
+      DM_OrdenDePago.Nueva;
+    end
+    else
+    begin
+      DM_OrdenDePago.Editar(_ordenPagoID);
+      CalcularParciales;
+      proveedor.Editar(DM_OrdenDePago.OrdenDePagoproveedor_id.AsString);
+      edProveedor.Caption:= proveedor.RazonSocial;
+    end;
+  finally
+    proveedor.Free;
   end;
-
 end;
 
 function TfrmOrdenDePagoAE.getOrdenPagoID: GUID_ID;

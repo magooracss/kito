@@ -462,7 +462,6 @@ object DM_OrdenDePago: TDM_OrdenDePago
   end
   object SELOP: TZQuery
     Connection = DM_General.cnxBase
-    Active = True
     SQL.Strings = (
       'SELECT *'
       'FROM OrdenesDePago'
@@ -1013,7 +1012,6 @@ object DM_OrdenDePago: TDM_OrdenDePago
   end
   object SELOPFormasPago: TZQuery
     Connection = DM_General.cnxBase
-    Active = True
     SQL.Strings = (
       'SELECT OP.*'
       '         , TFP.FormaDePago as lxFormaDePago'
@@ -1414,6 +1412,187 @@ object DM_OrdenDePago: TDM_OrdenDePago
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
       Required = False
+    end
+  end
+  object SELOPComprOP: TZQuery
+    Connection = DM_General.cnxBase
+    SQL.Strings = (
+      'SELECT *'
+      'FROM OPComprobantes'
+      'WHERE (ordenDePago_id = :ordenDePago_id)'
+      '           and (bVisible = 1)'
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'ordenDePago_id'
+        ParamType = ptUnknown
+      end>
+    left = 176
+    top = 376
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'ordenDePago_id'
+        ParamType = ptUnknown
+      end>
+    object SELOPComprOPID: TStringField
+      DisplayWidth = 152
+      FieldKind = fkData
+      FieldName = 'ID'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      Size = 152
+    end
+    object SELOPComprOPORDENDEPAGO_ID: TStringField
+      DisplayWidth = 152
+      FieldKind = fkData
+      FieldName = 'ORDENDEPAGO_ID'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 152
+    end
+    object SELOPComprOPCOMPROBANTECOMPRA_ID: TStringField
+      DisplayWidth = 152
+      FieldKind = fkData
+      FieldName = 'COMPROBANTECOMPRA_ID'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 152
+    end
+    object SELOPComprOPMONTOPAGADO: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'MONTOPAGADO'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object SELOPComprOPBVISIBLE: TSmallintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'BVISIBLE'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+  end
+  object SELOPFormasPagoOP: TZQuery
+    Connection = DM_General.cnxBase
+    SQL.Strings = (
+      'SELECT OP.*'
+      '         , TFP.FormaDePago as lxFormaDePago'
+      'FROM OPFormasPago OP'
+      '     LEFT JOIN TIPOSFORMASDEPAGO TFP ON  TFP.id = OP.formaPago_id'
+      'WHERE (OP.OrdenDePago_id = :OrdenDePago_id)'
+      '    and (OP.bVisible = 1)'
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'OrdenDePago_id'
+        ParamType = ptUnknown
+      end>
+    left = 296
+    top = 376
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'OrdenDePago_id'
+        ParamType = ptUnknown
+      end>
+    object SELOPFormasPagoOPID: TStringField
+      DisplayWidth = 152
+      FieldKind = fkData
+      FieldName = 'ID'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      Size = 152
+    end
+    object SELOPFormasPagoOPORDENDEPAGO_ID: TStringField
+      DisplayWidth = 152
+      FieldKind = fkData
+      FieldName = 'ORDENDEPAGO_ID'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 152
+    end
+    object SELOPFormasPagoOPCHEQUE_ID: TStringField
+      DisplayWidth = 152
+      FieldKind = fkData
+      FieldName = 'CHEQUE_ID'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 152
+    end
+    object SELOPFormasPagoOPFORMAPAGO_ID: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'FORMAPAGO_ID'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object SELOPFormasPagoOPMONTO: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'MONTO'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object SELOPFormasPagoOPBVISIBLE: TSmallintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'BVISIBLE'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object SELOPFormasPagoOPLXFORMADEPAGO: TStringField
+      DisplayWidth = 400
+      FieldKind = fkData
+      FieldName = 'LXFORMADEPAGO'
+      Index = 6
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 400
     end
   end
 end

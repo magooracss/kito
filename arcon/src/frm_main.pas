@@ -15,8 +15,11 @@ type
 
   TfrmMain = class(TForm)
     MenuItem13: TMenuItem;
+    MenuItem14: TMenuItem;
+    MenuItem15: TMenuItem;
+    MenuItem16: TMenuItem;
     movCompraEditar: TAction;
-    movOPEditr: TAction;
+    movOPEditar: TAction;
     MenuItem11: TMenuItem;
     MenuItem12: TMenuItem;
     movVentaEditar: TAction;
@@ -51,7 +54,6 @@ type
     ToolButton4: TToolButton;
     ToolButton5: TToolButton;
     ToolButton6: TToolButton;
-    ToolButton7: TToolButton;
     ToolButton8: TToolButton;
     ToolButton9: TToolButton;
     procedure factImpresionExecute(Sender: TObject);
@@ -59,6 +61,7 @@ type
     procedure lstCuentaCorrienteExecute(Sender: TObject);
     procedure movCompraEditarExecute(Sender: TObject);
     procedure movCompraExecute(Sender: TObject);
+    procedure movOPEditarExecute(Sender: TObject);
     procedure movOrdenPagoExecute(Sender: TObject);
     procedure movVentaEditarExecute(Sender: TObject);
     procedure movVentaExecute(Sender: TObject);
@@ -66,10 +69,10 @@ type
     procedure prgModificarFacturaExecute(Sender: TObject);
     procedure prgModificarReporteExecute(Sender: TObject);
     procedure PrgSalirExecute(Sender: TObject);
-    procedure ToolButton7Click(Sender: TObject);
   private
     procedure PantallaVentas (idVenta: GUID_ID);
     procedure PantallaCompras (refCompra: GUID_ID);
+    procedure PantallaOrdenesPago (refOP: GUID_ID);
     procedure Inicializar;
 
     procedure BuscarComprobante (var ResultadoID: GUID_ID; var tipoID: integer);
@@ -266,18 +269,6 @@ begin
    ShowMessage('No se encuentra el módulo de facturación: ' + archivo);
 end;
 
-procedure TfrmMain.ToolButton7Click(Sender: TObject);
-begin
-  Application.CreateForm(TDM_Facturas, DM_Facturas);
-  try
-    DM_Facturas.ImprimirFactura('{A764B110-1DD9-4624-AF6C-1FB30339E311}');
-    DM_Facturas.elReporte.DesignReport;
-  finally
-    DM_Facturas.Free;
-  end;
-end;
-
-
 procedure TfrmMain.factImpresionExecute(Sender: TObject);
 var
   pant: TfrmImpresionComprobantes;
@@ -293,17 +284,34 @@ end;
 (*******************************************************************************
 *** ORDENES DE PAGO
 *******************************************************************************)
-
-procedure TfrmMain.movOrdenPagoExecute(Sender: TObject);
+procedure TfrmMain.PantallaOrdenesPago(refOP: GUID_ID);
 var
   pant: TfrmOrdenDePagoAE;
 begin
   pant:= TfrmOrdenDePagoAE.Create(self);
   try
+    pant.ordenPagoID:= refOP;
     pant.ShowModal;
   finally
     pant.Free;
   end;
+end;
+
+procedure TfrmMain.movOrdenPagoExecute(Sender: TObject);
+begin
+  PantallaOrdenesPago(GUIDNULO);
+end;
+
+procedure TfrmMain.movOPEditarExecute(Sender: TObject);
+var
+  resultado: GUID_ID;
+  tipo: integer;
+begin
+  tipo:= INC_OP;
+  resultado:= GUIDNULO;
+  BuscarComprobante(resultado, tipo);
+  if ((resultado <> GUIDNULO) and (tipo = INC_OP)) then
+   PantallaOrdenesPago(resultado);
 end;
 
 (*******************************************************************************
