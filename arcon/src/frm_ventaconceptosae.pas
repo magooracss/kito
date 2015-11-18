@@ -59,6 +59,7 @@ type
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
   private
+    _conceptoID: GUID_ID;
     _descripcion: string;
     _montoExento: double;
     _montoGravado: double;
@@ -69,11 +70,13 @@ type
     _refConcepto: integer;
     _refProducto: GUID_ID;
     _tipoConcepto: integer;
-    { private declarations }
+
     procedure Inicializar;
+
   public
     property tipoConcepto: integer read _tipoConcepto;
     property refCliente: GUID_ID write _refCliente;
+    property ConceptoID: GUID_ID write _conceptoID;
     property cantidad: double read _cantidad write _cantidad;
     property refConcepto: integer read _refConcepto write _refConcepto;
     property descripcion: string read _descripcion write _descripcion;
@@ -104,13 +107,20 @@ end;
 
 procedure TfrmVentaConceptosAE.FormShow(Sender: TObject);
 begin
-
+  cbConceptos.ItemIndex:= DM_General.obtenerIdxCombo(cbConceptos, _refConcepto);
+  cbAlicuotaIVACptoGral.ItemIndex:= DM_General.obtenerIdxCombo(cbAlicuotaIVACptoGral, _refAlicuotaIVA);
+  edCtoGralCantidad.Value:= _cantidad;
+  edCtoGralDetalle.Text:= _descripcion;
+  edCtoGralGravado.Value:= _montoGravado;
+  edCtoGralNoGravado.Value:= _montoNoGravado;
+  edCtoGralExento.Value:= _montoExento;
 end;
 
 procedure TfrmVentaConceptosAE.Inicializar;
 begin
   _tipoConcepto:= CONCEPTO_GRAL;
   _refCliente:= GUIDNULO;
+  _conceptoID:= GUIDNULO;
   _cantidad:= 0;
   _refAlicuotaIVA:= 0;
   _refCliente:= GUIDNULO;

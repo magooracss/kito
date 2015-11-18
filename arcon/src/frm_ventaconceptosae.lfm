@@ -15,15 +15,15 @@ object frmVentaConceptosAE: TfrmVentaConceptosAE
   OnCreate = FormCreate
   OnShow = FormShow
   Position = poOwnerFormCenter
-  LCLVersion = '1.4.0.4'
+  LCLVersion = '1.4.2.0'
   object PCConceptos: TPageControl
     Left = 0
     Height = 306
     Top = 0
     Width = 933
-    ActivePage = TabSheet2
+    ActivePage = TabGenerales
     Align = alClient
-    TabIndex = 1
+    TabIndex = 0
     TabOrder = 0
     object TabGenerales: TTabSheet
       Caption = 'Conceptos Generales'

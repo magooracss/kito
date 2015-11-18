@@ -209,6 +209,11 @@ type
     procedure AgregarConcepto (cantidad: double; concepto: integer;
       descripcion: string; gravado, noGravado, Exento: double;
       refProducto: GUID_ID; alicuotaIVA: integer);
+
+    procedure EditarConcepto (cantidad: double; concepto: integer;
+      descripcion: string; gravado, noGravado, Exento: double;
+      refProducto: GUID_ID; alicuotaIVA: integer);
+
     procedure AgregarAlicuotaIva (refComprobanteConcepto: GUID_ID;
                                   refAlicuotaIVA: integer ; monto: double);
     function ObtenerNroComprobante (refComprobante, NroPtoVenta: integer): integer;
@@ -429,6 +434,21 @@ begin
     AgregarAlicuotaIVA (ComproVtaConceptosid.asString
                        ,alicuotaIVA
                        ,gravado);
+end;
+
+procedure TDM_Ventas.EditarConcepto(cantidad: double; concepto: integer;
+  descripcion: string; gravado, noGravado, Exento: double;
+  refProducto: GUID_ID; alicuotaIVA: integer);
+begin
+  begin
+    ComproVtaConceptos.Edit;
+    ComproVtaConceptoscantidad.AsFloat:= cantidad;
+    ComproVtaConceptosdetalle.AsString:= descripcion;
+    ComproVtaConceptosgravado.AsFloat:= gravado;
+    ComproVtaConceptosnoGravado.AsFloat:= noGravado;
+    ComproVtaConceptosexento.AsFloat:=  Exento;
+    ComproVtaConceptos.Post;
+  end
 end;
 
 procedure TDM_Ventas.AgregarAlicuotaIva(refComprobanteConcepto: GUID_ID;

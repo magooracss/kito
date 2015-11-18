@@ -255,8 +255,35 @@ begin
 end;
 
 procedure TfrmVentasAE.EditarConcepto;
+var
+  pant: TfrmVentaConceptosAE;
 begin
-  ShowMessage ('En contruccion: ' + DM_Ventas.ComproVtaConceptosid.AsString );
+  pant:= TfrmVentaConceptosAE.Create(self);
+  try
+    pant.refCliente:= _clienteID;
+    pant.cantidad:= DM_Ventas.ComproVtaConceptoscantidad.asInteger;
+    pant.descripcion:= DM_Ventas.ComproVtaConceptosdetalle.AsString;
+    pant.montoGravado:= DM_Ventas.ComproVtaConceptosgravado.asFloat;
+    pant.montoNoGravado:= DM_Ventas.ComproVtaConceptosnoGravado.asFloat;
+    pant.montoExento:= DM_Ventas.ComproVtaConceptosexento.asFloat;
+    pant.refConcepto:= DM_Ventas.ComproVtaConceptosconcepto_id.AsInteger;
+    pant.refAlicuotaIVA:= -1;
+    if pant.ShowModal = mrOK then
+    begin
+       DM_Ventas.EditarConcepto(   pant.cantidad
+                                  ,pant.refConcepto
+                                  ,pant.descripcion
+                                  ,pant.montoGravado
+                                  ,pant.montoNoGravado
+                                  ,pant.montoExento
+                                  ,pant.refProducto
+                                  ,pant.refAlicuotaIVA
+                                 );
+    end;
+  finally
+    pant.Free;
+  end;
+  MostrarTotales;
 end;
 
 
@@ -379,7 +406,7 @@ begin
      DM_Facturas.elReporte.ShowReport;
   end
   else
-     ShowMessage('El comprobante todavía no está facturado');
+     ShowMessage('El comprobante todavía no está Facturado');
 end;
 
 procedure TfrmVentasAE.BitBtn4Click(Sender: TObject);
