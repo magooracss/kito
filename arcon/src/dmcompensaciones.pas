@@ -22,7 +22,14 @@ type
     DELCompensacion: TZQuery;
     INSCompensacion: TZQuery;
     Compensaciones: TRxMemoryData;
+    qCompensacionOPBVISIBLE: TSmallintField;
+    qCompensacionOPCOMPRA_ID: TStringField;
+    qCompensacionOPFCOMPENSACION: TDateField;
+    qCompensacionOPID: TStringField;
+    qCompensacionOPMONTO: TFloatField;
+    qCompensacionOPORDENDEPAGO_ID: TStringField;
     SELCompensaciones: TZQuery;
+    qCompensacionOP: TZQuery;
     SELCompensacionesBVISIBLE: TSmallintField;
     SELCompensacionesCOMPRA_ID: TStringField;
     SELCompensacionesFCOMPENSACION: TDateField;
@@ -35,6 +42,7 @@ type
     { private declarations }
   public
     procedure Nueva (refOP: GUID_ID; monto: Double);
+    function MontoCompensacionOP (refOP: GUID_ID): double;
     procedure Grabar;
   end;
 
@@ -67,6 +75,29 @@ begin
     CompensacionesordenDePago_id.AsString:= refOP;
     Compensacionesmonto.AsFloat:= monto;
     Post;
+  end;
+end;
+
+function TDM_Compensaciones.MontoCompensacionOP(refOP: GUID_ID): double;
+begin
+  with qCompensacionOP do
+  begin
+    if active then close;
+    ParamByName('ordenDePago_id').AsString:= refOP;
+    Open;
+    if (RecordCount > 0) then
+      Result:= qCompensacionOPMONTO.AsFloat
+    else
+      //Valido que no haya compensaciones en memoria
+      if ((Compensaciones.Active)
+          and (Compensaciones.RecordCount > 0)
+          and (CompensacionesordenDePago_id.AsString = refOP)
+          ) then
+      begin
+        Result:= Compensacionesmonto.AsFloat;
+      end
+      else
+        Result:= 0;
   end;
 end;
 

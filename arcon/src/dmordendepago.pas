@@ -152,6 +152,7 @@ implementation
 uses
   dmcompras
   ,Forms
+  ,dmcompensaciones
   ;
 
 { TDM_OrdenDePago }
@@ -251,6 +252,7 @@ end;
 procedure TDM_OrdenDePago.RecalcularOP;
 var
   monto: Double;
+  laCompensacion: TDM_Compensaciones;
 begin
   monto:= 0;
   with OPComprobantes do
@@ -264,6 +266,13 @@ begin
       Next;
     end;
     EnableControls;
+  end;
+
+  laCompensacion:= TDM_Compensaciones.Create(self);
+  try
+    monto:= monto + laCompensacion.MontoCompensacionOP(OrdenDePagoid.AsString);
+  finally
+    laCompensacion.Free;
   end;
 
   with OrdenDePago do
@@ -283,9 +292,11 @@ begin
   OPComprobantesComprobanteNro.AsInteger:= DM_Compras.ComprascomprobanteNro.AsInteger;
   OPComprobantesComprobanteFecha.AsDateTime:= DM_Compras.Comprasfecha.asDateTime;
   OPComprobantesComprobanteMonto.asFloat:= DM_Compras.ComprasmontoTotal.AsFloat;
-  pagado:= PagadoComprobante(refComprobante);
-  OPComprobantesComprobanteSaldo.asFloat:= (OPComprobantesComprobanteMonto.asFloat - pagado);
-  OPComprobantesComprobantePagado.AsFloat:= OPComprobantesmontoPagado.AsFloat;
+  //Le resto al total pagado lo pagado en esta OP:
+  pagado:= PagadoComprobante(refComprobante) - OPComprobantesmontoPagado.AsFloat;
+  OPComprobantesComprobanteSaldo.asFloat:= (OPComprobantesComprobanteMonto.asFloat
+                                           - pagado);
+  OPComprobantesComprobantePagado.AsFloat:= pagado;
   OPComprobantes.Post;
 end;
 
