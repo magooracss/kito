@@ -19,9 +19,8 @@
         <ComponentName Value="frmMain"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <IsVisibleTab Value="True"/>
-        <TopLine Value="809"/>
-        <CursorPos X="50" Y="825"/>
+        <TopLine Value="775"/>
+        <CursorPos X="3" Y="779"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -32,10 +31,11 @@
         <ComponentName Value="DM_General"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="303"/>
-        <CursorPos X="39" Y="309"/>
+        <EditorIndex Value="2"/>
+        <TopLine Value="3"/>
+        <CursorPos X="18" Y="11"/>
         <UsageCount Value="200"/>
+        <Loaded Value="True"/>
       </Unit2>
       <Unit3>
         <Filename Value="SD_Configuracion.pas"/>
@@ -546,13 +546,16 @@
         <ComponentName Value="frmBuscarHdR"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="87"/>
-        <CursorPos X="17" Y="99"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="1"/>
+        <TopLine Value="140"/>
+        <CursorPos X="24" Y="166"/>
         <UsageCount Value="61"/>
         <Bookmarks Count="1">
           <Item0 Y="104" ID="1"/>
         </Bookmarks>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
       </Unit51>
       <Unit52>
         <Filename Value="dmbusquedahojaderuta.pas"/>
@@ -875,7 +878,7 @@
         <DefaultSyntaxHighlighter Value="LFM"/>
       </Unit94>
     </Units>
-    <JumpHistory Count="14" HistoryIndex="13">
+    <JumpHistory Count="21" HistoryIndex="20">
       <Position1>
         <Filename Value="frm_main.pas"/>
         <Caret Line="300" Column="2" TopLine="274"/>
@@ -932,6 +935,34 @@
         <Filename Value="frm_main.pas"/>
         <Caret Line="825" Column="50" TopLine="809"/>
       </Position14>
+      <Position15>
+        <Filename Value="frm_main.pas"/>
+        <Caret Line="22" Column="57" TopLine="34"/>
+      </Position15>
+      <Position16>
+        <Filename Value="dmgeneral.pas"/>
+        <Caret Line="309" Column="39" TopLine="303"/>
+      </Position16>
+      <Position17>
+        <Filename Value="frm_main.pas"/>
+        <Caret Line="794" TopLine="766"/>
+      </Position17>
+      <Position18>
+        <Filename Value="frm_main.pas"/>
+        <Caret Line="779" Column="3" TopLine="775"/>
+      </Position18>
+      <Position19>
+        <Filename Value="frm_busquedahojaderuta.pas"/>
+        <Caret Line="58" Column="6" TopLine="45"/>
+      </Position19>
+      <Position20>
+        <Filename Value="frm_busquedahojaderuta.pas"/>
+        <Caret Line="62" Column="21" TopLine="45"/>
+      </Position20>
+      <Position21>
+        <Filename Value="frm_busquedahojaderuta.pas"/>
+        <Caret Line="139" Column="9" TopLine="115"/>
+      </Position21>
     </JumpHistory>
   </ProjectSession>
 </CONFIG>

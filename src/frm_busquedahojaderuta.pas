@@ -163,6 +163,7 @@ begin
   RgCriterio.ItemIndex:= IDX_tabNroHdR;
   idTransportista:= GUIDNULO;
   idCliente:= GUIDNULO;
+  edFechaHdR.Date:= now;
   PCBusqueda.ActivePageIndex:= RgCriterio.ItemIndex;
 end;
 

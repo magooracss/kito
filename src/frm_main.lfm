@@ -1,10 +1,10 @@
 object frmMain: TfrmMain
   Left = 111
-  Height = 676
-  Top = 37
+  Height = 675
+  Top = 38
   Width = 1123
   Caption = 'KITO'
-  ClientHeight = 656
+  ClientHeight = 655
   ClientWidth = 1123
   Font.CharSet = ANSI_CHARSET
   Font.Height = -13
@@ -18,7 +18,7 @@ object frmMain: TfrmMain
   object st: TStatusBar
     Left = 0
     Height = 23
-    Top = 633
+    Top = 632
     Width = 1123
     Panels = <    
       item
@@ -115,7 +115,7 @@ object frmMain: TfrmMain
   object Panel1: TPanel
     Left = 0
     Height = 54
-    Top = 579
+    Top = 578
     Width = 1123
     Align = alBottom
     BevelInner = bvRaised
@@ -284,7 +284,7 @@ object frmMain: TfrmMain
   end
   object Grilla: TDBGrid
     Left = 0
-    Height = 497
+    Height = 496
     Top = 82
     Width = 1123
     Align = alClient
@@ -526,7 +526,7 @@ object frmMain: TfrmMain
     end
     object HdRModificar: TAction
       Category = 'Hoja de Ruta'
-      Caption = 'Editar Hoja de Ruta'
+      Caption = 'Editar/Ver Hoja de Ruta'
       Hint = 'Mofifica los datos de una hoja de ruta'
       ImageIndex = 19
       OnExecute = HdRModificarExecute
