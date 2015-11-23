@@ -542,6 +542,7 @@ object frmMain: TfrmMain
       Category = 'Dinero'
       Caption = 'Facturacion'
       Hint = 'Muestra la pantalla de facturación'
+      ImageIndex = 32
       OnExecute = dinFacturacionExecute
     end
     object dinCC: TAction
