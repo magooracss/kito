@@ -214,6 +214,10 @@ begin
                   , 'Desea imprimir el comprobante de la Hoja de Ruta?'
                   , mtConfirmation, [mbYes, mbNo],0 ) = mrYes) then
          DM_HojaDeRuta.ImprimirFrmHdR(DM_HojaDeRuta.HojaDeRutaid.AsString);
+    if (MessageDlg ('Información'
+                  , 'Desea imprimir el listado totalizado de la Hoja de Ruta?'
+                  , mtConfirmation, [mbYes, mbNo],0 ) = mrYes) then
+         DM_HojaDeRuta.ImprimirHdRTotalizada(DM_HojaDeRuta.HojaDeRutaid.AsString);
     ModalResult:= mrOK;
   end
   else

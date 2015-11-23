@@ -16,7 +16,7 @@ object frmHojaDeRutaAE: TfrmHojaDeRutaAE
   OnShow = FormShow
   Position = poOwnerFormCenter
   ShowHint = True
-  LCLVersion = '1.4.0.4'
+  LCLVersion = '1.4.2.0'
   object Panel1: TPanel
     Left = 0
     Height = 128

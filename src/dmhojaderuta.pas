@@ -11,6 +11,7 @@ uses
 const
 
 FORMULARIO_HDR = 'frmHojaDeRuta.lrf';
+FORMULARIO_HDR_TOTALIZADO = 'frmHojaDeRutaTot.lrf';
 HdR_ESTADO_REALIZADA = 1;
 HdR_ESTADO_PRESENTADA = 2;
 
@@ -53,11 +54,15 @@ type
     qDetHdRLXCLIENTE: TStringField;
     qDetHdRLXCLIENTEDIR: TStringField;
     qDetHdRLXPEDIDONRO: TLongintField;
+    qTotalizarHdRCANTIDAD: TFloatField;
+    qTotalizarHdRMARCA: TStringField;
+    qTotalizarHdRNOMBRE: TStringField;
     SELHdR: TZQuery;
     SELHdRDet: TZQuery;
     SELHdRBANULADA: TSmallintField;
     SELHdRBVISIBLE: TSmallintField;
     qDetHdR: TZQuery;
+    qTotalizarHdR: TZQuery;
     SELHdRDetBCOBRODESTINO: TSmallintField;
     SELHdRDetBCOBRODESTINO1: TSmallintField;
     SELHdRDetBENTREGACOMPLETO: TSmallintField;
@@ -108,6 +113,7 @@ type
     bPagoDestino: Boolean;
 
     procedure RenumerarDetalle;
+    procedure TotalizarPedidos (refHojaDeRuta: GUID_ID);
 
 
   public
@@ -125,6 +131,7 @@ type
     procedure EliminarPedido;
 
     procedure ImprimirFrmHdR(refHojaDeRuta: GUID_ID);
+    procedure ImprimirHdRTotalizada(refHojaDeRuta: GUID_ID);
 
   end;
 
@@ -403,10 +410,35 @@ begin
 
 end;
 
+(*******************************************************************************
+*** LISTADOS
+*******************************************************************************)
+
 procedure TDM_HojaDeRuta.ImprimirFrmHdR(refHojaDeRuta: GUID_ID);
 begin
   Editar(refHojaDeRuta);
   DM_General.LevantarReporte(FORMULARIO_HDR, HojaDeRutaDetalles);
+  DM_Transportistas.Editar(HojaDeRutatransportista_id.AsString);
+  DM_General.AgregarVariableReporte('Transportista',DM_Transportistas.RazonSocial);
+  DM_General.EjecutarReporte;
+end;
+
+procedure TDM_HojaDeRuta.TotalizarPedidos(refHojaDeRuta: GUID_ID);
+begin
+  with qTotalizarHdR do
+  begin
+    if active then close;
+    ParamByName('hojaderuta_id').AsString:= refHojaDeRuta;
+    Open;
+  end;
+end;
+
+
+procedure TDM_HojaDeRuta.ImprimirHdRTotalizada(refHojaDeRuta: GUID_ID);
+begin
+  Editar(refHojaDeRuta);
+  TotalizarPedidos (refHojaDeRuta);
+  DM_General.LevantarReporte(FORMULARIO_HDR_TOTALIZADO, qTotalizarHdR);
   DM_Transportistas.Editar(HojaDeRutatransportista_id.AsString);
   DM_General.AgregarVariableReporte('Transportista',DM_Transportistas.RazonSocial);
   DM_General.EjecutarReporte;
