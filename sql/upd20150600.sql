@@ -1,6 +1,7 @@
-
--- Version Origen Ejecutable: 2015-05-26
--- Version Destino Ejecutable: 2015-
+/* 
+ Version Origen Ejecutable: 2015-05-26
+ Version Destino Ejecutable: 2015-
+*/
 
 
 CREATE TABLE GruposCuentas

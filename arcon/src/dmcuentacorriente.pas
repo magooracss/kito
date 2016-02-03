@@ -177,8 +177,12 @@ begin
     SQL.Add('      , TCV.COMPROBANTEVENTA as TipoComprobante');
     SQL.Add('      , (CV.PUNTOVENTA || '' - '' || CV.NROCOMPROBANTE) as Comprobante ');
     SQL.Add('      , 0 as NroInterno');
-    SQL.Add('      , (CV.NETOGRAVADO + CV.NETONOGRAVADO + CV.EXENTO) as HABER');
-    SQL.Add('     , 0 as DEBE ');
+    SQL.Add('      , case ');
+    SQL.Add('          when (TCV.contable = ''H'')  then (CV.NETOGRAVADO + CV.NETONOGRAVADO + CV.EXENTO) ');
+    SQL.Add('          else 0 end as HABER');
+    SQL.Add('      , case ');
+    SQL.Add('          when (TCV.contable = ''D'')  then (CV.NETOGRAVADO + CV.NETONOGRAVADO + CV.EXENTO) ');
+    SQL.Add('          else 0  end as DEBE ');
     SQL.Add('     , CV.id as fila_id ');
     SQL.Add('     , ' + IntToStr (INC_VENTAS) +  ' as tipo_id ');
     SQL.Add(' FROM COMPROBANTESVENTA CV');

@@ -611,7 +611,7 @@ object DM_Facturas: TDM_Facturas
       '     left join CLIENTES Cl ON Cl.ID = V.CLIENTE_ID'
       '     left join EMPRESAS E ON E.ID = Cl.EMPRESA_ID'
       '     left join CONDICIONESFISCALES CF  ON CF.ID = E.CONDICIONFISCAL_ID'
-      '     left join tiposcomprobantesVentas TCV ON TCV.ID = F.TIPOCOMPR'
+      '     left join tiposcomprobantesVentas TCV ON cast (TCV.codigo as integer) = F.TIPOCOMPR'
       'where F.ID = :id'
     )
     Params = <    
@@ -845,7 +845,7 @@ object DM_Facturas: TDM_Facturas
         Name = 'ComprobanteID'
         ParamType = ptUnknown
       end>
-    left = 174
+    left = 176
     top = 104
     ParamData = <    
       item
@@ -1251,7 +1251,7 @@ object DM_Facturas: TDM_Facturas
       '      ,CV.NROCOMPROBANTE as NroInterno'
       '      ,E.RAZONSOCIAL as Cliente'
       'from FE_COMPROBANTES F'
-      '     Left join TIPOSCOMPROBANTESVENTAS TCV on TCV.ID = F.TIPOCOMPR'
+      '     Left join TIPOSCOMPROBANTESVENTAS TCV on cast (TCV.codigo as integer)=  F.TIPOCOMPR'
       '     left join COMPROBANTESVENTA CV on F.id = CV.FACTURA_ID'
       '     left join CLIENTES C on CV.CLIENTE_ID = C.ID'
       '     left join EMPRESAS E on E.ID = C.EMPRESA_ID'
@@ -1475,7 +1475,7 @@ object DM_Facturas: TDM_Facturas
       '      ,CV.NROCOMPROBANTE as NroInterno'
       '      ,E.RAZONSOCIAL as Cliente'
       'from FE_COMPROBANTES F'
-      '     Left join TIPOSCOMPROBANTESVENTAS TCV on TCV.ID = F.TIPOCOMPR'
+      '     Left join TIPOSCOMPROBANTESVENTAS TCV on cast (TCV.codigo as integer) = F.TIPOCOMPR'
       '     left join COMPROBANTESVENTA CV on F.id = CV.FACTURA_ID'
       '     left join CLIENTES C on CV.CLIENTE_ID = C.ID'
       '     left join EMPRESAS E on E.ID = C.EMPRESA_ID'
@@ -1634,7 +1634,7 @@ object DM_Facturas: TDM_Facturas
       '      ,CV.NROCOMPROBANTE as NroInterno'
       '      ,E.RAZONSOCIAL as Cliente'
       'from FE_COMPROBANTES F'
-      '     Left join TIPOSCOMPROBANTESVENTAS TCV on TCV.ID = F.TIPOCOMPR'
+      '     Left join TIPOSCOMPROBANTESVENTAS TCV on cast (TCV.codigo as integer) = F.TIPOCOMPR'
       '     left join COMPROBANTESVENTA CV on F.id = CV.FACTURA_ID'
       '     left join CLIENTES C on CV.CLIENTE_ID = C.ID'
       '     left join EMPRESAS E on E.ID = C.EMPRESA_ID'
@@ -1793,7 +1793,7 @@ object DM_Facturas: TDM_Facturas
       '      ,CV.NROCOMPROBANTE as NroInterno'
       '      ,E.RAZONSOCIAL as Cliente'
       'from FE_COMPROBANTES F'
-      '     Left join TIPOSCOMPROBANTESVENTAS TCV on TCV.ID = F.TIPOCOMPR'
+      '     Left join TIPOSCOMPROBANTESVENTAS TCV on cast (TCV.codigo as integer) = F.TIPOCOMPR'
       '     left join COMPROBANTESVENTA CV on F.id = CV.FACTURA_ID'
       '     left join CLIENTES C on CV.CLIENTE_ID = C.ID'
       '     left join EMPRESAS E on E.ID = C.EMPRESA_ID'
@@ -1953,7 +1953,7 @@ object DM_Facturas: TDM_Facturas
       '      ,E.RAZONSOCIAL as Cliente'
       'from COMPROBANTESVENTA CV'
       '     inner join FE_COMPROBANTES F  on F.id = CV.FACTURA_ID'
-      '     Left join TIPOSCOMPROBANTESVENTAS TCV on TCV.ID = F.TIPOCOMPR'
+      '     Left join TIPOSCOMPROBANTESVENTAS cast (TCV.codigo as integer) = F.TIPOCOMPR'
       '     left join CLIENTES C on CV.CLIENTE_ID = C.ID'
       '     left join EMPRESAS E on E.ID = C.EMPRESA_ID'
       'where (CV.NROCOMPROBANTE  = :nroInterno)'
@@ -2112,7 +2112,7 @@ object DM_Facturas: TDM_Facturas
       '      ,E.RAZONSOCIAL as Cliente'
       'from COMPROBANTESVENTA CV'
       '     inner join FE_COMPROBANTES F  on F.id = CV.FACTURA_ID'
-      '     Left join TIPOSCOMPROBANTESVENTAS TCV on TCV.ID = F.TIPOCOMPR'
+      '     Left join TIPOSCOMPROBANTESVENTAS TCV on cast (TCV.codigo as integer) = F.TIPOCOMPR'
       '     left join CLIENTES C on CV.CLIENTE_ID = C.ID'
       '     left join EMPRESAS E on E.ID = C.EMPRESA_ID'
       'where (CV.CLIENTE_ID  = :refCliente)'
@@ -2271,7 +2271,7 @@ object DM_Facturas: TDM_Facturas
       '      ,E.RAZONSOCIAL as Cliente'
       'from COMPROBANTESVENTA CV'
       '     inner join FE_COMPROBANTES F  on F.id = CV.FACTURA_ID'
-      '     Left join TIPOSCOMPROBANTESVENTAS TCV on TCV.ID = F.TIPOCOMPR'
+      '     Left join TIPOSCOMPROBANTESVENTAS TCV on cast (TCV.codigo as integer) = F.TIPOCOMPR'
       '     left join CLIENTES C on CV.CLIENTE_ID = C.ID'
       '     left join EMPRESAS E on E.ID = C.EMPRESA_ID'
       'where (F.IMPTOTAL  = :monto)'
@@ -2430,7 +2430,7 @@ object DM_Facturas: TDM_Facturas
       '      ,E.RAZONSOCIAL as Cliente'
       'from COMPROBANTESVENTA CV'
       '     inner join FE_COMPROBANTES F  on F.id = CV.FACTURA_ID'
-      '     Left join TIPOSCOMPROBANTESVENTAS TCV on TCV.ID = F.TIPOCOMPR'
+      '     Left join TIPOSCOMPROBANTESVENTAS TCV on cast (TCV.codigo as integer) = F.TIPOCOMPR'
       '     left join CLIENTES C on CV.CLIENTE_ID = C.ID'
       '     left join EMPRESAS E on E.ID = C.EMPRESA_ID'
       'where (CV.Fecha = :fechaVenta)'

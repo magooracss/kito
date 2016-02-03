@@ -18,9 +18,10 @@
     <VersionInfo>
       <UseVersionInfo Value="True"/>
       <AutoIncrementBuild Value="True"/>
-      <MajorVersionNr Value="2015"/>
-      <MinorVersionNr Value="7"/>
-      <BuildNr Value="64"/>
+      <MajorVersionNr Value="2016"/>
+      <MinorVersionNr Value="2"/>
+      <RevisionNr Value="1"/>
+      <BuildNr Value="71"/>
       <Language Value="040A"/>
       <StringTable CompanyName="RACSS Programacion" InternalName="ARCON" LegalTrademarks="Carlos Enrique Rodriguez" ProductName="Arcon" ProductVersion=""/>
     </VersionInfo>

@@ -355,6 +355,19 @@ begin
                   else
                     if (qSELIVAPORCENTAJE.AsFloat <> 0) then
                       iva27:= iva27 + qSELIVAIVA.AsFloat;
+            Post;
+         end
+         else
+         begin
+           Edit;
+           DetallesPrecioRenglon.AsFloat:= Detallesgravado.AsFloat
+                                         + DetallesnoGravado.AsFloat
+                                         + Detallesexento.AsFloat;
+           DetallesprecioTotal.asFloat:= Detallesgravado.AsFloat
+                                        + DetallesnoGravado.AsFloat
+                                        + Detallesexento.AsFloat
+                                        ;
+
            Post;
          end;
 
