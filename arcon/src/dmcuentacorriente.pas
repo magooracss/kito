@@ -175,7 +175,10 @@ begin
     SQL.Add(' SELECT  CV.FECHA');
     SQL.Add('      , E.RAZONSOCIAL as Empresa');
     SQL.Add('      , TCV.COMPROBANTEVENTA as TipoComprobante');
-    SQL.Add('      , (CV.PUNTOVENTA || '' - '' || CV.NROCOMPROBANTE) as Comprobante ');
+    SQL.Add('      , case ');
+    SQL.Add('          when   (CF.PtoVta) is not null then  (CF.PtoVta || '' - '' || CF.CbtDesde) ');
+    SQL.Add('          else  (CV.PUNTOVENTA || '' - '' || CV.NROCOMPROBANTE) ');
+    SQL.Add('        end as Comprobante ');
     SQL.Add('      , 0 as NroInterno');
     SQL.Add('      , case ');
     SQL.Add('          when (TCV.contable = ''H'')  then (CV.NETOGRAVADO + CV.NETONOGRAVADO + CV.EXENTO) ');
@@ -189,6 +192,8 @@ begin
     SQL.Add('      left join CLIENTES C ON C.ID = CV.CLIENTE_ID');
     SQL.Add('      left join EMPRESAS E on E.ID = C.EMPRESA_ID');
     SQL.Add('      left join TIPOSCOMPROBANTESVENTAS TCV ON TCV.ID = CV.TIPOCOMPROBANTE_ID');
+    SQL.Add('      left join FE_COMPROBANTES CF ON CF.id = CV.Factura_id');
+
     SQL.Add(' WHERE (CV.BVISIBLE = 1) ');
   end;
 end;
