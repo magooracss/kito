@@ -16,7 +16,8 @@ uses
   frm_impresioncomprobantes, frm_comprasae, dmcompras, frm_compraitemsae,
   dmproveedores, dmbusquedaempresas, frm_ordendepagoae, dmordendepago,
   frm_busquedacompras, frm_formaspagoae, dmcompensaciones,
-  frm_distribuirdinerocomprobantes, frm_listadocc, dmcuentacorriente;
+  frm_distribuirdinerocomprobantes, frm_listadocc, dmcuentacorriente, 
+frm_asientomanualae, dmasientomanual;
 
 {$R *.res}
 

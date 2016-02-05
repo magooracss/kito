@@ -14,6 +14,9 @@ type
   { TfrmMain }
 
   TfrmMain = class(TForm)
+    MenuItem21: TMenuItem;
+    MenuItem22: TMenuItem;
+    movAsientoManualIns: TAction;
     cliBorrar: TAction;
     cliEditar: TAction;
     cliAgregar: TAction;
@@ -69,6 +72,7 @@ type
     procedure factImpresionExecute(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure lstCuentaCorrienteExecute(Sender: TObject);
+    procedure movAsientoManualInsExecute(Sender: TObject);
     procedure movCompraEditarExecute(Sender: TObject);
     procedure movCompraExecute(Sender: TObject);
     procedure movOPEditarExecute(Sender: TObject);
@@ -83,6 +87,7 @@ type
     procedure PantallaVentas (idVenta: GUID_ID);
     procedure PantallaCompras (refCompra: GUID_ID);
     procedure PantallaOrdenesPago (refOP: GUID_ID);
+    procedure PantallaAsientos (refAsiento: GUID_ID);
     procedure Inicializar;
 
     procedure PantallaClientes (refID: GUID_ID);
@@ -109,6 +114,7 @@ uses
   , frm_clientesae
   , frm_busquedaempresas
   , dmclientes
+  , frm_asientomanualae
   ;
 
 { TfrmMain }
@@ -158,6 +164,27 @@ begin
     DM_Facturas.Free;
   end;
 
+end;
+
+(*******************************************************************************
+*** Asientos manuales
+*******************************************************************************)
+procedure TfrmMain.PantallaAsientos(refAsiento: GUID_ID);
+var
+  pant: TfrmAsientoManualAE;
+begin
+  pant:= TfrmAsientoManualAE.Create(self);
+  try
+    pant.asientoID:= refAsiento;
+    pant.ShowModal;
+  finally
+    pant.Free;
+  end;
+end;
+
+procedure TfrmMain.movAsientoManualInsExecute(Sender: TObject);
+begin
+  PantallaAsientos(GUIDNULO);
 end;
 
 
@@ -312,6 +339,7 @@ begin
   end;
 end;
 
+
 procedure TfrmMain.movOrdenPagoExecute(Sender: TObject);
 begin
   PantallaOrdenesPago(GUIDNULO);
@@ -396,6 +424,7 @@ begin
     pant.Free;
   end;
 end;
+
 
 
 end.
