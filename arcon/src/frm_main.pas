@@ -14,10 +14,17 @@ type
   { TfrmMain }
 
   TfrmMain = class(TForm)
+    cliBorrar: TAction;
+    cliEditar: TAction;
+    cliAgregar: TAction;
     MenuItem13: TMenuItem;
     MenuItem14: TMenuItem;
     MenuItem15: TMenuItem;
     MenuItem16: TMenuItem;
+    MenuItem17: TMenuItem;
+    MenuItem18: TMenuItem;
+    MenuItem19: TMenuItem;
+    MenuItem20: TMenuItem;
     movCompraEditar: TAction;
     movOPEditar: TAction;
     MenuItem11: TMenuItem;
@@ -56,6 +63,9 @@ type
     ToolButton6: TToolButton;
     ToolButton8: TToolButton;
     ToolButton9: TToolButton;
+    procedure cliAgregarExecute(Sender: TObject);
+    procedure cliBorrarExecute(Sender: TObject);
+    procedure cliEditarExecute(Sender: TObject);
     procedure factImpresionExecute(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure lstCuentaCorrienteExecute(Sender: TObject);
@@ -75,6 +85,7 @@ type
     procedure PantallaOrdenesPago (refOP: GUID_ID);
     procedure Inicializar;
 
+    procedure PantallaClientes (refID: GUID_ID);
     procedure BuscarComprobante (var ResultadoID: GUID_ID; var tipoID: integer);
   public
     { public declarations }
@@ -95,6 +106,9 @@ uses
   , frm_comprasae
   , frm_ordendepagoae
   , frm_listadocc
+  , frm_clientesae
+  , frm_busquedaempresas
+  , dmclientes
   ;
 
 { TfrmMain }
@@ -281,6 +295,7 @@ begin
   end;
 end;
 
+
 (*******************************************************************************
 *** ORDENES DE PAGO
 *******************************************************************************)
@@ -313,6 +328,59 @@ begin
   if ((resultado <> GUIDNULO) and (tipo = INC_OP)) then
    PantallaOrdenesPago(resultado);
 end;
+
+(*******************************************************************************
+*** Clientes
+*******************************************************************************)
+procedure TfrmMain.PantallaClientes(refID: GUID_ID);
+var
+  pant: TfrmClientesAE;
+begin
+  pant:= TfrmClientesAE.Create(self);
+  try
+    pant.idCliente:= refID;
+    pant.ShowModal;
+  finally
+    pant.Free;
+  end;
+end;
+
+procedure TfrmMain.cliAgregarExecute(Sender: TObject);
+begin
+  PantallaClientes(GUIDNULO);
+end;
+procedure TfrmMain.cliEditarExecute(Sender: TObject);
+var
+  pantBus: TfrmBusquedaEmpresas;
+begin
+  pantBus:= TfrmBusquedaEmpresas.Create(self);
+  try
+    pantBus.restringirTipo:= IDX_CLIENTE;
+    if pantBus.ShowModal = mrOK then
+      PantallaClientes(pantBus.idCliente);
+  finally
+    pantBus.Free;
+  end;
+end;
+
+
+procedure TfrmMain.cliBorrarExecute(Sender: TObject);
+var
+  pantBus: TfrmBusquedaEmpresas;
+begin
+  pantBus:= TfrmBusquedaEmpresas.Create(self);
+  try
+    pantBus.restringirTipo:= IDX_CLIENTE;
+    if pantBus.ShowModal = mrOK then
+    if (MessageDlg ('Confirmación'
+                     , 'Desea eliminar a ' + pantBus.RazonSocial +' de la base de datos?'
+                      , mtConfirmation, [mbYes, mbNo],0 ) = mrYes) then
+       DM_Clientes.Borrar(pantBus.idCliente);
+  finally
+    pantBus.Free;
+  end;
+end;
+
 
 (*******************************************************************************
 *** Listados

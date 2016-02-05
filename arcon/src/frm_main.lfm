@@ -186,6 +186,27 @@ object frmMain: TfrmMain
       ImageIndex = 29
       OnExecute = movCompraEditarExecute
     end
+    object cliAgregar: TAction
+      Category = 'Clientes'
+      Caption = 'Agregar'
+      Hint = 'Agrega un nuevo cliente a la base de datos'
+      ImageIndex = 4
+      OnExecute = cliAgregarExecute
+    end
+    object cliEditar: TAction
+      Category = 'Clientes'
+      Caption = 'Ver/Modificar'
+      Hint = 'Modifica los datos de un cliente cargado'
+      ImageIndex = 5
+      OnExecute = cliEditarExecute
+    end
+    object cliBorrar: TAction
+      Category = 'Clientes'
+      Caption = 'Borrar'
+      Hint = 'Borra un cliente de la base de datos'
+      ImageIndex = 6
+      OnExecute = cliBorrarExecute
+    end
   end
   object MainMenu1: TMainMenu
     Images = DM_General.ImgAccionesMenu
@@ -231,6 +252,18 @@ object frmMain: TfrmMain
       end
       object MenuItem16: TMenuItem
         Action = movOPEditar
+      end
+    end
+    object MenuItem17: TMenuItem
+      Caption = 'Clientes'
+      object MenuItem18: TMenuItem
+        Action = cliAgregar
+      end
+      object MenuItem19: TMenuItem
+        Action = cliEditar
+      end
+      object MenuItem20: TMenuItem
+        Action = cliBorrar
       end
     end
     object MenuItem9: TMenuItem
