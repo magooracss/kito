@@ -23,3 +23,15 @@ WHERE (codigo = '003')
      or (codigo = '013');
 
 
+CREATE TABLE AsientosManuales
+(
+  id		"guid"  NOT NULL PRIMARY KEY
+, fecha		date
+, empresa_id	"guid" DEFAULT '{00000000-0000-0000-0000-000000000000}'
+, detalle	varchar (500) default 'ASIENTO MANUAL'
+, debe		"money"
+, haber		"money"
+, bVisible 	smallint default 1
+);
+
+

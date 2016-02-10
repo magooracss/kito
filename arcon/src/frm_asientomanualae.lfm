@@ -13,6 +13,7 @@ object frmAsientoManualAE: TfrmAsientoManualAE
   Font.Quality = fqDraft
   OnCreate = FormCreate
   OnDestroy = FormDestroy
+  OnShow = FormShow
   Position = poOwnerFormCenter
   ShowHint = True
   LCLVersion = '1.4.2.0'
@@ -216,7 +217,7 @@ object frmAsientoManualAE: TfrmAsientoManualAE
     Caption = 'HABER'
     ParentColor = False
   end
-  object BitBtn1: TBitBtn
+  object btnGrabar: TBitBtn
     Left = 24
     Height = 38
     Top = 336
@@ -287,10 +288,10 @@ object frmAsientoManualAE: TfrmAsientoManualAE
       0000000000000000000000000000000000000000000000000000000000000000
       00000000000000000000
     }
-    OnClick = BitBtn1Click
+    OnClick = btnGrabarClick
     TabOrder = 5
   end
-  object BitBtn2: TBitBtn
+  object btnCancelar: TBitBtn
     Left = 648
     Height = 38
     Top = 338
@@ -361,7 +362,7 @@ object frmAsientoManualAE: TfrmAsientoManualAE
       00000000000000000000000000004C4DC9000000680200008802000011000000
       00000000000000000000
     }
-    OnClick = BitBtn2Click
+    OnClick = btnCancelarClick
     TabOrder = 6
   end
   object dsAsiento: TDataSource

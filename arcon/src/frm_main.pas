@@ -14,6 +14,8 @@ type
   { TfrmMain }
 
   TfrmMain = class(TForm)
+    MenuItem23: TMenuItem;
+    movVerBorrarAsientosManuales: TAction;
     MenuItem21: TMenuItem;
     MenuItem22: TMenuItem;
     movAsientoManualIns: TAction;
@@ -79,6 +81,7 @@ type
     procedure movOrdenPagoExecute(Sender: TObject);
     procedure movVentaEditarExecute(Sender: TObject);
     procedure movVentaExecute(Sender: TObject);
+    procedure movVerBorrarAsientosManualesExecute(Sender: TObject);
     procedure prgFacturarExecute(Sender: TObject);
     procedure prgModificarFacturaExecute(Sender: TObject);
     procedure prgModificarReporteExecute(Sender: TObject);
@@ -115,6 +118,7 @@ uses
   , frm_busquedaempresas
   , dmclientes
   , frm_asientomanualae
+  , frm_listadoasientosmanuales
   ;
 
 { TfrmMain }
@@ -185,6 +189,19 @@ end;
 procedure TfrmMain.movAsientoManualInsExecute(Sender: TObject);
 begin
   PantallaAsientos(GUIDNULO);
+end;
+
+
+procedure TfrmMain.movVerBorrarAsientosManualesExecute(Sender: TObject);
+var
+  pant: TfrmListadoAsientosManuales;
+begin
+  pant:= TfrmListadoAsientosManuales.Create(self);
+  try
+    pant.ShowModal;
+  finally
+    pant.Free;
+  end;
 end;
 
 

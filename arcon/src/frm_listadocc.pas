@@ -130,6 +130,7 @@ begin
       INC_VENTAS: dmCuentaCorriente.incluirVentas:= ckIncluir.Checked[idx];
       INC_OP: dmCuentaCorriente.incluirOP:= ckIncluir.Checked[idx];
       INC_PEDIDOS: dmCuentaCorriente.incluirPedidos:= ckIncluir.Checked[idx];
+      INC_ASIENTOSMANUALES: dmCuentaCorriente.incluirAsientosManuales:= ckIncluir.Checked[idx];
     end;
 
   dmCuentaCorriente.empresaID:= _idEmpresa;

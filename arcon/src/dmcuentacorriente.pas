@@ -26,15 +26,25 @@ type
     CuentaCorrienteTipoComprobante: TStringField;
     CuentaCorrientetipo_id: TLongintField;
     qCompras: TZQuery;
+    qAsientosManuales: TZQuery;
     qComprasCOMPROBANTE: TStringField;
+    qComprasCOMPROBANTE1: TStringField;
     qComprasDEBE: TFloatField;
+    qComprasDEBE1: TFloatField;
     qComprasEMPRESA: TStringField;
+    qComprasEMPRESA1: TStringField;
     qComprasFECHA: TDateField;
+    qComprasFECHA1: TDateField;
     qComprasFILA_ID: TStringField;
+    qComprasFILA_ID1: TStringField;
     qComprasHABER: TLongintField;
+    qComprasHABER1: TLongintField;
     qComprasNROINTERNO: TLongintField;
+    qComprasNROINTERNO1: TLongintField;
     qComprasTIPOCOMPROBANTE: TStringField;
+    qComprasTIPOCOMPROBANTE1: TStringField;
     qComprasTIPO_ID: TLongintField;
+    qComprasTIPO_ID1: TLongintField;
     qOrdenesPagoFILA_ID: TStringField;
     qOrdenesPagoTIPO_ID: TLongintField;
     qPedidos: TZQuery;
@@ -72,6 +82,7 @@ type
     _incOP: boolean;
     _incPedidos: boolean;
     _incVentas: boolean;
+    _incAsientoManual: boolean;
     _saldo: Double;
     procedure consultaFechas(fechaIni, fechaFin: TDate; var consulta: TZQuery;
       campoFecha: string);
@@ -82,6 +93,7 @@ type
     procedure prepararConsultaVentas;
     procedure prepararConsultaOPs;
     procedure prepararConsultaPedidos;
+    procedure prepararConsultaAsientosManuales;
 
     procedure ajustarSaldo;
   public
@@ -90,6 +102,7 @@ type
     property incluirVentas: boolean write _incVentas;
     property incluirOP: boolean write _incOP;
     property incluirPedidos: boolean write _incPedidos;
+    property incluirAsientosManuales: boolean write _incAsientoManual;
     property empresaID: GUID_ID write _idEmpresa;
 
     procedure ListadoCompleto (fIni, fFin: TDate);
@@ -111,6 +124,7 @@ begin
   _incPedidos:= true;
   _incOP:= true;
   _incVentas:= true;
+  _incAsientoManual:= true;
 end;
 
 procedure TDM_CuentaCorriente.consultaFechas(fechaIni, fechaFin: TDate;
@@ -242,6 +256,27 @@ begin
   end;
 end;
 
+procedure TDM_CuentaCorriente.prepararConsultaAsientosManuales;
+begin
+  with qAsientosManuales do
+  begin
+    if active then close;
+    SQL.Clear;
+    SQL.Add(' SELECT  AM.FECHA ');
+    SQL.Add(' , E.RAZONSOCIAL as Empresa ');
+    SQL.Add(' , ''ASIENTO MANUAL'' as TipoComprobante ');
+    SQL.Add(' , 0 Comprobante ');
+    SQL.Add(' , 0 as NroInterno ');
+    SQL.Add(' , AM.HABER ');
+    SQL.Add(' , AM.DEBE ');
+    SQL.Add(' , AM.id as fila_id ');
+    SQL.Add('     , ' + IntToStr (INC_PEDIDOS) +  ' as tipo_id ');
+    SQL.Add(' FROM AsientosManuales  AM');
+    SQL.Add('  left join EMPRESAS E on E.ID = AM.EMPRESA_ID ');
+    SQL.Add(' WHERE (AM.BVISIBLE = 1) ');
+  end;
+end;
+
 procedure TDM_CuentaCorriente.ajustarSaldo;
 begin
   _saldo:= 0;
@@ -276,12 +311,14 @@ begin
   prepararConsultaVentas;
   prepararConsultaOPs;
   prepararConsultaPedidos;
+  prepararConsultaAsientosManuales;
 
   //Agrego el filtro por fechas
   consultaFechas (fIni, fFin, qCompras, 'CC.FECHA');
   consultaFechas (fIni, fFin, qVentas, 'CV.FECHA');
   consultaFechas (fIni, fFin, qOrdenesPago, 'OP.FECHA');
   consultaFechas(fIni, fFin, qPedidos, 'P.FTOMA');
+  consultaFechas(fIni, Ffin, qAsientosManuales, 'AM.FECHA');
 
   if _idEmpresa <> GUIDNULO then
   begin
@@ -289,6 +326,7 @@ begin
     consultaEmpresa (qVentas, 'E.id');
     consultaEmpresa (qOrdenesPago, 'E.id');
     consultaEmpresa (qPedidos, 'E.id');
+    consultaEmpresa(qAsientosManuales, 'E.id');
   end;
 
   //Ejecuto las consultas;
@@ -303,6 +341,9 @@ begin
 
   if _incPedidos then
     ejecutarConsulta(qPedidos);
+
+  if _incAsientoManual then
+    ejecutarConsulta(qAsientosManuales);
 
   //ajusto los Saldos
   ajustarSaldo;

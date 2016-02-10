@@ -213,6 +213,11 @@ object frmMain: TfrmMain
       Hint = 'CArga un asiento manualmente en la CC de la empresa'
       OnExecute = movAsientoManualInsExecute
     end
+    object movVerBorrarAsientosManuales: TAction
+      Category = 'Movimientos'
+      Caption = 'Ver/Editar/Borrar Asientos Manuales'
+      OnExecute = movVerBorrarAsientosManualesExecute
+    end
   end
   object MainMenu1: TMainMenu
     Images = DM_General.ImgAccionesMenu
@@ -264,6 +269,9 @@ object frmMain: TfrmMain
       end
       object MenuItem22: TMenuItem
         Action = movAsientoManualIns
+      end
+      object MenuItem23: TMenuItem
+        Action = movVerBorrarAsientosManuales
       end
     end
     object MenuItem17: TMenuItem

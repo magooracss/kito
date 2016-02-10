@@ -59,7 +59,7 @@
         <PackageName Value="LCL"/>
       </Item7>
     </RequiredPackages>
-    <Units Count="32">
+    <Units Count="33">
       <Unit0>
         <Filename Value="arcon.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -268,14 +268,22 @@
         <Filename Value="frm_asientomanualae.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="frmAsientoManualAE"/>
+        <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
       </Unit30>
       <Unit31>
         <Filename Value="dmasientomanual.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="DM_AsientoManual"/>
+        <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
       </Unit31>
+      <Unit32>
+        <Filename Value="frm_listadoasientosmanuales.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmListadoAsientosManuales"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit32>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

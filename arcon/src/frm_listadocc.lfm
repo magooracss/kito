@@ -1,10 +1,10 @@
 object frmListadoCC: TfrmListadoCC
   Left = 231
-  Height = 454
-  Top = 143
+  Height = 502
+  Top = 95
   Width = 972
   Caption = 'Cuenta Corriente'
-  ClientHeight = 454
+  ClientHeight = 502
   ClientWidth = 972
   Font.CharSet = ANSI_CHARSET
   Font.Height = -13
@@ -18,17 +18,17 @@ object frmListadoCC: TfrmListadoCC
   LCLVersion = '1.4.2.0'
   object Panel1: TPanel
     Left = 0
-    Height = 112
+    Height = 119
     Top = 0
     Width = 972
     Align = alTop
-    ClientHeight = 112
+    ClientHeight = 119
     ClientWidth = 972
     TabOrder = 0
     object edFechaIni: TDateEdit
       Left = 72
       Height = 24
-      Top = 8
+      Top = 10
       Width = 103
       CalendarDisplaySettings = [dsShowHeadings, dsShowDayNames]
       OKCaption = 'OK'
@@ -43,7 +43,7 @@ object frmListadoCC: TfrmListadoCC
     object edFechaFin: TDateEdit
       Left = 240
       Height = 24
-      Top = 8
+      Top = 10
       Width = 103
       CalendarDisplaySettings = [dsShowHeadings, dsShowDayNames]
       OKCaption = 'OK'
@@ -58,7 +58,7 @@ object frmListadoCC: TfrmListadoCC
     object Label1: TLabel
       Left = 32
       Height = 16
-      Top = 11
+      Top = 13
       Width = 30
       Caption = 'Inicio'
       ParentColor = False
@@ -66,16 +66,16 @@ object frmListadoCC: TfrmListadoCC
     object Label2: TLabel
       Left = 208
       Height = 16
-      Top = 11
+      Top = 13
       Width = 28
       Caption = 'Final'
       ParentColor = False
     end
     object btnObtener: TBitBtn
       Left = 857
-      Height = 80
+      Height = 96
       Top = 11
-      Width = 83
+      Width = 95
       Anchors = [akTop, akRight]
       Caption = 'Obtener'
       Glyph.Data = {
@@ -376,7 +376,7 @@ object frmListadoCC: TfrmListadoCC
     end
     object ckIncluir: TCheckGroup
       Left = 665
-      Height = 105
+      Height = 115
       Top = 0
       Width = 185
       Anchors = [akTop, akRight]
@@ -390,27 +390,28 @@ object frmListadoCC: TfrmListadoCC
       ChildSizing.ShrinkVertical = crsScaleChilds
       ChildSizing.Layout = cclLeftToRightThenTopToBottom
       ChildSizing.ControlsPerLine = 1
-      ClientHeight = 84
+      ClientHeight = 94
       ClientWidth = 181
       Items.Strings = (
         'Compras'
         'Ventas'
         'Ordenes de Pago'
         'Pedidos'
+        'Asientos Manuales'
       )
       TabOrder = 3
       Data = {
-        0400000002020202
+        050000000202020202
       }
     end
     object GroupBox1: TGroupBox
-      Left = 15
-      Height = 60
-      Top = 45
+      Left = 16
+      Height = 63
+      Top = 52
       Width = 639
       Anchors = [akTop, akLeft, akRight]
       Caption = 'Filtrar por empresa'
-      ClientHeight = 39
+      ClientHeight = 42
       ClientWidth = 635
       TabOrder = 4
       object btnBuscarEmpresa: TBitBtn
@@ -520,7 +521,7 @@ object frmListadoCC: TfrmListadoCC
   object Panel2: TPanel
     Left = 0
     Height = 54
-    Top = 400
+    Top = 448
     Width = 972
     Align = alBottom
     ClientHeight = 54
@@ -636,8 +637,8 @@ object frmListadoCC: TfrmListadoCC
   end
   object RxDBGrid1: TRxDBGrid
     Left = 0
-    Height = 288
-    Top = 112
+    Height = 329
+    Top = 119
     Width = 972
     TitleButtons = True
     AutoSort = True

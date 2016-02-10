@@ -14,8 +14,8 @@ type
   { TfrmAsientoManualAE }
 
   TfrmAsientoManualAE = class(TForm)
-    BitBtn1: TBitBtn;
-    BitBtn2: TBitBtn;
+    btnGrabar: TBitBtn;
+    btnCancelar: TBitBtn;
     btnBuscarEmpresa: TBitBtn;
     DBDateEdit1: TDBDateEdit;
     DBEdit1: TDBEdit;
@@ -28,17 +28,20 @@ type
     Label2: TLabel;
     Label3: TLabel;
     Label4: TLabel;
-    procedure BitBtn1Click(Sender: TObject);
-    procedure BitBtn2Click(Sender: TObject);
+    procedure btnGrabarClick(Sender: TObject);
+    procedure btnCancelarClick(Sender: TObject);
     procedure btnBuscarEmpresaClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
+    procedure FormShow(Sender: TObject);
   private
     asientoDM: TDM_AsientoManual;
     _asientoID: GUID_ID;
     _empresaID:GUID_ID;
   public
     property asientoID: GUID_ID write _asientoID;
+    property empresaID: GUID_ID write _empresaID;
+
   end;
 
 var
@@ -48,6 +51,7 @@ implementation
 {$R *.lfm}
 uses
   frm_busquedaempresas
+  ,dmempresa
   ;
 
 { TfrmAsientoManualAE }
@@ -64,6 +68,25 @@ end;
 procedure TfrmAsientoManualAE.FormDestroy(Sender: TObject);
 begin
   asientoDM.Free;
+end;
+
+procedure TfrmAsientoManualAE.FormShow(Sender: TObject);
+begin
+  if _asientoID = GUIDNULO then
+  begin
+    asientoDM.Nuevo;
+  end
+  else
+  begin
+    asientoDM.Editar (_asientoID);
+  end;
+
+  if _empresaID <> GUIDNULO then
+  begin
+    DM_Empresa.LevantarEmpresa(_empresaID);
+    edRazonSocial.Text:= DM_Empresa.RazonSocial;
+    asientoDM.EmpresaID:= _empresaID;
+  end;
 end;
 
 
@@ -83,6 +106,7 @@ begin
     begin
        _empresaID:= panBus.idEmpresa;
        edRazonSocial.Text:= panBus.RazonSocial;
+       asientoDM.EmpresaID:= _empresaID;
     end
     else
       _empresaID:= GUIDNULO;
@@ -91,13 +115,14 @@ begin
   end;
 end;
 
-procedure TfrmAsientoManualAE.BitBtn2Click(Sender: TObject);
+procedure TfrmAsientoManualAE.btnCancelarClick(Sender: TObject);
 begin
   ModalResult:= mrCancel;
 end;
 
-procedure TfrmAsientoManualAE.BitBtn1Click(Sender: TObject);
+procedure TfrmAsientoManualAE.btnGrabarClick(Sender: TObject);
 begin
+  asientoDM.Grabar;
   ModalResult:= mrOK;
 end;
 

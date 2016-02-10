@@ -662,4 +662,123 @@ object DM_CuentaCorriente: TDM_CuentaCorriente
       Required = False
     end
   end
+  object qAsientosManuales: TZQuery
+    Connection = DM_General.cnxBase
+    SQL.Strings = (
+      'SELECT  CC.FECHA'
+      '       , E.RAZONSOCIAL as Empresa'
+      '       , TCC.COMPROBANTECOMPRA as TipoComprobante'
+      '       , (CC.PUNTOVENTA || ''-'' || CC.COMPROBANTENRO) as Comprobante '
+      '       , CC.NUMERO as nroInterno'
+      '       , CC.MONTOTOTAL as Debe    '
+      '       , 0 as Haber    '
+      '      , CC.id as fila_id'
+      '      , 0 as tipo_id'
+      'FROM COMPROBANTESCOMPRA CC'
+      '     left join PROVEEDORES P ON P.ID = CC.PROVEEDOR_ID'
+      '     left join EMPRESAS E on E.ID = P.EMPRESA_ID'
+      '     left join TIPOSCOMPROBANTESCOMPRAS TCC ON TCC.ID = CC.TIPOCOMPROBANTE_ID'
+      'WHERE (CC.BANULADO = 0) and (CC.BVISIBLE = 1)'
+    )
+    Params = <>
+    left = 440
+    top = 144
+    object qComprasFECHA1: TDateField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'FECHA'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object qComprasEMPRESA1: TStringField
+      DisplayWidth = 2000
+      FieldKind = fkData
+      FieldName = 'EMPRESA'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 2000
+    end
+    object qComprasTIPOCOMPROBANTE1: TStringField
+      DisplayWidth = 400
+      FieldKind = fkData
+      FieldName = 'TIPOCOMPROBANTE'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 400
+    end
+    object qComprasCOMPROBANTE1: TStringField
+      DisplayWidth = 92
+      FieldKind = fkData
+      FieldName = 'COMPROBANTE'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = True
+      Required = False
+      Size = 92
+    end
+    object qComprasNROINTERNO1: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'NROINTERNO'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object qComprasDEBE1: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'DEBE'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object qComprasHABER1: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'HABER'
+      Index = 6
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = True
+      Required = False
+    end
+    object qComprasFILA_ID1: TStringField
+      DisplayWidth = 152
+      FieldKind = fkData
+      FieldName = 'FILA_ID'
+      Index = 7
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      Size = 152
+    end
+    object qComprasTIPO_ID1: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'TIPO_ID'
+      Index = 8
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = True
+      Required = False
+    end
+  end
 end
