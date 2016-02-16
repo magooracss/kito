@@ -1,11 +1,11 @@
 object frmMain: TfrmMain
-  Left = 304
-  Height = 128
-  Top = 238
-  Width = 711
+  Left = 247
+  Height = 127
+  Top = 290
+  Width = 827
   Caption = 'Finanzas'
-  ClientHeight = 108
-  ClientWidth = 711
+  ClientHeight = 107
+  ClientWidth = 827
   Font.CharSet = ANSI_CHARSET
   Font.Height = -13
   Font.Name = 'Arial'
@@ -19,8 +19,8 @@ object frmMain: TfrmMain
   object st: TStatusBar
     Left = 0
     Height = 23
-    Top = 85
-    Width = 711
+    Top = 84
+    Width = 827
     Panels = <    
       item
         Width = 150
@@ -35,7 +35,7 @@ object frmMain: TfrmMain
     Left = 0
     Height = 82
     Top = 0
-    Width = 711
+    Width = 827
     AutoSize = True
     ButtonHeight = 80
     ButtonWidth = 92
@@ -76,17 +76,17 @@ object frmMain: TfrmMain
       Style = tbsSeparator
     end
     object ToolButton6: TToolButton
-      Left = 392
+      Left = 516
       Top = 2
       Action = prgFacturar
     end
     object ToolButton8: TToolButton
-      Left = 484
+      Left = 608
       Top = 2
       Action = factImpresion
     end
     object ToolButton9: TToolButton
-      Left = 576
+      Left = 700
       Height = 80
       Top = 2
       Width = 10
@@ -99,9 +99,14 @@ object frmMain: TfrmMain
       Action = movOrdenPago
     end
     object ToolButton11: TToolButton
-      Left = 586
+      Left = 710
       Top = 2
       Action = lstCuentaCorriente
+    end
+    object ToolButton7: TToolButton
+      Left = 392
+      Top = 2
+      Action = movVentasSinFacturar
     end
   end
   object ActionList1: TActionList
@@ -210,13 +215,22 @@ object frmMain: TfrmMain
     object movAsientoManualIns: TAction
       Category = 'Movimientos'
       Caption = 'Nuevo asiento manual'
-      Hint = 'CArga un asiento manualmente en la CC de la empresa'
+      HelpType = htKeyword
+      Hint = 'Carga un asiento manualmente en la CC de la empresa'
+      ImageIndex = 33
       OnExecute = movAsientoManualInsExecute
     end
     object movVerBorrarAsientosManuales: TAction
       Category = 'Movimientos'
       Caption = 'Ver/Editar/Borrar Asientos Manuales'
+      ImageIndex = 34
       OnExecute = movVerBorrarAsientosManualesExecute
+    end
+    object movVentasSinFacturar: TAction
+      Category = 'Movimientos'
+      Caption = 'Ventas Sin Facturar'
+      ImageIndex = 35
+      OnExecute = movVentasSinFacturarExecute
     end
   end
   object MainMenu1: TMainMenu
@@ -245,6 +259,9 @@ object frmMain: TfrmMain
       end
       object MenuItem11: TMenuItem
         Action = movVentaEditar
+      end
+      object MenuItem24: TMenuItem
+        Action = movVentasSinFacturar
       end
       object MenuItem12: TMenuItem
         Caption = '-'

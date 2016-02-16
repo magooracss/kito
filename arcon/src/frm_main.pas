@@ -14,6 +14,8 @@ type
   { TfrmMain }
 
   TfrmMain = class(TForm)
+    MenuItem24: TMenuItem;
+    movVentasSinFacturar: TAction;
     MenuItem23: TMenuItem;
     movVerBorrarAsientosManuales: TAction;
     MenuItem21: TMenuItem;
@@ -66,6 +68,7 @@ type
     ToolButton4: TToolButton;
     ToolButton5: TToolButton;
     ToolButton6: TToolButton;
+    ToolButton7: TToolButton;
     ToolButton8: TToolButton;
     ToolButton9: TToolButton;
     procedure cliAgregarExecute(Sender: TObject);
@@ -81,6 +84,7 @@ type
     procedure movOrdenPagoExecute(Sender: TObject);
     procedure movVentaEditarExecute(Sender: TObject);
     procedure movVentaExecute(Sender: TObject);
+    procedure movVentasSinFacturarExecute(Sender: TObject);
     procedure movVerBorrarAsientosManualesExecute(Sender: TObject);
     procedure prgFacturarExecute(Sender: TObject);
     procedure prgModificarFacturaExecute(Sender: TObject);
@@ -119,6 +123,7 @@ uses
   , dmclientes
   , frm_asientomanualae
   , frm_listadoasientosmanuales
+  , frm_ventassinfacturar
   ;
 
 { TfrmMain }
@@ -267,6 +272,18 @@ begin
   finally
     pant.Free;
   end;
+end;
+
+procedure TfrmMain.movVentasSinFacturarExecute(Sender: TObject);
+var
+  pant: TfrmVentasSinFacturar;
+begin
+   pant:= TfrmVentasSinFacturar.Create(self);
+   try
+     pant.ShowModal;
+   finally
+     pant.Free;
+   end;
 end;
 
 

@@ -17,7 +17,8 @@ uses
   dmproveedores, dmbusquedaempresas, frm_ordendepagoae, dmordendepago,
   frm_busquedacompras, frm_formaspagoae, dmcompensaciones,
   frm_distribuirdinerocomprobantes, frm_listadocc, dmcuentacorriente, 
-frm_asientomanualae, dmasientomanual, frm_listadoasientosmanuales;
+frm_asientomanualae, dmasientomanual, frm_listadoasientosmanuales, 
+frm_ventassinfacturar, dmventasSinFacturar;
 
 {$R *.res}
 
