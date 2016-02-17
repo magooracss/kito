@@ -5,7 +5,7 @@ unit frm_ventassinfacturar;
 interface
 
 uses
-  Classes, SysUtils, db, FileUtil, DateTimePicker, Forms, Controls, Graphics,
+  Classes, SysUtils, db, FileUtil, Forms, Controls, Graphics,
   Dialogs, ExtCtrls, DBGrids, EditBtn, Buttons, StdCtrls
   ,dmgeneral
   ,dmventasSinFacturar;
@@ -25,6 +25,7 @@ type
     ckSinFacturar: TCheckBox;
     ckSinCAE: TCheckBox;
     ds_Comprobantes: TDataSource;
+    ds_1: TDataSource;
     edIni: TDateEdit;
     edFin: TDateEdit;
     DBGrid1: TDBGrid;
@@ -37,6 +38,7 @@ type
     Panel2: TPanel;
     procedure BitBtn1Click(Sender: TObject);
     procedure btnBuscarClienteClick(Sender: TObject);
+    procedure btnFiltrarClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure FormShow(Sender: TObject);
@@ -83,10 +85,16 @@ begin
   end;
 end;
 
+procedure TfrmVentasSinFacturar.btnFiltrarClick(Sender: TObject);
+begin
+ Filtrar;
+end;
+
 procedure TfrmVentasSinFacturar.FormCreate(Sender: TObject);
 begin
   dmVentasSF:= TDM_VentasSinFacturar.Create(self);
   ds_Comprobantes.DataSet:= dmVentasSF.Comprobantes;
+  ds_1.DataSet := dmVentasSF.qLevantarDatos;
 end;
 
 procedure TfrmVentasSinFacturar.FormDestroy(Sender: TObject);

@@ -60,6 +60,12 @@ object DM_VentasSinFacturar: TDM_VentasSinFacturar
         DataType = ftString
         Precision = 0
         Size = 38
+      end    
+      item
+        Name = 'TIPO'
+        DataType = ftString
+        Precision = 0
+        Size = 1
       end>
     PacketRecords = 0
     left = 98
@@ -173,6 +179,158 @@ object DM_VentasSinFacturar: TDM_VentasSinFacturar
       ReadOnly = False
       Required = False
       Size = 38
+    end
+    object ComprobantesTIPO: TStringField
+      DisplayWidth = 1
+      FieldKind = fkData
+      FieldName = 'TIPO'
+      Index = 9
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 1
+    end
+  end
+  object qLevantarDatos: TZQuery
+    Connection = DM_General.cnxBase
+    SQL.Strings = (
+      'select CV.ID'
+      '      ,CV.FECHA'
+      '      ,E.RAZONSOCIAL'
+      '      ,TCV.COMPROBANTEVENTA as TipoComprobante'
+      '      ,CV.NETOGRAVADO as Gravado'
+      '      ,CV.NETONOGRAVADO as NoGravado'
+      '      ,CV.EXENTO'
+      '      ,(CV.NETOGRAVADO + CV.NETONOGRAVADO + CV.EXENTO) as MontoTotal'
+      '      ,CV.FACTURA_ID'
+      '      ,''V'' as Tipo'
+      'from COMPROBANTESVENTA CV'
+      '    left join TIPOSCOMPROBANTESVENTAS TCV ON CV.TIPOCOMPROBANTE_ID = TCV.ID'
+      '    left join CLIENTES C ON CV.CLIENTE_ID = C.ID'
+      '    left join EMPRESAS E ON E.ID = C.EMPRESA_ID    '
+      'where (cv.BVISIBLE = 1)'
+      '     and (FACTURA_ID = ''{00000000-0000-0000-0000-000000000000}'')'
+    )
+    Params = <>
+    left = 100
+    top = 118
+    object qLevantarDatosID: TStringField
+      DisplayWidth = 152
+      FieldKind = fkData
+      FieldName = 'ID'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      Size = 152
+    end
+    object qLevantarDatosFECHA: TDateField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'FECHA'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object qLevantarDatosRAZONSOCIAL: TStringField
+      DisplayWidth = 2000
+      FieldKind = fkData
+      FieldName = 'RAZONSOCIAL'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 2000
+    end
+    object qLevantarDatosTIPOCOMPROBANTE: TStringField
+      DisplayWidth = 400
+      FieldKind = fkData
+      FieldName = 'TIPOCOMPROBANTE'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 400
+    end
+    object qLevantarDatosGRAVADO: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'GRAVADO'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object qLevantarDatosNOGRAVADO: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'NOGRAVADO'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object qLevantarDatosEXENTO: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'EXENTO'
+      Index = 6
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object qLevantarDatosMONTOTOTAL: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'MONTOTOTAL'
+      Index = 7
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = True
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object qLevantarDatosFACTURA_ID: TStringField
+      DisplayWidth = 152
+      FieldKind = fkData
+      FieldName = 'FACTURA_ID'
+      Index = 8
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 152
+    end
+    object qLevantarDatosTIPO: TStringField
+      DisplayWidth = 4
+      FieldKind = fkData
+      FieldName = 'TIPO'
+      Index = 9
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = True
+      Required = False
+      Size = 4
     end
   end
 end

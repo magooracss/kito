@@ -296,6 +296,7 @@
         <Filename Value="dmventassinfacturar.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="DM_VentasSinFacturar"/>
+        <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="dmventasSinFacturar"/>
       </Unit34>
