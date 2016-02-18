@@ -590,6 +590,7 @@ begin
   DM_General.ReiniciarTabla(ComproVtaIVA);
   DM_General.ReiniciarTabla(ComproVtaImpuestos);
 
+
   with SELComproVta do
   begin
     if active then close;

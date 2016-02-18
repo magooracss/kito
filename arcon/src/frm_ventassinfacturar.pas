@@ -16,16 +16,15 @@ type
 
   TfrmVentasSinFacturar = class(TForm)
     BitBtn1: TBitBtn;
-    BitBtn2: TBitBtn;
-    BitBtn3: TBitBtn;
-    BitBtn4: TBitBtn;
+    btnImprimir: TBitBtn;
+    btnFacturar: TBitBtn;
+    btnEditar: TBitBtn;
     BitBtn5: TBitBtn;
     btnFiltrar: TBitBtn;
     btnBuscarCliente: TBitBtn;
     ckSinFacturar: TCheckBox;
     ckSinCAE: TCheckBox;
     ds_Comprobantes: TDataSource;
-    ds_1: TDataSource;
     edIni: TDateEdit;
     edFin: TDateEdit;
     DBGrid1: TDBGrid;
@@ -37,6 +36,9 @@ type
     Panel1: TPanel;
     Panel2: TPanel;
     procedure BitBtn1Click(Sender: TObject);
+    procedure btnEditarClick(Sender: TObject);
+    procedure btnFacturarClick(Sender: TObject);
+    procedure btnImprimirClick(Sender: TObject);
     procedure btnBuscarClienteClick(Sender: TObject);
     procedure btnFiltrarClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -59,6 +61,9 @@ implementation
 uses
   frm_busquedaempresas
   ,dateutils
+  ,dmfacturas
+  ,frm_ventaae
+  ,dmfacturaelectronica
   ;
 
 { TfrmVentasSinFacturar }
@@ -94,7 +99,6 @@ procedure TfrmVentasSinFacturar.FormCreate(Sender: TObject);
 begin
   dmVentasSF:= TDM_VentasSinFacturar.Create(self);
   ds_Comprobantes.DataSet:= dmVentasSF.Comprobantes;
-  ds_1.DataSet := dmVentasSF.qLevantarDatos;
 end;
 
 procedure TfrmVentasSinFacturar.FormDestroy(Sender: TObject);
@@ -105,6 +109,47 @@ end;
 procedure TfrmVentasSinFacturar.BitBtn1Click(Sender: TObject);
 begin
   ModalResult:= mrOK;
+end;
+
+procedure TfrmVentasSinFacturar.btnEditarClick(Sender: TObject);
+var
+  pant: TfrmVentasAE;
+begin
+  pant:= TfrmVentasAE.Create(self);
+  try
+    pant.ventaID:= dmVentasSF.Comprobantesid.AsString;
+    if pant.ShowModal = mrOK then
+     Filtrar;
+  finally
+    pant.Free;
+  end;
+end;
+
+procedure TfrmVentasSinFacturar.btnFacturarClick(Sender: TObject);
+var
+  elDM: TDM_FacturaElectronica;
+begin
+  elDM:= TDM_FacturaElectronica.Create(self);
+  try
+    elDM.FacturarVenta(dmVentasSF.Comprobantesid.AsString);
+  finally
+    elDM.Free;
+  end;
+end;
+
+procedure TfrmVentasSinFacturar.btnImprimirClick(Sender: TObject);
+var
+  eldm: TDM_Facturas;
+begin
+  eldm:= TDM_Facturas.Create(self);
+  try
+    if dmVentasSF.Comprobantesfactura_id.AsString <> GUIDNULO then
+      elDm.ImprimirFactura(dmVentasSF.Comprobantesfactura_id.AsString)
+    else
+      ShowMessage('Solamente se pueden imprimir las facturas sin CAE');
+  finally
+    elDM.Free;
+  end;
 end;
 
 procedure TfrmVentasSinFacturar.FormShow(Sender: TObject);

@@ -213,6 +213,7 @@ var
   c, acumuladorIVA: double;
   cs: string;
 begin
+
   DM_Ventas.LevantarVenta(refVenta);
 
   DM_General.ReiniciarTabla(fe_agregarIVA);
@@ -282,6 +283,7 @@ begin
   DM_Ventas.Grabar;
 
   Grabar;
+
 end;
 
 procedure TDM_FacturaElectronica.Grabar;
