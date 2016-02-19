@@ -1671,4 +1671,289 @@ object DM_FacturaElectronica: TDM_FacturaElectronica
       Required = False
     end
   end
+  object DELfe_comprobantes: TZQuery
+    Connection = DM_General.cnxBase
+    SQL.Strings = (
+      'DELETE FROM fe_comprobantes'
+      'WHERE (id = :id)'
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'id'
+        ParamType = ptUnknown
+      end>
+    left = 48
+    top = 320
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'id'
+        ParamType = ptUnknown
+      end>
+    object SELfe_comprobantesID1: TStringField
+      DisplayWidth = 152
+      FieldKind = fkData
+      FieldName = 'ID'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      Size = 152
+    end
+    object SELfe_comprobantesCONCEPTO1: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'CONCEPTO'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object SELfe_comprobantesDOCTIPO1: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'DOCTIPO'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object SELfe_comprobantesDOCNRO1: TFloatField
+      DisplayWidth = 14
+      FieldKind = fkData
+      FieldName = 'DOCNRO'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object SELfe_comprobantesCBTEDESDE1: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'CBTEDESDE'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object SELfe_comprobantesCBTHASTA1: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'CBTHASTA'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object SELfe_comprobantesCBTFECHA1: TStringField
+      DisplayWidth = 32
+      FieldKind = fkData
+      FieldName = 'CBTFECHA'
+      Index = 6
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 32
+    end
+    object SELfe_comprobantesIMPTOTAL1: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'IMPTOTAL'
+      Index = 7
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object SELfe_comprobantesIMPTOTALCONC1: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'IMPTOTALCONC'
+      Index = 8
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object SELfe_comprobantesIMPNETO1: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'IMPNETO'
+      Index = 9
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object SELfe_comprobantesIMPOPEX1: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'IMPOPEX'
+      Index = 10
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object SELfe_comprobantesFECHASERVDESDE1: TStringField
+      DisplayWidth = 32
+      FieldKind = fkData
+      FieldName = 'FECHASERVDESDE'
+      Index = 11
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 32
+    end
+    object SELfe_comprobantesFECHASERVHASTA1: TStringField
+      DisplayWidth = 32
+      FieldKind = fkData
+      FieldName = 'FECHASERVHASTA'
+      Index = 12
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 32
+    end
+    object SELfe_comprobantesFECHAVTOPAGO1: TStringField
+      DisplayWidth = 32
+      FieldKind = fkData
+      FieldName = 'FECHAVTOPAGO'
+      Index = 13
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 32
+    end
+    object SELfe_comprobantesMONEDAID1: TStringField
+      DisplayWidth = 12
+      FieldKind = fkData
+      FieldName = 'MONEDAID'
+      Index = 14
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 12
+    end
+    object SELfe_comprobantesMONCOTIZ1: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'MONCOTIZ'
+      Index = 15
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object SELfe_comprobantesESTADOFE1: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'ESTADOFE'
+      Index = 16
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object SELfe_comprobantesPTOVTA1: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'PTOVTA'
+      Index = 17
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object SELfe_comprobantesTIPOCOMPR1: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'TIPOCOMPR'
+      Index = 18
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object SELfe_comprobantesCAE1: TStringField
+      DisplayWidth = 56
+      FieldKind = fkData
+      FieldName = 'CAE'
+      Index = 19
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 56
+    end
+    object SELfe_comprobantesVTOCAE1: TStringField
+      DisplayWidth = 32
+      FieldKind = fkData
+      FieldName = 'VTOCAE'
+      Index = 20
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 32
+    end
+    object SELfe_comprobantesULTRESULTADO1: TStringField
+      DisplayWidth = 4
+      FieldKind = fkData
+      FieldName = 'ULTRESULTADO'
+      Index = 21
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 4
+    end
+    object SELfe_comprobantesULTREPROCESO1: TStringField
+      DisplayWidth = 4
+      FieldKind = fkData
+      FieldName = 'ULTREPROCESO'
+      Index = 22
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 4
+    end
+  end
 end

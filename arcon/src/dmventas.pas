@@ -182,6 +182,7 @@ type
     SELComproVtaTIPOCOMPROBANTE_ID: TLongintField;
     SELComproVtaVTOPAGO: TDateField;
     UPDComproVta: TZQuery;
+    DELComprobante: TZQuery;
     UPDComproVtaConceptos: TZQuery;
     UPDComproVtaIVA: TZQuery;
     UPDComproVtaImpuestos: TZQuery;
@@ -233,6 +234,8 @@ type
     procedure Grabar;
 
     procedure ObtenerTiposComprobantes (refTipo: integer);
+
+    procedure AnularComprobante (refID: GUID_ID);
   end;
 
 var
@@ -693,6 +696,16 @@ begin
    ParamByName('tipoFactura').asInteger:= refTipo;
    Open;
   end;
+end;
+
+(*******************************************************************************
+*** ANULAR COMPROBANTES
+********************************************************************************)
+
+procedure TDM_Ventas.AnularComprobante(refID: GUID_ID);
+begin
+  DELComprobante.ParamByName('id').AsString:= refID;
+  DELComprobante.ExecSQL;
 end;
 
 

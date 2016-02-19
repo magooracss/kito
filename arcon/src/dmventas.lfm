@@ -3104,4 +3104,28 @@ object DM_Ventas: TDM_Ventas
       Precision = 2
     end
   end
+  object DELComprobante: TZQuery
+    Connection = DM_General.cnxBase
+    SQL.Strings = (
+      'UPDATE ComprobantesVenta'
+      'SET'
+      ' FACTURA_ID = ''{00000000-0000-0000-0000-000000000000}'''
+      ' ,BVISIBLE = 0'
+      'WHERE id = :id'
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'id'
+        ParamType = ptUnknown
+      end>
+    left = 48
+    top = 320
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'id'
+        ParamType = ptUnknown
+      end>
+  end
 end

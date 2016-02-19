@@ -19,7 +19,7 @@ type
     btnImprimir: TBitBtn;
     btnFacturar: TBitBtn;
     btnEditar: TBitBtn;
-    BitBtn5: TBitBtn;
+    btnAnular: TBitBtn;
     btnFiltrar: TBitBtn;
     btnBuscarCliente: TBitBtn;
     ckSinFacturar: TCheckBox;
@@ -36,6 +36,7 @@ type
     Panel1: TPanel;
     Panel2: TPanel;
     procedure BitBtn1Click(Sender: TObject);
+    procedure btnAnularClick(Sender: TObject);
     procedure btnEditarClick(Sender: TObject);
     procedure btnFacturarClick(Sender: TObject);
     procedure btnImprimirClick(Sender: TObject);
@@ -64,6 +65,7 @@ uses
   ,dmfacturas
   ,frm_ventaae
   ,dmfacturaelectronica
+  ,dmventas
   ;
 
 { TfrmVentasSinFacturar }
@@ -109,6 +111,27 @@ end;
 procedure TfrmVentasSinFacturar.BitBtn1Click(Sender: TObject);
 begin
   ModalResult:= mrOK;
+end;
+
+procedure TfrmVentasSinFacturar.btnAnularClick(Sender: TObject);
+var
+  ventasDM: TDM_Ventas;
+  feDM: TDM_FacturaElectronica;
+begin
+  ventasDM:= TDM_Ventas.Create(self);
+  feDM:= TDM_FacturaElectronica.Create(self);
+  try
+    if (MessageDlg ('Confirmación'
+                     , 'Desea ELIMINAR el comprobante seleccionado?'
+                      , mtConfirmation, [mbYes, mbNo],0 ) = mrYes) then
+    begin
+      ventasDM.AnularComprobante(dmVentasSF.Comprobantesid.AsString);
+      feDM.eliminarComprobante (dmVentasSF.Comprobantesfactura_id.AsString);
+    end;
+  finally
+    ventasDM.Free;
+    feDM.Free;
+  end;
 end;
 
 procedure TfrmVentasSinFacturar.btnEditarClick(Sender: TObject);
@@ -171,6 +194,8 @@ end;
 
 procedure TfrmVentasSinFacturar.Filtrar;
 begin
+  if (TRIM(edRazonSocial.Text) = EmptyStr) then
+    _clienteID:= GUIDNULO;
   dmVentasSF.clienteID:= _clienteID;
   dmVentasSF.sinFacturar:= ckSinFacturar.Checked;
   dmVentasSF.sinCAE:= ckSinCAE.Checked;

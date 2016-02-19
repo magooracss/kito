@@ -66,29 +66,53 @@ type
     SELfe_agregarIVATIPOIVA: TLongintField;
     SELfe_comprobantes: TZQuery;
     SELfe_agregarIVA: TZQuery;
+    DELfe_comprobantes: TZQuery;
     SELfe_comprobantesCAE: TStringField;
+    SELfe_comprobantesCAE1: TStringField;
     SELfe_comprobantesCBTEDESDE: TFloatField;
+    SELfe_comprobantesCBTEDESDE1: TFloatField;
     SELfe_comprobantesCBTFECHA: TStringField;
+    SELfe_comprobantesCBTFECHA1: TStringField;
     SELfe_comprobantesCBTHASTA: TFloatField;
+    SELfe_comprobantesCBTHASTA1: TFloatField;
     SELfe_comprobantesCONCEPTO: TLongintField;
+    SELfe_comprobantesCONCEPTO1: TLongintField;
     SELfe_comprobantesDOCNRO: TFloatField;
+    SELfe_comprobantesDOCNRO1: TFloatField;
     SELfe_comprobantesDOCTIPO: TLongintField;
+    SELfe_comprobantesDOCTIPO1: TLongintField;
     SELfe_comprobantesESTADOFE: TLongintField;
+    SELfe_comprobantesESTADOFE1: TLongintField;
     SELfe_comprobantesFECHASERVDESDE: TStringField;
+    SELfe_comprobantesFECHASERVDESDE1: TStringField;
     SELfe_comprobantesFECHASERVHASTA: TStringField;
+    SELfe_comprobantesFECHASERVHASTA1: TStringField;
     SELfe_comprobantesFECHAVTOPAGO: TStringField;
+    SELfe_comprobantesFECHAVTOPAGO1: TStringField;
     SELfe_comprobantesID: TStringField;
+    SELfe_comprobantesID1: TStringField;
     SELfe_comprobantesIMPNETO: TFloatField;
+    SELfe_comprobantesIMPNETO1: TFloatField;
     SELfe_comprobantesIMPOPEX: TFloatField;
+    SELfe_comprobantesIMPOPEX1: TFloatField;
     SELfe_comprobantesIMPTOTAL: TFloatField;
+    SELfe_comprobantesIMPTOTAL1: TFloatField;
     SELfe_comprobantesIMPTOTALCONC: TFloatField;
+    SELfe_comprobantesIMPTOTALCONC1: TFloatField;
     SELfe_comprobantesMONCOTIZ: TFloatField;
+    SELfe_comprobantesMONCOTIZ1: TFloatField;
     SELfe_comprobantesMONEDAID: TStringField;
+    SELfe_comprobantesMONEDAID1: TStringField;
     SELfe_comprobantesPTOVTA: TLongintField;
+    SELfe_comprobantesPTOVTA1: TLongintField;
     SELfe_comprobantesTIPOCOMPR: TLongintField;
+    SELfe_comprobantesTIPOCOMPR1: TLongintField;
     SELfe_comprobantesULTREPROCESO: TStringField;
+    SELfe_comprobantesULTREPROCESO1: TStringField;
     SELfe_comprobantesULTRESULTADO: TStringField;
+    SELfe_comprobantesULTRESULTADO1: TStringField;
     SELfe_comprobantesVTOCAE: TStringField;
+    SELfe_comprobantesVTOCAE1: TStringField;
     UPDfe_comprobantes: TZQuery;
     UPDfe_agregarIVA: TZQuery;
     procedure fe_agregarIVAAfterInsert(DataSet: TDataSet);
@@ -100,6 +124,8 @@ type
   public
     procedure FacturarVenta (refVenta:GUID_ID );
     procedure Grabar;
+
+    procedure EliminarComprobante (refID: GUID_ID);
 
   end;
 
@@ -297,6 +323,12 @@ except
   DM_General.cnxBase.Rollback;
 end;
 
+end;
+
+procedure TDM_FacturaElectronica.EliminarComprobante(refID: GUID_ID);
+begin
+  DELfe_comprobantes.ParamByName('id').AsString:= refID;
+  DELfe_comprobantes.ExecSQL;
 end;
 
 end.
