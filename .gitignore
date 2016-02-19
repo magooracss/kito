@@ -11,6 +11,7 @@
 **/arcon/src/lib
 **/vrs/
 **/inst/
+**/web/
 !**/inst/scripts
 *.*~*
 *.*#*
