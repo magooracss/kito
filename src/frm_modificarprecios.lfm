@@ -15,7 +15,7 @@ object frmModificarPrecios: TfrmModificarPrecios
   OnDestroy = FormDestroy
   OnShow = FormShow
   Position = poOwnerFormCenter
-  LCLVersion = '1.2.6.0'
+  LCLVersion = '1.4.2.0'
   object Panel1: TPanel
     Left = 0
     Height = 50
@@ -201,7 +201,7 @@ object frmModificarPrecios: TfrmModificarPrecios
       Width = 382
       Align = alRight
       Caption = 'Modificación Global'
-      ClientHeight = 84
+      ClientHeight = 81
       ClientWidth = 378
       TabOrder = 1
       object rgOperacion: TRadioGroup
@@ -218,7 +218,7 @@ object frmModificarPrecios: TfrmModificarPrecios
         ChildSizing.ShrinkVertical = crsScaleChilds
         ChildSizing.Layout = cclLeftToRightThenTopToBottom
         ChildSizing.ControlsPerLine = 1
-        ClientHeight = 57
+        ClientHeight = 54
         ClientWidth = 101
         ItemIndex = 0
         Items.Strings = (

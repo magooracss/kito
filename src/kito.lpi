@@ -19,7 +19,7 @@
       <UseVersionInfo Value="True"/>
       <AutoIncrementBuild Value="True"/>
       <MajorVersionNr Value="2016"/>
-      <MinorVersionNr Value="2"/>
+      <MinorVersionNr Value="4"/>
       <RevisionNr Value="1"/>
       <BuildNr Value="82"/>
       <Language Value="040A"/>

@@ -102,15 +102,21 @@ end;
 
 procedure TfrmModificarPrecios.btnAplicarGlobalClick(Sender: TObject);
 begin
-  if (MessageDlg ('ATENCION - CAMBIO GLOBAL!!!'
-                 , 'Aplico el cambio a TODOS los artículos de la lista?'
-                 , mtConfirmation, [mbYes, mbNo],0 ) = mrYes) then
+  if ((ds_ModificarPrecios.DataSet.Active) and
+      (ds_ModificarPrecios.DataSet.RecordCount > 0)) then
   begin
-    if PCCriterio.ActivePage = tabMonto then
-      DM_ModificarPrecios.ModificarGlobalValor(edMonto.Value, rgOperacion.ItemIndex)
-    else
-      DM_ModificarPrecios.ModificarGlobalPorcentaje(edPorcentaje.Value, rgOperacion.ItemIndex);
-  end;
+    if (MessageDlg ('ATENCION - CAMBIO GLOBAL!!!'
+                   , 'Aplico el cambio a TODOS los artículos de la lista?'
+                   , mtConfirmation, [mbYes, mbNo],0 ) = mrYes) then
+    begin
+      if PCCriterio.ActivePage = tabMonto then
+        DM_ModificarPrecios.ModificarGlobalValor(edMonto.Value, rgOperacion.ItemIndex)
+      else
+        DM_ModificarPrecios.ModificarGlobalPorcentaje(edPorcentaje.Value, rgOperacion.ItemIndex);
+    end;
+  end
+  else
+    ShowMessage('No existen artículos a los cuales modificar el precio');
 
 end;
 

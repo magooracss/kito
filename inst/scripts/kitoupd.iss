@@ -53,5 +53,5 @@ Source: "C:\Dropbox\bak\Trabajo\Trabajo\Windows\kito\inst\entrada\upd20150600.sq
 
 [Run]
 Filename: "{app}\bin\{#Upddb}"; Parameters: "{app}\db\arcon_20160201.sql.sql"; Flags: runmaximized waituntilterminated postinstall; Description: "Actualizar Base de Datos ARCON"
-Filename: "{app}\bin\{#Upddb}"; Parameters: "{app}\db\arcon_20160201.sql.sql"; Flags: runmaximized waituntilterminated postinstall; Description: "Actualizar Base de Datos ARCON"
+Filename: "{app}\bin\{#Upddb}"; Parameters: "{app}\db\upd20150600.sql"; Flags: runmaximized waituntilterminated postinstall; Description: "Actualizar Base de Datos KITO"
 Filename: "{app}\bin\{#MyAppExeName}"; Flags: nowait postinstall skipifsilent; Description: "{cm:LaunchProgram,{#StringChange(MyAppName, '&', '&&')}}"

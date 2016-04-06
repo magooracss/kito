@@ -5,10 +5,10 @@
 #define MyAppVersion "2016.02.01"
 #define MyAppPublisher "RACSS Programacion"
 #define MyAppURL "http://www.racss.com.ar/alcon"
-#define MyAppExeName "alcon.exe"
+#define MyAppExeName "arcon.exe"
 #define ConfigFile "programa.cfg"
 #define bakDir "ar20160201"
-#define InstName "kito-upd01"
+#define InstName "arcon-upd01"
 #define UpdDB "upddb.exe"
 
 
@@ -16,7 +16,7 @@
 ; NOTE: The value of AppId uniquely identifies this application.
 ; Do not use the same AppId value in installers for other applications.
 ; (To generate a new GUID, click Tools | Generate GUID inside the IDE.)
-AppId={{6ED1659A-B5D1-4DA5-A49E-DC2A689EE342}
+AppId={{6EDRACSS-CER1-4DA5-A49E-MAGOO89EE342}
 AppName={#MyAppName}
 AppVersion={#MyAppVersion}
 ;AppVerName={#MyAppName} {#MyAppVersion}
@@ -39,19 +39,15 @@ Name: "spanish"; MessagesFile: "compiler:Languages\Spanish.isl"
 [Files]
 ; Backup
 
-Source: "{app}\bin\kito.exe"; DestDir: "{app}\bak\{#bakDir}"; Flags: external skipifsourcedoesntexist
 Source: "{app}\bin\arcon.exe"; DestDir: "{app}\bak\{#bakDir}"; Flags: external skipifsourcedoesntexist
-Source: "{app}\db\kito.fdb"; DestDir: "{app}\bak\{#bakDir}"; Flags:  external skipifsourcedoesntexist
+Source: "{app}\db\arcon.fdb"; DestDir: "{app}\bak\{#bakDir}"; Flags:  external skipifsourcedoesntexist
 Source: "{app}\bin\programa.cfg"; DestDir: "{app}\bak\{#bakDir}"; Flags: external skipifsourcedoesntexist
 
 ; Archivos nuevos
-Source: "C:\Dropbox\bak\Trabajo\Trabajo\Windows\kito\inst\entrada\kito.exe"; DestDir: "{app}\bin"; Flags: ignoreversion
 Source: "C:\Dropbox\bak\Trabajo\Trabajo\Windows\kito\inst\entrada\arcon.exe"; DestDir: "{app}\bin"; Flags: ignoreversion
 Source: "C:\Dropbox\bak\Trabajo\Trabajo\Windows\kito\inst\entrada\upddb.exe"; DestDir: "{app}\bin"; Flags: ignoreversion
 Source: "C:\Dropbox\bak\Trabajo\Trabajo\Windows\kito\inst\entrada\arcon_20160201.sql"; DestDir: "{app}\db"; Flags: ignoreversion
-Source: "C:\Dropbox\bak\Trabajo\Trabajo\Windows\kito\inst\entrada\upd20150600.sql"; DestDir: "{app}\db"; Flags: ignoreversion
 
 [Run]
-Filename: "{app}\bin\{#Upddb}"; Parameters: "{app}\db\arcon_20160201.sql.sql"; Flags: runmaximized waituntilterminated postinstall; Description: "Actualizar Base de Datos ARCON"
 Filename: "{app}\bin\{#Upddb}"; Parameters: "{app}\db\arcon_20160201.sql.sql"; Flags: runmaximized waituntilterminated postinstall; Description: "Actualizar Base de Datos ARCON"
 Filename: "{app}\bin\{#MyAppExeName}"; Flags: nowait postinstall skipifsilent; Description: "{cm:LaunchProgram,{#StringChange(MyAppName, '&', '&&')}}"
