@@ -299,8 +299,8 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="3"/>
-        <TopLine Value="116"/>
-        <CursorPos Y="142"/>
+        <TopLine Value="202"/>
+        <CursorPos X="3" Y="205"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -311,9 +311,10 @@
         <ComponentName Value="DM_Pedidos"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="5"/>
-        <TopLine Value="570"/>
-        <CursorPos X="49" Y="593"/>
+        <TopLine Value="602"/>
+        <CursorPos X="25" Y="618"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -326,7 +327,7 @@
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="40" Y="17"/>
-        <UsageCount Value="191"/>
+        <UsageCount Value="194"/>
       </Unit30>
       <Unit31>
         <Filename Value="frm_pedidosestados.pas"/>
@@ -335,7 +336,7 @@
         <ResourceBaseClass Value="Form"/>
         <TopLine Value="80"/>
         <CursorPos X="29" Y="80"/>
-        <UsageCount Value="189"/>
+        <UsageCount Value="192"/>
       </Unit31>
       <Unit32>
         <Filename Value="frm_pedidoestadosae.pas"/>
@@ -345,7 +346,7 @@
         <ResourceBaseClass Value="Form"/>
         <TopLine Value="55"/>
         <CursorPos X="26" Y="65"/>
-        <UsageCount Value="184"/>
+        <UsageCount Value="187"/>
       </Unit32>
       <Unit33>
         <Filename Value="frm_pedidosbusqueda.pas"/>
@@ -356,7 +357,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="4"/>
         <CursorPos X="16"/>
-        <UsageCount Value="177"/>
+        <UsageCount Value="180"/>
       </Unit33>
       <Unit34>
         <Filename Value="dmbusquedapedidos.pas"/>
@@ -366,7 +367,7 @@
         <ResourceBaseClass Value="DataModule"/>
         <TopLine Value="72"/>
         <CursorPos Y="94"/>
-        <UsageCount Value="177"/>
+        <UsageCount Value="180"/>
       </Unit34>
       <Unit35>
         <Filename Value="dmstock.pas"/>
@@ -376,7 +377,7 @@
         <ResourceBaseClass Value="DataModule"/>
         <TopLine Value="446"/>
         <CursorPos X="38" Y="575"/>
-        <UsageCount Value="174"/>
+        <UsageCount Value="177"/>
         <Bookmarks Count="1">
           <Item0 Y="543" ID="1"/>
         </Bookmarks>
@@ -390,7 +391,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="12"/>
         <CursorPos X="39" Y="26"/>
-        <UsageCount Value="169"/>
+        <UsageCount Value="172"/>
         <Bookmarks Count="3">
           <Item0 X="5" Y="245" ID="3"/>
           <Item1 X="5" Y="165" ID="1"/>
@@ -405,7 +406,7 @@
         <ResourceBaseClass Value="Form"/>
         <TopLine Value="22"/>
         <CursorPos X="54" Y="68"/>
-        <UsageCount Value="156"/>
+        <UsageCount Value="159"/>
       </Unit37>
       <Unit38>
         <Filename Value="frm_movimientosstockbusqueda.pas"/>
@@ -415,7 +416,7 @@
         <ResourceBaseClass Value="Form"/>
         <TopLine Value="60"/>
         <CursorPos X="45" Y="86"/>
-        <UsageCount Value="154"/>
+        <UsageCount Value="157"/>
       </Unit38>
       <Unit39>
         <Filename Value="dmbusquedamovstock.pas"/>
@@ -425,7 +426,7 @@
         <ResourceBaseClass Value="DataModule"/>
         <TopLine Value="64"/>
         <CursorPos X="52" Y="90"/>
-        <UsageCount Value="154"/>
+        <UsageCount Value="157"/>
       </Unit39>
       <Unit40>
         <Filename Value="frm_modificarprecios.pas"/>
@@ -433,11 +434,10 @@
         <ComponentName Value="frmModificarPrecios"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
-        <TopLine Value="91"/>
-        <CursorPos X="74" Y="119"/>
-        <UsageCount Value="151"/>
+        <TopLine Value="85"/>
+        <CursorPos X="56" Y="108"/>
+        <UsageCount Value="154"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit40>
@@ -450,7 +450,7 @@
         <EditorIndex Value="2"/>
         <TopLine Value="59"/>
         <CursorPos X="8" Y="64"/>
-        <UsageCount Value="151"/>
+        <UsageCount Value="154"/>
         <Loaded Value="True"/>
       </Unit41>
       <Unit42>
@@ -462,7 +462,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="88"/>
         <CursorPos X="86" Y="108"/>
-        <UsageCount Value="143"/>
+        <UsageCount Value="146"/>
       </Unit42>
       <Unit43>
         <Filename Value="dmdevoluciones.pas"/>
@@ -473,7 +473,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="119"/>
         <CursorPos X="20" Y="124"/>
-        <UsageCount Value="143"/>
+        <UsageCount Value="146"/>
       </Unit43>
       <Unit44>
         <Filename Value="dmlistados.pas"/>
@@ -484,7 +484,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="301"/>
         <CursorPos Y="303"/>
-        <UsageCount Value="138"/>
+        <UsageCount Value="141"/>
       </Unit44>
       <Unit45>
         <Filename Value="frm_listados.pas"/>
@@ -495,7 +495,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="271"/>
         <CursorPos X="6" Y="285"/>
-        <UsageCount Value="137"/>
+        <UsageCount Value="140"/>
       </Unit45>
       <Unit46>
         <Filename Value="frm_hojaderutaae.pas"/>
@@ -506,7 +506,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="199"/>
         <CursorPos Y="223"/>
-        <UsageCount Value="104"/>
+        <UsageCount Value="107"/>
       </Unit46>
       <Unit47>
         <Filename Value="dmhojaderuta.pas"/>
@@ -517,7 +517,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="406"/>
         <CursorPos X="29" Y="434"/>
-        <UsageCount Value="104"/>
+        <UsageCount Value="107"/>
       </Unit47>
       <Unit48>
         <Filename Value="frm_seleccionarpedidos.pas"/>
@@ -528,7 +528,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="140"/>
         <CursorPos X="47" Y="163"/>
-        <UsageCount Value="90"/>
+        <UsageCount Value="93"/>
       </Unit48>
       <Unit49>
         <Filename Value="dmseleccionarpedidos.pas"/>
@@ -539,7 +539,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="120"/>
         <CursorPos X="25" Y="137"/>
-        <UsageCount Value="89"/>
+        <UsageCount Value="92"/>
       </Unit49>
       <Unit50>
         <Filename Value="frm_hojaderutapedido.pas"/>
@@ -549,7 +549,7 @@
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="13" Y="6"/>
-        <UsageCount Value="80"/>
+        <UsageCount Value="83"/>
       </Unit50>
       <Unit51>
         <Filename Value="frm_busquedahojaderuta.pas"/>
@@ -560,7 +560,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="99"/>
         <CursorPos X="66" Y="120"/>
-        <UsageCount Value="66"/>
+        <UsageCount Value="69"/>
         <Bookmarks Count="1">
           <Item0 Y="106" ID="1"/>
         </Bookmarks>
@@ -574,7 +574,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="94"/>
         <CursorPos X="73" Y="120"/>
-        <UsageCount Value="66"/>
+        <UsageCount Value="69"/>
       </Unit52>
       <Unit53>
         <Filename Value="frm_hojaderutapresentacion.pas"/>
@@ -585,7 +585,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="64"/>
         <CursorPos X="97" Y="112"/>
-        <UsageCount Value="58"/>
+        <UsageCount Value="61"/>
       </Unit53>
       <Unit54>
         <Filename Value="dmhojaderutapresentacion.pas"/>
@@ -596,7 +596,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="278"/>
         <CursorPos Y="306"/>
-        <UsageCount Value="57"/>
+        <UsageCount Value="60"/>
       </Unit54>
       <Unit55>
         <Filename Value="frm_hojaderutapresentarpedidos.pas"/>
@@ -607,7 +607,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="147"/>
         <CursorPos X="59" Y="153"/>
-        <UsageCount Value="52"/>
+        <UsageCount Value="55"/>
         <Bookmarks Count="1">
           <Item0 X="5" Y="176" ID="2"/>
         </Bookmarks>
@@ -621,7 +621,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="31"/>
         <CursorPos X="25" Y="49"/>
-        <UsageCount Value="50"/>
+        <UsageCount Value="53"/>
       </Unit56>
       <Unit57>
         <Filename Value="frm_seleccionmotivonoentrega.pas"/>
@@ -632,7 +632,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="34"/>
         <CursorPos X="89" Y="34"/>
-        <UsageCount Value="44"/>
+        <UsageCount Value="47"/>
       </Unit57>
       <Unit58>
         <Filename Value="C:\magoo\lazarus\components\zeos\src\plain\ZPlainLoader.pas"/>
@@ -887,120 +887,120 @@
     <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
         <Filename Value="frm_main.pas"/>
-        <Caret Line="84" Column="15" TopLine="61"/>
+        <Caret Line="779" Column="12" TopLine="747"/>
       </Position1>
       <Position2>
         <Filename Value="frm_main.pas"/>
-        <Caret Line="91" Column="15" TopLine="68"/>
+        <Caret Line="766" Column="81" TopLine="726"/>
       </Position2>
       <Position3>
         <Filename Value="frm_main.pas"/>
-        <Caret Line="106" Column="15" TopLine="83"/>
+        <Caret Line="579" Column="48" TopLine="568"/>
       </Position3>
       <Position4>
-        <Filename Value="frm_main.pas"/>
-        <Caret Line="779" Column="12" TopLine="768"/>
-      </Position4>
-      <Position5>
-        <Filename Value="frm_main.pas"/>
-        <Caret Line="779" Column="12" TopLine="747"/>
-      </Position5>
-      <Position6>
-        <Filename Value="frm_main.pas"/>
-        <Caret Line="766" Column="81" TopLine="726"/>
-      </Position6>
-      <Position7>
-        <Filename Value="frm_main.pas"/>
-        <Caret Line="579" Column="48" TopLine="568"/>
-      </Position7>
-      <Position8>
         <Filename Value="frm_pedidosae.pas"/>
         <Caret Line="17" Column="3" TopLine="3"/>
-      </Position8>
-      <Position9>
+      </Position4>
+      <Position5>
         <Filename Value="frm_pedidosae.pas"/>
         <Caret Line="213" Column="35" TopLine="203"/>
+      </Position5>
+      <Position6>
+        <Filename Value="dmpedidos.pas"/>
+        <Caret Line="632" Column="36" TopLine="605"/>
+      </Position6>
+      <Position7>
+        <Filename Value="dmpedidos.pas"/>
+        <Caret Line="517" TopLine="516"/>
+      </Position7>
+      <Position8>
+        <Filename Value="dmpedidos.pas"/>
+      </Position8>
+      <Position9>
+        <Filename Value="dmpedidos.pas"/>
+        <Caret Line="248" Column="30" TopLine="224"/>
       </Position9>
       <Position10>
         <Filename Value="dmpedidos.pas"/>
-        <Caret Line="632" Column="36" TopLine="605"/>
+        <Caret Line="295" Column="36" TopLine="271"/>
       </Position10>
       <Position11>
         <Filename Value="dmpedidos.pas"/>
-        <Caret Line="517" TopLine="516"/>
+        <Caret Line="371" Column="37" TopLine="347"/>
       </Position11>
       <Position12>
         <Filename Value="dmpedidos.pas"/>
+        <Caret Line="375" Column="32" TopLine="351"/>
       </Position12>
       <Position13>
         <Filename Value="dmpedidos.pas"/>
-        <Caret Line="248" Column="30" TopLine="224"/>
+        <Caret Line="419" Column="33" TopLine="395"/>
       </Position13>
       <Position14>
-        <Filename Value="dmpedidos.pas"/>
-        <Caret Line="295" Column="36" TopLine="271"/>
-      </Position14>
-      <Position15>
-        <Filename Value="dmpedidos.pas"/>
-        <Caret Line="371" Column="37" TopLine="347"/>
-      </Position15>
-      <Position16>
-        <Filename Value="dmpedidos.pas"/>
-        <Caret Line="375" Column="32" TopLine="351"/>
-      </Position16>
-      <Position17>
-        <Filename Value="dmpedidos.pas"/>
-        <Caret Line="419" Column="33" TopLine="395"/>
-      </Position17>
-      <Position18>
         <Filename Value="frm_pedidosae.pas"/>
         <Caret Line="213" Column="35" TopLine="203"/>
-      </Position18>
-      <Position19>
+      </Position14>
+      <Position15>
         <Filename Value="frm_pedidosae.pas"/>
-      </Position19>
-      <Position20>
+      </Position15>
+      <Position16>
         <Filename Value="dmgeneral.pas"/>
         <Caret Line="517" Column="117" TopLine="498"/>
+      </Position16>
+      <Position17>
+        <Filename Value="frm_main.pas"/>
+        <Caret Line="579" Column="48" TopLine="568"/>
+      </Position17>
+      <Position18>
+        <Filename Value="frm_main.pas"/>
+        <Caret Line="256" Column="3" TopLine="254"/>
+      </Position18>
+      <Position19>
+        <Filename Value="frm_main.pas"/>
+      </Position19>
+      <Position20>
+        <Filename Value="frm_main.pas"/>
+        <Caret Line="57" Column="11" TopLine="34"/>
       </Position20>
       <Position21>
         <Filename Value="frm_main.pas"/>
-        <Caret Line="579" Column="48" TopLine="568"/>
+        <Caret Line="58" Column="15" TopLine="35"/>
       </Position21>
       <Position22>
         <Filename Value="frm_main.pas"/>
-        <Caret Line="256" Column="3" TopLine="254"/>
+        <Caret Line="150" Column="25" TopLine="127"/>
       </Position22>
       <Position23>
         <Filename Value="frm_main.pas"/>
+        <Caret Line="204" Column="23" TopLine="180"/>
       </Position23>
       <Position24>
         <Filename Value="frm_main.pas"/>
-        <Caret Line="57" Column="11" TopLine="34"/>
+        <Caret Line="679" Column="11" TopLine="667"/>
       </Position24>
       <Position25>
-        <Filename Value="frm_main.pas"/>
-        <Caret Line="58" Column="15" TopLine="35"/>
-      </Position25>
-      <Position26>
-        <Filename Value="frm_main.pas"/>
-        <Caret Line="150" Column="25" TopLine="127"/>
-      </Position26>
-      <Position27>
-        <Filename Value="frm_main.pas"/>
-        <Caret Line="204" Column="23" TopLine="180"/>
-      </Position27>
-      <Position28>
-        <Filename Value="frm_main.pas"/>
-        <Caret Line="679" Column="11" TopLine="667"/>
-      </Position28>
-      <Position29>
         <Filename Value="frm_modificarprecios.pas"/>
         <Caret Line="17" Column="14" TopLine="3"/>
-      </Position29>
-      <Position30>
+      </Position25>
+      <Position26>
         <Filename Value="frm_modificarprecios.pas"/>
         <Caret Line="110" Column="26" TopLine="91"/>
+      </Position26>
+      <Position27>
+        <Filename Value="frm_pedidosae.pas"/>
+        <Caret Line="142" TopLine="135"/>
+      </Position27>
+      <Position28>
+        <Filename Value="frm_pedidosae.pas"/>
+        <Caret Line="205" Column="3" TopLine="202"/>
+      </Position28>
+      <Position29>
+        <Filename Value="dmpedidos.pas"/>
+        <Caret Line="619" Column="3" TopLine="512"/>
+      </Position29>
+      <Position30>
+        <Filename Value="dmpedidos.pas"/>
+        <Caret Line="13" Column="20"/>
       </Position30>
     </JumpHistory>
   </ProjectSession>

@@ -1,0 +1,95 @@
+object DM_PlanDeCuentas: TDM_PlanDeCuentas
+  OnCreate = DataModuleCreate
+  OldCreateOrder = False
+  Height = 470
+  HorizontalOffset = 509
+  VerticalOffset = 120
+  Width = 518
+  object qPlanDeCuentas: TZQuery
+    Connection = DM_General.cnxBase
+    SQL.Strings = (
+      'select *'
+      'from PlanDeCuentas'
+      'WHERE (bVisible =1)'
+    )
+    Params = <>
+    left = 56
+    top = 136
+    object qPlanDeCuentasID: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'ID'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object qPlanDeCuentasCODIGO: TStringField
+      DisplayWidth = 40
+      FieldKind = fkData
+      FieldName = 'CODIGO'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 40
+    end
+    object qPlanDeCuentasCUENTA: TStringField
+      DisplayWidth = 200
+      FieldKind = fkData
+      FieldName = 'CUENTA'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 200
+    end
+    object qPlanDeCuentasOPERACION: TStringField
+      DisplayWidth = 4
+      FieldKind = fkData
+      FieldName = 'OPERACION'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 4
+    end
+    object qPlanDeCuentasPORCIVA: TFloatField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'PORCIVA'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object qPlanDeCuentasBVISIBLE: TSmallintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'BVISIBLE'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object qPlanDeCuentasCUENTAPADRE_ID: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'CUENTAPADRE_ID'
+      Index = 6
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+  end
+end

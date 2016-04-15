@@ -14,7 +14,9 @@ type
   { TfrmMain }
 
   TfrmMain = class(TForm)
+    lisPlanDeCuentas: TAction;
     MenuItem24: TMenuItem;
+    MenuItem25: TMenuItem;
     movVentasSinFacturar: TAction;
     MenuItem23: TMenuItem;
     movVerBorrarAsientosManuales: TAction;
@@ -76,6 +78,7 @@ type
     procedure cliEditarExecute(Sender: TObject);
     procedure factImpresionExecute(Sender: TObject);
     procedure FormShow(Sender: TObject);
+    procedure lisPlanDeCuentasExecute(Sender: TObject);
     procedure lstCuentaCorrienteExecute(Sender: TObject);
     procedure movAsientoManualInsExecute(Sender: TObject);
     procedure movCompraEditarExecute(Sender: TObject);
@@ -124,6 +127,7 @@ uses
   , frm_asientomanualae
   , frm_listadoasientosmanuales
   , frm_ventassinfacturar
+  , frm_plandecuentaslistado
   ;
 
 { TfrmMain }
@@ -459,6 +463,17 @@ begin
   end;
 end;
 
+procedure TfrmMain.lisPlanDeCuentasExecute(Sender: TObject);
+var
+ pant: TfrmPlanDeCuentasListado;
+begin
+  pant:= TfrmPlanDeCuentasListado.Create(self);
+  try
+    pant.ShowModal;
+  finally
+    pant.Free;
+  end;
+end;
 
 
 end.

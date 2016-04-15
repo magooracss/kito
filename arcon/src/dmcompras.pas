@@ -104,12 +104,10 @@ type
     qItemsCompraMONTOUNITARIO: TFloatField;
     qPlanDeCuentas: TZQuery;
     qPlanDeCuentasBVISIBLE: TSmallintField;
-    qPlanDeCuentasCODIGO: TStringField;
     qPlanDeCuentasCUENTA: TStringField;
     qPlanDeCuentasGRUPO: TLongintField;
     qPlanDeCuentasID: TLongintField;
-    qPlanDeCuentasOPERACION: TStringField;
-    qPlanDeCuentasPORCIVA: TFloatField;
+    qPlanDeCuentasNOMBRE: TStringField;
     qPlazosPagoBVISIBLE: TSmallintField;
     qPlazosPagoID: TLongintField;
     qPlazosPagoPLAZOPAGO: TStringField;

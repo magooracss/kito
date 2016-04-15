@@ -638,69 +638,45 @@ object DM_Compras: TDM_Compras
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
-      Required = False
+      Required = True
     end
-    object qPlanDeCuentasCODIGO: TStringField
-      DisplayWidth = 40
+    object qPlanDeCuentasCUENTA: TStringField
+      DisplayWidth = 60
       FieldKind = fkData
-      FieldName = 'CODIGO'
+      FieldName = 'CUENTA'
       Index = 1
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
       Required = False
-      Size = 40
+      Size = 60
     end
-    object qPlanDeCuentasCUENTA: TStringField
-      DisplayWidth = 200
+    object qPlanDeCuentasNOMBRE: TStringField
+      DisplayWidth = 400
       FieldKind = fkData
-      FieldName = 'CUENTA'
+      FieldName = 'NOMBRE'
       Index = 2
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
       Required = False
-      Size = 200
-    end
-    object qPlanDeCuentasOPERACION: TStringField
-      DisplayWidth = 4
-      FieldKind = fkData
-      FieldName = 'OPERACION'
-      Index = 3
-      LookupCache = False
-      ProviderFlags = [pfInUpdate, pfInWhere]
-      ReadOnly = False
-      Required = False
-      Size = 4
-    end
-    object qPlanDeCuentasPORCIVA: TFloatField
-      DisplayWidth = 10
-      FieldKind = fkData
-      FieldName = 'PORCIVA'
-      Index = 4
-      LookupCache = False
-      ProviderFlags = [pfInUpdate, pfInWhere]
-      ReadOnly = False
-      Required = False
-      MaxValue = 0
-      MinValue = 0
-      Precision = 2
-    end
-    object qPlanDeCuentasBVISIBLE: TSmallintField
-      DisplayWidth = 10
-      FieldKind = fkData
-      FieldName = 'BVISIBLE'
-      Index = 5
-      LookupCache = False
-      ProviderFlags = [pfInUpdate, pfInWhere]
-      ReadOnly = False
-      Required = False
+      Size = 400
     end
     object qPlanDeCuentasGRUPO: TLongintField
       DisplayWidth = 10
       FieldKind = fkData
       FieldName = 'GRUPO'
-      Index = 6
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object qPlanDeCuentasBVISIBLE: TSmallintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'BVISIBLE'
+      Index = 4
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False

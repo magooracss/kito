@@ -1,0 +1,107 @@
+object frmPlanDeCuentasListado: TfrmPlanDeCuentasListado
+  Left = 398
+  Height = 536
+  Top = 90
+  Width = 598
+  Caption = 'Plan de Cuentas'
+  ClientHeight = 536
+  ClientWidth = 598
+  Font.CharSet = ANSI_CHARSET
+  Font.Height = -13
+  Font.Name = 'Arial'
+  Font.Pitch = fpVariable
+  Font.Quality = fqDraft
+  OnCreate = FormCreate
+  OnDestroy = FormDestroy
+  OnShow = FormShow
+  Position = poOwnerFormCenter
+  LCLVersion = '1.4.2.0'
+  object ZedDBTreeView1: TZedDBTreeView
+    Left = 0
+    Height = 390
+    Top = 0
+    Width = 598
+    Align = alClient
+    DefaultItemHeight = 18
+    HideSelection = False
+    TabOrder = 0
+    Options = [tvoAutoItemHeight, tvoKeepCollapsedNodes, tvoShowButtons, tvoShowLines, tvoShowRoot, tvoToolTips, tvoThemedDraw]
+    DataSource = ds_PlanDeCuentas
+    DBKeyField = 'ID'
+    DBTextField = 'CUENTA'
+    DBParentField = 'CUENTAPADRE_ID'
+  end
+  object Panel1: TPanel
+    Left = 0
+    Height = 96
+    Top = 390
+    Width = 598
+    Align = alBottom
+    ClientHeight = 96
+    ClientWidth = 598
+    TabOrder = 1
+    object GroupBox1: TGroupBox
+      Left = 1
+      Height = 94
+      Top = 1
+      Width = 596
+      Align = alClient
+      Caption = 'Detalles'
+      ClientHeight = 73
+      ClientWidth = 592
+      TabOrder = 0
+      object DBEdit1: TDBEdit
+        Left = 16
+        Height = 24
+        Top = 27
+        Width = 80
+        DataField = 'CODIGO'
+        DataSource = ds_PlanDeCuentas
+        CharCase = ecNormal
+        MaxLength = 0
+        TabOrder = 0
+      end
+      object DBEdit2: TDBEdit
+        Left = 112
+        Height = 24
+        Top = 27
+        Width = 464
+        DataField = 'CUENTA'
+        DataSource = ds_PlanDeCuentas
+        CharCase = ecNormal
+        MaxLength = 0
+        TabOrder = 1
+      end
+      object Label1: TLabel
+        Left = 16
+        Height = 16
+        Top = 7
+        Width = 40
+        Caption = 'Código'
+        ParentColor = False
+      end
+      object Label2: TLabel
+        Left = 112
+        Height = 16
+        Top = 7
+        Width = 41
+        Caption = 'Cuenta'
+        ParentColor = False
+      end
+    end
+  end
+  object Panel2: TPanel
+    Left = 0
+    Height = 50
+    Top = 486
+    Width = 598
+    Align = alBottom
+    TabOrder = 2
+  end
+  object ds_PlanDeCuentas: TDataSource
+    AutoEdit = False
+    DataSet = DM_PlanDeCuentas.qPlanDeCuentas
+    left = 117
+    top = 103
+  end
+end

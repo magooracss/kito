@@ -232,6 +232,12 @@ object frmMain: TfrmMain
       ImageIndex = 35
       OnExecute = movVentasSinFacturarExecute
     end
+    object lisPlanDeCuentas: TAction
+      Category = 'Listados'
+      Caption = 'Plan de Cuentas'
+      ImageIndex = 19
+      OnExecute = lisPlanDeCuentasExecute
+    end
   end
   object MainMenu1: TMainMenu
     Images = DM_General.ImgAccionesMenu
@@ -307,6 +313,9 @@ object frmMain: TfrmMain
       Caption = 'Listados'
       object MenuItem10: TMenuItem
         Action = lstCuentaCorriente
+      end
+      object MenuItem25: TMenuItem
+        Action = lisPlanDeCuentas
       end
     end
   end

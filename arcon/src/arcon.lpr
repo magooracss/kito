@@ -7,7 +7,7 @@ uses
   cthreads,
   {$ENDIF}{$ENDIF}
   Interfaces, // this includes the LCL widgetset
-  Forms, rxnew, datetimectrls, rx, zcomponent, frm_main, dmgeneral
+  Forms, zedlib, rxnew, datetimectrls, rx, zcomponent, frm_main, dmgeneral
   ,frm_ventaae, dmventas
   { you can add units after this }
   , dmclientes, dmempresa, dmseleccionarpedidos, frm_seleccionarpedidos,
@@ -18,7 +18,8 @@ uses
   frm_busquedacompras, frm_formaspagoae, dmcompensaciones,
   frm_distribuirdinerocomprobantes, frm_listadocc, dmcuentacorriente, 
 frm_asientomanualae, dmasientomanual, frm_listadoasientosmanuales, 
-frm_ventassinfacturar, dmventasSinFacturar;
+frm_ventassinfacturar, dmventasSinFacturar, dmplandecuentas, 
+frm_plandecuentaslistado;
 
 {$R *.res}
 
