@@ -1,0 +1,107 @@
+/*  Versión Kito: 0-17  */
+
+
+CREATE Table HistoDB
+(
+  id 		integer not null primary key
+, version	integer default -1
+, exe_ver	integer default -1
+, exe_sub	integer default -1
+, fecha		timestamp default 'NOW'
+);
+
+CREATE GENERATOR histoDBID;
+
+SET GENERATOR histoDBID TO 0;
+
+INSERT INTO HistoDB (version, exe_ver, exe_sub) VALUES (2,2,5);
+
+CREATE TABLE RecibosInternos
+(
+  id		"guid"  NOT NULL PRIMARY KEY
+, numero	integer default -1
+, fecha		date	default "NOW"
+, monto		"money" 
+, cliente_id	"guid"
+, bAnulado	smallint default 0
+, bVisible	smallint default 1
+);
+
+CREATE TABLE RecibosIntConceptos
+(
+  id		"guid"	NOT NULL PRIMARY KEY
+, recibo_id	"guid"  NOT NULL
+, concepto	varchar (3000)
+, monto		"money"
+, pedido_id	"guid"
+, bVisible	smallint default 1
+);
+
+CREATE TABLE RecibosIntMontos
+(
+  id		"guid" NOT NULL PRIMARY KEY
+, recibo_id	"guid" NOT NULL
+, formaPago_id	integer default 0
+, bVisible	smallint default 1
+);
+
+CREATE TABLE FormasPago
+(
+  id		integer NOT NULL PRIMARY KEY
+, formaPago	varchr(50)
+, bEdit		smallint default 1
+, bVisible	smallint default 1
+);
+
+CREATE GENERATOR FormasPago;
+
+SET GENERATOR FormasPagoID TO Z;
+
+
+SET TERM ^ ;
+
+CREATE TRIGGER FormasPagoID FOR FormasPago
+BEFORE INSERT POSITION 0
+AS 
+BEGIN 
+    If (New.id = -1) then
+   New.id = GEN_ID(FormasPagoID,1);
+END^
+
+SET TERM ; ^  
+
+INSERT INTO FormasPago
+(id, formaPago, bEdit, bVisible)
+VALUES
+(0, 'Desconocido', 0 , 0);
+
+INSERT INTO FormasPago
+(id, formaPago, bEdit, bVisible)
+VALUES
+(1, 'Efectivo', 0 , 1);
+
+INSERT INTO FormasPago
+(id, formaPago, bEdit, bVisible)
+VALUES
+(2, 'Cheque', 0 , 1);
+
+INSERT INTO FormasPago
+(id, formaPago, bEdit, bVisible)
+VALUES
+(3, 'A cuenta', 0 , 1);
+
+INSERT INTO FormasPago
+(id, formaPago, bEdit, bVisible)
+VALUES
+(4, 'VISA', 1 , 1);
+
+INSERT INTO FormasPago
+(id, formaPago, bEdit, bVisible)
+VALUES
+(5, 'Mastercard', 1 , 1);
+
+
+
+
+
+

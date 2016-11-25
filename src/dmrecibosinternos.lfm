@@ -1,0 +1,270 @@
+object DM_RecibosInternos: TDM_RecibosInternos
+  OldCreateOrder = False
+  Height = 378
+  HorizontalOffset = 487
+  VerticalOffset = 151
+  Width = 407
+  object RecibosInternos: TRxMemoryData
+    FieldDefs = <    
+      item
+        Name = 'id'
+        DataType = ftString
+        Size = 38
+      end    
+      item
+        Name = 'numero'
+        DataType = ftInteger
+      end    
+      item
+        Name = 'fecha'
+        DataType = ftDateTime
+      end    
+      item
+        Name = 'Monto'
+        DataType = ftFloat
+      end    
+      item
+        Name = 'cliente_id'
+        DataType = ftString
+        Size = 38
+      end    
+      item
+        Name = 'bAnulado'
+        DataType = ftInteger
+      end    
+      item
+        Name = 'bVisible'
+        DataType = ftInteger
+      end>
+    PacketRecords = 0
+    left = 40
+    top = 24
+    object RecibosInternosid: TStringField
+      FieldKind = fkData
+      FieldName = 'id'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 38
+    end
+    object RecibosInternosnumero: TLongintField
+      FieldKind = fkData
+      FieldName = 'numero'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object RecibosInternosfecha: TDateTimeField
+      FieldKind = fkData
+      FieldName = 'fecha'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object RecibosInternosMonto: TFloatField
+      FieldKind = fkData
+      FieldName = 'Monto'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Currency = True
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object RecibosInternoscliente_id: TStringField
+      FieldKind = fkData
+      FieldName = 'cliente_id'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 38
+    end
+    object RecibosInternosbAnulado: TLongintField
+      FieldKind = fkData
+      FieldName = 'bAnulado'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object RecibosInternosbVisible: TLongintField
+      FieldKind = fkData
+      FieldName = 'bVisible'
+      Index = 6
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+  end
+  object RecibosIntCptos: TRxMemoryData
+    FieldDefs = <    
+      item
+        Name = 'id'
+        DataType = ftString
+        Size = 38
+      end    
+      item
+        Name = 'recibo_id'
+        DataType = ftString
+        Size = 38
+      end    
+      item
+        Name = 'concepto'
+        DataType = ftString
+        Size = 3000
+      end    
+      item
+        Name = 'monto'
+        DataType = ftFloat
+      end    
+      item
+        Name = 'pedido_id'
+        DataType = ftString
+        Size = 38
+      end    
+      item
+        Name = 'bVisible'
+        DataType = ftInteger
+      end>
+    PacketRecords = 0
+    left = 160
+    top = 24
+    object RecibosIntCptosid: TStringField
+      FieldKind = fkData
+      FieldName = 'id'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 38
+    end
+    object RecibosIntCptosrecibo_id: TStringField
+      FieldKind = fkData
+      FieldName = 'recibo_id'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 38
+    end
+    object RecibosIntCptosconcepto: TStringField
+      FieldKind = fkData
+      FieldName = 'concepto'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 3000
+    end
+    object RecibosIntCptosmonto: TFloatField
+      FieldKind = fkData
+      FieldName = 'monto'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Currency = True
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object RecibosIntCptospedido_id: TStringField
+      FieldKind = fkData
+      FieldName = 'pedido_id'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 38
+    end
+    object RecibosIntCptosbVisible: TLongintField
+      FieldKind = fkData
+      FieldName = 'bVisible'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+  end
+  object RecibosIntMontos: TRxMemoryData
+    FieldDefs = <    
+      item
+        Name = 'id'
+        DataType = ftString
+        Size = 38
+      end    
+      item
+        Name = 'recibo_id'
+        DataType = ftString
+        Size = 38
+      end    
+      item
+        Name = 'formaPago_id'
+        DataType = ftInteger
+      end    
+      item
+        Name = 'bVisible'
+        DataType = ftInteger
+      end>
+    PacketRecords = 0
+    left = 272
+    top = 24
+    object RecibosIntMontosid: TStringField
+      FieldKind = fkData
+      FieldName = 'id'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 38
+    end
+    object RecibosIntMontosrecibo_id: TStringField
+      FieldKind = fkData
+      FieldName = 'recibo_id'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 38
+    end
+    object RecibosIntMontosformaPago_id: TLongintField
+      FieldKind = fkData
+      FieldName = 'formaPago_id'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object RecibosIntMontosbVisible: TLongintField
+      FieldKind = fkData
+      FieldName = 'bVisible'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+  end
+end

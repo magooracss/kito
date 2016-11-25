@@ -1286,7 +1286,6 @@ object DM_General: TDM_General
     )
     TransactIsolationLevel = tiReadCommitted
     Port = 0
-    Database = 'C:\Dropbox\bak\Trabajo\Trabajo\Windows\kito\db\KITO.FDB'
     User = 'SYSDBA'
     Password = 'masterkey'
     Protocol = 'firebirdd-2.5'
