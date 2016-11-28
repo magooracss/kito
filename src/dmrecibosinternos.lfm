@@ -1,6 +1,6 @@
 object DM_RecibosInternos: TDM_RecibosInternos
   OldCreateOrder = False
-  Height = 378
+  Height = 434
   HorizontalOffset = 487
   VerticalOffset = 151
   Width = 407
@@ -33,9 +33,18 @@ object DM_RecibosInternos: TDM_RecibosInternos
         DataType = ftInteger
       end    
       item
+        Name = 'fAnulado'
+        DataType = ftDateTime
+      end    
+      item
+        Name = 'bCerrado'
+        DataType = ftInteger
+      end    
+      item
         Name = 'bVisible'
         DataType = ftInteger
       end>
+    AfterInsert = RecibosInternosAfterInsert
     PacketRecords = 0
     left = 40
     top = 24
@@ -99,10 +108,28 @@ object DM_RecibosInternos: TDM_RecibosInternos
       ReadOnly = False
       Required = False
     end
+    object RecibosInternosfAnulado: TDateTimeField
+      FieldKind = fkData
+      FieldName = 'fAnulado'
+      Index = 6
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object RecibosInternosbCerrado: TLongintField
+      FieldKind = fkData
+      FieldName = 'bCerrado'
+      Index = 7
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
     object RecibosInternosbVisible: TLongintField
       FieldKind = fkData
       FieldName = 'bVisible'
-      Index = 6
+      Index = 8
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
@@ -139,6 +166,7 @@ object DM_RecibosInternos: TDM_RecibosInternos
         Name = 'bVisible'
         DataType = ftInteger
       end>
+    AfterInsert = RecibosIntCptosAfterInsert
     PacketRecords = 0
     left = 160
     top = 24
@@ -222,9 +250,14 @@ object DM_RecibosInternos: TDM_RecibosInternos
         DataType = ftInteger
       end    
       item
+        Name = 'Monto'
+        DataType = ftFloat
+      end    
+      item
         Name = 'bVisible'
         DataType = ftInteger
       end>
+    AfterInsert = RecibosIntMontosAfterInsert
     PacketRecords = 0
     left = 272
     top = 24
@@ -257,14 +290,951 @@ object DM_RecibosInternos: TDM_RecibosInternos
       ReadOnly = False
       Required = False
     end
+    object RecibosIntMontosMonto: TFloatField
+      FieldKind = fkData
+      FieldName = 'Monto'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Currency = True
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
     object RecibosIntMontosbVisible: TLongintField
       FieldKind = fkData
       FieldName = 'bVisible'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+  end
+  object SELRecInt: TZQuery
+    Connection = DM_General.cnxBase
+    SQL.Strings = (
+      'SELECT *'
+      'FROM RecibosInternos'
+      'WHERE (id = :id)'
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'id'
+        ParamType = ptUnknown
+      end>
+    left = 40
+    top = 88
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'id'
+        ParamType = ptUnknown
+      end>
+    object SELRecIntID: TStringField
+      FieldKind = fkData
+      FieldName = 'ID'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      Size = 152
+    end
+    object SELRecIntNUMERO: TLongintField
+      FieldKind = fkData
+      FieldName = 'NUMERO'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object SELRecIntFECHA: TDateField
+      FieldKind = fkData
+      FieldName = 'FECHA'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object SELRecIntMONTO: TFloatField
+      FieldKind = fkData
+      FieldName = 'MONTO'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object SELRecIntCLIENTE_ID: TStringField
+      FieldKind = fkData
+      FieldName = 'CLIENTE_ID'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 152
+    end
+    object SELRecIntBANULADO: TSmallintField
+      FieldKind = fkData
+      FieldName = 'BANULADO'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object SELRecIntFANULADO: TDateField
+      FieldKind = fkData
+      FieldName = 'FANULADO'
+      Index = 6
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object SELRecIntBCERRADO: TSmallintField
+      FieldKind = fkData
+      FieldName = 'BCERRADO'
+      Index = 7
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object SELRecIntBVISIBLE: TSmallintField
+      FieldKind = fkData
+      FieldName = 'BVISIBLE'
+      Index = 8
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+  end
+  object INSRecInt: TZQuery
+    Connection = DM_General.cnxBase
+    SQL.Strings = (
+      'INSERT INTO RecibosInternos'
+      '(id, numero, fecha, monto, cliente_id, bAnulado, fAnulado, bCerrado, bVisible)'
+      'VALUES'
+      '(:id, :numero, :fecha, :monto, :cliente_id, :bAnulado, fAnulado, :bCerrado, :bVisible)'
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'id'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'numero'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'fecha'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'monto'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'cliente_id'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'bAnulado'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'bCerrado'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'bVisible'
+        ParamType = ptUnknown
+      end>
+    left = 40
+    top = 160
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'id'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'numero'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'fecha'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'monto'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'cliente_id'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'bAnulado'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'bCerrado'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'bVisible'
+        ParamType = ptUnknown
+      end>
+  end
+  object UPDRecInt: TZQuery
+    Connection = DM_General.cnxBase
+    SQL.Strings = (
+      'UPDATE RecibosInternos'
+      'SET'
+      '    numero = :numero'
+      ', fecha = :fecha'
+      ', monto = :monto'
+      ', cliente_id = :cliente_id'
+      ', bAnulado = :bAnulado'
+      ', fAnulado = :fAnulado'
+      ', bCerrado = :bCerrado'
+      ', bVisible  = :bVisible'
+      'WHERE id = :id'
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'numero'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'fecha'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'monto'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'cliente_id'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'bAnulado'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'fAnulado'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'bCerrado'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'bVisible'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'id'
+        ParamType = ptUnknown
+      end>
+    left = 40
+    top = 224
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'numero'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'fecha'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'monto'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'cliente_id'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'bAnulado'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'fAnulado'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'bCerrado'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'bVisible'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'id'
+        ParamType = ptUnknown
+      end>
+  end
+  object SELRecIntCptos: TZQuery
+    Connection = DM_General.cnxBase
+    SQL.Strings = (
+      'SELECT *'
+      'FROM RecibosIntConceptos'
+      'WHERE (id = :id)'
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'id'
+        ParamType = ptUnknown
+      end>
+    left = 160
+    top = 88
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'id'
+        ParamType = ptUnknown
+      end>
+    object SELRecIntCptosID: TStringField
+      FieldKind = fkData
+      FieldName = 'ID'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      Size = 152
+    end
+    object SELRecIntCptosRECIBO_ID: TStringField
+      FieldKind = fkData
+      FieldName = 'RECIBO_ID'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      Size = 152
+    end
+    object SELRecIntCptosCONCEPTO: TStringField
+      FieldKind = fkData
+      FieldName = 'CONCEPTO'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 12000
+    end
+    object SELRecIntCptosMONTO: TFloatField
+      FieldKind = fkData
+      FieldName = 'MONTO'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object SELRecIntCptosPEDIDO_ID: TStringField
+      FieldKind = fkData
+      FieldName = 'PEDIDO_ID'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 152
+    end
+    object SELRecIntCptosBVISIBLE: TSmallintField
+      FieldKind = fkData
+      FieldName = 'BVISIBLE'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+  end
+  object INSRecIntCptos: TZQuery
+    Connection = DM_General.cnxBase
+    SQL.Strings = (
+      'INSERT INTO RecibosIntConceptos'
+      '(id, recibo_id, concepto, monto, pedido_id, bVisible)'
+      'VALUES'
+      '(:id, :recibo_id, :concepto, :monto, :pedido_id, :bVisible)'
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'id'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'recibo_id'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'concepto'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'monto'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'pedido_id'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'bVisible'
+        ParamType = ptUnknown
+      end>
+    left = 160
+    top = 160
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'id'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'recibo_id'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'concepto'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'monto'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'pedido_id'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'bVisible'
+        ParamType = ptUnknown
+      end>
+  end
+  object UPDRecIntCptos: TZQuery
+    Connection = DM_General.cnxBase
+    SQL.Strings = (
+      'UPDATE RecibosIntConceptos'
+      'SET'
+      '  recibo_id = :recibo_id'
+      ', concepto = :concepto'
+      ', monto = :monto'
+      ', pedido_id = :pedido_id'
+      ', bVisible = :bVisible'
+      'WHERE id = :id'
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'recibo_id'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'concepto'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'monto'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'pedido_id'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'bVisible'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'id'
+        ParamType = ptUnknown
+      end>
+    left = 160
+    top = 224
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'recibo_id'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'concepto'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'monto'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'pedido_id'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'bVisible'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'id'
+        ParamType = ptUnknown
+      end>
+  end
+  object SELRecIntMontos: TZQuery
+    Connection = DM_General.cnxBase
+    SQL.Strings = (
+      'SELECT *'
+      'FROM RecibosIntMontos'
+      'WHERE (id = :id)'
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'id'
+        ParamType = ptUnknown
+      end>
+    left = 272
+    top = 88
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'id'
+        ParamType = ptUnknown
+      end>
+    object SELRecIntMontosID: TStringField
+      FieldKind = fkData
+      FieldName = 'ID'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      Size = 152
+    end
+    object SELRecIntMontosRECIBO_ID: TStringField
+      FieldKind = fkData
+      FieldName = 'RECIBO_ID'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      Size = 152
+    end
+    object SELRecIntMontosFORMAPAGO_ID: TLongintField
+      FieldKind = fkData
+      FieldName = 'FORMAPAGO_ID'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object SELRecIntMontosBVISIBLE: TSmallintField
+      FieldKind = fkData
+      FieldName = 'BVISIBLE'
       Index = 3
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
       Required = False
     end
+    object SELRecIntMontosMONTO: TFloatField
+      FieldKind = fkData
+      FieldName = 'MONTO'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+  end
+  object INSRecIntMontos: TZQuery
+    Connection = DM_General.cnxBase
+    SQL.Strings = (
+      'INSERT INTO RecibosIntMontos'
+      '(id, recibo_id, formaPago_id, monto, bVisible)'
+      'VALUES'
+      '(:id, :recibo_id, :formaPago_id, :monto, :bVisible)'
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'id'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'recibo_id'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'formaPago_id'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'monto'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'bVisible'
+        ParamType = ptUnknown
+      end>
+    left = 272
+    top = 160
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'id'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'recibo_id'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'formaPago_id'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'monto'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'bVisible'
+        ParamType = ptUnknown
+      end>
+  end
+  object UPDRecIntMontos: TZQuery
+    Connection = DM_General.cnxBase
+    SQL.Strings = (
+      'UPDATE RecibosIntMontos'
+      'SET'
+      '  recibo_id = :recibo_id'
+      ', formaPago = :formaPago'
+      ', monto = :monto'
+      ', bVisible = :bVisible'
+      'WHERE id = :id'
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'recibo_id'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'formaPago'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'monto'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'bVisible'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'id'
+        ParamType = ptUnknown
+      end>
+    left = 272
+    top = 224
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'recibo_id'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'formaPago'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'monto'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'bVisible'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'id'
+        ParamType = ptUnknown
+      end>
+  end
+  object LoadCptsByHeader: TZQuery
+    Connection = DM_General.cnxBase
+    SQL.Strings = (
+      'SELECT *'
+      'FROM RecibosIntConceptos'
+      'WHERE (bVisible = 1)'
+      '     and  (recibo_id = :recibo_id)'
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'recibo_id'
+        ParamType = ptUnknown
+      end>
+    left = 160
+    top = 296
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'recibo_id'
+        ParamType = ptUnknown
+      end>
+    object LoadCptsByHeaderID: TStringField
+      FieldKind = fkData
+      FieldName = 'ID'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      Size = 152
+    end
+    object LoadCptsByHeaderRECIBO_ID: TStringField
+      FieldKind = fkData
+      FieldName = 'RECIBO_ID'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      Size = 152
+    end
+    object LoadCptsByHeaderCONCEPTO: TStringField
+      FieldKind = fkData
+      FieldName = 'CONCEPTO'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 12000
+    end
+    object LoadCptsByHeaderMONTO: TFloatField
+      FieldKind = fkData
+      FieldName = 'MONTO'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Currency = True
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object LoadCptsByHeaderPEDIDO_ID: TStringField
+      FieldKind = fkData
+      FieldName = 'PEDIDO_ID'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 152
+    end
+    object LoadCptsByHeaderBVISIBLE: TSmallintField
+      FieldKind = fkData
+      FieldName = 'BVISIBLE'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+  end
+  object LoadMontosByHeader: TZQuery
+    Connection = DM_General.cnxBase
+    SQL.Strings = (
+      'SELECT *'
+      'FROM RecibosIntMontos'
+      'WHERE (bVisible = 1)'
+      '     and  (recibo_id = :recibo_id)'
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'recibo_id'
+        ParamType = ptUnknown
+      end>
+    left = 272
+    top = 296
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'recibo_id'
+        ParamType = ptUnknown
+      end>
+    object LoadMontosByHeaderID: TStringField
+      FieldKind = fkData
+      FieldName = 'ID'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      Size = 152
+    end
+    object LoadMontosByHeaderRECIBO_ID: TStringField
+      FieldKind = fkData
+      FieldName = 'RECIBO_ID'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      Size = 152
+    end
+    object LoadMontosByHeaderFORMAPAGO_ID: TLongintField
+      FieldKind = fkData
+      FieldName = 'FORMAPAGO_ID'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object LoadMontosByHeaderBVISIBLE: TSmallintField
+      FieldKind = fkData
+      FieldName = 'BVISIBLE'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+  end
+  object RecIntCancel: TZQuery
+    Connection = DM_General.cnxBase
+    SQL.Strings = (
+      'UPDATE RecibosInternos'
+      'SET bAnulado = 1'
+      '    , fAnulado = :fAnulado'
+      'WHERE id = :id'
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'fAnulado'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'id'
+        ParamType = ptUnknown
+      end>
+    left = 40
+    top = 296
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'fAnulado'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'id'
+        ParamType = ptUnknown
+      end>
   end
 end

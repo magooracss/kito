@@ -20,7 +20,7 @@
       <AutoIncrementBuild Value="True"/>
       <MajorVersionNr Value="2"/>
       <MinorVersionNr Value="6"/>
-      <BuildNr Value="84"/>
+      <BuildNr Value="85"/>
       <Language Value="040A"/>
       <StringTable Comments="Carlos Enrique Rodriguez / Magoo" CompanyName="RACSS Programación" LegalCopyright="Carlos Enrique Rodriguez - RACSS Programacion" ProductName="KITO" ProductVersion=""/>
     </VersionInfo>
@@ -462,6 +462,7 @@
         <Filename Value="dmrecibosinternos.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="DM_RecibosInternos"/>
+        <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
       </Unit58>
     </Units>

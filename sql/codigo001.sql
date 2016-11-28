@@ -3,7 +3,7 @@
 
 CREATE Table HistoDB
 (
-  id 		integer not null primary key
+  id 		integer default -1 not null primary key
 , version	integer default -1
 , exe_ver	integer default -1
 , exe_sub	integer default -1
@@ -20,10 +20,12 @@ CREATE TABLE RecibosInternos
 (
   id		"guid"  NOT NULL PRIMARY KEY
 , numero	integer default -1
-, fecha		date	default "NOW"
+, fecha		date	default 'NOW'
 , monto		"money" 
 , cliente_id	"guid"
 , bAnulado	smallint default 0
+, fAnulado	date	default 'NOW'
+, bCerrado	smallint default 0
 , bVisible	smallint default 1
 );
 
@@ -42,20 +44,21 @@ CREATE TABLE RecibosIntMontos
   id		"guid" NOT NULL PRIMARY KEY
 , recibo_id	"guid" NOT NULL
 , formaPago_id	integer default 0
+, monto		"money"
 , bVisible	smallint default 1
 );
 
 CREATE TABLE FormasPago
 (
   id		integer NOT NULL PRIMARY KEY
-, formaPago	varchr(50)
+, formaPago	varchar(50)
 , bEdit		smallint default 1
 , bVisible	smallint default 1
 );
 
-CREATE GENERATOR FormasPago;
+CREATE GENERATOR FormasPagoID;
 
-SET GENERATOR FormasPagoID TO Z;
+SET GENERATOR FormasPagoID TO 5;
 
 
 SET TERM ^ ;
@@ -99,9 +102,4 @@ INSERT INTO FormasPago
 (id, formaPago, bEdit, bVisible)
 VALUES
 (5, 'Mastercard', 1 , 1);
-
-
-
-
-
 
