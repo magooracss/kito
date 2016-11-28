@@ -29,6 +29,24 @@ CREATE TABLE RecibosInternos
 , bVisible	smallint default 1
 );
 
+CREATE GENERATOR RecibosInternosNro;
+
+SET GENERATOR RecibosInternosNro TO 0;
+
+
+SET TERM ^ ;
+
+CREATE TRIGGER RecibosInternosNro FOR RecibosInternos
+BEFORE INSERT POSITION 0
+AS 
+BEGIN 
+    If (New.numero = -1) then
+   New.numero = GEN_ID(recibosInternosNro,1);
+END^
+
+SET TERM ; ^  
+
+
 CREATE TABLE RecibosIntConceptos
 (
   id		"guid"	NOT NULL PRIMARY KEY
