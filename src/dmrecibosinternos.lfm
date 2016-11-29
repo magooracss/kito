@@ -1,9 +1,10 @@
 object DM_RecibosInternos: TDM_RecibosInternos
+  OnCreate = DataModuleCreate
   OldCreateOrder = False
   Height = 434
   HorizontalOffset = 487
   VerticalOffset = 151
-  Width = 407
+  Width = 572
   object RecibosInternos: TRxMemoryData
     FieldDefs = <    
       item
@@ -256,6 +257,11 @@ object DM_RecibosInternos: TDM_RecibosInternos
       item
         Name = 'bVisible'
         DataType = ftInteger
+      end    
+      item
+        Name = 'lxFormaCobro'
+        DataType = ftString
+        Size = 50
       end>
     AfterInsert = RecibosIntMontosAfterInsert
     PacketRecords = 0
@@ -311,6 +317,20 @@ object DM_RecibosInternos: TDM_RecibosInternos
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
       Required = False
+    end
+    object RecibosIntMontoslxFormaCobro: TStringField
+      FieldKind = fkLookup
+      FieldName = 'lxFormaCobro'
+      Index = 5
+      KeyFields = 'formaPago_id'
+      LookupCache = True
+      LookupDataSet = FormasPago
+      LookupKeyFields = 'ID'
+      LookupResultField = 'FORMAPAGO'
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 50
     end
   end
   object SELRecInt: TZQuery
@@ -427,7 +447,7 @@ object DM_RecibosInternos: TDM_RecibosInternos
       'INSERT INTO RecibosInternos'
       '(id, numero, fecha, monto, cliente_id, bAnulado, fAnulado, bCerrado, bVisible)'
       'VALUES'
-      '(:id, :numero, :fecha, :monto, :cliente_id, :bAnulado, fAnulado, :bCerrado, :bVisible)'
+      '(:id, :numero, :fecha, :monto, :cliente_id, :bAnulado, :fAnulado, :bCerrado, :bVisible)'
     )
     Params = <    
       item
@@ -458,6 +478,11 @@ object DM_RecibosInternos: TDM_RecibosInternos
       item
         DataType = ftUnknown
         Name = 'bAnulado'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'fAnulado'
         ParamType = ptUnknown
       end    
       item
@@ -501,6 +526,11 @@ object DM_RecibosInternos: TDM_RecibosInternos
       item
         DataType = ftUnknown
         Name = 'bAnulado'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'fAnulado'
         ParamType = ptUnknown
       end    
       item
@@ -998,7 +1028,7 @@ object DM_RecibosInternos: TDM_RecibosInternos
       'UPDATE RecibosIntMontos'
       'SET'
       '  recibo_id = :recibo_id'
-      ', formaPago = :formaPago'
+      ', formaPago_id = :formaPago_id'
       ', monto = :monto'
       ', bVisible = :bVisible'
       'WHERE id = :id'
@@ -1011,7 +1041,7 @@ object DM_RecibosInternos: TDM_RecibosInternos
       end    
       item
         DataType = ftUnknown
-        Name = 'formaPago'
+        Name = 'formaPago_id'
         ParamType = ptUnknown
       end    
       item
@@ -1039,7 +1069,7 @@ object DM_RecibosInternos: TDM_RecibosInternos
       end    
       item
         DataType = ftUnknown
-        Name = 'formaPago'
+        Name = 'formaPago_id'
         ParamType = ptUnknown
       end    
       item
@@ -1203,6 +1233,18 @@ object DM_RecibosInternos: TDM_RecibosInternos
       ReadOnly = False
       Required = False
     end
+    object LoadMontosByHeaderMONTO: TFloatField
+      FieldKind = fkData
+      FieldName = 'MONTO'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
   end
   object RecIntCancel: TZQuery
     Connection = DM_General.cnxBase
@@ -1236,5 +1278,204 @@ object DM_RecibosInternos: TDM_RecibosInternos
         Name = 'id'
         ParamType = ptUnknown
       end>
+  end
+  object DELRecIntCpto: TZQuery
+    Connection = DM_General.cnxBase
+    SQL.Strings = (
+      'DELETE FROM RecibosIntConceptos'
+      'WHERE (id = :id)'
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'id'
+        ParamType = ptUnknown
+      end>
+    left = 160
+    top = 368
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'id'
+        ParamType = ptUnknown
+      end>
+    object SELRecIntCptosID1: TStringField
+      FieldKind = fkData
+      FieldName = 'ID'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      Size = 152
+    end
+    object SELRecIntCptosRECIBO_ID1: TStringField
+      FieldKind = fkData
+      FieldName = 'RECIBO_ID'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      Size = 152
+    end
+    object SELRecIntCptosCONCEPTO1: TStringField
+      FieldKind = fkData
+      FieldName = 'CONCEPTO'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 12000
+    end
+    object SELRecIntCptosMONTO1: TFloatField
+      FieldKind = fkData
+      FieldName = 'MONTO'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object SELRecIntCptosPEDIDO_ID1: TStringField
+      FieldKind = fkData
+      FieldName = 'PEDIDO_ID'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 152
+    end
+    object SELRecIntCptosBVISIBLE1: TSmallintField
+      FieldKind = fkData
+      FieldName = 'BVISIBLE'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+  end
+  object FormasPago: TZTable
+    Connection = DM_General.cnxBase
+    Filter = 'bVisible = 1'
+    Filtered = True
+    Active = True
+    TableName = 'FORMASPAGO'
+    left = 432
+    top = 288
+    object FormasPagoID: TLongintField
+      FieldKind = fkData
+      FieldName = 'ID'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object FormasPagoFORMAPAGO: TStringField
+      FieldKind = fkData
+      FieldName = 'FORMAPAGO'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 200
+    end
+    object FormasPagoBEDIT: TSmallintField
+      FieldKind = fkData
+      FieldName = 'BEDIT'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object FormasPagoBVISIBLE: TSmallintField
+      FieldKind = fkData
+      FieldName = 'BVISIBLE'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+  end
+  object DELRecIntMonto: TZQuery
+    Connection = DM_General.cnxBase
+    SQL.Strings = (
+      'DELETE FROM RecibosIntMontos'
+      'WHERE (id = :id)'
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'id'
+        ParamType = ptUnknown
+      end>
+    left = 272
+    top = 368
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'id'
+        ParamType = ptUnknown
+      end>
+    object SELRecIntMontosID1: TStringField
+      FieldKind = fkData
+      FieldName = 'ID'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      Size = 152
+    end
+    object SELRecIntMontosRECIBO_ID1: TStringField
+      FieldKind = fkData
+      FieldName = 'RECIBO_ID'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      Size = 152
+    end
+    object SELRecIntMontosFORMAPAGO_ID1: TLongintField
+      FieldKind = fkData
+      FieldName = 'FORMAPAGO_ID'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object SELRecIntMontosBVISIBLE1: TSmallintField
+      FieldKind = fkData
+      FieldName = 'BVISIBLE'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object SELRecIntMontosMONTO1: TFloatField
+      FieldKind = fkData
+      FieldName = 'MONTO'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
   end
 end

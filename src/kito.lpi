@@ -20,7 +20,7 @@
       <AutoIncrementBuild Value="True"/>
       <MajorVersionNr Value="2"/>
       <MinorVersionNr Value="6"/>
-      <BuildNr Value="85"/>
+      <BuildNr Value="87"/>
       <Language Value="040A"/>
       <StringTable Comments="Carlos Enrique Rodriguez / Magoo" CompanyName="RACSS Programación" LegalCopyright="Carlos Enrique Rodriguez - RACSS Programacion" ProductName="KITO" ProductVersion=""/>
     </VersionInfo>
@@ -61,7 +61,7 @@
         <PackageName Value="LCL"/>
       </Item8>
     </RequiredPackages>
-    <Units Count="59">
+    <Units Count="62">
       <Unit0>
         <Filename Value="kito.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -465,6 +465,27 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
       </Unit58>
+      <Unit59>
+        <Filename Value="frm_recibointernoae.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmReciboInternoAE"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit59>
+      <Unit60>
+        <Filename Value="frm_recibointernoconcepto.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmRecIntConceptoAE"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit60>
+      <Unit61>
+        <Filename Value="frm_recibointernocobros.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmRecIntFormaCobro"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit61>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

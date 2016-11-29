@@ -14,7 +14,7 @@ object frmMain: TfrmMain
   Menu = MainMenu1
   OnShow = FormShow
   Position = poDesktopCenter
-  LCLVersion = '1.4.2.0'
+  LCLVersion = '1.6.0.4'
   object st: TStatusBar
     Left = 0
     Height = 23
@@ -110,6 +110,11 @@ object frmMain: TfrmMain
       Width = 10
       Caption = 'ToolButton11'
       Style = tbsSeparator
+    end
+    object ToolButton12: TToolButton
+      Left = 784
+      Top = 2
+      Action = recIntNew
     end
   end
   object Panel1: TPanel
@@ -549,6 +554,12 @@ object frmMain: TfrmMain
       Category = 'Dinero'
       Caption = 'Cuentas Corrientes'
       Hint = 'Muestra la pantalla de cuentas corrientes'
+    end
+    object recIntNew: TAction
+      Category = 'RecibosInternos'
+      Caption = 'Recibo'
+      Hint = 'Crea un nuevo recibo interno'
+      OnExecute = recIntNewExecute
     end
   end
   object MainMenu1: TMainMenu

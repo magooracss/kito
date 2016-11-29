@@ -1,0 +1,94 @@
+object frmRecIntFormaCobro: TfrmRecIntFormaCobro
+  Left = 410
+  Height = 161
+  Top = 267
+  Width = 511
+  Caption = 'Forma de Cobro'
+  ClientHeight = 161
+  ClientWidth = 511
+  Font.CharSet = ANSI_CHARSET
+  Font.Height = -13
+  Font.Name = 'Arial'
+  Font.Pitch = fpVariable
+  Font.Quality = fqDraft
+  Position = poOwnerFormCenter
+  LCLVersion = '1.6.0.4'
+  object BitBtn1: TBitBtn
+    Left = 16
+    Height = 30
+    Top = 103
+    Width = 112
+    Anchors = [akLeft, akBottom]
+    Default = True
+    DefaultCaption = True
+    Kind = bkOK
+    ModalResult = 1
+    TabOrder = 2
+  end
+  object BitBtn2: TBitBtn
+    Left = 372
+    Height = 30
+    Top = 103
+    Width = 115
+    Anchors = [akRight, akBottom]
+    Cancel = True
+    DefaultCaption = True
+    Kind = bkCancel
+    ModalResult = 2
+    TabOrder = 3
+  end
+  object DBLookupComboBox1: TDBLookupComboBox
+    Left = 16
+    Height = 24
+    Top = 40
+    Width = 292
+    DataField = 'formaPago_id'
+    DataSource = dsFormaCobro
+    KeyField = 'ID'
+    ListField = 'FORMAPAGO'
+    ListFieldIndex = 0
+    ListSource = ds_tugFormasPago
+    LookupCache = False
+    TabOrder = 0
+  end
+  object RxDBCurrEdit1: TRxDBCurrEdit
+    Left = 352
+    Height = 24
+    Top = 40
+    Width = 136
+    Alignment = taRightJustify
+    Enabled = False
+    MaxValue = 0
+    MinValue = 0
+    TabOrder = 1
+    Value = 0
+    DataField = 'Monto'
+    DataSource = dsFormaCobro
+  end
+  object Label1: TLabel
+    Left = 16
+    Height = 16
+    Top = 22
+    Width = 91
+    Caption = 'Forma de cobro'
+    ParentColor = False
+  end
+  object Label2: TLabel
+    Left = 352
+    Height = 16
+    Top = 22
+    Width = 36
+    Caption = 'Monto'
+    ParentColor = False
+  end
+  object dsFormaCobro: TDataSource
+    DataSet = DM_RecibosInternos.RecibosIntMontos
+    left = 200
+    top = 96
+  end
+  object ds_tugFormasPago: TDataSource
+    DataSet = DM_RecibosInternos.FormasPago
+    left = 288
+    top = 96
+  end
+end

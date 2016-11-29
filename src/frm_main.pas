@@ -15,6 +15,7 @@ type
   { TfrmMain }
 
   TfrmMain = class(TForm)
+    recIntNew: TAction;
     dinCC: TAction;
     dinFacturacion: TAction;
     HdRPresentar: TAction;
@@ -73,6 +74,7 @@ type
     MenuItem24: TMenuItem;
     ToolButton10: TToolButton;
     ToolButton11: TToolButton;
+    ToolButton12: TToolButton;
     ToolButton4: TToolButton;
     ToolButton5: TToolButton;
     ToolButton6: TToolButton;
@@ -151,6 +153,7 @@ type
     procedure provBorrarExecute(Sender: TObject);
     procedure provEditarExecute(Sender: TObject);
     procedure provNuevoExecute(Sender: TObject);
+    procedure recIntNewExecute(Sender: TObject);
     procedure stkEditarExecute(Sender: TObject);
     procedure stkNuevoExecute(Sender: TObject);
     procedure stkRecalcularTodoExecute(Sender: TObject);
@@ -212,6 +215,7 @@ uses
   ,frm_hojaderutapresentacion
   ,frm_hojaderutapresentarpedidos
   ,process
+  ,frm_recibointernoae
   ;
 
 { TfrmMain }
@@ -831,6 +835,23 @@ begin
   end
   else
    ShowMessage('No se encuentra el módulo de facturación: ' + archivo);
+end;
+
+
+(*******************************************************************************
+*** RECIBOS INTERNOS
+*******************************************************************************)
+
+procedure TfrmMain.recIntNewExecute(Sender: TObject);
+var
+ pant: TfrmReciboInternoAE;
+begin
+  pant:= TfrmReciboInternoAE.Create(self);
+  try
+    pant.ShowModal;
+  finally
+    pant.Free;
+  end;
 end;
 
 end.

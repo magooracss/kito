@@ -23,7 +23,8 @@ uses
   frm_hojaderutapedido, frm_busquedahojaderuta, dmbusquedahojaderuta, 
 frm_hojaderutapresentacion, dmhojaderutapresentacion, 
 frm_hojaderutapresentarpedidos, frm_hojaderutapresentarpedido,
-frm_seleccionmotivonoentrega, dmrecibosinternos;
+frm_seleccionmotivonoentrega, dmrecibosinternos, frm_recibointernoae, 
+frm_recibointernoconcepto, frm_recibointernocobros;
 
 {$R *.res}
 

@@ -41,6 +41,13 @@ const
   INC_PEDIDOS = 3;
   INC_ASIENTOSMANUALES = 4;
 
+
+
+  //Formas de Cobro fijas
+  FC_EFECTIVO = 1;
+  FC_CHEQUE = 2;
+  FC_CUENTA_CORRIENTE = 3;
+
 type
 
   GUID_ID = string[38];
