@@ -1,9 +1,9 @@
 object DM_RecibosInternos: TDM_RecibosInternos
   OnCreate = DataModuleCreate
   OldCreateOrder = False
-  Height = 434
-  HorizontalOffset = 487
-  VerticalOffset = 151
+  Height = 500
+  HorizontalOffset = 462
+  VerticalOffset = 83
   Width = 572
   object RecibosInternos: TRxMemoryData
     FieldDefs = <    
@@ -44,6 +44,11 @@ object DM_RecibosInternos: TDM_RecibosInternos
       item
         Name = 'bVisible'
         DataType = ftInteger
+      end    
+      item
+        Name = 'lxCliente'
+        DataType = ftString
+        Size = 500
       end>
     AfterInsert = RecibosInternosAfterInsert
     PacketRecords = 0
@@ -135,6 +140,16 @@ object DM_RecibosInternos: TDM_RecibosInternos
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
       Required = False
+    end
+    object RecibosInternoslxCliente: TStringField
+      FieldKind = fkData
+      FieldName = 'lxCliente'
+      Index = 9
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 500
     end
   end
   object RecibosIntCptos: TRxMemoryData
@@ -1365,7 +1380,6 @@ object DM_RecibosInternos: TDM_RecibosInternos
     Connection = DM_General.cnxBase
     Filter = 'bVisible = 1'
     Filtered = True
-    Active = True
     TableName = 'FORMASPAGO'
     left = 432
     top = 288
@@ -1477,5 +1491,20 @@ object DM_RecibosInternos: TDM_RecibosInternos
       MinValue = 0
       Precision = 2
     end
+  end
+  object frDBRecibosInternos: TfrDBDataSet
+    DataSet = RecibosInternos
+    left = 40
+    top = 445
+  end
+  object frDBRecIntConceptos: TfrDBDataSet
+    DataSet = RecibosIntCptos
+    left = 160
+    top = 445
+  end
+  object frDBMontos: TfrDBDataSet
+    DataSet = RecibosIntMontos
+    left = 272
+    top = 445
   end
 end

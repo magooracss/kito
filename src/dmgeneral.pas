@@ -22,6 +22,7 @@ const
   _PRN_ANEXO_ = 'anexo.lrf';
   _PRN_ORDENPAGO_ = 'ordenpago.lrf';
   _PRN_EGRESOSVARIOS_ = 'egresosvarios.lrf';
+  _PRN_RECIBOS_INTERNO_ = 'recinterno.lrf';
 
   _VAL_IVA = 'IVA';
   _VAL_IMP_CMPR = 'IMP_CMPRAS';

@@ -5,7 +5,7 @@ unit dmrecibosinternos;
 interface
 
 uses
-  Classes, SysUtils, db, FileUtil, rxmemds, ZDataset
+  Classes, SysUtils, db, FileUtil, rxmemds, LR_DBSet, ZDataset
   , dmgeneral;
 
 type
@@ -17,6 +17,9 @@ type
     FormasPagoBVISIBLE: TSmallintField;
     FormasPagoFORMAPAGO: TStringField;
     FormasPagoID: TLongintField;
+    frDBRecibosInternos: TfrDBDataSet;
+    frDBRecIntConceptos: TfrDBDataSet;
+    frDBMontos: TfrDBDataSet;
     INSRecIntCptos: TZQuery;
     INSRecIntMontos: TZQuery;
     LoadCptsByHeaderBVISIBLE: TSmallintField;
@@ -46,6 +49,7 @@ type
     RecibosInternosfAnulado: TDateTimeField;
     RecibosInternosfecha: TDateTimeField;
     RecibosInternosid: TStringField;
+    RecibosInternoslxCliente: TStringField;
     RecibosInternosMonto: TFloatField;
     RecibosInternosnumero: TLongintField;
     RecibosIntMontos: TRxMemoryData;
@@ -109,6 +113,7 @@ type
     procedure Edit(refID: GUID_ID);
     procedure Cancel (refID: GUID_ID; fAnulado: TDate);//Anula un recibo y le pone fecha de anulación
     procedure Save;
+    procedure Print(refID: GUID_ID);
     procedure InsertHeader (fecha: TDate; monto: double; cliente: GUID_ID; Cerrado: Word);
     procedure InsertConcept (concepto: string; monto: double; pedido: GUID_ID);
     procedure InsertAmount (formaPago: integer; monto: double);
@@ -125,8 +130,12 @@ var
   DM_RecibosInternos: TDM_RecibosInternos;
 
 implementation
-
 {$R *.lfm}
+uses
+  dmclientes
+  ,Num2Letra
+  ;
+
 
 { TDM_RecibosInternos }
 
@@ -168,6 +177,8 @@ begin
 end;
 
 procedure TDM_RecibosInternos.LoadReciboInterno(refID: GUID_ID);
+var
+  DMcli: TDM_Clientes;
 begin
   DM_General.ReiniciarTabla(RecibosInternos);
   DM_General.ReiniciarTabla(RecibosIntCptos);
@@ -181,6 +192,17 @@ begin
     RecibosInternos.LoadFromDataSet(SELRecInt, 0, lmAppend);
     Close;
   end;
+
+  DMcli:= TDM_Clientes.Create(self);
+  try
+    DMcli.Editar(RecibosInternoscliente_id.AsString);
+    RecibosInternos.Edit;
+    RecibosInternoslxCliente.AsString:= DMcli.RazonSocial;
+    RecibosInternos.Post;
+  finally
+    DMcli.Free;
+  end;
+
 
   with LoadCptsByHeader do
   begin
@@ -240,6 +262,14 @@ begin
   except
     DM_General.cnxBase.Rollback;
   end;
+end;
+
+procedure TDM_RecibosInternos.Print(refID: GUID_ID);
+begin
+  Edit(refID);
+  DM_General.LevantarReporte(_PRN_RECIBOS_INTERNO_, RecibosInternos);
+  DM_General.AgregarVariableReporte('NRO_LETRAS', NumeroToLetra(RecibosInternosMonto.AsFloat) );
+  DM_General.EditarReporte;
 end;
 
 procedure TDM_RecibosInternos.InsertHeader(fecha: TDate; monto: double;

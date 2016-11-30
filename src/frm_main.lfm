@@ -557,7 +557,7 @@ object frmMain: TfrmMain
     end
     object recIntNew: TAction
       Category = 'RecibosInternos'
-      Caption = 'Recibo'
+      Caption = 'Nuevo Recibo'
       Hint = 'Crea un nuevo recibo interno'
       OnExecute = recIntNewExecute
     end

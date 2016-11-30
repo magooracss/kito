@@ -21,7 +21,7 @@ type
     btnQuitarConcepto: TBitBtn;
     btnBuscarCliente: TBitBtn;
     btnQuitarMonto: TBitBtn;
-    btnSave1: TBitBtn;
+    btnPrint: TBitBtn;
     btnExit: TBitBtn;
     ds_recInt: TDataSource;
     ds_recIntCpts: TDataSource;
@@ -54,6 +54,7 @@ type
     procedure btnExitClick(Sender: TObject);
     procedure btnQuitarMontoClick(Sender: TObject);
     procedure btnQuitarConceptoClick(Sender: TObject);
+    procedure btnPrintClick(Sender: TObject);
     procedure btnSaveClick(Sender: TObject);
     procedure DBEdit1Change(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -92,8 +93,10 @@ procedure TfrmReciboInternoAE.FormCreate(Sender: TObject);
 begin
   Inicializar;
   NuevoRecibo;
-
+(*
   reciboIntDM.Edit('{D3726E9D-7226-49BA-B26B-FF208BD1CB54}');
+  edCliente.Text:= reciboIntDM.RecibosInternoslxCliente.AsString;
+*)
   CalcularTotales;
 end;
 
@@ -161,6 +164,28 @@ procedure TfrmReciboInternoAE.LevantarRecibo(var elRecibo: TDM_RecibosInternos);
 begin
   reciboIntDM:= elRecibo;
   btnBuscarCliente.Enabled:= False;
+  edCliente.Text:= reciboIntDM.RecibosInternoslxCliente.AsString;
+end;
+
+
+
+procedure TfrmReciboInternoAE.btnPrintClick(Sender: TObject);
+var
+  id: GUID_ID;
+begin
+  id:= reciboIntDM.RecibosInternosid.AsString;
+  reciboIntDM.Save;
+  reciboIntDM.Print(id);
+  reciboIntDM.Edit(id);
+end;
+
+procedure TfrmReciboInternoAE.btnSaveClick(Sender: TObject);
+var
+  id: GUID_ID;
+begin
+  id:= reciboIntDM.RecibosInternosid.AsString;
+  reciboIntDM.Save;
+  reciboIntDM.Edit(id);
 end;
 
 (*******************************************************************************
@@ -196,14 +221,6 @@ begin
   CalcularTotales;
 end;
 
-procedure TfrmReciboInternoAE.btnSaveClick(Sender: TObject);
-var
-  id: GUID_ID;
-begin
-  id:= reciboIntDM.RecibosInternosid.AsString;
-  reciboIntDM.Save;
-  reciboIntDM.Edit(id);
-end;
 
 (*******************************************************************************
 *** FORMAS DE COBRO

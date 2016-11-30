@@ -805,7 +805,7 @@ object frmReciboInternoAE: TfrmReciboInternoAE
       OnClick = btnSaveClick
       TabOrder = 0
     end
-    object btnSave1: TBitBtn
+    object btnPrint: TBitBtn
       Left = 200
       Height = 38
       Top = 8
@@ -847,6 +847,7 @@ object frmReciboInternoAE: TfrmReciboInternoAE
         FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
         FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00
       }
+      OnClick = btnPrintClick
       TabOrder = 1
     end
     object btnExit: TBitBtn
