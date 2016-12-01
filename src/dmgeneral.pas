@@ -80,6 +80,7 @@ type
   public
     procedure CargarComboBox (var elComboBox: TComboBox; campoVisible, campoIndice: string; var tablaRelleno: TZQuery);
     procedure CargarComboBoxTb (var elComboBox: TComboBox; campoVisible, campoIndice: string; var tablaRelleno: TRxMemoryData);
+    procedure CargarComboBoxTzb (var elComboBox: TComboBox; campoVisible, campoIndice: string; var tablaRelleno: TZTable);
     procedure CargarComboBoxRxTb (var elComboBox: TRxDBComboBox; campoVisible, campoIndice: string; var tablaRelleno: TRxMemoryData);
 
     function obtenerIdxCombo (var elComboBox: TComboBox; indice: integer): integer;
@@ -226,6 +227,25 @@ begin
   if elComboBox.Items.Count > 0 then
     elComboBox.ItemIndex:= 0;
 end;
+
+procedure TDM_General.CargarComboBoxTzb(var elComboBox: TComboBox;
+  campoVisible, campoIndice: string; var tablaRelleno: TZTable);
+begin
+ elComboBox.Items.Clear;
+ with tablaRelleno do
+ begin
+   if Active then close;
+   Open;
+   While Not EOF do
+   begin
+     elComboBox.Items.AddObject(FieldByName(campoVisible).asString, TObject(FieldByName (campoIndice).asInteger));
+     Next;
+   end;
+ end;
+ if elComboBox.Items.Count > 0 then
+  elComboBox.ItemIndex:= 0;
+end;
+
 
 procedure TDM_General.CargarComboBoxRxTb(var elComboBox: TRxDBComboBox;
   campoVisible, campoIndice: string; var tablaRelleno: TRxMemoryData);

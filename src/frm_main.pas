@@ -15,8 +15,9 @@ type
   { TfrmMain }
 
   TfrmMain = class(TForm)
+    MenuItem45: TMenuItem;
+    MenuItem46: TMenuItem;
     recIntNew: TAction;
-    dinCC: TAction;
     dinFacturacion: TAction;
     HdRPresentar: TAction;
     HdRModificar: TAction;
@@ -28,7 +29,6 @@ type
     MenuItem42: TMenuItem;
     MenuItem43: TMenuItem;
     MenuItem44: TMenuItem;
-    MenuItem45: TMenuItem;
     prgListados: TAction;
     MenuItem37: TMenuItem;
     OD: TOpenDialog;

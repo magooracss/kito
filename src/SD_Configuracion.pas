@@ -47,6 +47,9 @@ const
   LOCALIDAD = 'LOCALIDAD'; //Localidad por defecto para los domicilios
   CHK_REF_GRID = 'REFRESCAR_GRILLA';
 
+  CHK_ED_REC_INT = 'HDR_ED_RECIBOS';
+  CB_HDR_DEF_FP = 'HDR_FORMAPAGO';
+
 
 
   function AbrirArchivo: TIniFile;

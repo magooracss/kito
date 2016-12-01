@@ -15,7 +15,7 @@ object frmHdRPresentacionPedidos: TfrmHdRPresentacionPedidos
   OnDestroy = FormDestroy
   OnShow = FormShow
   Position = poOwnerFormCenter
-  LCLVersion = '1.4.0.4'
+  LCLVersion = '1.6.0.4'
   object Panel2: TPanel
     Left = 0
     Height = 50
@@ -146,7 +146,7 @@ object frmHdRPresentacionPedidos: TfrmHdRPresentacionPedidos
       ParentColor = False
     end
     object GroupBox1: TGroupBox
-      Left = 152
+      Left = 16
       Height = 88
       Top = 96
       Width = 440
@@ -199,6 +199,41 @@ object frmHdRPresentacionPedidos: TfrmHdRPresentacionPedidos
       DataField = 'Fecha'
       DataSource = ds_HDR
     end
+    object GroupBox2: TGroupBox
+      Left = 480
+      Height = 89
+      Top = 96
+      Width = 288
+      Caption = 'Cobros'
+      ClientHeight = 68
+      ClientWidth = 284
+      TabOrder = 4
+      object ckEditRecibosInternos: TCheckBox
+        Left = 8
+        Height = 20
+        Top = 0
+        Width = 189
+        Caption = 'Modificar los recibos internos'
+        TabOrder = 0
+      end
+      object cbFormaDePago: TComboBox
+        Left = 8
+        Height = 24
+        Top = 40
+        Width = 264
+        ItemHeight = 16
+        TabOrder = 1
+        Text = 'cbFormaDePago'
+      end
+      object Label4: TLabel
+        Left = 8
+        Height = 16
+        Top = 24
+        Width = 130
+        Caption = 'Asignar forma de pago'
+        ParentColor = False
+      end
+    end
   end
   object RxDBGrid1: TRxDBGrid
     Left = 0
@@ -212,8 +247,8 @@ object frmHdRPresentacionPedidos: TfrmHdRPresentacionPedidos
         ButtonStyle = cbsCheckboxColumn
         SizePriority = 0
         Title.Alignment = taCenter
-        Title.Caption = '*'
         Title.Orientation = toHorizontal
+        Title.Caption = '*'
         Width = 42
         FieldName = 'marca'
         EditButtons = <>
@@ -225,8 +260,8 @@ object frmHdRPresentacionPedidos: TfrmHdRPresentacionPedidos
       item
         SizePriority = 0
         Title.Alignment = taCenter
-        Title.Caption = 'Pedido'
         Title.Orientation = toHorizontal
+        Title.Caption = 'Pedido'
         Width = 120
         FieldName = 'nroPedido'
         EditButtons = <>
@@ -237,8 +272,8 @@ object frmHdRPresentacionPedidos: TfrmHdRPresentacionPedidos
       end    
       item
         Title.Alignment = taCenter
-        Title.Caption = 'Cliente'
         Title.Orientation = toHorizontal
+        Title.Caption = 'Cliente'
         Width = 249
         FieldName = 'cliente'
         EditButtons = <>
@@ -250,8 +285,8 @@ object frmHdRPresentacionPedidos: TfrmHdRPresentacionPedidos
       item
         SizePriority = 0
         Title.Alignment = taCenter
-        Title.Caption = 'Monto pedido'
         Title.Orientation = toHorizontal
+        Title.Caption = 'Monto pedido'
         Width = 120
         FieldName = 'montoPedido'
         EditButtons = <>
@@ -263,8 +298,8 @@ object frmHdRPresentacionPedidos: TfrmHdRPresentacionPedidos
       item
         SizePriority = 0
         Title.Alignment = taCenter
-        Title.Caption = 'Monto Cobrado'
         Title.Orientation = toHorizontal
+        Title.Caption = 'Monto Cobrado'
         Width = 120
         FieldName = 'montoCobrado'
         EditButtons = <>
@@ -276,8 +311,8 @@ object frmHdRPresentacionPedidos: TfrmHdRPresentacionPedidos
       item
         SizePriority = 0
         Title.Alignment = taCenter
-        Title.Caption = 'Estado'
         Title.Orientation = toHorizontal
+        Title.Caption = 'Estado'
         Width = 132
         FieldName = 'lxEstado'
         EditButtons = <>

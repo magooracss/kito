@@ -550,11 +550,6 @@ object frmMain: TfrmMain
       ImageIndex = 32
       OnExecute = dinFacturacionExecute
     end
-    object dinCC: TAction
-      Category = 'Dinero'
-      Caption = 'Cuentas Corrientes'
-      Hint = 'Muestra la pantalla de cuentas corrientes'
-    end
     object recIntNew: TAction
       Category = 'RecibosInternos'
       Caption = 'Nuevo Recibo'
@@ -694,11 +689,14 @@ object frmMain: TfrmMain
     end
     object MenuItem43: TMenuItem
       Caption = 'Dinero'
-      object MenuItem44: TMenuItem
-        Action = dinFacturacion
+      object MenuItem46: TMenuItem
+        Action = recIntNew
       end
       object MenuItem45: TMenuItem
-        Action = dinCC
+        Caption = '-'
+      end
+      object MenuItem44: TMenuItem
+        Action = dinFacturacion
       end
     end
   end

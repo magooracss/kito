@@ -7,7 +7,7 @@ interface
 uses
   Classes, SysUtils, db, FileUtil, DBDateTimePicker, dbdateedit, rxdbgrid,
   Forms, Controls, Graphics, Dialogs, ExtCtrls, Buttons, StdCtrls, DbCtrls,
-  DBExtCtrls, DBGrids, Menus, dmgeneral
+  DBExtCtrls, DBGrids, Menus, dmgeneral, dmrecibosinternos
   ;
 
 type
@@ -19,6 +19,8 @@ type
     btnNoEntregado: TBitBtn;
     btnEntregaParcial: TBitBtn;
     btnSalir: TBitBtn;
+    ckEditRecibosInternos: TCheckBox;
+    cbFormaDePago: TComboBox;
     DBDateEdit1: TDBDateEdit;
     DBEdit1: TDBEdit;
     DBText1: TDBText;
@@ -26,9 +28,11 @@ type
     ds_PresentacionPedidos: TDataSource;
     edTransportista: TEdit;
     GroupBox1: TGroupBox;
+    GroupBox2: TGroupBox;
     Label1: TLabel;
     Label2: TLabel;
     Label3: TLabel;
+    Label4: TLabel;
     MenuItem1: TMenuItem;
     Panel1: TPanel;
     Panel2: TPanel;
@@ -45,8 +49,10 @@ type
     procedure RxDBGrid1DblClick(Sender: TObject);
   private
     _idHojaDeRuta: GUID_ID;
+    dmRecInt: TDM_RecibosInternos;
 
     procedure Inicializar;
+    procedure Finalizar;
   public
     property idHojaDeRuta: GUID_ID write _idHojaDeRuta;
 
@@ -64,6 +70,7 @@ uses
   ,frm_seleccionmotivonoentrega
   ,frm_devolucionesae
   ,frm_hojaderutapresentarpedido
+  ,SD_Configuracion
   ;
 
 { TfrmHdRPresentacionPedidos }
@@ -72,6 +79,7 @@ procedure TfrmHdRPresentacionPedidos.FormCreate(Sender: TObject);
 begin
   _idHojaDeRuta:= GUIDNULO;
   Application.CreateForm(TDM_HojaDeRuta, DM_HojaDeRuta);
+  dmRecInt:= TDM_RecibosInternos.Create(self);
 end;
 
 procedure TfrmHdRPresentacionPedidos.btnSalirClick(Sender: TObject);
@@ -148,7 +156,9 @@ end;
 
 procedure TfrmHdRPresentacionPedidos.FormDestroy(Sender: TObject);
 begin
+  Finalizar;
   DM_HojaDeRuta.Free;
+  dmRecInt.Free;
 end;
 
 procedure TfrmHdRPresentacionPedidos.FormShow(Sender: TObject);
@@ -182,12 +192,39 @@ begin
 end;
 
 procedure TfrmHdRPresentacionPedidos.Inicializar;
+var
+  rta:string;
 begin
   DM_HojaDeRuta.Editar(_idHojaDeRuta);
   DM_Transportistas.Editar(DM_HojaDeRuta.HojaDeRutatransportista_id.AsString);
   edTransportista.Text:= DM_Transportistas.RazonSocial;
   DM_HojaDeRuta.HojaDeRuta.Edit;
   DM_HdRPresentacion.LevantarPedidosHdR(_idHojaDeRuta);
+
+  DM_General.CargarComboBoxTzb(cbFormaDePago, 'FormaPago', 'id', dmRecInt.FormasPago);
+
+  rta:= LeerDato(SECCION_APP,CHK_ED_REC_INT);
+  if rta = ERROR_CFG then
+  begin
+    rta:= '1';
+    EscribirDato(SECCION_APP,CHK_ED_REC_INT, rta);
+  end;
+  ckEditRecibosInternos.Checked:= (StrToIntDef (rta, 1) = 1);
+
+  rta:= LeerDato(SECCION_APP,CB_HDR_DEF_FP);
+  if rta = ERROR_CFG then
+  begin
+    rta:= '0';
+     EscribirDato(SECCION_APP,CB_HDR_DEF_FP, rta);
+  end;
+  cbFormaDePago.ItemIndex:= DM_General.obtenerIdxCombo(cbFormaDePago, StrToIntDef(rta, 0));
+
+end;
+
+procedure TfrmHdRPresentacionPedidos.Finalizar;
+begin
+  EscribirDato(SECCION_APP,CHK_ED_REC_INT, BoolToStr(ckEditRecibosInternos.Checked, '1', '0'));
+  EscribirDato(SECCION_APP,CB_HDR_DEF_FP, IntToStr(DM_General.obtenerIDIntComboBox(cbFormaDePago)));
 end;
 
 
