@@ -389,6 +389,8 @@ begin
     if bArtSonBultos then
       HojaDeRutaDetallesbultos.AsInteger:= DM_Pedidos.CantidadArticulosPedido;
     HojaDeRutaDetallesmontoCobrar.AsFloat:= DM_Pedidos.PedidosTotalPedido.AsFloat;
+    //Por defecto se cobra todo lo presentado
+    HojaDeRutaDetallesmontoCobrado.asFloat:= DM_Pedidos.PedidosTotalPedido.AsFloat;
     HojaDeRutaDetalleslxCliente.AsString:= DM_Clientes.RazonSocial;
     HojaDeRutaDetallesclienteDireccion_id.AsString:= DM_Empresa.Domiciliosid.AsString;
     HojaDeRutaDetalleslxClienteDir.AsString:= DM_Clientes.Domicilio;

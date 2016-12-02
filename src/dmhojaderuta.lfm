@@ -18,7 +18,6 @@ object DM_HojaDeRuta: TDM_HojaDeRuta
         Name = 'numero'
         DataType = ftInteger
         Precision = -1
-        Size = 0
       end    
       item
         Name = 'transportista_id'
@@ -30,37 +29,29 @@ object DM_HojaDeRuta: TDM_HojaDeRuta
         Name = 'Fecha'
         DataType = ftDateTime
         Precision = -1
-        Size = 0
       end    
       item
         Name = 'bAnulada'
         DataType = ftInteger
         Precision = -1
-        Size = 0
       end    
       item
         Name = 'fAnulada'
         DataType = ftDateTime
         Precision = -1
-        Size = 0
       end    
       item
         Name = 'bVisible'
         DataType = ftInteger
         Precision = -1
-        Size = 0
       end    
       item
         Name = 'Estado'
         DataType = ftInteger
-        Precision = 0
-        Size = 0
       end    
       item
         Name = 'fPresentada'
         DataType = ftDateTime
-        Precision = 0
-        Size = 0
       end>
     AfterInsert = HojaDeRutaAfterInsert
     PacketRecords = 0
@@ -164,109 +155,81 @@ object DM_HojaDeRuta: TDM_HojaDeRuta
       item
         Name = 'id'
         DataType = ftString
-        Precision = 0
         Size = 38
       end    
       item
         Name = 'hojaDeRuta_id'
         DataType = ftString
-        Precision = 0
         Size = 38
       end    
       item
         Name = 'nroOrdena'
         DataType = ftInteger
-        Precision = 0
-        Size = 0
       end    
       item
         Name = 'pedido_id'
         DataType = ftString
-        Precision = 0
         Size = 38
       end    
       item
         Name = 'clienteDireccion_id'
         DataType = ftString
-        Precision = 0
         Size = 38
       end    
       item
         Name = 'bultos'
         DataType = ftInteger
-        Precision = 0
-        Size = 0
       end    
       item
         Name = 'bCobroDestino'
         DataType = ftInteger
-        Precision = 0
-        Size = 0
       end    
       item
         Name = 'montoCobrar'
         DataType = ftFloat
-        Precision = 0
-        Size = 0
       end    
       item
         Name = 'nota'
         DataType = ftString
-        Precision = 0
         Size = 3000
       end    
       item
         Name = 'bEntregaCompleto'
         DataType = ftInteger
-        Precision = 0
-        Size = 0
       end    
       item
         Name = 'montoCobrado'
         DataType = ftFloat
-        Precision = 0
-        Size = 0
       end    
       item
         Name = 'devolucion_id'
         DataType = ftString
-        Precision = 0
         Size = 38
       end    
       item
         Name = 'bNoEntregado'
         DataType = ftInteger
-        Precision = 0
-        Size = 0
       end    
       item
         Name = 'motivoNoEntrega_id'
         DataType = ftInteger
-        Precision = 0
-        Size = 0
       end    
       item
         Name = 'bVisible'
         DataType = ftInteger
-        Precision = 0
-        Size = 0
       end    
       item
         Name = 'lxPedidoNro'
         DataType = ftInteger
-        Precision = 0
-        Size = 0
       end    
       item
         Name = 'lxCliente'
         DataType = ftString
-        Precision = 0
         Size = 500
       end    
       item
         Name = 'lxClienteDir'
         DataType = ftString
-        Precision = 0
         Size = 500
       end>
     AfterInsert = HojaDeRutaDetallesAfterInsert

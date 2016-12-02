@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, db, FileUtil, rxmemds, ZDataset
-  , dmgeneral;
+  , dmgeneral  ,dmhojaderuta ;
 const
   HdR_TODOS_LOS_ESTADOS = 3;
 type
@@ -22,6 +22,7 @@ type
     Presentacionmarca: TBooleanField;
     PresentacionNumero: TLongintField;
     PresPedidoscliente: TStringField;
+    PresPedidosclienteID: TStringField;
     PresPedidosestado_id: TLongintField;
     PresPedidoshojaderuta_id: TStringField;
     PresPedidoslxEstado: TStringField;
@@ -39,6 +40,7 @@ type
     PresPedidos: TRxMemoryData;
     qLevantaPedidos: TZQuery;
     qLevantaPedidosCLIENTE: TStringField;
+    qLevantaPedidosCLIENTEID: TStringField;
     qLevantaPedidosESTADO_ID: TStringField;
     qLevantaPedidosHOJADERUTA_ID: TStringField;
     qLevantaPedidosLXESTADO: TStringField;
@@ -50,9 +52,12 @@ type
     qMotivosNoEntregaBVISIBLE: TSmallintField;
     qMotivosNoEntregaID: TLongintField;
     qMotivosNoEntregaMOTIVONOENTREGA: TStringField;
+    procedure DataModuleCreate(Sender: TObject);
+    procedure DataModuleDestroy(Sender: TObject);
     procedure PresentacionAfterInsert(DataSet: TDataSet);
     procedure PresPedidosAfterInsert(DataSet: TDataSet);
   private
+    dmHdR: TDM_HojaDeRuta;
     procedure CabeceraSQL (consulta: TZQuery);
     procedure ConsultaATabla;
     function getIdSeleccion: GUID_ID;
@@ -91,7 +96,6 @@ implementation
 {$R *.lfm}
 uses
   dmpedidos
-  ,dmhojaderuta
   ;
 
 { TDM_HdRPresentacion }
@@ -99,6 +103,16 @@ uses
 procedure TDM_HdRPresentacion.PresentacionAfterInsert(DataSet: TDataSet);
 begin
   Presentacionmarca.AsBoolean:= False;
+end;
+
+procedure TDM_HdRPresentacion.DataModuleCreate(Sender: TObject);
+begin
+  dmHdR:= TDM_HojaDeRuta.Create(self);
+end;
+
+procedure TDM_HdRPresentacion.DataModuleDestroy(Sender: TObject);
+begin
+  dmHdR.Free;
 end;
 
 procedure TDM_HdRPresentacion.PresPedidosAfterInsert(DataSet: TDataSet);
@@ -186,26 +200,26 @@ begin
   try
      DM_Pedidos.CambiarEstadoPedido(refEstado, refPedido);
 
-     DM_HojaDeRuta.LevantarRenglon(refHdRDetalle);
+     dmHdR.LevantarRenglon(refHdRDetalle);
 
-     DM_HojaDeRuta.HojaDeRutaDetalles.Edit;
-     DM_HojaDeRuta.HojaDeRutaDetallesmontoCobrado.AsFloat:= montoPresentado;
+     dmHdR.HojaDeRutaDetalles.Edit;
+     dmHdR.HojaDeRutaDetallesmontoCobrado.AsFloat:= montoPresentado;
      if refDevolucion <> GUIDNULO then
      begin
-       DM_HojaDeRuta.HojaDeRutaDetallesdevolucion_id.AsString:= refDevolucion;
-       DM_HojaDeRuta.HojaDeRutaDetallesbEntregaCompleto.AsInteger:= 0;
+       dmHdR.HojaDeRutaDetallesdevolucion_id.AsString:= refDevolucion;
+       dmHdR.HojaDeRutaDetallesbEntregaCompleto.AsInteger:= 0;
      end
      else
-        DM_HojaDeRuta.HojaDeRutaDetallesbEntregaCompleto.AsInteger:= 1;
+        dmHdR.HojaDeRutaDetallesbEntregaCompleto.AsInteger:= 1;
 
      if refMotivoNoEntrega > -1 then
      begin
-        DM_HojaDeRuta.HojaDeRutaDetallesbEntregaCompleto.AsInteger:= 0;
-        DM_HojaDeRuta.HojaDeRutaDetallesmotivoNoEntrega_id.AsInteger:= refMotivoNoEntrega ;
+        dmHdR.HojaDeRutaDetallesbEntregaCompleto.AsInteger:= 0;
+        dmHdR.HojaDeRutaDetallesmotivoNoEntrega_id.AsInteger:= refMotivoNoEntrega ;
      end;
 
-     DM_HojaDeRuta.HojaDeRutaDetalles.Post;
-     DM_HojaDeRuta.GrabarDetalles;
+     dmHdR.HojaDeRutaDetalles.Post;
+     dmHdR.GrabarDetalles;
 
      DM_General.cnxBase.Commit;
   Except
@@ -251,7 +265,7 @@ begin
       begin
         PresentarPedido(PresPedidospedido_id.AsString
                        ,GUIDNULO
-                       ,PresPedidosmontoPedido.AsFloat
+                       ,PresPedidosmontoCobrado.AsFloat
                        ,EST_ENTREGADO
                        ,PresPedidoshojaderuta_id.AsString
                        ,0
@@ -294,7 +308,7 @@ begin
   begin
      PresentarPedido(PresPedidospedido_id.AsString
                     ,refDevolucion
-                     ,0
+                     ,PresPedidosmontoCobrado.AsFloat
                      ,EST_DEVPARCIAL
                      ,PresPedidoshojaderuta_id.AsString
                      ,0

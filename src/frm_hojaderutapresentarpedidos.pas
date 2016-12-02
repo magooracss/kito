@@ -5,9 +5,9 @@ unit frm_hojaderutapresentarpedidos;
 interface
 
 uses
-  Classes, SysUtils, db, FileUtil, DBDateTimePicker, dbdateedit, rxdbgrid,
-  Forms, Controls, Graphics, Dialogs, ExtCtrls, Buttons, StdCtrls, DbCtrls,
-  DBExtCtrls, DBGrids, Menus, dmgeneral, dmrecibosinternos, dmhojaderuta
+  Classes, SysUtils, db, FileUtil, rxdbgrid, Forms, Controls, Graphics, Dialogs
+  , ExtCtrls, Buttons, StdCtrls, DbCtrls,  DBExtCtrls, DBGrids, Menus
+  , dmgeneral, dmrecibosinternos, dmhojaderuta
   ;
 
 type
@@ -49,13 +49,13 @@ type
     procedure RxDBGrid1DblClick(Sender: TObject);
   private
     _idHojaDeRuta: GUID_ID;
-    dmRecInt: TDM_RecibosInternos;
     dmHdR: TDM_HojaDeRuta;
 
     procedure Inicializar;
     procedure Finalizar;
 
-    procedure VincularRecibo();
+    procedure CrearRecibo(refPedido, refCliente: GUID_ID
+  ; nroPedido: Integer;  montoCobrado: double; fecha: TDateTime);
   public
     property idHojaDeRuta: GUID_ID write _idHojaDeRuta;
 
@@ -67,13 +67,13 @@ var
 implementation
 {$R *.lfm}
 uses
-
-   dmtransportistas
-  ,frm_seleccionmotivonoentrega
-  ,frm_devolucionesae
-  ,frm_hojaderutapresentarpedido
-  ,SD_Configuracion
-   ,dmhojaderutapresentacion
+    dmtransportistas
+  , frm_seleccionmotivonoentrega
+  , frm_devolucionesae
+  , frm_hojaderutapresentarpedido
+  , SD_Configuracion
+  , dmhojaderutapresentacion
+  , frm_recibointernoae
   ;
 
 { TfrmHdRPresentacionPedidos }
@@ -84,7 +84,7 @@ begin
 
   dmHdR:= TDM_HojaDeRuta.Create(self);
   ds_HDR.DataSet:= dmHdR.HojaDeRuta;
-  dmRecInt:= TDM_RecibosInternos.Create(self);
+
 end;
 
 procedure TfrmHdRPresentacionPedidos.btnSalirClick(Sender: TObject);
@@ -100,7 +100,27 @@ begin
                , 'Marco como pedidos ENTREGADOS todos los que se encuentran marcados?'
                , mtConfirmation, [mbYes, mbNo],0 ) = mrYes) then
   begin
+    with ds_PresentacionPedidos.DataSet do
+    begin
+      First;
+      DisableControls;
+      While not EOF do
+      begin
+        if FieldByName('marca').AsBoolean then
+        begin
+          CrearRecibo(FieldByName('pedido_id').AsString
+                     ,FieldByName('clienteID').AsString
+                     ,FieldByName('nroPedido').AsInteger
+                     ,FieldByName('montoCobrado').AsFloat
+                     ,ds_HDR.DataSet.FieldByName('fPresentada').AsDateTime
+                     );
+         end;
+       Next;
+      end;
+      EnableControls;
+    end;
     DM_HdRPresentacion.PedMarcadosEntregaCompleta;
+
     DM_HdRPresentacion.LevantarPedidosHdR(_idHojaDeRuta);
   end;
 end;
@@ -125,8 +145,15 @@ begin
           begin
             pantDev.idPedido:= FieldByName('pedido_id').AsString;
             if pantDev.ShowModal = mrOK then
-             DM_HdRPresentacion.PedMarcadoDevuelto(pantDev.idDevolucion);
-
+            begin
+              CrearRecibo(FieldByName('pedido_id').AsString
+                         ,FieldByName('clienteID').AsString
+                         ,FieldByName('nroPedido').AsInteger
+                         ,FieldByName('montoCobrado').AsFloat
+                         ,dmHdR.HojaDeRutafPresentada.AsDateTime
+                         );
+              DM_HdRPresentacion.PedMarcadoDevuelto(pantDev.idDevolucion);
+            end;
           end;
           Next;
         end;
@@ -164,7 +191,6 @@ procedure TfrmHdRPresentacionPedidos.FormDestroy(Sender: TObject);
 begin
   Finalizar;
   dmHdR.Free;
-  dmRecInt.Free;
 end;
 
 procedure TfrmHdRPresentacionPedidos.FormShow(Sender: TObject);
@@ -200,14 +226,20 @@ end;
 procedure TfrmHdRPresentacionPedidos.Inicializar;
 var
   rta:string;
+  dmRecInt: TDM_RecibosInternos;
 begin
+  dmRecInt:= TDM_RecibosInternos.Create(self);
+
   dmHdR.Editar(_idHojaDeRuta);
   DM_Transportistas.Editar(dmHdR.HojaDeRutatransportista_id.AsString);
   edTransportista.Text:= DM_Transportistas.RazonSocial;
   dmHdR.HojaDeRuta.Edit;
   DM_HdRPresentacion.LevantarPedidosHdR(_idHojaDeRuta);
-
-  DM_General.CargarComboBoxTzb(cbFormaDePago, 'FormaPago', 'id', dmRecInt.FormasPago);
+  try
+    DM_General.CargarComboBoxTzb(cbFormaDePago, 'FormaPago', 'id', dmRecInt.FormasPago);
+  finally
+    dmRecInt.Free;
+  end;
 
   rta:= LeerDato(SECCION_APP,CHK_ED_REC_INT);
   if rta = ERROR_CFG then
@@ -231,6 +263,45 @@ procedure TfrmHdRPresentacionPedidos.Finalizar;
 begin
   EscribirDato(SECCION_APP,CHK_ED_REC_INT, BoolToStr(ckEditRecibosInternos.Checked, '1', '0'));
   EscribirDato(SECCION_APP,CB_HDR_DEF_FP, IntToStr(DM_General.obtenerIDIntComboBox(cbFormaDePago)));
+end;
+
+procedure TfrmHdRPresentacionPedidos.CrearRecibo(refPedido, refCliente: GUID_ID
+  ; nroPedido: Integer;  montoCobrado: double; fecha: TDateTime);
+var
+  idRecibo: GUID_ID;
+  pantRI: TfrmReciboInternoAE;
+  dmRecInt: TDM_RecibosInternos;
+begin
+  dmRecInt:= TDM_RecibosInternos.Create(self);
+  try
+    with dmRecInt do
+    begin
+
+
+      if fecha = 0 then fecha:= now;
+
+      idRecibo:=InsertHeader(fecha, montoCobrado, refCliente, REC_INT_ABIERTO);
+      InsertConcept('Pedido Nro: ' + InttoStr(nroPedido), montoCobrado, refPedido);
+      InsertAmount(DM_General.obtenerIDIntComboBox(cbFormaDePago), montoCobrado);
+      Save;
+    end;
+
+    if ckEditRecibosInternos.Checked then
+    begin
+      pantRI:= TfrmReciboInternoAE.Create(self);
+      try
+        dmRecInt.Edit(idRecibo);
+        pantRI.LevantarRecibo(dmRecInt);
+        pantRI.ShowModal;
+      finally
+        pantRI.Free;
+      end;
+    end;
+
+  finally
+  //  dmRecInt.Free;
+  end;
+
 end;
 
 

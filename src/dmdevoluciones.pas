@@ -163,8 +163,8 @@ begin
     First;
     While ((Not EOF)and (resultado)) do
     begin
-      if (DevolucionesDetalleslxCantidad.AsFloat <
-         (DevolucionesDetallesdevuelto.AsFloat + DevolucionesDetallesdescartado.AsFloat)
+      if ( DevolucionesDetalleslxCantidad.AsFloat <
+          (DevolucionesDetallesdevuelto.AsFloat + DevolucionesDetallesdescartado.AsFloat)
          ) then
          resultado:= false;
       Next;

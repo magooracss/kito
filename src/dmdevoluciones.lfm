@@ -9,44 +9,34 @@ object DM_Devoluciones: TDM_Devoluciones
       item
         Name = 'id'
         DataType = ftString
-        Precision = 0
         Size = 38
       end    
       item
         Name = 'numero'
         DataType = ftInteger
-        Precision = 0
-        Size = 0
       end    
       item
         Name = 'Fecha'
         DataType = ftDateTime
-        Precision = 0
-        Size = 0
       end    
       item
         Name = 'cliente_id'
         DataType = ftString
-        Precision = 0
         Size = 38
       end    
       item
         Name = 'pedido_id'
         DataType = ftString
-        Precision = 0
         Size = 38
       end    
       item
         Name = 'Notas'
         DataType = ftString
-        Precision = 0
         Size = 3000
       end    
       item
         Name = 'bVisible'
         DataType = ftInteger
-        Precision = 0
-        Size = 0
       end>
     AfterInsert = DevolucionesAfterInsert
     PacketRecords = 0
@@ -132,62 +122,48 @@ object DM_Devoluciones: TDM_Devoluciones
       item
         Name = 'id'
         DataType = ftString
-        Precision = 0
         Size = 38
       end    
       item
         Name = 'devolucion_id'
         DataType = ftString
-        Precision = 0
         Size = 38
       end    
       item
         Name = 'producto_id'
         DataType = ftString
-        Precision = 0
         Size = 38
       end    
       item
         Name = 'devuelto'
         DataType = ftFloat
-        Precision = 0
-        Size = 0
       end    
       item
         Name = 'descartado'
         DataType = ftFloat
-        Precision = 0
-        Size = 0
       end    
       item
         Name = 'Nota'
         DataType = ftString
-        Precision = 0
         Size = 3000
       end    
       item
         Name = 'bVisible'
         DataType = ftInteger
-        Precision = 0
-        Size = 0
       end    
       item
         Name = 'lxCodigo'
         DataType = ftString
-        Precision = 0
         Size = 30
       end    
       item
         Name = 'lxProducto'
         DataType = ftString
-        Precision = 0
         Size = 200
       end    
       item
         Name = 'lxCantidad'
         DataType = ftFloat
-        Precision = 0
-        Size = 0
       end>
     AfterInsert = DevolucionesDetallesAfterInsert
     PacketRecords = 0

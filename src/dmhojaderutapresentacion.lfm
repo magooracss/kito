@@ -1,4 +1,6 @@
 object DM_HdRPresentacion: TDM_HdRPresentacion
+  OnCreate = DataModuleCreate
+  OnDestroy = DataModuleDestroy
   OldCreateOrder = False
   Height = 303
   HorizontalOffset = 390
@@ -9,44 +11,32 @@ object DM_HdRPresentacion: TDM_HdRPresentacion
       item
         Name = 'id'
         DataType = ftString
-        Precision = 0
         Size = 38
       end    
       item
         Name = 'fecha'
         DataType = ftDateTime
-        Precision = 0
-        Size = 0
       end    
       item
         Name = 'Numero'
         DataType = ftInteger
-        Precision = 0
-        Size = 0
       end    
       item
         Name = 'lxEstado'
         DataType = ftString
-        Precision = 0
         Size = 30
       end    
       item
         Name = 'fPresentada'
         DataType = ftDateTime
-        Precision = 0
-        Size = 0
       end    
       item
         Name = 'marca'
         DataType = ftBoolean
-        Precision = 0
-        Size = 0
       end    
       item
         Name = 'MontoPedido'
         DataType = ftFloat
-        Precision = 0
-        Size = 0
       end>
     AfterInsert = PresentacionAfterInsert
     PacketRecords = 0
@@ -191,56 +181,47 @@ object DM_HdRPresentacion: TDM_HdRPresentacion
       item
         Name = 'pedido_id'
         DataType = ftString
-        Precision = 0
         Size = 38
       end    
       item
         Name = 'hojaderuta_id'
         DataType = ftString
-        Precision = 0
         Size = 38
       end    
       item
         Name = 'marca'
         DataType = ftBoolean
-        Precision = 0
-        Size = 0
       end    
       item
         Name = 'nroPedido'
         DataType = ftInteger
-        Precision = 0
-        Size = 0
       end    
       item
         Name = 'cliente'
         DataType = ftString
-        Precision = 0
         Size = 500
       end    
       item
         Name = 'montoPedido'
         DataType = ftFloat
-        Precision = 0
-        Size = 0
       end    
       item
         Name = 'estado_id'
         DataType = ftInteger
-        Precision = 0
-        Size = 0
       end    
       item
         Name = 'lxEstado'
         DataType = ftString
-        Precision = 0
         Size = 30
       end    
       item
         Name = 'montoCobrado'
         DataType = ftFloat
-        Precision = 0
-        Size = 0
+      end    
+      item
+        Name = 'clienteID'
+        DataType = ftString
+        Size = 38
       end>
     AfterInsert = PresPedidosAfterInsert
     PacketRecords = 0
@@ -349,6 +330,16 @@ object DM_HdRPresentacion: TDM_HdRPresentacion
       MinValue = 0
       Precision = 2
     end
+    object PresPedidosclienteID: TStringField
+      FieldKind = fkData
+      FieldName = 'clienteID'
+      Index = 9
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 38
+    end
   end
   object qLevantaPedidos: TZQuery
     Connection = DM_General.cnxBase
@@ -356,6 +347,7 @@ object DM_HdRPresentacion: TDM_HdRPresentacion
       'select H.PEDIDO_ID '
       '      ,H.id as HOJADERUTA_ID'
       '      ,P.NUMERO as NROPEDIDO'
+      '      , C.id as ClienteId'
       '      ,E.RAZONSOCIAL as CLIENTE'
       '      ,P.TOTALPEDIDO as montoPedido'
       '      ,PTE.ID as estado_id'
@@ -475,6 +467,16 @@ object DM_HdRPresentacion: TDM_HdRPresentacion
       MaxValue = 0
       MinValue = 0
       Precision = 2
+    end
+    object qLevantaPedidosCLIENTEID: TStringField
+      FieldKind = fkData
+      FieldName = 'CLIENTEID'
+      Index = 8
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      Size = 152
     end
   end
   object qMotivosNoEntrega: TZQuery

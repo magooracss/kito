@@ -89,14 +89,17 @@ begin
   clienteDM.Free;
 end;
 
+
+
 procedure TfrmReciboInternoAE.FormCreate(Sender: TObject);
 begin
   Inicializar;
   NuevoRecibo;
-(*
-  reciboIntDM.Edit('{D3726E9D-7226-49BA-B26B-FF208BD1CB54}');
+
+ (*
+  reciboIntDM.Edit('{9F719653-25E6-49B3-B83F-082BFC21FA01}');
   edCliente.Text:= reciboIntDM.RecibosInternoslxCliente.AsString;
-*)
+ *)
   CalcularTotales;
 end;
 
@@ -133,25 +136,28 @@ end;
 
 procedure TfrmReciboInternoAE.DBEdit1Change(Sender: TObject);
 begin
- (sender as TDBEdit).Visible:= (ds_recInt.DataSet.FieldByName('numero').AsInteger > 0);
+
 end;
 
 procedure TfrmReciboInternoAE.Inicializar;
 begin
   clienteDM:= TDM_Clientes.Create(self);
   reciboIntDM:= TDM_RecibosInternos.Create(self);
+
   edMontoConceptos.Text:= '$0.00';
   edCliente.Clear;
 
   ds_recInt.DataSet:= reciboIntDM.RecibosInternos;
   ds_recIntCpts.DataSet:= reciboIntDM.RecibosIntCptos;
   ds_recIntMontos.DataSet:= reciboIntDM.RecibosIntMontos;
+
 end;
 
 procedure TfrmReciboInternoAE.CalcularTotales;
 begin
   edMontoConceptos.Text:= formatFloat ('$############0.00', reciboIntDM.SumConcepts);
   reciboIntDM.Refresh;
+  DBEdit1.Visible:= (ds_recInt.DataSet.FieldByName('numero').AsInteger > 0);
 end;
 
 procedure TfrmReciboInternoAE.NuevoRecibo;
@@ -163,8 +169,14 @@ end;
 procedure TfrmReciboInternoAE.LevantarRecibo(var elRecibo: TDM_RecibosInternos);
 begin
   reciboIntDM:= elRecibo;
+
+  ds_recInt.DataSet:= reciboIntDM.RecibosInternos;
+  ds_recIntCpts.DataSet:= reciboIntDM.RecibosIntCptos;
+  ds_recIntMontos.DataSet:= reciboIntDM.RecibosIntMontos;
+
   btnBuscarCliente.Enabled:= False;
   edCliente.Text:= reciboIntDM.RecibosInternoslxCliente.AsString;
+  CalcularTotales;
 end;
 
 

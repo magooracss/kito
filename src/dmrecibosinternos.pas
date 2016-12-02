@@ -8,6 +8,11 @@ uses
   Classes, SysUtils, db, FileUtil, rxmemds, LR_DBSet, ZDataset
   , dmgeneral;
 
+
+const
+  REC_INT_ABIERTO = 0;
+  REC_INT_CERRADO = 1;
+
 type
 
   { TDM_RecibosInternos }
@@ -109,12 +114,12 @@ type
   private
     procedure LoadReciboInterno(refID: GUID_ID);
   public
-    procedure New;
+    function New: GUID_ID;
     procedure Edit(refID: GUID_ID);
     procedure Cancel (refID: GUID_ID; fAnulado: TDate);//Anula un recibo y le pone fecha de anulación
     procedure Save;
     procedure Print(refID: GUID_ID);
-    procedure InsertHeader (fecha: TDate; monto: double; cliente: GUID_ID; Cerrado: Word);
+    function InsertHeader (fecha: TDateTime; monto: double; cliente: GUID_ID; Cerrado: Word): GUID_ID;
     procedure InsertConcept (concepto: string; monto: double; pedido: GUID_ID);
     procedure InsertAmount (formaPago: integer; monto: double);
     function CheckAmounts: boolean; //true si los montos de los conceptos, las formas de pago y header son iguales
@@ -224,12 +229,14 @@ begin
 
 end;
 
-procedure TDM_RecibosInternos.New;
+function TDM_RecibosInternos.New: GUID_ID;
 begin
   DM_General.ReiniciarTabla(RecibosInternos);
   DM_General.ReiniciarTabla(RecibosIntCptos);
   DM_General.ReiniciarTabla(RecibosIntMontos);
+
   RecibosInternos.Insert;
+  Result:= RecibosInternosid.AsString;
 end;
 
 procedure TDM_RecibosInternos.Edit(refID: GUID_ID);
@@ -269,17 +276,20 @@ begin
   Edit(refID);
   DM_General.LevantarReporte(_PRN_RECIBOS_INTERNO_, RecibosInternos);
   DM_General.AgregarVariableReporte('NRO_LETRAS', NumeroToLetra(RecibosInternosMonto.AsFloat) );
-  DM_General.EditarReporte;
+  DM_General.EjecutarReporte;
 end;
 
-procedure TDM_RecibosInternos.InsertHeader(fecha: TDate; monto: double;
-  cliente: GUID_ID; Cerrado: Word);
+function TDM_RecibosInternos.InsertHeader(fecha: TDateTime; monto: double;
+  cliente: GUID_ID; Cerrado: Word): GUID_ID;
+var
+  elId: GUID_ID;
 begin
-  New;
+  elId:= New;
   RecibosInternosfecha.AsDateTime:= fecha;
   RecibosInternosMonto.AsFloat:= monto;
   RecibosInternoscliente_id.AsString:= cliente;
   RecibosInternosbCerrado.AsInteger:= Cerrado;
+  Result:= elId;
 end;
 
 procedure TDM_RecibosInternos.InsertConcept(concepto: string; monto: double;
