@@ -406,7 +406,7 @@ object frmHdRPresentacionPedidos: TfrmHdRPresentacionPedidos
   end
   object ds_PresentacionPedidos: TDataSource
     DataSet = DM_HdRPresentacion.PresPedidos
-    left = 200
+    left = 248
     top = 16
   end
   object PopupMenu1: TPopupMenu

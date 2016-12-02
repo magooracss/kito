@@ -30,7 +30,7 @@
         <ComponentName Value="DM_General"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
-        <EditorIndex Value="4"/>
+        <EditorIndex Value="5"/>
         <TopLine Value="221"/>
         <CursorPos X="32" Y="246"/>
         <UsageCount Value="200"/>
@@ -39,7 +39,7 @@
       <Unit3>
         <Filename Value="SD_Configuracion.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="5"/>
+        <EditorIndex Value="6"/>
         <CursorPos X="12" Y="10"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
@@ -431,7 +431,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="82"/>
         <CursorPos X="56" Y="108"/>
-        <UsageCount Value="198"/>
+        <UsageCount Value="201"/>
       </Unit40>
       <Unit41>
         <Filename Value="dmmodificarprecios.pas"/>
@@ -442,7 +442,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="59"/>
         <CursorPos X="8" Y="64"/>
-        <UsageCount Value="198"/>
+        <UsageCount Value="201"/>
       </Unit41>
       <Unit42>
         <Filename Value="frm_devolucionesae.pas"/>
@@ -453,7 +453,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="88"/>
         <CursorPos X="86" Y="108"/>
-        <UsageCount Value="190"/>
+        <UsageCount Value="193"/>
       </Unit42>
       <Unit43>
         <Filename Value="dmdevoluciones.pas"/>
@@ -464,7 +464,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="119"/>
         <CursorPos X="20" Y="124"/>
-        <UsageCount Value="190"/>
+        <UsageCount Value="193"/>
       </Unit43>
       <Unit44>
         <Filename Value="dmlistados.pas"/>
@@ -475,7 +475,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="301"/>
         <CursorPos Y="303"/>
-        <UsageCount Value="185"/>
+        <UsageCount Value="188"/>
       </Unit44>
       <Unit45>
         <Filename Value="frm_listados.pas"/>
@@ -485,7 +485,7 @@
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="4" Y="16"/>
-        <UsageCount Value="184"/>
+        <UsageCount Value="187"/>
       </Unit45>
       <Unit46>
         <Filename Value="frm_hojaderutaae.pas"/>
@@ -496,7 +496,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="199"/>
         <CursorPos Y="223"/>
-        <UsageCount Value="151"/>
+        <UsageCount Value="154"/>
       </Unit46>
       <Unit47>
         <Filename Value="dmhojaderuta.pas"/>
@@ -504,10 +504,11 @@
         <ComponentName Value="DM_HojaDeRuta"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="406"/>
-        <CursorPos X="29" Y="434"/>
-        <UsageCount Value="151"/>
+        <EditorIndex Value="3"/>
+        <TopLine Value="118"/>
+        <CursorPos X="16" Y="139"/>
+        <UsageCount Value="154"/>
+        <Loaded Value="True"/>
       </Unit47>
       <Unit48>
         <Filename Value="frm_seleccionarpedidos.pas"/>
@@ -518,7 +519,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="84"/>
         <CursorPos Y="101"/>
-        <UsageCount Value="137"/>
+        <UsageCount Value="140"/>
       </Unit48>
       <Unit49>
         <Filename Value="dmseleccionarpedidos.pas"/>
@@ -529,7 +530,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="87"/>
         <CursorPos Y="109"/>
-        <UsageCount Value="136"/>
+        <UsageCount Value="139"/>
       </Unit49>
       <Unit50>
         <Filename Value="frm_hojaderutapedido.pas"/>
@@ -539,7 +540,7 @@
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="13" Y="6"/>
-        <UsageCount Value="127"/>
+        <UsageCount Value="130"/>
       </Unit50>
       <Unit51>
         <Filename Value="frm_busquedahojaderuta.pas"/>
@@ -550,7 +551,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="99"/>
         <CursorPos X="66" Y="120"/>
-        <UsageCount Value="113"/>
+        <UsageCount Value="116"/>
         <Bookmarks Count="1">
           <Item0 Y="106" ID="1"/>
         </Bookmarks>
@@ -564,7 +565,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="94"/>
         <CursorPos X="73" Y="120"/>
-        <UsageCount Value="113"/>
+        <UsageCount Value="116"/>
       </Unit52>
       <Unit53>
         <Filename Value="frm_hojaderutapresentacion.pas"/>
@@ -574,7 +575,7 @@
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="22" Y="16"/>
-        <UsageCount Value="105"/>
+        <UsageCount Value="108"/>
       </Unit53>
       <Unit54>
         <Filename Value="dmhojaderutapresentacion.pas"/>
@@ -582,10 +583,10 @@
         <ComponentName Value="DM_HdRPresentacion"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
-        <EditorIndex Value="3"/>
-        <TopLine Value="225"/>
+        <EditorIndex Value="4"/>
+        <TopLine Value="234"/>
         <CursorPos X="29" Y="258"/>
-        <UsageCount Value="104"/>
+        <UsageCount Value="107"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit54>
@@ -597,12 +598,12 @@
         <ResourceBaseClass Value="Form"/>
         <IsVisibleTab Value="True"/>
         <EditorIndex Value="2"/>
-        <TopLine Value="101"/>
-        <CursorPos X="35" Y="109"/>
-        <UsageCount Value="99"/>
+        <TopLine Value="166"/>
+        <CursorPos X="25" Y="183"/>
+        <UsageCount Value="102"/>
         <Bookmarks Count="2">
-          <Item0 X="5" Y="186" ID="2"/>
-          <Item1 X="3" Y="204" ID="1"/>
+          <Item0 X="5" Y="192" ID="2"/>
+          <Item1 X="3" Y="210" ID="1"/>
         </Bookmarks>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -614,9 +615,9 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="1"/>
-        <TopLine Value="31"/>
-        <CursorPos X="34" Y="43"/>
-        <UsageCount Value="97"/>
+        <TopLine Value="27"/>
+        <CursorPos X="64" Y="53"/>
+        <UsageCount Value="100"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit56>
@@ -629,7 +630,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="34"/>
         <CursorPos X="89" Y="34"/>
-        <UsageCount Value="91"/>
+        <UsageCount Value="94"/>
       </Unit57>
       <Unit58>
         <Filename Value="dmrecibosinternos.pas"/>
@@ -639,7 +640,7 @@
         <ResourceBaseClass Value="DataModule"/>
         <TopLine Value="193"/>
         <CursorPos X="31" Y="272"/>
-        <UsageCount Value="58"/>
+        <UsageCount Value="61"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit58>
@@ -652,7 +653,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="85"/>
         <CursorPos X="52" Y="95"/>
-        <UsageCount Value="45"/>
+        <UsageCount Value="48"/>
       </Unit59>
       <Unit60>
         <Filename Value="frm_recibointernoconcepto.pas"/>
@@ -662,7 +663,7 @@
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="51" Y="96"/>
-        <UsageCount Value="39"/>
+        <UsageCount Value="42"/>
       </Unit60>
       <Unit61>
         <Filename Value="frm_recibointernocobros.pas"/>
@@ -672,7 +673,7 @@
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="4" Y="44"/>
-        <UsageCount Value="36"/>
+        <UsageCount Value="39"/>
       </Unit61>
       <Unit62>
         <Filename Value="C:\magoo\lazarus\components\zeos\src\plain\ZPlainLoader.pas"/>
@@ -955,118 +956,127 @@
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit102>
     </Units>
-    <JumpHistory Count="28" HistoryIndex="27">
+    <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
         <Filename Value="dmrecibosinternos.pas"/>
+        <Caret Line="266" Column="29" TopLine="251"/>
       </Position1>
       <Position2>
         <Filename Value="dmrecibosinternos.pas"/>
-        <Caret Line="110" Column="19" TopLine="88"/>
+        <Caret Line="266" Column="30" TopLine="251"/>
       </Position2>
       <Position3>
         <Filename Value="dmrecibosinternos.pas"/>
-        <Caret Line="233" Column="5" TopLine="208"/>
+        <Caret Line="265" Column="51" TopLine="251"/>
       </Position3>
       <Position4>
         <Filename Value="dmrecibosinternos.pas"/>
-        <Caret Line="384" TopLine="176"/>
+        <Caret Line="176" Column="3" TopLine="158"/>
       </Position4>
       <Position5>
         <Filename Value="dmrecibosinternos.pas"/>
-        <Caret Line="385" TopLine="217"/>
+        <Caret Line="113" Column="20" TopLine="100"/>
       </Position5>
       <Position6>
         <Filename Value="dmrecibosinternos.pas"/>
-        <Caret Line="113" Column="37" TopLine="105"/>
+        <Caret Line="268" Column="48" TopLine="247"/>
       </Position6>
       <Position7>
         <Filename Value="dmrecibosinternos.pas"/>
-        <Caret Line="266" Column="29" TopLine="251"/>
+        <Caret Line="269" Column="48" TopLine="248"/>
       </Position7>
       <Position8>
         <Filename Value="dmrecibosinternos.pas"/>
-        <Caret Line="266" Column="30" TopLine="251"/>
+        <Caret Line="270" Column="48" TopLine="249"/>
       </Position8>
       <Position9>
-        <Filename Value="dmrecibosinternos.pas"/>
-        <Caret Line="265" Column="51" TopLine="251"/>
+        <Filename Value="frm_hojaderutapresentarpedidos.pas"/>
+        <Caret Line="54" Column="25" TopLine="50"/>
       </Position9>
       <Position10>
-        <Filename Value="dmrecibosinternos.pas"/>
-        <Caret Line="176" Column="3" TopLine="158"/>
+        <Filename Value="frm_hojaderutapresentarpedidos.pas"/>
+        <Caret Line="214" Column="35" TopLine="196"/>
       </Position10>
       <Position11>
-        <Filename Value="dmrecibosinternos.pas"/>
-        <Caret Line="113" Column="20" TopLine="100"/>
+        <Filename Value="frm_hojaderutapresentarpedidos.pas"/>
+        <Caret Line="222" TopLine="196"/>
       </Position11>
       <Position12>
-        <Filename Value="dmrecibosinternos.pas"/>
-        <Caret Line="268" Column="48" TopLine="247"/>
+        <Filename Value="frm_hojaderutapresentarpedidos.pas"/>
+        <Caret Line="10" Column="59"/>
       </Position12>
       <Position13>
-        <Filename Value="dmrecibosinternos.pas"/>
-        <Caret Line="269" Column="48" TopLine="248"/>
+        <Filename Value="frm_hojaderutapresentarpedidos.pas"/>
+        <Caret Line="52" Column="35" TopLine="35"/>
       </Position13>
       <Position14>
-        <Filename Value="dmrecibosinternos.pas"/>
-        <Caret Line="270" Column="48" TopLine="249"/>
+        <Filename Value="frm_hojaderutapresentarpedidos.pas"/>
+        <Caret Line="33" TopLine="33"/>
       </Position14>
       <Position15>
         <Filename Value="frm_hojaderutapresentarpedidos.pas"/>
-        <Caret Line="17" Column="3" TopLine="46"/>
+        <Caret Line="45" Column="25" TopLine="33"/>
       </Position15>
       <Position16>
         <Filename Value="frm_hojaderutapresentarpedidos.pas"/>
-        <Caret Line="54" Column="25" TopLine="50"/>
+        <Caret Line="58" Column="47" TopLine="34"/>
       </Position16>
       <Position17>
         <Filename Value="frm_hojaderutapresentarpedidos.pas"/>
-        <Caret Line="214" Column="35" TopLine="196"/>
+        <Caret Line="46" Column="24" TopLine="34"/>
       </Position17>
       <Position18>
-        <Filename Value="frm_hojaderutapresentarpedidos.pas"/>
-        <Caret Line="222" TopLine="196"/>
+        <Filename Value="dmgeneral.pas"/>
+        <Caret Line="83" Column="121" TopLine="76"/>
       </Position18>
       <Position19>
-        <Filename Value="frm_hojaderutapresentarpedidos.pas"/>
-        <Caret Line="10" Column="59"/>
+        <Filename Value="dmgeneral.pas"/>
+        <Caret Line="236" Column="14" TopLine="226"/>
       </Position19>
       <Position20>
         <Filename Value="frm_hojaderutapresentarpedidos.pas"/>
-        <Caret Line="52" Column="35" TopLine="35"/>
+        <Caret Line="204" Column="85" TopLine="193"/>
       </Position20>
       <Position21>
         <Filename Value="frm_hojaderutapresentarpedidos.pas"/>
-        <Caret Line="33" TopLine="33"/>
+        <Caret Line="98" Column="43" TopLine="83"/>
       </Position21>
       <Position22>
         <Filename Value="frm_hojaderutapresentarpedidos.pas"/>
-        <Caret Line="45" Column="25" TopLine="33"/>
+        <Caret Line="123" Column="117" TopLine="108"/>
       </Position22>
       <Position23>
         <Filename Value="frm_hojaderutapresentarpedidos.pas"/>
-        <Caret Line="58" Column="47" TopLine="34"/>
+        <Caret Line="52" Column="11" TopLine="42"/>
       </Position23>
       <Position24>
         <Filename Value="frm_hojaderutapresentarpedidos.pas"/>
-        <Caret Line="46" Column="24" TopLine="34"/>
+        <Caret Line="155" Column="8" TopLine="128"/>
       </Position24>
       <Position25>
-        <Filename Value="dmgeneral.pas"/>
-        <Caret Line="83" Column="121" TopLine="76"/>
+        <Filename Value="frm_hojaderutapresentarpedidos.pas"/>
+        <Caret Line="42"/>
       </Position25>
       <Position26>
-        <Filename Value="dmgeneral.pas"/>
-        <Caret Line="236" Column="14" TopLine="226"/>
+        <Filename Value="frm_hojaderutapresentarpedidos.pas"/>
+        <Caret Line="53" Column="26" TopLine="31"/>
       </Position26>
       <Position27>
         <Filename Value="frm_hojaderutapresentarpedidos.pas"/>
-        <Caret Line="204" Column="85" TopLine="193"/>
+        <Caret Line="85" Column="25" TopLine="62"/>
       </Position27>
       <Position28>
         <Filename Value="frm_hojaderutapresentarpedidos.pas"/>
-        <Caret Line="98" Column="43" TopLine="83"/>
+        <Caret Line="205" Column="33" TopLine="182"/>
       </Position28>
+      <Position29>
+        <Filename Value="frm_hojaderutapresentarpedidos.pas"/>
+        <Caret Line="53" Column="26" TopLine="40"/>
+      </Position29>
+      <Position30>
+        <Filename Value="frm_hojaderutapresentarpedidos.pas"/>
+        <Caret Line="183" Column="25" TopLine="160"/>
+      </Position30>
     </JumpHistory>
   </ProjectSession>
 </CONFIG>

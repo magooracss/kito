@@ -7,7 +7,7 @@ interface
 uses
   Classes, SysUtils, db, FileUtil, DBDateTimePicker, dbdateedit, rxdbgrid,
   Forms, Controls, Graphics, Dialogs, ExtCtrls, Buttons, StdCtrls, DbCtrls,
-  DBExtCtrls, DBGrids, Menus, dmgeneral, dmrecibosinternos
+  DBExtCtrls, DBGrids, Menus, dmgeneral, dmrecibosinternos, dmhojaderuta
   ;
 
 type
@@ -50,9 +50,12 @@ type
   private
     _idHojaDeRuta: GUID_ID;
     dmRecInt: TDM_RecibosInternos;
+    dmHdR: TDM_HojaDeRuta;
 
     procedure Inicializar;
     procedure Finalizar;
+
+    procedure VincularRecibo();
   public
     property idHojaDeRuta: GUID_ID write _idHojaDeRuta;
 
@@ -64,13 +67,13 @@ var
 implementation
 {$R *.lfm}
 uses
-  dmhojaderuta
-  ,dmtransportistas
-  ,dmhojaderutapresentacion
+
+   dmtransportistas
   ,frm_seleccionmotivonoentrega
   ,frm_devolucionesae
   ,frm_hojaderutapresentarpedido
   ,SD_Configuracion
+   ,dmhojaderutapresentacion
   ;
 
 { TfrmHdRPresentacionPedidos }
@@ -78,14 +81,16 @@ uses
 procedure TfrmHdRPresentacionPedidos.FormCreate(Sender: TObject);
 begin
   _idHojaDeRuta:= GUIDNULO;
-  Application.CreateForm(TDM_HojaDeRuta, DM_HojaDeRuta);
+
+  dmHdR:= TDM_HojaDeRuta.Create(self);
+  ds_HDR.DataSet:= dmHdR.HojaDeRuta;
   dmRecInt:= TDM_RecibosInternos.Create(self);
 end;
 
 procedure TfrmHdRPresentacionPedidos.btnSalirClick(Sender: TObject);
 begin
-  DM_HojaDeRuta.CambiarEstado(HdR_ESTADO_PRESENTADA);
-  DM_HojaDeRuta.Grabar;
+  dmHdR.CambiarEstado(HdR_ESTADO_PRESENTADA);
+  dmHdR.Grabar;
   ModalResult:= mrOK;
 end;
 
@@ -120,7 +125,8 @@ begin
           begin
             pantDev.idPedido:= FieldByName('pedido_id').AsString;
             if pantDev.ShowModal = mrOK then
-             DM_HdRPresentacion.PedMarcadoDevuelto(pantDev.idDevolucion);;
+             DM_HdRPresentacion.PedMarcadoDevuelto(pantDev.idDevolucion);
+
           end;
           Next;
         end;
@@ -157,7 +163,7 @@ end;
 procedure TfrmHdRPresentacionPedidos.FormDestroy(Sender: TObject);
 begin
   Finalizar;
-  DM_HojaDeRuta.Free;
+  dmHdR.Free;
   dmRecInt.Free;
 end;
 
@@ -174,11 +180,11 @@ begin
   try
     if pant.ShowModal = mrOK then
     begin
-      DM_HojaDeRuta.LevantarRenglon(ds_PresentacionPedidos.DataSet.FieldByName('hojaderuta_id').asString);
-      DM_HojaDeRuta.HojaDeRutaDetalles.Edit;
-      DM_HojaDeRuta.HojaDeRutaDetallesmontoCobrado.AsFloat:= ds_PresentacionPedidos.DataSet.FieldByName('montoCobrado').AsFloat;
-      DM_HojaDeRuta.HojaDeRutaDetalles.Post;
-      DM_HojaDeRuta.GrabarDetalles;
+      dmHdR.LevantarRenglon(ds_PresentacionPedidos.DataSet.FieldByName('hojaderuta_id').asString);
+      dmHdR.HojaDeRutaDetalles.Edit;
+      dmHdR.HojaDeRutaDetallesmontoCobrado.AsFloat:= ds_PresentacionPedidos.DataSet.FieldByName('montoCobrado').AsFloat;
+      dmHdR.HojaDeRutaDetalles.Post;
+      dmHdR.GrabarDetalles;
     end;
   finally
     pant.Free;
@@ -195,10 +201,10 @@ procedure TfrmHdRPresentacionPedidos.Inicializar;
 var
   rta:string;
 begin
-  DM_HojaDeRuta.Editar(_idHojaDeRuta);
-  DM_Transportistas.Editar(DM_HojaDeRuta.HojaDeRutatransportista_id.AsString);
+  dmHdR.Editar(_idHojaDeRuta);
+  DM_Transportistas.Editar(dmHdR.HojaDeRutatransportista_id.AsString);
   edTransportista.Text:= DM_Transportistas.RazonSocial;
-  DM_HojaDeRuta.HojaDeRuta.Edit;
+  dmHdR.HojaDeRuta.Edit;
   DM_HdRPresentacion.LevantarPedidosHdR(_idHojaDeRuta);
 
   DM_General.CargarComboBoxTzb(cbFormaDePago, 'FormaPago', 'id', dmRecInt.FormasPago);
