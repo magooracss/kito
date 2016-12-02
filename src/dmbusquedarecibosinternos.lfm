@@ -1,0 +1,327 @@
+object DM_BusquedaRecibosInternos: TDM_BusquedaRecibosInternos
+  OldCreateOrder = False
+  Height = 363
+  HorizontalOffset = 515
+  VerticalOffset = 230
+  Width = 543
+  object qBusNumero: TZQuery
+    Connection = DM_General.cnxBase
+    SQL.Strings = (
+      'select '
+      '      RI.ID as idRecibo'
+      '     , RI.NUMERO as numeroRecibo'
+      '     , RI.FECHA as fechaRecibo'
+      '     , E.RAZONSOCIAL as cliente'
+      '     , RI.MONTO as monto'
+      'from RECIBOSINTERNOS RI '
+      '     inner join CLIENTES C ON RI.CLIENTE_ID = C.ID'
+      '     left join EMPRESAS E ON C.EMPRESA_ID = E.ID'
+      'WHERE (RI.BVISIBLE = 1)'
+      '           and (RI.Numero = :parametro)'
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'parametro'
+        ParamType = ptUnknown
+      end>
+    left = 176
+    top = 56
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'parametro'
+        ParamType = ptUnknown
+      end>
+    object qBusNumeroIDRECIBO: TStringField
+      FieldKind = fkData
+      FieldName = 'IDRECIBO'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      Size = 152
+    end
+    object qBusNumeroNUMERORECIBO: TLongintField
+      FieldKind = fkData
+      FieldName = 'NUMERORECIBO'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object qBusNumeroFECHARECIBO: TDateField
+      FieldKind = fkData
+      FieldName = 'FECHARECIBO'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object qBusNumeroCLIENTE: TStringField
+      FieldKind = fkData
+      FieldName = 'CLIENTE'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 2000
+    end
+    object qBusNumeroMONTO: TFloatField
+      FieldKind = fkData
+      FieldName = 'MONTO'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+  end
+  object qBusFecha: TZQuery
+    Connection = DM_General.cnxBase
+    Active = True
+    SQL.Strings = (
+      'select '
+      '      RI.ID as idRecibo'
+      '     , RI.NUMERO as numeroRecibo'
+      '     , RI.FECHA as fechaRecibo'
+      '     , E.RAZONSOCIAL as cliente'
+      '     , RI.MONTO as monto'
+      'from RECIBOSINTERNOS RI '
+      '     inner join CLIENTES C ON RI.CLIENTE_ID = C.ID'
+      '     left join EMPRESAS E ON C.EMPRESA_ID = E.ID'
+      'WHERE (RI.BVISIBLE = 1)'
+      '           and (RI.Fecha = :parametro)'
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'parametro'
+        ParamType = ptUnknown
+      end>
+    left = 176
+    top = 144
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'parametro'
+        ParamType = ptUnknown
+      end>
+    object qBusFechaIDRECIBO: TStringField
+      FieldKind = fkData
+      FieldName = 'IDRECIBO'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      Size = 152
+    end
+    object qBusFechaNUMERORECIBO: TLongintField
+      FieldKind = fkData
+      FieldName = 'NUMERORECIBO'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object qBusFechaFECHARECIBO: TDateField
+      FieldKind = fkData
+      FieldName = 'FECHARECIBO'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object qBusFechaCLIENTE: TStringField
+      FieldKind = fkData
+      FieldName = 'CLIENTE'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 2000
+    end
+    object qBusFechaMONTO: TFloatField
+      FieldKind = fkData
+      FieldName = 'MONTO'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+  end
+  object qBusCliente: TZQuery
+    Connection = DM_General.cnxBase
+    SQL.Strings = (
+      'select '
+      '      RI.ID as idRecibo'
+      '     , RI.NUMERO as numeroRecibo'
+      '     , RI.FECHA as fechaRecibo'
+      '     , E.RAZONSOCIAL as cliente'
+      '     , RI.MONTO as monto'
+      'from RECIBOSINTERNOS RI '
+      '     inner join CLIENTES C ON RI.CLIENTE_ID = C.ID'
+      '     left join EMPRESAS E ON C.EMPRESA_ID = E.ID'
+      'WHERE (RI.BVISIBLE = 1)'
+      '           and (C.id = :parametro)'
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'parametro'
+        ParamType = ptUnknown
+      end>
+    left = 176
+    top = 232
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'parametro'
+        ParamType = ptUnknown
+      end>
+    object qBusClienteIDRECIBO: TStringField
+      FieldKind = fkData
+      FieldName = 'IDRECIBO'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      Size = 152
+    end
+    object qBusClienteNUMERORECIBO: TLongintField
+      FieldKind = fkData
+      FieldName = 'NUMERORECIBO'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object qBusClienteFECHARECIBO: TDateField
+      FieldKind = fkData
+      FieldName = 'FECHARECIBO'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object qBusClienteCLIENTE: TStringField
+      FieldKind = fkData
+      FieldName = 'CLIENTE'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 2000
+    end
+    object qBusClienteMONTO: TFloatField
+      FieldKind = fkData
+      FieldName = 'MONTO'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+  end
+  object Resultados: TRxMemoryData
+    FieldDefs = <    
+      item
+        Name = 'idRecibo'
+        DataType = ftString
+        Size = 38
+      end    
+      item
+        Name = 'NumeroRecibo'
+        DataType = ftInteger
+      end    
+      item
+        Name = 'FechaRecibo'
+        DataType = ftDateTime
+      end    
+      item
+        Name = 'Cliente'
+        DataType = ftString
+        Size = 500
+      end    
+      item
+        Name = 'Monto'
+        DataType = ftFloat
+      end>
+    PacketRecords = 0
+    left = 72
+    top = 24
+    object ResultadosidRecibo: TStringField
+      FieldKind = fkData
+      FieldName = 'idRecibo'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 38
+    end
+    object ResultadosNumeroRecibo: TLongintField
+      FieldKind = fkData
+      FieldName = 'NumeroRecibo'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object ResultadosFechaRecibo: TDateTimeField
+      FieldKind = fkData
+      FieldName = 'FechaRecibo'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object ResultadosCliente: TStringField
+      FieldKind = fkData
+      FieldName = 'Cliente'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 500
+    end
+    object ResultadosMonto: TFloatField
+      FieldKind = fkData
+      FieldName = 'Monto'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Currency = True
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+  end
+end
