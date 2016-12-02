@@ -15,6 +15,8 @@ type
   { TfrmMain }
 
   TfrmMain = class(TForm)
+    MenuItem47: TMenuItem;
+    recIntEditView: TAction;
     MenuItem45: TMenuItem;
     MenuItem46: TMenuItem;
     recIntNew: TAction;
@@ -74,7 +76,6 @@ type
     MenuItem24: TMenuItem;
     ToolButton10: TToolButton;
     ToolButton11: TToolButton;
-    ToolButton12: TToolButton;
     ToolButton4: TToolButton;
     ToolButton5: TToolButton;
     ToolButton6: TToolButton;
@@ -153,6 +154,7 @@ type
     procedure provBorrarExecute(Sender: TObject);
     procedure provEditarExecute(Sender: TObject);
     procedure provNuevoExecute(Sender: TObject);
+    procedure recIntEditViewExecute(Sender: TObject);
     procedure recIntNewExecute(Sender: TObject);
     procedure stkEditarExecute(Sender: TObject);
     procedure stkNuevoExecute(Sender: TObject);
@@ -216,6 +218,8 @@ uses
   ,frm_hojaderutapresentarpedidos
   ,process
   ,frm_recibointernoae
+  ,frm_buscarrecibosinternos
+  ,dmrecibosinternos
   ;
 
 { TfrmMain }
@@ -853,6 +857,34 @@ begin
     pant.Free;
   end;
 end;
+
+procedure TfrmMain.recIntEditViewExecute(Sender: TObject);
+var
+ pant: TfrmReciboInternoAE;
+ pantB: TfrmBusRecibosInternos;
+ elDM_RI: TDM_RecibosInternos;
+ idRecibo: GUID_ID;
+begin
+  pantB:= TfrmBusRecibosInternos.Create(self);
+  try
+    if (pantB.ShowModal = mrOK) and (pantB.idRecibo <> GUIDNULO)then
+    begin;
+     idRecibo:= pantB.idRecibo;
+      elDM_RI:= TDM_RecibosInternos.Create(self);
+      pant:= TfrmReciboInternoAE.Create(self);
+      try
+        elDM_RI.Edit(idRecibo);
+        pant.LevantarRecibo(elDM_RI);
+        pant.ShowModal;
+      finally
+       pant.Free;
+      end;
+    end;
+  finally
+    pantB.Free;
+  end;
+end;
+
 
 end.
 

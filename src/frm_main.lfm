@@ -111,11 +111,6 @@ object frmMain: TfrmMain
       Caption = 'ToolButton11'
       Style = tbsSeparator
     end
-    object ToolButton12: TToolButton
-      Left = 784
-      Top = 2
-      Action = recIntNew
-    end
   end
   object Panel1: TPanel
     Left = 0
@@ -554,7 +549,15 @@ object frmMain: TfrmMain
       Category = 'RecibosInternos'
       Caption = 'Nuevo Recibo'
       Hint = 'Crea un nuevo recibo interno'
+      ImageIndex = 36
       OnExecute = recIntNewExecute
+    end
+    object recIntEditView: TAction
+      Category = 'RecibosInternos'
+      Caption = 'Ver/Editar Recibo'
+      Hint = 'Si el recibo no está cerrado se permite editarlo, sino solamente verlo o reimprimirlo'
+      ImageIndex = 37
+      OnExecute = recIntEditViewExecute
     end
   end
   object MainMenu1: TMainMenu
@@ -691,6 +694,9 @@ object frmMain: TfrmMain
       Caption = 'Dinero'
       object MenuItem46: TMenuItem
         Action = recIntNew
+      end
+      object MenuItem47: TMenuItem
+        Action = recIntEditView
       end
       object MenuItem45: TMenuItem
         Caption = '-'

@@ -20,11 +20,12 @@ uses
   dmbusquedamovstock, frm_modificarprecios, dmmodificarprecios,
   frm_devolucionesae, dmdevoluciones, dmlistados, frm_listados,
   frm_hojaderutaae, dmhojaderuta, frm_seleccionarpedidos, dmseleccionarpedidos,
-  frm_hojaderutapedido, frm_busquedahojaderuta, dmbusquedahojaderuta, 
-frm_hojaderutapresentacion, dmhojaderutapresentacion, 
-frm_hojaderutapresentarpedidos, frm_hojaderutapresentarpedido,
-frm_seleccionmotivonoentrega, dmrecibosinternos, frm_recibointernoae, 
-frm_recibointernoconcepto, frm_recibointernocobros;
+  frm_hojaderutapedido, frm_busquedahojaderuta, dmbusquedahojaderuta,
+  frm_hojaderutapresentacion, dmhojaderutapresentacion,
+  frm_hojaderutapresentarpedidos, frm_hojaderutapresentarpedido,
+  frm_seleccionmotivonoentrega, dmrecibosinternos, frm_recibointernoae,
+  frm_recibointernoconcepto, frm_recibointernocobros, frm_buscarrecibosinternos,
+  dmbusquedarecibosinternos;
 
 {$R *.res}
 

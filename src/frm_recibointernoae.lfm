@@ -31,9 +31,11 @@ object frmReciboInternoAE: TfrmReciboInternoAE
       Width = 104
       DataField = 'numero'
       DataSource = ds_recInt
+      ReadOnly = True
       CharCase = ecNormal
       MaxLength = 0
       TabOrder = 0
+      TabStop = False
       OnChange = DBEdit1Change
     end
     object DBDateEdit1: TDBDateEdit
