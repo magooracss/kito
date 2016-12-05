@@ -55,6 +55,7 @@ type
     qDetHdRLXCLIENTEDIR: TStringField;
     qDetHdRLXPEDIDONRO: TLongintField;
     qTotalizarHdRCANTIDAD: TFloatField;
+    qTotalizarHdRCODIGO: TStringField;
     qTotalizarHdRMARCA: TStringField;
     qTotalizarHdRNOMBRE: TStringField;
     SELHdR: TZQuery;

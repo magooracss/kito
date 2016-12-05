@@ -1539,18 +1539,19 @@ object DM_HojaDeRuta: TDM_HojaDeRuta
   object qTotalizarHdR: TZQuery
     Connection = DM_General.cnxBase
     SQL.Strings = (
-      'select SUM(PD.cantidad) as Cantidad'#13#10#10
-      '      ,P.Nombre'#10' '
-      '     ,M.marca'#10
-      'from HojaDeRutaDetalles HDRD'#13#10#10
-      '      LEFT JOIN PEDIDOSDETALLES PD ON PD.pedido_id = HDRD.pedido_id'#13#10#10
-      '      LEFT JOIN Productos P on P.id = PD.producto_id'#10
-      '      LEFT JOIN Marcas M on M.id = P.marca_id'#13#10#10
-      'where (HDRD.HojaDeRuta_id = :hojaderuta_id)'#13#10#10
-      '      and (PD.bVisible = 1)'#10
-      '      and (HDRD.bVisible = 1)'#10
-      'GROUP BY PD.producto_id, P.Nombre, M.Marca'#10
-      'ORDER BY M.Marca, P.Nombre'
+      'select SUM(PD.cantidad) as Cantidad'
+      '      ,P.Nombre'
+      '      ,P.Codigo'
+      '     ,M.marca'
+      'from HojaDeRutaDetalles HDRD'
+      '      LEFT JOIN PEDIDOSDETALLES PD ON PD.pedido_id = HDRD.pedido_id'
+      '      LEFT JOIN Productos P on P.id = PD.producto_id'
+      '      LEFT JOIN Marcas M on M.id = P.marca_id'
+      'where (HDRD.HojaDeRuta_id = :hojaderuta_id)'
+      '      and (PD.bVisible = 1)'
+      '      and (HDRD.bVisible = 1)'
+      'GROUP BY PD.producto_id, P.Codigo, P.Nombre, M.Marca'
+      'ORDER BY M.Marca, P.Nombre, P.Codigo'
     )
     Params = <    
       item
@@ -1600,6 +1601,16 @@ object DM_HojaDeRuta: TDM_HojaDeRuta
       ReadOnly = False
       Required = False
       Size = 600
+    end
+    object qTotalizarHdRCODIGO: TStringField
+      FieldKind = fkData
+      FieldName = 'CODIGO'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 80
     end
   end
 end

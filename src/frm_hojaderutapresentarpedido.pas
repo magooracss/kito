@@ -27,6 +27,7 @@ type
     RxDBCurrEdit1: TRxDBCurrEdit;
     procedure btnCancelarClick(Sender: TObject);
     procedure btnGrabarClick(Sender: TObject);
+    procedure FormShow(Sender: TObject);
   private
     { private declarations }
   public
@@ -46,13 +47,20 @@ uses
 
 procedure TfrmHdRPresentacionPedido.btnGrabarClick(Sender: TObject);
 begin
-  DS_Pedido.DataSet.Post;
+  if DS_Pedido.DataSet.State in dsEditModes then
+    DS_Pedido.DataSet.Post;
   ModalResult:= mrOK;
+end;
+
+procedure TfrmHdRPresentacionPedido.FormShow(Sender: TObject);
+begin
+  DS_Pedido.DataSet.Edit;
 end;
 
 procedure TfrmHdRPresentacionPedido.btnCancelarClick(Sender: TObject);
 begin
-  DS_Pedido.DataSet.Cancel;
+  if DS_Pedido.DataSet.State in dsEditModes then
+    DS_Pedido.DataSet.Cancel;
   ModalResult:= mrCancel;
 end;
 

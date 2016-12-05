@@ -12,8 +12,9 @@ object frmHdRPresentacionPedido: TfrmHdRPresentacionPedido
   Font.Name = 'Arial'
   Font.Pitch = fpVariable
   Font.Quality = fqDraft
+  OnShow = FormShow
   Position = poOwnerFormCenter
-  LCLVersion = '1.4.0.4'
+  LCLVersion = '1.6.0.4'
   object Panel2: TPanel
     Left = 0
     Height = 50
@@ -238,6 +239,7 @@ object frmHdRPresentacionPedido: TfrmHdRPresentacionPedido
     Color = clMoneyGreen
     MaxLength = 0
     TabOrder = 2
+    TabStop = False
   end
   object RxDBCurrEdit1: TRxDBCurrEdit
     Left = 315

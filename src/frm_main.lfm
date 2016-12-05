@@ -1,7 +1,7 @@
 object frmMain: TfrmMain
-  Left = 111
+  Left = 44
   Height = 675
-  Top = 38
+  Top = 36
   Width = 1123
   Caption = 'KITO'
   ClientHeight = 655
@@ -68,7 +68,7 @@ object frmMain: TfrmMain
       Action = pedDevolucion
     end
     object ToolButton5: TToolButton
-      Left = 580
+      Left = 725
       Height = 80
       Top = 2
       Width = 10
@@ -76,7 +76,7 @@ object frmMain: TfrmMain
       Style = tbsSeparator
     end
     object ToolButton6: TToolButton
-      Left = 692
+      Left = 837
       Top = 2
       Action = prgListados
     end
@@ -94,22 +94,27 @@ object frmMain: TfrmMain
       Style = tbsSeparator
     end
     object ToolButton10: TToolButton
-      Left = 437
+      Left = 582
       Top = 2
       Action = HdRPresentar
     end
     object ToolButton9: TToolButton
-      Left = 590
+      Left = 735
       Top = 2
       Action = dinFacturacion
     end
     object ToolButton11: TToolButton
-      Left = 682
+      Left = 827
       Height = 80
       Top = 2
       Width = 10
       Caption = 'ToolButton11'
       Style = tbsSeparator
+    end
+    object ToolButton12: TToolButton
+      Left = 437
+      Top = 2
+      Action = HdRModificar
     end
   end
   object Panel1: TPanel

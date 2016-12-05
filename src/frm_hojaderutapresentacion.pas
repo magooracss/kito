@@ -128,6 +128,7 @@ end;
 procedure TfrmPresentacionHdR.Inicializar;
 begin
   PCBusqueda.ActivePageIndex:= PC_IDX_BLANCO;
+  edFecha.Date:= now;
 end;
 
 procedure TfrmPresentacionHdR.Buscar;
