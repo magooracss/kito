@@ -15,6 +15,7 @@ type
   { TfrmListados }
 
   TfrmListados = class(TForm)
+    btnBusCli1: TBitBtn;
     btnBusProveedor: TBitBtn;
     btnBusTrans: TBitBtn;
     btnBusVend: TBitBtn;
@@ -22,14 +23,21 @@ type
     btnBusProducto: TBitBtn;
     btnSalir: TBitBtn;
     btnMostrar: TBitBtn;
+    cbFormaPagoFPCli: TComboBox;
     cbTabListaPrecio: TComboBox;
     cbTabZonas: TComboBox;
     cbTabPedidosEstado: TComboBox;
+    cbFormaPagoFP: TComboBox;
     DBGrid1: TDBGrid;
     DBGrid2: TDBGrid;
+    edCliFP: TEdit;
+    edFechaFinTabFpFecha: TDateEdit;
+    edFechaFinTabFpCliFecha: TDateEdit;
     edFechaFinTabPedEst: TDateEdit;
     edFechaFinTabProd: TDateEdit;
     edFechaFinTabProv: TDateEdit;
+    edFechaIniTabFpFecha: TDateEdit;
+    edFechaIniTabFpCliFecha: TDateEdit;
     edFechaIniTabPedEst: TDateEdit;
     edFechaIniTabProd: TDateEdit;
     edFechaIniTabProv: TDateEdit;
@@ -63,6 +71,13 @@ type
     Label20: TLabel;
     Label21: TLabel;
     Label22: TLabel;
+    Label23: TLabel;
+    Label24: TLabel;
+    Label25: TLabel;
+    Label26: TLabel;
+    Label27: TLabel;
+    Label28: TLabel;
+    Label29: TLabel;
     Label3: TLabel;
     Label4: TLabel;
     Label5: TLabel;
@@ -81,6 +96,8 @@ type
     TabPedidosEstados: TTabSheet;
     TabProductoFechas: TTabSheet;
     TabProveedorFechas: TTabSheet;
+    tabFPFechas: TTabSheet;
+    tabFPCliFechas: TTabSheet;
     TabTransportista: TTabSheet;
     TabVendedorFechas: TTabSheet;
     TabZonas: TTabSheet;
@@ -98,6 +115,8 @@ type
     procedure FormShow(Sender: TObject);
     procedure TabClienteFechasShow(Sender: TObject);
     procedure TabFechasShow(Sender: TObject);
+    procedure tabFPCliFechasShow(Sender: TObject);
+    procedure tabFPFechasShow(Sender: TObject);
     procedure TabListaPrecioShow(Sender: TObject);
     procedure TabPedidosEstadosShow(Sender: TObject);
     procedure TabProductoFechasShow(Sender: TObject);
@@ -129,6 +148,7 @@ uses
  , dateutils
  , frm_busquedaempresas
  , frm_busquedaProductos
+ , dmrecibosinternos
   ;
 
 { TfrmListados }
@@ -183,6 +203,34 @@ procedure TfrmListados.TabFechasShow(Sender: TObject);
 begin
   edFechaIniTabFechas.Date:= EncodeDate(YearOf(Now), MonthOf(Now), 1);
   edFechaFinTabFechas.Date:= Now;
+end;
+
+procedure TfrmListados.tabFPCliFechasShow(Sender: TObject);
+var
+  dmRI: TDM_RecibosInternos;
+begin
+   dmRI:= TDM_RecibosInternos.Create(self);
+  try
+    DM_General.CargarComboBoxTzb(cbFormaPagoFPCli, 'FormaPago', 'id', dmRI.FormasPago);
+    edFechaIniTabFpCliFecha.Date:= EncodeDate(YearOf(Now), MonthOf(Now), 1);
+    edFechaFinTabFpCliFecha.Date:= Now;
+  finally
+    dmRI.Free;
+  end;
+end;
+
+procedure TfrmListados.tabFPFechasShow(Sender: TObject);
+var
+  dmRI: TDM_RecibosInternos;
+begin
+   dmRI:= TDM_RecibosInternos.Create(self);
+  try
+    DM_General.CargarComboBoxTzb(cbFormaPagoFP, 'FormaPago', 'id', dmRI.FormasPago);
+    edFechaIniTabFpFecha.Date:= EncodeDate(YearOf(Now), MonthOf(Now), 1);
+    edFechaFinTabFpFecha.Date:= Now;
+  finally
+    dmRI.Free;
+  end;
 end;
 
 procedure TfrmListados.TabListaPrecioShow(Sender: TObject);
@@ -249,6 +297,10 @@ begin
     LST_MovimientosStkPorFecha:PCParametros.ActivePage:= TabFechas;
     LST_MovimientosStkProducto:PCParametros.ActivePage:= TabProductoFechas;
     LST_MovimientosStkProvFecha: PCParametros.ActivePage:= TabProveedorFechas;
+    LST_RecIntEntreFechas: PCParametros.ActivePage:= TabFechas;
+    LST_REcIntCliEntreFechas: PCParametros.ActivePage:= TabClienteFechas;
+    LST_REcIntFPEntreFechas:  PCParametros.ActivePage:= tabFPFechas;
+    LST_REcIntFPCliEntreFechas: PCParametros.ActivePage:= tabFPCliFechas;
   end;
 end;
 
@@ -281,9 +333,21 @@ begin
                                                                  , edFechaFinTabFechas.Date);
     LST_MovimientosStkProducto: DM_Listados.MovimientosStkProducto(_idProducto, edFechaIniTabProd.Date
                                                                  , edFechaFinTabProd.Date);
-     LST_MovimientosStkProvFecha: DM_Listados.MovimientosStkProveedor(_idProveedor, edFechaIniTabProd.Date
+    LST_MovimientosStkProvFecha: DM_Listados.MovimientosStkProveedor(_idProveedor, edFechaIniTabProd.Date
                                                                  , edFechaFinTabProd.Date);
-
+    LST_RecIntEntreFechas: DM_Listados.RecIntEntreFechas (edFechaIniTabFechas.Date
+                                                         , edFechaFinTabFechas.Date);
+    LST_REcIntCliEntreFechas: DM_Listados.RecIntCliEntreFechas (_idCliente, edFechaIniTabCli.Date
+                                                    , edFechaFinTabCli.Date);
+    LST_REcIntFPEntreFechas: DM_Listados.RecIntFPEntreFechas(DM_General.obtenerIDIntComboBox(cbFormaPagoFP)
+                                                           , edFechaIniTabFpFecha.Date
+                                                           , edFechaFinTabFpFecha.Date
+                                                          );
+    LST_REcIntFPCliEntreFechas: DM_Listados.RecIntFPCliEntreFechas(DM_General.obtenerIDIntComboBox(cbFormaPagoFPCli)
+                                                           , _idCliente
+                                                           ,  edFechaIniTabFpCliFecha.Date
+                                                           , edFechaFinTabFpCliFecha.Date
+                                                          );
 
   end;
 
@@ -328,6 +392,7 @@ procedure TfrmListados.btnBusCliClick(Sender: TObject);
 begin
   BuscarEmpresa(IDX_CLIENTE);
   edCli.Text:= _RazonSocial;
+  edCliFP.Text:= _RazonSocial;
 end;
 
 procedure TfrmListados.btnBusTransClick(Sender: TObject);

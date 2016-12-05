@@ -26,8 +26,10 @@ const
   LST_MovimientosStkPorFecha = 13; //Movimientos entre fechas de del movimiento
   LST_MovimientosStkProducto = 14; //Movimientos que involucren al producto entre dos fechas
   LST_MovimientosStkProvFecha = 15;//Movimientos del proveedor entre dos fechas
-
-
+  LST_RecIntEntreFechas = 16; //Recibos internos entre dos fechas
+  LST_REcIntCliEntreFechas = 17; //Recibos internos por cliente entre dos fechas;
+  LST_REcIntFPEntreFechas = 18; //Recibos internos por forma de pago entre dos fechas;
+  LST_REcIntFPCliEntreFechas = 19; //Recibos internos por forma de pago y cliente entre dos fechas;
 type
 
   { TDM_Listados }
@@ -55,6 +57,22 @@ type
     qLstListaClientesZonasRAZONSOCIAL: TStringField;
     qLstListaClientesZonasTIPOCONTACTO: TStringField;
     qLstListaClientesZonasZONA: TStringField;
+    qLstRecIntFPCliFechas: TZQuery;
+    qLstRecIntCliFechasANULADO: TStringField;
+    qLstRecIntCliFechasANULADO1: TStringField;
+    qLstRecIntCliFechasCLIENTE: TStringField;
+    qLstRecIntCliFechasCLIENTE1: TStringField;
+    qLstRecIntCliFechasFECHA: TDateField;
+    qLstRecIntCliFechasFECHA1: TDateField;
+    qLstRecIntCliFechasFORMAPAGO: TStringField;
+    qLstRecIntCliFechasFORMAPAGO1: TStringField;
+    qLstRecIntCliFechasMONTO: TFloatField;
+    qLstRecIntCliFechasMONTO1: TFloatField;
+    qLstRecIntCliFechasMONTORECIBO: TFloatField;
+    qLstRecIntCliFechasMONTORECIBO1: TFloatField;
+    qLstRecIntCliFechasNUMERO: TLongintField;
+    qLstRecIntCliFechasNUMERO1: TLongintField;
+    qLstRecIntEntreFechas: TZQuery;
     qLstMovimientosStkProvFechas: TZQuery;
     qLstMovimientosStkProdFechas: TZQuery;
     qLstMovimientosStkFechasCANTIDAD: TFloatField;
@@ -175,6 +193,22 @@ type
     qLstPedidosTomadosVENDEDOR_CODIGO1: TStringField;
     qLstPedidosTomadosVENDEDOR_RAZONSOCIAL: TStringField;
     qLstPedidosTomadosVENDEDOR_RAZONSOCIAL1: TStringField;
+    qLstRecIntCliFechas: TZQuery;
+    qLstRecIntFPEntreFechas: TZQuery;
+    qLstRecIntEntreFechasANULADO: TStringField;
+    qLstRecIntEntreFechasANULADO1: TStringField;
+    qLstRecIntEntreFechasCLIENTE: TStringField;
+    qLstRecIntEntreFechasCLIENTE1: TStringField;
+    qLstRecIntEntreFechasFECHA: TDateField;
+    qLstRecIntEntreFechasFECHA1: TDateField;
+    qLstRecIntEntreFechasFORMAPAGO: TStringField;
+    qLstRecIntEntreFechasFORMAPAGO1: TStringField;
+    qLstRecIntEntreFechasMONTO: TFloatField;
+    qLstRecIntEntreFechasMONTO1: TFloatField;
+    qLstRecIntEntreFechasMONTORECIBO: TFloatField;
+    qLstRecIntEntreFechasMONTORECIBO1: TFloatField;
+    qLstRecIntEntreFechasNUMERO: TLongintField;
+    qLstRecIntEntreFechasNUMERO1: TLongintField;
     qPedidosTiposEstadosBVISIBLE: TSmallintField;
     qPedidosTiposEstadosID: TLongintField;
     qPedidosTiposEstadosTIPOESTADO: TStringField;
@@ -235,8 +269,10 @@ type
     procedure MovimientosEntreFechas (fechaIni, fechaFin: TDate);
     procedure MovimientosStkProducto(refProducto: GUID_ID; fechaIni, fechaFin: TDate);
     procedure MovimientosStkProveedor (refProveedor: GUID_ID; fechaIni, fechaFin: TDate);
-
-
+    procedure RecIntEntreFechas (fIni, fFin: TDate);
+    procedure RecIntCliEntreFechas (refCliente: GUID_ID;fIni, fFin: TDate);
+    procedure RecIntFPEntreFechas (refFP: integer; fIni, fFin: TDate);
+    procedure RecIntFPCliEntreFechas (refFP: integer; refCliente: GUID_ID;fIni, fFin: TDate);
   end;
 
 var
@@ -494,6 +530,72 @@ begin
     ParamByName('fechaFin').AsDate:= fechaFin;
     Open;
     LevantarReporteFechas(reporte,fechaIni, fechaFin, qLstMovimientosStkProvFechas);
+  end;
+end;
+
+(*******************************************************************************
+*** RECIBOS INTERNOS
+*******************************************************************************)
+
+procedure TDM_Listados.RecIntEntreFechas(fIni, fFin: TDate);
+const
+  reporte = 'recintfechas.lrf';
+begin
+  with qLstRecIntEntreFechas do
+  begin
+    if active then close;
+    ParamByName('fechaIni').AsDate:= fIni;
+    ParamByName('fechaFin').AsDate:= fFin;
+    Open;
+    LevantarReporteFechas(reporte,fIni, fFin, qLstRecIntEntreFechas);
+  end;
+end;
+
+procedure TDM_Listados.RecIntCliEntreFechas(refCliente: GUID_ID; fIni,
+  fFin: TDate);
+const
+  reporte = 'recintclifechas.lrf';
+begin
+  with qLstRecIntCliFechas do
+  begin
+    if active then close;
+    ParamByName('refcliente').AsString:= refCliente;
+    ParamByName('fechaIni').AsDate:= fIni;
+    ParamByName('fechaFin').AsDate:= fFin;
+    Open;
+    LevantarReporteFechas(reporte,fIni, fFin, qLstRecIntCliFechas);
+  end;
+end;
+
+procedure TDM_Listados.RecIntFPEntreFechas(refFP: integer; fIni, fFin: TDate);
+const
+  reporte = 'recintFPfechas.lrf';
+begin
+  with qLstRecIntFPEntreFechas do
+  begin
+    if active then close;
+    ParamByName('refFP').AsInteger:= refFP;
+    ParamByName('fechaIni').AsDate:= fIni;
+    ParamByName('fechaFin').AsDate:= fFin;
+    Open;
+    LevantarReporteFechas(reporte,fIni, fFin, qLstRecIntFPEntreFechas);
+  end;
+end;
+
+procedure TDM_Listados.RecIntFPCliEntreFechas(refFP: integer;
+  refCliente: GUID_ID; fIni, fFin: TDate);
+const
+  reporte = 'recintFPclifechas.lrf';
+begin
+  with qLstRecIntFPCliFechas do
+  begin
+    if active then close;
+    ParamByName('refFP').AsInteger:= refFP;
+    ParamByName('refcliente').AsString:= refCliente;
+    ParamByName('fechaIni').AsDate:= fIni;
+    ParamByName('fechaFin').AsDate:= fFin;
+    Open;
+    LevantarReporteFechas(reporte,fIni, fFin, qLstRecIntFPCliFechas);
   end;
 end;
 

@@ -9,8 +9,8 @@
         <Filename Value="kito.lpr"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="26"/>
-        <CursorPos X="53" Y="45"/>
+        <TopLine Value="21"/>
+        <CursorPos X="28" Y="35"/>
         <UsageCount Value="200"/>
       </Unit0>
       <Unit1>
@@ -19,16 +19,13 @@
         <ComponentName Value="frmMain"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <IsVisibleTab Value="True"/>
-        <EditorIndex Value="2"/>
-        <TopLine Value="851"/>
-        <CursorPos X="64" Y="870"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="852"/>
+        <CursorPos X="55" Y="859"/>
         <UsageCount Value="200"/>
         <Bookmarks Count="1">
           <Item0 Y="871" ID="1"/>
         </Bookmarks>
-        <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
       </Unit1>
       <Unit2>
         <Filename Value="dmgeneral.pas"/>
@@ -36,12 +33,10 @@
         <ComponentName Value="DM_General"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
-        <EditorIndex Value="3"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="669"/>
         <CursorPos X="3" Y="674"/>
         <UsageCount Value="200"/>
-        <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
       </Unit2>
       <Unit3>
         <Filename Value="SD_Configuracion.pas"/>
@@ -478,10 +473,13 @@
         <ComponentName Value="DM_Listados"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="301"/>
-        <CursorPos Y="303"/>
-        <UsageCount Value="198"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="1"/>
+        <TopLine Value="298"/>
+        <CursorPos Y="304"/>
+        <UsageCount Value="202"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
       </Unit44>
       <Unit45>
         <Filename Value="frm_listados.pas"/>
@@ -489,9 +487,11 @@
         <ComponentName Value="frmListados"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="-1"/>
-        <CursorPos X="4" Y="16"/>
-        <UsageCount Value="197"/>
+        <TopLine Value="316"/>
+        <CursorPos Y="348"/>
+        <UsageCount Value="201"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
       </Unit45>
       <Unit46>
         <Filename Value="frm_hojaderutaae.pas"/>
@@ -502,7 +502,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="120"/>
         <CursorPos X="3" Y="125"/>
-        <UsageCount Value="164"/>
+        <UsageCount Value="171"/>
       </Unit46>
       <Unit47>
         <Filename Value="dmhojaderuta.pas"/>
@@ -513,7 +513,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="380"/>
         <CursorPos X="46" Y="392"/>
-        <UsageCount Value="164"/>
+        <UsageCount Value="171"/>
       </Unit47>
       <Unit48>
         <Filename Value="frm_seleccionarpedidos.pas"/>
@@ -524,7 +524,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="84"/>
         <CursorPos Y="101"/>
-        <UsageCount Value="150"/>
+        <UsageCount Value="157"/>
       </Unit48>
       <Unit49>
         <Filename Value="dmseleccionarpedidos.pas"/>
@@ -535,7 +535,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="87"/>
         <CursorPos Y="109"/>
-        <UsageCount Value="149"/>
+        <UsageCount Value="156"/>
       </Unit49>
       <Unit50>
         <Filename Value="frm_hojaderutapedido.pas"/>
@@ -545,7 +545,7 @@
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="13" Y="6"/>
-        <UsageCount Value="140"/>
+        <UsageCount Value="147"/>
       </Unit50>
       <Unit51>
         <Filename Value="frm_busquedahojaderuta.pas"/>
@@ -556,7 +556,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="198"/>
         <CursorPos X="39" Y="211"/>
-        <UsageCount Value="126"/>
+        <UsageCount Value="133"/>
         <Bookmarks Count="1">
           <Item0 Y="106" ID="1"/>
         </Bookmarks>
@@ -570,7 +570,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="94"/>
         <CursorPos X="73" Y="120"/>
-        <UsageCount Value="126"/>
+        <UsageCount Value="133"/>
       </Unit52>
       <Unit53>
         <Filename Value="frm_hojaderutapresentacion.pas"/>
@@ -580,7 +580,7 @@
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="22" Y="16"/>
-        <UsageCount Value="118"/>
+        <UsageCount Value="125"/>
       </Unit53>
       <Unit54>
         <Filename Value="dmhojaderutapresentacion.pas"/>
@@ -591,7 +591,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="224"/>
         <CursorPos X="54" Y="317"/>
-        <UsageCount Value="117"/>
+        <UsageCount Value="124"/>
       </Unit54>
       <Unit55>
         <Filename Value="frm_hojaderutapresentarpedidos.pas"/>
@@ -602,7 +602,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="141"/>
         <CursorPos X="44" Y="143"/>
-        <UsageCount Value="112"/>
+        <UsageCount Value="119"/>
         <Bookmarks Count="3">
           <Item0 X="66" Y="269" ID="1"/>
           <Item1 X="15" Y="149" ID="2"/>
@@ -618,7 +618,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="3"/>
         <CursorPos X="64" Y="53"/>
-        <UsageCount Value="110"/>
+        <UsageCount Value="117"/>
       </Unit56>
       <Unit57>
         <Filename Value="frm_seleccionmotivonoentrega.pas"/>
@@ -629,7 +629,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="34"/>
         <CursorPos X="89" Y="34"/>
-        <UsageCount Value="104"/>
+        <UsageCount Value="111"/>
       </Unit57>
       <Unit58>
         <Filename Value="dmrecibosinternos.pas"/>
@@ -640,7 +640,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="91"/>
         <CursorPos X="44" Y="280"/>
-        <UsageCount Value="71"/>
+        <UsageCount Value="78"/>
       </Unit58>
       <Unit59>
         <Filename Value="frm_recibointernoae.pas"/>
@@ -648,12 +648,10 @@
         <ComponentName Value="frmReciboInternoAE"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="1"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="91"/>
         <CursorPos X="81" Y="112"/>
-        <UsageCount Value="58"/>
-        <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
+        <UsageCount Value="65"/>
       </Unit59>
       <Unit60>
         <Filename Value="frm_recibointernoconcepto.pas"/>
@@ -663,7 +661,7 @@
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="51" Y="96"/>
-        <UsageCount Value="52"/>
+        <UsageCount Value="59"/>
       </Unit60>
       <Unit61>
         <Filename Value="frm_recibointernocobros.pas"/>
@@ -673,227 +671,247 @@
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="4" Y="44"/>
-        <UsageCount Value="49"/>
+        <UsageCount Value="56"/>
       </Unit61>
       <Unit62>
+        <Filename Value="frm_buscarrecibosinternos.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmBusRecibosInternos"/>
+        <ResourceBaseClass Value="Form"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="130"/>
+        <CursorPos X="22" Y="156"/>
+        <UsageCount Value="30"/>
+      </Unit62>
+      <Unit63>
+        <Filename Value="dmbusquedarecibosinternos.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="DM_BusquedaRecibosInternos"/>
+        <ResourceBaseClass Value="DataModule"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="40"/>
+        <CursorPos X="110" Y="77"/>
+        <UsageCount Value="29"/>
+      </Unit63>
+      <Unit64>
         <Filename Value="C:\magoo\lazarus\components\zeos\src\plain\ZPlainLoader.pas"/>
         <TopLine Value="224"/>
         <CursorPos X="33" Y="236"/>
-        <UsageCount Value="2"/>
+        <UsageCount Value="1"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
-      </Unit62>
-      <Unit63>
+      </Unit64>
+      <Unit65>
         <Filename Value="C:\magoo\lazarus\components\zeos\src\component\ZAbstractDataset.pas"/>
         <TopLine Value="371"/>
         <CursorPos Y="388"/>
-        <UsageCount Value="2"/>
+        <UsageCount Value="1"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
-      </Unit63>
-      <Unit64>
+      </Unit65>
+      <Unit66>
         <Filename Value="C:\magoo\lazarus\components\zeos\src\dbc\ZDbcInterbase6Utils.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="825"/>
         <CursorPos Y="848"/>
-        <UsageCount Value="4"/>
-        <DefaultSyntaxHighlighter Value="Delphi"/>
-      </Unit64>
-      <Unit65>
-        <Filename Value="C:\magoo\lazarus\components\zeos\src\dbc\ZDbcUtils.pas"/>
-        <TopLine Value="322"/>
-        <CursorPos X="54" Y="333"/>
         <UsageCount Value="3"/>
-        <DefaultSyntaxHighlighter Value="Delphi"/>
-      </Unit65>
-      <Unit66>
-        <Filename Value="C:\magoo\lazarus\components\zeos\src\dbc\ZDbcGenericResolver.pas"/>
-        <TopLine Value="847"/>
-        <CursorPos X="32" Y="861"/>
-        <UsageCount Value="2"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit66>
       <Unit67>
-        <Filename Value="C:\magoo\lazarus\components\zeos\src\dbc\ZDbcInterbase6.pas"/>
-        <TopLine Value="444"/>
-        <CursorPos X="51" Y="457"/>
+        <Filename Value="C:\magoo\lazarus\components\zeos\src\dbc\ZDbcUtils.pas"/>
+        <TopLine Value="322"/>
+        <CursorPos X="54" Y="333"/>
         <UsageCount Value="2"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit67>
       <Unit68>
+        <Filename Value="C:\magoo\lazarus\components\zeos\src\dbc\ZDbcGenericResolver.pas"/>
+        <TopLine Value="847"/>
+        <CursorPos X="32" Y="861"/>
+        <UsageCount Value="1"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
+      </Unit68>
+      <Unit69>
+        <Filename Value="C:\magoo\lazarus\components\zeos\src\dbc\ZDbcInterbase6.pas"/>
+        <TopLine Value="444"/>
+        <CursorPos X="51" Y="457"/>
+        <UsageCount Value="1"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
+      </Unit69>
+      <Unit70>
         <Filename Value="C:\magoo\lazarus\lcl\forms.pp"/>
         <UnitName Value="Forms"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="702"/>
         <CursorPos X="44" Y="716"/>
-        <UsageCount Value="8"/>
-      </Unit68>
-      <Unit69>
+        <UsageCount Value="7"/>
+      </Unit70>
+      <Unit71>
         <Filename Value="C:\magoo\lazarus\lcl\include\control.inc"/>
         <TopLine Value="2093"/>
         <CursorPos Y="2109"/>
-        <UsageCount Value="10"/>
-      </Unit69>
-      <Unit70>
+        <UsageCount Value="9"/>
+      </Unit71>
+      <Unit72>
         <Filename Value="C:\magoo\lazarus\fpc\2.6.4\source\rtl\objpas\sysutils\sysinth.inc"/>
         <TopLine Value="114"/>
         <CursorPos X="19" Y="140"/>
-        <UsageCount Value="4"/>
-      </Unit70>
-      <Unit71>
+        <UsageCount Value="3"/>
+      </Unit72>
+      <Unit73>
         <Filename Value="C:\magoo\lazarus\fpc\2.6.4\source\rtl\objpas\objpas.pp"/>
         <TopLine Value="40"/>
         <CursorPos X="8" Y="26"/>
-        <UsageCount Value="4"/>
-      </Unit71>
-      <Unit72>
+        <UsageCount Value="3"/>
+      </Unit73>
+      <Unit74>
         <Filename Value="C:\magoo\lazarus\components\rxnew\rxmemds.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="1277"/>
         <CursorPos Y="1291"/>
-        <UsageCount Value="14"/>
-      </Unit72>
-      <Unit73>
+        <UsageCount Value="13"/>
+      </Unit74>
+      <Unit75>
         <Filename Value="frm_pedidoestadosae.lfm"/>
-        <UsageCount Value="4"/>
+        <UsageCount Value="3"/>
         <DefaultSyntaxHighlighter Value="LFM"/>
-      </Unit73>
-      <Unit74>
+      </Unit75>
+      <Unit76>
         <Filename Value="C:\magoo\lazarus\lcl\editbtn.pas"/>
         <TopLine Value="2192"/>
         <CursorPos Y="2215"/>
-        <UsageCount Value="4"/>
-      </Unit74>
-      <Unit75>
+        <UsageCount Value="3"/>
+      </Unit76>
+      <Unit77>
         <Filename Value="C:\magoo\lazarus\fpc\2.6.4\source\packages\fcl-db\src\base\db.pas"/>
         <TopLine Value="1283"/>
         <CursorPos X="3" Y="1287"/>
-        <UsageCount Value="10"/>
-      </Unit75>
-      <Unit76>
+        <UsageCount Value="9"/>
+      </Unit77>
+      <Unit78>
         <Filename Value="frm_ajustarstock.pas"/>
         <ComponentName Value="frmAjustarStock"/>
         <ResourceBaseClass Value="Form"/>
         <TopLine Value="63"/>
         <CursorPos X="53" Y="87"/>
-        <UsageCount Value="7"/>
-      </Unit76>
-      <Unit77>
+        <UsageCount Value="6"/>
+      </Unit78>
+      <Unit79>
         <Filename Value="C:\magoo\lazarus\components\zeos\src\component\ZAbstractRODataset.pas"/>
         <TopLine Value="741"/>
         <CursorPos X="45" Y="749"/>
-        <UsageCount Value="7"/>
+        <UsageCount Value="6"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
-      </Unit77>
-      <Unit78>
+      </Unit79>
+      <Unit80>
         <Filename Value="C:\magoo\lazarus\lcl\dbgrids.pas"/>
         <TopLine Value="2833"/>
         <CursorPos Y="2849"/>
-        <UsageCount Value="7"/>
-      </Unit78>
-      <Unit79>
+        <UsageCount Value="6"/>
+      </Unit80>
+      <Unit81>
         <Filename Value="C:\magoo\lazarus\components\lazreport\source\lr_class.pas"/>
         <TopLine Value="8966"/>
         <CursorPos X="38" Y="8985"/>
-        <UsageCount Value="8"/>
-      </Unit79>
-      <Unit80>
-        <Filename Value="C:\magoo\lazarus\components\lazreport\source\lr_desgn.pas"/>
-        <TopLine Value="2977"/>
-        <CursorPos X="43" Y="3004"/>
-        <UsageCount Value="7"/>
-      </Unit80>
-      <Unit81>
-        <Filename Value="C:\magoo\lazarus\components\lazreport\source\lr_const.pas"/>
-        <TopLine Value="457"/>
-        <CursorPos X="33" Y="467"/>
         <UsageCount Value="7"/>
       </Unit81>
       <Unit82>
+        <Filename Value="C:\magoo\lazarus\components\lazreport\source\lr_desgn.pas"/>
+        <TopLine Value="2977"/>
+        <CursorPos X="43" Y="3004"/>
+        <UsageCount Value="6"/>
+      </Unit82>
+      <Unit83>
+        <Filename Value="C:\magoo\lazarus\components\lazreport\source\lr_const.pas"/>
+        <TopLine Value="457"/>
+        <CursorPos X="33" Y="467"/>
+        <UsageCount Value="6"/>
+      </Unit83>
+      <Unit84>
         <Filename Value="C:\magoo\lazarus\fpc\2.6.4\source\rtl\objpas\dateutil.inc"/>
         <TopLine Value="78"/>
         <CursorPos X="10" Y="79"/>
-        <UsageCount Value="7"/>
-      </Unit82>
-      <Unit83>
+        <UsageCount Value="6"/>
+      </Unit84>
+      <Unit85>
         <Filename Value="C:\magoo\lazarus\components\lazreport\source\lr_utils.pas"/>
         <TopLine Value="108"/>
         <CursorPos Y="125"/>
-        <UsageCount Value="8"/>
-      </Unit83>
-      <Unit84>
+        <UsageCount Value="7"/>
+      </Unit85>
+      <Unit86>
         <Filename Value="C:\magoo\lazarus\lcl\comctrls.pp"/>
         <TopLine Value="555"/>
         <CursorPos X="14" Y="571"/>
-        <UsageCount Value="8"/>
-      </Unit84>
-      <Unit85>
+        <UsageCount Value="7"/>
+      </Unit86>
+      <Unit87>
         <Filename Value="C:\magoo\lazarus\lcl\include\buttoncontrol.inc"/>
         <TopLine Value="4"/>
         <CursorPos Y="16"/>
-        <UsageCount Value="10"/>
-      </Unit85>
-      <Unit86>
+        <UsageCount Value="9"/>
+      </Unit87>
+      <Unit88>
         <Filename Value="C:\magoo\lazarus\lcl\include\buttons.inc"/>
         <TopLine Value="153"/>
         <CursorPos Y="170"/>
-        <UsageCount Value="10"/>
-      </Unit86>
-      <Unit87>
+        <UsageCount Value="9"/>
+      </Unit88>
+      <Unit89>
         <Filename Value="C:\magoo\lazarus\lcl\include\bitbtn.inc"/>
         <TopLine Value="49"/>
         <CursorPos Y="65"/>
-        <UsageCount Value="10"/>
-      </Unit87>
-      <Unit88>
+        <UsageCount Value="9"/>
+      </Unit89>
+      <Unit90>
         <Filename Value="C:\magoo\lazarus\lcl\include\wincontrol.inc"/>
         <TopLine Value="5311"/>
         <CursorPos Y="5327"/>
-        <UsageCount Value="10"/>
-      </Unit88>
-      <Unit89>
+        <UsageCount Value="9"/>
+      </Unit90>
+      <Unit91>
         <Filename Value="C:\magoo\lazarus\lcl\lclmessageglue.pas"/>
         <TopLine Value="103"/>
         <CursorPos Y="123"/>
-        <UsageCount Value="10"/>
-      </Unit89>
-      <Unit90>
+        <UsageCount Value="9"/>
+      </Unit91>
+      <Unit92>
         <Filename Value="C:\magoo\lazarus\lcl\interfaces\win32\win32callback.inc"/>
         <TopLine Value="2601"/>
         <CursorPos X="46" Y="2617"/>
-        <UsageCount Value="10"/>
-      </Unit90>
-      <Unit91>
+        <UsageCount Value="9"/>
+      </Unit92>
+      <Unit93>
         <Filename Value="C:\magoo\lazarus\components\lazutils\lazutf8.pas"/>
         <TopLine Value="2863"/>
         <CursorPos Y="2879"/>
-        <UsageCount Value="2"/>
-      </Unit91>
-      <Unit92>
+        <UsageCount Value="1"/>
+      </Unit93>
+      <Unit94>
         <Filename Value="C:\magoo\lazarus\fpc\2.6.4\source\rtl\objpas\classes\classesh.inc"/>
         <TopLine Value="621"/>
         <CursorPos X="17" Y="638"/>
-        <UsageCount Value="2"/>
-      </Unit92>
-      <Unit93>
+        <UsageCount Value="1"/>
+      </Unit94>
+      <Unit95>
         <Filename Value="C:\magoo\lazarus\fpc\2.6.4\source\rtl\objpas\classes\stringl.inc"/>
         <TopLine Value="512"/>
         <CursorPos X="3" Y="515"/>
-        <UsageCount Value="2"/>
-      </Unit93>
-      <Unit94>
+        <UsageCount Value="1"/>
+      </Unit95>
+      <Unit96>
         <Filename Value="C:\magoo\lazarus\components\rx\strholder.pp"/>
         <TopLine Value="609"/>
         <CursorPos X="35" Y="612"/>
-        <UsageCount Value="2"/>
-      </Unit94>
-      <Unit95>
+        <UsageCount Value="1"/>
+      </Unit96>
+      <Unit97>
         <Filename Value="frm_precioae.lfm"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="332"/>
         <CursorPos X="28" Y="349"/>
-        <UsageCount Value="2"/>
+        <UsageCount Value="1"/>
         <DefaultSyntaxHighlighter Value="LFM"/>
-      </Unit95>
-      <Unit96>
+      </Unit97>
+      <Unit98>
         <Filename Value="frm_listados.lfm"/>
         <HasResources Value="True"/>
         <EditorIndex Value="-1"/>
@@ -908,204 +926,181 @@
           <TopLine Value="52"/>
           <CursorPos X="19" Y="66"/>
         </ExtraEditor2>
-        <UsageCount Value="2"/>
+        <UsageCount Value="1"/>
         <DefaultSyntaxHighlighter Value="LFM"/>
-      </Unit96>
-      <Unit97>
+      </Unit98>
+      <Unit99>
         <Filename Value="frm_main.lfm"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="301"/>
         <CursorPos Y="285"/>
-        <UsageCount Value="2"/>
+        <UsageCount Value="1"/>
         <DefaultSyntaxHighlighter Value="LFM"/>
-      </Unit97>
-      <Unit98>
+      </Unit99>
+      <Unit100>
         <Filename Value="frm_hojaderutapresentarpedidos.lfm"/>
         <ComponentName Value="Form1"/>
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="-1"/>
-        <UsageCount Value="12"/>
+        <UsageCount Value="11"/>
         <DefaultSyntaxHighlighter Value="LFM"/>
-      </Unit98>
-      <Unit99>
+      </Unit100>
+      <Unit101>
         <Filename Value="C:\magoo\lazarus\fpc\3.0.0\source\rtl\objpas\sysutils\sysinth.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="123"/>
         <CursorPos X="3" Y="137"/>
-        <UsageCount Value="6"/>
-      </Unit99>
-      <Unit100>
+        <UsageCount Value="5"/>
+      </Unit101>
+      <Unit102>
         <Filename Value="..\arcon\src\frm_ventaconceptosae.lfm"/>
         <EditorIndex Value="-1"/>
-        <UsageCount Value="7"/>
+        <UsageCount Value="6"/>
         <DefaultSyntaxHighlighter Value="LFM"/>
-      </Unit100>
-      <Unit101>
+      </Unit102>
+      <Unit103>
         <Filename Value="C:\magoo\lazarus\lcl\include\customform.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="994"/>
         <CursorPos Y="1008"/>
-        <UsageCount Value="12"/>
-      </Unit101>
-      <Unit102>
+        <UsageCount Value="11"/>
+      </Unit103>
+      <Unit104>
         <Filename Value="C:\magoo\lazarus\components\zeos\src\component\ZAbstractConnection.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="945"/>
         <CursorPos Y="959"/>
-        <UsageCount Value="7"/>
+        <UsageCount Value="6"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
-      </Unit102>
-      <Unit103>
+      </Unit104>
+      <Unit105>
         <Filename Value="C:\magoo\lazarus\fpc\3.0.0\source\packages\fcl-db\src\base\db.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="1862"/>
         <CursorPos X="14" Y="1874"/>
-        <UsageCount Value="9"/>
-      </Unit103>
-      <Unit104>
-        <Filename Value="frm_buscarrecibosinternos.pas"/>
-        <IsPartOfProject Value="True"/>
-        <ComponentName Value="frmBusRecibosInternos"/>
-        <ResourceBaseClass Value="Form"/>
-        <TopLine Value="130"/>
-        <CursorPos X="22" Y="156"/>
-        <UsageCount Value="23"/>
-        <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
-      </Unit104>
-      <Unit105>
-        <Filename Value="dmbusquedarecibosinternos.pas"/>
-        <IsPartOfProject Value="True"/>
-        <ComponentName Value="DM_BusquedaRecibosInternos"/>
-        <ResourceBaseClass Value="DataModule"/>
-        <EditorIndex Value="4"/>
-        <TopLine Value="40"/>
-        <CursorPos X="110" Y="77"/>
-        <UsageCount Value="22"/>
-        <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
+        <UsageCount Value="8"/>
       </Unit105>
     </Units>
     <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
-        <Filename Value="dmbusquedarecibosinternos.pas"/>
-        <Caret Line="9" Column="42"/>
+        <Filename Value="dmlistados.pas"/>
+        <Caret Line="518" Column="14" TopLine="518"/>
       </Position1>
       <Position2>
-        <Filename Value="frm_buscarrecibosinternos.pas"/>
-        <Caret Line="42" Column="20" TopLine="33"/>
+        <Filename Value="dmlistados.pas"/>
+        <Caret Line="519" Column="14" TopLine="519"/>
       </Position2>
       <Position3>
-        <Filename Value="frm_buscarrecibosinternos.pas"/>
-        <Caret Line="58" Column="45" TopLine="42"/>
+        <Filename Value="dmlistados.pas"/>
+        <Caret Line="520" Column="14" TopLine="520"/>
       </Position3>
       <Position4>
-        <Filename Value="frm_buscarrecibosinternos.pas"/>
-        <Caret Line="88" Column="3" TopLine="86"/>
+        <Filename Value="dmlistados.pas"/>
+        <Caret Line="521" Column="14" TopLine="521"/>
       </Position4>
       <Position5>
-        <Filename Value="frm_buscarrecibosinternos.pas"/>
-        <Caret Line="101" Column="5" TopLine="74"/>
+        <Filename Value="dmlistados.pas"/>
+        <Caret Line="522" Column="14" TopLine="522"/>
       </Position5>
       <Position6>
-        <Filename Value="dmbusquedarecibosinternos.pas"/>
-        <Caret Line="13" Column="23"/>
+        <Filename Value="frm_listados.pas"/>
+        <Caret Line="254" Column="61" TopLine="233"/>
       </Position6>
       <Position7>
-        <Filename Value="dmbusquedarecibosinternos.pas"/>
-        <Caret Line="44" Column="41" TopLine="26"/>
+        <Filename Value="frm_listados.pas"/>
+        <Caret Line="255" Column="61" TopLine="234"/>
       </Position7>
       <Position8>
-        <Filename Value="dmbusquedarecibosinternos.pas"/>
-        <Caret Line="45" Column="47" TopLine="29"/>
+        <Filename Value="frm_listados.pas"/>
+        <Caret Line="256" Column="67" TopLine="277"/>
       </Position8>
       <Position9>
-        <Filename Value="dmbusquedarecibosinternos.pas"/>
-        <Caret Line="75" Column="30" TopLine="53"/>
+        <Filename Value="frm_listados.pas"/>
+        <Caret Line="260" Column="67" TopLine="260"/>
       </Position9>
       <Position10>
-        <Filename Value="frm_buscarrecibosinternos.pas"/>
-        <Caret Line="50" Column="48" TopLine="40"/>
+        <Filename Value="frm_listados.pas"/>
+        <Caret Line="243" Column="13" TopLine="240"/>
       </Position10>
       <Position11>
-        <Filename Value="frm_buscarrecibosinternos.pas"/>
-        <Caret Line="94" Column="50" TopLine="94"/>
+        <Filename Value="frm_listados.pas"/>
+        <Caret Line="123" Column="25" TopLine="106"/>
       </Position11>
       <Position12>
-        <Filename Value="frm_buscarrecibosinternos.pas"/>
-        <Caret Line="97" Column="21" TopLine="95"/>
+        <Filename Value="frm_listados.pas"/>
+        <Caret Line="140" Column="4" TopLine="133"/>
       </Position12>
       <Position13>
-        <Filename Value="frm_main.pas"/>
-        <Caret Line="237" Column="29" TopLine="214"/>
+        <Filename Value="frm_listados.pas"/>
+        <Caret Line="263" TopLine="253"/>
       </Position13>
       <Position14>
-        <Filename Value="frm_main.pas"/>
-        <Caret Line="238" Column="29" TopLine="215"/>
+        <Filename Value="frm_listados.pas"/>
+        <Caret Line="249" Column="21" TopLine="233"/>
       </Position14>
       <Position15>
-        <Filename Value="frm_main.pas"/>
-        <Caret Line="240" Column="29" TopLine="217"/>
+        <Filename Value="frm_listados.pas"/>
+        <Caret Line="255" Column="21" TopLine="239"/>
       </Position15>
       <Position16>
-        <Filename Value="frm_main.pas"/>
-        <Caret Line="435" TopLine="420"/>
+        <Filename Value="frm_listados.pas"/>
+        <Caret Line="258" Column="21" TopLine="242"/>
       </Position16>
       <Position17>
-        <Filename Value="frm_main.pas"/>
-        <Caret Line="863" Column="2" TopLine="844"/>
+        <Filename Value="frm_listados.pas"/>
+        <Caret Line="276" Column="86" TopLine="249"/>
       </Position17>
       <Position18>
-        <Filename Value="frm_main.pas"/>
-        <Caret Line="222" Column="29" TopLine="196"/>
+        <Filename Value="frm_listados.pas"/>
+        <Caret Line="214" TopLine="202"/>
       </Position18>
       <Position19>
-        <Filename Value="frm_main.pas"/>
-        <Caret Line="869" TopLine="850"/>
+        <Filename Value="frm_listados.pas"/>
+        <Caret Line="272" Column="6" TopLine="259"/>
       </Position19>
       <Position20>
-        <Filename Value="frm_main.pas"/>
-        <Caret Line="223" Column="21" TopLine="210"/>
+        <Filename Value="frm_listados.pas"/>
+        <Caret Line="281" TopLine="260"/>
       </Position20>
       <Position21>
-        <Filename Value="dmbusquedarecibosinternos.pas"/>
-        <Caret Line="91" Column="43" TopLine="68"/>
+        <Filename Value="frm_listados.pas"/>
+        <Caret Line="135" TopLine="119"/>
       </Position21>
       <Position22>
-        <Filename Value="frm_buscarrecibosinternos.pas"/>
-        <Caret Line="115" Column="33" TopLine="95"/>
+        <Filename Value="frm_listados.pas"/>
+        <Caret Line="227" TopLine="220"/>
       </Position22>
       <Position23>
-        <Filename Value="frm_main.pas"/>
-        <Caret Line="879" TopLine="859"/>
+        <Filename Value="frm_listados.pas"/>
+        <Caret Line="245" TopLine="218"/>
       </Position23>
       <Position24>
-        <Filename Value="frm_main.pas"/>
-        <Caret Line="870" Column="5" TopLine="859"/>
+        <Filename Value="dmlistados.pas"/>
+        <Caret Line="258" Column="52" TopLine="246"/>
       </Position24>
       <Position25>
-        <Filename Value="frm_main.pas"/>
-        <Caret Line="869" TopLine="859"/>
+        <Filename Value="dmlistados.pas"/>
+        <Caret Line="573" Column="20" TopLine="552"/>
       </Position25>
       <Position26>
-        <Filename Value="frm_main.pas"/>
-        <Caret Line="870" TopLine="859"/>
+        <Filename Value="dmlistados.pas"/>
+        <Caret Line="581" Column="20" TopLine="560"/>
       </Position26>
       <Position27>
-        <Filename Value="frm_buscarrecibosinternos.pas"/>
-        <Caret Line="147" TopLine="120"/>
+        <Filename Value="dmlistados.pas"/>
+        <Caret Line="572" Column="36" TopLine="571"/>
       </Position27>
       <Position28>
-        <Filename Value="frm_buscarrecibosinternos.pas"/>
-        <Caret Line="62" Column="4" TopLine="57"/>
+        <Filename Value="dmlistados.pas"/>
+        <Caret Line="31" Column="13" TopLine="76"/>
       </Position28>
       <Position29>
-        <Filename Value="frm_main.pas"/>
-        <Caret Line="871" Column="64" TopLine="852"/>
+        <Filename Value="frm_listados.pas"/>
+        <Caret Line="346" Column="116" TopLine="328"/>
       </Position29>
       <Position30>
-        <Filename Value="frm_main.pas"/>
-        <Caret Line="870" Column="64" TopLine="851"/>
+        <Filename Value="dmlistados.pas"/>
+        <Caret Line="601" Column="70" TopLine="577"/>
       </Position30>
     </JumpHistory>
   </ProjectSession>

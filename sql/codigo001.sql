@@ -121,3 +121,29 @@ INSERT INTO FormasPago
 VALUES
 (5, 'Mastercard', 1 , 1);
 
+
+INSERT INTO GruposListados
+(id, GrupoListado, bVisible)
+VALUES
+(4,'Dinero',1);
+
+INSERT INTO Listado
+(id, GrupoListado_id, Listado, idx, bVisible)
+VALUES
+(17, 4,'Listado de recibos entre dos fechas',16,1 );
+
+INSERT INTO Listado
+(id, GrupoListado_id, Listado, idx, bVisible)
+VALUES
+(18, 4,'Listado de recibos por cliente entre dos fechas',17,1 );
+
+INSERT INTO Listado
+(id, GrupoListado_id, Listado, idx, bVisible)
+VALUES
+(19, 4,'Listado de recibos por forma de pago entre dos fechas',18,1 );
+
+INSERT INTO Listado
+(id, GrupoListado_id, Listado, idx, bVisible)
+VALUES
+(20, 4,'Listado de recibos por forma de pago y cliente entre dos fechas',19,1 );
+

@@ -2,9 +2,9 @@ object DM_Listados: TDM_Listados
   OnCreate = DataModuleCreate
   OldCreateOrder = False
   Height = 511
-  HorizontalOffset = 211
-  VerticalOffset = 61
-  Width = 892
+  HorizontalOffset = 118
+  VerticalOffset = 56
+  Width = 1174
   object qLstStockMinimo: TZQuery
     Connection = DM_General.cnxBase
     SQL.Strings = (
@@ -2450,6 +2450,542 @@ object DM_Listados: TDM_Listados
       ReadOnly = False
       Required = False
       Size = 4
+    end
+  end
+  object qLstRecIntEntreFechas: TZQuery
+    Connection = DM_General.cnxBase
+    SQL.Strings = (
+      'SELECT  '
+      '      RI.Fecha'
+      '     ,RI.Numero'
+      '     ,RI.Monto as MontoRecibo'
+      '     ,E.RazonSocial as Cliente'
+      '     ,case bAnulado'
+      '      '#9'when 1 then ''ANULADO'''
+      '      '#9'else '''''
+      '      end as Anulado'
+      '     ,FP.FormaPago'
+      '     ,RIM.Monto'
+      ' '
+      'FROM recibosinternos RI'
+      '      left join RecibosIntMontos RIM on RIM.recibo_id = RI.id'
+      #9'left join FormasPago FP on FP.id = RIM.formaPago_id'
+      '      left join Clientes C on C.id = RI.cliente_id'
+      '      '#9'left join Empresas E on E.id = C.empresa_id'
+      'WHERE (RI.bVisible = 1)'
+      '      and (RIM.bVisible = 1)'
+      '      and (RI.Fecha >= :fechaIni)'
+      '      and (RI.Fecha <= :fechaFin)'
+      'ORDER BY RI.Numero, FP.FormaPago'
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'fechaIni'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'fechaFin'
+        ParamType = ptUnknown
+      end>
+    left = 912
+    top = 40
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'fechaIni'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'fechaFin'
+        ParamType = ptUnknown
+      end>
+    object qLstRecIntEntreFechasFECHA: TDateField
+      FieldKind = fkData
+      FieldName = 'FECHA'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object qLstRecIntEntreFechasNUMERO: TLongintField
+      FieldKind = fkData
+      FieldName = 'NUMERO'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object qLstRecIntEntreFechasMONTORECIBO: TFloatField
+      FieldKind = fkData
+      FieldName = 'MONTORECIBO'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object qLstRecIntEntreFechasCLIENTE: TStringField
+      FieldKind = fkData
+      FieldName = 'CLIENTE'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 2000
+    end
+    object qLstRecIntEntreFechasANULADO: TStringField
+      FieldKind = fkData
+      FieldName = 'ANULADO'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = True
+      Required = False
+      Size = 28
+    end
+    object qLstRecIntEntreFechasFORMAPAGO: TStringField
+      FieldKind = fkData
+      FieldName = 'FORMAPAGO'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 200
+    end
+    object qLstRecIntEntreFechasMONTO: TFloatField
+      FieldKind = fkData
+      FieldName = 'MONTO'
+      Index = 6
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+  end
+  object qLstRecIntCliFechas: TZQuery
+    Connection = DM_General.cnxBase
+    SQL.Strings = (
+      'SELECT  '
+      '      RI.Fecha'
+      '     ,RI.Numero'
+      '     ,RI.Monto as MontoRecibo'
+      '     ,E.RazonSocial as Cliente'
+      '     ,case bAnulado'
+      '      '#9'when 1 then ''ANULADO'''
+      '      '#9'else '''''
+      '      end as Anulado'
+      '     ,FP.FormaPago'
+      '     ,RIM.Monto'
+      ' '
+      'FROM recibosinternos RI'
+      '      left join RecibosIntMontos RIM on RIM.recibo_id = RI.id'
+      #9'left join FormasPago FP on FP.id = RIM.formaPago_id'
+      '      left join Clientes C on C.id = RI.cliente_id'
+      '      '#9'left join Empresas E on E.id = C.empresa_id'
+      'WHERE (RI.bVisible = 1)'
+      '      and (RIM.bVisible = 1)'
+      '      and (RI.Fecha >= :fechaIni)'
+      '      and (RI.Fecha <= :fechaFin)'
+      '      and (RI.cliente_id = :refCliente)'
+      'ORDER BY RI.Numero, FP.FormaPago'
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'fechaIni'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'fechaFin'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'refCliente'
+        ParamType = ptUnknown
+      end>
+    left = 912
+    top = 112
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'fechaIni'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'fechaFin'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'refCliente'
+        ParamType = ptUnknown
+      end>
+    object qLstRecIntCliFechasFECHA: TDateField
+      FieldKind = fkData
+      FieldName = 'FECHA'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object qLstRecIntCliFechasNUMERO: TLongintField
+      FieldKind = fkData
+      FieldName = 'NUMERO'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object qLstRecIntCliFechasMONTORECIBO: TFloatField
+      FieldKind = fkData
+      FieldName = 'MONTORECIBO'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object qLstRecIntCliFechasCLIENTE: TStringField
+      FieldKind = fkData
+      FieldName = 'CLIENTE'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 2000
+    end
+    object qLstRecIntCliFechasANULADO: TStringField
+      FieldKind = fkData
+      FieldName = 'ANULADO'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = True
+      Required = False
+      Size = 28
+    end
+    object qLstRecIntCliFechasFORMAPAGO: TStringField
+      FieldKind = fkData
+      FieldName = 'FORMAPAGO'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 200
+    end
+    object qLstRecIntCliFechasMONTO: TFloatField
+      FieldKind = fkData
+      FieldName = 'MONTO'
+      Index = 6
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+  end
+  object qLstRecIntFPEntreFechas: TZQuery
+    Connection = DM_General.cnxBase
+    SQL.Strings = (
+      'SELECT  '
+      '      RI.Fecha'
+      '     ,RI.Numero'
+      '     ,RI.Monto as MontoRecibo'
+      '     ,E.RazonSocial as Cliente'
+      '     ,case bAnulado'
+      '      '#9'when 1 then ''ANULADO'''
+      '      '#9'else '''''
+      '      end as Anulado'
+      '     ,FP.FormaPago'
+      '     ,RIM.Monto'
+      ' '
+      'FROM recibosinternos RI'
+      '      Inner join RecibosIntMontos RIM on RIM.recibo_id = RI.id'
+      #9'left join FormasPago FP on FP.id = RIM.formaPago_id'
+      '      left join Clientes C on C.id = RI.cliente_id'
+      '      '#9'left join Empresas E on E.id = C.empresa_id'
+      'WHERE (RI.bVisible = 1)'
+      '      and (RIM.bVisible = 1)'
+      '      and (RI.Fecha >= :fechaIni)'
+      '      and (RI.Fecha <= :fechaFin)'
+      '      and (RIM.FORMAPAGO_ID = :refFP)'
+      'ORDER BY RI.Numero, FP.FormaPago'
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'fechaIni'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'fechaFin'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'refFP'
+        ParamType = ptUnknown
+      end>
+    left = 912
+    top = 176
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'fechaIni'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'fechaFin'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'refFP'
+        ParamType = ptUnknown
+      end>
+    object qLstRecIntEntreFechasFECHA1: TDateField
+      FieldKind = fkData
+      FieldName = 'FECHA'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object qLstRecIntEntreFechasNUMERO1: TLongintField
+      FieldKind = fkData
+      FieldName = 'NUMERO'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object qLstRecIntEntreFechasMONTORECIBO1: TFloatField
+      FieldKind = fkData
+      FieldName = 'MONTORECIBO'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object qLstRecIntEntreFechasCLIENTE1: TStringField
+      FieldKind = fkData
+      FieldName = 'CLIENTE'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 2000
+    end
+    object qLstRecIntEntreFechasANULADO1: TStringField
+      FieldKind = fkData
+      FieldName = 'ANULADO'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = True
+      Required = False
+      Size = 28
+    end
+    object qLstRecIntEntreFechasFORMAPAGO1: TStringField
+      FieldKind = fkData
+      FieldName = 'FORMAPAGO'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 200
+    end
+    object qLstRecIntEntreFechasMONTO1: TFloatField
+      FieldKind = fkData
+      FieldName = 'MONTO'
+      Index = 6
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+  end
+  object qLstRecIntFPCliFechas: TZQuery
+    Connection = DM_General.cnxBase
+    SQL.Strings = (
+      'SELECT  '
+      '      RI.Fecha'
+      '     ,RI.Numero'
+      '     ,RI.Monto as MontoRecibo'
+      '     ,E.RazonSocial as Cliente'
+      '     ,case bAnulado'
+      '      '#9'when 1 then ''ANULADO'''
+      '      '#9'else '''''
+      '      end as Anulado'
+      '     ,FP.FormaPago'
+      '     ,RIM.Monto'
+      ' '
+      'FROM recibosinternos RI'
+      '      inner join RecibosIntMontos RIM on RIM.recibo_id = RI.id'
+      #9'left join FormasPago FP on FP.id = RIM.formaPago_id'
+      '      left join Clientes C on C.id = RI.cliente_id'
+      '      '#9'left join Empresas E on E.id = C.empresa_id'
+      'WHERE (RI.bVisible = 1)'
+      '      and (RIM.bVisible = 1)'
+      '      and (RI.Fecha >= :fechaIni)'
+      '      and (RI.Fecha <= :fechaFin)'
+      '      and (RI.cliente_id = :refCliente)'
+      '      and (RIM.FORMAPAGO_ID = :refFP)'
+      'ORDER BY RI.Numero, FP.FormaPago'
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'fechaIni'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'fechaFin'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'refCliente'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'refFP'
+        ParamType = ptUnknown
+      end>
+    left = 912
+    top = 240
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'fechaIni'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'fechaFin'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'refCliente'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'refFP'
+        ParamType = ptUnknown
+      end>
+    object qLstRecIntCliFechasFECHA1: TDateField
+      FieldKind = fkData
+      FieldName = 'FECHA'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object qLstRecIntCliFechasNUMERO1: TLongintField
+      FieldKind = fkData
+      FieldName = 'NUMERO'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object qLstRecIntCliFechasMONTORECIBO1: TFloatField
+      FieldKind = fkData
+      FieldName = 'MONTORECIBO'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object qLstRecIntCliFechasCLIENTE1: TStringField
+      FieldKind = fkData
+      FieldName = 'CLIENTE'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 2000
+    end
+    object qLstRecIntCliFechasANULADO1: TStringField
+      FieldKind = fkData
+      FieldName = 'ANULADO'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = True
+      Required = False
+      Size = 28
+    end
+    object qLstRecIntCliFechasFORMAPAGO1: TStringField
+      FieldKind = fkData
+      FieldName = 'FORMAPAGO'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 200
+    end
+    object qLstRecIntCliFechasMONTO1: TFloatField
+      FieldKind = fkData
+      FieldName = 'MONTO'
+      Index = 6
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
     end
   end
 end
