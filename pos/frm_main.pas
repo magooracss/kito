@@ -14,6 +14,8 @@ type
   { TfrmMain }
 
   TfrmMain = class(TForm)
+    dinCajaDiaria: TAction;
+    MenuItem24: TMenuItem;
     provEdit: TAction;
     provDel: TAction;
     provNew: TAction;
@@ -60,6 +62,7 @@ type
     procedure cliDelExecute(Sender: TObject);
     procedure cliEditExecute(Sender: TObject);
     procedure cliNewExecute(Sender: TObject);
+    procedure dinCajaDiariaExecute(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure prg_AboutExecute(Sender: TObject);
     procedure prg_ConfigExecute(Sender: TObject);
@@ -97,6 +100,7 @@ uses
 ,   frm_busquedaempresas
 ,   frm_proveedoresae
 ,   dmproveedores
+,   frm_cajadiaria
 ;
 
 { TfrmMain }
@@ -261,6 +265,8 @@ begin
  ScreenCliente(GUIDNULO);
 end;
 
+
+
 procedure TfrmMain.cliEditExecute(Sender: TObject);
 var
   pantBus: TfrmBusquedaEmpresas;
@@ -347,6 +353,21 @@ begin
        end;
   finally
     pantBus.Free;
+  end;
+end;
+
+(******************************************************************************
+*** DINERO
+******************************************************************************)
+procedure TfrmMain.dinCajaDiariaExecute(Sender: TObject);
+var
+  scr: TfrmCajaDiaria;
+begin
+  scr:= TfrmCajaDiaria.Create(self);
+  try
+    scr.ShowModal;
+  finally
+    scr.Free;
   end;
 end;
 

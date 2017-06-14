@@ -31,24 +31,27 @@
         <FormatVersion Value="1"/>
       </local>
     </RunParams>
-    <RequiredPackages Count="5">
+    <RequiredPackages Count="6">
       <Item1>
-        <PackageName Value="FCL"/>
+        <PackageName Value="DateTimeCtrls"/>
       </Item1>
       <Item2>
-        <PackageName Value="zcomponent"/>
+        <PackageName Value="FCL"/>
       </Item2>
       <Item3>
-        <PackageName Value="lazreport"/>
+        <PackageName Value="zcomponent"/>
       </Item3>
       <Item4>
-        <PackageName Value="rxnew"/>
+        <PackageName Value="lazreport"/>
       </Item4>
       <Item5>
-        <PackageName Value="LCL"/>
+        <PackageName Value="rxnew"/>
       </Item5>
+      <Item6>
+        <PackageName Value="LCL"/>
+      </Item6>
     </RequiredPackages>
-    <Units Count="20">
+    <Units Count="21">
       <Unit0>
         <Filename Value="kitopos.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -168,8 +171,15 @@
         <Filename Value="dmcajamovimientos.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="DM_CajaMovimentos"/>
+        <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
       </Unit19>
+      <Unit20>
+        <Filename Value="frm_cajadiaria.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmCajaDiaria"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit20>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

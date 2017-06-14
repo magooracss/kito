@@ -1,8 +1,8 @@
 object DM_CajaMovimentos: TDM_CajaMovimentos
   OldCreateOrder = False
   Height = 618
-  HorizontalOffset = 430
-  VerticalOffset = 200
+  HorizontalOffset = 433
+  VerticalOffset = 202
   Width = 957
   object CajaMovimientos: TRxMemoryData
     FieldDefs = <    
@@ -42,6 +42,7 @@ object DM_CajaMovimentos: TDM_CajaMovimentos
         Name = 'bVisible'
         DataType = ftInteger
       end>
+    AfterInsert = CajaMovimientosAfterInsert
     PacketRecords = 0
     left = 67
     top = 31
@@ -59,6 +60,435 @@ object DM_CajaMovimentos: TDM_CajaMovimentos
       FieldKind = fkData
       FieldName = 'fecha'
       Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object CajaMovimientosmarca: TFloatField
+      FieldKind = fkData
+      FieldName = 'marca'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object CajaMovimientostipo: TLongintField
+      FieldKind = fkData
+      FieldName = 'tipo'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object CajaMovimientosdetalle: TStringField
+      FieldKind = fkData
+      FieldName = 'detalle'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 200
+    end
+    object CajaMovimientosmonto: TFloatField
+      FieldKind = fkData
+      FieldName = 'monto'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Currency = True
+      MaxValue = 0
+      MinValue = 0
+      Precision = 3
+    end
+    object CajaMovimientosreferencia_id: TStringField
+      FieldKind = fkData
+      FieldName = 'referencia_id'
+      Index = 6
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 38
+    end
+    object CajaMovimientosbVisible: TLongintField
+      FieldKind = fkData
+      FieldName = 'bVisible'
+      Index = 7
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+  end
+  object SELCajaMov: TZQuery
+    Connection = DM_General.cnxBase
+    SQL.Strings = (
+      'SELECT *'
+      'FROM CajaMovimientos'
+      'WHERE (id = :id)'
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'id'
+        ParamType = ptUnknown
+      end>
+    left = 67
+    top = 120
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'id'
+        ParamType = ptUnknown
+      end>
+    object SELCajaMovID: TStringField
+      FieldKind = fkData
+      FieldName = 'ID'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      Size = 152
+    end
+    object SELCajaMovFECHA: TDateField
+      FieldKind = fkData
+      FieldName = 'FECHA'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object SELCajaMovMARCA: TDateTimeField
+      FieldKind = fkData
+      FieldName = 'MARCA'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object SELCajaMovTIPO: TSmallintField
+      FieldKind = fkData
+      FieldName = 'TIPO'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object SELCajaMovDETALLE: TStringField
+      FieldKind = fkData
+      FieldName = 'DETALLE'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 800
+    end
+    object SELCajaMovMONTO: TFloatField
+      FieldKind = fkData
+      FieldName = 'MONTO'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object SELCajaMovREFERENCIA_ID: TStringField
+      FieldKind = fkData
+      FieldName = 'REFERENCIA_ID'
+      Index = 6
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 152
+    end
+    object SELCajaMovBVISIBLE: TSmallintField
+      FieldKind = fkData
+      FieldName = 'BVISIBLE'
+      Index = 7
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+  end
+  object INSCajaMov: TZQuery
+    Connection = DM_General.cnxBase
+    SQL.Strings = (
+      'INSERT INTO CajaMovimientos'
+      '(id, fecha, marca, tipo, detalle, monto, referencia_id, bVisible)'
+      'VALUES'
+      '(:id, :fecha, :marca, :tipo, :detalle, :monto, :referencia_id, :bVisible);'
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'id'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'fecha'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'marca'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'tipo'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'detalle'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'monto'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'referencia_id'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'bVisible'
+        ParamType = ptUnknown
+      end>
+    left = 67
+    top = 187
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'id'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'fecha'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'marca'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'tipo'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'detalle'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'monto'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'referencia_id'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'bVisible'
+        ParamType = ptUnknown
+      end>
+  end
+  object UPDCajaMov: TZQuery
+    Connection = DM_General.cnxBase
+    SQL.Strings = (
+      'UPDATE CajaMovimientos'
+      'SET'
+      ' fecha'
+      ', marca'
+      ', tipo'
+      ', detalle'
+      ', monto'
+      ', referencia_id'
+      ', bVisible = :bVisible'
+      'WHERE id = :id'
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'bVisible'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'id'
+        ParamType = ptUnknown
+      end>
+    left = 67
+    top = 259
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'bVisible'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'id'
+        ParamType = ptUnknown
+      end>
+  end
+  object DELCajaMov: TZQuery
+    Connection = DM_General.cnxBase
+    SQL.Strings = (
+      'UPDATE CajaMovimientos'
+      'SET bVisible = 0'
+      'WHERE id = :id'
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'id'
+        ParamType = ptUnknown
+      end>
+    left = 67
+    top = 339
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'id'
+        ParamType = ptUnknown
+      end>
+  end
+  object qMovFechas: TZQuery
+    Connection = DM_General.cnxBase
+    SQL.Strings = (
+      'SELECT *'
+      'FROM CajaMovimientos'
+      'WHERE (bVisible = 1)'
+      '           and (fecha >= :fechaIni)'
+      '           and (fecha <= :fechaFin)'
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'fechaIni'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'fechaFin'
+        ParamType = ptUnknown
+      end>
+    left = 240
+    top = 120
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'fechaIni'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'fechaFin'
+        ParamType = ptUnknown
+      end>
+    object qMovFechasID: TStringField
+      FieldKind = fkData
+      FieldName = 'ID'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      Size = 152
+    end
+    object qMovFechasFECHA: TDateField
+      FieldKind = fkData
+      FieldName = 'FECHA'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object qMovFechasMARCA: TDateTimeField
+      FieldKind = fkData
+      FieldName = 'MARCA'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object qMovFechasTIPO: TSmallintField
+      FieldKind = fkData
+      FieldName = 'TIPO'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object qMovFechasDETALLE: TStringField
+      FieldKind = fkData
+      FieldName = 'DETALLE'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 800
+    end
+    object qMovFechasMONTO: TFloatField
+      FieldKind = fkData
+      FieldName = 'MONTO'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object qMovFechasREFERENCIA_ID: TStringField
+      FieldKind = fkData
+      FieldName = 'REFERENCIA_ID'
+      Index = 6
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 152
+    end
+    object qMovFechasBVISIBLE: TSmallintField
+      FieldKind = fkData
+      FieldName = 'BVISIBLE'
+      Index = 7
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False

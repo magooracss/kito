@@ -1,10 +1,10 @@
 object frmMain: TfrmMain
-  Left = 299
+  Left = 361
   Height = 564
-  Top = 161
+  Top = 264
   Width = 782
   Caption = 'Punto de Venta'
-  ClientHeight = 544
+  ClientHeight = 539
   ClientWidth = 782
   Font.CharSet = ANSI_CHARSET
   Font.Height = -13
@@ -18,8 +18,8 @@ object frmMain: TfrmMain
   LCLVersion = '1.6.4.0'
   object st: TStatusBar
     Left = 0
-    Height = 23
-    Top = 521
+    Height = 28
+    Top = 511
     Width = 782
     Panels = <    
       item
@@ -132,6 +132,9 @@ object frmMain: TfrmMain
     end
     object MenuItem8: TMenuItem
       Caption = 'Dinero'
+      object MenuItem24: TMenuItem
+        Action = dinCajaDiaria
+      end
     end
     object MenuItem9: TMenuItem
       Caption = 'Listados'
@@ -224,6 +227,12 @@ object frmMain: TfrmMain
       Caption = 'Borrar'
       ImageIndex = 6
       OnExecute = provDelExecute
+    end
+    object dinCajaDiaria: TAction
+      Category = 'Dinero'
+      Caption = 'Caja Diaria'
+      ImageIndex = 30
+      OnExecute = dinCajaDiariaExecute
     end
   end
 end

@@ -7,11 +7,11 @@ uses
   cthreads,
   {$ENDIF}{$ENDIF}
   Interfaces, // this includes the LCL widgetset
-  Forms, rxnew, zcomponent, frm_main
+  Forms, rxnew, datetimectrls, zcomponent, frm_main
   { you can add units after this }
   ,dmgeneral, dmproductos, frm_productoae, frm_ediciontugs, dmediciontugs,
   frm_precioae, dmprecios, frm_coloresae, dmcolores, dmclientes
-  ,dmempresa, dmproveedores, frm_clientesae, dmcajamovimientos;
+  ,dmempresa, dmproveedores, frm_clientesae, dmcajamovimientos, frm_cajadiaria;
 
 {$R *.res}
 
