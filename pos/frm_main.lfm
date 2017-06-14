@@ -1,0 +1,229 @@
+object frmMain: TfrmMain
+  Left = 299
+  Height = 564
+  Top = 161
+  Width = 782
+  Caption = 'Punto de Venta'
+  ClientHeight = 544
+  ClientWidth = 782
+  Font.CharSet = ANSI_CHARSET
+  Font.Height = -13
+  Font.Name = 'Arial'
+  Font.Pitch = fpVariable
+  Font.Quality = fqDraft
+  Menu = MainMenu1
+  OnShow = FormShow
+  Position = poScreenCenter
+  ShowHint = True
+  LCLVersion = '1.6.4.0'
+  object st: TStatusBar
+    Left = 0
+    Height = 23
+    Top = 521
+    Width = 782
+    Panels = <    
+      item
+        Width = 200
+      end    
+      item
+        Alignment = taRightJustify
+        Width = 100
+      end>
+    SimplePanel = False
+  end
+  object ToolBar1: TToolBar
+    Left = 0
+    Height = 82
+    Top = 0
+    Width = 782
+    AutoSize = True
+    ButtonHeight = 80
+    ButtonWidth = 92
+    Caption = 'ToolBar1'
+    Images = DM_General.ImgAcciones
+    ParentShowHint = False
+    ShowCaptions = True
+    ShowHint = True
+    TabOrder = 1
+    object ToolButton1: TToolButton
+      Left = 1
+      Top = 2
+      Action = prg_Exit
+    end
+    object ToolButton2: TToolButton
+      Left = 93
+      Height = 80
+      Top = 2
+      Width = 10
+      Caption = 'ToolButton2'
+      Style = tbsSeparator
+    end
+    object ToolButton6: TToolButton
+      Left = 103
+      Top = 2
+    end
+  end
+  object MainMenu1: TMainMenu
+    Images = DM_General.ImgAccionesMenu
+    left = 394
+    top = 208
+    object MenuItem1: TMenuItem
+      Caption = 'Programa'
+      object MenuItem15: TMenuItem
+        Action = prg_Config
+      end
+      object MenuItem14: TMenuItem
+        Action = prg_UpdateBD
+      end
+      object MenuItem5: TMenuItem
+        Caption = '-'
+      end
+      object MenuItem4: TMenuItem
+        Action = prg_About
+      end
+      object MenuItem2: TMenuItem
+        Caption = '-'
+      end
+      object MenuItem3: TMenuItem
+        Action = prg_Exit
+      end
+    end
+    object MenuItem6: TMenuItem
+      Caption = 'Listas'
+      object MenuItem10: TMenuItem
+        Caption = 'Productos'
+        object MenuItem11: TMenuItem
+          Action = prod_New
+        end
+        object MenuItem12: TMenuItem
+          Action = prod_Edit
+        end
+        object MenuItem13: TMenuItem
+          Action = prod_Del
+        end
+      end
+      object MenuItem16: TMenuItem
+        Caption = 'Clientes'
+        object MenuItem17: TMenuItem
+          Action = cliNew
+        end
+        object MenuItem18: TMenuItem
+          Action = cliEdit
+        end
+        object MenuItem19: TMenuItem
+          Action = cliDel
+        end
+      end
+      object MenuItem20: TMenuItem
+        Caption = 'Proveedores'
+        object MenuItem21: TMenuItem
+          Action = provNew
+        end
+        object MenuItem22: TMenuItem
+          Action = provEdit
+        end
+        object MenuItem23: TMenuItem
+          Action = provDel
+        end
+      end
+    end
+    object MenuItem7: TMenuItem
+      Caption = 'Mercadería'
+    end
+    object MenuItem8: TMenuItem
+      Caption = 'Dinero'
+    end
+    object MenuItem9: TMenuItem
+      Caption = 'Listados'
+    end
+  end
+  object ActionList1: TActionList
+    Images = DM_General.ImgAcciones
+    left = 232
+    top = 224
+    object prg_Exit: TAction
+      Category = 'programa'
+      Caption = 'Salir'
+      Hint = 'Sale del programa'
+      ImageIndex = 0
+      OnExecute = prg_ExitExecute
+      ShortCut = 16472
+    end
+    object prg_About: TAction
+      Category = 'programa'
+      Caption = 'Autor'
+      Hint = 'Información del programa'
+      ImageIndex = 26
+      OnExecute = prg_AboutExecute
+    end
+    object prod_New: TAction
+      Category = 'productos'
+      Caption = 'Nuevo producto'
+      Hint = 'Alta de un nuevo producto'
+      ImageIndex = 1
+      OnExecute = prod_NewExecute
+    end
+    object prod_Edit: TAction
+      Category = 'productos'
+      Caption = 'Modificar Producto'
+      Hint = 'Modifica los datos de un producto'
+      ImageIndex = 2
+      OnExecute = prod_EditExecute
+    end
+    object prod_Del: TAction
+      Category = 'productos'
+      Caption = 'Eliminar un producto'
+      Hint = 'Borra un producto'
+      ImageIndex = 3
+      OnExecute = prod_DelExecute
+    end
+    object prg_UpdateBD: TAction
+      Category = 'programa'
+      Caption = 'Actualizar BD'
+      ImageIndex = 34
+      OnExecute = prg_UpdateBDExecute
+    end
+    object prg_Config: TAction
+      Category = 'programa'
+      Caption = 'Configuración'
+      ImageIndex = 34
+      OnExecute = prg_ConfigExecute
+    end
+    object cliNew: TAction
+      Category = 'clientes'
+      Caption = 'Nuevo'
+      ImageIndex = 4
+      OnExecute = cliNewExecute
+    end
+    object cliEdit: TAction
+      Category = 'clientes'
+      Caption = 'Modificar'
+      ImageIndex = 5
+      OnExecute = cliEditExecute
+    end
+    object cliDel: TAction
+      Category = 'clientes'
+      Caption = 'Borrar'
+      ImageIndex = 6
+      OnExecute = cliDelExecute
+    end
+    object provNew: TAction
+      Category = 'proveedores'
+      Caption = 'Nuevo'
+      ImageIndex = 4
+      OnExecute = provNewExecute
+    end
+    object provEdit: TAction
+      Category = 'proveedores'
+      Caption = 'Modificar'
+      ImageIndex = 5
+      OnExecute = provEditExecute
+    end
+    object provDel: TAction
+      Category = 'proveedores'
+      Caption = 'Borrar'
+      ImageIndex = 6
+      OnExecute = provDelExecute
+    end
+  end
+end

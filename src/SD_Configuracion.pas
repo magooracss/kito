@@ -51,6 +51,9 @@ const
   CB_HDR_DEF_FP = 'HDR_FORMAPAGO';
 
 
+  CFG_PROD_DATO_AD = 'PROD_DATO_AD'; //Datos adicionales de un producto que se muestran por defecto
+
+
 
   function AbrirArchivo: TIniFile;
   function LeerDato (Clave, Etiqueta: string): string;

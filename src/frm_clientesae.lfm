@@ -13,7 +13,7 @@ object frmClientesAE: TfrmClientesAE
   Font.Quality = fqDraft
   OnShow = FormShow
   Position = poOwnerFormCenter
-  LCLVersion = '1.2.6.0'
+  LCLVersion = '1.6.4.0'
   object Panel1: TPanel
     Left = 0
     Height = 50
@@ -189,7 +189,7 @@ object frmClientesAE: TfrmClientesAE
       Width = 398
       Align = alRight
       Caption = 'Facturación'
-      ClientHeight = 175
+      ClientHeight = 172
       ClientWidth = 394
       TabOrder = 3
       object DBEdit2: TDBEdit

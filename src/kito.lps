@@ -2,16 +2,18 @@
 <CONFIG>
   <ProjectSession>
     <PathDelim Value="\"/>
-    <Version Value="9"/>
+    <Version Value="10"/>
     <BuildModes Active="Default"/>
     <Units Count="106">
       <Unit0>
         <Filename Value="kito.lpr"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="21"/>
-        <CursorPos X="28" Y="35"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="7"/>
+        <TopLine Value="24"/>
+        <CursorPos Y="43"/>
         <UsageCount Value="200"/>
+        <Loaded Value="True"/>
       </Unit0>
       <Unit1>
         <Filename Value="frm_main.pas"/>
@@ -19,8 +21,8 @@
         <ComponentName Value="frmMain"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <TopLine Value="853"/>
-        <CursorPos X="55" Y="860"/>
+        <TopLine Value="183"/>
+        <CursorPos Y="229"/>
         <UsageCount Value="200"/>
         <Bookmarks Count="1">
           <Item0 Y="872" ID="1"/>
@@ -34,10 +36,12 @@
         <ComponentName Value="DM_General"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
-        <EditorIndex Value="-1"/>
+        <EditorIndex Value="6"/>
         <TopLine Value="669"/>
-        <CursorPos X="3" Y="674"/>
+        <CursorPos X="52" Y="680"/>
         <UsageCount Value="200"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
       </Unit2>
       <Unit3>
         <Filename Value="SD_Configuracion.pas"/>
@@ -71,10 +75,12 @@
         <ComponentName Value="DM_Productos"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="179"/>
-        <CursorPos X="4" Y="189"/>
+        <EditorIndex Value="1"/>
+        <TopLine Value="182"/>
+        <CursorPos X="57" Y="197"/>
         <UsageCount Value="200"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
       </Unit6>
       <Unit7>
         <Filename Value="dmediciontugs.pas"/>
@@ -500,7 +506,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="120"/>
         <CursorPos X="3" Y="125"/>
-        <UsageCount Value="174"/>
+        <UsageCount Value="178"/>
       </Unit46>
       <Unit47>
         <Filename Value="dmhojaderuta.pas"/>
@@ -508,11 +514,10 @@
         <ComponentName Value="DM_HojaDeRuta"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
-        <IsVisibleTab Value="True"/>
-        <EditorIndex Value="4"/>
+        <EditorIndex Value="5"/>
         <TopLine Value="381"/>
         <CursorPos X="114" Y="392"/>
-        <UsageCount Value="174"/>
+        <UsageCount Value="178"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit47>
@@ -525,7 +530,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="84"/>
         <CursorPos Y="101"/>
-        <UsageCount Value="160"/>
+        <UsageCount Value="164"/>
       </Unit48>
       <Unit49>
         <Filename Value="dmseleccionarpedidos.pas"/>
@@ -536,7 +541,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="87"/>
         <CursorPos Y="109"/>
-        <UsageCount Value="159"/>
+        <UsageCount Value="163"/>
       </Unit49>
       <Unit50>
         <Filename Value="frm_hojaderutapedido.pas"/>
@@ -546,7 +551,7 @@
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="13" Y="6"/>
-        <UsageCount Value="150"/>
+        <UsageCount Value="154"/>
       </Unit50>
       <Unit51>
         <Filename Value="frm_busquedahojaderuta.pas"/>
@@ -554,10 +559,10 @@
         <ComponentName Value="frmBuscarHdR"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="2"/>
+        <EditorIndex Value="3"/>
         <TopLine Value="152"/>
         <CursorPos X="5" Y="176"/>
-        <UsageCount Value="136"/>
+        <UsageCount Value="140"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit51>
@@ -570,7 +575,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="94"/>
         <CursorPos X="73" Y="120"/>
-        <UsageCount Value="136"/>
+        <UsageCount Value="140"/>
       </Unit52>
       <Unit53>
         <Filename Value="frm_hojaderutapresentacion.pas"/>
@@ -578,10 +583,10 @@
         <ComponentName Value="frmPresentacionHdR"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="1"/>
+        <EditorIndex Value="2"/>
         <TopLine Value="109"/>
         <CursorPos X="29" Y="120"/>
-        <UsageCount Value="128"/>
+        <UsageCount Value="132"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit53>
@@ -594,7 +599,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="224"/>
         <CursorPos X="54" Y="317"/>
-        <UsageCount Value="127"/>
+        <UsageCount Value="131"/>
       </Unit54>
       <Unit55>
         <Filename Value="frm_hojaderutapresentarpedidos.pas"/>
@@ -605,7 +610,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="141"/>
         <CursorPos X="44" Y="143"/>
-        <UsageCount Value="122"/>
+        <UsageCount Value="126"/>
         <Bookmarks Count="3">
           <Item0 X="66" Y="269" ID="1"/>
           <Item1 X="15" Y="149" ID="2"/>
@@ -618,10 +623,10 @@
         <ComponentName Value="frmHdRPresentacionPedido"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="3"/>
+        <EditorIndex Value="4"/>
         <TopLine Value="20"/>
         <CursorPos X="26" Y="57"/>
-        <UsageCount Value="120"/>
+        <UsageCount Value="124"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit56>
@@ -634,7 +639,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="34"/>
         <CursorPos X="89" Y="34"/>
-        <UsageCount Value="114"/>
+        <UsageCount Value="118"/>
       </Unit57>
       <Unit58>
         <Filename Value="dmrecibosinternos.pas"/>
@@ -645,7 +650,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="91"/>
         <CursorPos X="44" Y="280"/>
-        <UsageCount Value="81"/>
+        <UsageCount Value="85"/>
       </Unit58>
       <Unit59>
         <Filename Value="frm_recibointernoae.pas"/>
@@ -656,7 +661,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="91"/>
         <CursorPos X="81" Y="112"/>
-        <UsageCount Value="68"/>
+        <UsageCount Value="72"/>
       </Unit59>
       <Unit60>
         <Filename Value="frm_recibointernoconcepto.pas"/>
@@ -666,7 +671,7 @@
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="51" Y="96"/>
-        <UsageCount Value="62"/>
+        <UsageCount Value="66"/>
       </Unit60>
       <Unit61>
         <Filename Value="frm_recibointernocobros.pas"/>
@@ -676,7 +681,7 @@
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="4" Y="44"/>
-        <UsageCount Value="59"/>
+        <UsageCount Value="63"/>
       </Unit61>
       <Unit62>
         <Filename Value="frm_buscarrecibosinternos.pas"/>
@@ -686,7 +691,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="130"/>
         <CursorPos X="22" Y="156"/>
-        <UsageCount Value="33"/>
+        <UsageCount Value="37"/>
       </Unit62>
       <Unit63>
         <Filename Value="dmbusquedarecibosinternos.pas"/>
@@ -696,7 +701,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="40"/>
         <CursorPos X="110" Y="77"/>
-        <UsageCount Value="32"/>
+        <UsageCount Value="36"/>
       </Unit63>
       <Unit64>
         <Filename Value="C:\magoo\lazarus\components\zeos\src\plain\ZPlainLoader.pas"/>
@@ -714,11 +719,10 @@
       </Unit65>
       <Unit66>
         <Filename Value="C:\magoo\lazarus\components\zeos\src\dbc\ZDbcInterbase6Utils.pas"/>
-        <EditorIndex Value="5"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="825"/>
         <CursorPos X="53" Y="839"/>
         <UsageCount Value="11"/>
-        <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit66>
       <Unit67>
@@ -989,7 +993,7 @@
         <UsageCount Value="8"/>
       </Unit105>
     </Units>
-    <JumpHistory Count="7" HistoryIndex="6">
+    <JumpHistory Count="11" HistoryIndex="10">
       <Position1>
         <Filename Value="frm_main.pas"/>
         <Caret Line="859" Column="55" TopLine="852"/>
@@ -1018,6 +1022,21 @@
         <Filename Value="dmhojaderuta.pas"/>
         <Caret Line="392" Column="46" TopLine="380"/>
       </Position7>
+      <Position8>
+        <Filename Value="frm_main.pas"/>
+        <Caret Line="860" Column="137" TopLine="834"/>
+      </Position8>
+      <Position9>
+        <Filename Value="frm_main.pas"/>
+        <Caret Line="313" Column="4" TopLine="272"/>
+      </Position9>
+      <Position10>
+        <Filename Value="frm_main.pas"/>
+      </Position10>
+      <Position11>
+        <Filename Value="frm_main.pas"/>
+        <Caret Line="173" Column="27" TopLine="149"/>
+      </Position11>
     </JumpHistory>
   </ProjectSession>
 </CONFIG>

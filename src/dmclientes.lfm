@@ -10,56 +10,43 @@ object DM_Clientes: TDM_Clientes
       item
         Name = 'id'
         DataType = ftString
-        Precision = 0
         Size = 38
       end    
       item
         Name = 'empresa_id'
         DataType = ftString
-        Precision = 0
         Size = 38
       end    
       item
         Name = 'codigo'
         DataType = ftString
-        Precision = 0
         Size = 10
       end    
       item
         Name = 'emailFactura'
         DataType = ftString
-        Precision = 0
         Size = 50
       end    
       item
         Name = 'domicilioFactura'
         DataType = ftString
-        Precision = 0
         Size = 500
       end    
       item
         Name = 'zona_id'
         DataType = ftInteger
-        Precision = 0
-        Size = 0
       end    
       item
         Name = 'listaPrecio_id'
         DataType = ftInteger
-        Precision = 0
-        Size = 0
       end    
       item
         Name = 'bVisible'
         DataType = ftInteger
-        Precision = 0
-        Size = 0
       end    
       item
         Name = 'ultTipoFactura'
         DataType = ftInteger
-        Precision = 0
-        Size = 0
       end>
     AfterInsert = ClientesAfterInsert
     PacketRecords = 0

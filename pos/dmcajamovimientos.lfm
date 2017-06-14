@@ -1,0 +1,68 @@
+object DM_CajaMovimentos: TDM_CajaMovimentos
+  OldCreateOrder = False
+  Height = 618
+  HorizontalOffset = 430
+  VerticalOffset = 200
+  Width = 957
+  object CajaMovimientos: TRxMemoryData
+    FieldDefs = <    
+      item
+        Name = 'id'
+        DataType = ftString
+        Size = 38
+      end    
+      item
+        Name = 'fecha'
+        DataType = ftDate
+      end    
+      item
+        Name = 'marca'
+        DataType = ftFloat
+      end    
+      item
+        Name = 'tipo'
+        DataType = ftInteger
+      end    
+      item
+        Name = 'detalle'
+        DataType = ftString
+        Size = 200
+      end    
+      item
+        Name = 'monto'
+        DataType = ftFloat
+        Precision = 3
+      end    
+      item
+        Name = 'referencia_id'
+        DataType = ftString
+        Size = 38
+      end    
+      item
+        Name = 'bVisible'
+        DataType = ftInteger
+      end>
+    PacketRecords = 0
+    left = 67
+    top = 31
+    object CajaMovimientosid: TStringField
+      FieldKind = fkData
+      FieldName = 'id'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 38
+    end
+    object CajaMovimientosfecha: TDateField
+      FieldKind = fkData
+      FieldName = 'fecha'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+  end
+end

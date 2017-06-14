@@ -9,6 +9,8 @@
 **/src/lib
 **/arcon/src/backup
 **/arcon/src/lib
+**/pos/backup
+**/pos/lib
 **/vrs/
 **/inst/
 **/web/

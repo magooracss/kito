@@ -62,6 +62,36 @@ type
     qCategoriasBVISIBLE: TSmallintField;
     qCategoriasCATEGORIA: TStringField;
     qCategoriasID: TLongintField;
+    qTalleDisponibleDEL: TZQuery;
+    qColorDisponibleINS: TZQuery;
+    qColorDisponibleDEL: TZQuery;
+    qTalleDisponibleINS: TZQuery;
+    qTallesDisponibles: TZQuery;
+    qColoresDisponiblesBVISIBLE: TSmallintField;
+    qColoresDisponiblesBVISIBLE1: TSmallintField;
+    qColoresDisponiblesBVISIBLE2: TSmallintField;
+    qColoresDisponiblesBVISIBLE4: TSmallintField;
+    qColoresDisponiblesBVISIBLE5: TSmallintField;
+    qColoresDisponiblesCOLOR: TStringField;
+    qColoresDisponiblesCOLOR1: TStringField;
+    qColoresDisponiblesCOLOR2: TStringField;
+    qColoresDisponiblesCOLOR4: TStringField;
+    qColoresDisponiblesCOLOR5: TStringField;
+    qColoresDisponiblesCOLOR_ID: TLongintField;
+    qColoresDisponiblesCOLOR_ID1: TLongintField;
+    qColoresDisponiblesCOLOR_ID2: TLongintField;
+    qColoresDisponiblesCOLOR_ID4: TLongintField;
+    qColoresDisponiblesCOLOR_ID5: TLongintField;
+    qColoresDisponiblesID: TStringField;
+    qColoresDisponiblesID1: TStringField;
+    qColoresDisponiblesID2: TStringField;
+    qColoresDisponiblesID4: TStringField;
+    qColoresDisponiblesID5: TStringField;
+    qColoresDisponiblesPRODUCTO_ID: TStringField;
+    qColoresDisponiblesPRODUCTO_ID1: TStringField;
+    qColoresDisponiblesPRODUCTO_ID2: TStringField;
+    qColoresDisponiblesPRODUCTO_ID4: TStringField;
+    qColoresDisponiblesPRODUCTO_ID5: TStringField;
     qGrillaPrincipal: TZQuery;
     qGrillaPrincipalCATEGORIA: TStringField;
     qGrillaPrincipalCODIGO: TStringField;
@@ -75,6 +105,7 @@ type
     qListaPreciosIDLISTAPRECIO: TStringField;
     qListasPrecios: TZQuery;
     qListaPreciosID: TZQuery;
+    qColoresDisponibles: TZQuery;
     qPrecioProductoALICUOTAIVA_ID: TLongintField;
     qPrecioProductoBOFERTA: TSmallintField;
     qPrecioProductoBVISIBLE: TSmallintField;
@@ -102,6 +133,11 @@ type
     qPreciosProductoOFERTAFIN: TDateField;
     qPreciosProductoOFERTAINI: TDateField;
     qPreciosProductoPRODUCTO_ID: TStringField;
+    qTallesDisponiblesBVISIBLE: TSmallintField;
+    qTallesDisponiblesID: TStringField;
+    qTallesDisponiblesPRODUCTO_ID: TStringField;
+    qTallesDisponiblesTALLE: TStringField;
+    qTallesDisponiblesTALLE_ID: TLongintField;
     qUnidades: TZQuery;
     qMarcasBVISIBLE: TSmallintField;
     qMarcasID: TLongintField;
@@ -145,6 +181,7 @@ type
     UPDPrecios: TZQuery;
     UPDProductos: TZQuery;
     DELProductos: TZQuery;
+    procedure DataModuleCreate(Sender: TObject);
     procedure PreciosAfterInsert(DataSet: TDataSet);
     procedure ProductosAfterInsert(DataSet: TDataSet);
   private
@@ -169,6 +206,16 @@ type
     procedure modificarValorPrecio (refPrecio: GUID_ID; valor: double);
     procedure BorrarPrecio (refPrecio: GUID_ID);
     procedure GrabarPrecios;
+
+
+    procedure AgregarColorDisponible (refColor: integer);
+    procedure QuitarColorDisponible (refColor: integer);
+    procedure LevantarColores;
+
+    procedure AgregarTalleDisponible (refTalle: integer);
+    procedure QuitarTalleDisponible (refTalle: integer);
+    procedure LevantarTalles;
+
 
     function NombreListaPrecios (idLista: integer): string;
     function precioProducto (refProducto: GUID_ID; refListaPrecio: integer): Double;
@@ -236,6 +283,11 @@ begin
   EscribirDato(SECCION_APP, CFGD_IVA_ID, IntToStr(PreciosalicuotaIVA_id.asInteger)); //Por si el valor no esta en el cfg;
 end;
 
+procedure TDM_Productos.DataModuleCreate(Sender: TObject);
+begin
+
+end;
+
 
 
 procedure TDM_Productos.ActualizarRefsCb(refMarca, refCategoria,
@@ -257,6 +309,7 @@ end;
 
 procedure TDM_Productos.Editar(refProducto: GUID_ID);
 begin
+  _idProducto:= refProducto;
   DM_General.ReiniciarTabla(Productos);
 
   if SELProductos.Active then SELProductos.Close;
@@ -267,6 +320,8 @@ begin
   SELProductos.Close;
 
   LevantarPreciosProducto;
+  LevantarColores;
+  LevantarTalles;
 
   Productos.Edit;
 end;
@@ -403,6 +458,7 @@ begin
    DM_General.GrabarDatos(SELPrecios, INSPrecios, UPDPrecios, Precios, 'id');
 end;
 
+
 function TDM_Productos.NombreListaPrecios(idLista: integer): string;
 begin
   with qListaPreciosID do
@@ -481,6 +537,78 @@ procedure TDM_Productos.FiltradoGrillaNulo;
 begin
   prepararSQLFiltro;
   qGrillaPrincipal.Open;
+end;
+
+(*******************************************************************************
+*** COLORES
+*******************************************************************************)
+
+procedure TDM_Productos.AgregarColorDisponible(refColor: integer);
+begin
+  with qColorDisponibleINS do
+  begin
+    ParamByName('id').AsString:= DM_General.CrearGUID;
+    ParamByName('producto_id').AsString:= Productosid.AsString;
+    ParamByName('color_id').AsInteger:= refColor;
+    ParamByName('bVisible').AsInteger:= 1;
+    ExecSQL;
+  end;
+end;
+
+procedure TDM_Productos.QuitarColorDisponible(refColor: integer);
+begin
+  with qColorDisponibleDEL do
+  begin
+    ParamByName('producto_id').AsString:= Productosid.AsString;
+    ParamByName('color_id').AsInteger:= refColor;
+    ExecSQL;
+  end;
+end;
+
+procedure TDM_Productos.LevantarColores;
+begin
+  with qColoresDisponibles do
+  begin
+    if active then close;
+    ParamByName('producto_id').asString:= Productosid.AsString;
+    Open;
+  end;
+end;
+
+(*******************************************************************************
+*** TALLES
+*******************************************************************************)
+
+procedure TDM_Productos.AgregarTalleDisponible(refTalle: integer);
+begin
+  with qTalleDisponibleINS do
+  begin
+    ParamByName('id').AsString:= DM_General.CrearGUID;
+    ParamByName('producto_id').AsString:= Productosid.AsString;
+    ParamByName('talle_id').AsInteger:= refTalle;
+    ParamByName('bVisible').AsInteger:= 1;
+    ExecSQL;
+  end;
+end;
+
+procedure TDM_Productos.QuitarTalleDisponible(refTalle: integer);
+begin
+  with qTalleDisponibleDEL do
+  begin
+    ParamByName('producto_id').AsString:= Productosid.AsString;
+    ParamByName('talle_id').AsInteger:= refTalle;
+    ExecSQL;
+  end;
+end;
+
+procedure TDM_Productos.LevantarTalles;
+begin
+  with qTallesDisponibles do
+  begin
+    if active then close;
+    ParamByName('producto_id').asString:= Productosid.AsString;
+    Open;
+  end;
 end;
 
 end.

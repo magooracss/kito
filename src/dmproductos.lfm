@@ -1,70 +1,55 @@
 object DM_Productos: TDM_Productos
+  OnCreate = DataModuleCreate
   OldCreateOrder = False
   Height = 519
-  HorizontalOffset = 166
-  VerticalOffset = 153
+  HorizontalOffset = 290
+  VerticalOffset = 226
   Width = 950
   object Productos: TRxMemoryData
     FieldDefs = <    
       item
         Name = 'id'
         DataType = ftString
-        Precision = 0
         Size = 38
       end    
       item
         Name = 'marca_id'
         DataType = ftInteger
-        Precision = 0
-        Size = 0
       end    
       item
         Name = 'codigo'
         DataType = ftString
-        Precision = 0
         Size = 20
       end    
       item
         Name = 'categoria_id'
         DataType = ftInteger
-        Precision = 0
-        Size = 0
       end    
       item
         Name = 'nombre'
         DataType = ftString
-        Precision = 0
         Size = 300
       end    
       item
         Name = 'minimo'
         DataType = ftFloat
-        Precision = 0
-        Size = 0
       end    
       item
         Name = 'unidad_id'
         DataType = ftInteger
-        Precision = 0
-        Size = 0
       end    
       item
         Name = 'cantTotalizar'
         DataType = ftFloat
-        Precision = 0
-        Size = 0
       end    
       item
         Name = 'codBarras'
         DataType = ftString
-        Precision = 0
         Size = 50
       end    
       item
         Name = 'bVisible'
         DataType = ftInteger
-        Precision = 0
-        Size = 0
       end>
     AfterInsert = ProductosAfterInsert
     PacketRecords = 0
@@ -556,8 +541,8 @@ object DM_Productos: TDM_Productos
       'WHERE (bVisible = 1)'
     )
     Params = <>
-    left = 392
-    top = 32
+    left = 568
+    top = 40
     object qMarcasID: TLongintField
       DisplayWidth = 10
       FieldKind = fkData
@@ -598,8 +583,8 @@ object DM_Productos: TDM_Productos
       'WHERE (bVisible = 1)'
     )
     Params = <>
-    left = 392
-    top = 104
+    left = 568
+    top = 112
     object qCategoriasID: TLongintField
       DisplayWidth = 10
       FieldKind = fkData
@@ -640,8 +625,8 @@ object DM_Productos: TDM_Productos
       'WHERE (bVisible = 1)'
     )
     Params = <>
-    left = 392
-    top = 168
+    left = 568
+    top = 176
     object qUnidadesID: TLongintField
       DisplayWidth = 10
       FieldKind = fkData
@@ -872,68 +857,49 @@ object DM_Productos: TDM_Productos
       item
         Name = 'id'
         DataType = ftString
-        Precision = 0
         Size = 38
       end    
       item
         Name = 'monto'
         DataType = ftFloat
-        Precision = 0
-        Size = 0
       end    
       item
         Name = 'producto_id'
         DataType = ftString
-        Precision = 0
         Size = 38
       end    
       item
         Name = 'listaPrecio_id'
         DataType = ftInteger
-        Precision = 0
-        Size = 0
       end    
       item
         Name = 'iva'
         DataType = ftFloat
-        Precision = 0
-        Size = 0
       end    
       item
         Name = 'bVisible'
         DataType = ftInteger
-        Precision = 0
-        Size = 0
       end    
       item
         Name = 'lxListaPrecio'
         DataType = ftString
-        Precision = 0
         Size = 100
       end    
       item
         Name = 'bOferta'
         DataType = ftInteger
-        Precision = 0
-        Size = 0
       end    
       item
         Name = 'OfertaIni'
         DataType = ftDateTime
-        Precision = 0
-        Size = 0
       end    
       item
         Name = 'OfertaFin'
         DataType = ftDateTime
-        Precision = 0
-        Size = 0
       end    
       item
         Name = 'alicuotaIVA_id'
         DataType = ftInteger
-        Precision = 0
-        Size = 0
       end>
     AfterInsert = PreciosAfterInsert
     PacketRecords = 0
@@ -1455,8 +1421,8 @@ object DM_Productos: TDM_Productos
       'WHERE (bVisible = 1)'
     )
     Params = <>
-    left = 392
-    top = 243
+    left = 568
+    top = 251
     object qListasPreciosID: TLongintField
       DisplayWidth = 10
       FieldKind = fkData
@@ -1646,8 +1612,8 @@ object DM_Productos: TDM_Productos
         Name = 'id'
         ParamType = ptUnknown
       end>
-    left = 392
-    top = 304
+    left = 568
+    top = 312
     ParamData = <    
       item
         DataType = ftUnknown
@@ -1940,6 +1906,518 @@ object DM_Productos: TDM_Productos
       MaxValue = 0
       MinValue = 0
       Precision = 2
+    end
+  end
+  object qColoresDisponibles: TZQuery
+    Connection = DM_General.cnxBase
+    SQL.Strings = (
+      'SELECT PC. *'
+      '             , C.Color'
+      'FROM ProductosColores PC'
+      '            inner join Colores C on PC.color_id = C.id'
+      'WHERE (PC.bVisible = 1)'
+      '            and (PC.producto_id = :producto_id)'
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'producto_id'
+        ParamType = ptUnknown
+      end>
+    left = 296
+    top = 32
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'producto_id'
+        ParamType = ptUnknown
+      end>
+    object qColoresDisponiblesID: TStringField
+      FieldKind = fkData
+      FieldName = 'ID'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      Size = 152
+    end
+    object qColoresDisponiblesPRODUCTO_ID: TStringField
+      FieldKind = fkData
+      FieldName = 'PRODUCTO_ID'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 152
+    end
+    object qColoresDisponiblesCOLOR_ID: TLongintField
+      FieldKind = fkData
+      FieldName = 'COLOR_ID'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object qColoresDisponiblesBVISIBLE: TSmallintField
+      FieldKind = fkData
+      FieldName = 'BVISIBLE'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object qColoresDisponiblesCOLOR: TStringField
+      FieldKind = fkData
+      FieldName = 'COLOR'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 200
+    end
+  end
+  object qColorDisponibleINS: TZQuery
+    Connection = DM_General.cnxBase
+    SQL.Strings = (
+      'INSERT INTO ProductosColores '
+      '(id, producto_id, color_id, bVisible)'
+      'VALUES'
+      '(:id, :producto_id, :color_id, :bVisible)'
+      ''
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'id'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'producto_id'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'color_id'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'bVisible'
+        ParamType = ptUnknown
+      end>
+    left = 296
+    top = 96
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'id'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'producto_id'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'color_id'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'bVisible'
+        ParamType = ptUnknown
+      end>
+    object qColoresDisponiblesID1: TStringField
+      FieldKind = fkData
+      FieldName = 'ID'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      Size = 152
+    end
+    object qColoresDisponiblesPRODUCTO_ID1: TStringField
+      FieldKind = fkData
+      FieldName = 'PRODUCTO_ID'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 152
+    end
+    object qColoresDisponiblesCOLOR_ID1: TLongintField
+      FieldKind = fkData
+      FieldName = 'COLOR_ID'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object qColoresDisponiblesBVISIBLE1: TSmallintField
+      FieldKind = fkData
+      FieldName = 'BVISIBLE'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object qColoresDisponiblesCOLOR1: TStringField
+      FieldKind = fkData
+      FieldName = 'COLOR'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 200
+    end
+  end
+  object qColorDisponibleDEL: TZQuery
+    Connection = DM_General.cnxBase
+    SQL.Strings = (
+      'UPDATE ProductosColores '
+      'SET bVisible = 0'
+      'WHERE (producto_id = :producto_id)'
+      '             and (color_id = :color_id)'
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'producto_id'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'color_id'
+        ParamType = ptUnknown
+      end>
+    left = 296
+    top = 168
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'producto_id'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'color_id'
+        ParamType = ptUnknown
+      end>
+    object qColoresDisponiblesID2: TStringField
+      FieldKind = fkData
+      FieldName = 'ID'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      Size = 152
+    end
+    object qColoresDisponiblesPRODUCTO_ID2: TStringField
+      FieldKind = fkData
+      FieldName = 'PRODUCTO_ID'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 152
+    end
+    object qColoresDisponiblesCOLOR_ID2: TLongintField
+      FieldKind = fkData
+      FieldName = 'COLOR_ID'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object qColoresDisponiblesBVISIBLE2: TSmallintField
+      FieldKind = fkData
+      FieldName = 'BVISIBLE'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object qColoresDisponiblesCOLOR2: TStringField
+      FieldKind = fkData
+      FieldName = 'COLOR'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 200
+    end
+  end
+  object qTallesDisponibles: TZQuery
+    Connection = DM_General.cnxBase
+    SQL.Strings = (
+      'SELECT PT. *'
+      '             , T.Talle'
+      'FROM ProductosTalles PT'
+      '            inner join Talles T on PT.talle_id = T.id'
+      'WHERE (PT.bVisible = 1)'
+      '            and (PT.producto_id = :producto_id)'
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'producto_id'
+        ParamType = ptUnknown
+      end>
+    left = 416
+    top = 32
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'producto_id'
+        ParamType = ptUnknown
+      end>
+    object qTallesDisponiblesID: TStringField
+      FieldKind = fkData
+      FieldName = 'ID'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      Size = 152
+    end
+    object qTallesDisponiblesPRODUCTO_ID: TStringField
+      FieldKind = fkData
+      FieldName = 'PRODUCTO_ID'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 152
+    end
+    object qTallesDisponiblesTALLE_ID: TLongintField
+      FieldKind = fkData
+      FieldName = 'TALLE_ID'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object qTallesDisponiblesBVISIBLE: TSmallintField
+      FieldKind = fkData
+      FieldName = 'BVISIBLE'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object qTallesDisponiblesTALLE: TStringField
+      FieldKind = fkData
+      FieldName = 'TALLE'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 100
+    end
+  end
+  object qTalleDisponibleINS: TZQuery
+    Connection = DM_General.cnxBase
+    SQL.Strings = (
+      'INSERT INTO ProductosTalles'
+      '(id, producto_id, talle_id, bVisible)'
+      'VALUES'
+      '(:id, :producto_id, :talle_id, :bVisible)'
+      ''
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'id'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'producto_id'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'talle_id'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'bVisible'
+        ParamType = ptUnknown
+      end>
+    left = 416
+    top = 96
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'id'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'producto_id'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'talle_id'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'bVisible'
+        ParamType = ptUnknown
+      end>
+    object qColoresDisponiblesID4: TStringField
+      FieldKind = fkData
+      FieldName = 'ID'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      Size = 152
+    end
+    object qColoresDisponiblesPRODUCTO_ID4: TStringField
+      FieldKind = fkData
+      FieldName = 'PRODUCTO_ID'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 152
+    end
+    object qColoresDisponiblesCOLOR_ID4: TLongintField
+      FieldKind = fkData
+      FieldName = 'COLOR_ID'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object qColoresDisponiblesBVISIBLE4: TSmallintField
+      FieldKind = fkData
+      FieldName = 'BVISIBLE'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object qColoresDisponiblesCOLOR4: TStringField
+      FieldKind = fkData
+      FieldName = 'COLOR'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 200
+    end
+  end
+  object qTalleDisponibleDEL: TZQuery
+    Connection = DM_General.cnxBase
+    SQL.Strings = (
+      'UPDATE ProductosTalles'
+      'SET bVisible = 0'
+      'WHERE (producto_id = :producto_id)'
+      '             and (talle_id = :talle_id)'
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'producto_id'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'talle_id'
+        ParamType = ptUnknown
+      end>
+    left = 416
+    top = 168
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'producto_id'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'talle_id'
+        ParamType = ptUnknown
+      end>
+    object qColoresDisponiblesID5: TStringField
+      FieldKind = fkData
+      FieldName = 'ID'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      Size = 152
+    end
+    object qColoresDisponiblesPRODUCTO_ID5: TStringField
+      FieldKind = fkData
+      FieldName = 'PRODUCTO_ID'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 152
+    end
+    object qColoresDisponiblesCOLOR_ID5: TLongintField
+      FieldKind = fkData
+      FieldName = 'COLOR_ID'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object qColoresDisponiblesBVISIBLE5: TSmallintField
+      FieldKind = fkData
+      FieldName = 'BVISIBLE'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object qColoresDisponiblesCOLOR5: TStringField
+      FieldKind = fkData
+      FieldName = 'COLOR'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 200
     end
   end
 end

@@ -2,8 +2,8 @@ object DM_General: TDM_General
   OnCreate = DataModuleCreate
   OldCreateOrder = False
   Height = 454
-  HorizontalOffset = 469
-  VerticalOffset = 160
+  HorizontalOffset = 494
+  VerticalOffset = 188
   Width = 632
   object RxMemoryData1: TRxMemoryData
     FieldDefs = <>
@@ -1340,23 +1340,6 @@ object DM_General: TDM_General
   object frDesigner1: TfrDesigner
     left = 154
     top = 238
-  end
-  object cnxBase: TZConnection
-    ControlsCodePage = cCP_UTF8
-    AutoEncodeStrings = False
-    ClientCodepage = 'UTF8'
-    Properties.Strings = (
-      'codepage=UTF8'
-    )
-    TransactIsolationLevel = tiReadCommitted
-    Connected = True
-    Port = 0
-    Database = 'C:\Dropbox\bak\Trabajo\Trabajo\Windows\kito\db\KITO_REC.FDB'
-    User = 'SYSDBA'
-    Password = 'masterkey'
-    Protocol = 'firebirdd-2.5'
-    left = 456
-    top = 88
   end
   object ImgAcciones: TImageList
     Height = 48
@@ -12318,5 +12301,22 @@ object DM_General: TDM_General
   object frRoundRectObject1: TfrRoundRectObject
     left = 128
     top = 304
+  end
+  object cnxBase: TZConnection
+    ControlsCodePage = cCP_UTF8
+    AutoEncodeStrings = False
+    ClientCodepage = 'UTF8'
+    Properties.Strings = (
+      'codepage=UTF8'
+    )
+    TransactIsolationLevel = tiReadCommitted
+    Connected = True
+    Port = 0
+    Database = 'D:\Dropbox\bak\Trabajo\Trabajo\Windows\kito\db\KITO.FDB'
+    User = 'SYSDBA'
+    Password = 'masterkey'
+    Protocol = 'firebirdd-2.5'
+    left = 484
+    top = 116
   end
 end

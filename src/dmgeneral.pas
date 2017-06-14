@@ -134,6 +134,7 @@ type
 
 Const
   GUIDNULO = '{00000000-0000-0000-0000-000000000000}';
+  ID_NULO = -1;
 
 var
   DM_General: TDM_General;
@@ -402,7 +403,13 @@ begin
       (laTabla.fieldByName(laConsulta.Params[indice].Name).IsNull)) then
       laConsulta.Params[indice].Value:= '-'
     else
-     laConsulta.Params[indice].Value:= laTabla.fieldByName(laConsulta.Params[indice].Name).value;
+    begin
+     if ((laTabla.fieldByName(laConsulta.Params[indice].Name).DataType in [ftInteger, ftLargeint]) and
+      (laTabla.fieldByName(laConsulta.Params[indice].Name).IsNull)) then
+       laConsulta.Params[indice].Value:= 0
+     else
+       laConsulta.Params[indice].Value:= laTabla.fieldByName(laConsulta.Params[indice].Name).value;
+    end;
   end;
 end;
 
