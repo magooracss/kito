@@ -94,11 +94,11 @@ VALUES
 CREATE TABLE CajaMovimientos (
 	id	"guid"  NOT NULL PRIMARY KEY
 ,	fecha	date
-,	marca	timestamp default CURRENT_TIMESTAMP
 ,	tipo	smallint	default 1 /* 1 -> Ingreso a caja 2-> Egreso de caja 3-> Saldo */
 ,	detalle	varchar(200)
 ,	monto	"money"
 ,	referencia_id	"guid"  DEFAULT '{00000000-0000-0000-0000-000000000000}'
+,	formaPago_id	integer default 0
 ,	bVisible	smallint default 1
 );
 

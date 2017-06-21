@@ -10,8 +10,9 @@ uses
   Forms, rxnew, datetimectrls, zcomponent, frm_main
   { you can add units after this }
   ,dmgeneral, dmproductos, frm_productoae, frm_ediciontugs, dmediciontugs,
-  frm_precioae, dmprecios, frm_coloresae, dmcolores, dmclientes
-  ,dmempresa, dmproveedores, frm_clientesae, dmcajamovimientos, frm_cajadiaria;
+  frm_precioae, dmprecios, frm_coloresae, dmcolores, dmclientes, dmempresa,
+  dmproveedores, frm_clientesae, dmcajamovimientos, frm_cajadiaria, 
+frm_cajamovimientoae, rpt_movimentoscaja;
 
 {$R *.res}
 
@@ -24,6 +25,8 @@ begin
   Application.CreateForm(TDM_Clientes, DM_Clientes);
   Application.CreateForm(TDM_Proveedores, DM_Proveedores);
   Application.CreateForm(TfrmMain, frmMain);
+  Application.CreateForm(TfrmMovimientoCajaAE, frmMovimientoCajaAE);
+  Application.CreateForm(Trpt, rpt);
   Application.Run;
 end.
 

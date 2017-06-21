@@ -31,27 +31,30 @@
         <FormatVersion Value="1"/>
       </local>
     </RunParams>
-    <RequiredPackages Count="6">
+    <RequiredPackages Count="7">
       <Item1>
-        <PackageName Value="DateTimeCtrls"/>
+        <PackageName Value="frce"/>
       </Item1>
       <Item2>
-        <PackageName Value="FCL"/>
+        <PackageName Value="DateTimeCtrls"/>
       </Item2>
       <Item3>
-        <PackageName Value="zcomponent"/>
+        <PackageName Value="FCL"/>
       </Item3>
       <Item4>
-        <PackageName Value="lazreport"/>
+        <PackageName Value="zcomponent"/>
       </Item4>
       <Item5>
-        <PackageName Value="rxnew"/>
+        <PackageName Value="lazreport"/>
       </Item5>
       <Item6>
-        <PackageName Value="LCL"/>
+        <PackageName Value="rxnew"/>
       </Item6>
+      <Item7>
+        <PackageName Value="LCL"/>
+      </Item7>
     </RequiredPackages>
-    <Units Count="21">
+    <Units Count="23">
       <Unit0>
         <Filename Value="kitopos.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -178,8 +181,22 @@
         <Filename Value="frm_cajadiaria.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="frmCajaDiaria"/>
+        <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
       </Unit20>
+      <Unit21>
+        <Filename Value="frm_cajamovimientoae.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmMovimientoCajaAE"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit21>
+      <Unit22>
+        <Filename Value="rpt_movimentoscaja.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="rpt"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit22>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

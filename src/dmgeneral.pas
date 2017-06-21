@@ -55,6 +55,8 @@ type
 
   TOperacion = (nuevo, modificar, eliminar);
 
+  TReportAction = (raPrint, raPDF);
+
   { TDM_General }
 
   TDM_General = class(TDataModule)

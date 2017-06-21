@@ -1,4 +1,5 @@
 object DM_CajaMovimentos: TDM_CajaMovimentos
+  OnCreate = DataModuleCreate
   OldCreateOrder = False
   Height = 618
   HorizontalOffset = 433
@@ -14,10 +15,6 @@ object DM_CajaMovimentos: TDM_CajaMovimentos
       item
         Name = 'fecha'
         DataType = ftDate
-      end    
-      item
-        Name = 'marca'
-        DataType = ftFloat
       end    
       item
         Name = 'tipo'
@@ -41,6 +38,15 @@ object DM_CajaMovimentos: TDM_CajaMovimentos
       item
         Name = 'bVisible'
         DataType = ftInteger
+      end    
+      item
+        Name = 'formaPago_id'
+        DataType = ftInteger
+      end    
+      item
+        Name = 'lxformaPago'
+        DataType = ftString
+        Size = 200
       end>
     AfterInsert = CajaMovimientosAfterInsert
     PacketRecords = 0
@@ -65,22 +71,10 @@ object DM_CajaMovimentos: TDM_CajaMovimentos
       ReadOnly = False
       Required = False
     end
-    object CajaMovimientosmarca: TFloatField
-      FieldKind = fkData
-      FieldName = 'marca'
-      Index = 2
-      LookupCache = False
-      ProviderFlags = [pfInUpdate, pfInWhere]
-      ReadOnly = False
-      Required = False
-      MaxValue = 0
-      MinValue = 0
-      Precision = 2
-    end
     object CajaMovimientostipo: TLongintField
       FieldKind = fkData
       FieldName = 'tipo'
-      Index = 3
+      Index = 2
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
@@ -89,7 +83,7 @@ object DM_CajaMovimentos: TDM_CajaMovimentos
     object CajaMovimientosdetalle: TStringField
       FieldKind = fkData
       FieldName = 'detalle'
-      Index = 4
+      Index = 3
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
@@ -99,7 +93,7 @@ object DM_CajaMovimentos: TDM_CajaMovimentos
     object CajaMovimientosmonto: TFloatField
       FieldKind = fkData
       FieldName = 'monto'
-      Index = 5
+      Index = 4
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
@@ -112,12 +106,21 @@ object DM_CajaMovimentos: TDM_CajaMovimentos
     object CajaMovimientosreferencia_id: TStringField
       FieldKind = fkData
       FieldName = 'referencia_id'
-      Index = 6
+      Index = 5
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
       Required = False
       Size = 38
+    end
+    object CajaMovimientosformaPago_id: TLongintField
+      FieldKind = fkData
+      FieldName = 'formaPago_id'
+      Index = 6
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
     end
     object CajaMovimientosbVisible: TLongintField
       FieldKind = fkData
@@ -128,13 +131,25 @@ object DM_CajaMovimentos: TDM_CajaMovimentos
       ReadOnly = False
       Required = False
     end
+    object CajaMovimientoslxformaPago: TStringField
+      FieldKind = fkData
+      FieldName = 'lxformaPago'
+      Index = 8
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 200
+    end
   end
   object SELCajaMov: TZQuery
     Connection = DM_General.cnxBase
     SQL.Strings = (
-      'SELECT *'
-      'FROM CajaMovimientos'
-      'WHERE (id = :id)'
+      'SELECT CM.*'
+      '       ,FP.FORMAPAGO as lxFormaPago'
+      'FROM CajaMovimientos CM'
+      '    left join FORMASPAGO FP on FP.ID = CM.FORMAPAGO_ID'
+      'WHERE (CM.id = :id)'
     )
     Params = <    
       item
@@ -169,19 +184,10 @@ object DM_CajaMovimentos: TDM_CajaMovimentos
       ReadOnly = False
       Required = False
     end
-    object SELCajaMovMARCA: TDateTimeField
-      FieldKind = fkData
-      FieldName = 'MARCA'
-      Index = 2
-      LookupCache = False
-      ProviderFlags = [pfInUpdate, pfInWhere]
-      ReadOnly = False
-      Required = False
-    end
     object SELCajaMovTIPO: TSmallintField
       FieldKind = fkData
       FieldName = 'TIPO'
-      Index = 3
+      Index = 2
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
@@ -190,7 +196,7 @@ object DM_CajaMovimentos: TDM_CajaMovimentos
     object SELCajaMovDETALLE: TStringField
       FieldKind = fkData
       FieldName = 'DETALLE'
-      Index = 4
+      Index = 3
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
@@ -200,7 +206,7 @@ object DM_CajaMovimentos: TDM_CajaMovimentos
     object SELCajaMovMONTO: TFloatField
       FieldKind = fkData
       FieldName = 'MONTO'
-      Index = 5
+      Index = 4
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
@@ -212,7 +218,7 @@ object DM_CajaMovimentos: TDM_CajaMovimentos
     object SELCajaMovREFERENCIA_ID: TStringField
       FieldKind = fkData
       FieldName = 'REFERENCIA_ID'
-      Index = 6
+      Index = 5
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
@@ -222,20 +228,39 @@ object DM_CajaMovimentos: TDM_CajaMovimentos
     object SELCajaMovBVISIBLE: TSmallintField
       FieldKind = fkData
       FieldName = 'BVISIBLE'
+      Index = 6
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object SELCajaMovFORMAPAGO_ID: TLongintField
+      FieldKind = fkData
+      FieldName = 'FORMAPAGO_ID'
       Index = 7
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
       Required = False
     end
+    object SELCajaMovLXFORMAPAGO: TStringField
+      FieldKind = fkData
+      FieldName = 'LXFORMAPAGO'
+      Index = 8
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 200
+    end
   end
   object INSCajaMov: TZQuery
     Connection = DM_General.cnxBase
     SQL.Strings = (
       'INSERT INTO CajaMovimientos'
-      '(id, fecha, marca, tipo, detalle, monto, referencia_id, bVisible)'
+      '(id, fecha, tipo, detalle, monto, referencia_id, formaPago_id, bVisible)'
       'VALUES'
-      '(:id, :fecha, :marca, :tipo, :detalle, :monto, :referencia_id, :bVisible);'
+      '(:id, :fecha, :tipo, :detalle, :monto, :referencia_id,  :formaPago_id, :bVisible);'
     )
     Params = <    
       item
@@ -246,11 +271,6 @@ object DM_CajaMovimentos: TDM_CajaMovimentos
       item
         DataType = ftUnknown
         Name = 'fecha'
-        ParamType = ptUnknown
-      end    
-      item
-        DataType = ftUnknown
-        Name = 'marca'
         ParamType = ptUnknown
       end    
       item
@@ -271,6 +291,11 @@ object DM_CajaMovimentos: TDM_CajaMovimentos
       item
         DataType = ftUnknown
         Name = 'referencia_id'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'formaPago_id'
         ParamType = ptUnknown
       end    
       item
@@ -293,7 +318,53 @@ object DM_CajaMovimentos: TDM_CajaMovimentos
       end    
       item
         DataType = ftUnknown
-        Name = 'marca'
+        Name = 'tipo'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'detalle'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'monto'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'referencia_id'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'formaPago_id'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'bVisible'
+        ParamType = ptUnknown
+      end>
+  end
+  object UPDCajaMov: TZQuery
+    Connection = DM_General.cnxBase
+    SQL.Strings = (
+      'UPDATE CajaMovimientos'
+      'SET'
+      ' fecha  = :fecha'
+      ', tipo = :tipo'
+      ', detalle = :detalle'
+      ', monto = :monto'
+      ', referencia_id = :referencia_id'
+      ', formaPago_id = :formaPago_id'
+      ', bVisible = :bVisible'
+      'WHERE id = :id'
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'fecha'
         ParamType = ptUnknown
       end    
       item
@@ -318,25 +389,9 @@ object DM_CajaMovimentos: TDM_CajaMovimentos
       end    
       item
         DataType = ftUnknown
-        Name = 'bVisible'
+        Name = 'formaPago_id'
         ParamType = ptUnknown
-      end>
-  end
-  object UPDCajaMov: TZQuery
-    Connection = DM_General.cnxBase
-    SQL.Strings = (
-      'UPDATE CajaMovimientos'
-      'SET'
-      ' fecha'
-      ', marca'
-      ', tipo'
-      ', detalle'
-      ', monto'
-      ', referencia_id'
-      ', bVisible = :bVisible'
-      'WHERE id = :id'
-    )
-    Params = <    
+      end    
       item
         DataType = ftUnknown
         Name = 'bVisible'
@@ -350,6 +405,36 @@ object DM_CajaMovimentos: TDM_CajaMovimentos
     left = 67
     top = 259
     ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'fecha'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'tipo'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'detalle'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'monto'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'referencia_id'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'formaPago_id'
+        ParamType = ptUnknown
+      end    
       item
         DataType = ftUnknown
         Name = 'bVisible'
@@ -386,11 +471,13 @@ object DM_CajaMovimentos: TDM_CajaMovimentos
   object qMovFechas: TZQuery
     Connection = DM_General.cnxBase
     SQL.Strings = (
-      'SELECT *'
-      'FROM CajaMovimientos'
-      'WHERE (bVisible = 1)'
-      '           and (fecha >= :fechaIni)'
-      '           and (fecha <= :fechaFin)'
+      'SELECT CM.*'
+      '       ,FP.FORMAPAGO as lxFormaPago'
+      'FROM CajaMovimientos CM'
+      '    left join FORMASPAGO FP on FP.ID = CM.FORMAPAGO_ID'
+      'WHERE (CM.bVisible = 1)'
+      '           and (CM.fecha >= :fechaIni)'
+      '           and (CM.fecha <= :fechaFin)'
     )
     Params = <    
       item
@@ -435,19 +522,10 @@ object DM_CajaMovimentos: TDM_CajaMovimentos
       ReadOnly = False
       Required = False
     end
-    object qMovFechasMARCA: TDateTimeField
-      FieldKind = fkData
-      FieldName = 'MARCA'
-      Index = 2
-      LookupCache = False
-      ProviderFlags = [pfInUpdate, pfInWhere]
-      ReadOnly = False
-      Required = False
-    end
     object qMovFechasTIPO: TSmallintField
       FieldKind = fkData
       FieldName = 'TIPO'
-      Index = 3
+      Index = 2
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
@@ -456,7 +534,7 @@ object DM_CajaMovimentos: TDM_CajaMovimentos
     object qMovFechasDETALLE: TStringField
       FieldKind = fkData
       FieldName = 'DETALLE'
-      Index = 4
+      Index = 3
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
@@ -466,7 +544,7 @@ object DM_CajaMovimentos: TDM_CajaMovimentos
     object qMovFechasMONTO: TFloatField
       FieldKind = fkData
       FieldName = 'MONTO'
-      Index = 5
+      Index = 4
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
@@ -478,7 +556,7 @@ object DM_CajaMovimentos: TDM_CajaMovimentos
     object qMovFechasREFERENCIA_ID: TStringField
       FieldKind = fkData
       FieldName = 'REFERENCIA_ID'
-      Index = 6
+      Index = 5
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
@@ -488,7 +566,74 @@ object DM_CajaMovimentos: TDM_CajaMovimentos
     object qMovFechasBVISIBLE: TSmallintField
       FieldKind = fkData
       FieldName = 'BVISIBLE'
+      Index = 6
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object qMovFechasFORMAPAGO_ID: TLongintField
+      FieldKind = fkData
+      FieldName = 'FORMAPAGO_ID'
       Index = 7
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object qMovFechasLXFORMAPAGO: TStringField
+      FieldKind = fkData
+      FieldName = 'LXFORMAPAGO'
+      Index = 8
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 200
+    end
+  end
+  object qFormasDePago: TZQuery
+    Connection = DM_General.cnxBase
+    SQL.Strings = (
+      'SELECT *'
+      'FROM FormasPago'
+      'WHERE (bVisible =  1)'
+    )
+    Params = <>
+    left = 839
+    top = 57
+    object qFormasDePagoID: TLongintField
+      FieldKind = fkData
+      FieldName = 'ID'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object qFormasDePagoFORMAPAGO: TStringField
+      FieldKind = fkData
+      FieldName = 'FORMAPAGO'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 200
+    end
+    object qFormasDePagoBEDIT: TSmallintField
+      FieldKind = fkData
+      FieldName = 'BEDIT'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object qFormasDePagoBVISIBLE: TSmallintField
+      FieldKind = fkData
+      FieldName = 'BVISIBLE'
+      Index = 3
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
