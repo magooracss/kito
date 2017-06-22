@@ -54,7 +54,7 @@
         <PackageName Value="LCL"/>
       </Item7>
     </RequiredPackages>
-    <Units Count="23">
+    <Units Count="25">
       <Unit0>
         <Filename Value="kitopos.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -197,6 +197,19 @@
         <ComponentName Value="rpt"/>
         <ResourceBaseClass Value="Form"/>
       </Unit22>
+      <Unit23>
+        <Filename Value="frm_ventaae.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmVentaAE"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit23>
+      <Unit24>
+        <Filename Value="dmventas.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="DM_Ventas"/>
+        <ResourceBaseClass Value="DataModule"/>
+      </Unit24>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

@@ -12,7 +12,7 @@ uses
   ,dmgeneral, dmproductos, frm_productoae, frm_ediciontugs, dmediciontugs,
   frm_precioae, dmprecios, frm_coloresae, dmcolores, dmclientes, dmempresa,
   dmproveedores, frm_clientesae, dmcajamovimientos, frm_cajadiaria, 
-frm_cajamovimientoae, rpt_movimentoscaja;
+frm_cajamovimientoae, rpt_movimentoscaja, frm_ventaae, dmventas;
 
 {$R *.res}
 
@@ -25,8 +25,7 @@ begin
   Application.CreateForm(TDM_Clientes, DM_Clientes);
   Application.CreateForm(TDM_Proveedores, DM_Proveedores);
   Application.CreateForm(TfrmMain, frmMain);
-  Application.CreateForm(TfrmMovimientoCajaAE, frmMovimientoCajaAE);
-  Application.CreateForm(Trpt, rpt);
+  Application.CreateForm(TDM_Ventas, DM_Ventas);
   Application.Run;
 end.
 

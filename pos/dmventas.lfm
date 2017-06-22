@@ -1,0 +1,7 @@
+object DM_Ventas: TDM_Ventas
+  OldCreateOrder = False
+  Height = 513
+  HorizontalOffset = 614
+  VerticalOffset = 146
+  Width = 555
+end

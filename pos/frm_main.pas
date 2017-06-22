@@ -14,6 +14,8 @@ type
   { TfrmMain }
 
   TfrmMain = class(TForm)
+    MenuItem25: TMenuItem;
+    merc_VentaAE: TAction;
     dinCajaDiaria: TAction;
     MenuItem24: TMenuItem;
     provEdit: TAction;
@@ -64,6 +66,7 @@ type
     procedure cliNewExecute(Sender: TObject);
     procedure dinCajaDiariaExecute(Sender: TObject);
     procedure FormShow(Sender: TObject);
+    procedure merc_VentaAEExecute(Sender: TObject);
     procedure prg_AboutExecute(Sender: TObject);
     procedure prg_ConfigExecute(Sender: TObject);
     procedure prg_ExitExecute(Sender: TObject);
@@ -79,6 +82,7 @@ type
     procedure EjecutarPRG(programa: string);
     procedure ScreenCliente (refCliente: GUID_ID);
     procedure ScreenProveedores (refProveedor: GUID_ID);
+    procedure ScreenVentas (refVenta: GUID_ID);
   public
     procedure Initialise;
   end;
@@ -101,6 +105,7 @@ uses
 ,   frm_proveedoresae
 ,   dmproveedores
 ,   frm_cajadiaria
+,   frm_ventaae
 ;
 
 { TfrmMain }
@@ -317,11 +322,11 @@ begin
   end;
 end;
 
-
 procedure TfrmMain.provNewExecute(Sender: TObject);
 begin
   ScreenProveedores(GUIDNULO);
 end;
+
 
 procedure TfrmMain.provEditExecute(Sender: TObject);
 var
@@ -370,6 +375,30 @@ begin
     scr.Free;
   end;
 end;
+
+
+
+(******************************************************************************
+*** Mercadería
+******************************************************************************)
+
+procedure TfrmMain.ScreenVentas(refVenta: GUID_ID);
+var
+  scr: TfrmVentaAE;
+begin
+  scr:= TfrmVentaAE.Create(self);
+  try
+    scr.ShowModal;
+  finally
+    scr.Free;
+  end;
+end;
+
+procedure TfrmMain.merc_VentaAEExecute(Sender: TObject);
+begin
+  ScreenVentas(GUIDNULO);
+end;
+
 
 end.
 

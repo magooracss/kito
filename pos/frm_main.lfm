@@ -61,6 +61,7 @@ object frmMain: TfrmMain
     object ToolButton6: TToolButton
       Left = 103
       Top = 2
+      Action = merc_VentaAE
     end
   end
   object MainMenu1: TMainMenu
@@ -129,6 +130,9 @@ object frmMain: TfrmMain
     end
     object MenuItem7: TMenuItem
       Caption = 'Mercadería'
+      object MenuItem25: TMenuItem
+        Action = merc_VentaAE
+      end
     end
     object MenuItem8: TMenuItem
       Caption = 'Dinero'
@@ -233,6 +237,12 @@ object frmMain: TfrmMain
       Caption = 'Caja Diaria'
       ImageIndex = 30
       OnExecute = dinCajaDiariaExecute
+    end
+    object merc_VentaAE: TAction
+      Category = 'mercaderia'
+      Caption = '&Venta'
+      ImageIndex = 7
+      OnExecute = merc_VentaAEExecute
     end
   end
 end

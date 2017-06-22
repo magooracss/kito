@@ -102,4 +102,61 @@ CREATE TABLE CajaMovimientos (
 ,	bVisible	smallint default 1
 );
 
+CREATE TABLE PosProductosStock (
+	id	"guid" NOT NULL PRIMARY KEY
+,	producto_id	"guid"
+,	color_id	"guid"
+,	talle_id	"guid"
+,	cantidad	decimal (10,3) default 0
+,	bVisible	smallint default 1
+);
 
+CREATE INDEX idxPosProd ON PosProductosStock (producto_id, color_id, talle_id);
+
+CREATE TABLE PosVentas (
+	id	"guid" NOT NULL PRIMARY KEY
+,	numero	integer default -1
+,	fecha	date
+,	cliente_id	"guid"
+,	total	"money"
+,	bAnulada	smallint default 0
+,	bVisible	smallint default 1
+);
+
+CREATE GENERATOR PosVentaNumero;
+
+SET GENERATOR PosVentaNumero TO 0;
+
+
+SET TERM ^ ;
+
+CREATE TRIGGER PosVentaNumero FOR PosVentas
+BEFORE INSERT POSITION 0
+AS 
+BEGIN 
+    If (New.numero = -1) then
+   New.numero = GEN_ID(PosVentaNumero,1);
+END^
+
+SET TERM ; ^  
+
+
+CREATE TABLE PosVentaItems (
+	id	"guid" NOT NULL PRIMARY KEY
+,	venta_id	"guid"
+,	productoStock_id	"guid"
+,	cantidad	decimal (10,3) default 0
+,	precioUnitario	"money"
+,	descuento	"money"
+, 	recargo	"money"
+,	total	"money"
+,	bVisible	smallint default 1
+);
+
+CREATE TABLE PosVentaFormaPago (
+	id	"guid" NOT NULL PRIMARY KEY
+,	venta_id	"guid"
+,	formaPago_id	integer default 0
+,	monto	"money"
+,	bVisible	smallint default 1
+);

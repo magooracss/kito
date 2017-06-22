@@ -1,0 +1,153 @@
+object frmVentaAE: TfrmVentaAE
+  Left = 424
+  Height = 717
+  Top = 139
+  Width = 966
+  Caption = 'Ventas'
+  ClientHeight = 717
+  ClientWidth = 966
+  Font.CharSet = ANSI_CHARSET
+  Font.Height = -20
+  Font.Name = 'Arial'
+  Font.Pitch = fpVariable
+  Font.Quality = fqDraft
+  OnCreate = FormCreate
+  OnDestroy = FormDestroy
+  Position = poOwnerFormCenter
+  LCLVersion = '1.6.4.0'
+  object Panel1: TPanel
+    Left = 0
+    Height = 232
+    Top = 0
+    Width = 966
+    Align = alTop
+    TabOrder = 0
+  end
+  object Panel2: TPanel
+    Left = 0
+    Height = 485
+    Top = 232
+    Width = 966
+    Align = alClient
+    ClientHeight = 485
+    ClientWidth = 966
+    TabOrder = 1
+    object Panel3: TPanel
+      Left = 736
+      Height = 483
+      Top = 1
+      Width = 229
+      Align = alRight
+      BevelInner = bvLowered
+      BevelOuter = bvLowered
+      BevelWidth = 2
+      ClientHeight = 483
+      ClientWidth = 229
+      TabOrder = 0
+      object BitBtn1: TBitBtn
+        Left = 24
+        Height = 59
+        Top = 39
+        Width = 174
+        Action = prod_agregar
+        ParentShowHint = False
+        ShowHint = True
+        TabOrder = 0
+      end
+    end
+    object GrillaColores: TRxDBGrid
+      Left = 1
+      Height = 483
+      Top = 1
+      Width = 735
+      TitleButtons = True
+      AutoSort = True
+      KeyStrokes = <      
+        item
+          Command = rxgcShowFindDlg
+          ShortCut = 16454
+          Enabled = True
+        end      
+        item
+          Command = rxgcShowColumnsDlg
+          ShortCut = 16471
+          Enabled = True
+        end      
+        item
+          Command = rxgcShowFilterDlg
+          ShortCut = 16468
+          Enabled = True
+        end      
+        item
+          Command = rxgcShowSortDlg
+          ShortCut = 16467
+          Enabled = True
+        end      
+        item
+          Command = rxgcShowQuickFilter
+          ShortCut = 16465
+          Enabled = True
+        end      
+        item
+          Command = rxgcHideQuickFilter
+          ShortCut = 16456
+          Enabled = True
+        end      
+        item
+          Command = rxgcSelectAll
+          ShortCut = 16449
+          Enabled = True
+        end      
+        item
+          Command = rxgcDeSelectAll
+          ShortCut = 16429
+          Enabled = True
+        end      
+        item
+          Command = rxgcInvertSelection
+          ShortCut = 16426
+          Enabled = True
+        end      
+        item
+          Command = rxgcOptimizeColumnsWidth
+          ShortCut = 16427
+          Enabled = True
+        end      
+        item
+          Command = rxgcCopyCellValue
+          ShortCut = 16451
+          Enabled = True
+        end>
+      OptionsRx = [rdgAllowColumnsForm, rdgAllowDialogFind, rdgAllowQuickFilter]
+      Align = alClient
+      AutoFillColumns = True
+      Color = clWindow
+      DrawFullLine = False
+      FocusColor = clRed
+      SelectedColor = clHighlight
+      GridLineStyle = psSolid
+      FixedCols = 0
+      Options = [dgEditing, dgTitles, dgColumnResize, dgColumnMove, dgColLines, dgRowLines, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgMultiselect, dgHeaderPushedLook]
+      ParentColor = False
+      Scrollbars = ssAutoVertical
+      TabOrder = 1
+      TitleFont.CharSet = ANSI_CHARSET
+      TitleFont.Height = -13
+      TitleFont.Name = 'Arial'
+      TitleFont.Pitch = fpVariable
+      TitleFont.Quality = fqDraft
+    end
+  end
+  object ActionList1: TActionList
+    Images = DM_General.ImgAcciones
+    left = 480
+    top = 311
+    object prod_agregar: TAction
+      Category = 'Productos'
+      Caption = 'Agregar (F2)'
+      ImageIndex = 11
+      OnExecute = prod_agregarExecute
+      ShortCut = 113
+    end
+  end
+end
