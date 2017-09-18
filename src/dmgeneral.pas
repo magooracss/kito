@@ -15,6 +15,7 @@ uses
   ,dbgrids, ZAbstractRODataset
 
   ,fpspreadsheet, fpsallformats, laz_fpspreadsheet
+  , RLReport, RLPDFFilter, RLXLSFilter, RLXLSXFilter
   ;
 
 const
@@ -49,13 +50,26 @@ const
   FC_CHEQUE = 2;
   FC_CUENTA_CORRIENTE = 3;
 
+  //Formas de Pago Fijas
+  FP_DESCUENTO = -10;
+  FP_DESC_STR = 'Descuento';
+  FP_RECARGO = -20;
+  FP_REC_STR = 'Recargo';
+
+
+  //Tipos de movimiento
+  MOV_SALDO = 0;
+  MOV_INGRESO = 1;
+  MOV_EGRESO = 2;
+
+
 type
 
   GUID_ID = string[38];
 
   TOperacion = (nuevo, modificar, eliminar);
 
-  TReportAction = (raPrint, raPDF);
+  TReportAction = (raPrint, raPDF, raXLS, raXLSX);
 
   { TDM_General }
 
@@ -76,6 +90,7 @@ type
     qLevantarValoresVALORSTR: TStringField;
     RxMemoryData1: TRxMemoryData;
     qLevantarValores: TZQuery;
+    SD: TSaveDialog;
     procedure DataModuleCreate(Sender: TObject);
   private
     procedure AbrirConexion;
@@ -132,6 +147,10 @@ type
     function obtenerDescTug(tug, field_id, field_desc: string; idTug: integer): string;
 
     procedure ExportarXLS(laTabla: TRxMemoryData; elArchivo, laHoja: string);
+
+    procedure runReport(var aReport: TRLReport; var rptAction: TReportAction
+                     ; fileName: string = 'archivo');
+
   end;
 
 Const
@@ -792,6 +811,35 @@ begin
   end;
 end;
 
+(********************************************************************************
+*** MANEJO DE LOS REPORTES Fortes Report
+*******************************************************************************)
+procedure TDM_General.runReport(var aReport: TRLReport;
+  var rptAction: TReportAction; fileName: string);
+begin
+  SD.FileName:= fileName;
+  case rptAction of
+    raPrint: aReport.Preview;
+    raPDF:
+    begin
+      SD.DefaultExt:= 'pdf';
+      if SD.Execute then
+        aReport.SaveToFile(sd.FileName);
+    end;
+    raXLS:
+    begin
+      SD.DefaultExt:= 'xls';
+      if SD.Execute then
+        aReport.SaveToFile(sd.FileName);
+    end;
+    raXLSX:
+    begin
+      SD.DefaultExt:= 'xlsx';
+      if SD.Execute then
+        aReport.SaveToFile(sd.FileName);
+    end;
+  end;
+end;
 
 initialization
   {$I dmgeneral.lrs}

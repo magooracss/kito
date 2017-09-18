@@ -11,8 +11,11 @@ uses
   { you can add units after this }
   ,dmgeneral, dmproductos, frm_productoae, frm_ediciontugs, dmediciontugs,
   frm_precioae, dmprecios, frm_coloresae, dmcolores, dmclientes, dmempresa,
-  dmproveedores, frm_clientesae, dmcajamovimientos, frm_cajadiaria, 
-frm_cajamovimientoae, rpt_movimentoscaja, frm_ventaae, dmventas;
+  dmproveedores, frm_clientesae, frm_busquedaProductos, dmcajamovimientos,
+  frm_cajadiaria, frm_cajamovimientoae, rpt_movimentoscaja, frm_ventaae,
+  dmventas, dmproductosstock, frm_seleccionproducto, frm_movimientoStock, 
+c_itemventa, frm_formasPago, frm_listados, rpt_stockminimo, dmlistados,
+rpt_movimientosentrefechas, rpt_ventasentrefechas, frm_formaspagodescrecargo;
 
 {$R *.res}
 
@@ -25,7 +28,7 @@ begin
   Application.CreateForm(TDM_Clientes, DM_Clientes);
   Application.CreateForm(TDM_Proveedores, DM_Proveedores);
   Application.CreateForm(TfrmMain, frmMain);
-  Application.CreateForm(TDM_Ventas, DM_Ventas);
+  Application.CreateForm(TfrmFormaPagoDescRecargo, frmFormaPagoDescRecargo);
   Application.Run;
 end.
 

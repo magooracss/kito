@@ -194,7 +194,8 @@ procedure TDM_CajaMovimentos.Add(fecha: TDate; tipo: integer; detalle: string;
 begin
   with CajaMovimientos do
   begin
-    Insert;
+    if NOT (State in dsWriteModes) then
+      Insert;
     CajaMovimientosfecha.AsDateTime:= fecha;
     CajaMovimientostipo.AsInteger:= tipo;
     CajaMovimientosdetalle.AsString:=TRIM(detalle);

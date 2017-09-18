@@ -133,9 +133,7 @@ var
 begin
   elRpt:= Trpt.Create(self);
   try
-    elRpt.fIni:= edFechaIni.Date;
-    elRpt.fFin:= edFechaFin.Date;
-    elRpt.RunReport(raPrint);
+    elRpt.RunReport(edFechaIni.Date, edFechaFin.Date, raPrint);
   finally
     elRpt.Free;
   end;

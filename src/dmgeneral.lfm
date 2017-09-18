@@ -12310,13 +12310,17 @@ object DM_General: TDM_General
       'codepage=UTF8'
     )
     TransactIsolationLevel = tiReadCommitted
-    Connected = True
     Port = 0
-    Database = 'D:\Dropbox\bak\Trabajo\Trabajo\Windows\kito\db\KITO.FDB'
     User = 'SYSDBA'
     Password = 'masterkey'
     Protocol = 'firebirdd-2.5'
     left = 484
     top = 116
+  end
+  object SD: TSaveDialog
+    DefaultExt = '.pdf'
+    FileName = 'creditosNuevos'
+    left = 340
+    top = 356
   end
 end

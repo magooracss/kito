@@ -16,7 +16,10 @@
     </i18n>
     <VersionInfo>
       <UseVersionInfo Value="True"/>
+      <AutoIncrementBuild Value="True"/>
       <MajorVersionNr Value="1"/>
+      <MinorVersionNr Value="1"/>
+      <BuildNr Value="2"/>
       <Language Value="040A"/>
       <StringTable Comments="www.racss.com.ar" CompanyName="RACSS Programacion" LegalCopyright="Carlos Enrique Rodriguez " ProductVersion=""/>
     </VersionInfo>
@@ -54,7 +57,7 @@
         <PackageName Value="LCL"/>
       </Item7>
     </RequiredPackages>
-    <Units Count="25">
+    <Units Count="36">
       <Unit0>
         <Filename Value="kitopos.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -160,56 +163,138 @@
         <ResourceBaseClass Value="Form"/>
       </Unit16>
       <Unit17>
-        <Filename Value="D:\magoo\lazarus\lcl\include\control.inc"/>
-        <IsPartOfProject Value="True"/>
-      </Unit17>
-      <Unit18>
         <Filename Value="..\src\dmclientes.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="DM_Clientes"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
-      </Unit18>
-      <Unit19>
+      </Unit17>
+      <Unit18>
         <Filename Value="dmcajamovimientos.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="DM_CajaMovimentos"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
-      </Unit19>
-      <Unit20>
+      </Unit18>
+      <Unit19>
         <Filename Value="frm_cajadiaria.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="frmCajaDiaria"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-      </Unit20>
-      <Unit21>
+      </Unit19>
+      <Unit20>
         <Filename Value="frm_cajamovimientoae.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="frmMovimientoCajaAE"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-      </Unit21>
-      <Unit22>
+      </Unit20>
+      <Unit21>
         <Filename Value="rpt_movimentoscaja.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="rpt"/>
+        <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-      </Unit22>
-      <Unit23>
+      </Unit21>
+      <Unit22>
         <Filename Value="frm_ventaae.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="frmVentaAE"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-      </Unit23>
-      <Unit24>
+      </Unit22>
+      <Unit23>
         <Filename Value="dmventas.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="DM_Ventas"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="DataModule"/>
+      </Unit23>
+      <Unit24>
+        <Filename Value="dmproductosstock.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="DM_PosProductosStock"/>
+        <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
       </Unit24>
+      <Unit25>
+        <Filename Value="..\src\frm_busquedaproductos.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmBusquedaProducto"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="frm_busquedaProductos"/>
+      </Unit25>
+      <Unit26>
+        <Filename Value="frm_seleccionproducto.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmSeleccionProducto"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit26>
+      <Unit27>
+        <Filename Value="frm_movimientostock.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmMovimientoStock"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="frm_movimientoStock"/>
+      </Unit27>
+      <Unit28>
+        <Filename Value="c_itemventa.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit28>
+      <Unit29>
+        <Filename Value="frm_formaspago.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmFormasPago"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="frm_formasPago"/>
+      </Unit29>
+      <Unit30>
+        <Filename Value="frm_listados.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmListados"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit30>
+      <Unit31>
+        <Filename Value="rpt_stockminimo.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmStockMinimo"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit31>
+      <Unit32>
+        <Filename Value="dmlistados.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="DM_Listados"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="DataModule"/>
+      </Unit32>
+      <Unit33>
+        <Filename Value="rpt_movimientosentrefechas.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="rptMovEntreFechas"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit33>
+      <Unit34>
+        <Filename Value="rpt_ventasentrefechas.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="Form1"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit34>
+      <Unit35>
+        <Filename Value="frm_formaspagodescrecargo.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmFormaPagoDescRecargo"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit35>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
@@ -219,7 +304,7 @@
       <Filename Value="..\exe\kitopos"/>
     </Target>
     <SearchPaths>
-      <IncludeFiles Value="$(ProjOutDir);D:\magoo\lazarus\lcl\include\"/>
+      <IncludeFiles Value="$(ProjOutDir)"/>
       <OtherUnitFiles Value="..\src;..\..\..\..\Utiles\lazComp\fpspreadsheet"/>
       <UnitOutputDirectory Value="lib\$(TargetCPU)-$(TargetOS)"/>
     </SearchPaths>

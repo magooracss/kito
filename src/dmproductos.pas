@@ -181,7 +181,6 @@ type
     UPDPrecios: TZQuery;
     UPDProductos: TZQuery;
     DELProductos: TZQuery;
-    procedure DataModuleCreate(Sender: TObject);
     procedure PreciosAfterInsert(DataSet: TDataSet);
     procedure ProductosAfterInsert(DataSet: TDataSet);
   private
@@ -224,6 +223,8 @@ type
     procedure FiltradoGrillaNombre (nombreProducto: string);
     procedure FiltradoGrillaNulo;
 
+
+    procedure LevantarMarcas;
   end;
 
 var
@@ -282,13 +283,6 @@ begin
   PreciosalicuotaIVA_id.asInteger:=  StrToIntDef(LeerDato(SECCION_APP,CFGD_IVA_ID), 3);
   EscribirDato(SECCION_APP, CFGD_IVA_ID, IntToStr(PreciosalicuotaIVA_id.asInteger)); //Por si el valor no esta en el cfg;
 end;
-
-procedure TDM_Productos.DataModuleCreate(Sender: TObject);
-begin
-
-end;
-
-
 
 procedure TDM_Productos.ActualizarRefsCb(refMarca, refCategoria,
   refUnidad: integer);
@@ -537,6 +531,19 @@ procedure TDM_Productos.FiltradoGrillaNulo;
 begin
   prepararSQLFiltro;
   qGrillaPrincipal.Open;
+end;
+
+(*******************************************************************************
+*** MARCAS
+*******************************************************************************)
+
+procedure TDM_Productos.LevantarMarcas;
+begin
+  with qMarcas do
+  begin
+    if active then close;
+    Open;
+  end;
 end;
 
 (*******************************************************************************

@@ -14,6 +14,10 @@ type
   { TfrmMain }
 
   TfrmMain = class(TForm)
+    listados: TAction;
+    MenuItem26: TMenuItem;
+    MenuItem27: TMenuItem;
+    merc_MovStock: TAction;
     MenuItem25: TMenuItem;
     merc_VentaAE: TAction;
     dinCajaDiaria: TAction;
@@ -60,12 +64,20 @@ type
     ToolBar1: TToolBar;
     ToolButton1: TToolButton;
     ToolButton2: TToolButton;
+    ToolButton3: TToolButton;
+    ToolButton4: TToolButton;
+    ToolButton5: TToolButton;
     ToolButton6: TToolButton;
+    ToolButton7: TToolButton;
+    ToolButton8: TToolButton;
+    ToolButton9: TToolButton;
     procedure cliDelExecute(Sender: TObject);
     procedure cliEditExecute(Sender: TObject);
     procedure cliNewExecute(Sender: TObject);
     procedure dinCajaDiariaExecute(Sender: TObject);
     procedure FormShow(Sender: TObject);
+    procedure listadosExecute(Sender: TObject);
+    procedure merc_MovStockExecute(Sender: TObject);
     procedure merc_VentaAEExecute(Sender: TObject);
     procedure prg_AboutExecute(Sender: TObject);
     procedure prg_ConfigExecute(Sender: TObject);
@@ -106,6 +118,8 @@ uses
 ,   dmproveedores
 ,   frm_cajadiaria
 ,   frm_ventaae
+,   frm_movimientoStock
+,   frm_listados
 ;
 
 { TfrmMain }
@@ -327,7 +341,6 @@ begin
   ScreenProveedores(GUIDNULO);
 end;
 
-
 procedure TfrmMain.provEditExecute(Sender: TObject);
 var
   pantBus: TfrmBusquedaEmpresas;
@@ -376,8 +389,6 @@ begin
   end;
 end;
 
-
-
 (******************************************************************************
 *** Mercadería
 ******************************************************************************)
@@ -399,6 +410,34 @@ begin
   ScreenVentas(GUIDNULO);
 end;
 
+
+procedure TfrmMain.merc_MovStockExecute(Sender: TObject);
+var
+  scr: TfrmMovimientoStock;
+begin
+  scr:= TfrmMovimientoStock.Create(self);
+  try
+    scr.ShowModal
+  finally
+    scr.Free;
+  end;
+end;
+
+(******************************************************************************
+*** Listados
+******************************************************************************)
+
+procedure TfrmMain.listadosExecute(Sender: TObject);
+var
+  scr:TfrmListados;
+begin
+  scr:= TfrmListados.Create(self);
+  try
+    scr.ShowModal;
+  finally
+    scr.Free;
+  end;
+end;
 
 end.
 

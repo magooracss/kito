@@ -5,8 +5,9 @@ unit rpt_movimentoscaja;
 interface
 
 uses
-  Classes, SysUtils, db, FileUtil, RLReport, RLXLSFilter, Forms, Controls,
-  Graphics, Dialogs, dmcajamovimientos, dmgeneral;
+  Classes, SysUtils, db, FileUtil, RLReport, RLXLSFilter, RLPDFFilter,
+  RLXLSXFilter, Forms, Controls, Graphics, Dialogs, dmcajamovimientos,
+  dmgeneral;
 
 type
 
@@ -30,7 +31,9 @@ type
     RLLabel4: TRLLabel;
     RLLabel5: TRLLabel;
     RLLabel6: TRLLabel;
+    RLPDFFilter1: TRLPDFFilter;
     RLXLSFilter1: TRLXLSFilter;
+    RLXLSXFilter1: TRLXLSXFilter;
     sd: TSaveDialog;
     rep_Mov: TRLReport;
     RLSystemInfo1: TRLSystemInfo;
@@ -39,14 +42,11 @@ type
     procedure FormDestroy(Sender: TObject);
     procedure rep_MovBeforePrint(Sender: TObject; var PrintIt: Boolean);
   private
+    _fIni, _FFin: TDate;
     dmCaja: TDM_CajaMovimentos;
-    _fFin: TDate;
-    _fIni: TDate;
     procedure CargarDatos;
   public
-     property fIni: TDate write _fIni;
-     property fFin: TDate write _fFin;
-     procedure  RunReport (rptAction: TReportAction);
+     procedure  RunReport (fIni, fFin: TDate; rptAction: TReportAction);
   end;
 
 var
@@ -93,15 +93,14 @@ begin
   end;
 end;
 
-procedure Trpt.RunReport(rptAction: TReportAction);
+procedure Trpt.RunReport(fIni, fFin: TDate; rptAction: TReportAction);
 begin
-  dmCaja.LoadMovFechas(_fIni, _fFin);
+  _fIni:= fIni;
+  _FFin:= fFin;
+  dmCaja.LoadMovFechas(fIni, fFin);
 
-  case rptAction of
-      raPrint: rep_Mov.Preview;
-      raPDF: if SD.Execute then
-               rep_Mov.SaveToFile(sd.FileName);
-    end;
+  DM_General.runReport(rep_Mov, rptAction, 'resumenCaja');
+
 end;
 
 end.

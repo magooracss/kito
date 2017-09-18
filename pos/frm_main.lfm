@@ -1,11 +1,11 @@
 object frmMain: TfrmMain
   Left = 361
-  Height = 564
+  Height = 148
   Top = 264
-  Width = 782
+  Width = 687
   Caption = 'Punto de Venta'
-  ClientHeight = 539
-  ClientWidth = 782
+  ClientHeight = 123
+  ClientWidth = 687
   Font.CharSet = ANSI_CHARSET
   Font.Height = -13
   Font.Name = 'Arial'
@@ -19,8 +19,8 @@ object frmMain: TfrmMain
   object st: TStatusBar
     Left = 0
     Height = 28
-    Top = 511
-    Width = 782
+    Top = 95
+    Width = 687
     Panels = <    
       item
         Width = 200
@@ -35,7 +35,7 @@ object frmMain: TfrmMain
     Left = 0
     Height = 82
     Top = 0
-    Width = 782
+    Width = 687
     AutoSize = True
     ButtonHeight = 80
     ButtonWidth = 92
@@ -62,6 +62,45 @@ object frmMain: TfrmMain
       Left = 103
       Top = 2
       Action = merc_VentaAE
+    end
+    object ToolButton3: TToolButton
+      Left = 322
+      Top = 2
+      Action = dinCajaDiaria
+    end
+    object ToolButton4: TToolButton
+      Left = 195
+      Height = 80
+      Top = 2
+      Width = 8
+      Caption = 'ToolButton4'
+      Style = tbsSeparator
+    end
+    object ToolButton5: TToolButton
+      Left = 414
+      Height = 80
+      Top = 2
+      Width = 8
+      Caption = 'ToolButton5'
+      Style = tbsSeparator
+    end
+    object ToolButton7: TToolButton
+      Left = 422
+      Top = 2
+      Action = listados
+    end
+    object ToolButton8: TToolButton
+      Left = 203
+      Top = 2
+      Action = merc_MovStock
+    end
+    object ToolButton9: TToolButton
+      Left = 314
+      Height = 80
+      Top = 2
+      Width = 8
+      Caption = 'ToolButton9'
+      Style = tbsSeparator
     end
   end
   object MainMenu1: TMainMenu
@@ -133,6 +172,12 @@ object frmMain: TfrmMain
       object MenuItem25: TMenuItem
         Action = merc_VentaAE
       end
+      object MenuItem26: TMenuItem
+        Caption = '-'
+      end
+      object MenuItem27: TMenuItem
+        Action = merc_MovStock
+      end
     end
     object MenuItem8: TMenuItem
       Caption = 'Dinero'
@@ -141,7 +186,7 @@ object frmMain: TfrmMain
       end
     end
     object MenuItem9: TMenuItem
-      Caption = 'Listados'
+      Action = listados
     end
   end
   object ActionList1: TActionList
@@ -243,6 +288,17 @@ object frmMain: TfrmMain
       Caption = '&Venta'
       ImageIndex = 7
       OnExecute = merc_VentaAEExecute
+    end
+    object merc_MovStock: TAction
+      Category = 'mercaderia'
+      Caption = 'Movimiento Stock'
+      ImageIndex = 16
+      OnExecute = merc_MovStockExecute
+    end
+    object listados: TAction
+      Caption = 'Listados'
+      ImageIndex = 18
+      OnExecute = listadosExecute
     end
   end
 end
