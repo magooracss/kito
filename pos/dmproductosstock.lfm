@@ -1,0 +1,1007 @@
+object DM_PosProductosStock: TDM_PosProductosStock
+  OldCreateOrder = False
+  Height = 741
+  HorizontalOffset = 614
+  VerticalOffset = 146
+  Width = 654
+  object ProductosStock: TRxMemoryData
+    FieldDefs = <    
+      item
+        Name = 'id'
+        DataType = ftString
+        Size = 38
+      end    
+      item
+        Name = 'producto_id'
+        DataType = ftString
+        Size = 38
+      end    
+      item
+        Name = 'color_id'
+        DataType = ftString
+        Size = 38
+      end    
+      item
+        Name = 'talle_id'
+        DataType = ftString
+        Size = 38
+      end    
+      item
+        Name = 'Cantidad'
+        DataType = ftFloat
+        Precision = 3
+        Size = 10
+      end    
+      item
+        Name = 'bVisible'
+        DataType = ftInteger
+      end    
+      item
+        Name = 'Talle'
+        DataType = ftString
+        Size = 25
+      end    
+      item
+        Name = 'Color'
+        DataType = ftString
+        Size = 50
+      end>
+    AfterInsert = ProductosStockAfterInsert
+    PacketRecords = 0
+    left = 64
+    top = 32
+    object ProductosStockid: TStringField
+      FieldKind = fkData
+      FieldName = 'id'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 38
+    end
+    object ProductosStockproducto_id: TStringField
+      FieldKind = fkData
+      FieldName = 'producto_id'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 38
+    end
+    object ProductosStockcolor_id: TStringField
+      FieldKind = fkData
+      FieldName = 'color_id'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 38
+    end
+    object ProductosStocktalle_id: TStringField
+      FieldKind = fkData
+      FieldName = 'talle_id'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 38
+    end
+    object ProductosStockCantidad: TFloatField
+      FieldKind = fkData
+      FieldName = 'Cantidad'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 3
+    end
+    object ProductosStockbVisible: TLongintField
+      FieldKind = fkData
+      FieldName = 'bVisible'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object ProductosStockTalle: TStringField
+      FieldKind = fkData
+      FieldName = 'Talle'
+      Index = 6
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 25
+    end
+    object ProductosStockColor: TStringField
+      FieldKind = fkData
+      FieldName = 'Color'
+      Index = 7
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 50
+    end
+  end
+  object SELProductosStock: TZQuery
+    Connection = DM_General.cnxBase
+    SQL.Strings = (
+      'SELECT *'
+      'FROM POSProductosStock'
+      'WHERE (id = :id)'
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'id'
+        ParamType = ptUnknown
+      end>
+    left = 64
+    top = 120
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'id'
+        ParamType = ptUnknown
+      end>
+    object SELProductosStockID: TStringField
+      FieldKind = fkData
+      FieldName = 'ID'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      Size = 152
+    end
+    object SELProductosStockPRODUCTO_ID: TStringField
+      FieldKind = fkData
+      FieldName = 'PRODUCTO_ID'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 152
+    end
+    object SELProductosStockCOLOR_ID: TStringField
+      FieldKind = fkData
+      FieldName = 'COLOR_ID'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 152
+    end
+    object SELProductosStockTALLE_ID: TStringField
+      FieldKind = fkData
+      FieldName = 'TALLE_ID'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 152
+    end
+    object SELProductosStockCANTIDAD: TFloatField
+      FieldKind = fkData
+      FieldName = 'CANTIDAD'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object SELProductosStockBVISIBLE: TSmallintField
+      FieldKind = fkData
+      FieldName = 'BVISIBLE'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+  end
+  object INSProductosStock: TZQuery
+    Connection = DM_General.cnxBase
+    SQL.Strings = (
+      'INSERT INTO POSProductosStock'
+      '(id, producto_id, color_id, talle_id, cantidad, bVisible)'
+      'VALUES'
+      '(:id, :producto_id, :color_id, :talle_id, :cantidad, :bVisible)'
+      ''
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'id'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'producto_id'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'color_id'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'talle_id'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'cantidad'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'bVisible'
+        ParamType = ptUnknown
+      end>
+    left = 64
+    top = 200
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'id'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'producto_id'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'color_id'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'talle_id'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'cantidad'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'bVisible'
+        ParamType = ptUnknown
+      end>
+    object SELProductosStockID1: TStringField
+      FieldKind = fkData
+      FieldName = 'ID'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      Size = 152
+    end
+    object SELProductosStockPRODUCTO_ID1: TStringField
+      FieldKind = fkData
+      FieldName = 'PRODUCTO_ID'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 152
+    end
+    object SELProductosStockCOLOR_ID1: TStringField
+      FieldKind = fkData
+      FieldName = 'COLOR_ID'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 152
+    end
+    object SELProductosStockTALLE_ID1: TStringField
+      FieldKind = fkData
+      FieldName = 'TALLE_ID'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 152
+    end
+    object SELProductosStockCANTIDAD1: TFloatField
+      FieldKind = fkData
+      FieldName = 'CANTIDAD'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object SELProductosStockBVISIBLE1: TSmallintField
+      FieldKind = fkData
+      FieldName = 'BVISIBLE'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+  end
+  object UPDProductosStock: TZQuery
+    Connection = DM_General.cnxBase
+    SQL.Strings = (
+      'UPDATE PosProductosStock'
+      'SET'
+      ' producto_id = :producto_id'
+      ', color_id = :color_id'
+      ', talle_id = :talle_id'
+      ', cantidad = :cantidad'
+      ', bVisible = :bVisible'
+      'WHERE (id = :id)'
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'producto_id'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'color_id'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'talle_id'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'cantidad'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'bVisible'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'id'
+        ParamType = ptUnknown
+      end>
+    left = 64
+    top = 280
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'producto_id'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'color_id'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'talle_id'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'cantidad'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'bVisible'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'id'
+        ParamType = ptUnknown
+      end>
+    object SELProductosStockID2: TStringField
+      FieldKind = fkData
+      FieldName = 'ID'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      Size = 152
+    end
+    object SELProductosStockPRODUCTO_ID2: TStringField
+      FieldKind = fkData
+      FieldName = 'PRODUCTO_ID'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 152
+    end
+    object SELProductosStockCOLOR_ID2: TStringField
+      FieldKind = fkData
+      FieldName = 'COLOR_ID'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 152
+    end
+    object SELProductosStockTALLE_ID2: TStringField
+      FieldKind = fkData
+      FieldName = 'TALLE_ID'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 152
+    end
+    object SELProductosStockCANTIDAD2: TFloatField
+      FieldKind = fkData
+      FieldName = 'CANTIDAD'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object SELProductosStockBVISIBLE2: TSmallintField
+      FieldKind = fkData
+      FieldName = 'BVISIBLE'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+  end
+  object qBuscarProducto: TZQuery
+    Connection = DM_General.cnxBase
+    SQL.Strings = (
+      'SELECT *'
+      'FROM POSProductosStock'
+      'WHERE (bVisible = 1)'
+      '          and (producto_id = :producto_id)'
+      '          and (color_id = :color_id)'
+      '          and (talle_id = :talle_id)'
+      '          '
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'producto_id'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'color_id'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'talle_id'
+        ParamType = ptUnknown
+      end>
+    left = 240
+    top = 120
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'producto_id'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'color_id'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'talle_id'
+        ParamType = ptUnknown
+      end>
+    object SELProductosStockID3: TStringField
+      FieldKind = fkData
+      FieldName = 'ID'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      Size = 152
+    end
+    object SELProductosStockPRODUCTO_ID3: TStringField
+      FieldKind = fkData
+      FieldName = 'PRODUCTO_ID'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 152
+    end
+    object SELProductosStockCOLOR_ID3: TStringField
+      FieldKind = fkData
+      FieldName = 'COLOR_ID'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 152
+    end
+    object SELProductosStockTALLE_ID3: TStringField
+      FieldKind = fkData
+      FieldName = 'TALLE_ID'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 152
+    end
+    object SELProductosStockCANTIDAD3: TFloatField
+      FieldKind = fkData
+      FieldName = 'CANTIDAD'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object SELProductosStockBVISIBLE3: TSmallintField
+      FieldKind = fkData
+      FieldName = 'BVISIBLE'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+  end
+  object qLevantarStock: TZQuery
+    Connection = DM_General.cnxBase
+    SQL.Strings = (
+      'SELECT  PS.*'
+      '       ,C.COLOR'
+      '       ,T.TALLE'
+      'FROM POSProductosStock PS'
+      '    left join PRODUCTOSCOLORES PColor ON PColor.ID = PS.COLOR_ID'
+      '    left join COLORES C on Pcolor.COLOR_ID = C.ID'
+      '    left join PRODUCTOSTALLES PTalle on PTalle.ID = PS.TALLE_ID'
+      '    left join TALLES T on Ptalle.TALLE_ID = T.ID'
+      'WHERE (PS.bVisible = 1)'
+      '   and (PS.producto_id = :producto_id)'
+      '   and (PTalle.BVISIBLE = 1)'
+      '   and (PColor.BVISIBLE = 1)'
+      '          '
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'producto_id'
+        ParamType = ptUnknown
+      end>
+    left = 268
+    top = 200
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'producto_id'
+        ParamType = ptUnknown
+      end>
+    object qLevantarStockID: TStringField
+      FieldKind = fkData
+      FieldName = 'ID'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      Size = 152
+    end
+    object qLevantarStockPRODUCTO_ID: TStringField
+      FieldKind = fkData
+      FieldName = 'PRODUCTO_ID'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 152
+    end
+    object qLevantarStockCOLOR_ID: TStringField
+      FieldKind = fkData
+      FieldName = 'COLOR_ID'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 152
+    end
+    object qLevantarStockTALLE_ID: TStringField
+      FieldKind = fkData
+      FieldName = 'TALLE_ID'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 152
+    end
+    object qLevantarStockCANTIDAD: TFloatField
+      FieldKind = fkData
+      FieldName = 'CANTIDAD'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object qLevantarStockBVISIBLE: TSmallintField
+      FieldKind = fkData
+      FieldName = 'BVISIBLE'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object qLevantarStockCOLOR: TStringField
+      FieldKind = fkData
+      FieldName = 'COLOR'
+      Index = 6
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 200
+    end
+    object qLevantarStockTALLE: TStringField
+      FieldKind = fkData
+      FieldName = 'TALLE'
+      Index = 7
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 100
+    end
+  end
+  object MovimientoStock: TRxMemoryData
+    FieldDefs = <    
+      item
+        Name = 'id'
+        DataType = ftString
+        Size = 38
+      end    
+      item
+        Name = 'producto_id'
+        DataType = ftString
+        Size = 38
+      end    
+      item
+        Name = 'color_id'
+        DataType = ftString
+        Size = 38
+      end    
+      item
+        Name = 'talle_id'
+        DataType = ftString
+        Size = 38
+      end    
+      item
+        Name = 'Cantidad'
+        DataType = ftFloat
+        Precision = 3
+        Size = 10
+      end    
+      item
+        Name = 'bVisible'
+        DataType = ftInteger
+      end    
+      item
+        Name = 'Talle'
+        DataType = ftString
+        Size = 25
+      end    
+      item
+        Name = 'Color'
+        DataType = ftString
+        Size = 50
+      end    
+      item
+        Name = 'Actualizar'
+        DataType = ftFloat
+        Precision = 3
+        Size = 10
+      end    
+      item
+        Name = 'TipoOperacion'
+        DataType = ftInteger
+      end    
+      item
+        Name = 'Producto'
+        DataType = ftString
+        Size = 300
+      end    
+      item
+        Name = 'Codigo'
+        DataType = ftString
+        Size = 20
+      end>
+    AfterInsert = MovimientoStockAfterInsert
+    PacketRecords = 0
+    left = 528
+    top = 32
+    object MovimientoStockid: TStringField
+      FieldKind = fkData
+      FieldName = 'id'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 38
+    end
+    object MovimientoStockproducto_id: TStringField
+      FieldKind = fkData
+      FieldName = 'producto_id'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 38
+    end
+    object MovimientoStockcolor_id: TStringField
+      FieldKind = fkData
+      FieldName = 'color_id'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 38
+    end
+    object MovimientoStocktalle_id: TStringField
+      FieldKind = fkData
+      FieldName = 'talle_id'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 38
+    end
+    object MovimientoStockCantidad: TFloatField
+      FieldKind = fkData
+      FieldName = 'Cantidad'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      DisplayFormat = '###########0.00'
+      MaxValue = 0
+      MinValue = 0
+      Precision = 3
+    end
+    object MovimientoStockbVisible: TLongintField
+      FieldKind = fkData
+      FieldName = 'bVisible'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object MovimientoStockTalle: TStringField
+      FieldKind = fkData
+      FieldName = 'Talle'
+      Index = 6
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 25
+    end
+    object MovimientoStockColor: TStringField
+      FieldKind = fkData
+      FieldName = 'Color'
+      Index = 7
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 50
+    end
+    object MovimientoStockActualizar: TFloatField
+      FieldKind = fkData
+      FieldName = 'Actualizar'
+      Index = 8
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      DisplayFormat = '###########0.00'
+      MaxValue = 0
+      MinValue = 0
+      Precision = 3
+    end
+    object MovimientoStockTipoOperacion: TLongintField
+      FieldKind = fkData
+      FieldName = 'TipoOperacion'
+      Index = 9
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object MovimientoStockProducto: TStringField
+      FieldKind = fkData
+      FieldName = 'Producto'
+      Index = 10
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 300
+    end
+    object MovimientoStockCodigo: TStringField
+      FieldKind = fkData
+      FieldName = 'Codigo'
+      Index = 11
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+  end
+  object qStockPorMarca: TZQuery
+    Connection = DM_General.cnxBase
+    SQL.Strings = (
+      'SELECT '
+      '        P.id as producto_id'
+      '     ,  PT.id as talle_id'
+      '     ,  PC.id as color_id'
+      '     ,  P.CODIGO'
+      '     ,  P.NOMBRE as Producto'
+      '     ,  T.TALLE'
+      '     ,  C.COLOR'
+      'FROM PRODUCTOS P'
+      '    left join PRODUCTOSCOLORES PC on P.ID = PC.PRODUCTO_ID  '
+      '    left join COLORES C on C.ID = PC.COLOR_ID'
+      '    left join PRODUCTOSTALLES PT on P.ID = PT.PRODUCTO_ID   '
+      '    left join TALLES T on T.ID = PT.TALLE_ID'
+      'WHERE (P.BVISIBLE = 1)'
+      '      and (PC.BVISIBLE = 1)'
+      '      and (PT.BVISIBLE = 1)'
+      '      and (P.MARCA_ID = :marcaID)'
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'marcaID'
+        ParamType = ptUnknown
+      end>
+    left = 528
+    top = 120
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'marcaID'
+        ParamType = ptUnknown
+      end>
+    object qStockPorMarcaPRODUCTO_ID: TStringField
+      FieldKind = fkData
+      FieldName = 'PRODUCTO_ID'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      Size = 152
+    end
+    object qStockPorMarcaTALLE_ID: TStringField
+      FieldKind = fkData
+      FieldName = 'TALLE_ID'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      Size = 152
+    end
+    object qStockPorMarcaCOLOR_ID: TStringField
+      FieldKind = fkData
+      FieldName = 'COLOR_ID'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      Size = 152
+    end
+    object qStockPorMarcaCODIGO: TStringField
+      FieldKind = fkData
+      FieldName = 'CODIGO'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 80
+    end
+    object qStockPorMarcaPRODUCTO: TStringField
+      FieldKind = fkData
+      FieldName = 'PRODUCTO'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 1200
+    end
+    object qStockPorMarcaTALLE: TStringField
+      FieldKind = fkData
+      FieldName = 'TALLE'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 100
+    end
+    object qStockPorMarcaCOLOR: TStringField
+      FieldKind = fkData
+      FieldName = 'COLOR'
+      Index = 6
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 200
+    end
+  end
+end

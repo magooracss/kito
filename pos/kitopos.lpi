@@ -19,7 +19,7 @@
       <AutoIncrementBuild Value="True"/>
       <MajorVersionNr Value="1"/>
       <MinorVersionNr Value="1"/>
-      <BuildNr Value="2"/>
+      <BuildNr Value="3"/>
       <Language Value="040A"/>
       <StringTable Comments="www.racss.com.ar" CompanyName="RACSS Programacion" LegalCopyright="Carlos Enrique Rodriguez " ProductVersion=""/>
     </VersionInfo>
@@ -57,7 +57,7 @@
         <PackageName Value="LCL"/>
       </Item7>
     </RequiredPackages>
-    <Units Count="36">
+    <Units Count="37">
       <Unit0>
         <Filename Value="kitopos.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -295,6 +295,12 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
       </Unit35>
+      <Unit36>
+        <Filename Value="dmcambios.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="DM_Cambios"/>
+        <ResourceBaseClass Value="DataModule"/>
+      </Unit36>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

@@ -1,0 +1,434 @@
+object DM_Cambios: TDM_Cambios
+  OldCreateOrder = False
+  Height = 514
+  HorizontalOffset = 784
+  VerticalOffset = 173
+  Width = 488
+  object PosCambios: TRxMemoryData
+    FieldDefs = <    
+      item
+        Name = 'id'
+        DataType = ftString
+        Size = 32
+      end    
+      item
+        Name = 'old_venta'
+        DataType = ftString
+        Size = 32
+      end    
+      item
+        Name = 'old_prod'
+        DataType = ftString
+        Size = 32
+      end    
+      item
+        Name = 'new_venta'
+        DataType = ftString
+        Size = 32
+      end    
+      item
+        Name = 'motivoCambio_id'
+        DataType = ftInteger
+      end    
+      item
+        Name = 'bVisible'
+        DataType = ftInteger
+      end    
+      item
+        Name = 'lxCantidad'
+        DataType = ftFloat
+        Precision = 2
+        Size = 10
+      end    
+      item
+        Name = 'lxProducto'
+        DataType = ftString
+        Size = 300
+      end    
+      item
+        Name = 'lxTalle'
+        DataType = ftString
+        Size = 25
+      end    
+      item
+        Name = 'lxColor'
+        DataType = ftString
+        Size = 50
+      end    
+      item
+        Name = 'lxTotal'
+        DataType = ftFloat
+        Precision = 2
+        Size = 10
+      end>
+    AfterInsert = PosCambiosAfterInsert
+    PacketRecords = 0
+    left = 88
+    top = 56
+    object PosCambiosid: TStringField
+      FieldKind = fkData
+      FieldName = 'id'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 32
+    end
+    object PosCambiosold_venta: TStringField
+      FieldKind = fkData
+      FieldName = 'old_venta'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 32
+    end
+    object PosCambiosold_prod: TStringField
+      FieldKind = fkData
+      FieldName = 'old_prod'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 32
+    end
+    object PosCambiosnew_venta: TStringField
+      FieldKind = fkData
+      FieldName = 'new_venta'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 32
+    end
+    object PosCambiosmotivoCambio_id: TLongintField
+      FieldKind = fkData
+      FieldName = 'motivoCambio_id'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object PosCambiosbVisible: TLongintField
+      FieldKind = fkData
+      FieldName = 'bVisible'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object PosCambioslxCantidad: TFloatField
+      FieldKind = fkData
+      FieldName = 'lxCantidad'
+      Index = 6
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object PosCambioslxProducto: TStringField
+      FieldKind = fkData
+      FieldName = 'lxProducto'
+      Index = 7
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 300
+    end
+    object PosCambioslxTalle: TStringField
+      FieldKind = fkData
+      FieldName = 'lxTalle'
+      Index = 8
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 25
+    end
+    object PosCambioslxColor: TStringField
+      FieldKind = fkData
+      FieldName = 'lxColor'
+      Index = 9
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 50
+    end
+    object PosCambioslxTotal: TFloatField
+      FieldKind = fkData
+      FieldName = 'lxTotal'
+      Index = 10
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Currency = True
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+  end
+  object INSPosCambios: TZQuery
+    Connection = DM_General.cnxBase
+    SQL.Strings = (
+      'INSERT INTO PosCambios'
+      '(id, old_venta, old_prod, new_venta, motivoCambio_id, bVisible)'
+      'VALUES'
+      '(:id, :old_venta, :old_prod, :new_venta, :motivoCambio_id, :bVisible)'
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'id'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'old_venta'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'old_prod'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'new_venta'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'motivoCambio_id'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'bVisible'
+        ParamType = ptUnknown
+      end>
+    left = 88
+    top = 240
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'id'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'old_venta'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'old_prod'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'new_venta'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'motivoCambio_id'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'bVisible'
+        ParamType = ptUnknown
+      end>
+  end
+  object UPDPosCambios: TZQuery
+    Connection = DM_General.cnxBase
+    SQL.Strings = (
+      'UPDATE PosCambios'
+      'SET '
+      ' old_venta = :old_venta'
+      ', old_prod = :old_prod'
+      ', new_venta = :new_venta'
+      ', motivoCambio_id = :motivoCambio_id'
+      ', bVisible = :bVisible'
+      'WHERE (id = :id)'
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'old_venta'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'old_prod'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'new_venta'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'motivoCambio_id'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'bVisible'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'id'
+        ParamType = ptUnknown
+      end>
+    left = 88
+    top = 320
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'old_venta'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'old_prod'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'new_venta'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'motivoCambio_id'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'bVisible'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'id'
+        ParamType = ptUnknown
+      end>
+  end
+  object DELPosCambios: TZQuery
+    Connection = DM_General.cnxBase
+    SQL.Strings = (
+      'UPDATE PosCambios'
+      'SET bVisible = 0'
+      'WHERE (id = :id)'
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'id'
+        ParamType = ptUnknown
+      end>
+    left = 88
+    top = 408
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'id'
+        ParamType = ptUnknown
+      end>
+  end
+  object SELPosCambios: TZQuery
+    Connection = DM_General.cnxBase
+    SQL.Strings = (
+      'SELECT *'
+      'FROM PosCambios'
+      'WHERE (id = :id)'
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'id'
+        ParamType = ptUnknown
+      end>
+    left = 88
+    top = 144
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'id'
+        ParamType = ptUnknown
+      end>
+    object SELPosCambiosID: TStringField
+      FieldKind = fkData
+      FieldName = 'ID'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      Size = 152
+    end
+    object SELPosCambiosOLD_VENTA: TStringField
+      FieldKind = fkData
+      FieldName = 'OLD_VENTA'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 152
+    end
+    object SELPosCambiosOLD_PROD: TStringField
+      FieldKind = fkData
+      FieldName = 'OLD_PROD'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 152
+    end
+    object SELPosCambiosNEW_VENTA: TStringField
+      FieldKind = fkData
+      FieldName = 'NEW_VENTA'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 152
+    end
+    object SELPosCambiosMOTIVOCAMBIO_ID: TLongintField
+      FieldKind = fkData
+      FieldName = 'MOTIVOCAMBIO_ID'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object SELPosCambiosBVISIBLE: TSmallintField
+      FieldKind = fkData
+      FieldName = 'BVISIBLE'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+  end
+end

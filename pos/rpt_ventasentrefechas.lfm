@@ -1,0 +1,254 @@
+object Form1: TForm1
+  Left = 611
+  Height = 720
+  Top = 191
+  Width = 868
+  Caption = 'Form1'
+  ClientHeight = 720
+  ClientWidth = 868
+  LCLVersion = '1.6.4.0'
+  object rep_Mov: TRLReport
+    Left = 0
+    Height = 1123
+    Top = 0
+    Width = 794
+    Font.Color = clBlack
+    Font.Height = -17
+    Font.Name = 'Arial'
+    PreviewOptions.BorderIcons = []
+    RealBounds.Left = 0
+    RealBounds.Top = 0
+    RealBounds.Width = 0
+    RealBounds.Height = 0
+    object RLBand1: TRLBand
+      Left = 38
+      Height = 104
+      Top = 38
+      Width = 718
+      BandType = btHeader
+      RealBounds.Left = 0
+      RealBounds.Top = 0
+      RealBounds.Width = 0
+      RealBounds.Height = 0
+      object RLSystemInfo1: TRLSystemInfo
+        Left = 616
+        Height = 16
+        Top = 0
+        Width = 39
+        Font.CharSet = ANSI_CHARSET
+        Font.Color = clBlack
+        Font.Height = -13
+        Font.Name = 'Arial'
+        Font.Pitch = fpVariable
+        Font.Quality = fqDraft
+        ParentFont = False
+        RealBounds.Left = 0
+        RealBounds.Top = 0
+        RealBounds.Width = 0
+        RealBounds.Height = 0
+      end
+      object RLLabel1: TRLLabel
+        Left = 258
+        Height = 24
+        Top = 30
+        Width = 196
+        Alignment = taCenter
+        Caption = 'Ventas entre fechas'
+        Font.CharSet = ANSI_CHARSET
+        Font.Color = clBlack
+        Font.Height = -20
+        Font.Name = 'Arial'
+        Font.Pitch = fpVariable
+        Font.Quality = fqDraft
+        Font.Style = [fsBold]
+        ParentFont = False
+        RealBounds.Left = 0
+        RealBounds.Top = 0
+        RealBounds.Width = 0
+        RealBounds.Height = 0
+      end
+      object RLLabel2: TRLLabel
+        Left = 2
+        Height = 19
+        Top = 80
+        Width = 36
+        Caption = 'Tipo'
+        RealBounds.Left = 0
+        RealBounds.Top = 0
+        RealBounds.Width = 0
+        RealBounds.Height = 0
+      end
+      object RLLabel3: TRLLabel
+        Left = 56
+        Height = 19
+        Top = 80
+        Width = 51
+        Caption = 'Fecha'
+        RealBounds.Left = 0
+        RealBounds.Top = 0
+        RealBounds.Width = 0
+        RealBounds.Height = 0
+      end
+      object RLLabel4: TRLLabel
+        Left = 120
+        Height = 19
+        Top = 80
+        Width = 54
+        Caption = 'Detalle'
+        RealBounds.Left = 0
+        RealBounds.Top = 0
+        RealBounds.Width = 0
+        RealBounds.Height = 0
+      end
+      object RLLabel5: TRLLabel
+        Left = 544
+        Height = 19
+        Top = 80
+        Width = 49
+        Caption = 'Monto'
+        RealBounds.Left = 0
+        RealBounds.Top = 0
+        RealBounds.Width = 0
+        RealBounds.Height = 0
+      end
+      object RLLabel6: TRLLabel
+        Left = 600
+        Height = 19
+        Top = 80
+        Width = 118
+        Caption = 'Forma de Pago'
+        RealBounds.Left = 0
+        RealBounds.Top = 0
+        RealBounds.Width = 0
+        RealBounds.Height = 0
+      end
+      object RLFechas: TRLLabel
+        Left = 275
+        Height = 19
+        Top = 60
+        Width = 162
+        Alignment = taCenter
+        Caption = 'Ventas entre fechas'
+        Font.CharSet = ANSI_CHARSET
+        Font.Color = clBlack
+        Font.Height = -17
+        Font.Name = 'Arial'
+        Font.Pitch = fpVariable
+        Font.Quality = fqDraft
+        Font.Style = [fsBold]
+        ParentFont = False
+        RealBounds.Left = 0
+        RealBounds.Top = 0
+        RealBounds.Width = 0
+        RealBounds.Height = 0
+      end
+    end
+    object RLDetailGrid1: TRLDetailGrid
+      Left = 38
+      Height = 19
+      Top = 142
+      Width = 718
+      AutoSize = True
+      RealBounds.Left = 0
+      RealBounds.Top = 0
+      RealBounds.Width = 0
+      RealBounds.Height = 0
+      object RLDBText1: TRLDBText
+        Left = 8
+        Height = 19
+        Top = 0
+        Width = 31
+        DataField = 'tipo'
+        RealBounds.Left = 0
+        RealBounds.Top = 0
+        RealBounds.Width = 0
+        RealBounds.Height = 0
+      end
+      object RLDBText2: TRLDBText
+        Left = 72
+        Height = 17
+        Top = 0
+        Width = 40
+        Alignment = taRightJustify
+        DataField = 'fecha'
+        DisplayMask = 'DD/MM/YYYY'
+        Font.CharSet = ANSI_CHARSET
+        Font.Color = clBlack
+        Font.Height = -15
+        Font.Name = 'Arial'
+        Font.Pitch = fpVariable
+        Font.Quality = fqDraft
+        ParentFont = False
+        RealBounds.Left = 0
+        RealBounds.Top = 0
+        RealBounds.Width = 0
+        RealBounds.Height = 0
+      end
+      object RLDBText3: TRLDBText
+        Left = 120
+        Height = 17
+        Top = 0
+        Width = 46
+        DataField = 'detalle'
+        Font.CharSet = ANSI_CHARSET
+        Font.Color = clBlack
+        Font.Height = -15
+        Font.Name = 'Arial'
+        Font.Pitch = fpVariable
+        Font.Quality = fqDraft
+        ParentFont = False
+        RealBounds.Left = 0
+        RealBounds.Top = 0
+        RealBounds.Width = 0
+        RealBounds.Height = 0
+      end
+      object RLDBText4: TRLDBText
+        Left = 544
+        Height = 19
+        Top = 0
+        Width = 49
+        Alignment = taRightJustify
+        DataField = 'monto'
+        RealBounds.Left = 0
+        RealBounds.Top = 0
+        RealBounds.Width = 0
+        RealBounds.Height = 0
+      end
+      object RLDBText5: TRLDBText
+        Left = 600
+        Height = 19
+        Top = 0
+        Width = 95
+        DataField = 'lxformaPago'
+        RealBounds.Left = 0
+        RealBounds.Top = 0
+        RealBounds.Width = 0
+        RealBounds.Height = 0
+      end
+    end
+  end
+  object RLXLSFilter1: TRLXLSFilter
+    PageSetup.HeaderMargin = 0
+    PageSetup.FooterMargin = 0
+    FileName = 'movimientosCaja'
+    DisplayName = 'Planilha Excel 97-2013'
+    left = 156
+    top = 324
+  end
+  object RLPDFFilter1: TRLPDFFilter
+    DocumentInfo.Creator = 'FortesReport Community Edition v4.0 \251 Copyright © 1999-2015 Fortes Informática'
+    DisplayName = 'Documento PDF'
+    left = 156
+    top = 393
+  end
+  object RLXLSXFilter1: TRLXLSXFilter
+    DisplayName = 'Planilha Excel'
+    left = 156
+    top = 460
+  end
+  object ds: TDataSource
+    DataSet = DM_Listados.qDebajoStockMinimo
+    left = 156
+    top = 536
+  end
+end

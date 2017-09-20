@@ -7,24 +7,36 @@ interface
 uses
   Classes, SysUtils, db, FileUtil, rxdbgrid, rxmemds, dbcurredit,
   DBDateTimePicker, Forms, Controls, Graphics, Dialogs, ExtCtrls, Buttons,
-  ActnList, DbCtrls, StdCtrls, DBExtCtrls, dmgeneral, dmventas, c_itemventa;
+  ActnList, DbCtrls, StdCtrls, DBExtCtrls, ComCtrls, dmgeneral, dmventas,
+  c_itemventa, dmcambios;
 
 type
 
   { TfrmVentaAE }
 
   TfrmVentaAE = class(TForm)
-    cash_cerrarVenta: TAction;
+    prod_AddChange: TAction;
+    prod_DelChange: TAction;
+    BitBtn1: TBitBtn;
+    BitBtn2: TBitBtn;
+    BitBtn3: TBitBtn;
     BitBtn4: TBitBtn;
+    BitBtn5: TBitBtn;
+    BitBtn6: TBitBtn;
+    cash_cerrarVenta: TAction;
     cash_cobrar: TAction;
     ds_VentasFormaPago: TDataSource;
+    GrillaColores: TRxDBGrid;
     GrillaColores1: TRxDBGrid;
+    GrillaColores2: TRxDBGrid;
     Label3: TLabel;
+    Panel6: TPanel;
+    PCGrillas: TPageControl;
+    Panel2: TPanel;
+    Panel3: TPanel;
     Panel4: TPanel;
     Panel5: TPanel;
     prod_quitar: TAction;
-    BitBtn2: TBitBtn;
-    BitBtn3: TBitBtn;
     btnBuscarCliente: TBitBtn;
     ds_VentasItems: TDataSource;
     DBDateEdit1: TDBDateEdit;
@@ -36,12 +48,10 @@ type
     Label2: TLabel;
     prod_agregar: TAction;
     ActionList1: TActionList;
-    BitBtn1: TBitBtn;
-    GrillaColores: TRxDBGrid;
     Panel1: TPanel;
-    Panel2: TPanel;
-    Panel3: TPanel;
     RxDBCurrEdit1: TRxDBCurrEdit;
+    tabCambios: TTabSheet;
+    tabVentas: TTabSheet;
     procedure btnBuscarClienteClick(Sender: TObject);
     procedure cash_cerrarVentaExecute(Sender: TObject);
     procedure cash_cobrarExecute(Sender: TObject);
@@ -52,6 +62,7 @@ type
     procedure prod_quitarExecute(Sender: TObject);
   private
     dmVentas: TDM_Ventas;
+    dmCambio: TDM_Cambios;
     _idVenta: GUID_ID;
     _idCliente: GUID_ID;
     procedure ObtenerIDProductoStock (var stockID: GUID_ID
@@ -160,15 +171,20 @@ begin
   ds_Ventas.DataSet:= dmVentas.PosVentas;
   ds_VentasItems.DataSet:= dmVentas.PosVentaItems;
   ds_VentasFormaPago.DataSet:= dmVentas.PosVentaFormaPago;
+
+  dmCambio:= TDM_Cambios.Create(self);
 end;
 
 procedure TfrmVentaAE.FormDestroy(Sender: TObject);
 begin
+  dmCambio.Free;
   dmVentas.Free;
 end;
 
 procedure TfrmVentaAE.FormShow(Sender: TObject);
 begin
+  PCGrillas.ActivePage:= tabVentas;
+
   if _idVenta = GUIDNULO then
   begin
     dmVentas.New;

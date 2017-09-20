@@ -1,0 +1,262 @@
+object DM_Listados: TDM_Listados
+  OldCreateOrder = False
+  Height = 520
+  HorizontalOffset = 632
+  VerticalOffset = 209
+  Width = 593
+  object qDebajoStockMinimo: TZQuery
+    Connection = DM_General.cnxBase
+    Params = <>
+    left = 72
+    top = 37
+  end
+  object qProdMovEntreFechas: TZQuery
+    Connection = DM_General.cnxBase
+    Params = <>
+    left = 248
+    top = 32
+  end
+  object qProdVentasEntreFechas: TZQuery
+    Connection = DM_General.cnxBase
+    SQL.Strings = (
+      'select '
+      '        SUM (PVI.CANTIDAD) as Cantidad'
+      '        ,P.CODIGO'
+      '        ,P.NOMBRE'
+      '        ,C.COLOR'
+      '        ,T.TALLE'
+      '        ,M.MARCA'
+      '  '
+      'from POSVENTAITEMS PVI'
+      '     inner join POSVENTAS PV ON PVI.VENTA_ID = PV.ID'
+      '     inner join POSPRODUCTOSSTOCK PS on PVI.PRODUCTOSTOCK_ID = PS.ID'
+      '     left join PRODUCTOS P ON PS.PRODUCTO_ID = P.ID'
+      '     left join PRODUCTOSCOLORES PCol ON PCol.ID = PS.COLOR_ID'
+      '     left join Colores C ON PCol.COLOR_ID = C.ID'
+      '     left join PRODUCTOSTALLES PTall ON PTall.ID = PS.TALLE_ID'
+      '     left join Talles T ON PTall.talle_id = T.ID'
+      '     left join MARCAS M ON M.ID = P.MARCA_ID'
+      '     '
+      'where (PV.BVISIBLE = 1)'
+      '    and (PV.BANULADA = 0)'
+      '    and (PVI.BVISIBLE = 1) '
+      '    and (PV.Fecha >= :Fini)'
+      '    and (PV.Fecha <= :fFin)'
+      '    and (PS.Producto_ID = :producto_id)'
+      '   '
+      'GROUP BY M.MARCA,P.CODIGO, P.NOMBRE, C.COLOR, T.TALLE'
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'Fini'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'fFin'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'producto_id'
+        ParamType = ptUnknown
+      end>
+    left = 248
+    top = 120
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'Fini'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'fFin'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'producto_id'
+        ParamType = ptUnknown
+      end>
+    object qProdVentasEntreFechasCANTIDAD: TFloatField
+      FieldKind = fkData
+      FieldName = 'CANTIDAD'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = True
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object qProdVentasEntreFechasCODIGO: TStringField
+      FieldKind = fkData
+      FieldName = 'CODIGO'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 80
+    end
+    object qProdVentasEntreFechasNOMBRE: TStringField
+      FieldKind = fkData
+      FieldName = 'NOMBRE'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 1200
+    end
+    object qProdVentasEntreFechasCOLOR: TStringField
+      FieldKind = fkData
+      FieldName = 'COLOR'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 200
+    end
+    object qProdVentasEntreFechasTALLE: TStringField
+      FieldKind = fkData
+      FieldName = 'TALLE'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 100
+    end
+    object qProdVentasEntreFechasMARCA: TStringField
+      FieldKind = fkData
+      FieldName = 'MARCA'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 600
+    end
+  end
+  object qVentasEntreFechas: TZQuery
+    Connection = DM_General.cnxBase
+    SQL.Strings = (
+      'select '
+      '        SUM (PVI.CANTIDAD) as Cantidad'
+      '        ,P.CODIGO'
+      '        ,P.NOMBRE'
+      '        ,C.COLOR'
+      '        ,T.TALLE'
+      '        ,M.MARCA'
+      '  '
+      'from POSVENTAITEMS PVI'
+      '     inner join POSVENTAS PV ON PVI.VENTA_ID = PV.ID'
+      '     left join POSPRODUCTOSSTOCK PS on PVI.PRODUCTOSTOCK_ID = PS.ID'
+      '     left join PRODUCTOS P ON PS.PRODUCTO_ID = P.ID'
+      '     left join PRODUCTOSCOLORES PCol ON PCol.ID = PS.COLOR_ID'
+      '     left join Colores C ON PCol.COLOR_ID = C.ID'
+      '     left join PRODUCTOSTALLES PTall ON PTall.ID = PS.TALLE_ID'
+      '     left join Talles T ON PTall.talle_id = T.ID'
+      '     left join MARCAS M ON M.ID = P.MARCA_ID'
+      '     '
+      'where (PV.BVISIBLE = 1)'
+      '    and (PV.BANULADA = 0)'
+      '    and (PVI.BVISIBLE = 1) '
+      '    and (PV.Fecha >= :Fini)'
+      '    and (PV.Fecha <= :fFin)'
+      '   '
+      'GROUP BY M.MARCA,P.CODIGO, P.NOMBRE, C.COLOR, T.TALLE'
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'Fini'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'fFin'
+        ParamType = ptUnknown
+      end>
+    left = 80
+    top = 120
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'Fini'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'fFin'
+        ParamType = ptUnknown
+      end>
+    object qVentasEntreFechasCANTIDAD: TFloatField
+      FieldKind = fkData
+      FieldName = 'CANTIDAD'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = True
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object qVentasEntreFechasCODIGO: TStringField
+      FieldKind = fkData
+      FieldName = 'CODIGO'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 80
+    end
+    object qVentasEntreFechasNOMBRE: TStringField
+      FieldKind = fkData
+      FieldName = 'NOMBRE'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 1200
+    end
+    object qVentasEntreFechasCOLOR: TStringField
+      FieldKind = fkData
+      FieldName = 'COLOR'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 200
+    end
+    object qVentasEntreFechasTALLE: TStringField
+      FieldKind = fkData
+      FieldName = 'TALLE'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 100
+    end
+    object qVentasEntreFechasMARCA: TStringField
+      FieldKind = fkData
+      FieldName = 'MARCA'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 600
+    end
+  end
+end
