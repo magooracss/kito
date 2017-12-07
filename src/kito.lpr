@@ -25,7 +25,7 @@ uses
   frm_hojaderutapresentarpedidos, frm_hojaderutapresentarpedido,
   frm_seleccionmotivonoentrega, dmrecibosinternos, frm_recibointernoae,
   frm_recibointernoconcepto, frm_recibointernocobros, frm_buscarrecibosinternos,
-  dmbusquedarecibosinternos;
+  dmbusquedarecibosinternos, rpt_etiquetas_hdr;
 
 {$R *.res}
 

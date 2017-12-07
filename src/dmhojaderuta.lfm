@@ -1613,4 +1613,92 @@ object DM_HojaDeRuta: TDM_HojaDeRuta
       Size = 80
     end
   end
+  object Etiquetas: TRxMemoryData
+    FieldDefs = <    
+      item
+        Name = 'NroHojaDeRuta'
+        DataType = ftInteger
+      end    
+      item
+        Name = 'NroPedido'
+        DataType = ftInteger
+      end    
+      item
+        Name = 'Cliente'
+        DataType = ftString
+        Size = 600
+      end    
+      item
+        Name = 'Direccion'
+        DataType = ftString
+        Size = 3000
+      end    
+      item
+        Name = 'Bulto'
+        DataType = ftInteger
+      end    
+      item
+        Name = 'BultosTotal'
+        DataType = ftInteger
+      end>
+    PacketRecords = 0
+    left = 552
+    top = 43
+    object EtiquetasNroHojaDeRuta: TLongintField
+      FieldKind = fkData
+      FieldName = 'NroHojaDeRuta'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object EtiquetasNroPedido: TLongintField
+      FieldKind = fkData
+      FieldName = 'NroPedido'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object EtiquetasCliente: TStringField
+      FieldKind = fkData
+      FieldName = 'Cliente'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 600
+    end
+    object EtiquetasDireccion: TStringField
+      FieldKind = fkData
+      FieldName = 'Direccion'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 3000
+    end
+    object EtiquetasBulto: TLongintField
+      FieldKind = fkData
+      FieldName = 'Bulto'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object EtiquetasBultosTotal: TLongintField
+      FieldKind = fkData
+      FieldName = 'BultosTotal'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+  end
 end

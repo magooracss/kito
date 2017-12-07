@@ -16,7 +16,7 @@ uses
   dmventas, dmproductosstock, frm_seleccionproducto, frm_movimientoStock,
   c_itemventa, frm_formasPago, frm_listados, rpt_stockminimo, dmlistados,
   rpt_movimientosentrefechas, rpt_ventasentrefechas, frm_formaspagodescrecargo,
-  dmcambios;
+  dmcambios, frm_ventasbusqueda, dmventasbusqueda, frm_prodventaseleccion;
 
 {$R *.res}
 
@@ -30,6 +30,9 @@ begin
   Application.CreateForm(TDM_Proveedores, DM_Proveedores);
   Application.CreateForm(TfrmMain, frmMain);
   Application.CreateForm(TDM_Cambios, DM_Cambios);
+  Application.CreateForm(TfrmVentaBusqueda, frmVentaBusqueda);
+  Application.CreateForm(TDM_VentasBusqueda, DM_VentasBusqueda);
+  Application.CreateForm(TfrmProdVentaSel, frmProdVentaSel);
   Application.Run;
 end.
 

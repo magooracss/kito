@@ -2,10 +2,10 @@ object frmBuscarHdR: TfrmBuscarHdR
   Left = 351
   Height = 505
   Top = 92
-  Width = 774
+  Width = 839
   Caption = 'Buscar Hoja de Ruta'
   ClientHeight = 505
-  ClientWidth = 774
+  ClientWidth = 839
   Font.CharSet = ANSI_CHARSET
   Font.Height = -13
   Font.Name = 'Arial'
@@ -15,21 +15,21 @@ object frmBuscarHdR: TfrmBuscarHdR
   OnDestroy = FormDestroy
   OnShow = FormShow
   Position = poOwnerFormCenter
-  LCLVersion = '1.6.0.4'
+  LCLVersion = '1.6.4.0'
   object Panel1: TPanel
     Left = 0
     Height = 160
     Top = 0
-    Width = 774
+    Width = 839
     Align = alTop
     ClientHeight = 160
-    ClientWidth = 774
+    ClientWidth = 839
     TabOrder = 0
     object PCBusqueda: TPageControl
       Left = 1
       Height = 158
       Top = 1
-      Width = 463
+      Width = 528
       ActivePage = tabCliente
       Align = alClient
       ShowTabs = False
@@ -198,7 +198,7 @@ object frmBuscarHdR: TfrmBuscarHdR
       object tabCliente: TTabSheet
         Caption = 'tabCliente'
         ClientHeight = 150
-        ClientWidth = 455
+        ClientWidth = 520
         object btnBuscarCliente: TBitBtn
           Left = 16
           Height = 38
@@ -288,7 +288,7 @@ object frmBuscarHdR: TfrmBuscarHdR
           Left = 112
           Height = 24
           Top = 56
-          Width = 336
+          Width = 401
           Anchors = [akTop, akLeft, akRight]
           Color = clMoneyGreen
           ReadOnly = True
@@ -326,7 +326,7 @@ object frmBuscarHdR: TfrmBuscarHdR
       end
     end
     object RgCriterio: TRadioGroup
-      Left = 568
+      Left = 633
       Height = 158
       Top = 1
       Width = 205
@@ -354,7 +354,7 @@ object frmBuscarHdR: TfrmBuscarHdR
       TabOrder = 1
     end
     object Panel3: TPanel
-      Left = 464
+      Left = 529
       Height = 158
       Top = 1
       Width = 104
@@ -456,10 +456,10 @@ object frmBuscarHdR: TfrmBuscarHdR
     Left = 0
     Height = 50
     Top = 455
-    Width = 774
+    Width = 839
     Align = alBottom
     ClientHeight = 50
-    ClientWidth = 774
+    ClientWidth = 839
     TabOrder = 1
     object btnSeleccionar: TBitBtn
       Left = 42
@@ -536,7 +536,7 @@ object frmBuscarHdR: TfrmBuscarHdR
       TabOrder = 0
     end
     object btnCancelar: TBitBtn
-      Left = 595
+      Left = 660
       Height = 40
       Top = 3
       Width = 134
@@ -611,7 +611,7 @@ object frmBuscarHdR: TfrmBuscarHdR
       TabOrder = 1
     end
     object btnImprimir: TBitBtn
-      Left = 272
+      Left = 248
       Height = 40
       Top = 3
       Width = 104
@@ -656,7 +656,7 @@ object frmBuscarHdR: TfrmBuscarHdR
       TabOrder = 2
     end
     object btnTotalizada: TBitBtn
-      Left = 384
+      Left = 360
       Height = 40
       Top = 3
       Width = 104
@@ -700,12 +700,57 @@ object frmBuscarHdR: TfrmBuscarHdR
       OnClick = btnTotalizadaClick
       TabOrder = 3
     end
+    object btnEtiquetas: TBitBtn
+      Left = 472
+      Height = 40
+      Top = 3
+      Width = 104
+      Caption = '&Etiquetas'
+      Glyph.Data = {
+        36040000424D3604000000000000360000002800000010000000100000000100
+        2000000000000004000064000000640000000000000000000000FFFFFF004341
+        3B81393731FB36342EFF36342EFF36342EFF36342EFF36342EFF36342EFF3634
+        2EFF36342EFF36342EFF36342EFF393731FB43413B81FFFFFF00FFFFFF007373
+        70CAE3E5E5FFECEEEEFFECEEEEFFECEEEEFFECEEEEFFECEEEEFFECEEEEFFECEE
+        EEFFECEEEEFFECEEEEFFECEEEEFFE3E5E5FF737370CAFFFFFF0042423D9E8D8E
+        8BFD8A8D8BFFA0A6A4FFA0A6A4FFA0A6A4FFA0A6A4FFA0A6A4FFA0A6A4FFA0A6
+        A4FFA0A6A4FFA0A6A4FFA0A6A4FF8A8E8BFF8D8E8BFD41423DA04E514EF25659
+        56FF676B67FF777B79FFD0D0D0FFD0D0D0FFD0D0D0FFD0D0D0FFD0D0D0FFD0D0
+        D0FFD0D0D0FFD0D0D0FF787C7AFF686965FF565956FF4E514EF2858A88FFF5F6
+        F5FF919593FF787C7AFF777B78FF777A78FF767A77FF767A77FF767A77FF7679
+        77FF757976FF757976FF767A78FF8F9391FFF5F6F5FF858A88FF858A88FFFFFF
+        FFFFD1D9D5FFD1D9D5FFD1D9D5FFD1D9D5FFD1D9D5FFD1D9D5FFD1D9D5FFD1D9
+        D5FFD1D9D5FFD1D9D5FFD1D9D5FF88BFACFFFFFFFFFF858A88FF858A88FFFFFF
+        FFFFDADFDDFF4C4B45FF36342EFF36342EFF36342EFF36342EFF36342EFF3634
+        2EFF36342EFF36342EFF4C4B45FFDADFDDFFFFFFFFFF858A88FF858A88FFFFFF
+        FFFFE2E6E5FF3A3833FF767672FF5F5F5AFF565651FF555550FF555550FF5555
+        50FF585853FF5C5C57FF3A3833FFE2E6E5FFFFFFFFFF858A88FF8B8F8EE2F8F8
+        F8FFF1F3F3FF40413CFF969793FF969793FF969793FF92938FFF92938FFF9596
+        93FF969793FF969793FF40413CFFF1F3F3FFF8F8F8FF8B8F8EE2868B896BB5B9
+        B7F8F8F8F8FF626460FF474945FF474945FF474945FF474945FF474945FF4749
+        45FF474945FF474945FF626460FFF8F8F8FFB5B9B7F8868B896B858A8808868B
+        896B8B908EE2858A88FF858A88FFFFFFFFFFF2F3F2FFF2F3F2FFF2F3F2FFF2F3
+        F2FFFFFFFFFF858A88FF858A88FF8B908EE2868B896B858A8808FFFFFF00FFFF
+        FF00FFFFFF00FFFFFF00858A88FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFFFFFFFFFF858A88FFFFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+        FF00FFFFFF00FFFFFF008B8F8EAD858A88FF858A88FF858A88FF858A88FF858A
+        88FF858A88FF8B8F8EADFFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+        FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00868B88CACFD2D0CABCBDBDCA868B
+        88CAFFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+        FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF008C929073868B88CA868B88CA898E
+        8C73FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+        FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+        FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00
+      }
+      OnClick = btnEtiquetasClick
+      TabOrder = 4
+    end
   end
   object Grilla: TDBGrid
     Left = 0
     Height = 295
     Top = 160
-    Width = 774
+    Width = 839
     Align = alClient
     AutoFillColumns = True
     Color = clWindow
@@ -728,13 +773,13 @@ object frmBuscarHdR: TfrmBuscarHdR
       item
         Title.Alignment = taCenter
         Title.Caption = 'Transportista'
-        Width = 280
+        Width = 312
         FieldName = 'Transportista'
       end    
       item
         Title.Alignment = taCenter
         Title.Caption = 'Dato'
-        Width = 280
+        Width = 313
         FieldName = 'Dato'
       end>
     DataSource = ds_Grilla

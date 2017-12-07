@@ -7,15 +7,16 @@ interface
 uses
   Classes, SysUtils, FileUtil, LResources, Forms, Controls, Dialogs, StdCtrls,
   ZConnection, ZDataset, rxmemds, StrHolder, LR_Class, LR_DBSet, LR_Shape,
-  LR_E_HTM, LR_Desgn, LR_BarC, LR_RRect
+  LR_E_HTM, LR_Desgn, LR_BarC, LR_RRect, LR_E_CSV
   //,lr_e_pdf
   , db
   //, LR_Class
-    ,rxdbcomb
+    ,rxdbcomb, RLXLSXFilter
   ,dbgrids, ZAbstractRODataset
 
   ,fpspreadsheet, fpsallformats, laz_fpspreadsheet
-  , RLReport, RLPDFFilter, RLXLSFilter, RLXLSXFilter
+  , RLReport
+  , RLPDFFilter, RLXLSFilter
   ;
 
 const
@@ -42,7 +43,6 @@ const
   INC_OP = 2;
   INC_PEDIDOS = 3;
   INC_ASIENTOSMANUALES = 4;
-
 
 
   //Formas de Cobro fijas
@@ -88,6 +88,7 @@ type
     qLevantarValoresNOMBRE: TStringField;
     qLevantarValoresVALORINT: TLongintField;
     qLevantarValoresVALORSTR: TStringField;
+    RLXLSXFilter1: TRLXLSXFilter;
     RxMemoryData1: TRxMemoryData;
     qLevantarValores: TZQuery;
     SD: TSaveDialog;
@@ -814,6 +815,7 @@ end;
 (********************************************************************************
 *** MANEJO DE LOS REPORTES Fortes Report
 *******************************************************************************)
+
 procedure TDM_General.runReport(var aReport: TRLReport;
   var rptAction: TReportAction; fileName: string);
 begin
@@ -840,6 +842,7 @@ begin
     end;
   end;
 end;
+
 
 initialization
   {$I dmgeneral.lrs}

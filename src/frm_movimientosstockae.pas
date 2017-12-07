@@ -229,9 +229,9 @@ var
   elMovimiento: string;
 begin
   if rgMovimiento.ItemIndex = 0 then
-    elMovimiento:= MOV_INGRESO
+    elMovimiento:= MOV_INGRESO_STOCK
   else
-    elMovimiento:= MOV_EGRESO;
+    elMovimiento:= MOV_EGRESO_STOCK;
 
   if _idProducto <> GUIDNULO then
   begin

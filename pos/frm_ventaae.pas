@@ -15,6 +15,7 @@ type
   { TfrmVentaAE }
 
   TfrmVentaAE = class(TForm)
+    ds_cambios: TDataSource;
     prod_AddChange: TAction;
     prod_DelChange: TAction;
     BitBtn1: TBitBtn;
@@ -58,6 +59,7 @@ type
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure FormShow(Sender: TObject);
+    procedure prod_AddChangeExecute(Sender: TObject);
     procedure prod_agregarExecute(Sender: TObject);
     procedure prod_quitarExecute(Sender: TObject);
   private
@@ -83,6 +85,7 @@ uses
 , frm_busquedaempresas
 , dmproductosstock
 , frm_formasPago
+, frm_ventasbusqueda
 ;
 
 const
@@ -173,6 +176,7 @@ begin
   ds_VentasFormaPago.DataSet:= dmVentas.PosVentaFormaPago;
 
   dmCambio:= TDM_Cambios.Create(self);
+  ds_cambios.DataSet:= dmCambio.PosCambios;
 end;
 
 procedure TfrmVentaAE.FormDestroy(Sender: TObject);
@@ -243,5 +247,23 @@ begin
   end;
 end;
 
+(*******************************************************************************
+*** CAMBIOS
+*******************************************************************************)
+
+procedure TfrmVentaAE.prod_AddChangeExecute(Sender: TObject);
+var
+  scr: TfrmVentaBusqueda;
+begin
+  scr:= TfrmVentaBusqueda.Create(self);
+  try
+    if scr.ShowModal = mrOK then
+    begin
+
+    end;
+  finally
+    scr.Free;
+  end;
+end;
 end.
 

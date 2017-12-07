@@ -20,6 +20,12 @@ type
   { TDM_HojaDeRuta }
 
   TDM_HojaDeRuta = class(TDataModule)
+    EtiquetasBulto: TLongintField;
+    EtiquetasBultosTotal: TLongintField;
+    EtiquetasCliente: TStringField;
+    EtiquetasDireccion: TStringField;
+    EtiquetasNroHojaDeRuta: TLongintField;
+    EtiquetasNroPedido: TLongintField;
     HojaDeRuta: TRxMemoryData;
     HojaDeRutabAnulada: TLongintField;
     HojaDeRutabVisible: TLongintField;
@@ -58,6 +64,7 @@ type
     qTotalizarHdRCODIGO: TStringField;
     qTotalizarHdRMARCA: TStringField;
     qTotalizarHdRNOMBRE: TStringField;
+    Etiquetas: TRxMemoryData;
     SELHdR: TZQuery;
     SELHdRDet: TZQuery;
     SELHdRBANULADA: TSmallintField;
@@ -115,6 +122,7 @@ type
 
     procedure RenumerarDetalle;
     procedure TotalizarPedidos (refHojaDeRuta: GUID_ID);
+    procedure CargarEtiquetas;
 
 
   public
@@ -133,6 +141,7 @@ type
 
     procedure ImprimirFrmHdR(refHojaDeRuta: GUID_ID);
     procedure ImprimirHdRTotalizada(refHojaDeRuta: GUID_ID);
+    procedure ImprimirEtiquetasHdR(refHojaDeRuta: GUID_ID; accion: TReportAction);
 
   end;
 
@@ -147,6 +156,7 @@ uses
   ,dmpedidos
   ,dmclientes
   ,dmtransportistas
+  ,rpt_etiquetas_hdr
   ;
 
 
@@ -436,7 +446,6 @@ begin
   end;
 end;
 
-
 procedure TDM_HojaDeRuta.ImprimirHdRTotalizada(refHojaDeRuta: GUID_ID);
 begin
   Editar(refHojaDeRuta);
@@ -445,6 +454,68 @@ begin
   DM_Transportistas.Editar(HojaDeRutatransportista_id.AsString);
   DM_General.AgregarVariableReporte('Transportista',DM_Transportistas.RazonSocial);
   DM_General.EjecutarReporte;
+end;
+
+
+procedure TDM_HojaDeRuta.CargarEtiquetas;
+var
+  nroHdR, nroPedido
+  , bulto, totalbultos: integer;
+  cliente, direccion: string;
+begin
+  DM_General.ReiniciarTabla(Etiquetas);
+
+  with HojaDeRutaDetalles do
+  begin
+    if (active and (RecordCount > 0)) then
+    begin
+      First;
+      While Not EOF do
+      begin
+        bulto:= 1;
+        totalbultos:= HojaDeRutaDetallesbultos.AsInteger;
+        nroHdR:= HojaDeRutanumero.AsInteger;
+        nroPedido:= HojaDeRutaDetalleslxPedidoNro.AsInteger;
+        cliente:= HojaDeRutaDetalleslxCliente.AsString;
+        direccion:= HojaDeRutaDetalleslxClienteDir.AsString;
+
+        while (bulto <= totalbultos) do
+        begin
+          Etiquetas.Insert;
+          EtiquetasNroHojaDeRuta.AsInteger:= nroHdR;
+          EtiquetasNroPedido.AsInteger:= nroPedido;
+          EtiquetasCliente.AsString:= cliente;
+          EtiquetasDireccion.AsString:= direccion;
+          EtiquetasBulto.AsInteger:= bulto;
+          EtiquetasBultosTotal.AsInteger:= totalbultos;
+          Etiquetas.Post;
+          Inc(bulto);
+        end;
+
+        Next;
+      end;
+      Etiquetas.SortOnFields('NroPedido;BultosTotal;Bulto');
+    end;
+  end;
+end;
+
+procedure TDM_HojaDeRuta.ImprimirEtiquetasHdR(refHojaDeRuta: GUID_ID;
+  accion: TReportAction);
+var
+  rep: TrepEtiquetasHdR;
+begin
+  Editar(refHojaDeRuta);
+  CargarEtiquetas;
+  rep:= TrepEtiquetasHdR.Create(self);
+  try
+   rep.dm:= Self;
+   rep.RunReport(accion);
+
+  finally
+    rep.Free;
+  end;
+
+
 end;
 
 end.

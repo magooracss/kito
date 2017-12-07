@@ -210,7 +210,7 @@ begin
                                   , DevolucionesDetallesdevuelto.AsFloat
                                   , 0
                                   , 0
-                                  , MOV_INGRESO
+                                  , MOV_INGRESO_STOCK
                                   , nuevo
                                  );
       end

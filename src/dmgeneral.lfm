@@ -19,17 +19,6 @@ object DM_General: TDM_General
     left = 37
     top = 248
   end
-  object elReporte: TfrReport
-    Dataset = frDataset
-    DefaultCopies = 0
-    InitialZoom = pzPageWidth
-    Options = []
-    PreviewButtons = [pbZoom, pbPrint, pbExit]
-    DataType = dtDataSet
-    Title = 'Listado'
-    left = 42
-    top = 180
-  end
   object qLevantarValores: TZQuery
     SQL.Strings = (
       'SELECT *'
@@ -12322,5 +12311,21 @@ object DM_General: TDM_General
     FileName = 'creditosNuevos'
     left = 340
     top = 356
+  end
+  object elReporte: TfrReport
+    Dataset = frDataset
+    DefaultCopies = 0
+    InitialZoom = pzPageWidth
+    Options = []
+    PreviewButtons = [pbZoom, pbPrint, pbExit]
+    DataType = dtDataSet
+    Title = 'Listado'
+    left = 37
+    top = 192
+  end
+  object RLXLSXFilter1: TRLXLSXFilter
+    DisplayName = 'Planilha Excel'
+    left = 518
+    top = 256
   end
 end

@@ -14,7 +14,7 @@ object frmMovimientosStockAE: TfrmMovimientosStockAE
   OnCreate = FormCreate
   OnShow = FormShow
   Position = poOwnerFormCenter
-  LCLVersion = '1.4.0.4'
+  LCLVersion = '1.6.4.0'
   object Panel1: TPanel
     Left = 0
     Height = 50
@@ -430,6 +430,7 @@ object frmMovimientosStockAE: TfrmMovimientosStockAE
       Width = 112
       ButtonWidth = 23
       DialogTitle = 'Seleccionar Fecha'
+      Enabled = False
       MaxLength = 10
       NumGlyphs = 2
       PasswordChar = #0

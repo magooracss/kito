@@ -12,8 +12,8 @@ uses
 const
   FORMULARIO_MOV_STOCK = 'frmMovimientoStock.lrf';
 
-  MOV_INGRESO = 'I';
-  MOV_EGRESO = 'E';
+  MOV_INGRESO_STOCK = 'I';
+  MOV_EGRESO_STOCK = 'E';
 
   TIPO_GENERAL = 1;
   TIPO_DEVOLUCION = 2;
@@ -214,7 +214,7 @@ begin
   MovimientosStockDetallescantidad.AsFloat:= 0;
   MovimientosStockDetallesprecioUnitario.AsFloat:= 0;
   MovimientosStockDetallesprecioTotal.asFloat:= 0;
-  MovimientosStockDetallesmovimiento.AsString:= MOV_INGRESO;
+  MovimientosStockDetallesmovimiento.AsString:= MOV_INGRESO_STOCK;
 
   MovimientosStockDetallesbVisible.AsInteger:= 1;
 end;
@@ -347,7 +347,7 @@ begin
   qMovimientosProducto.First;
   While NOT qMovimientosProducto.EOF do
   begin
-    if qMovimientosProductoMOVIMIENTO.AsString = MOV_INGRESO then
+    if qMovimientosProductoMOVIMIENTO.AsString = MOV_INGRESO_STOCK then
        stkDisponible:= stkDisponible + qMovimientosProductoCANTIDAD.AsFloat
     else
        stkDisponible:= stkDisponible - qMovimientosProductoCANTIDAD.AsFloat;
@@ -449,7 +449,7 @@ begin
       valorFinal:= MovimientosStockDetallesprecioTotal.AsFloat;
 
 
-      if MovimientosStockDetallesmovimiento.AsString = MOV_EGRESO then
+      if MovimientosStockDetallesmovimiento.AsString = MOV_EGRESO_STOCK then
       begin
         TotalListaPrecio:= TotalListaPrecio - valorLista;
         TotalCargado:= TotalCargado - valorFinal;
@@ -555,7 +555,7 @@ begin
     begin
       MovimientosStockDetalles.Insert;
       CargarDatosPedido;
-      MovimientosStockDetallesmovimiento.AsString:= MOV_EGRESO;
+      MovimientosStockDetallesmovimiento.AsString:= MOV_EGRESO_STOCK;
       MovimientosStockDetalles.Post;
       DM_Pedidos.PedidosDetalles.Next;
     end;
@@ -574,7 +574,7 @@ begin
       else
       begin
         MovimientosStockDetalles.Insert;
-        MovimientosStockDetallesmovimiento.AsString:= MOV_EGRESO;
+        MovimientosStockDetallesmovimiento.AsString:= MOV_EGRESO_STOCK;
       end;
       CargarDatosPedido;
       MovimientosStockDetalles.Post;

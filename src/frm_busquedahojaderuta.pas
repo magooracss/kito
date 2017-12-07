@@ -21,6 +21,7 @@ type
     btnImprimir: TBitBtn;
     btnTotalizada: TBitBtn;
     btnSeleccionar: TBitBtn;
+    btnEtiquetas: TBitBtn;
     ds_Grilla: TDataSource;
     edPedido: TRxSpinEdit;
     edTransportista: TEdit;
@@ -47,6 +48,7 @@ type
     procedure btnBuscarClienteClick(Sender: TObject);
     procedure btnBuscarTranspClick(Sender: TObject);
     procedure btnCancelarClick(Sender: TObject);
+    procedure btnEtiquetasClick(Sender: TObject);
     procedure btnImprimirClick(Sender: TObject);
     procedure btnSeleccionarClick(Sender: TObject);
     procedure btnTotalizadaClick(Sender: TObject);
@@ -101,18 +103,40 @@ begin
   ModalResult:= mrCancel;
 end;
 
-procedure TfrmBuscarHdR.btnImprimirClick(Sender: TObject);
+procedure TfrmBuscarHdR.btnEtiquetasClick(Sender: TObject);
+var
+  dmHdR: TDM_HojaDeRuta;
 begin
-  Application.CreateForm(TDM_HojaDeRuta, DM_HojaDeRuta);
-  DM_HojaDeRuta.ImprimirFrmHdR(getIdHojadeRuta);
-  DM_HojaDeRuta.Free;
+  dmHdR:= TDM_HojaDeRuta.Create(self);
+  try
+    dmHdR.ImprimirEtiquetasHdR(getIdHojadeRuta, raPrint);
+  finally
+    dmHdR.Free;
+  end;
+end;
+
+procedure TfrmBuscarHdR.btnImprimirClick(Sender: TObject);
+var
+  dmHdR: TDM_HojaDeRuta;
+begin
+  dmHdR:= TDM_HojaDeRuta.Create(self);
+  try
+    dmHdR.ImprimirFrmHdR(getIdHojadeRuta);
+  finally
+    dmHdR.Free;
+  end;
 end;
 
 procedure TfrmBuscarHdR.btnTotalizadaClick(Sender: TObject);
+var
+  dmHdR: TDM_HojaDeRuta;
 begin
-  Application.CreateForm(TDM_HojaDeRuta, DM_HojaDeRuta);
-  DM_HojaDeRuta.ImprimirHdRTotalizada(getIdHojadeRuta);
-  DM_HojaDeRuta.Free;
+  dmHdR:= TDM_HojaDeRuta.Create(self);
+  try
+    dmHdR.ImprimirHdRTotalizada(getIdHojadeRuta);
+  finally
+    dmHdR.Free;
+  end;
 end;
 
 

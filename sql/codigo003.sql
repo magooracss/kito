@@ -1,4 +1,4 @@
-/*  Versión KitoPos: 0-1  */
+/*  Versión KitoPos: 1-1  */
 
 INSERT INTO HistoDB (version, exe_ver, exe_sub) VALUES (4,1,1);
 
