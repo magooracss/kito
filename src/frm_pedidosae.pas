@@ -135,7 +135,6 @@ begin
       begin
         Edit;
         Pedidoscliente_id.AsString:= pantBus.idCliente;
-        Post;
       end;
     DM_Clientes.Editar(pantBus.idCliente);
     edClienteRazonSocial.Text:= pantBus.RazonSocial;
@@ -162,7 +161,6 @@ begin
       begin
         Edit;
         Pedidostransportista_id.AsString:= pantBus.idTransportista;
-        Post;
       end;
     edTransportista.Text:= pantBus.RazonSocial;
     end;
@@ -184,7 +182,6 @@ begin
       begin
         Edit;
         Pedidosvendedor_id.AsString:= pantBus.idVendedor;
-        Post;
       end;
     edVendedorRazonSocial.Text:= pantBus.RazonSocial;
     end;
@@ -237,6 +234,7 @@ end;
 procedure TfrmPedidoAE.Inicializar;
 begin
   DM_General.CargarComboBox(cbListaPrecio, 'ListaPrecio', 'id', DM_Productos.qListasPrecios);
+
   if _idPedido = GUIDNULO then
   begin
     DM_Pedidos.Nuevo;

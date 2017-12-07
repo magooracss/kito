@@ -377,7 +377,6 @@ begin
 
     Edit;
     PedidosTotalPedido.AsFloat:= TotalPedido;
-    Post;
   end;
 end;
 
@@ -408,7 +407,6 @@ begin
   begin
     Edit;
     PedidosestadoActual_id.asString:= PedidosEstadosid.AsString;
-    Post;
   end;
 end;
 
@@ -467,7 +465,6 @@ begin
       begin
         Edit;
         PedidosestadoActual_id.AsString:= qPedidosEstadosHistorialID.AsString;
-        Post;
       end;
     end;
   end;

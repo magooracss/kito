@@ -19,8 +19,8 @@
       <UseVersionInfo Value="True"/>
       <AutoIncrementBuild Value="True"/>
       <MajorVersionNr Value="2"/>
-      <MinorVersionNr Value="7"/>
-      <BuildNr Value="96"/>
+      <MinorVersionNr Value="8"/>
+      <BuildNr Value="97"/>
       <Language Value="040A"/>
       <StringTable Comments="Carlos Enrique Rodriguez / Magoo" CompanyName="RACSS Programación" LegalCopyright="Carlos Enrique Rodriguez - RACSS Programacion" ProductName="KITO" ProductVersion=""/>
     </VersionInfo>

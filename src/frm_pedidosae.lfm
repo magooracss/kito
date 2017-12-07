@@ -14,7 +14,7 @@ object frmPedidoAE: TfrmPedidoAE
   Font.Quality = fqDraft
   OnShow = FormShow
   Position = poOwnerFormCenter
-  LCLVersion = '1.4.0.4'
+  LCLVersion = '1.6.4.0'
   object Panel1: TPanel
     Left = 0
     Height = 50
@@ -914,7 +914,7 @@ object frmPedidoAE: TfrmPedidoAE
         ParentColor = False
       end
       object edBusCodigo: TEdit
-        Left = 125
+        Left = 126
         Height = 24
         Top = 20
         Width = 80
@@ -1037,7 +1037,10 @@ object frmPedidoAE: TfrmPedidoAE
         Top = 15
         Width = 80
         Alignment = taRightJustify
+        MaxValue = 100000
+        MinValue = 0.1
         ValueType = vtFloat
+        Value = 1
         Font.CharSet = ANSI_CHARSET
         Font.Height = -16
         Font.Name = 'Arial Black'

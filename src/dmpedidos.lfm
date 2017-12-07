@@ -10,116 +10,85 @@ object DM_Pedidos: TDM_Pedidos
       item
         Name = 'id'
         DataType = ftString
-        Precision = 0
         Size = 38
       end    
       item
         Name = 'numero'
         DataType = ftInteger
-        Precision = 0
-        Size = 0
       end    
       item
         Name = 'cliente_id'
         DataType = ftString
-        Precision = 0
         Size = 38
       end    
       item
         Name = 'txNotas'
         DataType = ftString
-        Precision = 0
         Size = 3000
       end    
       item
         Name = 'vendedor_id'
         DataType = ftString
-        Precision = 0
         Size = 38
       end    
       item
         Name = 'fToma'
         DataType = ftDateTime
-        Precision = 0
-        Size = 0
       end    
       item
         Name = 'fAEntregar'
         DataType = ftDateTime
-        Precision = 0
-        Size = 0
       end    
       item
         Name = 'pagoAnticipado'
         DataType = ftFloat
-        Precision = 0
-        Size = 0
       end    
       item
         Name = 'transportista_id'
         DataType = ftString
-        Precision = 0
         Size = 38
       end    
       item
         Name = 'gastosEnvio'
         DataType = ftFloat
-        Precision = 0
-        Size = 0
       end    
       item
         Name = 'estadoActual_id'
         DataType = ftString
-        Precision = 0
         Size = 38
       end    
       item
         Name = 'bFacturado'
         DataType = ftInteger
-        Precision = 0
-        Size = 0
       end    
       item
         Name = 'fFacturacion'
         DataType = ftDateTime
-        Precision = 0
-        Size = 0
       end    
       item
         Name = 'factura_id'
         DataType = ftString
-        Precision = 0
         Size = 38
       end    
       item
         Name = 'porcentajeAplicar'
         DataType = ftFloat
-        Precision = 0
-        Size = 0
       end    
       item
         Name = 'montoAplicar'
         DataType = ftFloat
-        Precision = 0
-        Size = 0
       end    
       item
         Name = 'bDescuento'
         DataType = ftInteger
-        Precision = 0
-        Size = 0
       end    
       item
         Name = 'TotalPedido'
         DataType = ftFloat
-        Precision = 0
-        Size = 0
       end    
       item
         Name = 'bVisible'
         DataType = ftInteger
-        Precision = 0
-        Size = 0
       end>
     AfterInsert = PedidosAfterInsert
     PacketRecords = 0
@@ -1028,91 +997,68 @@ object DM_Pedidos: TDM_Pedidos
       item
         Name = 'id'
         DataType = ftString
-        Precision = 0
         Size = 38
       end    
       item
         Name = 'pedido_id'
         DataType = ftString
-        Precision = 0
         Size = 38
       end    
       item
         Name = 'listaPrecio_id'
         DataType = ftInteger
-        Precision = 0
-        Size = 0
       end    
       item
         Name = 'precioUnitario'
         DataType = ftFloat
-        Precision = 0
-        Size = 0
       end    
       item
         Name = 'porcentajeAplicar'
         DataType = ftFloat
-        Precision = 0
-        Size = 0
       end    
       item
         Name = 'bDescuento'
         DataType = ftInteger
-        Precision = 0
-        Size = 0
       end    
       item
         Name = 'precioSubtotal'
         DataType = ftFloat
-        Precision = 0
-        Size = 0
       end    
       item
         Name = 'precioTotal'
         DataType = ftFloat
-        Precision = 0
-        Size = 0
       end    
       item
         Name = 'cantidad'
         DataType = ftFloat
-        Precision = 0
-        Size = 0
       end    
       item
         Name = 'bVisible'
         DataType = ftInteger
-        Precision = 0
-        Size = 0
       end    
       item
         Name = 'producto_id'
         DataType = ftString
-        Precision = 0
         Size = 38
       end    
       item
         Name = 'lxProducto'
         DataType = ftString
-        Precision = 0
         Size = 500
       end    
       item
         Name = 'lxCodigo'
         DataType = ftString
-        Precision = 0
         Size = 50
       end    
       item
         Name = 'lxListaPrecio'
         DataType = ftString
-        Precision = 0
         Size = 100
       end    
       item
         Name = 'precio_id'
         DataType = ftString
-        Precision = 0
         Size = 38
       end>
     AfterInsert = PedidosDetallesAfterInsert
@@ -1824,38 +1770,32 @@ object DM_Pedidos: TDM_Pedidos
       item
         Name = 'id'
         DataType = ftString
-        Precision = 0
         Size = 38
       end    
       item
         Name = 'pedido_id'
         DataType = ftString
-        Precision = 0
         Size = 38
       end    
       item
         Name = 'fecha'
         DataType = ftDateTime
         Precision = -1
-        Size = 0
       end    
       item
         Name = 'tipoEstado_id'
         DataType = ftInteger
         Precision = -1
-        Size = 0
       end    
       item
         Name = 'Notas'
         DataType = ftString
-        Precision = 0
         Size = 3000
       end    
       item
         Name = 'bVisible'
         DataType = ftInteger
         Precision = -1
-        Size = 0
       end    
       item
         Name = 'lxEstado'

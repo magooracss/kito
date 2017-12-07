@@ -1889,6 +1889,8 @@ object DM_Productos: TDM_Productos
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
       Required = False
+      DisplayFormat = '############0'
+      EditFormat = '############0'
       MaxValue = 0
       MinValue = 0
       Precision = 2
@@ -1902,6 +1904,8 @@ object DM_Productos: TDM_Productos
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
       Required = False
+      DisplayFormat = '#########000.00'
+      EditFormat = '#########000.00'
       MaxValue = 0
       MinValue = 0
       Precision = 2
