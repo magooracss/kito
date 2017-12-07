@@ -1,0 +1,158 @@
+object DM_VentasBusqueda: TDM_VentasBusqueda
+  OldCreateOrder = False
+  Height = 557
+  HorizontalOffset = 784
+  VerticalOffset = 173
+  Width = 624
+  object Resultados: TRxMemoryData
+    FieldDefs = <    
+      item
+        Name = 'venta_id'
+        DataType = ftString
+        Size = 38
+      end    
+      item
+        Name = 'Nro'
+        DataType = ftInteger
+      end    
+      item
+        Name = 'fecha'
+        DataType = ftDate
+      end    
+      item
+        Name = 'Cliente'
+        DataType = ftString
+        Size = 600
+      end    
+      item
+        Name = 'monto'
+        DataType = ftFloat
+        Precision = 3
+        Size = 10
+      end>
+    PacketRecords = 0
+    left = 89
+    top = 59
+    object Resultadosventa_id: TStringField
+      FieldKind = fkData
+      FieldName = 'venta_id'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 38
+    end
+    object ResultadosNro: TLongintField
+      FieldKind = fkData
+      FieldName = 'Nro'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object Resultadosfecha: TDateField
+      FieldKind = fkData
+      FieldName = 'fecha'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object ResultadosCliente: TStringField
+      FieldKind = fkData
+      FieldName = 'Cliente'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 600
+    end
+    object Resultadosmonto: TFloatField
+      FieldKind = fkData
+      FieldName = 'monto'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Currency = True
+      MaxValue = 0
+      MinValue = 0
+      Precision = 3
+    end
+  end
+  object qBusqueda: TZQuery
+    Connection = DM_General.cnxBase
+    Active = True
+    SQL.Strings = (
+      'select V.ID as venta_id'
+      '     , V.NUMERO as NRO'
+      '     , V.FECHA'
+      '     , E.RAZONSOCIAL as cliente '
+      '     , V.TOTAL as Monto'
+      'from POSVENTAS V'
+      '    left join CLIENTES C on V.CLIENTE_ID = C.ID'
+      '    left join EMPRESAS E on C.EMPRESA_ID = E.ID'
+      'where (V.BVISIBLE = 1) '
+      '      and (V.BANULADA <> 1)'
+    )
+    Params = <>
+    left = 97
+    top = 181
+    object qBusquedaVENTA_ID: TStringField
+      FieldKind = fkData
+      FieldName = 'VENTA_ID'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+      Size = 152
+    end
+    object qBusquedaNRO: TLongintField
+      FieldKind = fkData
+      FieldName = 'NRO'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object qBusquedaFECHA: TDateField
+      FieldKind = fkData
+      FieldName = 'FECHA'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object qBusquedaCLIENTE: TStringField
+      FieldKind = fkData
+      FieldName = 'CLIENTE'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 2000
+    end
+    object qBusquedaMONTO: TFloatField
+      FieldKind = fkData
+      FieldName = 'MONTO'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Currency = True
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+  end
+end
